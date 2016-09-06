@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# JDK installation tips:
+# * run `dpkg -L openjdk-8-jdk` to check installed files
+# * run `sudo apt-get install openjdk-8-jdk` to install
+# Export Java SDK. Set installation directory accordingly.
+export JAVA_HOME="/usr/lib/jvm/jdk1.8.0_60"
+export PATH="$PATH:$JAVA_HOME/bin"
+
+# Export Android SDK. Set installation directory accordingly.
+export ANDROID_HOME="$HOME/sdk/android-sdk"
+export PATH="$PATH:$ANDROID_HOME/tools"
+export PATH="$PATH:$ANDROID_HOME/platform-tools"
+
+# Export Scala SDK. Set installation directory accordingly.
+export SCALA_HOME="$HOME/sdk/scala-sdk"
+export PATH="$PATH:$SCALA_HOME/bin"
+
+# IntellIJ IDEA installation tips (replace `$VERSION` with the desired version):
+# https://www.jetbrains.com/help/idea/$VERSION/installing-and-launching.html

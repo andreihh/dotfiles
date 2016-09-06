@@ -1,0 +1,21 @@
+#!/bin/usr/env bash
+
+# A calculator which redirects the given operation to python.
+function calc() {
+    [ "$#" -ne 1 ] && echo "Illegal number of arguments!" && return
+    python -c "print($1)"
+}
+
+# Output to stderr.
+function echoerr() {
+    echo "$@" 1>&2
+}
+
+# Pop-up given message in specified amount of time.
+function remindme() {
+    if zenity --help &>/dev/null; then
+        nohup sleep $1 && zenity --info --text "$2" &
+    else
+        echo "zenity not installed!"
+    fi
+}

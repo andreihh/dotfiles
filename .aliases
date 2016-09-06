@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# Always enable colored `ls` output.
+ls --color . &>/dev/null && \
+    alias ls='ls --color=auto' || \
+    alias ls='ls -G'
+
+# Always enable colored `grep` output.
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'

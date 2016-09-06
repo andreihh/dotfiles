@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# Add `~/scripts` to path.
+[ -d "$HOME/scripts" ] && export PATH="$PATH:$HOME/scripts"
+
+# Add `~/bin` to path.
+[ -d "$HOME/bin" ] && export PATH="$PATH:$HOME/bin"

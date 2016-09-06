@@ -1,0 +1,9 @@
+[user]
+    name = Andrei Heidelbacher
+    email = andrei.heidelbacher@gmail.com
+
+[color]
+    branch = auto
+    diff = auto
+    status = auto
+    grep = auto
