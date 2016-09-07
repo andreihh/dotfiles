@@ -27,8 +27,9 @@ dir="$HOME/dotfiles"
 olddir="$HOME/dotfiles_old"
 
 files=\
-".bashrc .bash_profile .bash_prompt "\
-".aliases .exports .path .functions "\
+".bashrc .bash_profile .bash_aliases "\
+".exports .path .functions "\
+".editorconfig "\
 ".vimrc .vim .ideavimrc "\
 ".gitconfig "\
 "scripts"
