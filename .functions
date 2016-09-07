@@ -14,7 +14,7 @@ function echoerr() {
 # Pop-up given message after the specified amount of time.
 function remindme() {
     if zenity --help &>/dev/null; then
-        nohup sleep $1 && zenity --info --text "$2" &
+        nohup sleep $1 &>/dev/null && zenity --info --text "$2" &>/dev/null &
     else
         echo "zenity not installed!"
     fi
