@@ -3,7 +3,7 @@
 # This script will install the dotfiles on the current machine.
 #
 # It expects the dotfiles to be located in the `~/dotfiles` directory. It will
-# also create a `~/dotfiles_old` directory where it will backup existing
+# also create a `~/.dotfiles_old` directory where it will backup existing
 # dotfiles before removing them (note, however, that only files and directories
 # are backed up; symlinks or other types of files are not backed up).
 #
@@ -24,7 +24,7 @@
 # to manually copy this file to `~/.extras` and customize it accordingly.
 
 dir="$HOME/dotfiles"
-olddir="$HOME/dotfiles_old"
+olddir="$HOME/.dotfiles_old"
 
 files=\
 ".bashrc .bash_profile .bash_aliases "\
