@@ -4,6 +4,13 @@ Copyright 2016 Andrei Heidelbacher
 This product includes software developed by Andrei Heidelbacher
 (andrei.heidelbacher@gmail.com).
 
-This product uses the file structure and contains some scripts from Mathias
-Bynens' dotfiles repository (https://github.com/mathiasbynens/dotfiles), also
-released under the MIT license.
+This product contains some scripts from Mathias Bynens' dotfiles repository
+(https://github.com/mathiasbynens/dotfiles), also released under the MIT
+license.
+
+This product contains the "CleverTab" script from the Vim user manual, written
+by Bram Moolenar and released under Open Publication License v1.0
+(http://www.opencontent.org/openpub/).
+
+This product contains parts of the default ".bashrc" script, bundled with Ubuntu
+16.04.
