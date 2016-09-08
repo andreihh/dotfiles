@@ -117,4 +117,4 @@ function! CleverTab()
         return "\<C-N>"
 endfunction
 set completeopt=longest,menu
-inoremap <TAB> <C-R>=TabComplete()<CR>
+inoremap <TAB> <C-R>=CleverTab()<CR>
