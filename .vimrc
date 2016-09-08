@@ -118,3 +118,9 @@ function! CleverTab()
 endfunction
 set completeopt=longest,menu
 inoremap <TAB> <C-R>=CleverTab()<CR>
+
+" Enter accepts autocomplete option and split undo sequence by lines
+inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<C-G>u\<CR>"
+
+" Esc cancels autocomplete
+inoremap <expr> <ESC> pumvisible() ? "\<C-E>" : "\<ESC>"
