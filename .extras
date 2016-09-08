@@ -1,5 +1,16 @@
 #!/usr/bin/env bash
 
+# Required packages:
+# * git
+# * python
+# * python3
+# * openjdk-8-jdk
+# * vim
+# * vim.gnome-py2
+# * zenity
+# * pylint
+# * pylint3
+
 # JDK installation tips:
 # * run `dpkg -L openjdk-8-jdk` to check installed files
 # * run `sudo apt-get install openjdk-8-jdk` to install

@@ -23,6 +23,10 @@ HISTFILESIZE=2000
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
+# minor errors in the spelling of a directory component in a cd command will be
+# corrected (transposed characters, missing character, or additional character)
+shopt -s cdspell
+
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
 #shopt -s globstar

@@ -4,13 +4,10 @@
 " top to avoid problems.
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
+call pathogen#helptags()
 
 " This option stops Vim from behaving in a strongly Vi -compatible way.
 set nocompatible
-
-" Sets the terminal to support 256 colors. This is required to support color
-" themes.
-set t_Co=256
 
 " When set to "dark", Vim wil try to use colors that look good on a dark
 " background.
@@ -71,10 +68,10 @@ set autoindent
 set smartindent
 
 " Number of spaces that a <Tab> in the file counts for.
-"set tabstop=4
+set tabstop=4
 
 " Number of spaces to use for each step of (auto)indent.
-"set shiftwidth=4
+set shiftwidth=4
 
 " Always assume unix-style files.
 set fileformats=unix
@@ -86,9 +83,9 @@ set list listchars=tab:>-,trail:.,nbsp:~
 set splitbelow
 set splitright
 
-" Sets the colorscheme to darcula, which can be found here:
-" https://www.github.com/blueshirts/darcula
-" colorscheme darcula
+" Sets the terminal to support 256 colors. This is required to support color
+" themes.
+" set t_Co=256
 
 " Make command
 :set makeprg=make\ %<\ LDLIBS=\"-lm\"\ CFLAGS=\"-Wall\ -O2\ -static\"\ CPPFLAGS=\"-Wall\ -O2\ -static\ -std=c++0x\"
@@ -113,11 +110,11 @@ inoremap ( ()<ESC>i
 inoremap [ []<ESC>i
 
 " Tab autocomplete
-function! TabComplete()
-    if col('.') > 1 && strpart(getline('.'), col('.')-2, 3) =~ '^\w'
-        return "\<C-N>"
-    else
+function! CleverTab()
+    if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
         return "\<TAB>"
+    else
+        return "\<C-N>"
 endfunction
 set completeopt=longest,menu
 inoremap <TAB> <C-R>=TabComplete()<CR>
