@@ -1,3 +1,5 @@
 # .ideavimrc
 
 source ~/.vimrc
+
+set surround
