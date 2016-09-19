@@ -119,3 +119,20 @@ map <F9> <ESC>:w<CR>:make<CR>:!time ./%<<CR>
 imap <F7> <ESC>:w<CR>:make<CR>
 imap <F8> <ESC>:!time ./%<<CR>
 imap <F9> <ESC>:w<CR>:make<CR>:!time ./%<<CR>
+
+" Syntastic settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" Set syntastic C++ checker default flags
+let g:syntastic_cpp_compiler_options = ' -lm -static -Wall -std=c++0x'
+
+" Set syntastic python checkers default to python3
+"let g:syntastic_python_python_exe = 'python3'
+let g:syntastic_python_pylint_exe = 'pylint3'
