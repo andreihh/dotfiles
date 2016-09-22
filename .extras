@@ -11,6 +11,10 @@
 # * pylint
 # * pylint3
 # * openjdk-8-jdk
+# * build-essential
+# * cmake
+# * python-dev
+# * python3-dev
 
 # Export Java SDK. Set installation directory accordingly.
 export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"

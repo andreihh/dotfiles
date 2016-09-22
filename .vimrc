@@ -85,40 +85,19 @@ set splitright
 
 " Sets the terminal to enable 256 colors. This is required to support color
 " themes, but may break colors if the terminal doesn't support 256 colors.
-" set t_Co=256
+"set t_Co=256
 
 " Curly bracket autocomplete
 inoremap {<CR> {<CR>}<ESC>O
 
-" Enable autocompletion
-set completeopt=longest,menu
-
-" Tab autocomplete
-function! CleverTab()
-    if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
-        return "\<TAB>"
-    else
-        return "\<C-N>"
-endfunction
-inoremap <TAB> <C-R>=CleverTab()<CR>
+" Set YouCompleteMe to always popup completion menu
+let g:ycm_min_num_of_chars_for_completion = 1
 
 " Enter accepts autocomplete option and splits undo sequence by lines
 inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<C-G>u\<CR>"
 
 " Esc cancels autocomplete
 inoremap <expr> <ESC> pumvisible() ? "\<C-E>" : "\<ESC>"
-
-" Make command
-:set makeprg=make\ %<\ LDLIBS=\"-lm\"\ CFLAGS=\"-Wall\ -O2\ -static\"\ CPPFLAGS=\"-Wall\ -O2\ -static\ -std=c++0x\"
-
-" Mappings
-map <F7> <ESC>:w<CR>:make<CR>
-map <F8> <ESC>:!time ./%<<CR>
-map <F9> <ESC>:w<CR>:make<CR>:!time ./%<<CR>
-
-imap <F7> <ESC>:w<CR>:make<CR>
-imap <F8> <ESC>:!time ./%<<CR>
-imap <F9> <ESC>:w<CR>:make<CR>:!time ./%<<CR>
 
 " Syntastic settings
 set statusline+=%#warningmsg#
@@ -134,5 +113,16 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_cpp_compiler_options = ' -lm -static -Wall -std=c++0x'
 
 " Set syntastic python checkers default to python3
-"let g:syntastic_python_python_exe = 'python3'
 let g:syntastic_python_pylint_exe = 'pylint3'
+
+" Make command
+:set makeprg=make\ %<\ LDLIBS=\"-lm\"\ CFLAGS=\"-Wall\ -O2\ -static\"\ CPPFLAGS=\"-Wall\ -O2\ -static\ -std=c++0x\"
+
+" Mappings
+map <F7> <ESC>:w<CR>:make<CR>
+map <F8> <ESC>:!time ./%<<CR>
+map <F9> <ESC>:w<CR>:make<CR>:!time ./%<<CR>
+
+imap <F7> <ESC>:w<CR>:make<CR>
+imap <F8> <ESC>:!time ./%<<CR>
+imap <F9> <ESC>:w<CR>:make<CR>:!time ./%<<CR>
