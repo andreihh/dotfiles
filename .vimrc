@@ -90,14 +90,16 @@ set splitright
 " Curly bracket autocomplete
 inoremap {<CR> {<CR>}<ESC>O
 
-" Set YouCompleteMe to always popup completion menu
+" YouCompleteMe settings
 let g:ycm_min_num_of_chars_for_completion = 1
+let g:ycm_key_list_select_completion = ['<C-J>']
+let g:ycm_key_list_previous_completion = ['<C-K>']
 
-" Enter accepts autocomplete option and splits undo sequence by lines
-inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<C-G>u\<CR>"
+" Tab accepts autocomplete option
+inoremap <expr> <TAB> pumvisible() ? "\<C-Y>\<ESC>a" : "\<TAB>"
 
-" Esc cancels autocomplete
-inoremap <expr> <ESC> pumvisible() ? "\<C-E>" : "\<ESC>"
+" Esc closes autocomplete window and exits insert mode
+inoremap <expr> <ESC> pumvisible() ? "\<C-E>\<ESC>" : "\<ESC>"
 
 " Syntastic settings
 set statusline+=%#warningmsg#
