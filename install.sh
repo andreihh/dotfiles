@@ -22,6 +22,9 @@
 # The `.extras` file is not installed. It should mostly contain local settings,
 # like exporting JAVA_HOME from a specified installation directory. You may wish
 # to manually copy this file to `~/.extras` and customize it accordingly.
+#
+# After installing the dotfiles, it will attempt to install required packages by
+# various configurations, such as vim plugins.
 
 dir="$HOME/dotfiles"
 olddir="$HOME/.dotfiles_old"
@@ -33,6 +36,15 @@ files=\
 ".vimrc .vim .ideavimrc "\
 ".gitconfig "\
 "scripts"
+
+packages=\
+"git "\
+"vim vim.gnome-py2 "\
+"zenity "\
+"python python3 python-dev python3-dev "\
+"pylint pylint3 "\
+"build-essential cmake "\
+"openjdk-8-jdk"
 
 echo "Setting up backup directory $olddir ..." && \
     mkdir -p "$olddir" && \
@@ -81,6 +93,21 @@ for file in $files; do
     else
         echo "Can't setup symlink because $file already exists!"
     fi
+done
+
+echo -e "\nDone!"
+
+echo -e "\nInstalling required packages..."
+echo -e "\nUpdating package index..." && \
+    sudo apt-get update && \
+    echo "Package index updated!" || \
+    echo "Failed to update package index!"
+
+for package in $packages; do
+    echo -e "\nInstalling package $package ..." && \
+        sudo apt-get install $package && \
+        echo "Package installed!" || \
+        echo "Installation failed!"
 done
 
 echo -e "\nDone!"
