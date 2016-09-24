@@ -5,4 +5,5 @@ source ~/.vimrc
 set surround
 
 " Unmap vim bracket autocomplete because it is the default behavior in IntelliJ
-"unmap {<CR>
+" Currently, unmap is not supported by IdeaVIM
+iunmap {<CR>

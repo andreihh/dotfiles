@@ -88,16 +88,21 @@ set splitright
 "set t_Co=256
 
 " Curly bracket autocomplete
-inoremap {<CR> {<CR>}<ESC>O
+" Use <expr>, because unmap is not currently supported in IdeaVIM
+inoremap <expr> {<CR> "{\<CR>}\<Esc>O"
 
-" YouCompleteMe always popup completion menu
-let g:ycm_min_num_of_chars_for_completion = 1
+" YouCompleteMe should always popup completion menu
+let g:ycm_min_num_of_chars_for_completion = 0
+
+" Because semantic completion isn't used, Ctrl-Space should trigger identifier
+" completion
+inoremap <C-Space> <C-N>
 
 " Enter accepts autocomplete option
-inoremap <expr> <CR> pumvisible() ? "\<C-Y>\<ESC>a" : "\<CR>"
+inoremap <expr> <CR> pumvisible() ? "\<C-Y>\<Esc>a" : "\<CR>"
 
 " Esc closes autocomplete window and exits insert mode
-inoremap <expr> <ESC> pumvisible() ? "\<C-E>\<ESC>" : "\<ESC>"
+inoremap <expr> <Esc> pumvisible() ? "\<C-E>\<Esc>" : "\<Esc>"
 
 " Syntastic settings
 set statusline+=%#warningmsg#
@@ -119,10 +124,10 @@ let g:syntastic_python_pylint_exe = 'pylint3'
 :set makeprg=make\ %<\ LDLIBS=\"-lm\"\ CFLAGS=\"-Wall\ -O2\ -static\"\ CPPFLAGS=\"-Wall\ -O2\ -static\ -std=c++0x\"
 
 " Mappings
-map <F7> <ESC>:w<CR>:make<CR>
-map <F8> <ESC>:!time ./%<<CR>
-map <F9> <ESC>:w<CR>:make<CR>:!time ./%<<CR>
+map <F7> <Esc>:w<CR>:make<CR>
+map <F8> <Esc>:!time ./%<<CR>
+map <F9> <Esc>:w<CR>:make<CR>:!time ./%<<CR>
 
-imap <F7> <ESC>:w<CR>:make<CR>
-imap <F8> <ESC>:!time ./%<<CR>
-imap <F9> <ESC>:w<CR>:make<CR>:!time ./%<<CR>
+imap <F7> <Esc>:w<CR>:make<CR>
+imap <F8> <Esc>:!time ./%<<CR>
+imap <F9> <Esc>:w<CR>:make<CR>:!time ./%<<CR>
