@@ -54,9 +54,6 @@ syntax enable
 " Allow backspacing over audoindent, line breaks and the start of insert.
 set backspace=indent,eol,start
 
-" Use the appropriate number of spaces to insert a <Tab>.
-set expandtab
-
 " When increasing/decreasing indent level, round to nearest multiple of
 " shiftwidth.
 set shiftround
@@ -66,12 +63,6 @@ set autoindent
 
 " Do smart autoindenting when starting a new line.
 set smartindent
-
-" Number of spaces that a <Tab> in the file counts for.
-set tabstop=4
-
-" Number of spaces to use for each step of (auto)indent.
-set shiftwidth=4
 
 " Always assume unix-style files.
 set fileformats=unix
@@ -87,24 +78,24 @@ set splitright
 " themes, but may break colors if the terminal doesn't support 256 colors.
 "set t_Co=256
 
-" Curly bracket autocomplete
-" Use <expr>, because unmap is not currently supported in IdeaVIM
+" Curly bracket autocomplete.
+" Use <expr>, because unmap is not currently supported in IdeaVIM.
 inoremap <expr> {<CR> "{\<CR>}\<Esc>O"
 
-" YouCompleteMe should always popup completion menu
+" YouCompleteMe should always popup completion menu.
 let g:ycm_min_num_of_chars_for_completion = 0
 
 " Because semantic completion isn't used, Ctrl-Space should trigger identifier
-" completion
+" completion.
 inoremap <C-Space> <C-N>
 
-" Enter accepts autocomplete option
+" Enter accepts autocomplete option.
 inoremap <expr> <CR> pumvisible() ? "\<C-Y>\<Esc>a" : "\<CR>"
 
-" Esc closes autocomplete window and exits insert mode
+" Esc closes autocomplete window and exits insert mode.
 inoremap <expr> <Esc> pumvisible() ? "\<C-E>\<Esc>" : "\<Esc>"
 
-" Syntastic settings
+" Recommended Syntastic settings.
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -114,10 +105,10 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-" Set syntastic C++ checker default flags
+" Set Syntastic C++ checker default flags.
 let g:syntastic_cpp_compiler_options = ' -lm -static -Wall -std=c++0x'
 
-" Set syntastic python checkers default to python3
+" Syntastic python checker defaults to python3.
 let g:syntastic_python_pylint_exe = 'pylint3'
 
 " Make command

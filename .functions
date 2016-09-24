@@ -3,7 +3,7 @@
 # A calculator which redirects the given operation to python.
 function calc() {
     [ "$#" -ne 1 ] && echo "Illegal number of arguments!" && return
-    python3 -c "print($1)"
+    python3 -c "from math import *; print($1)"
 }
 
 # Output to stderr.
@@ -14,7 +14,13 @@ function echoerr() {
 # Pop-up given message after the specified amount of time.
 function remindme() {
     if zenity --help &>/dev/null; then
-        nohup sleep $1 &>/dev/null && zenity --info --text "$2" &>/dev/null &
+        [ "$#" -ne 2 ] && echo "Illegal number of arguments!" && return
+        pattern="^[[:digit:]]+[smhd]?$"
+        if [[ ! "$1" =~ $pattern ]]; then
+            echo "Invalid duration!" && return
+        fi
+        ( nohup sleep $1 &>/dev/null && \
+            zenity --info --text "$2" &>/dev/null & )
     else
         echo "zenity not installed!"
     fi
