@@ -95,8 +95,6 @@ for file in $files; do
     fi
 done
 
-echo -e "\nDone!"
-
 echo -e "\nInstalling required packages..."
 echo -e "\nUpdating package index..." && \
     sudo apt-get update && \
