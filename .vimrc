@@ -85,8 +85,7 @@ inoremap <expr> {<CR> "{\<CR>}\<Esc>O"
 " YouCompleteMe should always popup completion menu.
 let g:ycm_min_num_of_chars_for_completion = 0
 
-" Because semantic completion isn't used, Ctrl-Space should trigger identifier
-" completion.
+" Ctrl-Space should trigger identifier completion.
 inoremap <C-Space> <C-N>
 
 " Enter accepts autocomplete option.
