@@ -6,7 +6,13 @@ It contains the specific dotfiles, along with an installation script.
 
 ### Installation
 
-Clone the repository to `~/dotfiles` and run `install.sh`.
+```
+cd ~
+git clone --recursive https://github.com/andrei-heidelbacher/dotfiles.git
+cd dotfiles
+chmod +x install.sh
+./install.sh
+```
 
 ### Licensing
 

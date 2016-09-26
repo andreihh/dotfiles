@@ -25,6 +25,8 @@
 #
 # After installing the dotfiles, it will attempt to install required packages by
 # various configurations, such as vim plugins.
+#
+# It will also attempt to compile and install the vim YouCompleteMe plugin.
 
 dir="$HOME/dotfiles"
 olddir="$HOME/.dotfiles_old"
@@ -107,5 +109,11 @@ for package in $packages; do
         echo "Package installed!" || \
         echo "Installation failed!"
 done
+
+echo -e "\nInstalling YouCompleteMe vim plugin..."
+chmod +x "$dir/.vim/bundle/YouCompleteMe/install.py"
+$dir/.vim/bundle/YouCompleteMe/install.py && \
+    echo "YCM installed!" || \
+    echo "Failed to install YCM!"
 
 echo -e "\nDone!"
