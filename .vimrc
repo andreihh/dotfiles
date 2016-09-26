@@ -103,11 +103,13 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_aggregate_errors = 1
 
 " Set Syntastic C++ checker default flags.
 let g:syntastic_cpp_compiler_options = ' -lm -static -Wall -std=c++0x'
 
 " Syntastic python checker defaults to python3.
+let g:syntastic_python_python_exec = 'python3'
 let g:syntastic_python_pylint_exe = 'pylint3'
 
 " Make command
