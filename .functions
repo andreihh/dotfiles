@@ -15,7 +15,7 @@ function echoerr() {
 function remindme() {
     if zenity --help &>/dev/null; then
         [ "$#" -ne 2 ] && echo "Illegal number of arguments!" && return
-        pattern="^[[:digit:]]+[smhd]?$"
+        local pattern="^[[:digit:]]+[smhd]?$"
         if [[ ! "$1" =~ $pattern ]]; then
             echo "Invalid duration!" && return
         fi
