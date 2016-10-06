@@ -113,7 +113,7 @@ let g:syntastic_python_python_exec = 'python3'
 let g:syntastic_python_pylint_exe = 'pylint3'
 
 " Make command
-:set makeprg=make\ %<\ LDLIBS=\"-lm\"\ CFLAGS=\"-Wall\ -O2\ -static\"\ CPPFLAGS=\"-Wall\ -O2\ -static\ -std=c++0x\"
+:set makeprg=make\ %<\ LDLIBS=\"-lm\"\ CFLAGS=\"-Wall\ -O2\ -static\ -std=c11\"\ CPPFLAGS=\"-Wall\ -O2\ -static\ -std=c++0x\"
 
 " Mappings
 map <F7> <Esc>:w<CR>:make<CR>
