@@ -160,6 +160,11 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
 # Load custom configuration files:
 # * `~/.exports` for environment variables exports
 # * `~/.functions` for defining custom functions
