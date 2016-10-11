@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-# Add `~/scripts` to path.
-[ -d "$HOME/scripts" ] && export PATH="$PATH:$HOME/scripts"

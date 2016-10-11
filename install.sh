@@ -33,11 +33,11 @@ olddir="$HOME/.dotfiles_old"
 
 files=\
 ".bashrc .bash_profile .bash_aliases "\
-".exports .path .functions "\
+".exports .functions "\
 ".editorconfig "\
 ".vimrc .vim .ideavimrc "\
 ".gitconfig "\
-"scripts"
+"bin"
 
 packages=\
 "git "\
@@ -53,8 +53,8 @@ echo "Setting up backup directory $olddir ..." && \
     echo "Backup directory setup completed!" || \
     echo "Backup directory setup failed!"
 
-echo -e "\nSetting execution permission for scripts ..." && \
-    chmod -R 755 "$dir/scripts" && \
+echo -e "\nSetting execution permission for bin ..." && \
+    chmod -R 755 "$dir/bin" && \
     echo "Permissions set!" || \
     echo "Failed to set permissions!"
 
