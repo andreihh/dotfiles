@@ -4,9 +4,5 @@ Copyright 2016 Andrei Heidelbacher
 This product includes software developed by Andrei Heidelbacher
 (andrei.heidelbacher@gmail.com).
 
-This product contains some scripts from Mathias Bynens' dotfiles repository
-(https://github.com/mathiasbynens/dotfiles), also released under the MIT
-license.
-
-This product contains parts of the default ".bashrc" script, bundled with Ubuntu
-16.04.
+This product contains parts of the default ".bashrc", ".bash_profile" and
+".bash_logout" scripts, bundled with Ubuntu 16.04.
