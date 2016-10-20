@@ -32,7 +32,7 @@ dir="$HOME/dotfiles"
 olddir="$HOME/.dotfiles_old"
 
 files=\
-".bashrc .bash_profile .bash_aliases "\
+".bashrc .bash_profile .bash_logout .bash_aliases "\
 ".exports .functions "\
 ".editorconfig "\
 ".vimrc .vim .ideavimrc "\
@@ -41,11 +41,11 @@ files=\
 
 packages=\
 "git "\
-"vim vim.gnome-py2 "\
-"zenity "\
 "python python3 python-dev python3-dev "\
 "pylint pylint3 "\
 "build-essential cmake "\
+"vim vim.gnome-py2 "\
+"zenity "\
 "openjdk-8-jdk"
 
 echo "Setting up backup directory $olddir ..." && \
