@@ -97,8 +97,8 @@ for file in $files; do
     fi
 done
 
-echo -e "\nInstalling required packages..."
-echo -e "\nUpdating package index..." && \
+echo -e "\nInstalling required packages ..."
+echo -e "\nUpdating package index ..." && \
     sudo apt-get update && \
     echo "Package index updated!" || \
     echo "Failed to update package index!"
@@ -110,7 +110,7 @@ for package in $packages; do
         echo "Installation failed!"
 done
 
-echo -e "\nInstalling YouCompleteMe vim plugin..."
+echo -e "\nInstalling YouCompleteMe vim plugin ..."
 chmod +x "$dir/.vim/bundle/YouCompleteMe/install.py"
 $dir/.vim/bundle/YouCompleteMe/install.py && \
     echo "YCM installed!" || \
