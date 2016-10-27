@@ -28,7 +28,7 @@
 #
 # It will also attempt to compile and install the vim `YouCompleteMe` plugin.
 
-[ $# -gt 0 ] && echo -e "Usage: $0\n" && return
+[ $# -gt 0 ] && echo "Usage: $0" && exit 1
 
 dir="$HOME/dotfiles"
 olddir="$HOME/.dotfiles_old"
