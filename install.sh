@@ -26,7 +26,9 @@
 # After installing the dotfiles, it will attempt to install required packages by
 # various configurations, such as vim plugins.
 #
-# It will also attempt to compile and install the vim YouCompleteMe plugin.
+# It will also attempt to compile and install the vim `YouCompleteMe` plugin.
+
+[ $# -gt 0 ] && echo -e "Usage: $0\n" && return
 
 dir="$HOME/dotfiles"
 olddir="$HOME/.dotfiles_old"
@@ -48,20 +50,22 @@ packages=\
 "zenity "\
 "openjdk-8-jdk"
 
-echo "Setting up backup directory $olddir ..." && \
+echo "Setting up backup directory '$olddir'..." && \
     mkdir -p "$olddir" && \
     echo "Backup directory setup completed!" || \
     echo "Backup directory setup failed!"
 
-echo -e "\nSetting execution permission for bin ..." && \
+echo -e "\nSetting execution permission for '$dir/bin' scripts..." && \
     chmod -R 755 "$dir/bin" && \
     echo "Permissions set!" || \
     echo "Failed to set permissions!"
 
 for file in $files; do
-    [ ! -e "$dir/$file" ] && echo -e "\nMissing $file from $dir!" && continue
+    [ ! -e "$dir/$file" ] && \
+        echo -e "\nMissing '$file' from '$dir'!" && \
+        continue
 
-    echo -e "\nBacking up $file ..."
+    echo -e "\nBacking up '$file'..."
     if [ -f "$HOME/$file" ] || [ -d "$HOME/$file" ] && \
         [ ! -L "$HOME/$file" ]; then
             mv -v "$HOME/$file" "$olddir/" && \
@@ -69,51 +73,51 @@ for file in $files; do
                 echo "Backup failed!"
     elif [ -e "$HOME/$file" ]; then
         [ -r "$HOME/$file" ] && \
-            echo "$file is not a file or directory!" || \
-            echo "There is no read permission for $file!"
+            echo "'$file' is not a file or directory!" || \
+            echo "There is no read permission for '$file'!"
     else
-        echo "$file can't be backed up because it doesn't exist!"
+        echo "'$file' can't be backed up because it doesn't exist!"
     fi
 
     if [ -L "$HOME/$file" ]; then
-        echo -e "\nUnlinking old $file symlink ..." && \
+        echo -e "\nUnlinking old '$file' symlink..." && \
             rm -v "$HOME/$file" && \
-            echo "$file unlinked!" || \
-            echo "Couldn't unlink $file!"
+            echo "'$file' unlinked!" || \
+            echo "Couldn't unlink '$file'!"
     elif [ -e "$HOME/$file" ]; then
-        echo -e "\nRemoving old $file ..." && \
+        echo -e "\nRemoving old '$file'..." && \
             rm -vrI "$HOME/$file" && \
-            echo "$file removed!" || \
-            echo "Couldn't remove $file!"
+            echo "'$file' removed!" || \
+            echo "Couldn't remove '$file'!"
     fi
 
-    echo -e "\nSetting up symlink for $file ..."
+    echo -e "\nSetting up symlink for '$file'..."
     if [ ! -e "$HOME/$file" ]; then
         ln -s "$dir/$file" "$HOME/$file" && \
-        echo "Symlink setup completed!" || \
-        echo "Symlink setup failed!"
+            echo "Symlink setup completed!" || \
+            echo "Symlink setup failed!"
     else
-        echo "Can't setup symlink because $file already exists!"
+        echo "Can't setup symlink because '$file' already exists!"
     fi
 done
 
-echo -e "\nInstalling required packages ..."
-echo -e "\nUpdating package index ..." && \
+echo -e "\nInstalling required packages..."
+echo -e "\nUpdating package index..." && \
     sudo apt-get update && \
     echo "Package index updated!" || \
     echo "Failed to update package index!"
 
 for package in $packages; do
-    echo -e "\nInstalling package $package ..." && \
+    echo -e "\nInstalling package '$package'..." && \
         sudo apt-get install $package && \
         echo "Package installed!" || \
         echo "Installation failed!"
 done
 
-echo -e "\nInstalling YouCompleteMe vim plugin ..."
+echo -e "\nInstalling 'YouCompleteMe' vim plugin..."
 chmod +x "$dir/.vim/bundle/YouCompleteMe/install.py"
 $dir/.vim/bundle/YouCompleteMe/install.py && \
-    echo "YCM installed!" || \
-    echo "Failed to install YCM!"
+    echo "'YouCompleteMe' installed!" || \
+    echo "Failed to install 'YouCompleteMe'!"
 
 echo -e "\nDone!"
