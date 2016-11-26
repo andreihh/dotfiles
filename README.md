@@ -19,7 +19,7 @@ chmod +x install.sh
 - set `vm.swappiness=10` in `/etc/sysctl.conf`
 - add `noatime` option to all regular partitions in `/etc/fstab` (except for the
 `swap` partition or other special partitions)
-- assert that `cat /etc/cron.weekly/fstrim` returns `/sbin/fstrim --all | true`
+- assert that `cat /etc/cron.weekly/fstrim` returns `/sbin/fstrim --all || true`
 - assert that `cat /sys/block/sda/queue/scheduler` returns the selected option
 `[deadline]`
 - assert that `hibernate` is turned off
