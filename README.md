@@ -14,6 +14,21 @@ chmod +x install.sh
 ./install.sh
 ```
 
+### Recommended manual settings
+
+- set `vm.swappiness=10` in `/etc/sysctl.conf`
+- add `noatime` option to all regular partitions in `/etc/fstab` (except for the
+`swap` partition or other special partitions)
+- assert that `cat /etc/cron.weekly/fstrim` returns `/sbin/fstrim --all | true`
+- assert that `cat /sys/block/sda/queue/scheduler` returns the selected option
+`[deadline]`
+- assert that `hibernate` is turned off
+- Firefox settings in `about:config`:
+  - `browser.sessionstore.interval = 150000`
+  - `browser.cache.disk.enable = false`
+  - `browser.cache.memory.enable = true`
+  - `browser.cache.memory.capacity = -1`
+
 ### Licensing
 
 The scripts and configurations are licensed under the MIT license.
