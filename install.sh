@@ -2,8 +2,8 @@
 
 # This script will install the dotfiles on the current machine.
 #
-# It expects the dotfiles to be located in the `~/dotfiles` directory. It will
-# also create a `~/.dotfiles_old` directory where it will backup existing
+# It expects the dotfiles to be located in the `~/.dotfiles` directory. It will
+# also create a `~/.dotfiles.bak` directory where it will backup existing
 # dotfiles before removing them (note, however, that only files and directories
 # are backed up; symlinks or other types of files are not backed up).
 #
@@ -11,12 +11,12 @@
 # removal is denied, that specific dotfile will not be installed.
 #
 # Every dotfile in the home directory is replaced with a symlink to the file in
-# the `~/dotfiles` directory.
+# the `~/.dotfiles` directory.
 #
 # If setup for certain files fail at first attempt, you may fix the issues
 # manually and then run this script again. Since it only backs up files and
 # directories, it will not overwrite previous backups with the created symlinks,
-# will relink the old symlinks to the ~/dotfiles correspondents and attempt to
+# will relink the old symlinks to the ~/.dotfiles correspondents and attempt to
 # install the previously failed files once again.
 #
 # The `.extras` file is not installed. It should mostly contain local settings,
@@ -30,8 +30,8 @@
 
 [ $# -gt 0 ] && echo "Usage: $0" && exit 1
 
-dir="$HOME/dotfiles"
-olddir="$HOME/.dotfiles_old"
+dir="$HOME/.dotfiles"
+backup_dir="$HOME/.dotfiles.bak"
 
 files=\
 ".bashrc .bash_profile .bash_logout .bash_aliases "\
@@ -50,8 +50,8 @@ packages=\
 "zenity "\
 "openjdk-8-jdk"
 
-echo "Setting up backup directory '$olddir'..." && \
-    mkdir -p "$olddir" && \
+echo "Setting up backup directory '$backup_dir'..." && \
+    mkdir -p "$backup_dir" && \
     echo "Backup directory setup completed!" || \
     echo "Backup directory setup failed!"
 
@@ -68,7 +68,7 @@ for file in $files; do
     echo -e "\nBacking up '$file'..."
     if [ -f "$HOME/$file" ] || [ -d "$HOME/$file" ] && \
         [ ! -L "$HOME/$file" ]; then
-            mv -v "$HOME/$file" "$olddir/" && \
+            mv -v "$HOME/$file" "$backup_dir/" && \
                 echo "Backup successful!" || \
                 echo "Backup failed!"
     elif [ -e "$HOME/$file" ]; then
@@ -102,6 +102,7 @@ for file in $files; do
 done
 
 echo -e "\nInstalling required packages..."
+
 echo -e "\nUpdating package index..." && \
     sudo apt-get update && \
     echo "Package index updated!" || \
@@ -114,9 +115,9 @@ for package in $packages; do
         echo "Installation failed!"
 done
 
-echo -e "\nInstalling 'YouCompleteMe' vim plugin..."
-chmod +x "$dir/.vim/bundle/YouCompleteMe/install.py"
-$dir/.vim/bundle/YouCompleteMe/install.py && \
+echo -e "\nInstalling 'YouCompleteMe' vim plugin..." && \
+    chmod +x "$dir/.vim/bundle/YouCompleteMe/install.py" && \
+    $dir/.vim/bundle/YouCompleteMe/install.py && \
     echo "'YouCompleteMe' installed!" || \
     echo "Failed to install 'YouCompleteMe'!"
 
