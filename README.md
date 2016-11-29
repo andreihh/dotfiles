@@ -17,12 +17,17 @@ chmod +x install.sh
 ### Recommended manual settings
 
 - set `vm.swappiness=10` in `/etc/sysctl.conf`
+- assert that `hibernate` is turned off
+- assert that there is a `swap` partition in `/etc/fstab` with size of at least
+half of total RAM
 - add `noatime` option to all regular partitions in `/etc/fstab` (except for the
 `swap` partition or other special partitions)
+- (optional) add
+`tmpfs /tmp tmpfs defaults,noatime,nosuid,nodev,noexec,mode=1777,size=1G 0 0`
+in `/etc/fstab` (adapt size according to total RAM)
 - assert that `cat /etc/cron.weekly/fstrim` returns `/sbin/fstrim --all || true`
 - assert that `cat /sys/block/sda/queue/scheduler` returns the selected option
 `[deadline]`
-- assert that `hibernate` is turned off
 - Firefox settings in `about:config`:
   - `browser.sessionstore.interval = 150000`
   - `browser.cache.disk.enable = false`

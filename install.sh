@@ -34,21 +34,15 @@ dir="$HOME/.dotfiles"
 backup_dir="$HOME/.dotfiles.bak"
 
 files=\
-".bashrc .bash_profile .bash_logout .bash_aliases "\
-".exports .functions "\
-".editorconfig "\
-".vimrc .vim .ideavimrc "\
-".gitconfig "\
-"bin"
+".bashrc .bash_profile .bash_logout .bash_aliases .exports bin "\ # basic config
+".editorconfig .vimrc .vim .ideavimrc "\ # editors
+".gitconfig .gradle" # tools
 
 packages=\
-"git "\
-"python python3 python-dev python3-dev "\
-"pylint pylint3 "\
-"build-essential cmake "\
-"vim vim.gnome-py2 "\
-"zenity "\
-"openjdk-8-jdk"
+"git build-essential cmake zenity "\ # tools
+"python python3 python-dev python3-dev pylint pylint3 "\ # python
+"vim vim.gnome-py2 "\ # editors
+"openjdk-8-jdk" # JDK
 
 echo "Setting up backup directory '$backup_dir'..." && \
     mkdir -p "$backup_dir" && \

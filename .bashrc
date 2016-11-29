@@ -158,9 +158,8 @@ fi
 
 # Load custom configuration files:
 # * `~/.exports` for environment variables exports
-# * `~/.functions` for defining custom functions
-# * `~/.extras` for other settings that shouldn't be persisted
-for file in ~/.{exports,functions,extras}; do
+# * `~/.extras` for other settings that shouldn't be persisted across computers
+for file in ~/.{exports,extras}; do
     [ -r "$file" ] && [ -f "$file" ] && . "$file"
 done
 unset file
