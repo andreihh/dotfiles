@@ -22,9 +22,6 @@ chmod +x install.sh
 half of total RAM
 - add `noatime` option to all regular partitions in `/etc/fstab` (except for the
 `swap` partition or other special partitions)
-- (optional) add
-`tmpfs /tmp tmpfs defaults,noatime,nosuid,nodev,noexec,mode=1777,size=1G 0 0`
-in `/etc/fstab` (adapt size according to total RAM)
 - assert that `cat /etc/cron.weekly/fstrim` returns `/sbin/fstrim --all || true`
 - assert that `cat /sys/block/sda/queue/scheduler` returns the selected option
 `[deadline]`
