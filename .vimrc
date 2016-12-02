@@ -4,7 +4,6 @@
 " top to avoid problems.
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
-call pathogen#helptags()
 
 " This option stops Vim from behaving in a strongly Vi -compatible way.
 set nocompatible
