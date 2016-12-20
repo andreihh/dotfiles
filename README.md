@@ -20,8 +20,8 @@ chmod +x install.sh
 - assert that `hibernate` is turned off
 - assert that there is a `swap` partition in `/etc/fstab` with size of at least
 half of total RAM
-- add `noatime` option to all regular partitions in `/etc/fstab` (except for the
-`swap` partition or other special partitions)
+- add `relatime` option to all regular partitions in `/etc/fstab` (except for
+the `swap` partition or other special partitions)
 - assert that `cat /etc/cron.weekly/fstrim` returns `/sbin/fstrim --all || true`
 - assert that `cat /sys/block/sda/queue/scheduler` returns the selected option
 `[deadline]`
@@ -30,6 +30,9 @@ half of total RAM
   - `browser.cache.disk.enable = false`
   - `browser.cache.memory.enable = true`
   - `browser.cache.memory.capacity = -1`
+  - `layout.css.devPixelsPerPx = 2.75` (for high DPI displays)
+- set `Xcursor*size: 48` in `/etc/X11/Xresources/x11-common` (for high DPI
+displays)
 
 ### Licensing
 
