@@ -34,15 +34,15 @@ dir="$HOME/.dotfiles"
 backup_dir="$HOME/.dotfiles.bak"
 
 files=\
-".bashrc .bash_profile .bash_logout .bash_aliases .exports bin "\ # basic config
-".editorconfig .vimrc .vim .ideavimrc "\ # editors
-".gitconfig .gradle" # tools
+".bashrc .bash_profile .bash_logout .bash_aliases .exports bin "\
+".editorconfig .vimrc .vim .ideavimrc "\
+".gitconfig .gradle"
 
 packages=\
-"git build-essential cmake zenity "\ # tools
-"python python3 python-dev python3-dev pylint pylint3 "\ # python
-"vim vim.gnome-py2 "\ # editors
-"openjdk-8-jdk" # JDK
+"git build-essential cmake zenity "\
+"python python3 python-dev python3-dev pylint pylint3 "\
+"vim "\
+"openjdk-8-jdk"
 
 echo "Setting up backup directory '$backup_dir'..." && \
     mkdir -p "$backup_dir" && \
@@ -53,6 +53,8 @@ echo -e "\nSetting execution permission for '$dir/bin' scripts..." && \
     chmod -R 755 "$dir/bin" && \
     echo "Permissions set!" || \
     echo "Failed to set permissions!"
+
+echo $files
 
 for file in $files; do
     [ ! -e "$dir/$file" ] && \
