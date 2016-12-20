@@ -31,8 +31,6 @@ the `swap` partition or other special partitions)
   - `browser.cache.memory.enable = true`
   - `browser.cache.memory.capacity = -1`
   - `layout.css.devPixelsPerPx = 2.75` (for high DPI displays)
-- set `Xcursor*size: 48` in `/etc/X11/Xresources/x11-common` (for high DPI
-displays)
 
 ### Licensing
 
