@@ -117,4 +117,10 @@ echo -e "\nInstalling 'YouCompleteMe' vim plugin..." && \
     echo "'YouCompleteMe' installed!" || \
     echo "Failed to install 'YouCompleteMe'!"
 
+echo -e "\nMaking hidden startup applications visible..." && \
+    sudo sed -i "s/NoDisplay=true/NoDisplay=false/g" \
+    /etc/xdg/autostart/*.desktop && \
+    echo "All startup applications are visible!" || \
+    echo "Changing visibility of hidden startup applications failed!"
+
 echo -e "\nDone!"

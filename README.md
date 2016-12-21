@@ -30,7 +30,7 @@ half of total RAM
   - `browser.cache.disk.enable = false`
   - `browser.cache.memory.enable = true`
   - `browser.cache.memory.capacity = -1`
-  - `layout.css.devPixelsPerPx = 2.75` (for high DPI displays)
+  - `layout.css.devPixelsPerPx = 2.5` (for high DPI displays only)
 
 ### Licensing
 

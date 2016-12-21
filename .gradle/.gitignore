@@ -1,0 +1,6 @@
+# Ignore everything
+*
+
+# Except the `.gitignore` and `gradle.properties`
+!.gitignore
+!gradle.properties
