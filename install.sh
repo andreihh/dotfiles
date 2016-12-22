@@ -39,7 +39,7 @@ files=\
 ".gitconfig .gradle"
 
 packages=\
-"git build-essential cmake zenity "\
+"git build-essential cmake zenity smartmontools "\
 "python python3 python-dev python3-dev pylint pylint3 "\
 "vim "\
 "openjdk-8-jdk "\
@@ -54,8 +54,6 @@ echo -e "\nSetting execution permission for '$dir/bin' scripts..." && \
     chmod -R 755 "$dir/bin" && \
     echo "Permissions set!" || \
     echo "Failed to set permissions!"
-
-echo $files
 
 for file in $files; do
     [ ! -e "$dir/$file" ] && \
