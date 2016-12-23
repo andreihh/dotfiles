@@ -77,6 +77,9 @@ set splitright
 " themes, but may break colors if the terminal doesn't support 256 colors.
 "set t_Co=256
 
+" Copy until the end of the line. Consistent with D and C.
+nnoremap Y y$
+
 " Curly bracket autocomplete.
 " Use <expr>, because unmap is not currently supported in IdeaVIM.
 inoremap <expr> {<CR> "{\<CR>}\<Esc>O"

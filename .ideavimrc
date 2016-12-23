@@ -1,9 +1,25 @@
-# .ideavimrc
+" .ideavimrc
 
 source ~/.vimrc
 
+" Enable vim-surround plugin.
 set surround
 
-" Unmap vim bracket autocomplete because it is the default behavior in IntelliJ
-" Currently, unmap is not supported by IdeaVIM
+" Unmap vim bracket autocomplete because it is the default behavior in IntelliJ.
+" Currently, unmap is not supported by IdeaVIM.
 iunmap {<CR>
+
+" Cycle through completion menu with <C-n> and <C-p>.
+" Currently, this is not supported by IdeaVIM.
+inoremap <C-n> <Down>
+inoremap <C-p> <Up>
+
+" IDE actions.
+nnoremap <Space>r :action RenameElement<CR>
+nnoremap <Space>f :action FindUsages<CR>
+nnoremap <Space>q :action QuickJavaDoc<CR>
+nnoremap <Space>p :action ParameterInfo<CR>
+nnoremap <Space>g :action GotoImplementation<CR>
+nnoremap <Space>s :action GotoSuperMethod<CR>
+nnoremap [m :action MethodUp<CR>
+nnoremap ]m :action MethodDown<CR>
