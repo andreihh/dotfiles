@@ -39,7 +39,7 @@ files=\
 ".gitconfig .gradle"
 
 packages=\
-"git build-essential cmake zenity smartmontools "\
+"git build-essential cmake zenity smartmontools dconf-tools "\
 "python python3 python-dev python3-dev pylint pylint3 "\
 "vim "\
 "openjdk-8-jdk "\
