@@ -97,7 +97,7 @@ inoremap <expr> <CR> pumvisible() ? "\<C-Y>\<Esc>a" : "\<CR>"
 inoremap <expr> <Esc> pumvisible() ? "\<C-E>\<Esc>" : "\<Esc>"
 
 " Double esc cancels search highlighting in normal mode.
-nnoremap <silent> <Esc><Esc> :nohlsearch<CR><Esc>
+nnoremap <Space>/ :nohlsearch<CR><Esc>
 
 " Recommended Syntastic settings.
 set statusline+=%#warningmsg#
