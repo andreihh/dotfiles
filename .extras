@@ -12,3 +12,7 @@ export PATH="$PATH:$ANDROID_HOME/platform-tools"
 # Export Scala SDK. Set installation directory accordingly.
 export SCALA_HOME="$HOME/Programs/sdk/scala-2.12.1"
 export PATH="$PATH:$SCALA_HOME/bin"
+
+# Export sbt. Set installation directory accordingly.
+export SBT_HOME="$HOME/Programs/sbt/sbt-launcher-packaging-0.13.13"
+export PATH="$PATH:$SBT_HOME/bin"
