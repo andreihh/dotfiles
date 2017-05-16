@@ -36,14 +36,15 @@ backup_dir="$HOME/.dotfiles.bak"
 files=\
 ".bashrc .bash_profile .bash_logout .bash_aliases .exports bin "\
 ".editorconfig .vimrc .vim .ideavimrc "\
-".gitconfig .gradle"
+".gitconfig .gradle "\
+".latexmkrc"
 
 packages=\
 "git build-essential cmake zenity smartmontools dconf-tools "\
 "python python3 python-dev python3-dev pylint pylint3 "\
 "vim "\
 "openjdk-8-jdk "\
-"texlive texlive-latex-extra texlive-bibtex-extra "\
+"texlive texlive-latex-extra texlive-bibtex-extra latexmk "\
 "libstdc++6:i386 libgcc1:i386 zlib1g:i386 libncurses5:i386"
 
 echo "Setting up backup directory '$backup_dir'..." && \
