@@ -43,6 +43,7 @@ packages=\
 "python python3 python-dev python3-dev pylint pylint3 "\
 "vim "\
 "openjdk-8-jdk "\
+"texlive texlive-latex-extra texlive-bibtex-extra "\
 "libstdc++6:i386 libgcc1:i386 zlib1g:i386 libncurses5:i386"
 
 echo "Setting up backup directory '$backup_dir'..." && \

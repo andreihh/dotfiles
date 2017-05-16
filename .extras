@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+# ~/.extras: this file contains exported installation paths for various software
+# pakcages, making them available in interactive shells.
 
 # Export Java SDK. Set installation directory accordingly.
 export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
@@ -13,6 +14,6 @@ export PATH="$PATH:$ANDROID_HOME/platform-tools"
 export SCALA_HOME="$HOME/Programs/sdk/scala-2.12.1"
 export PATH="$PATH:$SCALA_HOME/bin"
 
-# Export sbt. Set installation directory accordingly.
+# Export SBT. Set installation directory accordingly.
 export SBT_HOME="$HOME/Programs/sbt/sbt-launcher-packaging-0.13.13"
 export PATH="$PATH:$SBT_HOME/bin"

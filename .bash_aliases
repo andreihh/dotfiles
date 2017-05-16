@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+# ~/.bash_aliases: this file contains various user-defined aliases for
+# interactive shells.
 
 # some more ls aliases
 alias ll='ls -alF'

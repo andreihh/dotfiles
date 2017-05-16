@@ -1,11 +1,12 @@
-#!/usr/bin/env bash
+# ~/.exports: this file contains exported preferences for interactive shells.
 
-# Make `vim` the default editor.
-export EDITOR='vim'
+# Prefer bash as shell.
+export SHELL='/bin/bash'
 
 # Prefer US English and use UTF-8.
 export LANG='en_US.UTF-8'
 export LC_ALL='en_US.UTF-8'
 
-# Prefer bash as shell.
-export SHELL='/bin/bash'
+# Make `vim` the default editor.
+export EDITOR='vim'
+
