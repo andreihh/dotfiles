@@ -71,37 +71,37 @@ if [ "$color_prompt" = yes ]; then
 
     # Highlight the user name.
     if [ "$USER" == "root" ]; then
-        userStyle="$red"
+        user_style="$red"
     else
-        userStyle="$bold"
+        user_style="$bold"
     fi
 
     # Highlight the host name when connected via SSH.
     if [ "$SSH_TTY" ]; then
-        hostStyle="$red"
+        host_style="$red"
     else
-        hostStyle="$bold"
+        host_style="$bold"
     fi
 
     # Highlight current working directory.
-    currentDirectoryStyle="$yellow"
+    current_directory_style="$yellow"
 
     # Highlight separators and shell symbols (`@`, `:`, `$` or `#` and `>`).
-    shellStyle="$green"
+    shell_style="$green"
 
     # Set the terminal prompt.
     PS1="${debian_chroot:+($debian_chroot)}"
-    PS1+="\[$userStyle\]\u" # set user
-    PS1+="\[$shellStyle\]@" # set `@` separator
-    PS1+="\[$hostStyle\]\h" # set host
-    PS1+="\[$shellStyle\]:" # set `:` separator
-    PS1+="\[$currentDirectoryStyle\]\w" # set current directory
-    PS1+="\[$shellStyle\]\$ \[$reset\]" # set shell
+    PS1+="\[$user_style\]\u" # set user
+    PS1+="\[$shell_style\]@" # set `@` separator
+    PS1+="\[$host_style\]\h" # set host
+    PS1+="\[$shell_style\]:" # set `:` separator
+    PS1+="\[$current_directory_style\]\w" # set current directory
+    PS1+="\[$shell_style\]\$ \[$reset\]" # set shell
 
-    PS2="\[$shellStyle\]> \[$reset\]" # set shell
+    PS2="\[$shell_style\]> \[$reset\]" # set shell
 
     unset reset bold black red green yellow blue purple cyan white
-    unset userStyle hostStyle currentDirectoryStyle shellStyle
+    unset user_style host_style current_directory_style shell_style
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -160,6 +160,6 @@ fi
 # * `~/.exports` for environment variables exports
 # * `~/.extras` for other settings that shouldn't be persisted across computers
 for file in ~/.{exports,extras}; do
-    [ -r "$file" ] && [ -f "$file" ] && . "$file"
+    [ -f "$file" ] && . "$file"
 done
 unset file

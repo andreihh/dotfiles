@@ -13,7 +13,7 @@
 # Every dotfile in the home directory is replaced with a symlink to the file in
 # the `~/.dotfiles` directory.
 #
-# If setup for certain files fail at first attempt, you may fix the issues
+# If setup for certain files fails at first attempt, you may fix the issues
 # manually and then run this script again. Since it only backs up files and
 # directories, it will not overwrite previous backups with the created symlinks,
 # will relink the old symlinks to the ~/.dotfiles correspondents and attempt to
@@ -34,16 +34,14 @@ dir="$HOME/.dotfiles"
 backup_dir="$HOME/.dotfiles.bak"
 
 files=\
-".bashrc .bash_profile .bash_logout .bash_aliases .exports bin "\
+".bashrc .bash_profile .bash_logout .bash_aliases .inputrc .exports bin "\
 ".editorconfig .vimrc .vim .ideavimrc "\
-".gitconfig .gradle "\
-".latexmkrc"
+".gitconfig .gradle .latexmkrc"
 
 packages=\
 "git build-essential cmake zenity smartmontools dconf-tools "\
-"python python3 python-dev python3-dev pylint pylint3 "\
+"python python3 python-dev python3-dev pylint pylint3 openjdk-8-jdk "\
 "vim "\
-"openjdk-8-jdk "\
 "texlive texlive-latex-extra texlive-bibtex-extra latexmk "\
 "libstdc++6:i386 libgcc1:i386 zlib1g:i386 libncurses5:i386"
 

@@ -1,5 +1,5 @@
 # ~/.extras: this file contains exported installation paths for various software
-# pakcages, making them available in interactive shells.
+# packages, making them available in interactive shells.
 
 # Export Java SDK. Set installation directory accordingly.
 export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
