@@ -23,3 +23,22 @@ nnoremap <Space>g :action GotoImplementation<CR>
 nnoremap <Space>s :action GotoSuperMethod<CR>
 nnoremap [m :action MethodUp<CR>
 nnoremap ]m :action MethodDown<CR>
+
+" Other keymaps:
+" - Editor actions:
+"   - Down: Ctrl-N
+"   - Up: Ctrl-P
+" - Main menu:
+"   - Edit:
+"     - Copy: Ctrl-C
+"     - Cut: Ctrl-X
+"     - Delete: Delete
+"     - Paste: Ctrl-V
+"   - Navigate:
+"     - Back: Shift-J
+"     - Forward: Shift-K
+" - Tool windows:
+"   - Project: Alt-1
+"   - Terminal: Alt-F12
+" - Other:
+"  - New...: Ctrl-N

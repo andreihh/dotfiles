@@ -40,7 +40,7 @@ files=\
 
 packages=\
 "git build-essential cmake zenity smartmontools dconf-tools "\
-"python python3 python-dev python3-dev pylint pylint3 openjdk-8-jdk "\
+"python python3 python-dev python3-dev pylint pylint3 openjdk-8-jdk visualvm "\
 "vim "\
 "texlive texlive-latex-extra texlive-bibtex-extra latexmk "\
 "libstdc++6:i386 libgcc1:i386 zlib1g:i386 libncurses5:i386"

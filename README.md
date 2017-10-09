@@ -8,7 +8,7 @@ It contains the specific dotfiles, along with an installation script.
 
 ```
 cd ~
-git clone --recursive https://github.com/andrei-heidelbacher/.dotfiles.git
+git clone --recursive https://github.com/andreihh/.dotfiles.git
 cd .dotfiles
 chmod +x install.sh
 ./install.sh
