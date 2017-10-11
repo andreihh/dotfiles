@@ -10,7 +10,8 @@ set surround
 iunmap {<CR>
 
 " Cycle through completion menu with <C-n> and <C-p>.
-" Currently, this is not supported by IdeaVIM.
+" Currently, this is not supported by IdeaVIM, and the EditorDown/Up actions
+" don't work as expected.
 inoremap <C-n> <Down>
 inoremap <C-p> <Up>
 
@@ -23,6 +24,8 @@ nnoremap <Space>g :action GotoImplementation<CR>
 nnoremap <Space>s :action GotoSuperMethod<CR>
 nnoremap [m :action MethodUp<CR>
 nnoremap ]m :action MethodDown<CR>
+nnoremap <C-j> :action Back<CR>
+nnoremap <C-k> :action Forward<CR>
 
 " Other keymaps:
 " - Editor actions:
@@ -34,11 +37,11 @@ nnoremap ]m :action MethodDown<CR>
 "     - Cut: Ctrl-X
 "     - Delete: Delete
 "     - Paste: Ctrl-V
-"   - Navigate:
-"     - Back: Shift-J
-"     - Forward: Shift-K
+"   - Window:
+"     - Active Tool Windows:
+"       - Hide Active Tool Window: Shift-Esc
 " - Tool windows:
 "   - Project: Alt-1
 "   - Terminal: Alt-F12
 " - Other:
-"  - New...: Ctrl-N
+"  - New...: Alt-N
