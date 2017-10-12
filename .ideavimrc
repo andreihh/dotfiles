@@ -29,14 +29,14 @@ nnoremap <C-k> :action Forward<CR>
 
 " Other keymaps:
 " - Editor actions:
-"   - Down: Ctrl-N
-"   - Up: Ctrl-P
+"   - Down: Ctrl-n
+"   - Up: Ctrl-p
 " - Main menu:
 "   - Edit:
-"     - Copy: Ctrl-C
-"     - Cut: Ctrl-X
+"     - Copy: Ctrl-c
+"     - Cut: Ctrl-x
 "     - Delete: Delete
-"     - Paste: Ctrl-V
+"     - Paste: Ctrl-v
 "   - Window:
 "     - Active Tool Windows:
 "       - Hide Active Tool Window: Shift-Esc
@@ -44,4 +44,4 @@ nnoremap <C-k> :action Forward<CR>
 "   - Project: Alt-1
 "   - Terminal: Alt-F12
 " - Other:
-"  - New...: Alt-N
+"  - New...: Alt-n
