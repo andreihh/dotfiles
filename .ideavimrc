@@ -16,16 +16,17 @@ inoremap <C-n> <Down>
 inoremap <C-p> <Up>
 
 " IDE actions.
-nnoremap <Space>r :action RenameElement<CR>
 nnoremap <Space>f :action FindUsages<CR>
 nnoremap <Space>q :action QuickJavaDoc<CR>
 nnoremap <Space>p :action ParameterInfo<CR>
+nnoremap <Space>r :action RenameElement<CR>
+nnoremap <Space>m :action Move<CR>
 nnoremap <Space>g :action GotoImplementation<CR>
 nnoremap <Space>s :action GotoSuperMethod<CR>
 nnoremap [m :action MethodUp<CR>
 nnoremap ]m :action MethodDown<CR>
-nnoremap <C-j> :action Back<CR>
-nnoremap <C-k> :action Forward<CR>
+nnoremap <Space>j :action Back<CR>
+nnoremap <Space>k :action Forward<CR>
 
 " Other keymaps:
 " - Editor actions:
