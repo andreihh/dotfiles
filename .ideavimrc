@@ -43,6 +43,8 @@ nnoremap <Space>k :action Forward<CR>
 "       - Hide Active Tool Window: Shift-Esc
 " - Tool windows:
 "   - Project: Alt-1
+"   - Find: Alt-2
 "   - Terminal: Alt-F12
 " - Other:
 "  - New...: Alt-n
+"  - Search Everywhere: Shift-Shift
