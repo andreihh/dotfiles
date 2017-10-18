@@ -21,6 +21,7 @@ nnoremap <Space>q :action QuickJavaDoc<CR>
 nnoremap <Space>p :action ParameterInfo<CR>
 nnoremap <Space>r :action RenameElement<CR>
 nnoremap <Space>m :action Move<CR>
+nnoremap <Space>d :action GotoDeclaration<CR>
 nnoremap <Space>g :action GotoImplementation<CR>
 nnoremap <Space>s :action GotoSuperMethod<CR>
 nnoremap [m :action MethodUp<CR>
