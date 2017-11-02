@@ -28,7 +28,8 @@ nnoremap [m :action MethodUp<CR>
 nnoremap ]m :action MethodDown<CR>
 nnoremap <Space>j :action Back<CR>
 nnoremap <Space>k :action Forward<CR>
-nnoremap <Space>i :action OptimizeImports<CR>
+nnoremap <Space>o :action OptimizeImports<CR>
+nnoremap <Space>= :action ReformatCode<CR>
 
 " Other keymaps:
 " - Editor actions:
