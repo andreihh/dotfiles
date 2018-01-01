@@ -10,8 +10,11 @@ end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
 
-[*.{java,kt,py,c,h,cpp}]
+[*.{java,py,c,h,cpp}]
 continuation_indent_size = 8
+
+[*.{kt}]
+continuation_indent_size = 4
 
 [*.{scala,js,json,html,css}]
 indent_size = 2
