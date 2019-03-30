@@ -1,15 +1,18 @@
 #!/usr/bin/env python3
+"""
+Converts the tests of a given competitive programming task from one format to
+another.
+"""
 
 from abc import ABCMeta, abstractmethod
+import argparse
 import glob
 import os
 import re
-from optparse import OptionParser
 
 
 class Format(metaclass=ABCMeta):
-    """"An abstract test format.
-    """
+    """"An abstract test format. """
 
     @abstractmethod
     def get_name(self):
@@ -32,22 +35,20 @@ class Format(metaclass=ABCMeta):
 
 
 class InfoarenaFormat(Format):
-    """The test format used at various competitions on infoarena.ro.
-    """
+    """The test format used at various competitions on infoarena.ro."""
 
     def get_name(self):
         return "infoarena"
 
     def get_source_pattern(self, task_name):
-        return r"gradertest(\d+)"
+        return r"grader_test(\d+)"
 
     def get_target_pattern(self, task_name):
-        return r"gradertest\1"
+        return r"grader_test\1"
 
 
 class OniFormat(Format):
-    """"The test format used at various national competitions and olympiads.
-    """
+    """"The test format used at various national competitions and olympiads."""
 
     def get_name(self):
         return "oni"
@@ -59,11 +60,7 @@ class OniFormat(Format):
         return r"\1-" + task_name
 
 
-def get_renamed_file_path(file_path, source_pattern, target_pattern):
-    """"If the name of the given file matches the source pattern, return the new
-    file path in which the file name was replaced according to the target
-    pattern, otherwise, return the original path.
-     """
+def _get_renamed_file_path(file_path, source_pattern, target_pattern):
     file_name = os.path.basename(file_path)
     new_file_name = re.sub(
         r"^" + source_pattern + r"$",
@@ -72,11 +69,8 @@ def get_renamed_file_path(file_path, source_pattern, target_pattern):
     return os.path.join(os.path.dirname(file_path), new_file_name)
 
 
-def rename_file(file_path, source_pattern, target_pattern):
-    """"If the given file matches the source pattern, rename it using the target
-     pattern.
-     """
-    new_file_path = get_renamed_file_path(
+def _rename_file(file_path, source_pattern, target_pattern):
+    new_file_path = _get_renamed_file_path(
         file_path=file_path,
         source_pattern=source_pattern,
         target_pattern=target_pattern)
@@ -84,24 +78,17 @@ def rename_file(file_path, source_pattern, target_pattern):
         os.rename(os.path.abspath(file_path), os.path.abspath(new_file_path))
 
 
-def rename_files(file_paths, source_pattern, target_pattern):
-    """"Rename the given files that match the source pattern using the target
-    pattern.
-    """
+def _rename_files(file_paths, source_pattern, target_pattern):
     for file_path in file_paths:
-        rename_file(file_path, source_pattern, target_pattern)
+        _rename_file(file_path, source_pattern, target_pattern)
 
 
-def rename_files_in_dir(
+def _rename_files_in_dir(
         source_pattern,
         target_pattern,
         dir_path=".",
         glob_pattern="*"):
-    """"Fetch all files in the given directory that match the given glob pattern
-    and rename those files which match the source pattern using the target
-    pattern.
-    """
-    rename_files(
+    _rename_files(
         file_paths=glob.iglob(os.path.join(dir_path, glob_pattern)),
         source_pattern=source_pattern,
         target_pattern=target_pattern)
@@ -112,11 +99,11 @@ def rename_tests(source_format, target_format, task_name, dir_path="."):
     target format.
     """
     for ext in ["in", "out", "ok"]:
-        source_pattern = (source_format.get_source_pattern(task_name) +
-                          r"\." + ext)
-        target_pattern = (target_format.get_target_pattern(task_name) +
-                          r"." + ext)
-        rename_files_in_dir(
+        source_pattern = (
+            source_format.get_source_pattern(task_name) + r"\." + ext)
+        target_pattern = (
+            target_format.get_target_pattern(task_name) + r"." + ext)
+        _rename_files_in_dir(
             source_pattern=source_pattern,
             target_pattern=target_pattern,
             dir_path=dir_path)
@@ -133,48 +120,40 @@ def main():
         oni_format.get_name(): oni_format
     }
 
-    parser = OptionParser(usage="Usage: %prog [options]")
-    parser.add_option(
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
         "-s", "--source",
-        type="string",
+        type=str,
+        choices=formats.keys(),
+        required=True,
         dest="source_format",
-        help="source test format; must be one of {0}".format(formats.keys()))
-    parser.add_option(
+        help="source test format")
+    parser.add_argument(
         "-t", "--target",
-        type="string",
+        type=str,
+        choices=formats.keys(),
+        required=True,
         dest="target_format",
-        help="target test format; must be one of {0}".format(formats.keys()))
-    parser.add_option(
+        help="target test format")
+    parser.add_argument(
         "-n", "--name",
-        type="string",
+        type=str,
+        required=True,
         dest="task_name",
         help="the task name")
-    parser.add_option(
+    parser.add_argument(
         "-d", "--dir",
-        type="string",
+        type=str,
         dest="dir_path",
         default=".",
         help="path to tests directory")
-    (options, args) = parser.parse_args()
-
-    if not options.source_format:
-        parser.error("option --source is required")
-    if not options.target_format:
-        parser.error("option --target is required")
-    if not options.task_name:
-        parser.error("option --name is required")
-    if options.source_format not in formats:
-        parser.error("illegal --source value: {0}; must be one of {1}"
-                     .format(options.source_format, formats.keys()))
-    if options.target_format not in formats:
-        parser.error("illegal --target value: {0}; must be one of {1}"
-                     .format(options.target_format, formats.keys()))
+    args = parser.parse_args()
 
     rename_tests(
-        formats[options.source_format],
-        formats[options.target_format],
-        options.task_name,
-        dir_path=options.dir_path)
+        formats[args.source_format],
+        formats[args.target_format],
+        args.task_name,
+        dir_path=args.dir_path)
 
 
 if __name__ == "__main__":

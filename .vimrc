@@ -80,6 +80,9 @@ set splitright
 " Copy until the end of the line. Consistent with D and C.
 nnoremap Y y$
 
+" Fix indentation for whole file.
+nnoremap <Space>= gg=G
+
 " Curly bracket autocomplete.
 " Use <expr>, because unmap is not currently supported in IdeaVIM.
 inoremap <expr> {<CR> "{\<CR>}\<Esc>O"

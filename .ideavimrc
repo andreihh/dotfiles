@@ -12,8 +12,8 @@ iunmap {<CR>
 " Cycle through completion menu with <C-n> and <C-p>.
 " Currently, this is not supported by IdeaVIM, and the EditorDown/Up actions
 " don't work as expected.
-inoremap <C-n> <Down>
-inoremap <C-p> <Up>
+"inoremap <C-n> <Down>
+"inoremap <C-p> <Up>
 
 " IDE actions.
 nnoremap <Space>f :action FindUsages<CR>
@@ -24,12 +24,18 @@ nnoremap <Space>m :action Move<CR>
 nnoremap <Space>d :action GotoDeclaration<CR>
 nnoremap <Space>g :action GotoImplementation<CR>
 nnoremap <Space>s :action GotoSuperMethod<CR>
-nnoremap [m :action MethodUp<CR>
-nnoremap ]m :action MethodDown<CR>
 nnoremap <Space>j :action Back<CR>
 nnoremap <Space>k :action Forward<CR>
 nnoremap <Space>o :action OptimizeImports<CR>
 nnoremap <Space>= :action ReformatCode<CR>
+nnoremap [m :action MethodUp<CR>
+nnoremap ]m :action MethodDown<CR>
+nnoremap <A-s> :action SearchEverywhere<CR>
+nnoremap <A-n> :action ShowNavBar<CR>
+nnoremap <A-t> :action ViewToolBar<CR>
+nnoremap <F11> :action ToggleFullScreen<CR>
+"inoremap <A-q> <Esc>:action QuickJavaDoc<CR>a
+"inoremap <A-p> <Esc>:action ParameterInfo<CR>a
 
 " Other keymaps:
 " - Editor actions:
@@ -41,13 +47,38 @@ nnoremap <Space>= :action ReformatCode<CR>
 "     - Cut: Ctrl-x
 "     - Delete: Delete
 "     - Paste: Ctrl-v
+"   - Code:
+"     - Completion:
+"       - SmartType: Ctrl-Space
 "   - Window:
-"     - Active Tool Windows:
-"       - Hide Active Tool Window: Shift-Esc
+"     - Active Tool Window:
+"       - Hide All Windows: Alt-Esc, Shift-Esc
 " - Tool windows:
 "   - Project: Alt-1
-"   - Find: Alt-2
-"   - Terminal: Alt-F12
+"   - Terminal: Alt-2
+"   - Find: Alt-3
+"   - Version Control: Alt-4
+"   - Structure: Alt-5
+"   - Event Log: None
+"   - Favorites: None
+"   - Run: Alt-8
+"   - Debug: Alt-9
 " - Other:
-"  - New...: Alt-n
-"  - Search Everywhere: Shift-Shift
+"  - New...: Alt-i
+"  - Show Intention Actions: Alt-Enter
+"  - Search Everywhere: Alt-s, Shift-Shift
+"    - Next tab: Tab
+"    - Prev tab: Shift-Tab
+" Other settings:
+" - View:
+"   - Active Editor:
+"     - Show Breadcrumbs: off
+"   - Tool Buttons: off, bring back temporarily with Alt-Alt
+"   - Toolbar: off, toggle with Alt-t
+"   - Status Bar: on
+"   - Navigation Bar: off, toggle with Alt-n
+" - Editor:
+"   - General:
+"     - Editor Tabs:
+"       - Placement: None
+" - All tools windows have Split Mode off
