@@ -52,7 +52,7 @@ nnoremap <F11> :action ToggleFullScreen<CR>
 "       - SmartType: Ctrl-Space
 "   - Window:
 "     - Active Tool Window:
-"       - Hide All Windows: Alt-Esc, Shift-Esc
+"       - Hide All Windows: Alt-Esc
 " - Tool windows:
 "   - Project: Alt-1
 "   - Terminal: Alt-2
