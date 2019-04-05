@@ -32,10 +32,10 @@ nnoremap [m :action MethodUp<CR>
 nnoremap ]m :action MethodDown<CR>
 nnoremap <A-s> :action SearchEverywhere<CR>
 nnoremap <A-n> :action ShowNavBar<CR>
+nnoremap <A-i> :action NewElement<CR>
 nnoremap <A-t> :action ViewToolBar<CR>
+nnoremap <A-Esc> :action HideAllWindows<CR>
 nnoremap <F11> :action ToggleFullScreen<CR>
-"inoremap <A-q> <Esc>:action QuickJavaDoc<CR>a
-"inoremap <A-p> <Esc>:action ParameterInfo<CR>a
 
 " Other keymaps:
 " - Editor actions:
@@ -64,7 +64,6 @@ nnoremap <F11> :action ToggleFullScreen<CR>
 "   - Run: Alt-8
 "   - Debug: Alt-9
 " - Other:
-"  - New...: Alt-i
 "  - Show Intention Actions: Alt-Enter
 "  - Search Everywhere: Alt-s, Shift-Shift
 "    - Next tab: Tab
@@ -81,4 +80,4 @@ nnoremap <F11> :action ToggleFullScreen<CR>
 "   - General:
 "     - Editor Tabs:
 "       - Placement: None
-" - All tools windows have Split Mode off
+" - All tool windows have Split Mode off
