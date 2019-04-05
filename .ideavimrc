@@ -34,7 +34,6 @@ nnoremap <A-s> :action SearchEverywhere<CR>
 nnoremap <A-n> :action ShowNavBar<CR>
 nnoremap <A-i> :action NewElement<CR>
 nnoremap <A-t> :action ViewToolBar<CR>
-nnoremap <A-Esc> :action HideAllWindows<CR>
 nnoremap <F11> :action ToggleFullScreen<CR>
 
 " Other keymaps:
@@ -80,4 +79,7 @@ nnoremap <F11> :action ToggleFullScreen<CR>
 "   - General:
 "     - Editor Tabs:
 "       - Placement: None
+" - Tools:
+"   - Terminal:
+"     - Override IDE shortcuts: on
 " - All tool windows have Split Mode off
