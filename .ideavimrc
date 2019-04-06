@@ -54,11 +54,12 @@ nnoremap <F11> :action ToggleFullScreen<CR>
 "       - Hide All Windows: Alt-Esc
 " - Tool windows:
 "   - Project: Alt-1
-"   - Terminal: Alt-2
-"   - Find: Alt-3
-"   - Version Control: Alt-4
-"   - Structure: Alt-5
+"   - Structure: Alt-2
+"   - Terminal: Alt-3
+"   - Find: Alt-4
+"   - Version Control: Alt-5
 "   - Event Log: None
+"   - TODO: None
 "   - Favorites: None
 "   - Run: Alt-8
 "   - Debug: Alt-9
@@ -82,4 +83,8 @@ nnoremap <F11> :action ToggleFullScreen<CR>
 " - Tools:
 "   - Terminal:
 "     - Override IDE shortcuts: on
-" - All tool windows have Split Mode off
+" - Tool Buttons:
+"   - All tool windows except Favorites, Event Log and TODO have Split Mode off
+"   - Placement:
+"     - Left: Project, Structure, Favorites
+"     - Bottom: Terminal, Find, Version Control, Run, Debug, TODO, Event Log
