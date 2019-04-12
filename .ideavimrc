@@ -30,11 +30,23 @@ nnoremap <Space>o :action OptimizeImports<CR>
 nnoremap <Space>= :action ReformatCode<CR>
 nnoremap [m :action MethodUp<CR>
 nnoremap ]m :action MethodDown<CR>
+
 nnoremap <A-s> :action SearchEverywhere<CR>
 nnoremap <A-n> :action ShowNavBar<CR>
-nnoremap <A-i> :action NewElement<CR>
-nnoremap <A-t> :action ViewToolBar<CR>
+"nnoremap <A-i> :action NewElement<CR>
+"nnoremap <A-r> :action RunAnything<CR>
 nnoremap <F11> :action ToggleFullScreen<CR>
+
+"nnoremap <F1> :action ToggleLineBreakpoint<CR>
+"nnoremap <F2> :action ShowExecutionPoint<CR>
+"nnoremap <F3> :action StepOver<CR>
+"nnoremap <F4> :action StepInto<CR>
+"nnoremap <F5> :action StepOut<CR>
+"nnoremap <F6> :action RunToCursor<CR>
+"nnoremap <F7> :action EvaluateExpression<CR>
+"nnoremap <F8> :action Resume<CR>
+"nnoremap <F9> :action Stop<CR>
+"nnoremap <F10> :action ViewBreakpoints<CR>
 
 " Other keymaps:
 " - Editor actions:
@@ -49,6 +61,18 @@ nnoremap <F11> :action ToggleFullScreen<CR>
 "   - Code:
 "     - Completion:
 "       - SmartType: Ctrl-Space
+"   - Run:
+"     - Run...: Alt-r (hold Shift to Debug)
+"     - Toggle Line Breakpoint: F1 (use to focus editor)
+"     - Show Execution Point: F2
+"     - Step Over: F3
+"     - Step Into: F4
+"     - Step Out: F5
+"     - Run to Cursor: F6
+"     - Evaluate Expression: F7
+"     - Resume: F8
+"     - Stop: F9
+"     - View Breakpoints...: F10
 "   - Window:
 "     - Active Tool Window:
 "       - Hide All Windows: Alt-Esc
@@ -64,16 +88,19 @@ nnoremap <F11> :action ToggleFullScreen<CR>
 "   - Run: Alt-8
 "   - Debug: Alt-9
 " - Other:
-"  - Show Intention Actions: Alt-Enter
-"  - Search Everywhere: Alt-s, Shift-Shift
-"    - Next tab: Tab
-"    - Prev tab: Shift-Tab
+"   - Show Intention Actions: Alt-Enter
+"   - New...: Alt-i, Alt-Insert
+"   - Run anything: Alt-r?, Ctrl-Ctrl (hold Shift to switch to Debug anything)
+"   - Search Everywhere: Alt-s, Shift-Shift
+"     - Next tab: Tab
+"     - Prev tab: Shift-Tab
+"
 " Other settings:
 " - View:
 "   - Active Editor:
 "     - Show Breadcrumbs: off
 "   - Tool Buttons: off, bring back temporarily with Alt-Alt
-"   - Toolbar: off, toggle with Alt-t
+"   - Toolbar: off
 "   - Status Bar: on
 "   - Navigation Bar: off, toggle with Alt-n
 " - Editor:
