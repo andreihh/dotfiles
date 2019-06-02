@@ -34,7 +34,8 @@ dir="$HOME/.dotfiles"
 backup_dir="$HOME/.dotfiles.bak"
 
 files=\
-".bashrc .bash_profile .bash_logout .bash_aliases .inputrc .exports bin "\
+".bashrc .bash_profile .bash_logout .bash_prompt .bash_aliases .inputrc "\
+".exports bin "\
 ".editorconfig .vimrc .vim .ideavimrc "\
 ".gitconfig .gradle .latexmkrc"
 
