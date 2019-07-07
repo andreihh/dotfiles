@@ -21,3 +21,15 @@ fi
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# Open file with the default program.
+alias o='xdg-open'
+
+# Open current directory in a file explorer.
+alias explore='nautilus .'
+
+# Query NetworkManager or configure networking.
+alias net='nmcli networking'
+
+# Query or configure Wi-Fi in NetworkManager.
+alias wifi='nmcli radio wifi'
