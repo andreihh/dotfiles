@@ -205,6 +205,7 @@ class JavaGrader(Grader):
 
     def _get_java_opts(self):
         return [
+            "-ea",
             "-Xmx{}m".format(self._memory_limit),
             "-Xms{}m".format(self._memory_limit),
             "-Xss{}m".format(self._memory_limit)]

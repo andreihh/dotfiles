@@ -33,3 +33,9 @@ alias net='nmcli networking'
 
 # Query or configure Wi-Fi in NetworkManager.
 alias wifi='nmcli radio wifi'
+
+# Print current screen resolution.
+alias print-res='xrandr | head -n 3 | tail -n 1 | cut -d" " -f 4'
+
+# Record desktop with 30 FPS to the given output file.
+alias record='ffmpeg -video_size $(print-res) -f x11grab -i :0.0 -framerate 15'

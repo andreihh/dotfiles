@@ -31,6 +31,7 @@ half of total RAM
   - `browser.cache.memory.enable = true`
   - `browser.cache.memory.capacity = -1`
   - `layout.css.devPixelsPerPx = 2.5` (for high DPI displays only)
+- Display settings: UI scale set to `2.5` (for high DPI displays only)
 
 ### Licensing
 

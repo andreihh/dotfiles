@@ -8,5 +8,8 @@
     status = auto
     grep = auto
 
+[alias]
+    xl = log --graph --all --decorate --oneline
+
 [credential "https://github.com"]
     username = andreihh

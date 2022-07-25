@@ -1,52 +1,163 @@
 " .ideavimrc
 
-source ~/.vimrc
+" ------------------------------
+" Shared settings with ~/.vimrc.
+" ------------------------------
+
+" This option stops Vim from behaving in a strongly Vi -compatible way.
+set nocompatible
+
+" When set, highlights the current line.
+set cursorline
+
+" Highlight when you exceed the 101 column limit.
+set colorcolumn=101
+
+" When wrap is set to off lines will not wrap.
+set nowrap
+
+" Show the line and column number of the cursor position.
+set ruler
+
+" Show command in the last line of the screen.
+set showcmd
+
+" Show current mode.
+set showmode
+
+" When a bracket is inserted, briefly jump to the matching one.
+set showmatch
+
+" Print relative line numbers in front of each line.
+set relativenumber
+
+" Print the absolute line number in front of the current line.
+set number
+
+" Search options:
+" - hlsearch: When there is a previous search pattern, highlight all its
+" matches.
+" - ignorecase: Ignore case in search patterns.
+" - incsearch: While typing a search command, show where the pattern, as it was
+" typed so far, matches.
+set hlsearch ignorecase incsearch
+
+" When set, enables syntax highlighting.
+syntax enable
+
+" Allow backspacing over audoindent, line breaks and the start of insert.
+set backspace=indent,eol,start
+
+" When increasing/decreasing indent level, round to nearest multiple of
+" shiftwidth.
+set shiftround
+
+" Copy indent from current line when starting a new line.
+set autoindent
+
+" Do smart autoindenting when starting a new line.
+set smartindent
+
+" Always assume unix-style files.
+set fileformats=unix
+
+" Highlight tabs and trailing whitespaces at the end of line.
+set list listchars=tab:>-,trail:.,nbsp:~
+
+" Open new split panes to right and bottom, which feels more natural.
+set splitbelow
+set splitright
+
+" Copy until the end of the line. Consistent with D and C.
+nnoremap Y y$
+
+" Cancels search highlighting in normal mode.
+nnoremap <Space>/ :nohlsearch<CR><Esc>
+
+" ----------------------------
+" Custom settings for IdeaVIM.
+" ----------------------------
 
 " Enable vim-surround plugin.
 set surround
 
-" Unmap vim bracket autocomplete because it is the default behavior in IntelliJ.
-" Currently, unmap is not supported by IdeaVIM.
-iunmap {<CR>
+" Enable NERDTree plugin.
+set NERDTree
+
+" Enable ideajoin plugin.
+set ideajoin
+
+" Enable using the system clipboard from IdeaVIM and vice-versa.
+set clipboard+=unnamed
+set clipboard+=ideaput
+
+" IDE actions.
+" Ideally, these should all be noremap, but that's not currently supported.
 
 " Cycle through completion menu with <C-n> and <C-p>.
 " Currently, this is not supported by IdeaVIM, and the EditorDown/Up actions
 " don't work as expected.
-"inoremap <C-n> <Down>
-"inoremap <C-p> <Up>
+"imap <C-n> <Action>(EditorDown)
+"imap <C-p> <Action>(EditorUp)
 
-" IDE actions.
-nnoremap <Space>f :action FindUsages<CR>
-nnoremap <Space>q :action QuickJavaDoc<CR>
-nnoremap <Space>p :action ParameterInfo<CR>
-nnoremap <Space>r :action RenameElement<CR>
-nnoremap <Space>m :action Move<CR>
-nnoremap <Space>d :action GotoDeclaration<CR>
-nnoremap <Space>g :action GotoImplementation<CR>
-nnoremap <Space>s :action GotoSuperMethod<CR>
-nnoremap <Space>j :action Back<CR>
-nnoremap <Space>k :action Forward<CR>
-nnoremap <Space>o :action OptimizeImports<CR>
-nnoremap <Space>= :action ReformatCode<CR>
-nnoremap [m :action MethodUp<CR>
-nnoremap ]m :action MethodDown<CR>
+" Common, navigation, and code manipulation actions.
+nmap <Space>f <Action>(FindUsages)
+nmap <Space>q <Action>(QuickJavaDoc)
+nmap <Space>p <Action>(ParameterInfo)
+nmap <Space>r <Action>(RenameElement)
+nmap <Space>R <Action>(RefactoringMenu)
+nmap <Space>m <Action>(Move)
+nmap <Space>d <Action>(GotoDeclaration)
+nmap <Space>g <Action>(GotoImplementation)
+nmap <Space>s <Action>(GotoSuperMethod)
+nmap <Space>j <Action>(Back)
+nmap <Space>k <Action>(Forward)
+nmap <Space>o <Action>(OptimizeImports)
+nmap <Space>= <Action>(ReformatCode)
+nmap <Space>n <Action>(ShowNavBar)
+nmap <Space>i <Action>(NewElement)
+nmap <Space>x <Action>(RunAnything)
+nmap <Space><Space> <Action>(SearchEverywhere)
+nmap [m <Action>(MethodUp)
+nmap ]m <Action>(MethodDown)
+nmap <Tab> <Action>(NextTab)
+nmap <S-Tab> <Action>(PreviousTab)
 
-nnoremap <A-s> :action SearchEverywhere<CR>
-nnoremap <A-n> :action ShowNavBar<CR>
-"nnoremap <A-i> :action NewElement<CR>
-"nnoremap <A-r> :action RunAnything<CR>
-nnoremap <F11> :action ToggleFullScreen<CR>
+" These actions must work in insert mode as well.
+nmap <A-CR> <Action>(ShowIntentionActions)
+nmap <C-Space> <Action>(SmartTypeCompletion)
+" Currently, IdeaVIM doesn't properly return to insert mode when using the
+" <Action>() syntax.
+imap <A-CR> <C-o>:action ShowIntentionActions<CR>
+imap <C-Space> <C-o>:action SmartTypeCompletion<CR>
 
-"nnoremap <F1> :action ToggleLineBreakpoint<CR>
-"nnoremap <F2> :action ShowExecutionPoint<CR>
-"nnoremap <F3> :action StepOver<CR>
-"nnoremap <F4> :action StepInto<CR>
-"nnoremap <F5> :action StepOut<CR>
-"nnoremap <F6> :action RunToCursor<CR>
-"nnoremap <F7> :action EvaluateExpression<CR>
-"nnoremap <F8> :action Resume<CR>
-"nnoremap <F9> :action Stop<CR>
-"nnoremap <F10> :action ViewBreakpoints<CR>
+" Tool window actions.
+nnoremap <A-1> :NERDTree<CR>
+nmap <A-2> <Action>(ActivateStructureToolWindow)
+nmap <A-3> <Action>(ActivateTerminalToolWindow)
+nmap <A-4> <Action>(ActivateFindToolWindow)
+nmap <A-5> <Action>(ActivateVersionControlToolWindow)
+nmap <A-8> <Action>(ActivateRunToolWindow)
+nmap <A-9> <Action>(ActivateDebugToolWindow)
+nmap <A-Esc> <Action>(HideAllWindows)
+nmap <F11> <Action>(ToggleFullScreen)
+
+" Debugging actions.
+nmap <F1> <Action>(ToggleLineBreakpoint)
+nmap <F2> <Action>(ShowExecutionPoint)
+nmap <F3> <Action>(StepOver)
+nmap <F4> <Action>(StepInto)
+nmap <F5> <Action>(StepOut)
+nmap <F6> <Action>(RunToCursor)
+nmap <F7> <Action>(EvaluateExpression)
+nmap <F8> <Action>(Resume)
+nmap <F9> <Action>(Stop)
+nmap <F10> <Action>(ViewBreakpoints)
+
+" IdeaVIM doesn't work when focusing tool windows, so their shortcuts (except
+" ActivateProjectToolWindow) need to be overridden in the IDE keymap as well:
+" - Keymap > Main Menu > Window > Active Tool Window > Hide All Tool Windows
+" - Keymap > Tool Windows > ...
 
 " Other keymaps:
 " - Editor actions:
@@ -58,42 +169,6 @@ nnoremap <F11> :action ToggleFullScreen<CR>
 "     - Cut: Ctrl-x
 "     - Delete: Delete
 "     - Paste: Ctrl-v
-"   - Code:
-"     - Completion:
-"       - SmartType: Ctrl-Space
-"   - Run:
-"     - Run...: Alt-r (hold Shift to Debug)
-"     - Toggle Line Breakpoint: F1 (use to focus editor)
-"     - Show Execution Point: F2
-"     - Step Over: F3
-"     - Step Into: F4
-"     - Step Out: F5
-"     - Run to Cursor: F6
-"     - Evaluate Expression: F7
-"     - Resume: F8
-"     - Stop: F9
-"     - View Breakpoints...: F10
-"   - Window:
-"     - Active Tool Window:
-"       - Hide All Windows: Alt-Esc
-" - Tool windows:
-"   - Project: Alt-1
-"   - Structure: Alt-2
-"   - Terminal: Alt-3
-"   - Find: Alt-4
-"   - Version Control: Alt-5
-"   - Event Log: None
-"   - TODO: None
-"   - Favorites: None
-"   - Run: Alt-8
-"   - Debug: Alt-9
-" - Other:
-"   - Show Intention Actions: Alt-Enter
-"   - New...: Alt-i, Alt-Insert
-"   - Run anything: Alt-r?, Ctrl-Ctrl (hold Shift to switch to Debug anything)
-"   - Search Everywhere: Alt-s, Shift-Shift
-"     - Next tab: Tab
-"     - Prev tab: Shift-Tab
 "
 " Other settings:
 " - View:
@@ -102,7 +177,7 @@ nnoremap <F11> :action ToggleFullScreen<CR>
 "   - Tool Buttons: off, bring back temporarily with Alt-Alt
 "   - Toolbar: off
 "   - Status Bar: on
-"   - Navigation Bar: off, toggle with Alt-n
+"   - Navigation Bar: off
 " - Editor:
 "   - General:
 "     - Editor Tabs:

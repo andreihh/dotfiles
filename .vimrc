@@ -5,12 +5,12 @@
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 
-" This option stops Vim from behaving in a strongly Vi -compatible way.
-set nocompatible
-
 " When set to "dark", Vim wil try to use colors that look good on a dark
 " background.
 set background=dark
+
+" This option stops Vim from behaving in a strongly Vi -compatible way.
+set nocompatible
 
 " When set, highlights the current line.
 set cursorline
@@ -80,6 +80,12 @@ set splitright
 " Copy until the end of the line. Consistent with D and C.
 nnoremap Y y$
 
+" Cancels search highlighting in normal mode.
+nnoremap <Space>/ :nohlsearch<CR><Esc>
+
+" Ctrl-Space should trigger auto-completion.
+inoremap <C-Space> <C-N>
+
 " Fix indentation for whole file.
 nnoremap <Space>= gg=G
 
@@ -90,17 +96,11 @@ inoremap <expr> {<CR> "{\<CR>}\<Esc>O"
 " YouCompleteMe should always popup completion menu.
 let g:ycm_min_num_of_chars_for_completion = 0
 
-" Ctrl-Space should trigger identifier completion.
-inoremap <C-Space> <C-N>
-
 " Enter accepts autocomplete option.
 inoremap <expr> <CR> pumvisible() ? "\<C-Y>\<Esc>a" : "\<CR>"
 
 " Esc closes autocomplete window and exits insert mode.
 inoremap <expr> <Esc> pumvisible() ? "\<C-E>\<Esc>" : "\<Esc>"
-
-" Cancels search highlighting in normal mode.
-nnoremap <Space>/ :nohlsearch<CR><Esc>
 
 " Recommended Syntastic settings.
 set statusline+=%#warningmsg#
