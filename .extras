@@ -2,7 +2,7 @@
 # packages, making them available in interactive shells.
 
 # Export Java SDK. Set the installation directory accordingly.
-export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
+export JAVA_HOME="/usr/lib/jvm/java-18-openjdk-amd64"
 export PATH="$PATH:$JAVA_HOME/bin"
 
 # Export Android SDK. Set the installation directory accordingly.

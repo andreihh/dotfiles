@@ -53,7 +53,7 @@ fi
 # * `~/.bash_prompt` for custom shell prompt
 # * `~/.bash_aliases` for useful aliases
 # * `~/.exports` for environment variables exports
-# * `~/.extras` for other settings that shouldn't be persisted across computers
+# * `~/.extras` for other settings that shouldn't be persisted across devices
 for file in ~/.{bash_prompt,bash_aliases,exports,extras}; do
     [ -f "$file" ] && . "$file"
 done

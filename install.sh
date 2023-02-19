@@ -37,16 +37,16 @@ files=\
 ".bashrc .bash_profile .bash_logout .bash_prompt .bash_aliases .inputrc "\
 ".exports bin "\
 ".editorconfig .vimrc .vim .ideavimrc "\
-".gitconfig .gradle .latexmkrc"
+".gitconfig .gradle .latexmkrc "
 
 packages=\
-"git build-essential cmake zenity smartmontools dconf-tools "\
-"python python3 python-dev python3-dev pylint pylint3 openjdk-11-jdk visualvm "\
-"vim "\
+"vim git zenity smartmontools dconf-tools libav-tools vlc keepassxc "\
+"openjdk-18-jdk visualvm "\
+"build-essential cmake "\
+"python3 python3-dev pylint3 python-is-python3 "\
 "texlive texlive-latex-extra texlive-fonts-extra texlive-bibtex-extra biber "\
 "latexmk "\
-"graphviz plantuml libav-tools vlc "\
-"libstdc++6:i386 libgcc1:i386 zlib1g:i386 libncurses5:i386"
+"graphviz plantuml "
 
 echo "Setting up backup directory '$backup_dir'..." && \
     mkdir -p "$backup_dir" && \
