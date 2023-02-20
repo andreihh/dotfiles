@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# This script will install the dotfiles on the current machine.
+# This script will install dotfiles and preferences on the current machine.
 #
 # It expects the dotfiles to be located in the `~/.dotfiles` directory. It will
 # also create a `~/.dotfiles.bak` directory where it will backup existing
@@ -27,6 +27,9 @@
 # various configurations, such as vim plugins.
 #
 # It will also attempt to compile and install the vim `YouCompleteMe` plugin.
+#
+# It will also attempt to set some custom keyboard options, like defaulting to
+# English (US) layout and swapping the Caps Lock and Esc keys.
 
 [ $# -gt 0 ] && echo "Usage: $0" && exit 1
 
