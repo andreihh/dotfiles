@@ -43,14 +43,14 @@ files=\
 ".gitconfig .gradle .latexmkrc "
 
 packages=\
-"gsettings smartmontools zenity ffmpeg vlc keepassxc "\
-"vim git "\
-"openjdk-18-jdk visualvm "\
-"build-essential cmake "\
-"python3 python3-dev pylint3 python-is-python3 "\
-"texlive texlive-latex-extra texlive-fonts-extra latexmk "\
-"texlive-bibtex-extra biber "\
-"graphviz plantuml "
+"smartmontools zenity ffmpeg vlc keepassxc "\  # Misc tools
+"vim git "\  # Essential dev tools
+"openjdk-18-jdk visualvm "\  # Java
+"build-essential cmake "\  # C/C++
+"python3 python3-dev pylint3 python-is-python3 "\  # Python
+"texlive texlive-latex-extra texlive-fonts-extra latexmk "\  # LaTeX
+"texlive-bibtex-extra biber "\  # LaTeX Biber
+"graphviz plantuml "  # Visualization tools
 
 echo "Setting up backup directory '$backup_dir'..." && \
     mkdir -p "$backup_dir" && \
