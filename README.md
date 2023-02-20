@@ -6,12 +6,22 @@ It contains the specific dotfiles, along with an installation script.
 
 ### Installation
 
+To install the dotfiles, run the following commands:
+
 ```
 cd ~
 git clone --recursive https://github.com/andreihh/.dotfiles.git
 cd .dotfiles
 chmod +x install.sh
 ./install.sh
+```
+
+To update the Vim plugins, run the following commands:
+
+```
+cd ~/.dotfiles
+git submodule sync --recursive
+git submodule update --init --recursive --remote
 ```
 
 ### Recommended manual settings

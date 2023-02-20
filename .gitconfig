@@ -13,3 +13,6 @@
 
 [credential "https://github.com"]
     username = andreihh
+
+[submodule]
+    recurse = true
