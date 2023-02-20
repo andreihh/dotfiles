@@ -40,12 +40,13 @@ files=\
 ".gitconfig .gradle .latexmkrc "
 
 packages=\
-"vim git zenity smartmontools dconf-tools libav-tools vlc keepassxc "\
+"gsettings smartmontools zenity ffmpeg vlc keepassxc "\
+"vim git "\
 "openjdk-18-jdk visualvm "\
 "build-essential cmake "\
 "python3 python3-dev pylint3 python-is-python3 "\
-"texlive texlive-latex-extra texlive-fonts-extra texlive-bibtex-extra biber "\
-"latexmk "\
+"texlive texlive-latex-extra texlive-fonts-extra latexmk "\
+"texlive-bibtex-extra biber "\
 "graphviz plantuml "
 
 echo "Setting up backup directory '$backup_dir'..." && \
@@ -118,6 +119,18 @@ echo -e "\nInstalling 'YouCompleteMe' vim plugin..." && \
     $dir/.vim/bundle/YouCompleteMe/install.py && \
     echo "'YouCompleteMe' installed!" || \
     echo "Failed to install 'YouCompleteMe'!"
+
+echo -e "\nSetting keyboard layout to US, with RO alternative..." && \
+    gsettings set org.gnome.desktop.input-sources sources \
+    "[('xkb', 'us'), ('xkb', 'ro+std')]" && \
+    echo "Keyboard layouts updated!" || \
+    echo "Failed to update keyboard layouts!"
+
+echo -e "\nSwapping Caps Lock and Esc keys..." && \
+    gsettings set org.gnome.desktop.input-sources xkb-options \
+    "['caps:swapescape']" && \
+    echo "Caps Lock and Esc keys swapped!" || \
+    echo "Failed to swap Caps Lock and Esc keys!"
 
 echo -e "\nMaking hidden startup applications visible..." && \
     sudo sed -i "s/NoDisplay=true/NoDisplay=false/g" \
