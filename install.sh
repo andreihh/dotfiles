@@ -2,143 +2,150 @@
 
 # This script will install dotfiles and preferences on the current machine.
 #
-# It expects the dotfiles to be located in the `~/.dotfiles` directory. It will
-# also create a `~/.dotfiles.bak` directory where it will backup existing
-# dotfiles before removing them (note, however, that only files and directories
-# are backed up; symlinks or other types of files are not backed up).
+# The dotfiles repository must be located in the `~/.dotfiles` directory.
 #
-# If the backup of a specific file fails, it will be interactively removed. If
-# removal is denied, that specific dotfile will not be installed.
+# It will backup existing dotfiles to `~/.dotfiles.bak`, and will abort the
+# installation if the backup directory already exists. If the backup of a
+# specific file fails, it will not install the corresponding dotfile.
 #
-# Every dotfile in the home directory is replaced with a symlink to the file in
-# the `~/.dotfiles` directory.
+# It will replace every dotfile in the home directory with a symlink to the
+# corresponding file in the `~/.dotfiles` repository.
 #
-# If setup for certain files fails at first attempt, you may fix the issues
-# manually and then run this script again. Since it only backs up files and
-# directories, it will not overwrite previous backups with the created symlinks,
-# will relink the old symlinks to the ~/.dotfiles correspondents and attempt to
-# install the previously failed files once again.
+# The `.extras` file will not be installed. It should mostly contain local
+# settings, like exporting JAVA_HOME from a specified installation directory.
+# You may wish to manually copy this file to `~/.extras` and customize it
+# accordingly.
 #
-# The `.extras` file is not installed. It should mostly contain local settings,
-# like exporting JAVA_HOME from a specified installation directory. You may wish
-# to manually copy this file to `~/.extras` and customize it accordingly.
+# After installing the dotfiles, it will run the platform-specific setup to
+# install required packages and other customizations.
 #
-# After installing the dotfiles, it will attempt to install required packages by
-# various configurations, such as vim plugins.
+# Lastly, it will attempt to compile and install the Vim `YouCompleteMe` plugin.
 #
-# It will also attempt to compile and install the vim `YouCompleteMe` plugin.
-#
-# It will also attempt to set some custom keyboard options, like defaulting to
-# English (US) layout and swapping the Caps Lock and Esc keys.
+# If any step in the installation fails, you may fix the issues manually and
+# run this script again. However, you must move any generated backups to a
+# different location.
 
 [ $# -gt 0 ] && echo "Usage: $0" && exit 1
 
-dir="$HOME/.dotfiles"
-backup_dir="$HOME/.dotfiles.bak"
+# Prints the given message in red.
+function echoerr() {
+  echo -e "\033[0;31m${1}\033[0m"
+}
 
-files=\
-".bashrc .bash_profile .bash_logout .bash_prompt .bash_aliases .inputrc "\
-".exports bin "\
-".editorconfig .vimrc .vim .ideavimrc "\
+function setup_backup_directory() {
+  local backup_dir="$1"
+
+  echo "Setting up backup directory '$backup_dir'..."
+  [ -e "$backup_dir" ] \
+    && echoerr "You must move the existing backup '$backup_dir' elsewhere!" \
+    && return 1
+
+  if mkdir -p "$backup_dir"; then
+    echo "Backup directory '$backup_dir' setup completed!"
+  else
+    echoerr "Failed to set up backup directory '$backup_dir'!"
+    return 1
+  fi
+}
+
+function backup_file_to() {
+  local file="$1"
+  local backup_dir="$2"
+
+  echo "Backing up '$file'..."
+  [ ! -e "$file" ] && echo "'$file' doesn't exist!" && return 0
+
+  if mv -v "$file" "$backup_dir/"; then
+    echo "'$file' backed up successfully!"
+  else
+    echoerr "Failed to back up '$file'!"
+    return 1
+  fi
+}
+
+function make_symlink() {
+  local target="$1"
+  local link="$2"
+
+  echo "Setting up symlink for '$target'..."
+  [ -e "$link" ] \
+    && echoerr "Can't set up symlink because '$link' already exists!" \
+    && return 1
+
+  if ln -s "$target" "$link"; then
+    echo "Symlink '$link' created!"
+  else
+    echoerr "Failed to create symlink '$link'!"
+    return 1
+  fi
+}
+
+
+repository="$HOME/.dotfiles"
+backup="$HOME/.dotfiles.bak"
+dotfiles=\
+".bashrc .bash_profile .bash_logout .bash_prompt .bash_aliases .exports bin "\
+".inputrc .editorconfig .vimrc .vim .ideavimrc "\
 ".gitconfig .gradle .latexmkrc "
 
-packages=\
-"smartmontools zenity ffmpeg vlc keepassxc "\  # Misc tools
-"vim git "\  # Essential dev tools
-"openjdk-18-jdk visualvm "\  # Java
-"build-essential cmake "\  # C/C++
-"python3 python3-dev pylint3 python-is-python3 "\  # Python
-"texlive texlive-latex-extra texlive-fonts-extra latexmk "\  # LaTeX
-"texlive-bibtex-extra biber "\  # LaTeX Biber
-"graphviz plantuml "  # Visualization tools
+shopt -s nocasematch
+case "$OSTYPE" in
+  linux*)
+    platform="linux"
+    platform_dotfiles=".platform_utils"
+    ;;
+  *)
+    # MacOS (pattern "darwin*") is not supported.
+    # BSD flavors (pattern "*bsd*") are not supported.
+    platform=""
+    platform_dotfiles=""
+    ;;
+esac
+shopt -u nocasematch
 
-echo "Setting up backup directory '$backup_dir'..." && \
-    mkdir -p "$backup_dir" && \
-    echo "Backup directory setup completed!" || \
-    echo "Backup directory setup failed!"
+platform_setup_script="$repository/$platform/setup.sh"
+ycm_installer="$repository/.vim/bundle/YouCompleteMe/install.py"
 
-echo -e "\nSetting execution permission for '$dir/bin' scripts..." && \
-    chmod -R 755 "$dir/bin" && \
-    echo "Permissions set!" || \
-    echo "Failed to set permissions!"
+[ -z "$platform" ] && echoerr "Unsupported platform '$platform'!" && exit 1
+[ ! -e "$repository" ] \
+  && echoerr "You must clone the dotfiles repository in '$HOME'!" \
+  && exit 1
 
-for file in $files; do
-    [ ! -e "$dir/$file" ] && \
-        echo -e "\nMissing '$file' from '$dir'!" && \
-        continue
+setup_backup_directory "$backup" || exit 1
 
-    echo -e "\nBacking up '$file'..."
-    if [ -f "$HOME/$file" ] || [ -d "$HOME/$file" ] && \
-        [ ! -L "$HOME/$file" ]; then
-            mv -v "$HOME/$file" "$backup_dir/" && \
-                echo "Backup successful!" || \
-                echo "Backup failed!"
-    elif [ -e "$HOME/$file" ]; then
-        [ -r "$HOME/$file" ] && \
-            echo "'$file' is not a file or directory!" || \
-            echo "There is no read permission for '$file'!"
-    else
-        echo "'$file' can't be backed up because it doesn't exist!"
-    fi
+echo -e "\nSetting execution permission for '$repository/bin' scripts..."
+chmod -R 755 "$repository/bin" \
+  && echo "Execution permissions on '$repository/bin' scripts set!" \
+  || echoerr "Failed to set execution permissions on '$repository/bin' scripts!"
 
-    if [ -L "$HOME/$file" ]; then
-        echo -e "\nUnlinking old '$file' symlink..." && \
-            rm -v "$HOME/$file" && \
-            echo "'$file' unlinked!" || \
-            echo "Couldn't unlink '$file'!"
-    elif [ -e "$HOME/$file" ]; then
-        echo -e "\nRemoving old '$file'..." && \
-            rm -vrI "$HOME/$file" && \
-            echo "'$file' removed!" || \
-            echo "Couldn't remove '$file'!"
-    fi
+echo -e "\nSetting up dotfiles..."
+for file in $dotfiles; do
+  [ ! -e "$repository/$file" ] \
+    && echoerr "Missing '$file' from '$repository'!" \
+    && continue
 
-    echo -e "\nSetting up symlink for '$file'..."
-    if [ ! -e "$HOME/$file" ]; then
-        ln -s "$dir/$file" "$HOME/$file" && \
-            echo "Symlink setup completed!" || \
-            echo "Symlink setup failed!"
-    else
-        echo "Can't setup symlink because '$file' already exists!"
-    fi
+  backup_file_to "$HOME/$file" "$backup" \
+    && make_symlink "$repository/$file" "$HOME/$file"
 done
 
-echo -e "\nInstalling required packages..."
+echo -e "\nSetting up platform-specific dotfiles..."
+for file in $platform_dotfiles; do
+  [ ! -e "$repository/$platform/$file" ] \
+    && echoerr "Missing '$platform/$file' from '$repository'!" \
+    && continue
 
-echo -e "\nUpdating package index..." && \
-    sudo apt-get update && \
-    echo "Package index updated!" || \
-    echo "Failed to update package index!"
-
-for package in $packages; do
-    echo -e "\nInstalling package '$package'..." && \
-        sudo apt-get install $package && \
-        echo "Package installed!" || \
-        echo "Installation failed!"
+  backup_file_to "$HOME/$file" "$backup" \
+    && make_symlink "$repository/$platform/$file" "$HOME/$file"
 done
 
-echo -e "\nInstalling 'YouCompleteMe' vim plugin..." && \
-    chmod +x "$dir/.vim/bundle/YouCompleteMe/install.py" && \
-    $dir/.vim/bundle/YouCompleteMe/install.py && \
-    echo "'YouCompleteMe' installed!" || \
-    echo "Failed to install 'YouCompleteMe'!"
+echo -e "\nRunning '$platform' platform setup..."
+chmod +x "$platform_setup_script" && $platform_setup_script \
+  && echo "'$platform' platform setup completed!" \
+  || echoerr "'$platform' platform setup failed!"
 
-echo -e "\nSetting keyboard layout to US, with RO alternative..." && \
-    gsettings set org.gnome.desktop.input-sources sources \
-    "[('xkb', 'us'), ('xkb', 'ro+std')]" && \
-    echo "Keyboard layouts updated!" || \
-    echo "Failed to update keyboard layouts!"
-
-echo -e "\nSwapping Caps Lock and Esc keys..." && \
-    gsettings set org.gnome.desktop.input-sources xkb-options \
-    "['caps:swapescape']" && \
-    echo "Caps Lock and Esc keys swapped!" || \
-    echo "Failed to swap Caps Lock and Esc keys!"
-
-echo -e "\nMaking hidden startup applications visible..." && \
-    sudo sed -i "s/NoDisplay=true/NoDisplay=false/g" \
-    /etc/xdg/autostart/*.desktop && \
-    echo "All startup applications are visible!" || \
-    echo "Changing visibility of hidden startup applications failed!"
+echo -e "\nInstalling 'YouCompleteMe' Vim plugin..."
+chmod +x "$ycm_installer" && $ycm_installer \
+  && echo "'YouCompleteMe' Vim plugin installed!" \
+  || echoerr "Failed to install 'YouCompleteMe' Vim plugin!"
 
 echo -e "\nDone!"

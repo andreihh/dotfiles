@@ -27,25 +27,36 @@ continuation_indent_size = 4
 ij_continuation_indent_size = 4
 
 # Scripting
-[*.{sh,py,pyi}]
+[*.{sh}]
+max_line_length = 80
+ij_visual_guides = 80
+indent_size = 2
+continuation_indent_size = 2
+ij_continuation_indent_size = 2
+
+[*.{py,pyi}]
+max_line_length = 79
+ij_visual_guides = 79
 indent_size = 4
 continuation_indent_size = 4
 ij_continuation_indent_size = 4
 
 # Web
 [*.{js,ts,html,css}]
-indent_size = 2
-continuation_indent_size = 4
-ij_continuation_indent_size = 4
-
-# Data formats
-[*.{xml,json,yaml}]
+max_line_length = 80
+ij_visual_guides = 80
 indent_size = 2
 continuation_indent_size = 4
 ij_continuation_indent_size = 4
 
 # Docs
 [*.{tex,bib,md}]
+indent_size = 2
+continuation_indent_size = 4
+ij_continuation_indent_size = 4
+
+# Data formats
+[*.{xml,json,yaml}]
 indent_size = 2
 continuation_indent_size = 4
 ij_continuation_indent_size = 4
