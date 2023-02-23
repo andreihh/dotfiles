@@ -1,8 +1,7 @@
 ## Dotfiles
 
-This is my personal dotfiles repository.
-
-It contains the specific dotfiles, along with an installation script.
+This is my personal dotfiles repository. It contains the specific dotfiles,
+alongside an installation script.
 
 ### Installation
 
