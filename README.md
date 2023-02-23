@@ -8,19 +8,18 @@ alongside an installation script.
 To install the dotfiles, run the following commands:
 
 ```
-cd ~
-git clone --recursive https://github.com/andreihh/.dotfiles.git
-cd .dotfiles
+curl -LO https://github.com/downloads/andreihh/.dotfiles/install.sh
 chmod +x install.sh
 ./install.sh
+rm install.sh
 ```
 
 To update the Vim plugins, run the following commands:
 
 ```
 cd ~/.dotfiles
-git submodule sync --recursive
-git submodule update --init --recursive --remote
+chmod +x sync_vim_plugins.sh
+./sync_vim_plugins.sh
 ```
 
 ### Recommended manual settings
