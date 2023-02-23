@@ -6,4 +6,4 @@ echo "Updating Vim plugins..."
 cd ~/.dotfiles \
   && git submodule sync --recursive \
   && git submodule update --init --recursive --remote \
-  && "Vim plugins updated successfully!"
+  && echo "Vim plugins updated successfully!"

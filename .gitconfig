@@ -13,6 +13,7 @@
 
 [credential "https://github.com"]
     username = andreihh
+    helper = store
 
 [submodule]
     recurse = true
