@@ -8,7 +8,7 @@ alongside an installation script.
 To install the dotfiles, run the following commands:
 
 ```
-curl -LO https://github.com/downloads/andreihh/.dotfiles/install.sh
+curl -LO https://raw.githubusercontent.com/andreihh/.dotfiles/master/install.sh
 chmod +x install.sh
 ./install.sh
 rm install.sh
