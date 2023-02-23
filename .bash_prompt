@@ -1,95 +1,95 @@
 # ~/.bash_prompt: this file customizes the shell prompt.
 
 _config_prompt() {
-    # set variable identifying the chroot you work in (used in the prompt below)
-    if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-        debian_chroot=$(cat /etc/debian_chroot)
+  # Set variable identifying the chroot you work in (used in the prompt below).
+  if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+  fi
+
+  # Set a fancy prompt.
+  local color_prompt=
+  case "$TERM" in
+    xterm-color|*-256color) color_prompt=yes ;;
+  esac
+
+  if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+    # We have color support; assume it's compliant with Ecma-48 (ISO/IEC-6429).
+    # Lack of such support is extremely rare, and such a case would tend to
+    # support setf rather than setaf.
+    color_prompt=yes
+  else
+    color_prompt=
+  fi
+
+  # If colors are not supported, use the default prompt.
+  if [ -z "$color_prompt" ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS2='> '
+    return
+  fi
+
+  # Define color aliases.
+  local reset="\e[0m"
+  local bold="\e[0;1m"
+
+  local black="\e[1;30m"
+  local red="\e[1;31m"
+  local green="\e[1;32m"
+  local yellow="\e[1;33m"
+  local blue="\e[1;34m"
+  local purple="\e[1;35m"
+  local cyan="\e[1;36m"
+  local white="\e[1;37m"
+
+  apply_style_to() {
+    echo "\\[$1\\]$2\\[$reset\\]"
+  }
+
+  local user_style="$red"
+  if [ "$USER" == "root" ]; then
+    user_style="$bold$red"
+  fi
+
+  local host_style="$cyan"
+  local cwd_style="$blue"
+  local shell_style="$bold$green"
+
+  # Dynamically set the styled host only if the current session is remote.
+  get_styled_host_with_separator() {
+    if [ -n "$SSH_TTY" ]; then
+      local at_separator=$(apply_style_to "$shell_style" "@")
+      local host=$(apply_style_to "$host_style" "\h")
+      echo "$at_separator$host"
     fi
+  }
 
-    # set a fancy prompt
-    local color_prompt=
-    case "$TERM" in
-        xterm-color|*-256color) color_prompt=yes;;
-    esac
+  # Print only the first 3 and last 2 components of the current working
+  # directory (not counting `$HOME`, which is collapsed to `~`).
+  local cwd='`dirs +0 | sed "s#\(/[^/]\{1,\}/[^/]\{1,\}/[^/]\{1,\}/\).*\(/[^/]\{1,\}/[^/]\{1,\}\)/\{0,1\}#\1...\2#g"`'
 
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-        # We have color support; assume it's compliant with Ecma-48
-        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-        # a case would tend to support setf rather than setaf.)
-        color_prompt=yes
-    else
-        color_prompt=
-    fi
+  # Set the terminal prompt.
+  PS1="${debian_chroot:+($debian_chroot)}"
+  PS1+=$(apply_style_to "$user_style" "\u") # set user
+  PS1+=$(get_styled_host_with_separator) # set `@` and host if remote session
+  PS1+=$(apply_style_to "$shell_style" ":") # set `:` separator
+  PS1+=$(apply_style_to "$cwd_style" "$cwd") # set current working directory
+  PS1+=$(apply_style_to "$shell_style" "\$ ") # set shell
 
-    # If colors are not supported, use the default prompt.
-    if [ -z "$color_prompt" ]; then
-        PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-        PS2='> '
-        return
-    fi
+  PS2=$(apply_style_to "$shell_style" '> ') # set shell
 
-    # Define color aliases.
-    local reset="\e[0m"
-    local bold="\e[0;1m"
-
-    local black="\e[1;30m"
-    local red="\e[1;31m"
-    local green="\e[1;32m"
-    local yellow="\e[1;33m"
-    local blue="\e[1;34m"
-    local purple="\e[1;35m"
-    local cyan="\e[1;36m"
-    local white="\e[1;37m"
-
-    apply_style_to() {
-        echo "\\[$1\\]$2\\[$reset\\]"
-    }
-
-    local user_style="$red"
-    if [ "$USER" == "root" ]; then
-        user_style="$bold$red"
-    fi
-
-    local host_style="$cyan"
-    local cwd_style="$blue"
-    local shell_style="$bold$green"
-
-    # Dynamically set the styled host only if the current session is remote.
-    get_styled_host_with_separator() {
-        if [ -n "$SSH_TTY" ]; then
-            local at_separator=$(apply_style_to "$shell_style" "@")
-            local host=$(apply_style_to "$host_style" "\h")
-            echo "$at_separator$host"
-        fi
-    }
-
-    # Print only the first 3 and last 2 components of the current working
-    # directory (not counting `$HOME`, which is collapsed to `~`).
-    local cwd='`dirs +0 | sed "s#\(/[^/]\{1,\}/[^/]\{1,\}/[^/]\{1,\}/\).*\(/[^/]\{1,\}/[^/]\{1,\}\)/\{0,1\}#\1...\2#g"`'
-
-    # Set the terminal prompt.
-    PS1="${debian_chroot:+($debian_chroot)}"
-    PS1+=$(apply_style_to "$user_style" "\u") # set user
-    PS1+=$(get_styled_host_with_separator) # set `@` and host if remote session
-    PS1+=$(apply_style_to "$shell_style" ":") # set `:` separator
-    PS1+=$(apply_style_to "$cwd_style" "$cwd") # set current working directory
-    PS1+=$(apply_style_to "$shell_style" "\$ ") # set shell
-
-    PS2=$(apply_style_to "$shell_style" '> ') # set shell
-
-    # If this is an xterm set the title to user@host:dir
-    case "$TERM" in
+  # If this is an xterm, set the title to user@host:dir.
+  case "$TERM" in
     xterm*|rxvt*)
-        PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \W\a\]$PS1"
-        ;;
+      PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \W\a\]$PS1"
+      ;;
     *)
-        ;;
-    esac
+      ;;
+  esac
 
-    echo -ne '\e]10;#ffffff\e\\' # set foreground to white
-    echo -ne '\e]11;#300a24\e\\' # set background to Ambiance default
+  echo -ne '\e]10;#ffffff\e\\' # set foreground to white
+  echo -ne '\e]11;#300a24\e\\' # set background to Ambiance default
 
-    unset apply_style_to get_styled_host_with_separator
+  unset apply_style_to get_styled_host_with_separator
 }
 
 _config_prompt
