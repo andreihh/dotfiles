@@ -1,7 +1,3 @@
-[user]
-    name = Andrei Heidelbacher
-    email = andrei.heidelbacher@gmail.com
-
 [color]
     branch = auto
     diff = auto
@@ -12,8 +8,10 @@
     xl = log --graph --all --decorate --oneline
 
 [credential "https://github.com"]
-    username = andreihh
     helper = store
 
 [submodule]
     recurse = true
+[user]
+	name = Andrei Heidelbacher
+	email = andrei.heidelbacher@gmail.com

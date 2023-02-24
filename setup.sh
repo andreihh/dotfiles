@@ -11,11 +11,6 @@
 # It will replace every dotfile in the home directory with a symlink to the
 # corresponding file in the `~/.dotfiles` repository.
 #
-# The `.extras` file will not be installed. It should mostly contain local
-# settings, like exporting JAVA_HOME from a specified installation directory.
-# You may wish to manually copy this file to `~/.extras` and customize it
-# accordingly.
-#
 # After installing the dotfiles, it will run the platform-specific setup to
 # install required packages and other customizations.
 #
