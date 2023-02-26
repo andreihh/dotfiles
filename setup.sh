@@ -47,8 +47,12 @@ readonly YCM_INSTALLER="$DOTFILES_DIR/.vim/bundle/YouCompleteMe/install.py"
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
-echo "Sourcing essential bash aliases..."
+echo "Starting system setup..."
+
+echo -e "\nSourcing essential bash aliases..."
 . "$DOTFILES_DIR/.bash_aliases" || exit 1
+
+[[ -z "$PLATFORM" ]] && echo "System platform is not supported!" && exit 1
 
 function setup_backup_directory() {
   local backup_dir="$1"
@@ -98,11 +102,6 @@ function make_symlink() {
   fi
 }
 
-[[ -z "$PLATFORM" ]] && echoerr "Unsupported platform '$PLATFORM'!" && exit 1
-[[ ! -e "$DOTFILES_DIR" ]] \
-  && echoerr "You must clone the dotfiles repository in '$HOME'!" \
-  && exit 1
-
 setup_backup_directory "$BACKUP_DIR" || exit 1
 
 echo -e "\nSetting execution permissions on '$DOTFILES_DIR/bin/*'..."
@@ -130,14 +129,12 @@ for file in $PLATFORM_DOTFILES; do
     && make_symlink "$DOTFILES_DIR/$PLATFORM/$file" "$HOME/$file"
 done
 
-echo -e "\nRunning '$PLATFORM' platform setup..."
-chmod +x "$PLATFORM_SETUP_SCRIPT" && $PLATFORM_SETUP_SCRIPT \
-  && echo "'$PLATFORM' platform setup completed!" \
-  || echoerr "'$PLATFORM' platform setup failed!"
+echo -e "\nExecuting '$PLATFORM' setup script..."
+chmod +x "$PLATFORM_SETUP_SCRIPT" && $PLATFORM_SETUP_SCRIPT || exit 1
 
 echo -e "\nInstalling 'YouCompleteMe' Vim plugin..."
 chmod +x "$YCM_INSTALLER" && $YCM_INSTALLER \
   && echo "'YouCompleteMe' Vim plugin installed!" \
   || echoerr "Failed to install 'YouCompleteMe' Vim plugin!"
 
-echo -e "\nSystem setup done!"
+echo -e "\nSystem setup completed!"

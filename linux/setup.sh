@@ -19,7 +19,9 @@ readonly TLP_UPDATER="$DOTFILES_DIR/linux/update_tlp.sh"
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
-echo "Sourcing essential bash aliases..."
+echo "Starting Linux setup..."
+
+echo -e "\nSourcing essential bash aliases..."
 . "$DOTFILES_DIR/.bash_aliases" || exit 1
 
 echo -e "\nUpdating package index..."
@@ -58,4 +60,4 @@ $TLP_UPDATER \
   && echo "TLP configured successfully!" \
   || echoerr "Failed to configure TLP!"
 
-echo -e "\nLinux setup done!"
+echo -e "\nLinux setup completed!"

@@ -18,9 +18,8 @@ curl -LO "$REPO_ZIP" \
   && cd "$DOTFILES_DIR" \
   || exit 1
 
-echo -e "\nExecuting setup script..." \
-  && chmod +x setup.sh && ./setup.sh \
-  || exit 1
+echo -e "\nExecuting system setup script..."
+chmod +x setup.sh && ./setup.sh || exit 1
 
 echo -e "\nInitializing remote git repository..." \
   && git init \
@@ -29,4 +28,4 @@ echo -e "\nInitializing remote git repository..." \
   && git checkout -t -f origin/master \
   || exit 1
 
-echo -e "\nInstallation complete!"
+echo -e "\nInstallation completed!"
