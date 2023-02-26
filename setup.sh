@@ -31,7 +31,7 @@ shopt -s nocasematch
 case "$OSTYPE" in
   linux*)
     readonly PLATFORM="linux"
-    readonly PLATFORM_DOTFILES=".platform_utils .tlp.conf"
+    readonly PLATFORM_DOTFILES=".platform_utils"
     ;;
   *)
     # MacOS (pattern `darwin*`) is not supported.
