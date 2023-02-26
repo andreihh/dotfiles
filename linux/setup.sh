@@ -15,7 +15,7 @@ readonly PACKAGES=\
 "graphviz plantuml "\
 "zenity ffmpeg vlc keepassxc "
 
-readonly TLP_UPDATER="$DOTFILES_DIR/linux/update_tlp.sh"
+readonly TLP_UPDATER="$DOTFILES_DIR/linux/update_tlp_config.sh"
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 

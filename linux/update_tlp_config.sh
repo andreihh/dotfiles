@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Update the TLP config and applies the changes.
+# Updates the TLP config and applies the changes.
 
 readonly TLP_CONFIG="/etc/tlp.conf"
 readonly USER_TLP_CONFIG="$HOME/.tlp.conf"
