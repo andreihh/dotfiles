@@ -20,7 +20,7 @@ readonly TLP_UPDATER="$DOTFILES_DIR/linux/update_tlp.sh"
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
 echo "Sourcing essential bash aliases..."
-. "$DOTFILES/.bash_aliases" || exit 1
+. "$DOTFILES_DIR/.bash_aliases" || exit 1
 
 echo -e "\nUpdating package index..."
 sudo add-apt-repository ppa:linrunner/tlp \
