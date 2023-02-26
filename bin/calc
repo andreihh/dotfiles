@@ -2,5 +2,5 @@
 
 # Redirects the given math operations to python3.
 
-[ "$#" -ne 1 ] && echo "Usage: $0 expression" && exit 1
+[[ "$#" -ne 1 ]] && echo "Usage: $0 expression" && exit 1
 python3 -c "from math import *; print($1)"

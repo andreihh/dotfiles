@@ -3,7 +3,7 @@
 # This script will install various packages and perform customizations (e.g.,
 # keyboard options) specific for Linux systems.
 
-[ $# -gt 0 ] && echo "Usage: $0" && exit 1
+[[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
 # Prints the given message in red.
 function echoerr() {

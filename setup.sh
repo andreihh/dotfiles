@@ -20,7 +20,7 @@
 # run this script again. However, you must move any generated backups to a
 # different location.
 
-[ $# -gt 0 ] && echo "Usage: $0" && exit 1
+[[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
 # Prints the given message in red.
 function echoerr() {
@@ -31,7 +31,7 @@ function setup_backup_directory() {
   local backup_dir="$1"
 
   echo "Setting up backup directory '$backup_dir'..."
-  [ -e "$backup_dir" ] \
+  [[ -e "$backup_dir" ]] \
     && echoerr "You must move the existing backup '$backup_dir' elsewhere!" \
     && return 1
 
@@ -48,7 +48,7 @@ function backup_file_to() {
   local backup_dir="$2"
 
   echo "Backing up '$file'..."
-  [ ! -e "$file" ] && echo "'$file' doesn't exist!" && return 0
+  [[ ! -e "$file" ]] && echo "'$file' doesn't exist!" && return 0
 
   if mv -v "$file" "$backup_dir/"; then
     echo "'$file' backed up successfully!"
@@ -63,7 +63,7 @@ function make_symlink() {
   local link="$2"
 
   echo "Setting up symlink for '$target'..."
-  [ -e "$link" ] \
+  [[ -e "$link" ]] \
     && echoerr "Can't set up symlink because '$link' already exists!" \
     && return 1
 
@@ -75,13 +75,12 @@ function make_symlink() {
   fi
 }
 
-
 repository="$HOME/.dotfiles"
 backup="$HOME/.dotfiles.bak"
 dotfiles=\
 ".bashrc .bash_profile .bash_logout .bash_prompt .bash_aliases .exports bin "\
 ".inputrc .editorconfig .vimrc .vim .ideavimrc "\
-".gitconfig .gradle .latexmkrc "
+".gitconfig .latexmkrc .gradle "
 
 shopt -s nocasematch
 case "$OSTYPE" in
@@ -101,8 +100,8 @@ shopt -u nocasematch
 platform_setup_script="$repository/$platform/setup.sh"
 ycm_installer="$repository/.vim/bundle/YouCompleteMe/install.py"
 
-[ -z "$platform" ] && echoerr "Unsupported platform '$platform'!" && exit 1
-[ ! -e "$repository" ] \
+[[ -z "$platform" ]] && echoerr "Unsupported platform '$platform'!" && exit 1
+[[ ! -e "$repository" ]] \
   && echoerr "You must clone the dotfiles repository in '$HOME'!" \
   && exit 1
 
@@ -115,7 +114,7 @@ chmod -R 755 "$repository/bin" \
 
 echo -e "\nSetting up dotfiles..."
 for file in $dotfiles; do
-  [ ! -e "$repository/$file" ] \
+  [[ ! -e "$repository/$file" ]] \
     && echoerr "Missing '$file' from '$repository'!" \
     && continue
 
@@ -125,7 +124,7 @@ done
 
 echo -e "\nSetting up platform-specific dotfiles..."
 for file in $platform_dotfiles; do
-  [ ! -e "$repository/$platform/$file" ] \
+  [[ ! -e "$repository/$platform/$file" ]] \
     && echoerr "Missing '$platform/$file' from '$repository'!" \
     && continue
 
