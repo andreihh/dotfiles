@@ -20,12 +20,35 @@
 # run this script again. However, you must move any generated backups to a
 # different location.
 
+readonly DOTFILES_DIR="$HOME/.dotfiles"
+readonly BACKUP="$HOME/.dotfiles.bak"
+readonly DOTFILES=\
+".bashrc .bash_profile .bash_logout .bash_prompt .bash_aliases .exports bin "\
+".inputrc .editorconfig .vimrc .vim .ideavimrc "\
+".gitconfig .latexmkrc .gradle "
+
+shopt -s nocasematch
+case "$OSTYPE" in
+  linux*)
+    readonly PLATFORM="linux"
+    readonly PLATFORM_DOTFILES=".platform_utils .tlp.conf"
+    ;;
+  *)
+    # MacOS (pattern `darwin*`) is not supported.
+    # BSD flavors (pattern `*bsd*`) are not supported.
+    readonly PLATFORM=""
+    readonly PLATFORM_DOTFILES=""
+    ;;
+esac
+shopt -u nocasematch
+
+readonly PLATFORM_SETUP_SCRIPT="$DOTFILES_DIR/$PLATFORM/setup.sh"
+readonly YCM_INSTALLER="$DOTFILES_DIR/.vim/bundle/YouCompleteMe/install.py"
+
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
-# Prints the given message in red.
-function echoerr() {
-  echo -e "\033[0;31m${1}\033[0m"
-}
+echo "Sourcing essential bash aliases..."
+. "$DOTFILES_DIR/.bash_aliases" || exit 1
 
 function setup_backup_directory() {
   local backup_dir="$1"
@@ -75,71 +98,46 @@ function make_symlink() {
   fi
 }
 
-repository="$HOME/.dotfiles"
-backup="$HOME/.dotfiles.bak"
-dotfiles=\
-".bashrc .bash_profile .bash_logout .bash_prompt .bash_aliases .exports bin "\
-".inputrc .editorconfig .vimrc .vim .ideavimrc "\
-".gitconfig .latexmkrc .gradle "
-
-shopt -s nocasematch
-case "$OSTYPE" in
-  linux*)
-    platform="linux"
-    platform_dotfiles=".platform_utils"
-    ;;
-  *)
-    # MacOS (pattern "darwin*") is not supported.
-    # BSD flavors (pattern "*bsd*") are not supported.
-    platform=""
-    platform_dotfiles=""
-    ;;
-esac
-shopt -u nocasematch
-
-platform_setup_script="$repository/$platform/setup.sh"
-ycm_installer="$repository/.vim/bundle/YouCompleteMe/install.py"
-
-[[ -z "$platform" ]] && echoerr "Unsupported platform '$platform'!" && exit 1
-[[ ! -e "$repository" ]] \
+[[ -z "$PLATFORM" ]] && echoerr "Unsupported platform '$PLATFORM'!" && exit 1
+[[ ! -e "$DOTFILES_DIR" ]] \
   && echoerr "You must clone the dotfiles repository in '$HOME'!" \
   && exit 1
 
-setup_backup_directory "$backup" || exit 1
+setup_backup_directory "$BACKUP" || exit 1
 
-echo -e "\nSetting execution permission for '$repository/bin' scripts..."
-chmod -R 755 "$repository/bin" \
-  && echo "Execution permissions on '$repository/bin' scripts set!" \
-  || echoerr "Failed to set execution permissions on '$repository/bin' scripts!"
+echo -e "\nSetting execution permissions on '$DOTFILES_DIR/bin/*'..."
+chmod -R 755 "$DOTFILES_DIR/bin" \
+  && echo "Execution permissions on '$DOTFILES_DIR/bin' scripts set!" \
+  || echoerr "Failed to set execution permissions on '$DOTFILES_DIR/bin/*'!"
 
 echo -e "\nSetting up dotfiles..."
-for file in $dotfiles; do
-  [[ ! -e "$repository/$file" ]] \
-    && echoerr "Missing '$file' from '$repository'!" \
+for file in $DOTFILES; do
+  [[ ! -e "$DOTFILES_DIR/$file" ]] \
+    && echoerr "Missing '$file' from '$DOTFILES_DIR'!" \
     && continue
 
-  backup_file_to "$HOME/$file" "$backup" \
-    && make_symlink "$repository/$file" "$HOME/$file"
+  backup_file_to "$HOME/$file" "$BACKUP" \
+    && make_symlink "$DOTFILES_DIR/$file" "$HOME/$file"
 done
 
 echo -e "\nSetting up platform-specific dotfiles..."
-for file in $platform_dotfiles; do
-  [[ ! -e "$repository/$platform/$file" ]] \
-    && echoerr "Missing '$platform/$file' from '$repository'!" \
+for file in $PLATFORM_DOTFILES; do
+  [[ ! -e "$DOTFILES_DIR/$PLATFORM/$file" ]] \
+    && echoerr "Missing '$PLATFORM/$file' from '$DOTFILES_DIR'!" \
     && continue
 
-  backup_file_to "$HOME/$file" "$backup" \
-    && make_symlink "$repository/$platform/$file" "$HOME/$file"
+  backup_file_to "$HOME/$file" "$BACKUP" \
+    && make_symlink "$DOTFILES_DIR/$PLATFORM/$file" "$HOME/$file"
 done
 
-echo -e "\nRunning '$platform' platform setup..."
-chmod +x "$platform_setup_script" && $platform_setup_script \
-  && echo "'$platform' platform setup completed!" \
-  || echoerr "'$platform' platform setup failed!"
+echo -e "\nRunning '$PLATFORM' platform setup..."
+chmod +x "$PLATFORM_SETUP_SCRIPT" && $PLATFORM_SETUP_SCRIPT \
+  && echo "'$PLATFORM' platform setup completed!" \
+  || echoerr "'$PLATFORM' platform setup failed!"
 
 echo -e "\nInstalling 'YouCompleteMe' Vim plugin..."
-chmod +x "$ycm_installer" && $ycm_installer \
+chmod +x "$YCM_INSTALLER" && $YCM_INSTALLER \
   && echo "'YouCompleteMe' Vim plugin installed!" \
   || echoerr "Failed to install 'YouCompleteMe' Vim plugin!"
 
-echo -e "\nDone!"
+echo -e "\nSystem setup done!"

@@ -19,3 +19,8 @@ if [ -x /usr/bin/dircolors ]; then
   alias fgrep='fgrep --color=auto'
   alias egrep='egrep --color=auto'
 fi
+
+# Prints the given message in red to stderr.
+function echoerr() {
+  echo -e "\033[0;31m$@\033[0m" >&2
+}

@@ -2,8 +2,10 @@
 
 # This script will update the Vim plugins.
 
-echo "Updating Vim plugins..."
-cd ~/.dotfiles \
+readonly DOTFILES_DIR="$HOME/.dotfiles"
+
+[[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
+
+cd "$DOTFILES_DIR" \
   && git submodule sync --recursive \
-  && git submodule update --init --recursive --remote \
-  && echo "Vim plugins updated successfully!"
+  && git submodule update --init --recursive --remote
