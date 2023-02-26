@@ -52,7 +52,7 @@ echo "Starting system setup..."
 echo -e "\nSourcing essential bash aliases..."
 . "$DOTFILES_DIR/.bash_aliases" || exit 1
 
-[[ -z "$PLATFORM" ]] && echo "System platform is not supported!" && exit 1
+[[ -z "$PLATFORM" ]] && echoerr "System platform is not supported!" && exit 1
 
 function setup_backup_directory() {
   local backup_dir="$1"
