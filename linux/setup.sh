@@ -5,7 +5,7 @@
 
 readonly DOTFILES_DIR="$HOME/.dotfiles"
 readonly PACKAGES=\
-"linux-tools-common util-linux tlp lm-sensors smartmontools stress-ng "\
+"tlp lm-sensors smartmontools linux-tools-common zenity ffmpeg "\
 "vim git "\
 "openjdk-18-jdk visualvm "\
 "build-essential cmake "\
@@ -13,7 +13,7 @@ readonly PACKAGES=\
 "texlive texlive-latex-extra texlive-fonts-extra latexmk "\
 "texlive-bibtex-extra biber "\
 "graphviz plantuml "\
-"zenity ffmpeg vlc keepassxc "
+"vlc keepassxc "
 
 readonly TLP_CONFIG="$DOTFILES_DIR/linux/tlp.conf"
 readonly TLP_CONFIGS_DIR="/etc/tlp.d"
@@ -25,9 +25,13 @@ echo "Starting Linux setup..."
 echo -e "\nSourcing essential bash aliases..."
 . "$DOTFILES_DIR/.bash_aliases" || exit 1
 
-echo -e "\nUpdating package index..."
+echo -e "\nAdding PPAs..."
 sudo add-apt-repository ppa:linrunner/tlp \
-  && sudo apt-get update \
+  && echo "PPAs added!" \
+  || echoerr "Failed to add PPAs!"
+
+echo -e "\nUpdating package index..."
+sudo apt-get update \
   && echo "Package index updated!" \
   || echoerr "Failed to update package index!"
 

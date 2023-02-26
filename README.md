@@ -22,11 +22,11 @@ chmod +x sync_vim_plugins.sh
 ./sync_vim_plugins.sh
 ```
 
-### Extras file
+### Private `~/bin` and `~/.extras`
 
-The `.extras` file should not be persisted across devices, and therefore is not
-included in the repository. You should create it in the `$HOME` directory and
-customize it appropriately. Example:
+The `~/bin` directory and `~/.extras` file should not be persisted across
+devices, and therefore are not included in the repository. You should create
+them in the `$HOME` directory and customize them appropriately. Example:
 
 ```
 # ~/.extras: this file contains exported settings and installation paths for

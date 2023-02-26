@@ -23,9 +23,9 @@
 readonly DOTFILES_DIR="$HOME/.dotfiles"
 readonly BACKUP_DIR="$HOME/.dotfiles.bak"
 readonly DOTFILES=\
-".bashrc .bash_profile .bash_logout .bash_prompt .bash_aliases .exports bin "\
+".bashrc .bash_profile .bash_logout .bash_prompt .bash_aliases .exports "\
 ".inputrc .editorconfig .vimrc .vim .ideavimrc "\
-".gitconfig .latexmkrc .gradle "
+".gitconfig .latexmkrc "
 
 shopt -s nocasematch
 case "$OSTYPE" in
@@ -103,11 +103,6 @@ function make_symlink() {
 }
 
 setup_backup_directory "$BACKUP_DIR" || exit 1
-
-echo -e "\nSetting execution permissions on '$DOTFILES_DIR/bin/*'..."
-chmod -R 755 "$DOTFILES_DIR/bin" \
-  && echo "Execution permissions on '$DOTFILES_DIR/bin' scripts set!" \
-  || echoerr "Failed to set execution permissions on '$DOTFILES_DIR/bin/*'!"
 
 echo -e "\nSetting up dotfiles..."
 for file in $DOTFILES; do

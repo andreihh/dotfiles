@@ -1,9 +1,0 @@
-# Ignore everything.
-*
-
-# Except the `.gitignore` and selected scripts / programs.
-!.gitignore
-!calc
-!remindme
-!intel_cpu_freq
-!intel_cpu_turbo
