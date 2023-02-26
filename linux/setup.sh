@@ -15,7 +15,8 @@ readonly PACKAGES=\
 "graphviz plantuml "\
 "zenity ffmpeg vlc keepassxc "
 
-readonly TLP_UPDATER="$DOTFILES_DIR/linux/update_tlp_config.sh"
+readonly TLP_CONFIG="$DOTFILES_DIR/linux/tlp.conf"
+readonly TLP_CONFIGS_DIR="/etc/tlp.d"
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
@@ -55,8 +56,11 @@ sudo sed -i "s/NoDisplay=true/NoDisplay=false/g" /etc/xdg/autostart/*.desktop \
   && echo "All startup applications are visible!" \
   || echoerr "Failed to change visibility of hidden startup applications!"
 
-echo -e "\nUpdating TLP config..."
-$TLP_UPDATER \
+echo -e "\nConfiguring TLP..."
+[[ -d "$TLP_CONFIGS_DIR" && -f "$TLP_CONFIG" ]] \
+  && sudo ln -s "$TLP_CONFIG" "$TLP_CONFIGS_DIR/tlp.conf" \
+  && sudo systemctl enable tlp.service \
+  && sudo tlp start \
   && echo "TLP configured successfully!" \
   || echoerr "Failed to configure TLP!"
 
