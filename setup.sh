@@ -21,7 +21,7 @@
 # different location.
 
 readonly DOTFILES_DIR="$HOME/.dotfiles"
-readonly BACKUP="$HOME/.dotfiles.bak"
+readonly BACKUP_DIR="$HOME/.dotfiles.bak"
 readonly DOTFILES=\
 ".bashrc .bash_profile .bash_logout .bash_prompt .bash_aliases .exports bin "\
 ".inputrc .editorconfig .vimrc .vim .ideavimrc "\
@@ -103,7 +103,7 @@ function make_symlink() {
   && echoerr "You must clone the dotfiles repository in '$HOME'!" \
   && exit 1
 
-setup_backup_directory "$BACKUP" || exit 1
+setup_backup_directory "$BACKUP_DIR" || exit 1
 
 echo -e "\nSetting execution permissions on '$DOTFILES_DIR/bin/*'..."
 chmod -R 755 "$DOTFILES_DIR/bin" \
@@ -116,7 +116,7 @@ for file in $DOTFILES; do
     && echoerr "Missing '$file' from '$DOTFILES_DIR'!" \
     && continue
 
-  backup_file_to "$HOME/$file" "$BACKUP" \
+  backup_file_to "$HOME/$file" "$BACKUP_DIR" \
     && make_symlink "$DOTFILES_DIR/$file" "$HOME/$file"
 done
 
@@ -126,7 +126,7 @@ for file in $PLATFORM_DOTFILES; do
     && echoerr "Missing '$PLATFORM/$file' from '$DOTFILES_DIR'!" \
     && continue
 
-  backup_file_to "$HOME/$file" "$BACKUP" \
+  backup_file_to "$HOME/$file" "$BACKUP_DIR" \
     && make_symlink "$DOTFILES_DIR/$PLATFORM/$file" "$HOME/$file"
 done
 
