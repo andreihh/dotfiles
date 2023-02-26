@@ -5,3 +5,5 @@
 !.gitignore
 !calc
 !remindme
+!intel_cpu_freq
+!intel_cpu_turbo

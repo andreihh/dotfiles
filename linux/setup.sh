@@ -11,14 +11,15 @@ function echoerr() {
 }
 
 packages=\
-"smartmontools lm-sensors zenity ffmpeg vlc keepassxc "\
+"linux-tools-common util-linux lm-sensors smartmontools stress-ng "\
 "vim git "\
 "openjdk-18-jdk visualvm "\
 "build-essential cmake "\
 "python3 python3-dev pylint3 python-is-python3 "\
 "texlive texlive-latex-extra texlive-fonts-extra latexmk "\
 "texlive-bibtex-extra biber "\
-"graphviz plantuml "
+"graphviz plantuml "\
+"zenity ffmpeg vlc keepassxc "
 
 echo -e "\nUpdating package index..."
 sudo apt-get update \

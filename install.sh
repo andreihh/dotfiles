@@ -3,6 +3,8 @@
 # This script will download the dotfiles repository, run the setup script, and
 # initialize the remote git repository.
 
+[ $# -gt 0 ] && echo "Usage: $0" && exit 1
+
 REPO_ZIP="https://github.com/andreihh/.dotfiles/archive/refs/heads/master.zip"
 GIT_REPO="https://github.com/andreihh/.dotfiles.git"
 
