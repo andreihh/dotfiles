@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# This script will download the dotfiles repository, run the setup script, and
-# initialize the remote git repository.
+# Downloads the dotfiles repository, runs the setup script, and initializes the
+# remote git repository.
 
 readonly GITHUB_REPO="https://github.com/andreihh/.dotfiles"
 readonly REPO_ZIP="$GITHUB_REPO/archive/refs/heads/master.zip"

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# This script will install various packages and perform customizations (e.g.,
-# keyboard options) specific for Linux systems.
+# Installs various packages and performs customizations (e.g., keyboard options)
+# specific for Linux systems.
 
 readonly DOTFILES_DIR="$HOME/.dotfiles"
 readonly PACKAGES=\

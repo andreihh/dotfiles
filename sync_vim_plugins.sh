@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# This script will update the Vim plugins.
+# Updates the Vim plugins.
 
 readonly DOTFILES_DIR="$HOME/.dotfiles"
 

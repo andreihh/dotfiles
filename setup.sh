@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-# This script will install dotfiles and preferences on the current machine.
+# Installs the dotfiles and preferences on the current system.
 #
 # The dotfiles repository must be located in the `~/.dotfiles` directory.
 #
-# It will backup existing dotfiles to `~/.dotfiles.bak`, and will abort the
-# installation if the backup directory already exists. If the backup of a
+# The program will backup existing dotfiles to `~/.dotfiles.bak`, and will abort
+# the installation if the backup directory already exists. If the backup of a
 # specific file fails, it will not install the corresponding dotfile.
 #
 # It will replace every dotfile in the home directory with a symlink to the

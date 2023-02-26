@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# This script will configure a Dell machine.
+# Configures a Dell machine.
 #
 # Before running this script, you must install the Dell Command | Configure
 # utility by following the installation guide provided at:
