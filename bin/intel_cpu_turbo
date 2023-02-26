@@ -3,17 +3,17 @@
 # Configures Turbo Boost if the CPU is Intel and supports it.
 
 usage="Usage: $0 {get|on|off}"
-[ $# -ne 1 ] && echo "$usage" && exit 1
+[[ $# -ne 1 ]] && echo "$usage" && exit 1
 
 turbo_config="/sys/devices/system/cpu/intel_pstate/no_turbo"
-[ ! -f "$turbo_config" ] \
+[[ ! -f "$turbo_config" ]] \
   && echo "Not an Intel CPU or Turbo Boost not supported!" \
   && exit 1
 
 case "$1" in
   get)
     turbo_status=$(cat "$turbo_config")
-    [ $(cat "$turbo_config") -eq 0 ] \
+    [[ $(cat "$turbo_config") -eq 0 ]] \
       && echo "Intel Turbo Boost is enabled." \
       || echo "Intel Turbo Boost is disabled."
     ;;
