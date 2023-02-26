@@ -29,7 +29,7 @@ sudo add-apt-repository ppa:linrunner/tlp \
   || echoerr "Failed to update package index!"
 
 echo -e "\nInstalling required packages..."
-for package in $packages; do
+for package in $PACKAGES; do
   echo "Installing package '$package'..."
   sudo apt-get install "$package" \
     && echo "Package '$package' installed!" \
