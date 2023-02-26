@@ -26,7 +26,7 @@ echo -e "\nSourcing essential bash aliases..."
 . "$DOTFILES_DIR/.bash_aliases" || exit 1
 
 echo -e "\nAdding PPAs..."
-sudo add-apt-repository ppa:linrunner/tlp \
+sudo add-apt-repository ppa:linrunner/tlp -y \
   && echo "PPAs added!" \
   || echoerr "Failed to add PPAs!"
 
