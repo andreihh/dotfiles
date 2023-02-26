@@ -46,13 +46,7 @@ readonly PLATFORM_SETUP_SCRIPT="$DOTFILES_DIR/$PLATFORM/setup.sh"
 readonly YCM_INSTALLER="$DOTFILES_DIR/.vim/bundle/YouCompleteMe/install.py"
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
-
-echo "Starting system setup..."
-
-echo -e "\nSourcing essential bash aliases..."
-. "$DOTFILES_DIR/.bash_aliases" || exit 1
-
-[[ -z "$PLATFORM" ]] && echoerr "System platform is not supported!" && exit 1
+[[ -z "$PLATFORM" ]] && echo "System platform is not supported!" && exit 1
 
 function setup_backup_directory() {
   local backup_dir="$1"
@@ -101,6 +95,11 @@ function make_symlink() {
     return 1
   fi
 }
+
+echo "Starting system setup..."
+
+echo -e "\nSourcing essential bash aliases..."
+. "$DOTFILES_DIR/.bash_aliases" || exit 1
 
 setup_backup_directory "$BACKUP_DIR" || exit 1
 
