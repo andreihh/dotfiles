@@ -49,16 +49,15 @@ gsettings set org.gnome.desktop.input-sources xkb-options \
   || echoerr "Failed to swap Caps Lock and Esc keys!"
 
 echo -e "\nConfiguring TLP settings..."
-TLP_CONFIG=$(sudo tlp stat | grep "Configured Settings:" | sed 's/.*: //')
 
 # Configures the given TLP option with the given value.
 function set_tlp_option() {
   local option="$1"
   local value="$2"
-  sudo sed -i -E "s/#?${option}=.*/${option}=${value}/" "$TLP_CONFIG"
+  sudo sed -i -E "s/#?${option}=.*/${option}=${value}/" "/etc/tlp.conf"
 }
 
-[[ ! -z "$TLP_CONFIG" && -f "$TLP_CONFIG" ]] \
+[[ -f "/etc/tlp.conf" ]] \
   && set_tlp_option "START_CHARGE_THRESH_BAT0" "70" \
   && set_tlp_option "STOP_CHARGE_THRESH_BAT0" "80" \
   && set_tlp_option "CPU_SCALING_GOVERNOR_ON_AC" "powersave" \
