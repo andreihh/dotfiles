@@ -31,11 +31,21 @@ syntax enable
 set encoding=utf-8
 set fileencoding=utf-8
 
+" Always assume unix-style files.
+set fileformats=unix
+
+" Highlight tabs and trailing whitespaces at the end of line.
+set list listchars=tab:>-,trail:.,nbsp:~
+
 " Store all backups, swap files and undo histories under /var/tmp (they should
 " persist across reboots), or fallback to /tmp.
 set backupdir=/var/tmp//,/tmp//
 set directory=/var/tmp//,/tmp//
 set undodir=/var/tmp//,/tmp//
+
+" Use the system clipboard. This will allow yanking and pasting in Vim playing
+" nice with Ctrl-C and Ctrl-V in external apps.
+set clipboard=unnamedplus
 
 " When set, highlights the current line.
 set cursorline
@@ -82,19 +92,9 @@ set autoindent
 " Do smart autoindenting when starting a new line.
 set smartindent
 
-" Always assume unix-style files.
-set fileformats=unix
-
-" Highlight tabs and trailing whitespaces at the end of line.
-set list listchars=tab:>-,trail:.,nbsp:~
-
 " Open new split panes to right and bottom, which feels more natural.
 set splitbelow
 set splitright
-
-" Use the system clipboard. This will allow yanking and pasting in Vim playing
-" nice with Ctrl-C and Ctrl-V in external apps.
-set clipboard=unnamedplus
 
 " When set to "dark", Vim wil try to use colors that look good on a dark
 " background.
