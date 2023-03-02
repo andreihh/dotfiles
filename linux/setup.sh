@@ -13,7 +13,7 @@ readonly PACKAGES=\
 "texlive texlive-latex-extra texlive-fonts-extra latexmk "\
 "texlive-bibtex-extra biber "\
 "graphviz plantuml "\
-"vlc keepassxc "
+"firefox vlc keepassxc "
 
 readonly TLP_CONFIG="$DOTFILES_DIR/linux/tlp.conf"
 readonly TLP_CONFIGS_DIR="/etc/tlp.d"

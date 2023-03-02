@@ -86,8 +86,8 @@ _config_prompt() {
       ;;
   esac
 
-  echo -ne '\e]10;#ffffff\e\\' # set foreground to white
-  echo -ne '\e]11;#300a24\e\\' # set background to Ambiance default
+  echo -ne '\e]10;#a9b7c6\e\\' # set foreground to Darcula default
+  echo -ne '\e]11;#2b2b2b\e\\' # set background to Darcula default
 
   unset apply_style_to get_styled_host_with_separator
 }

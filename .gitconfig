@@ -9,9 +9,3 @@
 
 [credential "https://github.com"]
     helper = store
-
-[submodule]
-    recurse = true
-[user]
-	name = Andrei Heidelbacher
-	email = andrei.heidelbacher@gmail.com

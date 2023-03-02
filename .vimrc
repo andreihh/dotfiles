@@ -1,22 +1,44 @@
-" .vimrc
+" ~/.vimrc
 
-" Enable the pathogen plugin for plugin management. Keep this declaration at the
-" top to avoid problems.
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect()
-
-" When set to "dark", Vim wil try to use colors that look good on a dark
-" background.
-set background=dark
-
-" This option stops Vim from behaving in a strongly Vi -compatible way.
+" This option stops Vim from behaving in a strongly Vi-compatible way. This must
+" be the first line, because it changes other settings.
 set nocompatible
+
+" Install vim-plug for plugin management if not found.
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" Enable plugins via vim-plug.
+call plug#begin()
+Plug 'editorconfig/editorconfig-vim'
+Plug 'tmsvg/pear-tree'
+Plug 'tpope/vim-surround'
+Plug 'easymotion/vim-easymotion'
+Plug 'preservim/nerdtree'
+Plug 'udalov/kotlin-vim'
+Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
+Plug 'doums/darcula'
+call plug#end()
+
+" Enables automatic filetype detection and syntax highlighting.
+filetype plugin indent on
+syntax enable
+
+" Encoding should always be UTF-8.
+set encoding=utf-8
+set fileencoding=utf-8
+
+" Store all backups, swap files and undo histories under /var/tmp (they should
+" persist across reboots), or fallback to /tmp.
+set backupdir=/var/tmp//,/tmp//
+set directory=/var/tmp//,/tmp//
+set undodir=/var/tmp//,/tmp//
 
 " When set, highlights the current line.
 set cursorline
-
-" Highlight when you exceed the 80 column limit.
-set colorcolumn=81
 
 " When wrap is set to off lines will not wrap.
 set nowrap
@@ -47,9 +69,6 @@ set number
 " typed so far, matches.
 set hlsearch ignorecase incsearch
 
-" When set, enables syntax highlighting.
-syntax enable
-
 " Allow backspacing over audoindent, line breaks and the start of insert.
 set backspace=indent,eol,start
 
@@ -73,61 +92,61 @@ set list listchars=tab:>-,trail:.,nbsp:~
 set splitbelow
 set splitright
 
-" Sets the terminal to enable 256 colors. This is required to support color
-" themes, but may break colors if the terminal doesn't support 256 colors.
-"set t_Co=256
+" Use the system clipboard. This will allow yanking and pasting in Vim playing
+" nice with Ctrl-C and Ctrl-V in external apps.
+set clipboard=unnamedplus
+
+" When set to "dark", Vim wil try to use colors that look good on a dark
+" background.
+set background=dark
+
+" Optionally enable a color scheme if the terminal supports at least 256 colors.
+" The color scheme must be set after setting the background and enabling syntax.
+if &t_Co >= 256
+  colorscheme darcula
+endif
+
+" Set <Leader> to <Space>.
+noremap <Space> <Nop>
+let mapleader=" "
 
 " Copy until the end of the line. Consistent with D and C.
 nnoremap Y y$
 
 " Cancels search highlighting in normal mode.
-nnoremap <Space>/ :nohlsearch<CR><Esc>
-
-" Ctrl-Space should trigger auto-completion.
-inoremap <C-Space> <C-N>
+nnoremap <Leader>/ :nohlsearch<CR><Esc>
 
 " Fix indentation for whole file.
-nnoremap <Space>= gg=G
+nnoremap <Leader>= gg=G
 
-" Curly bracket autocomplete.
-" Use <expr>, because unmap is not currently supported in IdeaVIM.
-inoremap <expr> {<CR> "{\<CR>}\<Esc>O"
+" Focus the NERDTree window.
+nnoremap <Leader>1 :NERDTreeFocus<CR>
 
-" YouCompleteMe should always popup completion menu.
-let g:ycm_min_num_of_chars_for_completion = 0
+" Show hidden files in the NERDTree window.
+let NERDTreeShowHidden=1
 
-" Enter accepts autocomplete option.
-inoremap <expr> <CR> pumvisible() ? "\<C-Y>\<Esc>a" : "\<CR>"
+if !has('ide')
+  " Ctrl-Space should trigger auto-completion.
+  inoremap <C-Space> <C-N>
 
-" Esc closes autocomplete window and exits insert mode.
-inoremap <expr> <Esc> pumvisible() ? "\<C-E>\<Esc>" : "\<Esc>"
+  " YouCompleteMe should always popup completion menu.
+  let g:ycm_min_num_of_chars_for_completion=0
 
-" Recommended Syntastic settings.
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+  " Enter accepts autocomplete option.
+  inoremap <expr> <CR> pumvisible() ? "\<C-Y>\<Esc>a" : "\<CR>"
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_aggregate_errors = 1
+  " Esc closes autocomplete window and exits insert mode.
+  inoremap <expr> <Esc> pumvisible() ? "\<C-E>\<Esc>" : "\<Esc>"
 
-" Set Syntastic C++ checker default flags.
-let g:syntastic_cpp_compiler_options = ' -lm -static -Wall -std=c++0x'
+  " Make command
+  :set makeprg=make\ %<\ LDLIBS=\"-lm\"\ CFLAGS=\"-Wall\ -O2\ -static\ -std=c11\"\ CPPFLAGS=\"-Wall\ -O2\ -static\ -std=c++0x\"
 
-" Syntastic python checker defaults to python3.
-let g:syntastic_python_python_exec = 'python3'
-let g:syntastic_python_pylint_exe = 'pylint3'
+  " Mappings
+  map <F7> <Esc>:w<CR>:make<CR>
+  map <F8> <Esc>:!time ./%<<CR>
+  map <F9> <Esc>:w<CR>:make<CR>:!time ./%<<CR>
 
-" Make command
-:set makeprg=make\ %<\ LDLIBS=\"-lm\"\ CFLAGS=\"-Wall\ -O2\ -static\ -std=c11\"\ CPPFLAGS=\"-Wall\ -O2\ -static\ -std=c++0x\"
-
-" Mappings
-map <F7> <Esc>:w<CR>:make<CR>
-map <F8> <Esc>:!time ./%<<CR>
-map <F9> <Esc>:w<CR>:make<CR>:!time ./%<<CR>
-
-imap <F7> <Esc>:w<CR>:make<CR>
-imap <F8> <Esc>:!time ./%<<CR>
-imap <F9> <Esc>:w<CR>:make<CR>:!time ./%<<CR>
+  imap <F7> <Esc>:w<CR>:make<CR>
+  imap <F8> <Esc>:!time ./%<<CR>
+  imap <F9> <Esc>:w<CR>:make<CR>:!time ./%<<CR>
+endif

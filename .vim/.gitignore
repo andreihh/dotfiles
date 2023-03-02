@@ -1,6 +1,0 @@
-# Ignore everything
-*
-
-# Except the `.gitignore` and `bundle`
-!.gitignore
-!bundle

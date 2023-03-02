@@ -14,14 +14,6 @@ chmod +x install.sh
 rm install.sh
 ```
 
-To update the Vim plugins, run the following commands:
-
-```
-cd ~/.dotfiles
-chmod +x sync_vim_plugins.sh
-./sync_vim_plugins.sh
-```
-
 ### Private `~/bin` and `~/.extras`
 
 The `~/bin` directory and `~/.extras` file should not be persisted across
@@ -33,12 +25,10 @@ them in the `$HOME` directory and customize them appropriately. Example:
 # various software packages, making them available in interactive shells.
 
 # Export Git credentials.
-GIT_AUTHOR_NAME="Andrei Heidelbacher"
-GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
-GIT_AUTHOR_EMAIL="andrei.heidelbacher@gmail.com"
-GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
-git config --global user.name "$GIT_AUTHOR_NAME"
-git config --global user.email "$GIT_AUTHOR_EMAIL"
+export GIT_AUTHOR_NAME="Andrei Heidelbacher"
+export GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
+export GIT_AUTHOR_EMAIL="andrei.heidelbacher@gmail.com"
+export GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
 
 # Export Java SDK.
 export JAVA_HOME="..."

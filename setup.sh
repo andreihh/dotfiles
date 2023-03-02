@@ -14,8 +14,6 @@
 # After installing the dotfiles, it will run the platform-specific setup to
 # install required packages and other customizations.
 #
-# Lastly, it will attempt to compile and install the Vim `YouCompleteMe` plugin.
-#
 # If any step in the installation fails, you may fix the issues manually and
 # run this script again. However, you must move any generated backups to a
 # different location.
@@ -24,7 +22,7 @@ readonly DOTFILES_DIR="$HOME/.dotfiles"
 readonly BACKUP_DIR="$HOME/.dotfiles.bak"
 readonly DOTFILES=\
 ".bashrc .bash_profile .bash_logout .bash_prompt .bash_aliases .exports "\
-".inputrc .editorconfig .vimrc .vim .ideavimrc "\
+".inputrc .editorconfig .vimrc .ideavimrc "\
 ".gitconfig .latexmkrc "
 
 shopt -s nocasematch
@@ -125,10 +123,5 @@ done
 
 echo -e "\nExecuting '$PLATFORM' setup script..."
 chmod +x "$PLATFORM_SETUP_SCRIPT" && $PLATFORM_SETUP_SCRIPT || exit 1
-
-echo -e "\nInstalling 'YouCompleteMe' Vim plugin..."
-chmod +x "$YCM_INSTALLER" && $YCM_INSTALLER \
-  && echo "'YouCompleteMe' Vim plugin installed!" \
-  || echoerr "Failed to install 'YouCompleteMe' Vim plugin!"
 
 echo -e "\nSystem setup completed!"

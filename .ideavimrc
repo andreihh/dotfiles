@@ -1,94 +1,11 @@
-" .ideavimrc
+" ~/.ideavimrc
 
-" ------------------------------
-" Shared settings with ~/.vimrc.
-" ------------------------------
-
-" This option stops Vim from behaving in a strongly Vi -compatible way.
-set nocompatible
-
-" When set, highlights the current line.
-set cursorline
-
-" Highlight when you exceed the 101 column limit.
-set colorcolumn=101
-
-" When wrap is set to off lines will not wrap.
-set nowrap
-
-" Show the line and column number of the cursor position.
-set ruler
-
-" Show command in the last line of the screen.
-set showcmd
-
-" Show current mode.
-set showmode
-
-" When a bracket is inserted, briefly jump to the matching one.
-set showmatch
-
-" Print relative line numbers in front of each line.
-set relativenumber
-
-" Print the absolute line number in front of the current line.
-set number
-
-" Search options:
-" - hlsearch: When there is a previous search pattern, highlight all its
-" matches.
-" - ignorecase: Ignore case in search patterns.
-" - incsearch: While typing a search command, show where the pattern, as it was
-" typed so far, matches.
-set hlsearch ignorecase incsearch
-
-" When set, enables syntax highlighting.
-syntax enable
-
-" Allow backspacing over audoindent, line breaks and the start of insert.
-set backspace=indent,eol,start
-
-" When increasing/decreasing indent level, round to nearest multiple of
-" shiftwidth.
-set shiftround
-
-" Copy indent from current line when starting a new line.
-set autoindent
-
-" Do smart autoindenting when starting a new line.
-set smartindent
-
-" Always assume unix-style files.
-set fileformats=unix
-
-" Highlight tabs and trailing whitespaces at the end of line.
-set list listchars=tab:>-,trail:.,nbsp:~
-
-" Open new split panes to right and bottom, which feels more natural.
-set splitbelow
-set splitright
-
-" Copy until the end of the line. Consistent with D and C.
-nnoremap Y y$
-
-" Cancels search highlighting in normal mode.
-nnoremap <Space>/ :nohlsearch<CR><Esc>
-
-" ----------------------------
-" Custom settings for IdeaVIM.
-" ----------------------------
-
-" Enable vim-surround plugin.
-set surround
-
-" Enable NERDTree plugin.
-set NERDTree
+source ~/.vimrc
 
 " Enable ideajoin plugin.
 set ideajoin
 
 " Enable using the system clipboard from IdeaVIM and vice-versa.
-set clipboard+=unnamed
 set clipboard+=ideaput
 
 " IDE actions.
