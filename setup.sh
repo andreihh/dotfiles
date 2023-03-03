@@ -41,7 +41,6 @@ esac
 shopt -u nocasematch
 
 readonly PLATFORM_SETUP_SCRIPT="$DOTFILES_DIR/$PLATFORM/setup.sh"
-readonly YCM_INSTALLER="$DOTFILES_DIR/.vim/bundle/YouCompleteMe/install.py"
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 [[ -z "$PLATFORM" ]] && echo "System platform is not supported!" && exit 1
