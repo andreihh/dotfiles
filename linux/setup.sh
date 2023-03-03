@@ -55,6 +55,11 @@ gsettings set org.gnome.desktop.input-sources xkb-options \
   && echo "Caps Lock and Esc keys swapped!" \
   || echoerr "Failed to swap Caps Lock and Esc keys!"
 
+echo -e "\nSetting system theme to dark mode..."
+gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark' \
+  && echo "Dark mode enabled!" \
+  || echoerr "Failed to set dark mode!"
+
 echo -e "\nMaking hidden startup applications visible..."
 sudo sed -i "s/NoDisplay=true/NoDisplay=false/g" /etc/xdg/autostart/*.desktop \
   && echo "All startup applications are visible!" \
