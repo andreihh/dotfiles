@@ -106,9 +106,12 @@ if &t_Co >= 256
   colorscheme darcula
 endif
 
-" Set Leader to Space.
+" Set <Leader> to Space.
 noremap <Space> <Nop>
 let mapleader=" "
+
+" Exit visual mode with q.
+vnoremap q <Esc>
 
 " Copy until the end of the line. Consistent with D and C.
 nnoremap Y y$
@@ -116,14 +119,25 @@ nnoremap Y y$
 " Cancels search highlighting in normal mode.
 nnoremap <Leader>/ :nohlsearch<CR><Esc>
 
-" Switch between panes using Leader instead of Ctrl.
+" Control tabs and panes using <Leader>:
+" - <Leader> + n (open tab)
+" - <Leader> + x (close pane)
+" - <Leader> + h/l (navigate tabs)
+" - <Leader> + <Esc> (close all panes except current one)
+nnoremap <Leader>n :tabnew<CR>
+nnoremap <Leader>x :close<CR>
+nnoremap <Leader>h :tabnext<CR>
+nnoremap <Leader>l :tabprev<CR>
+nnoremap <Leader><Esc> :only<CR>
+
+" Navigate panes using <Leader> instead of Ctrl:
+" - <Leader>w + s/v (split)
+" - <Leader>w + h/j/k/l (navigate)
+" - <Leader>w + w (cycle)
 nnoremap <Leader>w <C-w>
 
 " Fix indentation for whole file.
 nnoremap <Leader>= gg=G
-
-" Close all panes except the current one.
-nnoremap <Leader><Esc> :only<CR>
 
 " Focus the NERDTree window.
 nnoremap <Leader>1 :NERDTreeFocus<CR>

@@ -17,7 +17,14 @@ set clipboard+=ideaput
 "imap <C-n> <Action>(EditorDown)
 "imap <C-p> <Action>(EditorUp)
 
-" Common, navigation, and code manipulation actions.
+" Window, tab, and pane control actions.
+nmap <Leader>n <Action>(NewElement)
+nmap <Leader>x <Action>(CloseContent)
+nmap <Leader>h <Action>(NextTab)
+nmap <Leader>l <Action>(PreviousTab)
+nmap <Leader><Esc> <Action>(HideAllWindows)
+
+" Code navigation and manipulation actions.
 nmap <Leader>f <Action>(FindUsages)
 nmap <Leader>q <Action>(QuickJavaDoc)
 nmap <Leader>p <Action>(ParameterInfo)
@@ -31,14 +38,11 @@ nmap <Leader>j <Action>(Back)
 nmap <Leader>k <Action>(Forward)
 nmap <Leader>o <Action>(OptimizeImports)
 nmap <Leader>= <Action>(ReformatCode)
-nmap <Leader>n <Action>(ShowNavBar)
-nmap <Leader>i <Action>(NewElement)
-nmap <Leader>x <Action>(RunAnything)
+nmap <Leader>b <Action>(ShowNavBar)
+nmap <Leader>e <Action>(RunAnything)
 nmap <Leader><Tab> <Action>(SearchEverywhere)
 nmap [m <Action>(MethodUp)
 nmap ]m <Action>(MethodDown)
-nmap <Tab> <Action>(NextTab)
-nmap <S-Tab> <Action>(PreviousTab)
 
 " These actions must work in insert mode as well.
 nmap <A-CR> <Action>(ShowIntentionActions)
@@ -49,7 +53,6 @@ imap <A-CR> <C-o>:action ShowIntentionActions<CR>
 imap <C-Space> <C-o>:action SmartTypeCompletion<CR>
 
 " Tool window actions.
-nmap <A-Esc> <Action>(HideAllWindows)
 nnoremap <A-1> :NERDTree<CR>
 nmap <A-2> <Action>(ActivateStructureToolWindow)
 nmap <A-3> <Action>(ActivateTerminalToolWindow)

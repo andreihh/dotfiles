@@ -22,7 +22,7 @@ readonly DOTFILES_DIR="$HOME/.dotfiles"
 readonly BACKUP_DIR="$HOME/.dotfiles.bak"
 readonly DOTFILES=\
 ".bashrc .bash_profile .bash_logout .bash_prompt .bash_aliases .exports "\
-".inputrc .editorconfig .vimrc .ideavimrc "\
+".inputrc .editorconfig .vimrc .ideavimrc .tmux.conf "\
 ".gitconfig .latexmkrc "
 
 shopt -s nocasematch
