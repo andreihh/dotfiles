@@ -23,7 +23,7 @@ Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
 Plug 'doums/darcula'
 call plug#end()
 
-" Enables automatic filetype detection and syntax highlighting.
+" Enable automatic filetype detection and syntax highlighting.
 filetype plugin indent on
 syntax enable
 
