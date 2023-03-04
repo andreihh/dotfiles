@@ -55,6 +55,11 @@ gsettings set org.gnome.desktop.input-sources xkb-options \
   && echo "Caps Lock and Esc keys swapped!" \
   || echoerr "Failed to swap Caps Lock and Esc keys!"
 
+echo -e "\eRemoving Alt-Esc system key mapping..."
+gsettings set org.gnome.desktop.wm.keybindings cycle-windows "[]" \
+  && echo "Alt-Esc key mapping removed!" \
+  || echoerr "Failed to remove Alt-Esc key mapping!"
+
 echo -e "\nSetting system theme to dark mode..."
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark' \
   && echo "Dark mode enabled!" \
