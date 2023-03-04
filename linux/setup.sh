@@ -5,15 +5,15 @@
 
 readonly DOTFILES_DIR="$HOME/.dotfiles"
 readonly PACKAGES=\
-"tlp lm-sensors smartmontools linux-tools-common zenity ffmpeg "\
-"vim git "\
+"tlp lm-sensors smartmontools linux-tools-common linux-tools-generic "\
+"vim git tmux curl zenity "\
 "openjdk-18-jdk visualvm "\
 "build-essential cmake "\
-"python3 python3-dev pylint3 python-is-python3 "\
+"python3 python3-dev pylint python-is-python3 "\
 "texlive texlive-latex-extra texlive-fonts-extra latexmk "\
 "texlive-bibtex-extra biber "\
 "graphviz plantuml "\
-"firefox vlc keepassxc "
+"firefox ffmpeg vlc keepassxc "
 
 readonly TLP_CONFIG="$DOTFILES_DIR/linux/tlp.conf"
 readonly TLP_CONFIGS_DIR="/etc/tlp.d"
