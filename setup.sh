@@ -42,6 +42,9 @@ shopt -u nocasematch
 
 readonly PLATFORM_SETUP_SCRIPT="$DOTFILES_DIR/$PLATFORM/setup.sh"
 
+readonly TMUX_TPM_GITHUB_REPO="https://github.com/tmux-plugins/tpm"
+readonly TMUX_TPM_DIR="$HOME/.tmux/plugins/tpm"
+
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 [[ -z "$PLATFORM" ]] && echo "System platform is not supported!" && exit 1
 
@@ -122,5 +125,14 @@ done
 
 echo -e "\nExecuting '$PLATFORM' setup script..."
 chmod +x "$PLATFORM_SETUP_SCRIPT" && $PLATFORM_SETUP_SCRIPT || exit 1
+
+echo -e "\nSetting up TMUX plugin manager..."
+if [[ ! -d "$HOME_TMUX_TPM" ]]; then
+  git clone "$TMUX_TPM_GITHUB_REPO" "$TMUX_TPM_DIR" \
+    && echo "TMUX plugin manager setup completed!" \
+    || echoerr "Failed to set up TMUX plugin manager!"
+else
+  echo "TMUX plugin manager already installed!"
+fi
 
 echo -e "\nSystem setup completed!"
