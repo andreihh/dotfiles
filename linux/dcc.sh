@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+# Configures Dell machines with common thermal / performance / battery settings.
+#
+# To run this script, you must install the Dell Command | Configure (DCC)
+# utility by following the installation guide provided at:
+# https://www.dell.com/support/home/en-vg/product-support/product/command-configure/docs
+#
+# Other customizations you may wish to manually apply with the DCC utility:
+# * --KbdBacklightTimeout(Ac|Batt)=(5s|10s|15s|30s|1m|5m|15m|Never)
+# * --KeyboardIllumination=(Auto|Bright|Dim|Disabled)
+# * --FnLock=(Enabled|Disabled)
+# * --PrimaryBattChargeCfg=(Standard|Express|PrimAcUse|Adaptive|Custom:$RANGE)
+# * --Outfile=<FILE> (backs up current settings)
+#
+# Additionally, fan options may be configured, but support varies:
+# --FanCtrlOvrd=(Enabled|Disabled)
+# --FrontFan=(Enabled|Disabled)
+# --FanSpeed=(Auto|High|Medium|MedHigh|MedLow|Low)
+# --FanSpeedLvl=<0-100>
+# --SysFanSpeed=(FullSpeed|NoiseReduce)
+
+readonly DCC="sudo /opt/dell/dcc/cctk"
+readonly USAGE=$(cat <<-END
+Usage: $0 OPTION
+Options:
+  --stat  Prints the current thermal / performance / battery settings.
+  --optimized-mode  Switches the thermal profile to 'Optimized'.
+  --performance-mode  Switches the thermal profile to 'UltraPerformance'.
+  --cool-mode  Switches the thermal profile to 'Cool'.
+  --battery-care  Starts charging if battery is < 70% and stops charging at 80%.
+  --express-charge  Switches charging profile to 'Express'.
+  --adaptive-charge  Switches charging profile to 'Adaptive'.
+END
+)
+
+[[ $# -ne 1 ]] && echo "$USAGE" && exit 1
+
+case "$1" in
+  --stat)
+    $DCC --ThermalManagement
+    $DCC --PrimaryBattChargeCfg
+    ;;
+  --optimized-mode) $DCC --ThermalManagement=Optimized ;;
+  --performance-mode) $DCC --ThermalManagement=UltraPerformance ;;
+  --cool-mode) $DCC --ThermalManagement=Cool ;;
+  --battery-care) $DCC --PrimaryBattChargeCfg=Custom:70-80 ;;
+  --express-charge) $DCC --PrimaryBattChargeCfg=Express ;;
+  --adaptive-charge) $DCC --PrimaryBattChargeCfg=Adaptive ;;
+  *) echo "$USAGE" && exit 1 ;;
+esac
