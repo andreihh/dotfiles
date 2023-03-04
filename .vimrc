@@ -134,7 +134,12 @@ nnoremap <Leader><Esc> :only<CR>
 " - <Leader>w + s/v (split)
 " - <Leader>w + h/j/k/l (navigate)
 " - <Leader>w + w (cycle)
+" - <Leader>w + H/J/K/L (resize)
 nnoremap <Leader>w <C-w>
+nnoremap <Leader>wH :vertical resize -5<CR>
+nnoremap <Leader>wJ :resize +5<CR>
+nnoremap <Leader>wK :resize -5<CR>
+nnoremap <Leader>wL :vertical resize +5<CR>
 
 " Fix indentation for whole file.
 nnoremap <Leader>= gg=G
