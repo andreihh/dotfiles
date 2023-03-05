@@ -15,6 +15,9 @@ readonly PACKAGES=\
 "graphviz plantuml "\
 "firefox ffmpeg vlc keepassxc "
 
+readonly SYSCTL_CONFIG="/etc/sysctl.conf"
+readonly SLEEP_CONFIG="$DOTFILES_DIR/linux/sleep.conf"
+readonly SLEEP_CONFIGS_DIR="/etc/systemd/sleep.conf.d"
 readonly TLP_CONFIG="$DOTFILES_DIR/linux/tlp.conf"
 readonly TLP_CONFIGS_DIR="/etc/tlp.d"
 
@@ -24,11 +27,6 @@ echo "Starting Linux setup..."
 
 echo -e "\nSourcing essential bash aliases..."
 . "$DOTFILES_DIR/.bash_aliases" || exit 1
-
-echo -e "\nAdding PPAs..."
-sudo add-apt-repository ppa:linrunner/tlp -y \
-  && echo "PPAs added!" \
-  || echoerr "Failed to add PPAs!"
 
 echo -e "\nUpdating package index..."
 sudo apt-get update \
@@ -70,9 +68,29 @@ sudo sed -i "s/NoDisplay=true/NoDisplay=false/g" /etc/xdg/autostart/*.desktop \
   && echo "All startup applications are visible!" \
   || echoerr "Failed to change visibility of hidden startup applications!"
 
+echo -e "\nSetting swappiness to 1..."
+if grep -Ex "#?vm.swappiness=.*" "$SYSCTL_CONFIG"; then
+  sudo sed -i -E "s/#?vm.swappiness=.*/vm.swappiness=1/" "$SYSCTL_CONFIG" \
+    && sudo sysctl -p \
+    && echo "Swappiness updated to 1 successfully!" \
+    || echoerr "Failed to update swappiness to 1!"
+else
+  echo "vm.swappiness=1" | sudo tee -a "$SYSCTL_CONFIG" \
+    && sudo sysctl -p \
+    && echo "Swappiness set to 1 successfully!" \
+    || echoerr "Failed to set swappiness to 1!"
+fi
+
+echo -e "\nConfiguring device sleep modes..."
+[[ -f "$SLEEP_CONFIG" ]] \
+  && sudo mkdir -p "$SLEEP_CONFIGS_DIR" \
+  && sudo ln -sf "$SLEEP_CONFIG" "$SLEEP_CONFIGS_DIR/00-sleep.conf" \
+  && echo "Device sleep modes configured successfully!" \
+  || echoerr "Failed to configure device sleep modes!"
+
 echo -e "\nConfiguring TLP..."
 [[ -d "$TLP_CONFIGS_DIR" && -f "$TLP_CONFIG" ]] \
-  && sudo ln -s "$TLP_CONFIG" "$TLP_CONFIGS_DIR/tlp.conf" \
+  && sudo ln -sf "$TLP_CONFIG" "$TLP_CONFIGS_DIR/00-tlp.conf" \
   && sudo systemctl enable tlp.service \
   && sudo tlp start \
   && echo "TLP configured successfully!" \
