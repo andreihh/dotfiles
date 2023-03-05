@@ -14,7 +14,6 @@ endif
 " Enable plugins via vim-plug.
 call plug#begin()
 Plug 'editorconfig/editorconfig-vim'
-Plug 'tmsvg/pear-tree'
 Plug 'tpope/vim-surround'
 Plug 'easymotion/vim-easymotion'
 Plug 'preservim/nerdtree'
@@ -123,7 +122,7 @@ nnoremap <Leader>/ :nohlsearch<CR><Esc>
 " - <Leader> + n (open tab)
 " - <Leader> + x (close pane)
 " - <Leader> + h/l (navigate tabs)
-" - <Leader> + <Esc> (close all panes except current one)
+" - <Leader> + Esc (close all panes except current one)
 nnoremap <Leader>n :tabnew<CR>
 nnoremap <Leader>x :close<CR>
 nnoremap <Leader>h :tabnext<CR>
@@ -147,31 +146,38 @@ nnoremap <Leader>= gg=G
 " Focus the NERDTree window.
 nnoremap <Leader>1 :NERDTreeFocus<CR>
 
+" Open an embedded terminal.
+nnoremap <Leader>2 :term<CR>
+
+" Switch to terminal normal mode.
+tnoremap <Esc><Esc> <C-w>N
+set notimeout ttimeout timeoutlen=100
+
 " Show hidden files in the NERDTree window.
 let NERDTreeShowHidden=1
 
-if !has('ide')
-  " Ctrl-Space should trigger auto-completion.
-  inoremap <C-Space> <C-N>
+" NERDTree shortcuts:
+" - o (activate node)
+" - t (open node in new tab)
+" - s/v (split node in same tab)
+" - x/X (close node's parent / descendants)
+" - q (close NERDTree)
+let g:NERDTreeMapOpenSplit='s'
+let g:NERDTreeMapOpenVSplit='v'
 
-  " YouCompleteMe should always popup completion menu.
+if !has('ide')
+  " Trigger autocompletion automatically as soon as available.
+  let g:ycm_auto_trigger=1
   let g:ycm_min_num_of_chars_for_completion=0
 
-  " Enter accepts autocomplete option.
-  inoremap <expr> <CR> pumvisible() ? "\<C-Y>\<Esc>a" : "\<CR>"
-
-  " Esc closes autocomplete window and exits insert mode.
-  inoremap <expr> <Esc> pumvisible() ? "\<C-E>\<Esc>" : "\<Esc>"
-
-  " Make command
-  :set makeprg=make\ %<\ LDLIBS=\"-lm\"\ CFLAGS=\"-Wall\ -O2\ -static\ -std=c11\"\ CPPFLAGS=\"-Wall\ -O2\ -static\ -std=c++0x\"
-
-  " Mappings
-  map <F7> <Esc>:w<CR>:make<CR>
-  map <F8> <Esc>:!time ./%<<CR>
-  map <F9> <Esc>:w<CR>:make<CR>:!time ./%<<CR>
-
-  imap <F7> <Esc>:w<CR>:make<CR>
-  imap <F8> <Esc>:!time ./%<<CR>
-  imap <F9> <Esc>:w<CR>:make<CR>:!time ./%<<CR>
+  " Autocomplete shortcuts:
+  " - Ctrl-Space (trigger)
+  " - Tab/Shift-Tab (cycle through options)
+  " - Enter/Space (accept option)
+  " - Esc (reject option, via native Vim command)
+  let g:ycm_key_invoke_completion='<C-Space>'
+  let g:ycm_key_list_select_completion=['<Tab>']
+  let g:ycm_key_list_previous_completion=['<S-Tab>']
+  let g:ycm_key_list_stop_completion=['<CR>']
+  inoremap <expr> <Esc> pumvisible() ? "\<C-e>\<Esc>" : "\<Esc>"
 endif

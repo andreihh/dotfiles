@@ -11,11 +11,16 @@ set clipboard+=ideaput
 " IDE actions.
 " Ideally, these should all be noremap, but that's not currently supported.
 
-" Cycle through completion menu with <C-n> and <C-p>.
-" Currently, this is not supported by IdeaVIM, and the EditorDown/Up actions
-" don't work as expected.
-"imap <C-n> <Action>(EditorDown)
-"imap <C-p> <Action>(EditorUp)
+" Autocomplete shortcuts:
+" - Ctrl-Space (trigger)
+" - Tab>/Shift-Tab (cycle through options)
+" - Enter/Space (accept option)
+" - Esc (reject option, via native IntelliJ command)
+"imap <C-Space> <Action>(SmartTypeCompletion)
+"imap <Tab> <Action>(EditorDown)
+"imap <S-Tab> <Action>(EditorUp)
+"imap <CR> <Action>(EditorChooseLookupItem)
+"imap <Space> <Action>(EditorChooseLookupItemReplace)
 
 " Window, tab, and pane control actions.
 nmap <Leader>n <Action>(NewElement)
@@ -29,7 +34,7 @@ nmap <Leader>f <Action>(FindUsages)
 nmap <Leader>q <Action>(QuickJavaDoc)
 nmap <Leader>p <Action>(ParameterInfo)
 nmap <Leader>r <Action>(RenameElement)
-nmap <Leader>R <Action>(RefactoringMenu)
+nmap <Leader>R <Action>(Refactorings.QuickListPopupAction)
 nmap <Leader>m <Action>(Move)
 nmap <Leader>d <Action>(GotoDeclaration)
 nmap <Leader>g <Action>(GotoImplementation)
@@ -38,9 +43,9 @@ nmap <Leader>j <Action>(Back)
 nmap <Leader>k <Action>(Forward)
 nmap <Leader>o <Action>(OptimizeImports)
 nmap <Leader>= <Action>(ReformatCode)
-nmap <Leader>b <Action>(ShowNavBar)
-nmap <Leader>e <Action>(RunAnything)
+nmap <Leader>- <Action>(ShowNavBar)
 nmap <Leader><Tab> <Action>(SearchEverywhere)
+nmap <Leader>` <Action>(RunAnything)
 nmap [m <Action>(MethodUp)
 nmap ]m <Action>(MethodDown)
 
@@ -53,13 +58,14 @@ imap <A-CR> <C-o>:action ShowIntentionActions<CR>
 imap <C-Space> <C-o>:action SmartTypeCompletion<CR>
 
 " Tool window actions.
-nnoremap <A-1> :NERDTree<CR>
-nmap <A-2> <Action>(ActivateStructureToolWindow)
-nmap <A-3> <Action>(ActivateTerminalToolWindow)
-nmap <A-4> <Action>(ActivateFindToolWindow)
-nmap <A-5> <Action>(ActivateVersionControlToolWindow)
-nmap <A-8> <Action>(ActivateRunToolWindow)
-nmap <A-9> <Action>(ActivateDebugToolWindow)
+"
+" Esc refocuses the editor and automatically closes undocked windows.
+nmap <Leader>1 :NERDTreeFocus<CR>
+nmap <Leader>2 <Action>(ActivateTerminalToolWindow)
+nmap <Leader>3 <Action>(ActivateStructureToolWindow)
+nmap <Leader>4 <Action>(ActivateFindToolWindow)
+nmap <Leader>8 <Action>(ActivateRunToolWindow)
+nmap <Leader>9 <Action>(ActivateDebugToolWindow)
 nmap <F11> <Action>(ToggleFullScreen)
 
 " Debugging actions.
@@ -74,39 +80,45 @@ nmap <F8> <Action>(Resume)
 nmap <F9> <Action>(Stop)
 nmap <F10> <Action>(ViewBreakpoints)
 
-" IdeaVIM doesn't work when focusing tool windows, so their shortcuts (except
-" ActivateProjectToolWindow) need to be overridden in the IDE keymap as well:
-" - Keymap > Main Menu > Window > Active Tool Window > Hide All Tool Windows
-" - Keymap > Tool Windows > ...
-
-" Other keymaps:
-" - Editor actions:
-"   - Down: Ctrl-n
-"   - Up: Ctrl-p
-" - Main menu:
-"   - Edit:
-"     - Copy: Ctrl-c
-"     - Cut: Ctrl-x
-"     - Delete: Delete
-"     - Paste: Ctrl-v
+" IdeaVIM doesn't work when focusing tool windows, so their shortcuts need to be
+" overridden in the IDE keymap as well:
+" > File > Settings > Keymap
+"   > Editor Actions (keep all conflicting mappings)
+"     > Left: h
+"     > Down: Tab, j
+"     > Up: Shift-Tab, k
+"     > Right: l
+"     > Choose Lookup Item Replace: Space
+"     > Choose Lookup Item: Enter
+"   > Main Menu
+"     > View > Appearance > Toggle Full Screen mode
+"     > Window > Active Tool Window > Hide Active Tool Window
+"   > Tool Windows
 "
-" Other settings:
-" - View:
-"   - Active Editor:
-"     - Show Breadcrumbs: off
-"   - Tool Buttons: off, bring back temporarily with Alt-Alt
-"   - Toolbar: off
-"   - Status Bar: on
-"   - Navigation Bar: off
-" - Editor:
-"   - General:
-"     - Editor Tabs:
-"       - Placement: None
-" - Tools:
-"   - Terminal:
-"     - Override IDE shortcuts: on
-" - Tool Buttons:
-"   - All tool windows except Favorites, Event Log and TODO have Split Mode off
-"   - Placement:
-"     - Left: Project, Structure, Favorites
-"     - Bottom: Terminal, Find, Version Control, Run, Debug, TODO, Event Log
+" Additionally, the IDE appearance should be customized as follows:
+" > View
+"   > Appearance:
+"     > Main Menu: on
+"     > Toolbar: off
+"     > Navigation Bar: off
+"     > Tool Window Bars: off
+"     > Status Bar: on
+"     > Status Bar Widgets: all on
+"     > Details in Tree View: off
+"     > Members in Navigation Bar: on
+"   > Active Editor:
+"     > Soft-Wrap: off
+"     > Show Whitespaces: off
+"     > Show Line Numbers: on
+"     > Show Gutter Icons: on
+"     > Show Breadcrumbs: off
+"     > Show Indent Guides: on
+"     > Show Import Popups: on
+" > File > Settings
+"   > Editor > General > Editor Tabs > Tab placement: None
+"   > Tools > Terminal > Override IDE shortcuts: on
+" > Tool Windows Sidebar
+"   > Project: Left Top, Dock Pinned
+"   > Structure: Left Bottom, Dock Unpinned
+"   > Terminal | Find, Run: Bottom Left, Dock Unpinned
+"   > Debug: Bottom Left, Dock Pinned
