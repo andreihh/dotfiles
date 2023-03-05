@@ -16,6 +16,8 @@ set clipboard+=ideaput
 " - Tab>/Shift-Tab (cycle through options)
 " - Enter/Space (accept option)
 " - Esc (reject option, via native IntelliJ command)
+" Note: we can't enable these in .ideavimrc unless we can check if
+" autocompletion menu is active.
 "imap <C-Space> <Action>(SmartTypeCompletion)
 "imap <Tab> <Action>(EditorDown)
 "imap <S-Tab> <Action>(EditorUp)
@@ -23,11 +25,14 @@ set clipboard+=ideaput
 "imap <Space> <Action>(EditorChooseLookupItemReplace)
 
 " Window, tab, and pane control actions.
+"
+" Esc refocuses the editor and automatically closes undocked tool windows.
 nmap <Leader>n <Action>(NewElement)
 nmap <Leader>x <Action>(CloseContent)
 nmap <Leader>h <Action>(NextTab)
 nmap <Leader>l <Action>(PreviousTab)
-nmap <Leader><Esc> <Action>(HideAllWindows)
+nmap <Leader><Esc> <Action>(HideAllWindows)<Action>(UnsplitAll)
+nmap <A-x> <Action>(HideActiveToolWindow)
 
 " Code navigation and manipulation actions.
 nmap <Leader>f <Action>(FindUsages)
@@ -58,8 +63,6 @@ imap <A-CR> <C-o>:action ShowIntentionActions<CR>
 imap <C-Space> <C-o>:action SmartTypeCompletion<CR>
 
 " Tool window actions.
-"
-" Esc refocuses the editor and automatically closes undocked windows.
 nmap <Leader>1 :NERDTreeFocus<CR>
 nmap <Leader>2 <Action>(ActivateTerminalToolWindow)
 nmap <Leader>3 <Action>(ActivateStructureToolWindow)
@@ -88,8 +91,8 @@ nmap <F10> <Action>(ViewBreakpoints)
 "     > Down: Tab, j
 "     > Up: Shift-Tab, k
 "     > Right: l
-"     > Choose Lookup Item Replace: Space
 "     > Choose Lookup Item: Enter
+"     > Choose Lookup Item Replace: Space
 "   > Main Menu
 "     > View > Appearance > Toggle Full Screen mode
 "     > Window > Active Tool Window > Hide Active Tool Window
