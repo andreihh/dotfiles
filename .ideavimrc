@@ -12,8 +12,8 @@ set clipboard+=ideaput
 " Ideally, these should all be noremap, but that's not currently supported.
 
 " Autocomplete shortcuts:
-" - Ctrl-Space (trigger)
-" - Tab>/Shift-Tab (cycle through options)
+" - Ctrl-Space (trigger autocomplete)
+" - Tab/Shift-Tab (cycle options)
 " - Enter/Space (accept option)
 " - Esc (reject option, via native IntelliJ command)
 " Note: we can't enable these in .ideavimrc unless we can check if

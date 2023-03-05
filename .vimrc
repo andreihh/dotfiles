@@ -130,10 +130,11 @@ nnoremap <Leader>l :tabprev<CR>
 nnoremap <Leader><Esc> :only<CR>
 
 " Navigate panes using <Leader> instead of Ctrl:
-" - <Leader>w + s/v (split)
-" - <Leader>w + h/j/k/l (navigate)
-" - <Leader>w + w (cycle)
-" - <Leader>w + H/J/K/L (resize)
+" - <Leader>w + s/v (split pane horizontally / vertically)
+" - <Leader>w + h/j/k/l (navigate panes)
+" - <Leader>w + w (cycle panes)
+" - <Leader>w + H/J/K/L (resize pane)
+" - <Leader>w + = (resize all panes equally)
 nnoremap <Leader>w <C-w>
 nnoremap <Leader>wH :vertical resize -5<CR>
 nnoremap <Leader>wJ :resize +5<CR>
@@ -159,7 +160,7 @@ let NERDTreeShowHidden=1
 " NERDTree shortcuts:
 " - o (activate node)
 " - t (open node in new tab)
-" - s/v (split node in same tab)
+" - s/v (split node horizontally / vertically in same tab)
 " - x/X (close node's parent / descendants)
 " - q (close NERDTree)
 let g:NERDTreeMapOpenSplit='s'
@@ -171,8 +172,8 @@ if !has('ide')
   let g:ycm_min_num_of_chars_for_completion=0
 
   " Autocomplete shortcuts:
-  " - Ctrl-Space (trigger)
-  " - Tab/Shift-Tab (cycle through options)
+  " - Ctrl-Space (trigger autocomplete)
+  " - Tab/Shift-Tab (cycle options)
   " - Enter/Space (accept option)
   " - Esc (reject option, via native Vim command)
   let g:ycm_key_invoke_completion='<C-Space>'
