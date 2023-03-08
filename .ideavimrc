@@ -16,59 +16,64 @@ set clipboard+=ideaput
 " - Tab/Shift-Tab (cycle options)
 " - Enter/Space (accept option)
 " - Esc (reject option, via native IntelliJ command)
-" Note: we can't enable these in .ideavimrc unless we can check if
-" autocompletion menu is active.
-"imap <C-Space> <Action>(SmartTypeCompletion)
-"imap <Tab> <Action>(EditorDown)
-"imap <S-Tab> <Action>(EditorUp)
-"imap <CR> <Action>(EditorChooseLookupItem)
-"imap <Space> <Action>(EditorChooseLookupItemReplace)
-
-" Window, tab, and pane control actions.
 "
-" Esc refocuses the editor and automatically closes undocked tool windows.
-nmap <Leader>n <Action>(NewElement)
-nmap <Leader>x <Action>(CloseContent)
-nmap <Leader>h <Action>(NextTab)
-nmap <Leader>l <Action>(PreviousTab)
-nmap <Leader><Esc> <Action>(HideAllWindows)<Action>(UnsplitAll)
-nmap <A-x> <Action>(HideActiveToolWindow)
+" Note: we can't map the following actions in .ideavimrc unless we can check if
+" the autocompletion menu is active:
+" - EditorLookupSelectionItemDown / EditorDown
+" - EditorLookupSelectionItemUp / EditorUp
+" - EditorChooseLookupItem / EditorChooseLookupItemReplace
+nmap <C-Space> <Action>(CodeCompletion)
+imap <C-Space> <C-o>:action CodeCompletion<CR>
 
-" Code navigation and manipulation actions.
-nmap <Leader>f <Action>(FindUsages)
-nmap <Leader>q <Action>(QuickJavaDoc)
-nmap <Leader>p <Action>(ParameterInfo)
-nmap <Leader>r <Action>(RenameElement)
-nmap <Leader>R <Action>(Refactorings.QuickListPopupAction)
-nmap <Leader>m <Action>(Move)
+" IDE-powered window and pane control and navigation actions.
+"
+" Note: Esc refocuses the editor and automatically closes undocked tool windows.
+nmap <A-n> <Action>(NewElement)
+nmap <A-h> <C-w>h
+nmap <A-j> <C-w>j
+nmap <A-k> <C-w>k
+nmap <A-l> <C-w>l
+nmap <A-H> <Action>(StretchSplitToLeft)
+nmap <A-J> <Action>(StretchSplitToBottom)
+nmap <A-K> <Action>(StretchSplitToUp)
+nmap <A-L> <Action>(StretchSplitToRight)
+nmap <A-q> <Action>(UnsplitAll)
+nmap <A-z> <Action>(HideAllWindows)
+
+" Code navigation actions.
+nmap <Leader>- <Action>(ShowNavBar)
 nmap <Leader>d <Action>(GotoDeclaration)
 nmap <Leader>g <Action>(GotoImplementation)
 nmap <Leader>s <Action>(GotoSuperMethod)
 nmap <Leader>j <Action>(Back)
 nmap <Leader>k <Action>(Forward)
-nmap <Leader>o <Action>(OptimizeImports)
-nmap <Leader>= <Action>(ReformatCode)
-nmap <Leader>- <Action>(ShowNavBar)
-nmap <Leader><Tab> <Action>(SearchEverywhere)
-nmap <Leader>` <Action>(RunAnything)
 nmap [m <Action>(MethodUp)
 nmap ]m <Action>(MethodDown)
 
-" These actions must work in insert mode as well.
+" Code inspection actions.
+nmap <Leader>f <Action>(FindUsages)
+nmap <Leader>q <Action>(QuickJavaDoc)
+nmap <Leader>p <Action>(ParameterInfo)
+
+" Code manipulation actions.
+nmap <Leader>r <Action>(RenameElement)
+nmap <Leader>R <Action>(Refactorings.QuickListPopupAction)
+nmap <Leader>m <Action>(Move)
+nmap <Leader>o <Action>(OptimizeImports)
+nmap <Leader>= <Action>(ReformatCode)
 nmap <A-CR> <Action>(ShowIntentionActions)
-nmap <C-Space> <Action>(SmartTypeCompletion)
-" Currently, IdeaVIM doesn't properly return to insert mode when using the
-" <Action>() syntax.
 imap <A-CR> <C-o>:action ShowIntentionActions<CR>
-imap <C-Space> <C-o>:action SmartTypeCompletion<CR>
+
+" Search and execution actions.
+nmap <Leader><Tab> <Action>(SearchEverywhere)
+nmap <Leader>` <Action>(RunAnything)
 
 " Tool window actions.
-nmap <Leader>1 :NERDTreeFocus<CR>
-nmap <Leader>2 <Action>(ActivateTerminalToolWindow)
-nmap <Leader>3 <Action>(ActivateStructureToolWindow)
-nmap <Leader>4 <Action>(ActivateFindToolWindow)
-nmap <Leader>8 <Action>(ActivateRunToolWindow)
-nmap <Leader>9 <Action>(ActivateDebugToolWindow)
+nmap <A-2> <Action>(ActivateStructureToolWindow)
+nmap <A-3> <Action>(ActivateFindToolWindow)
+nmap <A-4> <Action>(ActivateTerminalToolWindow)
+nmap <A-8> <Action>(ActivateRunToolWindow)
+nmap <A-9> <Action>(ActivateDebugToolWindow)
 nmap <F11> <Action>(ToggleFullScreen)
 
 " Debugging actions.
@@ -93,14 +98,11 @@ nmap <F10> <Action>(ViewBreakpoints)
 "     > Right: l
 "     > Choose Lookup Item: Enter
 "     > Choose Lookup Item Replace: Space
-"   > Main Menu
-"     > View > Appearance > Toggle Full Screen mode
-"     > Window > Active Tool Window > Hide Active Tool Window
 "   > Tool Windows
 "
 " Additionally, the IDE appearance should be customized as follows:
 " > View
-"   > Appearance:
+"   > Appearance
 "     > Main Menu: on
 "     > Toolbar: off
 "     > Navigation Bar: off
@@ -109,7 +111,7 @@ nmap <F10> <Action>(ViewBreakpoints)
 "     > Status Bar Widgets: all on
 "     > Details in Tree View: off
 "     > Members in Navigation Bar: on
-"   > Active Editor:
+"   > Active Editor
 "     > Soft-Wrap: off
 "     > Show Whitespaces: off
 "     > Show Line Numbers: on
@@ -118,10 +120,13 @@ nmap <F10> <Action>(ViewBreakpoints)
 "     > Show Indent Guides: on
 "     > Show Import Popups: on
 " > File > Settings
-"   > Editor > General > Editor Tabs > Tab placement: None
+"   > Editor > General > Editor Tabs
+"     > Tab placement: None
+"     > Tab limit: 1
+"     > When the current tab is closed, activate: Most recently opened tab
 "   > Tools > Terminal > Override IDE shortcuts: on
 " > Tool Windows Sidebar
 "   > Project: Left Top, Dock Pinned
 "   > Structure: Left Bottom, Dock Unpinned
-"   > Terminal | Find, Run: Bottom Left, Dock Unpinned
+"   > Find | Terminal | Run: Bottom Left, Dock Unpinned
 "   > Debug: Bottom Left, Dock Pinned

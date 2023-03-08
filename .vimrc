@@ -17,6 +17,8 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-surround'
 Plug 'easymotion/vim-easymotion'
 Plug 'preservim/nerdtree'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'RyanMillerC/better-vim-tmux-resizer'
 Plug 'udalov/kotlin-vim'
 Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
 Plug 'doums/darcula'
@@ -109,62 +111,85 @@ endif
 noremap <Space> <Nop>
 let mapleader=" "
 
-" Exit visual mode with q.
-vnoremap q <Esc>
+" Cancels search highlighting in normal mode.
+nnoremap <Leader>/ :nohlsearch<CR>
 
 " Copy until the end of the line. Consistent with D and C.
 nnoremap Y y$
 
-" Cancels search highlighting in normal mode.
-nnoremap <Leader>/ :nohlsearch<CR><Esc>
+" Exit visual mode with q.
+vnoremap q <Esc>
 
-" Control tabs and panes using <Leader>:
-" - <Leader> + n (open tab)
-" - <Leader> + x (close pane)
-" - <Leader> + h/l (navigate tabs)
-" - <Leader> + Esc (close all panes except current one)
-nnoremap <Leader>n :tabnew<CR>
-nnoremap <Leader>x :close<CR>
-nnoremap <Leader>h :tabnext<CR>
-nnoremap <Leader>l :tabprev<CR>
-nnoremap <Leader><Esc> :only<CR>
+" Required in order to map the Alt key.
+execute "set <A-s>=\es"
+execute "set <A-v>=\ev"
+execute "set <A-h>=\eh"
+execute "set <A-j>=\ej"
+execute "set <A-k>=\ek"
+execute "set <A-l>=\el"
+execute "set <A-H>=\eH"
+execute "set <A-J>=\eJ"
+execute "set <A-K>=\eK"
+execute "set <A-L>=\eL"
+execute "set <A-=>=\e="
+execute "set <A-x>=\ex"
+execute "set <A-q>=\eq"
+execute "set <A-1>=\e1"
 
-" Navigate panes using <Leader> instead of Ctrl:
-" - <Leader>w + s/v (split pane horizontally / vertically)
-" - <Leader>w + h/j/k/l (navigate panes)
-" - <Leader>w + w (cycle panes)
-" - <Leader>w + H/J/K/L (resize pane)
-" - <Leader>w + = (resize all panes equally)
-nnoremap <Leader>w <C-w>
-nnoremap <Leader>wH :vertical resize -5<CR>
-nnoremap <Leader>wJ :resize +5<CR>
-nnoremap <Leader>wK :resize -5<CR>
-nnoremap <Leader>wL :vertical resize +5<CR>
+" Writes all buffers before navigating outside of Vim.
+let g:tmux_navigator_save_on_switch=1
 
-" Fix indentation for whole file.
-nnoremap <Leader>= gg=G
+" If Vim is the zoomed pane, wraps around Vim instead of unzooming.
+let g:tmux_navigator_disable_when_zoomed=1
+
+" Panes should be resized in increments of 5.
+let g:tmux_resizer_resize_count=5
+let g:tmux_resizer_vertical_resize_count=5
+
+" Define custom pane navigation and resizing mappings.
+let g:tmux_navigator_no_mappings=1
+let g:tmux_resizer_no_mappings=1
+
+" Control and navigate panes using Alt:
+" - Alt-s/v (split pane horizontally / vertically)
+" - Alt-h/j/k/l (navigate panes)
+" - Alt-H/J/K/L (resize panes)
+" - Alt-= (resize all panes equally)
+" - Alt-x (close pane)
+" - Alt-q (close all panes except current one)
+nnoremap <A-s> :split<CR>
+nnoremap <A-v> :vsplit<CR>
+nnoremap <silent> <A-h> :<C-U>TmuxNavigateLeft<CR>
+nnoremap <silent> <A-j> :<C-U>TmuxNavigateDown<CR>
+nnoremap <silent> <A-k> :<C-U>TmuxNavigateUp<CR>
+nnoremap <silent> <A-l> :<C-U>TmuxNavigateRight<CR>
+nnoremap <silent> <A-H> :<C-U>TmuxResizeLeft<CR>
+nnoremap <silent> <A-J> :<C-U>TmuxResizeDown<CR>
+nnoremap <silent> <A-K> :<C-U>TmuxResizeUp<CR>
+nnoremap <silent> <A-L> :<C-U>TmuxResizeRight<CR>
+nnoremap <A-=> <C-w>=
+nnoremap <A-x> :quit<CR>
+nnoremap <A-q> :only<CR>
 
 " Focus the NERDTree window.
-nnoremap <Leader>1 :NERDTreeFocus<CR>
-
-" Open an embedded terminal.
-nnoremap <Leader>2 :term<CR>
-
-" Switch to terminal normal mode.
-tnoremap <Esc><Esc> <C-w>N
-set notimeout ttimeout timeoutlen=100
+nnoremap <A-1> :NERDTreeFocus<CR>
 
 " Show hidden files in the NERDTree window.
 let NERDTreeShowHidden=1
 
 " NERDTree shortcuts:
-" - o (activate node)
-" - t (open node in new tab)
+" - l (activate node)
+" - h (jump to node's parent)
 " - s/v (split node horizontally / vertically in same tab)
 " - x/X (close node's parent / descendants)
 " - q (close NERDTree)
+let g:NERDTreeMapActivateNode='l'
+let g:NERDTreeMapJumpParent='h'
 let g:NERDTreeMapOpenSplit='s'
 let g:NERDTreeMapOpenVSplit='v'
+
+" Fix indentation for whole file.
+nnoremap <Leader>= gg=G
 
 if !has('ide')
   " Trigger autocompletion automatically as soon as available.
