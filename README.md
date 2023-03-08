@@ -37,6 +37,16 @@ export GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
 
 - Ensure that the `swap` partitions / files in `/etc/fstab` do not exceed a
   total of `max(4 GiB, 0.5 * RAM)`
+- Update terminal preferences:
+  - Terminal > Preferences > Shortcuts > Paste: `Alt-p`
+  - System > Settings > Keyboard > Keyboard Shortcuts > Custom Shortcuts:
+    - Name: `Launch tmuxw in Gnome terminal`
+    - Command:
+      ```
+      gnome-terminal --window --maximize -- \
+        /usr/bin/bash -c 'tmux new -A -s work'
+      ```
+    - Shortcut: `Ctrl-Alt-t`
 - Firefox settings in `about:config`:
   - `browser.sessionstore.interval = 150000`
   - `browser.cache.disk.enable = false`
