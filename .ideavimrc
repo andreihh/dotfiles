@@ -33,10 +33,10 @@ nmap <A-h> <C-w>h
 nmap <A-j> <C-w>j
 nmap <A-k> <C-w>k
 nmap <A-l> <C-w>l
-nmap <A-H> <Action>(StretchSplitToLeft)
-nmap <A-J> <Action>(StretchSplitToBottom)
-nmap <A-K> <Action>(StretchSplitToUp)
-nmap <A-L> <Action>(StretchSplitToRight)
+nmap <A-S-h> <Action>(StretchSplitToLeft)
+nmap <A-S-j> <Action>(StretchSplitToBottom)
+nmap <A-S-k> <Action>(StretchSplitToTop)
+nmap <A-S-l> <Action>(StretchSplitToRight)
 nmap <A-q> <Action>(UnsplitAll)
 nmap <A-z> <Action>(HideAllWindows)
 
