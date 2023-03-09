@@ -42,7 +42,7 @@ for script in "$@"; do
   chmod +x "$script" && "$script" || exit 1
 done
 
-echo -e "\nInitializing remote git repository..." \
+echo -e "\nInitializing remote git repository..."
 cd "$DOTFILES_DIR" \
   && git init \
   && git remote add origin "$GIT_REPO" \
