@@ -5,13 +5,15 @@ alongside an installation script.
 
 ### Installation
 
-To install the dotfiles, run the following commands:
+To install the dotfiles, run the following commands (requires `wget` or `curl`):
 
 ```
-wget https://raw.githubusercontent.com/andreihh/.dotfiles/master/install.sh
-chmod +x install.sh
-./install.sh
-rm install.sh
+GITHUB_ROOT="https://raw.githubusercontent.com/andreihh/.dotfiles/master"
+INSTALLER="install_${platform}.sh"
+wget "$GITHUB_ROOT/$INSTALLER" || curl -LO "$GITHUB_ROOT/$INSTALLER"
+chmod +x $INSTALLER
+$INSTALLER
+rm $INSTALLER
 ```
 
 ### Private `~/bin` and `~/.extras`
