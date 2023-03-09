@@ -44,8 +44,7 @@ set backupdir=/var/tmp//,/tmp//
 set directory=/var/tmp//,/tmp//
 set undodir=/var/tmp//,/tmp//
 
-" Use the system clipboard. This will allow yanking and pasting in Vim playing
-" nice with Ctrl-C and Ctrl-V in external apps.
+" Use the system clipboard.
 set clipboard=unnamedplus
 
 " When set, highlights the current line.

@@ -5,7 +5,7 @@
 
 readonly DOTFILES_DIR="$HOME/.dotfiles"
 readonly PACKAGES=\
-"git vim vim.gtk3 tmux xsel tree curl zenity "\
+"git vim vim.gtk3 tmux xsel tree urlview curl zenity "\
 "tlp lm-sensors smartmontools linux-tools-common linux-tools-generic "\
 "openjdk-18-jdk visualvm "\
 "build-essential cmake "\
