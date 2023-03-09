@@ -11,7 +11,7 @@ readonly TLP_CONFIGS_DIR="/etc/tlp.d"
 
 echo "Configuring TLP..."
 [[ -d "$TLP_CONFIGS_DIR" && -f "$TLP_CONFIG" ]] \
-  && sudo ln -sf "$TLP_CONFIG" "$TLP_CONFIGS_DIR/00-tlp.conf" \
+  && sudo ln -sfv "$TLP_CONFIG" "$TLP_CONFIGS_DIR/00-tlp.conf" \
   && sudo systemctl enable tlp.service \
   && sudo tlp start \
   && echo "TLP configured successfully!" \

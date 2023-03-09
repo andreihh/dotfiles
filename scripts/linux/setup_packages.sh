@@ -27,6 +27,9 @@ for package in $PACKAGES; do
     || echoerr "Failed to install package '$package'!"
 done
 
+echo "Updating Snap packages..."
+sudo snap refresh || echoerr "Failed to update Snap packages!"
+
 echo "Installing IntelliJ IDEA CE"
 sudo snap install intellij-idea-community --classic \
   || echoerr "Failed to install IntelliJ IDEA CE!"

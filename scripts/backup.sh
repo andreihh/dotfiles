@@ -16,9 +16,7 @@ function backup_file_to() {
   echo "Backing up '$file'..."
   [[ ! -e "$file" ]] && echo "'$file' doesn't exist!" && return 0
 
-  if cp "$file" "$backup_dir/"; then
-    echo "'$file' backed up successfully!"
-  else
+  if ! cp -Pv "$file" "$backup_dir/"; then
     echoerr "Failed to back up '$file'!"
     return 1
   fi
@@ -41,6 +39,10 @@ echo "Setting up backup directory '$backup_dir'..."
 mkdir -p "$backup_dir" || exit 1
 
 backup_dotfiles_to "$DOTFILES_DIR" "$backup_dir" || exit 1
-backup_dotfiles_to "$DOTFILES_DIR/linux" "$backup_dir" || exit 1
+
+platform=$(get_platform)
+if [[ ! -z "$platform" ]]; then
+  backup_dotfiles_to "$DOTFILES_DIR/$platform" "$backup_dir" || exit 1
+fi
 
 echo "Backup completed!"

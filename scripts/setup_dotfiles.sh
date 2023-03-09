@@ -19,28 +19,24 @@ readonly LINUX_DOTFILES=\
 
 function try_install_dotfile() {
   local file="$1"
-  local dotfile=$(basename "$file")
+  local filename=$(basename "$file")
 
-  echo "Installing dotfile '$dotfile'..."
+  echo "Installing dotfile '$file'..."
   [[ -e "$file" ]] \
-    && ln -sf "$file" "$HOME/$dotfile" \
+    && ln -sfv "$file" "$HOME/$filename" \
     || echoerr "Failed to install dotfile '$file'!"
 }
 
 echo "Setting up dotfiles..."
-for dotfile in $DOTFILES; do
-  try_install_dotfile "$DOTFILES_DIR/$dotfile"
+for file in $DOTFILES; do
+  try_install_dotfile "$DOTFILES_DIR/$file"
 done
 
-platform="$(get_platform)"
+platform=$(get_platform)
 case "$platform" in
-  linux)
-    platform_dotfiles="$LINUX_DOTFILES"
-    ;;
-  *)
-    # MacOS is not supported.
-    platform_dotfiles=""
-    ;;
+  linux) platform_dotfiles="$LINUX_DOTFILES" ;;
+  # MacOS is not supported.
+  *) platform_dotfiles="" ;;
 esac
 
 echo "Setting up platform-specific dotfiles..."
