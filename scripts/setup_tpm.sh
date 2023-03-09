@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # Configures the TMUX plugin manager. Requires git.
 

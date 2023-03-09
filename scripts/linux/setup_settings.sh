@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # Configures various system settings (keyboard layout, dark mode, etc.).
 

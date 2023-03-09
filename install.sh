@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # Installs the dotfiles repository and runs the given backup and setup scripts.
 #

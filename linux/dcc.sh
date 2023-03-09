@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # Configures Dell machines with common thermal / performance / battery settings.
 #
