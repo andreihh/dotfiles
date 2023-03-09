@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Runs the given backup and setup scripts.
+# Installs the dotfiles repository and runs the given backup and setup scripts.
 #
 # The program will:
 # - download the dotfiles repository to `~/.dotfiles`
@@ -23,7 +23,9 @@ readonly GIT_REPO="$GITHUB_REPO.git"
 
 [[ $# -eq 0 ]] && echo "Usage: $0 BACKUP_SCRIPT SETUP_SCRIPTS..." && exit 1
 
-echo "Downloading repository..."
+echo "Installing dotfiles repository..."
+
+echo -e "\nDownloading repository..."
 wget "$REPO_ZIP" || curl -LO "$REPO_ZIP" || exit 1
 
 echo -e "\nUnpacking repository..."
