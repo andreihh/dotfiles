@@ -43,4 +43,4 @@ mkdir -p "$backup_dir" || exit 1
 backup_dotfiles_to "$DOTFILES_DIR" "$backup_dir" || exit 1
 backup_dotfiles_to "$DOTFILES_DIR/linux" "$backup_dir" || exit 1
 
-echo -e "\nBackup completed!"
+echo "Backup completed!"

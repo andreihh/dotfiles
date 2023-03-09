@@ -24,7 +24,6 @@ function try_install_dotfile() {
   echo "Installing dotfile '$dotfile'..."
   [[ -e "$file" ]] \
     && ln -sf "$file" "$HOME/$dotfile" \
-    && echo "Dotfile '$file' installed successfully!" \
     || echoerr "Failed to install dotfile '$file'!"
 }
 
@@ -44,9 +43,9 @@ case "$platform" in
     ;;
 esac
 
-echo -e "\nSetting up platform-specific dotfiles..."
+echo "Setting up platform-specific dotfiles..."
 for file in $platform_dotfiles; do
   try_install_dotfile "$DOTFILES_DIR/$platform/$file"
 done
 
-echo -e "\nDotfiles installed!"
+echo "Dotfiles installed!"
