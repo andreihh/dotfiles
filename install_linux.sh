@@ -9,13 +9,13 @@ readonly INSTALLER="install.sh"
 readonly SCRIPTS_DIR="$HOME/.dotfiles/scripts"
 readonly BACKUP_SCRIPT="$SCRIPTS_DIR/backup.sh"
 readonly SCRIPTS=\
-"$SCRIPTS_DIR/setup_dotfiles.sh "\
-"$SCRIPTS_DIR/linux/setup_packages.sh "\
-"$SCRIPTS_DIR/linux/setup_settings.sh "\
-"$SCRIPTS_DIR/linux/setup_swappiness.sh "\
-"$SCRIPTS_DIR/linux/setup_sleep.sh "\
-"$SCRIPTS_DIR/linux/setup_tlp.sh "\
-"$SCRIPTS_DIR/setup_tpm.sh "
+"'$SCRIPTS_DIR/setup_dotfiles.sh' "\
+"'$SCRIPTS_DIR/linux/setup_packages.sh' "\
+"'$SCRIPTS_DIR/linux/setup_settings.sh' "\
+"'$SCRIPTS_DIR/linux/setup_swappiness.sh' "\
+"'$SCRIPTS_DIR/linux/setup_sleep.sh' "\
+"'$SCRIPTS_DIR/linux/setup_tlp.sh' "\
+"'$SCRIPTS_DIR/setup_tpm.sh' "
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 

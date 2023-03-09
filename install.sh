@@ -19,7 +19,7 @@ readonly DOTFILES_DIR="$HOME/.dotfiles"
 readonly BACKUP_DIR="$HOME/.dotfiles.bak"
 readonly GITHUB_REPO="https://github.com/andreihh/.dotfiles"
 readonly REPO_ZIP="$GITHUB_REPO/archive/master.zip"
-readonly GIT_REPO="$GITHUB_REPO.git"
+readonly REPO_GIT="$GITHUB_REPO.git"
 
 [[ $# -eq 0 ]] && echo "Usage: $0 BACKUP_SCRIPT SETUP_SCRIPTS..." && exit 1
 
@@ -47,7 +47,7 @@ done
 echo -e "\nInitializing remote git repository..."
 cd "$DOTFILES_DIR" \
   && git init \
-  && git remote add origin "$GIT_REPO" \
+  && git remote add origin "$REPO_GIT" \
   && git fetch \
   && git checkout -t -f origin/master \
   || exit 1
