@@ -11,7 +11,7 @@ readonly BACKUP_SCRIPT="$SCRIPTS_DIR/backup.sh"
 readonly SCRIPTS=\
 "$SCRIPTS_DIR/setup_dotfiles.sh "\
 "$SCRIPTS_DIR/linux/setup_packages.sh "\
-"$SCRIPTS_DIR/linux/setup_settings.sh " \
+"$SCRIPTS_DIR/linux/setup_settings.sh "\
 "$SCRIPTS_DIR/linux/setup_swappiness.sh "\
 "$SCRIPTS_DIR/linux/setup_sleep.sh "\
 "$SCRIPTS_DIR/linux/setup_tlp.sh "\
