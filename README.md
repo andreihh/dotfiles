@@ -8,12 +8,12 @@ alongside an installation script.
 To install the dotfiles, run the following commands (requires `wget` or `curl`):
 
 ```
-GITHUB_ROOT="https://raw.githubusercontent.com/andreihh/.dotfiles/master"
+GH_ROOT="https://raw.githubusercontent.com/andreihh/.dotfiles/master"
 INSTALLER="install_${platform}.sh"
-wget "$GITHUB_ROOT/$INSTALLER" || curl -LO "$GITHUB_ROOT/$INSTALLER"
-chmod +x $INSTALLER
-$INSTALLER
-rm $INSTALLER
+wget "$GH_ROOT/$INSTALLER" || curl -LO "$GH_ROOT/$INSTALLER"
+chmod +x "$INSTALLER"
+./"$INSTALLER"
+rm "$INSTALLER"
 ```
 
 ### Private `~/bin` and `~/.extras`

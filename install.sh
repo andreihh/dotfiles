@@ -34,12 +34,12 @@ unzip master.zip \
 
 backup_script="$1"; shift
 echo -e "\nRunning backup script '$backup_script'..."
-chmod +x $backup_script && $backup_script "$BACKUP_DIR" || exit 1
+chmod +x "$backup_script" && "$backup_script" "$BACKUP_DIR" || exit 1
 
 echo -e "\nRunning setup scripts..."
 for script in "$@"; do
   echo -e "\nRunning script '$script'..."
-  chmod +x $script && $script || exit 1
+  chmod +x "$script" && "$script" || exit 1
 done
 
 echo -e "\nInitializing remote git repository..." \

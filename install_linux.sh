@@ -5,7 +5,7 @@
 # Requires wget or curl.
 
 readonly GH_ROOT="https://raw.githubusercontent.com/andreihh/.dotfiles/master"
-readonly INSTALL_SCRIPT_URL="$GH_ROOT/scripts/install.sh"
+readonly INSTALLER="install.sh"
 readonly SCRIPTS_DIR="$HOME/.dotfiles/scripts"
 readonly BACKUP_SCRIPT="$SCRIPTS_DIR/backup.sh"
 readonly SCRIPTS=\
@@ -20,10 +20,10 @@ readonly SCRIPTS=\
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
 echo "Downloading installer..."
-wget "$INSTALL_SCRIPT_URL" || curl -LO "$INSTALL_SCRIPT_URL" || exit 1
+wget "$GH_ROOT/$INSTALLER" || curl -LO "$GH_ROOT/$INSTALLER" || exit 1
 
 echo -e "\nRunning installer..."
-chmod +x ./install.sh \
-  && ./install.sh "$BACKUP_SCRIPT" $SCRIPTS \
-  && rm ./install.sh \
+chmod +x "$INSTALLER" \
+  && ./"$INSTALLER" "$BACKUP_SCRIPT" $SCRIPTS \
+  && rm "$INSTALLER" \
   || exit 1
