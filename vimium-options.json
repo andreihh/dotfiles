@@ -13,7 +13,7 @@
   "filterLinkHints": false,
   "waitForEnterForFilteredHints": true,
   "hideHud": false,
-  "keyMappings": "# Insert your preferred key mappings here.\nmap <a-h> previousTab\nmap <a-l> nextTab\nmap <a-n> createTab\nmap <a-x> removeTab",
+  "keyMappings": "# Insert your preferred key mappings here.\nmap <a-h> previousTab\nmap <a-l> nextTab\nmap <a-n> createTab\nmap <a-x> removeTab\nmap <a-w> moveTabToNewWindow\nmap <a-q> closeOtherTabs",
   "linkHintCharacters": "sadfjklewcmpgh",
   "linkHintNumbers": "0123456789",
   "newTabUrl": "about:newtab",
