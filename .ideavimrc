@@ -5,11 +5,10 @@ source ~/.vimrc
 " Enable ideajoin plugin.
 set ideajoin
 
-" Enable using the system clipboard from IdeaVIM and vice-versa.
+" Enable using the system clipboard from IdeaVim and vice-versa.
 set clipboard+=ideaput
 
-" IDE actions.
-" Ideally, these should all be noremap, but that's not currently supported.
+" IDE actions. These should all be noremap, but that's not supported yet.
 
 " Autocomplete shortcuts:
 " - Ctrl-Space (trigger autocomplete)
@@ -25,7 +24,7 @@ set clipboard+=ideaput
 nmap <C-Space> <Action>(CodeCompletion)
 imap <C-Space> <C-o>:action CodeCompletion<CR>
 
-" IDE-powered window and pane control and navigation actions.
+" Window and pane control and navigation actions.
 "
 " Note: Esc refocuses the editor and automatically closes undocked tool windows.
 nmap <A-n> <Action>(NewElement)
@@ -88,7 +87,7 @@ nmap <F8> <Action>(Resume)
 nmap <F9> <Action>(Stop)
 nmap <F10> <Action>(ViewBreakpoints)
 
-" IdeaVIM doesn't work when focusing tool windows, so their shortcuts need to be
+" IdeaVim doesn't work when focusing tool windows, so their shortcuts need to be
 " overridden in the IDE keymap as well:
 " > File > Settings > Keymap
 "   > Editor Actions (keep all conflicting mappings)
@@ -130,3 +129,9 @@ nmap <F10> <Action>(ViewBreakpoints)
 "   > Structure: Left Bottom, Dock Unpinned
 "   > Find | Terminal | Run: Bottom Left, Dock Unpinned
 "   > Debug: Bottom Left, Dock Pinned
+"
+" Required plugins:
+" - IdeaVim
+" - IdeaVim-EasyMotion
+" - AceJump
+" - .ignore
