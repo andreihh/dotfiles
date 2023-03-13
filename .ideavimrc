@@ -10,10 +10,14 @@ set clipboard+=ideaput
 
 " IDE actions. These should all be noremap, but that's not supported yet.
 
+" Paste with Alt-p.
+nmap <A-p> <Action>(EditorPaste)
+imap <A-p> <C-o>:action EditorPaste<CR>
+
 " Autocomplete shortcuts:
 " - Ctrl-Space (trigger autocomplete)
 " - Tab/Shift-Tab (cycle options)
-" - Enter/Space (accept option)
+" - Enter (accept option)
 " - Esc (reject option, via native IntelliJ command)
 "
 " Note: we can't map the following actions in .ideavimrc unless we can check if
@@ -95,11 +99,12 @@ nmap <F10> <Action>(ViewBreakpoints)
 "     > Down: Tab, j
 "     > Up: Shift-Tab, k
 "     > Right: l
-"     > Choose Lookup Item: Enter
-"     > Choose Lookup Item Replace: Space
+"     > Choose Lookup Item | Choose Lookup Item Replace: Enter
+"   > Main Menu > Edit > Cut/Copy/Paste Actions > Paste > Paste: Alt-p
 "   > Tool Windows
+"   > Plugins > Java IDE Customization > New...: Alt-n
 "
-" Additionally, the IDE appearance should be customized as follows:
+" Additionally, the IDE appearance and behavior should be customized as follows:
 " > View
 "   > Appearance
 "     > Main Menu: on
@@ -129,6 +134,32 @@ nmap <F10> <Action>(ViewBreakpoints)
 "   > Structure: Left Bottom, Dock Unpinned
 "   > Find | Terminal | Run: Bottom Left, Dock Unpinned
 "   > Debug: Bottom Left, Dock Pinned
+" > Editor
+"   > Font
+"     > Font: JetBrains Mono
+"     > Size: 14.0
+"     > Line height: 1.2
+"     > Enable ligatures: off
+"   > Copyright
+"     > Copyright Profiles: apachev2
+"     > Formatting
+"       > Comment Type: Use block comment
+"         > Prefix each line: on
+"       > Relative Location: Before other comments
+"       > Borders > Separator before | Separator after | Separator: off
+"       > Add blank line before: off
+"       > Add blank line after: on
+"       > Java: Use default settings
+"         > Location in File: Before package
+"       > Kotlin: Use default settings
+"   > Inlay Hints
+"     > Code Vision > Code Author: off
+"     > Parameter Names: off
+"     > Types
+"       > Java > Implicit Types: off
+"       > Kotlin > Types: off
+"     > Values > Kotlin > Ranges: off
+"     > Annotations > Java > Inferred Annotations: off
 "
 " Required plugins:
 " - IdeaVim
