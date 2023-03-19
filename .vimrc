@@ -187,9 +187,6 @@ let g:NERDTreeMapJumpParent='h'
 let g:NERDTreeMapOpenSplit='s'
 let g:NERDTreeMapOpenVSplit='v'
 
-" Fix indentation for whole file.
-nnoremap <Leader>= gg=G
-
 if !has('ide')
   " Trigger autocompletion automatically as soon as available.
   let g:ycm_auto_trigger=1
@@ -205,4 +202,23 @@ if !has('ide')
   let g:ycm_key_list_previous_completion=['<S-Tab>']
   let g:ycm_key_list_stop_completion=['<CR>']
   inoremap <expr> <Esc> pumvisible() ? "\<C-e>\<Esc>" : "\<Esc>"
+
+  " Code navigation actions."
+  nnoremap <Leader>g :YcmCompleter GoTo<CR>
+  nnoremap <Leader>j <C-O>
+  nnoremap <Leader>k <C-I>
+
+  " Code inspection actions.
+  nnoremap <Leader>f :YcmCompleter GoToReferences<CR>
+  nmap <Leader>q <Plug>(YCMHover)
+
+  " Code manipulation actions.
+  nnoremap <Leader>r :YcmCompleter RefactorRename<Space>
+  nnoremap <Leader>o :YcmCompleter OrganizeImports<CR>
+  nnoremap <Leader>= :YcmCompleter Format<CR>
+  nnoremap <A-CR> :YcmCompleter FixIt<CR>
+  inoremap <A-CR> <C-o>:YcmCompleter FixIt<CR>
+
+  " Search and execution actions.
+  nmap <Leader><Tab> <Plug>(YCMFindSymbolInWorkspace)
 endif
