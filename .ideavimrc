@@ -107,22 +107,23 @@ nmap <F10> <Action>(ViewBreakpoints)
 " Additionally, the IDE appearance and behavior should be customized as follows:
 " > View
 "   > Appearance
+"     > Compact Mode: on
 "     > Main Menu: on
 "     > Toolbar: off
-"     > Navigation Bar: off
+"     > Navigation Bar: In Status Bar
+"       > Show Members: on
 "     > Tool Window Bars: off
 "     > Status Bar: on
 "     > Status Bar Widgets: all on
 "     > Details in Tree View: off
-"     > Members in Navigation Bar: on
 "   > Active Editor
 "     > Soft-Wrap: off
 "     > Show Whitespaces: off
 "     > Show Line Numbers: on
 "     > Show Gutter Icons: on
-"     > Show Breadcrumbs: off
 "     > Show Indent Guides: on
 "     > Show Import Popups: on
+"     > Show Breadcrumbs: off
 " > File > Settings
 "   > Editor > General > Editor Tabs
 "     > Tab placement: None

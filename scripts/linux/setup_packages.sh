@@ -10,7 +10,7 @@ readonly PACKAGES=\
 "openjdk-18-jdk visualvm "\
 "build-essential cmake "\
 "python3 python3-dev pylint python-is-python3 "\
-"texlive texlive-latex-extra texlive-fonts-extra latexmk "\
+"texlive texlive-latex-extra texlive-science texlive-fonts-extra latexmk "\
 "texlive-bibtex-extra biber "\
 "graphviz plantuml "\
 "snapd firefox ffmpeg vlc keepassxc "
