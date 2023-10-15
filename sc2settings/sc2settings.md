@@ -18,39 +18,73 @@
 
 - Mouse and Keyboard:
   - Mouse:
-    - Enable Mouse Sensitivity: Enabled (51%)
-    - Enable Mouse Wheel Zoom: Disabled
-    - Reduce Mouse Lag: Disabled
+    - Enable Mouse Sensitivity: On (51%)
+    - Enable Mouse Wheel Zoom: Off
+    - Reduce Mouse Lag: Off
     - Confine Mouse Cursor: Smart
     - Cursor Size: 33%
   - Scrolling:
-    - Enable Mouse Scroll: Enabled
+    - Enable Mouse Scroll: On
     - Mouse Scroll Speed: 90%
     - Keyboard Scroll Speed: 20%
     - Drag Scroll Speed: 20%
-    - Invert Drag Scroll: Disabled
-    - Enable Smart Camera Pan: Disabled
+    - Invert Drag Scroll: Off
+    - Enable Smart Camera Pan: Off
   - Keyboard:
-    - Disable Alt-Tab Shortcut: Disabled
-    - Disable Windows Key: Enabled
+    - Disable Alt-Tab Shortcut: Off
+    - Disable Windows Key: On
 - Gameplay:
-  - Show Alerts: Disabled
-  - Display Build Grid: Enabled
-  - Always Show Worker Status: Enabled
-  - Enable Simple Command Card: Disabled
-  - Show Current Order Indicator: Enabled
-  - Select All Larvae: Disabled
-  - Enable Enemy Unit Selection: Enabled
-  - Display Experience Points: Enabled
-  - Allow Window Restore: Disabled
+  - Show Alerts: Off
+  - Display Build Grid: On
+  - Always Show Worker Status: On
+  - Enable Simple Command Card: Off
+  - Show Current Order Indicator: On
+  - Select All Larvae: Off
+  - Enable Enemy Unit Selection: On
+  - Display Experience Points: On
+  - Allow Window Restore: Off
   - Show Unit Life Bars: Always
   - Control Groups: Unclickable
   - Show Flyer Helper: Always
 - Colors:
-  - Your minimap color: Default (Green)
-  - Your color: Teal
-  - Ally color: Green
-  - Hostile color: Red
-  - Neutral color: Default
+  - Team Color:
+    - Display Team Colored Life Bar: Off
+    - Enable Additional Team Color Textures: Off
+    - Team Color Intensity: 1
+    - Color Blind Mode: Off
+  - Alliance Colors:
+    - Your minimap color: Default (Green)
+    - Your color: Teal
+    - Ally color: Green
+    - Hostile color: Red
+    - Neutral color: Default
+- Social > Privacy > Set Status to Busy when playing a game: On
 - Hotkeys: andreihh_protoss.SC2Hotkeys (derived from Standard)
 
+## Graphics & Sound (Intel Iris Xe Graphics)
+
+- Graphics:
+  - Display:
+    - Display Mode: Fullscreen
+    - Resolution: 1920x1080
+    - Vertical Sync: Off
+    - Background Model: Artanis
+    - Refresh Rate: Default
+    - Gamma: 60%
+    - Antialias: Off
+  - Graphics:
+    - Graphics Quality: Custom
+    - Shaders: Medium
+    - Lighting: Low
+    - Shadows: Medium
+    - Terrain: Medium
+    - Reflections: Off
+    - Effects: Medium
+    - Texture Quality: Low
+    - Post-Processing: Medium
+    - Physics: Medium
+    - Models: Low
+    - Unit Portraits: 2D
+    - Movies: Low
+    - Indirect Shadows: Off
+- Sound > Sound Quality: Medium
