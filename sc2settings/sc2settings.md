@@ -52,5 +52,5 @@
   - Ally color: Green
   - Hostile color: Red
   - Neutral color: Default
-- Hotkeys: andreihh_protoss.SC2Hotkeys
+- Hotkeys: andreihh_protoss.SC2Hotkeys (derived from Standard)
 
