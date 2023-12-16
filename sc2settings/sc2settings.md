@@ -14,7 +14,7 @@
   - Repeat delay: Short
   - Repeat rate: Fast
 
-## Game options
+## Game Options
 
 - Mouse and Keyboard:
   - Mouse:
@@ -118,11 +118,11 @@
 
 ## Preferred Control Groups
 
-- ~: main army
-- 1: spellcasters (High Templars / Disruptors)
-- 2: scout / air army (Oracle, Observer, Carriers, Tempests)
-- 3: scout / support (Oracle, Observer, Warp Prism)
+- ~: Main army
+- 1: Spellcasters (High Templars / Disruptors)
+- 2: Scout / air army (Oracle, Observer, Carriers, Tempests)
+- 3: Scout / support (Oracle, Observer, Warp Prism)
 - 4: Nexi, Forges, Twilight Council
 - 5: Robotics Facilities, Stargates
 - W: Gateways
-- Q: dump
+- Q: Dump
