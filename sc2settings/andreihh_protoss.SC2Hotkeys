@@ -51,7 +51,7 @@ ControlGroupRecall8=
 ControlGroupRecall9=
 IdleWorker=
 PauseGame=P
-TargetChoose=LeftMouseButton,Z,S,E,H,T,D
+TargetChoose=LeftMouseButton,Z,S,E,A,T,D
 WarpIn=
 CameraSave0=Shift+F1
 CameraSave1=Shift+F2
@@ -81,6 +81,8 @@ Move=Z
 MovePatrol=Q
 StopPlanetaryFortress/PlanetaryFortress=H
 UpgradeToPlanetaryFortress/CommandCenter=F
+WarpInAdept/Gateway=A
+WarpInAdept/WarpGate=A
 WarpPrism/RoboticsFacility=E
 overlordspeed=C
 

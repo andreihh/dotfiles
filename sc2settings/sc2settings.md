@@ -88,3 +88,41 @@
     - Movies: Low
     - Indirect Shadows: Off
 - Sound > Sound Quality: Medium
+
+## Active Hotkeys
+
+- Structures, units, spells
+- Control groups
+  - Select control group: #
+  - Create and replace control group: Shift-#
+  - Add to control group: Alt-#
+  - Dump from control group: Shift-Q
+  - Select all army: Space
+- Camera locations
+  - Jump to location: F#
+  - Set location: Shift-F#
+  - Center camera on selection: Ctrl-F
+- Actions
+  - Attack: A
+  - Stop: S
+  - Hold position: H
+  - Move: Z
+  - Patrol: Q
+  - Cancel: Escape / Capslock
+  - Queue actions: hold Shift + action hotkeys
+- Others
+  - Pause / resume game: P
+  - Flip alliance colors: Alt-F
+  - Display FPS: Ctrl-Alt-F
+  - Ping on map: Alt-G
+
+## Preferred Control Groups
+
+- ~: main army
+- 1: spellcasters (High Templars / Disruptors)
+- 2: scout / air army (Oracle, Observer, Carriers, Tempests)
+- 3: scout / support (Oracle, Observer, Warp Prism)
+- 4: Nexi, Forges, Twilight Council
+- 5: Robotics Facilities, Stargates
+- W: Gateways
+- Q: dump
