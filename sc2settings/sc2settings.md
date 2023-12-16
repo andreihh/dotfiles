@@ -53,7 +53,7 @@
     - Team Color Intensity: 1
     - Color Blind Mode: Off
   - Alliance Colors:
-    - Your minimap color: Default (Green)
+    - Your minimap color: Teal
     - Your color: Teal
     - Ally color: Green
     - Hostile color: Red
