@@ -92,11 +92,15 @@
 ## Active Hotkeys
 
 - Structures, units, spells
+  - Gateway / Warp Gate - Adept: A
+  - Robotics Facility - Immortal: R
+  - Robotics Facility - Warp Prism: E
+  - Others: standard hotkeys
 - Control groups
   - Select control group: #
   - Create and replace control group: Shift-#
   - Add to control group: Alt-#
-  - Dump from control group: Shift-Q
+  - Dump from control group: Ctrl-Q
   - Select all army: Space
 - Camera locations
   - Jump to location: F#
@@ -110,6 +114,9 @@
   - Patrol: Q
   - Cancel: Escape / Capslock
   - Queue actions: hold Shift + action hotkeys
+  - Deselect: Shift-click
+  - Select all of same type: Ctrl-click
+  - Deselect all of same type: Ctrl-Shift-click
 - Others
   - Pause / resume game: P
   - Flip alliance colors: Alt-F
@@ -118,11 +125,10 @@
 
 ## Preferred Control Groups
 
-- ~: Main army
-- 1: Spellcasters (High Templars / Disruptors)
-- 2: Scout / air army (Oracle, Observer, Carriers, Tempests)
-- 3: Scout / support (Oracle, Observer, Warp Prism)
-- 4: Nexi, Forges, Twilight Council
-- 5: Robotics Facilities, Stargates
-- W: Gateways
-- Q: Dump
+- ~: Air army
+- 1: Ground army
+- 2: Spellcasters (High Templars / Disruptors)
+- 3: Warp-in point (Pylon / Warp Prism)
+- 4: Nexi + upgrade structures (Forges, Twilight Council, etc.)
+- 5: Robotics Facilities + Stargates
+- W: Gateways / Warp Gates
