@@ -119,9 +119,15 @@
   - Deselect all of same type: Ctrl-Shift-click
 - Others
   - Pause / resume game: P
-  - Flip alliance colors: Alt-F
+  - Toggle alliance colors: Alt-F
   - Display FPS: Ctrl-Alt-F
   - Ping on map: Alt-G
+- [SpawningTool Build
+  Advisor](https://www.overwolf.com/app/Overwolf-Spawning_Tool_Build_Advisor)
+  - Toggle SpawningTool UI: Alt-Ctrl-~
+  - Lock / unlock build overlay: Ctrl-Shift-~
+  - Display build: Ctrl-Shift-#
+  - Pause / resume timer: F6
 
 ## Preferred Control Groups
 
