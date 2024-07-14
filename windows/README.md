@@ -2,7 +2,7 @@
 
 - Microsoft PowerToys:
   - Install from Microsoft Store or https://github.com/microsoft/PowerToys
-  - Keyboard Manager: swap CapsLock and Esc
+  - Keyboard Manager: swap `CapsLock` and `Esc`
   - Until PowerToys supports toggling the Keyboard Manager with a shortcut,
     follow the instructions provided at
     https://github.com/microsoft/PowerToys/issues/4879#issuecomment-1937913707:
