@@ -24,8 +24,9 @@
        }
        ```
     1. Create a shortcut to `ptkm.ps1` with the following properties:
-      - Target: `pwsh -ExecutionPolicy Bypass -WindowStyle Hidden -File "C:\path\to\my\script.ps1"`
-      - Shortuct key: Ctrl + Alt + Z
+      - Target:
+        `pwsh -ExecutionPolicy Bypass -WindowStyle Hidden -File "C:\path\to\my\script.ps1"`
+      - Shortuct key: `Ctrl + Alt + Z`
 
 - Mouse Properties:
   - Pointer speed: 6/11
