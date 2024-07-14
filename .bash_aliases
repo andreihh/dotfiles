@@ -23,6 +23,12 @@ fi
 # Attach to the "work" tmux session, or create it if it doesn't exist.
 alias tmuxw='tmux new -A -s work'
 
+# Paste the clipboard to stdout as a png image.
+alias clipboard2png='xclip -selection clipboard -t image/png -o'
+
+# Restarts the sound system.
+alias rraudio='pulseaudio -k'
+
 # Prints the given message in red to stderr.
 function echoerr() {
   echo -e "\033[0;31m$@\033[0m" >&2
