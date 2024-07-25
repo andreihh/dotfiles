@@ -5,15 +5,14 @@
 . "$HOME/.dotfiles/scripts/utils.sh" || exit 1
 
 readonly PACKAGES=\
-"git vim vim.gtk3 tmux xsel tree urlview wget curl zenity dos2unix "\
-"tlp lm-sensors smartmontools linux-tools-common linux-tools-generic "\
+"firefox git vim tmux lm-sensors tree urlview wget curl dos2unix "\
+"snapd vim.gtk3 xsel zenity tlp linux-tools-common linux-tools-generic "\
 "openjdk-18-jdk visualvm "\
+"python3 python3-dev python-is-python3 pylint "\
 "build-essential cmake "\
-"python3 python3-dev pylint python-is-python3 "\
 "texlive texlive-latex-extra texlive-science texlive-fonts-extra latexmk "\
 "texlive-bibtex-extra biber "\
-"graphviz plantuml "\
-"snapd firefox pdftk ffmpeg vlc keepassxc "
+"keepassxc pdftk ffmpeg vlc graphviz plantuml "
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 

@@ -10,7 +10,7 @@ export LC_ALL='en_US.UTF-8'
 # Make Vim the default editor.
 export EDITOR='vim'
 
-# Make Firefox the default Browser.
+# Make Firefox the default browser.
 export BROWSER='firefox'
 
 # Export the JRE for apps that rely on `$JAVA_HOME`.
