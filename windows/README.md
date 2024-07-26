@@ -27,11 +27,9 @@
       - Target:
         `pwsh -ExecutionPolicy Bypass -WindowStyle Hidden -File "C:\path\to\my\script.ps1"`
       - Shortuct key: `Ctrl + Alt + Z`
-
 - Mouse Properties:
   - Pointer speed: 6/11
   - Enhance pointer precision: Disabled
-
 - Keyboard Properties > Speed > Character repeat:
   - Repeat delay: Short
   - Repeat rate: Fast

@@ -4,15 +4,27 @@
 
 . "$HOME/.dotfiles/scripts/utils.sh" || exit 1
 
-readonly PACKAGES=\
-"firefox git vim tmux lm-sensors tree urlview wget curl dos2unix "\
-"snapd vim.gtk3 xsel zenity tlp linux-tools-common linux-tools-generic "\
-"openjdk-18-jdk visualvm "\
-"python3 python3-dev python-is-python3 pylint "\
-"build-essential cmake "\
+readonly LINUX_CORE_PACKAGES=\
+"snapd vim.gtk3 xsel xclip zenity tlp linux-tools-common linux-tools-generic "
+
+readonly LATEX_PACKAGES=\
 "texlive texlive-latex-extra texlive-science texlive-fonts-extra latexmk "\
-"texlive-bibtex-extra biber "\
+"texlive-bibtex-extra biber "
+
+readonly DEVELOPMENT_PACKAGES=\
+"python3 python3-dev python-is-python3 pylint "\
+"openjdk-18-jdk visualvm "\
+"build-essential cmake "
+
+readonly MEDIA_PACKAGES=\
 "keepassxc pdftk ffmpeg vlc graphviz plantuml "
+
+readonly PACKAGES=\
+"$CORE_PACKAGES "\
+"$LINUX_CORE_PACKAGES "\
+"$LATEX_PACKAGES "\
+"$DEVELOPMENT_PACKAGES "\
+"$MEDIA_PACKAGES "
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
@@ -20,17 +32,19 @@ echo "Updating package index..."
 sudo apt-get update || echoerr "Failed to update package index!"
 
 echo "Installing required packages..."
-for package in $PACKAGES; do
-  echo "Installing package '$package'..."
-  sudo apt-get install "$package" \
-    || echoerr "Failed to install package '$package'!"
-done
+install_packages "sudo apt-get install" $PACKAGES
 
 echo "Updating Snap packages..."
 sudo snap refresh || echoerr "Failed to update Snap packages!"
 
-echo "Installing IntelliJ IDEA CE..."
-sudo snap install intellij-idea-community --classic \
-  || echoerr "Failed to install IntelliJ IDEA CE!"
+echo "Installing Snap packages..."
+install packages "sudo snap install" intellij-idea-community --classic
 
-echo "Required packages installed!"
+# See headless installation instructions on https://dropbox.com/install-linux.
+echo "Installing Dropbox..."
+readonly DROPBOX="https://www.dropbox.com/download?plat=lnx.x86_64"
+cd ~ && wget -O - "$DROPBOX" | tar xzf - \
+  && ~/.dropbox-dist/dropboxd \
+  || echoerr "Failed to install Dropbox!"
+
+echo "Packages installed!"

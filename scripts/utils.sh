@@ -20,3 +20,17 @@ function get_platform() {
   shopt -u nocasematch
   echo "$platform"
 }
+
+function install_packages() {
+  local installer="$1"
+  shift 1
+
+  for package in "$@"; do
+    echo "Installing package '$package'..."
+    $installer "$package" || echoerr "Failed to install package '$package'!"
+  done
+}
+
+# The list of core packages common to all platforms.
+readonly CORE_PACKAGES=\
+"firefox wget curl git vim tmux lm-sensors tree urlview dos2unix "
