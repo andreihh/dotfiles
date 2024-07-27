@@ -12,12 +12,13 @@ readonly DOTFILES=\
 ".bashrc .bash_profile .bash_logout .bash_prompt .bash_aliases .exports "\
 ".inputrc .editorconfig .vimrc .ideavimrc .tmux.conf "\
 ".gitconfig .latexmkrc "
+
 readonly LINUX_DOTFILES=\
 ".platform_utils "
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
-function try_install_dotfile() {
+function install_dotfile() {
   local file="$1"
   local filename=$(basename "$file")
 
@@ -29,7 +30,7 @@ function try_install_dotfile() {
 
 echo "Setting up dotfiles..."
 for file in $DOTFILES; do
-  try_install_dotfile "$DOTFILES_DIR/$file"
+  install_dotfile "$DOTFILES_DIR/$file"
 done
 
 platform=$(get_platform)
@@ -41,7 +42,7 @@ esac
 
 echo "Setting up platform-specific dotfiles..."
 for file in $platform_dotfiles; do
-  try_install_dotfile "$DOTFILES_DIR/$platform/$file"
+  install_dotfile "$DOTFILES_DIR/$platform/$file"
 done
 
 echo "Dotfiles installed!"

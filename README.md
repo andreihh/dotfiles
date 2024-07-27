@@ -16,6 +16,10 @@ chmod +x "$INSTALLER"
 rm "$INSTALLER"
 ```
 
+To install the VIM plugins, run `vum` and type `:PlugInstall`.
+
+To install the TMUX plugins, run `tmuxw` and type `Alt-A + Shift-I`.
+
 ### Private `~/bin` and `~/.extras`
 
 The `~/bin` directory and `~/.extras` file should not be persisted across

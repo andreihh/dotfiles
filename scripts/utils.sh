@@ -3,6 +3,10 @@
 # The standard location of the dotfiles repository.
 readonly DOTFILES_DIR="$HOME/.dotfiles"
 
+# The list of core packages common to all platforms.
+readonly CORE_PACKAGES=\
+"firefox wget curl git vim tmux lm-sensors tree urlview dos2unix "
+
 # Prints the given message in red to stderr.
 function echoerr() {
   echo -e "\033[0;31m$@\033[0m" >&2
@@ -21,6 +25,7 @@ function get_platform() {
   echo "$platform"
 }
 
+# Installs the provided list of packages using the given installation command.
 function install_packages() {
   local installer="$1"
   shift 1
@@ -30,7 +35,3 @@ function install_packages() {
     $installer "$package" || echoerr "Failed to install package '$package'!"
   done
 }
-
-# The list of core packages common to all platforms.
-readonly CORE_PACKAGES=\
-"firefox wget curl git vim tmux lm-sensors tree urlview dos2unix "

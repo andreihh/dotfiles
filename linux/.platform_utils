@@ -4,9 +4,6 @@
 # Open file with the default program.
 alias o='xdg-open'
 
-# Print current screen resolution.
-alias printresolution='xrandr | head -n 3 | tail -n 1 | cut -d" " -f 4'
-
 # Paste the clipboard to the given file as a png image. Use like so:
 #   pngpaste screenshot.png
 alias pngpaste='xclip -selection clipboard -t image/png -o > '
