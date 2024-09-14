@@ -16,6 +16,7 @@ Plug 'tpope/vim-surround'  " Better surround motions.
 Plug 'easymotion/vim-easymotion'  " Better navigation motions.
 Plug 'preservim/nerdtree'  " Integrated file explorer.
 Plug 'doums/darcula'  " IntelliJ dark color scheme.
+Plug 'udalov/kotlin-vim'  " Kotlin syntax highlight.
 " Better TMUX integration.
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'RyanMillerC/better-vim-tmux-resizer'
@@ -231,8 +232,9 @@ imap <C-space> <C-x><C-o>
 " Enable default autocompletion.
 set omnifunc=syntaxcomplete#Complete
 
-" Show float diagnostics on cursor hover.
+" Show float diagnostics only on cursor hover.
 let g:lsp_diagnostics_float_cursor = 1
+let g:lsp_diagnostics_virtual_text_enabled = 0
 
 function! s:on_lsp_buffer_enabled() abort
   " Enable LSP autocompletion.
@@ -256,13 +258,21 @@ function! s:on_lsp_buffer_enabled() abort
   " Code inspection actions.
   nmap <buffer> <leader>f <plug>(lsp-references)
   nmap <buffer> <leader>q <plug>(lsp-hover)
-  nmap <buffer> <leader>e <plug>(lsp-next-diagnostic)
-  nmap <buffer> <leader>E <plug>(lsp-previous-diagnostic)
+  nmap <buffer> <leader>w <plug>(lsp-next-diagnostic)
+  nmap <buffer> <leader>W <plug>(lsp-previous-diagnostic)
+  nmap <buffer> <leader>e <plug>(lsp-next-error)
+  nmap <buffer> <leader>E <plug>(lsp-previous-error)
 
   " Code manipulation actions.
   nmap <buffer> <leader>r <plug>(lsp-rename)
   nmap <buffer> <leader>= <plug>(lsp-document-format)
-  nmap <buffer> <A-CR> <plug>(lsp-code-action)
+
+  " Code action shortcuts:
+  " - Alt-Enter (trigger code actions float)
+  " - Ctrl-n/p (cycle options)
+  " - Enter (accept option)
+  " - Esc (close code actions float)
+  nmap <buffer> <A-CR> <plug>(lsp-code-action-float)
 
   let g:lsp_format_sync_timeout = 1000
 endfunction
