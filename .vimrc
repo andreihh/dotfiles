@@ -1,8 +1,5 @@
 " ~/.vimrc
-
-" This option stops Vim from behaving in a strongly Vi-compatible way. This must
-" be the first line, because it changes other settings.
-set nocompatible
+" Requires Vim9+.
 
 " Install vim-plug for plugin management if not found.
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -13,30 +10,21 @@ endif
 
 " Enable plugins via vim-plug.
 call plug#begin()
-Plug 'editorconfig/editorconfig-vim'
-Plug 'tpope/vim-surround'
-Plug 'easymotion/vim-easymotion'
-Plug 'preservim/nerdtree'
+Plug 'editorconfig/editorconfig-vim'  " File encodings, indentation, etc.
+Plug 'tpope/vim-sensible'  " Sensible settings.
+Plug 'tpope/vim-surround'  " Better surround motions.
+Plug 'easymotion/vim-easymotion'  " Better navigation motions.
+Plug 'preservim/nerdtree'  " Integrated file explorer.
+Plug 'doums/darcula'  " IntelliJ dark color scheme.
+" Better TMUX integration.
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'RyanMillerC/better-vim-tmux-resizer'
-Plug 'udalov/kotlin-vim'
-Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
-Plug 'doums/darcula'
+" Vim LSP plugins.
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'mattn/vim-lsp-settings'
 call plug#end()
-
-" Enable automatic filetype detection and syntax highlighting.
-filetype plugin indent on
-syntax enable
-
-" Encoding should always be UTF-8.
-set encoding=utf-8
-set fileencoding=utf-8
-
-" Always assume unix-style files.
-set fileformats=unix
-
-" Highlight tabs and trailing whitespaces at the end of line.
-set list listchars=tab:>-,trail:.,nbsp:~
 
 " Store all backups, swap files and undo histories under /var/tmp (they should
 " persist across reboots), or fallback to /tmp.
@@ -47,23 +35,11 @@ set undodir=/var/tmp//,/tmp//
 " Use the system clipboard.
 set clipboard=unnamedplus
 
-" When set, highlights the current line.
-set cursorline
-
 " When wrap is set to off lines will not wrap.
 set nowrap
 
-" Show the line and column number of the cursor position.
-set ruler
-
-" Show command in the last line of the screen.
-set showcmd
-
-" Show current mode.
-set showmode
-
-" When a bracket is inserted, briefly jump to the matching one.
-set showmatch
+" When set, highlights the current line.
+set cursorline
 
 " Print relative line numbers in front of each line.
 set relativenumber
@@ -71,18 +47,25 @@ set relativenumber
 " Print the absolute line number in front of the current line.
 set number
 
-" Search options:
-" - hlsearch: When there is a previous search pattern, highlight all its
-" matches.
-" - ignorecase: Ignore case in search patterns.
-" - incsearch: While typing a search command, show where the pattern, as it was
-" typed so far, matches.
-set hlsearch ignorecase incsearch
+" Highlight tabs, trailing whitespaces, and overrunning lines.
+set list
 
-" Allow backspacing over audoindent, line breaks and the start of insert.
-set backspace=indent,eol,start
+" When a bracket is inserted, briefly jump to the matching one.
+set showmatch
 
-" When increasing/decreasing indent level, round to nearest multiple of
+" Show current mode.
+set showmode
+
+" Show command in the last line of the screen.
+set showcmd
+
+" When there is a previous search pattern, highlight all its matches.
+set hlsearch
+
+" Ignore case in search patterns.
+set ignorecase
+
+" When increasing / decreasing indent level, round to nearest multiple of
 " shiftwidth.
 set shiftround
 
@@ -106,34 +89,22 @@ if &t_Co >= 256
   colorscheme darcula
 endif
 
-" Set <Leader> to Space.
-noremap <Space> <Nop>
-let mapleader=" "
-
-" Cancels search highlighting in normal mode.
-nnoremap <Leader>/ :nohlsearch<CR>
-
 " Copy until the end of the line. Consistent with D and C.
 nnoremap Y y$
 
 " Exit visual mode with q.
-vnoremap q <Esc>
+vnoremap q <esc>
 
-" Required in order to map the Alt key.
-execute "set <A-s>=\es"
-execute "set <A-v>=\ev"
-execute "set <A-h>=\eh"
-execute "set <A-j>=\ej"
-execute "set <A-k>=\ek"
-execute "set <A-l>=\el"
-execute "set <A-H>=\eH"
-execute "set <A-J>=\eJ"
-execute "set <A-K>=\eK"
-execute "set <A-L>=\eL"
-execute "set <A-=>=\e="
-execute "set <A-x>=\ex"
-execute "set <A-q>=\eq"
-execute "set <A-1>=\e1"
+" Set <leader> to Space.
+noremap <space> <nop>
+let mapleader=" "
+
+" Cancels search highlighting in normal mode.
+nnoremap <leader>/ :nohlsearch<CR>
+
+" Jump to previous / next location.
+nnoremap <leader>j <C-o>
+nnoremap <leader>k <C-i>
 
 " Writes all buffers before navigating outside of Vim.
 let g:tmux_navigator_save_on_switch=1
@@ -149,76 +120,156 @@ let g:tmux_resizer_vertical_resize_count=5
 let g:tmux_navigator_no_mappings=1
 let g:tmux_resizer_no_mappings=1
 
-" Control and navigate panes using Alt:
+" Required to map the Alt key.
+for key in "n123456789svhjklHJKL=wzxtqe"
+  execute "set <A-" . key . ">=\e" . key
+endfor
+execute "set <A-CR>=\e\<CR>"
+
+" Control and navigate panes and tabs using Alt:
+" - Alt-n (new tab)
+" - Alt-1/2/.../9 (switch tabs)
+" - H/L (switch to previous / next tab)
 " - Alt-s/v (split pane horizontally / vertically)
 " - Alt-h/j/k/l (navigate panes)
 " - Alt-H/J/K/L (resize panes)
 " - Alt-= (resize all panes equally)
+" - Alt-w (break pane into a new tab)
+" - Alt-z (close all panes except current one)
 " - Alt-x (close pane)
-" - Alt-q (close all panes except current one)
+" - Alt-t (focus NERDTree pane)
+" - Alt-q (focus quickfix pane)
+" - q (close quickfix pane)
+nnoremap <A-n> :tabnew<CR>
 nnoremap <A-s> :split<CR>
 nnoremap <A-v> :vsplit<CR>
-nnoremap <silent> <A-h> :<C-U>TmuxNavigateLeft<CR>
-nnoremap <silent> <A-j> :<C-U>TmuxNavigateDown<CR>
-nnoremap <silent> <A-k> :<C-U>TmuxNavigateUp<CR>
-nnoremap <silent> <A-l> :<C-U>TmuxNavigateRight<CR>
-nnoremap <silent> <A-H> :<C-U>TmuxResizeLeft<CR>
-nnoremap <silent> <A-J> :<C-U>TmuxResizeDown<CR>
-nnoremap <silent> <A-K> :<C-U>TmuxResizeUp<CR>
-nnoremap <silent> <A-L> :<C-U>TmuxResizeRight<CR>
-nnoremap <A-=> <C-w>=
+nnoremap <A-1> 1gt
+nnoremap <A-2> 2gt
+nnoremap <A-3> 3gt
+nnoremap <A-4> 4gt
+nnoremap <A-5> 5gt
+nnoremap <A-6> 6gt
+nnoremap <A-7> 7gt
+nnoremap <A-8> 8gt
+nnoremap <A-9> 9gt
+nnoremap H :tabprev<CR>
+nnoremap L :tabnext<CR>
+nnoremap <silent> <A-h> :<C-u>TmuxNavigateLeft<CR>
+nnoremap <silent> <A-j> :<C-u>TmuxNavigateDown<CR>
+nnoremap <silent> <A-k> :<C-u>TmuxNavigateUp<CR>
+nnoremap <silent> <A-l> :<C-u>TmuxNavigateRight<CR>
+nnoremap <silent> <A-H> :<C-u>TmuxResizeLeft<CR>
+nnoremap <silent> <A-J> :<C-u>TmuxResizeDown<CR>
+nnoremap <silent> <A-K> :<C-u>TmuxResizeUp<CR>
+nnoremap <silent> <A-L> :<C-u>TmuxResizeRight<CR>
+nnoremap <silent> <A-=> <C-w>=
+nnoremap <A-w> <C-w>T
+nnoremap <A-z> :only<CR>
 nnoremap <A-x> :quit<CR>
-nnoremap <A-q> :only<CR>
+nnoremap <A-t> :NERDTreeFocus<CR>
+nnoremap <A-q> :copen<CR>
+nnoremap <expr> q empty(filter(getwininfo(), 'v:val.quickfix'))
+  \ ? "q" : ":cclose\<CR>"
 
-" Focus the NERDTree window.
-nnoremap <A-1> :NERDTreeFocus<CR>
+" NERDTree shortcuts:
+" - cd (change cwd to selected directory)
+" - C (change root to selected directory)
+" - u (change root to parent directory)
+" - l (activate node)
+" - h (jump to node's parent)
+" - n (open node in new tab)
+" - s/v (split node horizontally / vertically in same tab)
+" - x/X (close node's parent / descendants)
+" - q (close NERDTree)
+" - m (trigger file manager)
+" - Ctrl-c (close file manager)
+let g:NERDTreeMapActivateNode='l'
+let g:NERDTreeMapJumpParent='h'
+let g:NERDTreeMapOpenInTab='n'
+let g:NERDTreeMapOpenSplit='s'
+let g:NERDTreeMapOpenVSplit='v'
 
 " Show hidden files in the NERDTree window.
 let NERDTreeShowHidden=1
 
-" NERDTree shortcuts:
-" - l (activate node)
-" - h (jump to node's parent)
-" - s/v (split node horizontally / vertically in same tab)
-" - x/X (close node's parent / descendants)
-" - q (close NERDTree)
-let g:NERDTreeMapActivateNode='l'
-let g:NERDTreeMapJumpParent='h'
-let g:NERDTreeMapOpenSplit='s'
-let g:NERDTreeMapOpenVSplit='v'
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1
+  \ && exists('b:NERDTree') && b:NERDTree.isTabTree()
+  \ | call feedkeys(":quit\<CR>:\<BS>") | endif
 
-if !has('ide')
-  " Trigger autocompletion automatically as soon as available.
-  let g:ycm_auto_trigger=1
-  let g:ycm_min_num_of_chars_for_completion=0
+" Close the tab if NERDTree is the only window remaining in it.
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree')
+  \ && b:NERDTree.isTabTree() | call feedkeys(":quit\<CR>:\<BS>") | endif
 
-  " Autocomplete shortcuts:
-  " - Ctrl-Space (trigger autocomplete)
-  " - Tab/Shift-Tab (cycle options)
-  " - Enter/Space (accept option)
-  " - Esc (reject option, via native Vim command)
-  let g:ycm_key_invoke_completion='<C-Space>'
-  let g:ycm_key_list_select_completion=['<Tab>']
-  let g:ycm_key_list_previous_completion=['<S-Tab>']
-  let g:ycm_key_list_stop_completion=['<CR>']
-  inoremap <expr> <Esc> pumvisible() ? "\<C-e>\<Esc>" : "\<Esc>"
+" If another buffer tries to replace NERDTree, put it in the other window, and
+" bring back NERDTree.
+autocmd BufEnter * if winnr() == winnr('h') && bufname('#') =~ 'NERD_tree_\d\+'
+  \ && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 | let buf=bufnr()
+  \ | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
-  " Code navigation actions."
-  nnoremap <Leader>g :YcmCompleter GoTo<CR>
-  nnoremap <Leader>j <C-O>
-  nnoremap <Leader>k <C-I>
+" Open the existing NERDTree on each new tab.
+autocmd BufWinEnter * if &buftype != 'quickfix' && getcmdwintype() == ''
+  \ | silent NERDTreeMirror | endif
+
+" Autocomplete shortcuts:
+" - Ctrl-Space (trigger autocomplete)
+" - Ctrl-n/p (cycle options)
+" - Ctrl-y (accept option)
+" - Ctrl-e (reject option)
+imap <C-@> <C-space>
+imap <C-space> <C-x><C-o>
+
+" Alternative autocomplete shortcuts:
+" - Tab/Shift-Tab (cycle options)
+" - Enter (accept option)
+" - Alt-e (reject option)
+"inoremap <expr> <tab> pumvisible() ? "\<C-n>" : "\<tab>"
+"inoremap <expr> <S-tab> pumvisible() ? "\<C-p>" : "\<S-tab>"
+"inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+"inoremap <expr> <A-e> pumvisible() ? "\<C-e>" : "\<A-e>"
+
+" Enable default autocompletion.
+set omnifunc=syntaxcomplete#Complete
+
+" Show float diagnostics on cursor hover.
+let g:lsp_diagnostics_float_cursor = 1
+
+function! s:on_lsp_buffer_enabled() abort
+  " Enable LSP autocompletion.
+  setlocal omnifunc=lsp#complete
+  setlocal signcolumn=yes
+  if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+
+  " Code completion actions.
+  imap <C-space> <plug>(asyncomplete_force_refresh)
+  "inoremap <expr> <CR> pumvisible() ? asyncomplete#close_popup() : "\<CR>"
+
+  " Code navigation actions.
+  nmap <buffer> <leader>d <plug>(lsp-definition)
+  nmap <buffer> <leader>i <plug>(lsp-implementation)
+  nmap <buffer> <leader>t <plug>(lsp-type-definition)
+
+  " Search actions.
+  nmap <buffer> <leader>s <plug>(lsp-document-symbol-search)
+  nmap <buffer> <leader>S <plug>(lsp-workspace-symbol-search)
 
   " Code inspection actions.
-  nnoremap <Leader>f :YcmCompleter GoToReferences<CR>
-  nmap <Leader>q <Plug>(YCMHover)
+  nmap <buffer> <leader>f <plug>(lsp-references)
+  nmap <buffer> <leader>q <plug>(lsp-hover)
+  nmap <buffer> <leader>e <plug>(lsp-next-diagnostic)
+  nmap <buffer> <leader>E <plug>(lsp-previous-diagnostic)
 
   " Code manipulation actions.
-  nnoremap <Leader>r :YcmCompleter RefactorRename<Space>
-  nnoremap <Leader>o :YcmCompleter OrganizeImports<CR>
-  nnoremap <Leader>= :YcmCompleter Format<CR>
-  nnoremap <A-CR> :YcmCompleter FixIt<CR>
-  inoremap <A-CR> <C-o>:YcmCompleter FixIt<CR>
+  nmap <buffer> <leader>r <plug>(lsp-rename)
+  nmap <buffer> <leader>= <plug>(lsp-document-format)
+  nmap <buffer> <A-CR> <plug>(lsp-code-action)
 
-  " Search and execution actions.
-  nmap <Leader><Tab> <Plug>(YCMFindSymbolInWorkspace)
-endif
+  let g:lsp_format_sync_timeout = 1000
+endfunction
+
+augroup lsp_install
+  au!
+  " Call s:on_lsp_buffer_enabled only for languages that have the server
+  " registered.
+  autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
