@@ -5,7 +5,7 @@ readonly DOTFILES_DIR="$HOME/.dotfiles"
 
 # The list of core packages common to all platforms.
 readonly CORE_PACKAGES=\
-"firefox wget curl git vim tmux lm-sensors tree urlview dos2unix "
+"firefox wget curl git vim tmux lm-sensors tree urlview dos2unix calc "
 
 # Prints the given message in red to stderr.
 function echoerr() {

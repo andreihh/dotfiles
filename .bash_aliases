@@ -27,12 +27,3 @@ alias tmuxw='tmux new -A -s work'
 function echoerr() {
   echo -e "\033[0;31m$@\033[0m" >&2
 }
-
-# Redirects the given math operations to python3.
-function calc() {
-  [[ "$#" -ne 1 ]] \
-    && echo "Usage: ${FUNCNAME[0]} <python3-math-expression>" \
-    && return 1
-
-  python3 -c "from math import *; print($1)"
-}
