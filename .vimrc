@@ -1,5 +1,6 @@
 " ~/.vimrc
-" Requires Vim9+.
+"
+" Requires Vim9+ and Ag.
 
 " Install vim-plug for plugin management if not found.
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -20,6 +21,9 @@ Plug 'udalov/kotlin-vim'  " Kotlin syntax highlight.
 " Better TMUX integration.
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'RyanMillerC/better-vim-tmux-resizer'
+" Fuzzy search with fzf and ag.
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 " Vim LSP plugins.
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete.vim'
@@ -103,6 +107,22 @@ let mapleader=" "
 " Cancels search highlighting in normal mode.
 nnoremap <leader>/ :nohlsearch<CR>
 
+" Fuzzy search with fzf shortcuts:
+" - <leader>-s (search file paths)
+" - <leader>-S (search file contents)
+" - Ctrl-n/p (cycle options)
+" - Enter (open selected option in this buffer)
+" - Ctrl-t (open selected option in new tab)
+" - Ctrl-s (open selected option in horizontal split)
+" - Ctrl-v (open selected option in vertical split)
+" - Esc (cancel search)
+nnoremap <leader>s :Files<CR>
+nnoremap <leader>S :Ag<CR>
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
 " Jump to previous / next location.
 nnoremap <leader>j <C-o>
 nnoremap <leader>k <C-i>
@@ -179,8 +199,6 @@ nnoremap <A-6> 6gt
 nnoremap <A-7> 7gt
 nnoremap <A-8> 8gt
 nnoremap <A-9> 9gt
-nnoremap H :tabprev<CR>
-nnoremap L :tabnext<CR>
 nnoremap <silent> <A-h> :<C-u>TmuxNavigateLeft<CR>
 nnoremap <silent> <A-j> :<C-u>TmuxNavigateDown<CR>
 nnoremap <silent> <A-k> :<C-u>TmuxNavigateUp<CR>
@@ -236,10 +254,6 @@ function! s:on_lsp_buffer_enabled() abort
   nmap <buffer> <leader>d <plug>(lsp-definition)
   nmap <buffer> <leader>i <plug>(lsp-implementation)
   nmap <buffer> <leader>t <plug>(lsp-type-definition)
-
-  " Search actions.
-  nmap <buffer> <leader>s <plug>(lsp-document-symbol-search)
-  nmap <buffer> <leader>S <plug>(lsp-workspace-symbol-search)
 
   " Code inspection actions.
   nmap <buffer> <leader>f <plug>(lsp-references)

@@ -5,7 +5,8 @@
 . "$HOME/.dotfiles/scripts/utils.sh" || exit 1
 
 readonly LINUX_CORE_PACKAGES=\
-"snapd vim.gtk3 xsel xclip zenity tlp linux-tools-common linux-tools-generic "
+"snapd vim.gtk3 xsel xclip silversearcher-ag zenity tlp "
+"linux-tools-common linux-tools-generic "
 
 readonly LATEX_PACKAGES=\
 "texlive texlive-latex-extra texlive-science texlive-fonts-extra latexmk "\
