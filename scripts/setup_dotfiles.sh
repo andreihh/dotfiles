@@ -9,9 +9,9 @@
 . "$HOME/.dotfiles/scripts/utils.sh" || exit 1
 
 readonly DOTFILES=\
-".bashrc .bash_profile .bash_logout .bash_prompt .bash_aliases .exports "\
-".inputrc .editorconfig .vimrc .ideavimrc .tmux.conf "\
-".gitconfig .latexmkrc "
+".bashrc .bash_profile .bash_logout .bash_prompt .bash_aliases .inputrc "\
+".exports .editorconfig .vimrc .tmux.conf .gitconfig .ideavimrc "\
+".latexmkrc .prettierrc .style.yapf .clang-format "
 
 readonly LINUX_DOTFILES=\
 ".platform_utils "

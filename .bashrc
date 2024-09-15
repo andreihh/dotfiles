@@ -44,11 +44,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# Set PATH so it includes user's private bin if it exists.
-if [ -d "$HOME/bin" ]; then
-  PATH="$PATH:$HOME/bin"
-fi
-
 # Load custom configuration files:
 # * `~/.bash_prompt` for custom shell prompt
 # * `~/.bash_aliases` for useful aliases

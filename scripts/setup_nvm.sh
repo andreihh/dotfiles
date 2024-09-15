@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Installs the latest LTS version of NVM on the current system.
+# Installs the latest LTS version of nvm on the current system. Requires curl.
 
 . "$HOME/.dotfiles/scripts/utils.sh" || exit 1
 
@@ -9,8 +9,8 @@ readonly INSTALLER=\
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
-echo "Installing latest LTS version of NVM..."
+echo "Installing latest LTS version of 'nvm'..."
 PROFILE=~/.exports bash -c "curl -o- $INSTALLER | bash" \
   && nvm install --lts \
-  && "NVM installed successfully!" \
-  || echoerr "Failed to install NVM!"
+  && echo "'nvm' installed successfully!" \
+  || echoerr "Failed to install 'nvm'!"

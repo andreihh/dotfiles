@@ -13,7 +13,7 @@ readonly LATEX_PACKAGES=\
 "texlive-bibtex-extra biber "
 
 readonly DEVELOPMENT_PACKAGES=\
-"python3 python3-dev python-is-python3 pylint "\
+"python3 python-is-python3 "\
 "openjdk-18-jdk visualvm "\
 "build-essential cmake "
 
@@ -33,7 +33,7 @@ echo "Updating package index..."
 sudo apt-get update || echoerr "Failed to update package index!"
 
 echo "Installing required packages..."
-install_packages "sudo apt-get install" $PACKAGES
+install_packages "sudo apt-get -y install" $PACKAGES
 
 echo "Updating Snap packages..."
 sudo snap refresh || echoerr "Failed to update Snap packages!"

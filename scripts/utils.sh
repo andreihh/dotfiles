@@ -35,3 +35,11 @@ function install_packages() {
     $installer "$package" || echoerr "Failed to install package '$package'!"
   done
 }
+
+# Downloads the packages located at the given URLs. Requires `wget` or `curl`.
+function download_packages() {
+  for url in "$@"; do
+    echo "Downloading '$url'..."
+    wget "$url" || curl -LO "$url" || echoerr "Failed to download '$url'!"
+  done
+}

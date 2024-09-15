@@ -29,6 +29,10 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'mattn/vim-lsp-settings'
+" Code formatting.
+Plug 'google/vim-maktaba'
+Plug 'google/vim-glaive'
+Plug 'google/vim-codefmt'
 call plug#end()
 
 " Store all backups, swap files and undo histories under /var/tmp (they should
@@ -108,14 +112,14 @@ let mapleader=" "
 nnoremap <leader>/ :nohlsearch<CR>
 
 " Fuzzy search with fzf shortcuts:
-" - <leader>-sf (search file paths)
-" - <leader>-sb (search buffers)
-" - <leader>-ss (search file contents)
+" - <leader>sf (search file paths)
+" - <leader>sb (search buffers)
+" - <leader>ss (search file contents)
 " - Ctrl-n/p (cycle options)
 " - Enter (open option in this buffer)
 " - Ctrl-t (open option in new tab)
 " - Ctrl-s/v (open option in horizontal / vertical split)
-" - Esc (cancel search)
+" - Esc (cancel)
 nnoremap <leader>sf :Files<CR>
 nnoremap <leader>sb :Lines<CR>
 nnoremap <leader>ss :Ag<CR>
@@ -264,15 +268,13 @@ function! s:on_lsp_buffer_enabled() abort
   nmap <buffer> <leader>e <plug>(lsp-next-error)
   nmap <buffer> <leader>E <plug>(lsp-previous-error)
 
-  " Code manipulation actions.
-  nmap <buffer> <leader>r <plug>(lsp-rename)
-  nmap <buffer> <leader>= <plug>(lsp-document-format)
-
-  " Code action shortcuts:
-  " - Alt-Enter (trigger code actions float)
+  " Code actions shortcuts:
+  " - <leader>r (rename)
+  " - Alt-Enter (trigger code actions)
   " - Ctrl-n/p (cycle options)
   " - Enter (accept option)
-  " - Esc (close float)
+  " - Esc (cancel)
+  nmap <buffer> <leader>r <plug>(lsp-rename)
   nmap <buffer> <A-CR> <plug>(lsp-code-action-float)
 
   let g:lsp_format_sync_timeout = 1000
@@ -284,3 +286,7 @@ augroup lsp_install
   " registered.
   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
+
+" Format file or visual selection with <leader>=.
+nnoremap <leader>= :FormatCode<CR>
+vnoremap <leader>= :FormatLines<CR>
