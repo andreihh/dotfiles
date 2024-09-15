@@ -15,15 +15,11 @@ continuation_indent_size = 4
 [*.{sh}]
 continuation_indent_size = 2
 
-[*.{py,pyi}]
-max_line_length = 79
+[*.{py,pyi,kt,kts}]
 indent_size = 4
 
 [*.{kt,kts,java,c,h,cpp,hpp,cc}]
 max_line_length = 100
-
-[*.{kt,kts}]
-indent_size = 4
 
 # Makefiles always use tabs for indentation
 [Makefile]
@@ -36,9 +32,6 @@ ij_continuation_indent_size = 4
 
 [*.{sh}]
 ij_continuation_indent_size = 2
-
-[*.{py,pyi}]
-ij_visual_guides = 79
 
 [*.{kt,kts,java,c,h,cpp,hpp,cc}]
 ij_visual_guides = 100
