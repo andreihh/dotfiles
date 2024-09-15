@@ -15,7 +15,6 @@ Plug 'tpope/vim-sensible'  " Sensible settings.
 Plug 'tpope/vim-surround'  " Better surround motions.
 Plug 'easymotion/vim-easymotion'  " Better navigation motions.
 Plug 'mhinz/vim-signify'  " VCS gutter signs for changed lines.
-Plug 'preservim/nerdtree'  " Integrated file explorer.
 Plug 'doums/darcula'  " IntelliJ dark color scheme.
 Plug 'udalov/kotlin-vim'  " Kotlin syntax highlight.
 " Better TMUX integration.
@@ -126,8 +125,30 @@ let g:tmux_resizer_vertical_resize_count=5
 let g:tmux_navigator_no_mappings=1
 let g:tmux_resizer_no_mappings=1
 
+" File explorer should use tree style and disable the netrw banner.
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+
+" File explorer shortcuts:
+" - R (refresh file explorer)
+" - c (change root to selected directory)
+" - u (change root to parent directory)
+" - j/k (navigate down / up)
+" - l (activate node)
+" - r (rename node)
+" - d (create new directory)
+" - f (create new file)
+" - x (delete node)
+au filetype netrw map <buffer> R <C-l>
+au filetype netrw map <buffer> c gn
+au filetype netrw map <buffer> u -
+au filetype netrw map <buffer> l <CR>
+au filetype netrw map <buffer> r R
+au filetype netrw map <buffer> f %
+au filetype netrw map <buffer> x D
+
 " Required to map the Alt key.
-for key in "n123456789svhjklHJKL=wzxtqe"
+for key in "n123456789svhjklHJKL=bwzxqe"
   execute "set <A-" . key . ">=\e" . key
 endfor
 execute "set <A-CR>=\e\<CR>"
@@ -140,10 +161,10 @@ execute "set <A-CR>=\e\<CR>"
 " - Alt-h/j/k/l (navigate panes)
 " - Alt-H/J/K/L (resize panes)
 " - Alt-= (resize all panes equally)
+" - Alt-b (open file explorer)
 " - Alt-w (break pane into a new tab)
 " - Alt-z (close all panes except current one)
 " - Alt-x (close pane)
-" - Alt-t (focus NERDTree pane)
 " - Alt-q (focus quickfix pane)
 " - q (close quickfix pane)
 nnoremap <A-n> :tabnew<CR>
@@ -169,53 +190,13 @@ nnoremap <silent> <A-J> :<C-u>TmuxResizeDown<CR>
 nnoremap <silent> <A-K> :<C-u>TmuxResizeUp<CR>
 nnoremap <silent> <A-L> :<C-u>TmuxResizeRight<CR>
 nnoremap <silent> <A-=> <C-w>=
+nnoremap <A-b> :Explore<CR>
 nnoremap <A-w> <C-w>T
 nnoremap <A-z> :only<CR>
 nnoremap <A-x> :quit<CR>
-nnoremap <A-t> :NERDTreeFocus<CR>
 nnoremap <A-q> :copen<CR>
 nnoremap <expr> q empty(filter(getwininfo(), 'v:val.quickfix'))
   \ ? "q" : ":cclose\<CR>"
-
-" NERDTree shortcuts:
-" - cd (change cwd to selected directory)
-" - C (change root to selected directory)
-" - u (change root to parent directory)
-" - l (activate node)
-" - h (jump to node's parent)
-" - n (open node in new tab)
-" - s/v (split node horizontally / vertically in same tab)
-" - x/X (close node's parent / descendants)
-" - q (close NERDTree)
-" - m (trigger file manager)
-" - Ctrl-c (close file manager)
-let g:NERDTreeMapActivateNode='l'
-let g:NERDTreeMapJumpParent='h'
-let g:NERDTreeMapOpenInTab='n'
-let g:NERDTreeMapOpenSplit='s'
-let g:NERDTreeMapOpenVSplit='v'
-
-" Show hidden files in the NERDTree window.
-let NERDTreeShowHidden=1
-
-" Exit Vim if NERDTree is the only window remaining in the only tab.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1
-  \ && exists('b:NERDTree') && b:NERDTree.isTabTree()
-  \ | call feedkeys(":quit\<CR>:\<BS>") | endif
-
-" Close the tab if NERDTree is the only window remaining in it.
-autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree')
-  \ && b:NERDTree.isTabTree() | call feedkeys(":quit\<CR>:\<BS>") | endif
-
-" If another buffer tries to replace NERDTree, put it in the other window, and
-" bring back NERDTree.
-autocmd BufEnter * if winnr() == winnr('h') && bufname('#') =~ 'NERD_tree_\d\+'
-  \ && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 | let buf=bufnr()
-  \ | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
-
-" Open the existing NERDTree on each new tab.
-autocmd BufWinEnter * if &buftype != 'quickfix' && getcmdwintype() == ''
-  \ | silent NERDTreeMirror | endif
 
 " Autocomplete shortcuts:
 " - Ctrl-Space (trigger autocomplete)
