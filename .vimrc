@@ -181,7 +181,6 @@ execute "set <A-CR>=\e\<CR>"
 " Control and navigate panes and tabs using Alt:
 " - Alt-n (new tab)
 " - Alt-1/2/.../9 (switch tabs)
-" - H/L (switch to previous / next tab)
 " - Alt-s/v (split pane horizontally / vertically)
 " - Alt-h/j/k/l (navigate panes)
 " - Alt-H/J/K/L (resize panes)
