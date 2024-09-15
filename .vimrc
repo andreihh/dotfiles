@@ -108,15 +108,17 @@ let mapleader=" "
 nnoremap <leader>/ :nohlsearch<CR>
 
 " Fuzzy search with fzf shortcuts:
-" - <leader>-s (search file paths)
-" - <leader>-S (search file contents)
+" - <leader>-sf (search file paths)
+" - <leader>-sb (search buffers)
+" - <leader>-ss (search file contents)
 " - Ctrl-n/p (cycle options)
 " - Enter (open option in this buffer)
 " - Ctrl-t (open option in new tab)
 " - Ctrl-s/v (open option in horizontal / vertical split)
 " - Esc (cancel search)
-nnoremap <leader>s :Files<CR>
-nnoremap <leader>S :Ag<CR>
+nnoremap <leader>sf :Files<CR>
+nnoremap <leader>sb :Lines<CR>
+nnoremap <leader>ss :Ag<CR>
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-s': 'split',
