@@ -111,10 +111,9 @@ nnoremap <leader>/ :nohlsearch<CR>
 " - <leader>-s (search file paths)
 " - <leader>-S (search file contents)
 " - Ctrl-n/p (cycle options)
-" - Enter (open selected option in this buffer)
-" - Ctrl-t (open selected option in new tab)
-" - Ctrl-s (open selected option in horizontal split)
-" - Ctrl-v (open selected option in vertical split)
+" - Enter (open option in this buffer)
+" - Ctrl-t (open option in new tab)
+" - Ctrl-s/v (open option in horizontal / vertical split)
 " - Esc (cancel search)
 nnoremap <leader>s :Files<CR>
 nnoremap <leader>S :Ag<CR>
@@ -271,7 +270,7 @@ function! s:on_lsp_buffer_enabled() abort
   " - Alt-Enter (trigger code actions float)
   " - Ctrl-n/p (cycle options)
   " - Enter (accept option)
-  " - Esc (close code actions float)
+  " - Esc (close float)
   nmap <buffer> <A-CR> <plug>(lsp-code-action-float)
 
   let g:lsp_format_sync_timeout = 1000
