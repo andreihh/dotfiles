@@ -14,6 +14,7 @@ Plug 'editorconfig/editorconfig-vim'  " File encodings, indentation, etc.
 Plug 'tpope/vim-sensible'  " Sensible settings.
 Plug 'tpope/vim-surround'  " Better surround motions.
 Plug 'easymotion/vim-easymotion'  " Better navigation motions.
+Plug 'mhinz/vim-signify'  " VCS gutter signs for changed lines.
 Plug 'preservim/nerdtree'  " Integrated file explorer.
 Plug 'doums/darcula'  " IntelliJ dark color scheme.
 Plug 'udalov/kotlin-vim'  " Kotlin syntax highlight.
@@ -106,6 +107,10 @@ nnoremap <leader>/ :nohlsearch<CR>
 " Jump to previous / next location.
 nnoremap <leader>j <C-o>
 nnoremap <leader>k <C-i>
+
+" Jump to next / previous changed hunk.
+nnoremap <leader>c <plug>(signify-next-hunk)
+nnoremap <leader>C <plug>(signify-prev-hunk)
 
 " Writes all buffers before navigating outside of Vim.
 let g:tmux_navigator_save_on_switch=1
