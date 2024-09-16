@@ -7,6 +7,8 @@
 #
 # Supports Linux and MacOS. Requires `apt` on Linux and `curl` on MacOS.
 
+readonly HOMEBREW_INSTALLER="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
+
 [[ $# -ne 1 ]] && echo "Usage: $0 PACKAGE_INDEX_FILE" && exit 1
 
 echo "Installing packages..."
@@ -29,7 +31,7 @@ case "$OSTYPE" in
     installer="brew install"
     ;;
   *)
-    echo "Platform '$platform' not supported!"
+    echo "Platform '$OSTYPE' not supported!"
     exit 1
     ;;
 esac

@@ -4,8 +4,7 @@
 #
 # Requires `curl`.
 
-readonly INSTALLER=\
-"https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh"
+readonly INSTALLER="https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh"
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 

@@ -24,7 +24,7 @@ readonly BACKUP_DOTFILES="$INSTALLER_DIR/backup_dotfiles.sh"
 readonly INSTALL_DOTFILES="$INSTALLER_DIR/install_dotfiles.sh"
 readonly INSTALL_PACKAGES="$INSTALLER_DIR/install_packages.sh"
 
-[[ $# -lt 1 ]] && echo "Usage: $0 PACKAGE_INDEX SETUP_SCRIPTS..." && exit 1
+[[ $# -lt 1 ]] && echo "Usage: $0 PACKAGE_INDEX_FILE SETUP_SCRIPTS..." && exit 1
 
 echo "Installing dotfiles repository..."
 
@@ -37,7 +37,8 @@ rm master.zip
 mv .dotfiles-master "$DOTFILES_DIR"
 
 echo "Running backup and install scripts..."
-package_index="$1"; shift
+package_index="$1"
+shift
 chmod +x "$BACKUPDOTFILES" "$INSTALL_DOTFILES" "$INSTALL_PACKAGES"
 "$BACKUP_DOTFILES" "$BACKUP_DIR"
 "$INSTALL_DOTFILES"

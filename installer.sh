@@ -4,8 +4,7 @@
 #
 # Supports Linux and MacOS. Requires `curl`.
 
-readonly GH_ROOT=\
-"https://raw.githubusercontent.com/andreihh/.dotfiles/master/installer"
+readonly GH_ROOT="https://raw.githubusercontent.com/andreihh/.dotfiles/master/installer"
 readonly INSTALLER_DIR="$HOME/.dotfiles/installer"
 readonly INSTALLER="install.sh"
 
@@ -23,7 +22,7 @@ esac
 shopt -u nocasematch
 
 package_index="$INSTALLER_DIR/$platform/package_index.txt"
-setup_scripts=$(echo "$INSTALLER_DIR"{,/linux}/setup_*.sh)
+setup_scripts=$(echo "$INSTALLER_DIR"{,/$platform}/setup_*.sh)
 
 echo "Downloading installer..."
 curl -LO "$GH_ROOT/$INSTALLER"
