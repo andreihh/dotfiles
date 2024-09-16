@@ -23,8 +23,8 @@ function remindme() {
     if [[ ! "$1" =~ $pattern ]]; then
       echo "Invalid duration!" && return 1
     fi
-    ( nohup sleep $1 &>/dev/null \
-      && zenity --info --text "$2" &>/dev/null & )
+    (nohup sleep $1 &>/dev/null \
+      && zenity --info --text "$2" &>/dev/null &)
   else
     echo "zenity not installed!" && return 1
   fi

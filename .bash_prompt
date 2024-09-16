@@ -9,7 +9,7 @@ _config_prompt() {
   # Set a fancy prompt.
   local color_prompt=
   case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes ;;
+    xterm-color | *-256color) color_prompt=yes ;;
   esac
 
   if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -79,11 +79,10 @@ _config_prompt() {
 
   # If this is an xterm, set the title to user@host:dir.
   case "$TERM" in
-    xterm*|rxvt*)
+    xterm* | rxvt*)
       PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \W\a\]$PS1"
       ;;
-    *)
-      ;;
+    *) ;;
   esac
 
   echo -ne '\e]10;#a9b7c6\e\\' # set foreground to match Darcula
