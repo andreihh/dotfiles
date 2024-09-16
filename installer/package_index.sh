@@ -6,7 +6,7 @@ readonly CORE_PACKAGES=\
 
 # Linux core packages (available through `apt`).
 readonly LINUX_CORE_PACKAGES=\
-"vim.gtk3 xsel silversearcher-ag xclip zenity tlp snapd "\
+"vim.gtk3 xsel silversearcher-ag xclip zenity tlp "\
 "linux-tools-common linux-tools-generic "
 
 # MacOS core packages (available through `brew`).
@@ -36,6 +36,10 @@ readonly MACOS_DEVELOPMENT_PACKAGES=\
 "gcc cmake clang-format "\
 "shfmt prettier "
 
+# MacOS GUI development packages (available through `brew --cask`)
+readonly MACOS_GUI_DEVELOPMENT_PACKAGES=\
+"intellij-idea-ce "
+
 # Common media CLI packages (available both through `apt` and `brew`).
 readonly MEDIA_CLI_PACKAGES=\
 "pdftk-java ffmpeg graphviz plantuml "
@@ -63,4 +67,5 @@ readonly MACOS_PACKAGES=\
 
 # All required GUI MacOS packages (available through `brew --cask`).
 readonly MACOS_GUI_PACKAGES=\
+"$MACOS_GUI_DEVELOPMENT_PACKAGES "\
 "$MEDIA_GUI_PACKAGES "

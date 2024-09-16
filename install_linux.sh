@@ -15,6 +15,8 @@ readonly SCRIPTS=\
 "$SCRIPTS_DIR/linux/setup_swappiness.sh "\
 "$SCRIPTS_DIR/linux/setup_sleep.sh "\
 "$SCRIPTS_DIR/linux/setup_tlp.sh "\
+"$SCRIPTS_DIR/linux/setup_intellij.sh"\
+"$SCRIPTS_DIR/linux/setup_dropbox.sh"\
 "$SCRIPTS_DIR/setup_tpm.sh "\
 "$SCRIPTS_DIR/setup_nvm.sh "\
 "$SCRIPTS_DIR/setup_pip.sh "\

@@ -6,8 +6,7 @@
 
 readonly BIN="$HOME/.local/bin"
 
-readonly
-GOOGLE_JAVA_FORMAT_BIN="google-java-format_linux-x86-64"
+readonly GOOGLE_JAVA_FORMAT_BIN="google-java-format_linux-x86-64"
 readonly GOOGLE_JAVA_FORMAT=\
 "https://github.com/google/google-java-format/releases/download/v1.23.0/"\
 "$GOOGLE_JAVA_FORMAT_BIN"

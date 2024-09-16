@@ -13,17 +13,4 @@ sudo apt-get update || echoerr "Failed to update package index!"
 echo "Installing required packages..."
 install_packages "sudo apt-get -y install" $LINUX_PACKAGES
 
-echo "Updating Snap packages..."
-sudo snap refresh || echoerr "Failed to update Snap packages!"
-
-echo "Installing Snap packages..."
-install packages "sudo snap install" intellij-idea-community --classic
-
-# See headless installation instructions on https://dropbox.com/install-linux.
-echo "Installing Dropbox..."
-readonly DROPBOX="https://www.dropbox.com/download?plat=lnx.x86_64"
-cd ~ && wget -O - "$DROPBOX" | tar xzf - \
-  && ~/.dropbox-dist/dropboxd \
-  || echoerr "Failed to install Dropbox!"
-
 echo "Packages installed!"
