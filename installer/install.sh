@@ -83,7 +83,7 @@ for script in $setup_scripts; do
   if "$script"; then
     echo "Script '$script' ran successfully!"
   else
-    echo -e "\033[0;31m$@\033[0m" "Script '$script' failed!" >&2
+    echo -e "\033[0;31mScript '$script' failed!\033[0m" >&2
   fi
 done
 
