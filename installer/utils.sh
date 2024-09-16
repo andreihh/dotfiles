@@ -3,10 +3,6 @@
 # The standard location of the dotfiles repository.
 readonly DOTFILES_DIR="$HOME/.dotfiles"
 
-# The list of core packages common to all platforms.
-readonly CORE_PACKAGES=\
-"firefox wget curl git vim tmux lm-sensors tree urlview calc dos2unix "
-
 # Prints the given message in red to stderr.
 function echoerr() {
   echo -e "\033[0;31m$@\033[0m" >&2

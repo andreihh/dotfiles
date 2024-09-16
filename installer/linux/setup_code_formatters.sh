@@ -32,7 +32,6 @@ npm install --save-dev --save-exact prettier \
   && echo "'prettier' installed successfully!" \
   || echoerr "Failed to install 'prettier'!"
 
-install_packages "sudo apt-get -y install" "shfmt" "clang-format"
 download_packages "$GOOGLE_JAVA_FORMAT" "$KTFMT"
 
 echo "Setting up wrappers..."
