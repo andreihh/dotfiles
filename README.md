@@ -8,7 +8,7 @@ alongside an installation script.
 To install the dotfiles, run the following commands (requires `curl`):
 
 ```
-GH_ROOT="https://raw.githubusercontent.com/andreihh/.dotfiles/master/installer"
+GH_ROOT="https://raw.githubusercontent.com/andreihh/.dotfiles/master"
 curl -LO "$GH_ROOT/installer.sh"
 chmod +x installer.sh
 ./installer.sh
