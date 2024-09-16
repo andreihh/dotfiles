@@ -8,11 +8,19 @@
 #
 # After the installation is complete, it sets up the remote git repository.
 #
+# If no setup scripts are provided, it will run all scripts that match the
+# 'setup_*.sh' pattern.
+#
+# If no arguments are provided, it will use the platform-specific
+# 'package_index.txt'.
+#
 # If any step in the installation fails, you may fix the issues manually and
 # run this script again. However, you must move any generated backups to a
 # different location.
 #
 # Supports Linux and MacOS. Requires `unzip` and `curl`.
+#
+# Usage: $0 [PACKAGE_INDEX_FILE] [SETUP_SCRIPTS...]
 
 readonly DOTFILES_DIR="$HOME/.dotfiles"
 readonly BACKUP_DIR="$HOME/.dotfiles.bak"
@@ -25,9 +33,18 @@ readonly BACKUP_DOTFILES="$INSTALLER_DIR/backup_dotfiles.sh"
 readonly INSTALL_DOTFILES="$INSTALLER_DIR/install_dotfiles.sh"
 readonly INSTALL_PACKAGES="$INSTALLER_DIR/install_packages.sh"
 
-[[ $# -lt 1 ]] && echo "Usage: $0 PACKAGE_INDEX_FILE SETUP_SCRIPTS..." && exit 1
-
 echo "Installing dotfiles repository..."
+
+shopt -s nocasematch
+case "$OSTYPE" in
+  linux*) platform="linux" ;;
+  darwin*) platform="macos" ;;
+  *)
+    echo "Platform '$OSTYPE' not supported!"
+    exit 1
+    ;;
+esac
+shopt -u nocasematch
 
 echo "Downloading repository..."
 curl -LO "$REPO_ZIP"
@@ -37,16 +54,27 @@ unzip master.zip
 rm master.zip
 mv .dotfiles-master "$DOTFILES_DIR"
 
+if [[ $# -gt 0 ]]; then
+  package_index="$1"
+  shift
+else
+  package_index="$INSTALLER_DIR/$platform/package_index.txt"
+fi
+
 echo "Running backup and install scripts..."
-package_index="$1"
-shift
 chmod +x "$BACKUP_DOTFILES" "$INSTALL_DOTFILES" "$INSTALL_PACKAGES"
 "$BACKUP_DOTFILES" "$BACKUP_DIR"
 "$INSTALL_DOTFILES"
 "$INSTALL_PACKAGES" "$package_index"
 
+if [[ $# -gt 0 ]]; then
+  setup_scripts="$@"
+else
+  setup_scripts=$(echo "$INSTALLER_DIR"{,/$platform}/setup_*.sh)
+fi
+
 echo "Running setup scripts..."
-for script in "$@"; do
+for script in "$setup_scripts"; do
   echo "Running script '$script'..."
   chmod +x "$script"
   "$script"

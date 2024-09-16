@@ -8,11 +8,11 @@ alongside an installation script.
 To install the dotfiles, run the following commands (requires `curl`):
 
 ```
-GH_ROOT="https://raw.githubusercontent.com/andreihh/.dotfiles/master"
-curl -LO "$GH_ROOT/installer.sh"
-chmod +x installer.sh
-./installer.sh
-rm installer.sh
+GH_ROOT="https://raw.githubusercontent.com/andreihh/.dotfiles/master/installer"
+curl -LO "$GH_ROOT/install.sh"
+chmod +x install.sh
+./install.sh
+rm install.sh
 ```
 
 To install the VIM plugins, run `vim` and type `:PlugInstall`.
