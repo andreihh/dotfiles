@@ -23,7 +23,7 @@ pip install yapf
 
 echo "Installing prettier..."
 npm install --save-dev --save-exact prettier
-npx prettier
+npx prettier --version
 
 for url in "$GOOGLE_JAVA_FORMAT" "$KTFMT"; do
   echo "Downloading '$url'..."
