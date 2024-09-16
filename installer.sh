@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 # Installs dotfiles.
 #
@@ -15,7 +15,10 @@ shopt -s nocasematch
 case "$OSTYPE" in
   linux*) platform="linux" ;;
   darwin*) platform="macos" ;;
-  *) echo "Platform '$OSTYPE' not supported!"; exit 1 ;;
+  *)
+    echo "Platform '$OSTYPE' not supported!"
+    exit 1
+    ;;
 esac
 shopt -u nocasematch
 
@@ -23,10 +26,13 @@ package_index="$INSTALLER_DIR/$platform/package_index.txt"
 setup_scripts=$(echo "$INSTALLER_DIR"{,/linux}/setup_*.sh)
 
 echo "Downloading installer..."
-curl -LO "$GH_ROOT/$INSTALLER" || exit 1
+curl -LO "$GH_ROOT/$INSTALLER"
 
 echo "Running installer..."
-chmod +x "$INSTALLER" \
-  && ./"$INSTALLER" "$platform" "$package_index" $setup_scripts \
-  && rm "$INSTALLER" \
-  || exit 1
+chmod +x "$INSTALLER"
+./"$INSTALLER" "$package_index" $setup_scripts
+
+echo "Removing installer..."
+rm "$INSTALLER"
+
+echo "Installation complete!"

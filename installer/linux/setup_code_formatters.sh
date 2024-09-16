@@ -1,8 +1,6 @@
-#!/bin/bash
+#!/bin/bash -e
 
 # Installs code formatters specific for Linux systems.
-
-. "$HOME/.dotfiles/scripts/utils.sh" || exit 1
 
 readonly BIN="$HOME/.local/bin"
 
@@ -18,31 +16,30 @@ readonly KTFMT=\
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
 echo "Installing code formatters to '$BIN'..."
-mkdir -p "$BIN" && cd "$BIN" || exit 1
 
-echo "Installing 'yapf'..."
-pip install yapf \
-  && echo "'yapf' installed successfully!" \
-  || echoerr "Failed to install 'yapf'!"
+echo "Ensuring '$BIN' exists..."
+mkdir -p "$BIN"
+cd "$BIN"
 
-echo "Installing 'prettier'..."
-npm install --save-dev --save-exact prettier \
-  && npx prettier \
-  && echo "'prettier' installed successfully!" \
-  || echoerr "Failed to install 'prettier'!"
+echo "Installing yapf..."
+pip install yapf
 
-download_packages "$GOOGLE_JAVA_FORMAT" "$KTFMT"
+echo "Installing prettier..."
+npm install --save-dev --save-exact prettier
+npx prettier
+
+for url in "$GOOGLE_JAVA_FORMAT" "$KTFMT"; do
+  echo "Downloading '$url'..."
+  curl -LO "$url"
+done
 
 echo "Setting up wrappers..."
-
 ln -s -T "$BIN/$GOOGLE_JAVA_FORMAT_BIN" "$BIN/google-java-format"
-
 cat << EOF > ktfmt
 #!/bin/bash
 
 java -jar $BIN/$KTFMT_BIN --google-style "\$@"
 EOF
-
 chmod +x google-java-format ktfmt
 
 echo "Code formatters installed!"

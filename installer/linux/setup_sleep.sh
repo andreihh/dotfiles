@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 # Configures device sleep modes.
 
@@ -14,10 +14,9 @@ if [[ ! -f "$SLEEP_CONFIG" ]]; then
   exit 1
 fi
 
+echo "Ensuring the device sleep modes config directory exists..."
 sudo mkdir -p "$SLEEP_CONFIGS_DIR"
-if sudo ln -sfv "$SLEEP_CONFIG" "$SLEEP_CONFIGS_DIR/00-sleep.conf"; then
-  echo "Configured device sleep modes successfully!"
-else
-  echo "Failed to configure device sleep modes!"
-  exit 1
-fi
+
+echo "Setting up device sleep modes config..."
+sudo ln -sfv "$SLEEP_CONFIG" "$SLEEP_CONFIGS_DIR/00-sleep.conf"
+echo "Configured device sleep modes successfully!"

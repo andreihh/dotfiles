@@ -1,34 +1,34 @@
-#!/bin/bash
+#!/bin/bash -e
 
-# Installs the `~/.dotfiles` for the specified system ('linux' or 'macos') as
-# symlinks in the home directory.
+# Installs the `~/.dotfiles` as symlinks in the home directory.
 #
 # If installing a single file fails, aborts the installation and reports the
 # failure.
+#
+# Supports Linux and MacOS.
 
-[[ $# -ne 1 ]] && echo "Usage: $0 linux|macos" && exit 1
+[[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
 echo "Installing dotfiles..."
 
-platform="$1"
-case "$platform" in
-  linux) ;;
-  macos) ;;
-  *) echo "Platform '$platform' not supported!"; exit 1 ;;
+shopt -s nocasematch
+case "$OSTYPE" in
+  linux*) platform="linux" ;;
+  darwin*) platform="macos" ;;
+  *)
+    echo "Platform '$OSTYPE' not supported!"
+    exit 1
+    ;;
 esac
+shopt -u nocasematch
 
 for file in "$HOME/.dotfiles"{,/$platform}/.[!.]*; do
   if [[ ! -f "$file" ]]; then
     continue
   fi
-  filename=$(basename "$file")
   echo "Installing dotfile '$file'..."
-  if ln -sfv "$file" "$HOME/$filename"; then
-    echo "Installed '$file' successfully!"
-  else
-    echo "Failed to install '$file'!"
-    exit 1
-  fi
+  filename=$(basename "$file")
+  ln -sfv "$file" "$HOME/$filename"
 done
 
-echo "Dotfiles installed!"
+echo "Dotfiles installed successfully!"

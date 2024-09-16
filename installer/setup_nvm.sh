@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/bash -e
 
-# Installs the latest LTS version of nvm on the current system.
+# Installs the latest LTS version of `nvm`.
 #
 # Requires `curl`.
 
@@ -9,11 +9,7 @@ readonly INSTALLER=\
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
-echo "Installing latest LTS version of 'nvm'..."
+echo "Installing latest LTS version of nvm..."
 PROFILE=~/.exports bash -c "curl -o- $INSTALLER | bash"
-if nvm install --lts; then
-  echo "'nvm' installed successfully!"
-else
-  echo "Failed to install 'nvm'!"
-  exit 1
-fi
+nvm install --lts
+echo "Installed nvm successfully!"
