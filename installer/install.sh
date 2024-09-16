@@ -74,7 +74,7 @@ else
 fi
 
 echo "Running setup scripts..."
-for script in "$setup_scripts"; do
+for script in $setup_scripts; do
   echo "Running script '$script'..."
   chmod +x "$script"
   "$script"
