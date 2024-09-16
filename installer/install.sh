@@ -46,6 +46,9 @@ case "$OSTYPE" in
 esac
 shopt -u nocasematch
 
+echo "Cleaning up prior installations..."
+rm -rf master.zip .dotfiles-master/ "$DOTFILES_DIR/"
+
 echo "Downloading repository..."
 curl -LO "$REPO_ZIP"
 
