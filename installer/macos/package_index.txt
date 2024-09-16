@@ -1,0 +1,11 @@
+firefox; wget; curl; git; vim; tmux; lm-sensors; tree; urlview; calc; dos2unix;
+reattach-to-user-namespace; the_silver_searcher; pngpaste;
+
+mactex; biber;
+
+python3; yapf;
+openjdk; google-java-format; ktfmt; --cask intellij-idea-ce;
+gcc; cmake; clang-format;
+shfmt; prettier;
+
+pdftk-java; ffmpeg; graphviz; plantuml; --cask keepassxc; --cask vlc;

@@ -1,0 +1,13 @@
+firefox; wget; curl; git; vim; tmux; lm-sensors; tree; urlview; calc; dos2unix;
+vim.gtk3; xsel; silversearcher-ag; xclip; zenity; tlp;
+linux-tools-common; linux-tools-generic;
+
+texlive; texlive-latex-extra; texlive-science; texlive-fonts-extra; latexmk;
+texlive-bibtex-extra; biber;
+
+python3; python-is-python3;
+openjdk-21-jdk;
+build-essential; cmake clang-format;
+shfmt;
+
+pdftk-java; ffmpeg; graphviz; plantuml; keepassxc; vlc;

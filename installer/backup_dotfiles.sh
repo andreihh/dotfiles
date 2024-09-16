@@ -3,7 +3,7 @@
 # Backs up all dotfiles to the given directory.
 #
 # If the backup directory already exists or a single file backup fails, aborts
-# the backup and reports a failure.
+# the backup and reports the failure.
 
 [[ $# -ne 1 ]] && echo "Usage: $0 BACKUP_DIR" && exit 1
 

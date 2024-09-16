@@ -5,15 +5,14 @@ alongside an installation script.
 
 ### Installation
 
-To install the dotfiles, run the following commands (requires `wget` or `curl`):
+To install the dotfiles, run the following commands (requires `curl`):
 
 ```
-GH_ROOT="https://raw.githubusercontent.com/andreihh/.dotfiles/master"
-INSTALLER="install_${platform}.sh"
-wget "$GH_ROOT/$INSTALLER" || curl -LO "$GH_ROOT/$INSTALLER"
-chmod +x "$INSTALLER"
-./"$INSTALLER"
-rm "$INSTALLER"
+GH_ROOT="https://raw.githubusercontent.com/andreihh/.dotfiles/master/installer"
+curl -LO "$GH_ROOT/installer.sh"
+chmod +x installer.sh
+./installer.sh
+rm installer.sh
 ```
 
 To install the VIM plugins, run `vim` and type `:PlugInstall`.
