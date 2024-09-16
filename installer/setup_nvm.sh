@@ -10,5 +10,6 @@ readonly INSTALLER="https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install
 
 echo "Installing latest LTS version of nvm..."
 PROFILE=~/.exports bash -c "curl -o- $INSTALLER | bash"
+. ~/.exports
 nvm install --lts
 echo "Installed nvm successfully!"

@@ -33,6 +33,11 @@ readonly BACKUP_DOTFILES="$INSTALLER_DIR/backup_dotfiles.sh"
 readonly INSTALL_DOTFILES="$INSTALLER_DIR/install_dotfiles.sh"
 readonly INSTALL_PACKAGES="$INSTALLER_DIR/install_packages.sh"
 
+# Prints the given message in red to stderr.
+function echoerr() {
+  echo -e "\033[0;31m$@\033[0m" >&2
+}
+
 echo "Installing dotfiles repository..."
 
 shopt -s nocasematch
@@ -83,7 +88,7 @@ for script in $setup_scripts; do
   if "$script"; then
     echo "Script '$script' ran successfully!"
   else
-    echo -e "\033[0;31mScript '$script' failed!\033[0m" >&2
+    echoerr "Script '$script' failed!" >&2
   fi
 done
 
