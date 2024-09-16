@@ -31,7 +31,7 @@ for url in "$GOOGLE_JAVA_FORMAT" "$KTFMT"; do
 done
 
 echo "Setting up wrappers..."
-ln -s -T "$BIN/$GOOGLE_JAVA_FORMAT_BIN" "$BIN/google-java-format"
+ln -svf "$BIN/$GOOGLE_JAVA_FORMAT_BIN" "$BIN/google-java-format"
 cat << EOF > ktfmt
 #!/bin/bash
 
