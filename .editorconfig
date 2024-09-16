@@ -25,6 +25,11 @@ max_line_length = 100
 [Makefile]
 indent_style = tab
 
+# shfmt
+[*.{sh}]
+switch_case_indent = true
+binary_next_line = true
+
 # IntelliJ
 [*]
 ij_visual_guides = 80
