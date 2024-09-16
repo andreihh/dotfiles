@@ -7,7 +7,7 @@
 readonly GH_ROOT="https://raw.githubusercontent.com/andreihh/.dotfiles/master"
 readonly INSTALLER="install.sh"
 readonly SCRIPTS_DIR="$HOME/.dotfiles/scripts"
-readonly BACKUP_SCRIPT="$SCRIPTS_DIR/backup.sh"
+readonly BACKUP_SCRIPT="$SCRIPTS_DIR/backup_dotfiles.sh"
 readonly SCRIPTS=\
 "$SCRIPTS_DIR/setup_dotfiles.sh "\
 "$SCRIPTS_DIR/linux/setup_packages.sh "\
