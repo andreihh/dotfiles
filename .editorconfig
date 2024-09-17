@@ -21,8 +21,8 @@ indent_size = 4
 [*.{kt,kts,java,c,h,cpp,hpp,cc}]
 max_line_length = 100
 
-# Makefiles always use tabs for indentation
-[Makefile]
+# Makefiles and .gitconfig always use tabs for indentation
+[{Makefile,.gitconfig}]
 indent_style = tab
 
 # shfmt

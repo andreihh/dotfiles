@@ -1,11 +1,11 @@
-[color]
-    branch = auto
-    diff = auto
-    status = auto
-    grep = auto
+[core]
+	excludesfile = ~/.ignore
 
-[alias]
-    xl = log --graph --all --decorate --oneline
+[color]
+	ui = auto
 
 [credential "https://github.com"]
-    helper = store
+	helper = store
+
+[alias]
+	xl = log --graph --all --decorate --oneline
