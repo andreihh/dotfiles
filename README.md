@@ -15,10 +15,6 @@ chmod +x install.sh
 rm install.sh
 ```
 
-To install the VIM plugins, run `vim` and type `:PlugInstall`.
-
-To install the TMUX plugins, run `tmuxw` and type `Alt-a + I`.
-
 ### Private `~/.extras`
 
 The `~/.extras` file should not be persisted across devices, and therefore is

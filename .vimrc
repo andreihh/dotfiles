@@ -44,6 +44,9 @@ set undodir=/var/tmp//,/tmp//
 " Use the system clipboard.
 set clipboard=unnamedplus
 
+" Always assume unix-style files.
+set fileformats=unix
+
 " When wrap is set to off lines will not wrap.
 set nowrap
 
@@ -112,17 +115,15 @@ let mapleader=" "
 nnoremap <leader>/ :nohlsearch<CR>
 
 " Fuzzy search with fzf shortcuts:
-" - <leader>sf (search file paths)
-" - <leader>sb (search buffers)
-" - <leader>ss (search file contents)
+" - <leader>s (search file paths)
+" - <leader>S (search everywhere)
 " - Ctrl-n/p (cycle options)
 " - Enter (open option in this buffer)
 " - Ctrl-t (open option in new tab)
 " - Ctrl-s/v (open option in horizontal / vertical split)
 " - Esc (cancel)
-nnoremap <leader>sf :Files<CR>
-nnoremap <leader>sb :Lines<CR>
-nnoremap <leader>ss :Ag<CR>
+nnoremap <leader>s :Files<CR>
+nnoremap <leader>S :Rg<CR>
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-s': 'split',

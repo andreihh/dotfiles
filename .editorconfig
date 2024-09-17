@@ -15,7 +15,7 @@ continuation_indent_size = 4
 [*.{sh}]
 continuation_indent_size = 2
 
-[*.{py,pyi,kt,kts}]
+[*.{py,pyi}]
 indent_size = 4
 
 [*.{kt,kts,java,c,h,cpp,hpp,cc}]

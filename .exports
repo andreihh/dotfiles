@@ -13,6 +13,9 @@ export EDITOR='vim'
 # Make Firefox the default browser.
 export BROWSER='firefox'
 
+# Make fzf use ripgrep to search only file paths with smart case by default.
+export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case'
+
 # Export the JRE for apps that rely on `$JAVA_HOME`.
 export JAVA_HOME=$(readlink -e "/usr/bin/java" | sed "s:/bin/java::")
 

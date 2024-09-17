@@ -1,7 +1,7 @@
-firefox; wget; curl; git; vim; tmux; lm-sensors; tree; urlview; calc; dos2unix;
+firefox; curl; wget; git; vim; tmux; ripgrep; tree; urlview; lm-sensors; calc; dos2unix;
 reattach-to-user-namespace; the_silver_searcher; pngpaste;
 
-mactex; biber;
+--cask mactex; biber;
 
 python3; yapf;
 openjdk; google-java-format; ktfmt; --cask intellij-idea-ce;

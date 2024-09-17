@@ -9,10 +9,14 @@ readonly TMUX_TPM_DIR="$HOME/.tmux/plugins/tpm"
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
-echo "Setting up Tmux Plugin Manager..."
+echo "Installing Tmux Plugin Manager..."
 if [[ ! -d "$TMUX_TPM_DIR" ]]; then
   git clone "$TMUX_TPM_GITHUB_REPO" "$TMUX_TPM_DIR"
-  echo "Tmux Plugin Manager setup completed!"
+  echo "Tmux Plugin Manager installed successfully!"
 else
   echo "Tmux Plugin Manager already installed!"
 fi
+
+echo "Installing Tmux plugins..."
+~/.tmux/plugins/tpm/scripts/install_plugins.sh
+echo "Tmux plugins installed!"
