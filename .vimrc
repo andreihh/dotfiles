@@ -115,15 +115,15 @@ let mapleader=" "
 nnoremap <leader>/ :nohlsearch<CR>
 
 " Fuzzy search with fzf shortcuts:
-" - <leader>s (search file paths)
-" - <leader>S (search everywhere)
+" - <leader>o (search file paths)
+" - <leader>s (search everywhere)
 " - Ctrl-n/p (cycle options)
 " - Enter (open option in this buffer)
 " - Ctrl-t (open option in new tab)
 " - Ctrl-s/v (open option in horizontal / vertical split)
 " - Esc (cancel)
-nnoremap <leader>s :Files<CR>
-nnoremap <leader>S :Rg<CR>
+nnoremap <leader>o :Files<CR>
+nnoremap <leader>s :Rg<CR>
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-s': 'split',
@@ -270,12 +270,12 @@ function! s:on_lsp_buffer_enabled() abort
 
   " Code actions shortcuts:
   " - <leader>r (rename)
-  " - Alt-Enter (trigger code actions)
+  " - <leader>a (trigger code actions)
   " - Ctrl-n/p (cycle options)
   " - Enter (accept option)
   " - Esc (cancel)
   nmap <buffer> <leader>r <plug>(lsp-rename)
-  nmap <buffer> <A-CR> <plug>(lsp-code-action-float)
+  nmap <buffer> <leader>a <plug>(lsp-code-action-float)
 
   let g:lsp_format_sync_timeout = 1000
 endfunction
