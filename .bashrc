@@ -54,3 +54,8 @@ for file in ~/.{bash_prompt,bash_aliases,exports,platform_utils,extras}; do
   [ -f "$file" ] && . "$file"
 done
 unset file
+
+# Set up fzf key bindings and fuzzy completion.
+if command -v fzf &>/dev/null; then
+  eval "$(fzf --bash)"
+fi
