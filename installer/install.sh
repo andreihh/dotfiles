@@ -1,3 +1,4 @@
+
 #!/bin/bash -e
 
 # Downloads the dotfiles repository and runs:
@@ -22,13 +23,11 @@
 #
 # Usage: $0 [PACKAGE_INDEX_FILE] [SETUP_SCRIPTS...]
 
-readonly DOTFILES_DIR="$HOME/.dotfiles"
-readonly BACKUP_DIR="$HOME/.dotfiles.bak"
 readonly REPO="https://github.com/andreihh/.dotfiles"
 readonly BRANCH="main"
 readonly REPO_ZIP="$REPO/archive/$BRANCH.zip"
 
-readonly INSTALLER_DIR="$DOTFILES_DIR/installer"
+readonly INSTALLER_DIR="$HOME/.dotfiles/installer"
 readonly BACKUP_DOTFILES="$INSTALLER_DIR/backup_dotfiles.sh"
 readonly INSTALL_DOTFILES="$INSTALLER_DIR/install_dotfiles.sh"
 readonly INSTALL_PACKAGES="$INSTALLER_DIR/install_packages.sh"
@@ -52,7 +51,7 @@ esac
 shopt -u nocasematch
 
 echo "Cleaning up prior installations..."
-rm -rf "$BRANCH.zip" ".dotfiles-$BRANCH/" "$DOTFILES_DIR/"
+rm -rf "$BRANCH.zip" ".dotfiles-$BRANCH/" "$HOME/.dotfiles/"
 
 echo "Downloading repository..."
 curl -LO "$REPO_ZIP"
@@ -60,7 +59,7 @@ curl -LO "$REPO_ZIP"
 echo "Unpacking repository..."
 unzip "$BRANCH.zip"
 rm "$BRANCH.zip"
-mv ".dotfiles-$BRANCH" "$DOTFILES_DIR"
+mv ".dotfiles-$BRANCH" "$HOME/.dotfiles"
 
 if [[ $# -gt 0 ]]; then
   package_index="$1"
@@ -71,7 +70,7 @@ fi
 
 echo "Running backup and install scripts..."
 chmod +x "$BACKUP_DOTFILES" "$INSTALL_DOTFILES" "$INSTALL_PACKAGES"
-"$BACKUP_DOTFILES" "$BACKUP_DIR"
+"$BACKUP_DOTFILES" "$HOME/.dotfiles.bak"
 "$INSTALL_DOTFILES"
 "$INSTALL_PACKAGES" "$package_index"
 
@@ -93,7 +92,7 @@ for script in $setup_scripts; do
 done
 
 echo "Initializing remote git repository..."
-cd "$DOTFILES_DIR"
+cd "$HOME/.dotfiles"
 git init
 git remote add origin "$REPO.git"
 git fetch
