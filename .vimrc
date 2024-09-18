@@ -133,6 +133,9 @@ let g:fzf_action = {
 nnoremap <leader>j <C-o>
 nnoremap <leader>k <C-i>
 
+" Jump to file under cursor.
+nnoremap <leader>g gf
+
 " Jump to next / previous changed hunk.
 nnoremap <leader>c <plug>(signify-next-hunk)
 nnoremap <leader>C <plug>(signify-prev-hunk)
