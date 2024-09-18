@@ -24,9 +24,9 @@
 
 readonly DOTFILES_DIR="$HOME/.dotfiles"
 readonly BACKUP_DIR="$HOME/.dotfiles.bak"
-readonly GITHUB_REPO="https://github.com/andreihh/.dotfiles"
-readonly REPO_ZIP="$GITHUB_REPO/archive/master.zip"
-readonly REPO_GIT="$GITHUB_REPO.git"
+readonly REPO="https://github.com/andreihh/.dotfiles"
+readonly BRANCH="main"
+readonly REPO_ZIP="$REPO/archive/$BRANCH.zip"
 
 readonly INSTALLER_DIR="$DOTFILES_DIR/installer"
 readonly BACKUP_DOTFILES="$INSTALLER_DIR/backup_dotfiles.sh"
@@ -52,15 +52,15 @@ esac
 shopt -u nocasematch
 
 echo "Cleaning up prior installations..."
-rm -rf master.zip .dotfiles-master/ "$DOTFILES_DIR/"
+rm -rf "$BRANCH.zip" ".dotfiles-$BRANCH/" "$DOTFILES_DIR/"
 
 echo "Downloading repository..."
 curl -LO "$REPO_ZIP"
 
 echo "Unpacking repository..."
-unzip master.zip
-rm master.zip
-mv .dotfiles-master "$DOTFILES_DIR"
+unzip "$BRANCH.zip"
+rm "$BRANCH.zip"
+mv ".dotfiles-$BRANCH" "$DOTFILES_DIR"
 
 if [[ $# -gt 0 ]]; then
   package_index="$1"
@@ -95,8 +95,8 @@ done
 echo "Initializing remote git repository..."
 cd "$DOTFILES_DIR"
 git init
-git remote add origin "$REPO_GIT"
+git remote add origin "$REPO.git"
 git fetch
-git checkout -t -f origin/master
+git checkout -t -f "origin/$BRANCH"
 
 echo "Installation complete!"
