@@ -7,25 +7,3 @@ alias o='xdg-open'
 # Paste the clipboard to the given file as a png image. Use like so:
 #   pngpaste screenshot.png
 alias pngpaste='xclip -selection clipboard -t image/png -o > '
-
-# Add an "alert" alias for long running commands. Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-# Shows the given message after the specified amount of time.
-function remindme() {
-  [[ "$#" -ne 2 ]] \
-    && echo "Usage: ${FUNCNAME[0]} <duration> <message>" \
-    && return 1
-
-  if zenity --help &>/dev/null; then
-    local pattern="^[[:digit:]]+[smhd]?$"
-    if [[ ! "$1" =~ $pattern ]]; then
-      echo "Invalid duration!" && return 1
-    fi
-    (nohup sleep $1 &>/dev/null \
-      && zenity --info --text "$2" &>/dev/null &)
-  else
-    echo "zenity not installed!" && return 1
-  fi
-}

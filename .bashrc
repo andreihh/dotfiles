@@ -55,7 +55,10 @@ for file in ~/.{bash_prompt,bash_aliases,exports,platform_utils,extras}; do
 done
 unset file
 
-# Set up fzf key bindings and fuzzy completion.
-if command -v fzf &>/dev/null; then
-  eval "$(fzf --bash)"
-fi
+# Load `fzf` with completion.
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Load `nvm` with completion.
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

@@ -4,12 +4,10 @@
 #
 # Requires `curl`.
 
-readonly INSTALLER="https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh"
-
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
 echo "Installing latest LTS version of nvm..."
-PROFILE=~/.exports bash -c "curl -o- $INSTALLER | bash"
-. ~/.exports
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+. ~/.nvm/nvm.sh
 nvm install --lts
 echo "Installed nvm successfully!"

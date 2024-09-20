@@ -1,8 +1,12 @@
 " ~/.vimrc
 "
-" Requires Vim9+ and Ag.
+" Requires Vim9+ and `ripgrep`.
 
-" Install vim-plug for plugin management if not found.
+" Install `vim-plug` for plugin management if not found. Manage with the
+" following commands:
+" - :PlugInstall
+" - :PlugUpdate
+" - :PlugClean
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -15,14 +19,15 @@ Plug 'editorconfig/editorconfig-vim'  " File encodings, indentation, etc.
 Plug 'tpope/vim-sensible'  " Sensible settings.
 Plug 'tpope/vim-surround'  " Better surround motions.
 Plug 'easymotion/vim-easymotion'  " Better navigation motions.
+Plug 'airblade/vim-rooter'  " Auto-cd to project root if any.
 Plug 'mhinz/vim-signify'  " VCS gutter signs for changed lines.
 Plug 'doums/darcula'  " IntelliJ dark color scheme.
 Plug 'udalov/kotlin-vim'  " Kotlin syntax highlight.
-" Better TMUX integration.
+" Better `tmux` integration.
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'RyanMillerC/better-vim-tmux-resizer'
-" Fuzzy search with fzf and ag.
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Fuzzy searching.
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " Vim LSP plugins.
 Plug 'prabirshrestha/vim-lsp'
@@ -107,38 +112,38 @@ nnoremap Y y$
 " Exit visual mode with q.
 vnoremap q <esc>
 
-" Set <leader> to Space.
+" Set <leader> and macro autocompletion keys. Must not have surrounding spaces.
 noremap <space> <nop>
 let mapleader=" "
+set wildcharm=<C-Z>
+
+" Navigation actions:
+" - gj / gk (jump to previous / next location)
+" - gf (jump to file under cursor)
+" - <leader><leader> + motion (trigger EasyMotion)
+" - [c / ]c / [C / ]C (jump to previous / next / first / last changed hunk)
+nnoremap gj <C-o>
+nnoremap gk <C-i>
 
 " Cancels search highlighting in normal mode.
 nnoremap <leader>/ :nohlsearch<CR>
 
-" Fuzzy search with fzf shortcuts:
-" - <leader>o (search file paths)
+" Fuzzy searching shortcuts:
+" - <leader>o (search files)
 " - <leader>s (search everywhere)
+" - <leader>c (search uncommitted Git files)
 " - Ctrl-n/p (cycle options)
-" - Enter (open option in this buffer)
+" - Enter (open option in current buffer)
 " - Ctrl-t (open option in new tab)
 " - Ctrl-s/v (open option in horizontal / vertical split)
 " - Esc (cancel)
 nnoremap <leader>o :Files<CR>
 nnoremap <leader>s :Rg<CR>
+nnoremap <leader>c :GFiles?<CR>
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-s': 'split',
   \ 'ctrl-v': 'vsplit' }
-
-" Jump to previous / next location.
-nnoremap <leader>j <C-o>
-nnoremap <leader>k <C-i>
-
-" Jump to file under cursor.
-nnoremap <leader>g gf
-
-" Jump to next / previous changed hunk.
-nnoremap <leader>c <plug>(signify-next-hunk)
-nnoremap <leader>C <plug>(signify-prev-hunk)
 
 " Writes all buffers before navigating outside of Vim.
 let g:tmux_navigator_save_on_switch=1
@@ -153,6 +158,54 @@ let g:tmux_resizer_vertical_resize_count=5
 " Define custom pane navigation and resizing mappings.
 let g:tmux_navigator_no_mappings=1
 let g:tmux_resizer_no_mappings=1
+
+" Required to map the Alt key.
+for key in "123456789tsvnhjklHJKL=bwzxq"
+  execute "set <A-" . key . ">=\e" . key
+endfor
+execute "set <A-CR>=\e\<CR>"
+
+" Control and navigate panes and tabs using Alt:
+" - Alt-1/2/.../9 (switch tabs)
+" - Alt-t (new tab)
+" - Alt-s/v (split pane horizontally / vertically)
+" - Alt-n (new file in current buffer)
+" - Alt-h/j/k/l (navigate panes)
+" - Alt-H/J/K/L (resize panes)
+" - Alt-= (resize all panes equally)
+" - Alt-b (open file explorer)
+" - Alt-w (break pane into a new tab)
+" - Alt-z (close all panes except current one)
+" - Alt-x (close pane)
+" - Alt-q (toggle quickfix pane)
+nnoremap <A-1> 1gt
+nnoremap <A-2> 2gt
+nnoremap <A-3> 3gt
+nnoremap <A-4> 4gt
+nnoremap <A-5> 5gt
+nnoremap <A-6> 6gt
+nnoremap <A-7> 7gt
+nnoremap <A-8> 8gt
+nnoremap <A-9> 9gt
+nnoremap <A-t> :tabnew<CR>
+nnoremap <A-s> :split<CR>
+nnoremap <A-v> :vsplit<CR>
+nnoremap <A-n> :edit %:p:h<C-Z>
+nnoremap <silent> <A-h> :<C-u>TmuxNavigateLeft<CR>
+nnoremap <silent> <A-j> :<C-u>TmuxNavigateDown<CR>
+nnoremap <silent> <A-k> :<C-u>TmuxNavigateUp<CR>
+nnoremap <silent> <A-l> :<C-u>TmuxNavigateRight<CR>
+nnoremap <silent> <A-H> :<C-u>TmuxResizeLeft<CR>
+nnoremap <silent> <A-J> :<C-u>TmuxResizeDown<CR>
+nnoremap <silent> <A-K> :<C-u>TmuxResizeUp<CR>
+nnoremap <silent> <A-L> :<C-u>TmuxResizeRight<CR>
+nnoremap <silent> <A-=> <C-w>=
+nnoremap <A-b> :Explore<CR>
+nnoremap <A-w> <C-w>T
+nnoremap <A-z> :only<CR>
+nnoremap <A-x> :quit<CR>
+nnoremap <expr> <A-q> empty(filter(getwininfo(), 'v:val.quickfix'))
+  \ ? ":copen\<CR>" : ":cclose\<CR>"
 
 " File explorer should use tree style and disable the netrw banner.
 let g:netrw_banner = 0
@@ -176,53 +229,35 @@ au filetype netrw map <buffer> r R
 au filetype netrw map <buffer> f %
 au filetype netrw map <buffer> x D
 
-" Required to map the Alt key.
-for key in "n123456789svhjklHJKL=bwzxqe"
-  execute "set <A-" . key . ">=\e" . key
-endfor
-execute "set <A-CR>=\e\<CR>"
+" Show float diagnostics only on cursor hover.
+let g:lsp_diagnostics_float_cursor = 1
+let g:lsp_diagnostics_virtual_text_enabled = 0
 
-" Control and navigate panes and tabs using Alt:
-" - Alt-n (new tab)
-" - Alt-1/2/.../9 (switch tabs)
-" - Alt-s/v (split pane horizontally / vertically)
-" - Alt-h/j/k/l (navigate panes)
-" - Alt-H/J/K/L (resize panes)
-" - Alt-= (resize all panes equally)
-" - Alt-b (open file explorer)
-" - Alt-w (break pane into a new tab)
-" - Alt-z (close all panes except current one)
-" - Alt-x (close pane)
-" - Alt-q (focus quickfix pane)
-" - q (close quickfix pane)
-nnoremap <A-n> :tabnew<CR>
-nnoremap <A-s> :split<CR>
-nnoremap <A-v> :vsplit<CR>
-nnoremap <A-1> 1gt
-nnoremap <A-2> 2gt
-nnoremap <A-3> 3gt
-nnoremap <A-4> 4gt
-nnoremap <A-5> 5gt
-nnoremap <A-6> 6gt
-nnoremap <A-7> 7gt
-nnoremap <A-8> 8gt
-nnoremap <A-9> 9gt
-nnoremap <silent> <A-h> :<C-u>TmuxNavigateLeft<CR>
-nnoremap <silent> <A-j> :<C-u>TmuxNavigateDown<CR>
-nnoremap <silent> <A-k> :<C-u>TmuxNavigateUp<CR>
-nnoremap <silent> <A-l> :<C-u>TmuxNavigateRight<CR>
-nnoremap <silent> <A-H> :<C-u>TmuxResizeLeft<CR>
-nnoremap <silent> <A-J> :<C-u>TmuxResizeDown<CR>
-nnoremap <silent> <A-K> :<C-u>TmuxResizeUp<CR>
-nnoremap <silent> <A-L> :<C-u>TmuxResizeRight<CR>
-nnoremap <silent> <A-=> <C-w>=
-nnoremap <A-b> :Explore<CR>
-nnoremap <A-w> <C-w>T
-nnoremap <A-z> :only<CR>
-nnoremap <A-x> :quit<CR>
-nnoremap <A-q> :copen<CR>
-nnoremap <expr> q empty(filter(getwininfo(), 'v:val.quickfix'))
-  \ ? "q" : ":cclose\<CR>"
+" Code navigation actions.
+nmap gd <plug>(lsp-definition)
+nmap gi <plug>(lsp-implementation)
+nmap gt <plug>(lsp-type-definition)
+
+" Code inspection actions.
+nmap <leader>f <plug>(lsp-references)
+nmap <leader>h <plug>(lsp-hover)
+nmap [w <plug>(lsp-previous-diagnostic)
+nmap ]w <plug>(lsp-next-diagnostic)
+nmap [e <plug>(lsp-previous-error)
+nmap ]e <plug>(lsp-next-error
+
+" Code formatting actions.
+nnoremap <leader>= :FormatCode<CR>
+vnoremap <leader>= :FormatLines<CR>
+
+" Code actions shortcuts:
+" - <leader>r (rename)
+" - <leader>a (trigger code actions)
+" - Ctrl-n/p (cycle options)
+" - Enter (accept option)
+" - Esc (cancel)
+nmap <leader>r <plug>(lsp-rename)
+nmap <leader>a <plug>(lsp-code-action-float)
 
 " Autocomplete shortcuts:
 " - Ctrl-Space (trigger autocomplete)
@@ -232,21 +267,8 @@ nnoremap <expr> q empty(filter(getwininfo(), 'v:val.quickfix'))
 imap <C-@> <C-space>
 imap <C-space> <C-x><C-o>
 
-" Alternative autocomplete shortcuts:
-" - Tab/Shift-Tab (cycle options)
-" - Enter (accept option)
-" - Alt-e (reject option)
-"inoremap <expr> <tab> pumvisible() ? "\<C-n>" : "\<tab>"
-"inoremap <expr> <S-tab> pumvisible() ? "\<C-p>" : "\<S-tab>"
-"inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
-"inoremap <expr> <A-e> pumvisible() ? "\<C-e>" : "\<A-e>"
-
 " Enable default autocompletion.
 set omnifunc=syntaxcomplete#Complete
-
-" Show float diagnostics only on cursor hover.
-let g:lsp_diagnostics_float_cursor = 1
-let g:lsp_diagnostics_virtual_text_enabled = 0
 
 function! s:on_lsp_buffer_enabled() abort
   " Enable LSP autocompletion.
@@ -256,31 +278,6 @@ function! s:on_lsp_buffer_enabled() abort
 
   " Code completion actions.
   imap <C-space> <plug>(asyncomplete_force_refresh)
-  "inoremap <expr> <CR> pumvisible() ? asyncomplete#close_popup() : "\<CR>"
-
-  " Code navigation actions.
-  nmap <buffer> <leader>d <plug>(lsp-definition)
-  nmap <buffer> <leader>i <plug>(lsp-implementation)
-  nmap <buffer> <leader>t <plug>(lsp-type-definition)
-
-  " Code inspection actions.
-  nmap <buffer> <leader>f <plug>(lsp-references)
-  nmap <buffer> <leader>q <plug>(lsp-hover)
-  nmap <buffer> <leader>w <plug>(lsp-next-diagnostic)
-  nmap <buffer> <leader>W <plug>(lsp-previous-diagnostic)
-  nmap <buffer> <leader>e <plug>(lsp-next-error)
-  nmap <buffer> <leader>E <plug>(lsp-previous-error)
-
-  " Code actions shortcuts:
-  " - <leader>r (rename)
-  " - <leader>a (trigger code actions)
-  " - Ctrl-n/p (cycle options)
-  " - Enter (accept option)
-  " - Esc (cancel)
-  nmap <buffer> <leader>r <plug>(lsp-rename)
-  nmap <buffer> <leader>a <plug>(lsp-code-action-float)
-
-  let g:lsp_format_sync_timeout = 1000
 endfunction
 
 augroup lsp_install
@@ -289,7 +286,3 @@ augroup lsp_install
   " registered.
   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
-
-" Format file or visual selection with <leader>=.
-nnoremap <leader>= :FormatCode<CR>
-vnoremap <leader>= :FormatLines<CR>
