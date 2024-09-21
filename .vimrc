@@ -27,7 +27,7 @@ Plug 'udalov/kotlin-vim'  " Kotlin syntax highlight.
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'RyanMillerC/better-vim-tmux-resizer'
 " Fuzzy searching.
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " Vim LSP plugins.
 Plug 'prabirshrestha/vim-lsp'
