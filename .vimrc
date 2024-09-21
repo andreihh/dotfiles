@@ -120,10 +120,12 @@ set wildcharm=<C-Z>
 " Navigation actions:
 " - gj / gk (jump to previous / next location)
 " - gf (jump to file under cursor)
+" - go (open the URI under cursor / selected URI)
 " - <leader><leader> + motion (trigger EasyMotion)
 " - [c / ]c / [C / ]C (jump to previous / next / first / last changed hunk)
 nnoremap gj <C-o>
 nnoremap gk <C-i>
+map go gx
 
 " Cancels search highlighting in normal mode.
 nnoremap <leader>/ :nohlsearch<CR>
