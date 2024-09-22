@@ -12,3 +12,8 @@
 
 [alias]
 	xl = log --graph --all --decorate --oneline
+	s = status
+	ar = add -A
+	c = commit
+	a = git commit --amend
+	d = diff
