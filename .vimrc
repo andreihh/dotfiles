@@ -100,14 +100,14 @@ set splitright
 " background.
 set background=dark
 
-" Make Esc more responsive.
-set timeout ttimeoutlen=10
-
 " Optionally enable a color scheme if the terminal supports at least 256 colors.
 " The color scheme must be set after setting the background and enabling syntax.
 if &t_Co >= 256
   colorscheme darcula
 endif
+
+" Make Esc more responsive.
+set timeout ttimeoutlen=10
 
 " Copy until the end of the line. Consistent with D and C.
 nnoremap Y y$
@@ -118,7 +118,7 @@ vnoremap q <esc>
 " Set <leader> and macro autocompletion keys. Must not have surrounding spaces.
 noremap <space> <nop>
 let mapleader=" "
-set wildcharm=<C-Z>
+set wildcharm=<C-z>
 
 " Navigation actions:
 " - gj / gk (jump to previous / next location)
@@ -160,29 +160,23 @@ let g:tmux_navigator_disable_when_zoomed=1
 let g:tmux_resizer_resize_count=5
 let g:tmux_resizer_vertical_resize_count=5
 
-" Define custom pane navigation and resizing mappings.
-let g:tmux_navigator_no_mappings=1
-let g:tmux_resizer_no_mappings=1
-
 " Required to map the Alt key.
-for key in "123456789tnsvhjklHJKL=wzxXq"
+for key in "123456789nhjkl="
   execute "set <A-" . key . ">=\e" . key
 endfor
 execute "set <A-CR>=\e\<CR>"
 
 " Control and navigate panes and tabs using Alt:
 " - Alt-1/2/.../9 (switch tabs)
-" - Alt-t (new tab)
 " - Alt-n (new file in current buffer)
-" - Alt-s/v (split pane horizontally / vertically)
-" - Alt-h/j/k/l (navigate panes)
-" - Alt-H/J/K/L (resize panes)
+" - Ctrl-t (new tab)
+" - Ctrl-s/v (split pane horizontally / vertically)
+" - Ctrl-h/j/k/l (navigate panes)
+" - Alt-h/j/k/l (resize panes)
 " - Alt-= (resize all panes equally)
-" - Alt-w (break pane into a new tab)
-" - Alt-z (close all panes except current one)
-" - Alt-x (close pane)
-" - Alt-X (close all panes and tabs)
-" - Alt-q (toggle quickfix pane)
+" - Ctrl-z (close all panes except current one)
+" - Ctrl-w (close pane)
+" - Ctrl-q (close tab)
 nnoremap <A-1> 1gt
 nnoremap <A-2> 2gt
 nnoremap <A-3> 3gt
@@ -192,24 +186,17 @@ nnoremap <A-6> 6gt
 nnoremap <A-7> 7gt
 nnoremap <A-8> 8gt
 nnoremap <A-9> 9gt
-nnoremap <A-t> :tabnew<CR>
-nnoremap <A-n> :edit %:p:h<C-Z>
-nnoremap <A-s> :split<CR>
-nnoremap <A-v> :vsplit<CR>
-nnoremap <silent> <A-h> :<C-u>TmuxNavigateLeft<CR>
-nnoremap <silent> <A-j> :<C-u>TmuxNavigateDown<CR>
-nnoremap <silent> <A-k> :<C-u>TmuxNavigateUp<CR>
-nnoremap <silent> <A-l> :<C-u>TmuxNavigateRight<CR>
-nnoremap <silent> <A-H> :<C-u>TmuxResizeLeft<CR>
-nnoremap <silent> <A-J> :<C-u>TmuxResizeDown<CR>
-nnoremap <silent> <A-K> :<C-u>TmuxResizeUp<CR>
-nnoremap <silent> <A-L> :<C-u>TmuxResizeRight<CR>
+nnoremap <A-n> :edit %:p:h<C-z>
+nnoremap <C-t> :tabedit %<CR>
+nnoremap <C-s> :split<CR>
+nnoremap <C-v> :vsplit<CR>
 nnoremap <silent> <A-=> <C-w>=
-nnoremap <A-w> <C-w>T
-nnoremap <A-z> :only<CR>
-nnoremap <A-x> :quit<CR>
-nnoremap <A-X> :qa<CR>
-nnoremap <expr> <A-q> empty(filter(getwininfo(), 'v:val.quickfix'))
+nnoremap <C-z> :only<CR>
+nnoremap <C-w> :quit<CR>
+nnoremap <C-q> :tabclose<CR>
+
+" Toggle quickfix pane.
+nnoremap <expr> <leader>q empty(filter(getwininfo(), 'v:val.quickfix'))
   \ ? ":copen\<CR>" : ":cclose\<CR>"
 
 " Show float diagnostics only on cursor hover.
