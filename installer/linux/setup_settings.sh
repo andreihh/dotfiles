@@ -28,6 +28,12 @@ gsettings set org.gnome.desktop.wm.keybindings cycle-windows "[]"
 #gsettings set org.gnome.desktop.wm.keybindings switch-windows-backward \
 #  "['<Shift><Super>Tab']"
 
+echo "Setting switch applications shortcut to Alt-[Shift]-Tab (for 'keyd')..."
+gsettings set org.gnome.desktop.wm.keybindings switch-applications \
+  "['<Alt>Tab']"
+gsettings set org.gnome.desktop.wm.keybindings switch-applications-backward \
+  "['<Shift><Alt>Tab']"
+
 echo "Setting system theme to dark mode..."
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 

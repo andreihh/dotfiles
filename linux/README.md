@@ -4,13 +4,12 @@
   `max(4 GiB, 0.5 * RAM)`
 - Update terminal settings:
   - Terminal > Preferences > Shortcuts:
-    - New tab: `Ctrl-T`
-    - New window: `Ctrl-N`
-    - Close tab: `Ctrl-x`
-    - Close window: `Ctrl-X`
+    - New Window: `Ctrl-N`
+    - Close Window: `Ctrl-X`
     - Copy: `Ctrl-C`
     - Paste: `Alt-p`
-    - Disable all "Switch to Tab #"
+    - Disable "Zoom In/Out"
+    - Disable "New Tab", "Close Tab", and all "Switch to Tab #"
   - System > Settings > Keyboard > Keyboard Shortcuts > Custom Shortcuts:
     - Name: `Launch tmuxw in Gnome terminal`
     - Command:
