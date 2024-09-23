@@ -100,6 +100,9 @@ set splitright
 " background.
 set background=dark
 
+" Make Esc more responsive.
+set timeout ttimeoutlen=10
+
 " Optionally enable a color scheme if the terminal supports at least 256 colors.
 " The color scheme must be set after setting the background and enabling syntax.
 if &t_Co >= 256
@@ -138,7 +141,7 @@ nnoremap <leader>/ :nohlsearch<CR>
 " - Enter (open option in current buffer)
 " - Ctrl-t (open option in new tab)
 " - Ctrl-s/v (open option in horizontal / vertical split)
-" - Esc (cancel)
+" - Ctrl-c / Esc (cancel)
 nnoremap <leader>o :Files<CR>
 nnoremap <leader>s :Rg<CR>
 nnoremap <leader>c :GFiles?<CR>
@@ -162,7 +165,7 @@ let g:tmux_navigator_no_mappings=1
 let g:tmux_resizer_no_mappings=1
 
 " Required to map the Alt key.
-for key in "123456789tsvnhjklHJKL=bwzxq"
+for key in "123456789tnsvhjklHJKL=wzxXq"
   execute "set <A-" . key . ">=\e" . key
 endfor
 execute "set <A-CR>=\e\<CR>"
@@ -170,15 +173,15 @@ execute "set <A-CR>=\e\<CR>"
 " Control and navigate panes and tabs using Alt:
 " - Alt-1/2/.../9 (switch tabs)
 " - Alt-t (new tab)
-" - Alt-s/v (split pane horizontally / vertically)
 " - Alt-n (new file in current buffer)
+" - Alt-s/v (split pane horizontally / vertically)
 " - Alt-h/j/k/l (navigate panes)
 " - Alt-H/J/K/L (resize panes)
 " - Alt-= (resize all panes equally)
-" - Alt-b (open file explorer)
 " - Alt-w (break pane into a new tab)
 " - Alt-z (close all panes except current one)
 " - Alt-x (close pane)
+" - Alt-X (close all panes and tabs)
 " - Alt-q (toggle quickfix pane)
 nnoremap <A-1> 1gt
 nnoremap <A-2> 2gt
@@ -190,9 +193,9 @@ nnoremap <A-7> 7gt
 nnoremap <A-8> 8gt
 nnoremap <A-9> 9gt
 nnoremap <A-t> :tabnew<CR>
+nnoremap <A-n> :edit %:p:h<C-Z>
 nnoremap <A-s> :split<CR>
 nnoremap <A-v> :vsplit<CR>
-nnoremap <A-n> :edit %:p:h<C-Z>
 nnoremap <silent> <A-h> :<C-u>TmuxNavigateLeft<CR>
 nnoremap <silent> <A-j> :<C-u>TmuxNavigateDown<CR>
 nnoremap <silent> <A-k> :<C-u>TmuxNavigateUp<CR>
@@ -202,34 +205,12 @@ nnoremap <silent> <A-J> :<C-u>TmuxResizeDown<CR>
 nnoremap <silent> <A-K> :<C-u>TmuxResizeUp<CR>
 nnoremap <silent> <A-L> :<C-u>TmuxResizeRight<CR>
 nnoremap <silent> <A-=> <C-w>=
-nnoremap <A-b> :Explore<CR>
 nnoremap <A-w> <C-w>T
 nnoremap <A-z> :only<CR>
 nnoremap <A-x> :quit<CR>
+nnoremap <A-X> :qa<CR>
 nnoremap <expr> <A-q> empty(filter(getwininfo(), 'v:val.quickfix'))
   \ ? ":copen\<CR>" : ":cclose\<CR>"
-
-" File explorer should use tree style and disable the netrw banner.
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-
-" File explorer shortcuts:
-" - R (refresh file explorer)
-" - c (change root to selected directory)
-" - u (change root to parent directory)
-" - j/k (navigate down / up)
-" - l (activate node)
-" - r (rename node)
-" - d (create new directory)
-" - f (create new file)
-" - x (delete node)
-au filetype netrw map <buffer> R <C-l>
-au filetype netrw map <buffer> c gn
-au filetype netrw map <buffer> u -
-au filetype netrw map <buffer> l <CR>
-au filetype netrw map <buffer> r R
-au filetype netrw map <buffer> f %
-au filetype netrw map <buffer> x D
 
 " Show float diagnostics only on cursor hover.
 let g:lsp_diagnostics_float_cursor = 1
@@ -257,17 +238,17 @@ vnoremap <leader>= :FormatLines<CR>
 " - <leader>a (trigger code actions)
 " - Ctrl-n/p (cycle options)
 " - Enter (accept option)
-" - Esc (cancel)
+" - Ctrl-c / Esc (cancel)
 nmap <leader>r <plug>(lsp-rename)
 nmap <leader>a <plug>(lsp-code-action-float)
 
 " Autocomplete shortcuts:
 " - Ctrl-Space (trigger autocomplete)
 " - Ctrl-n/p (cycle options)
-" - Ctrl-y (accept option)
-" - Ctrl-e (reject option)
+" - Ctrl-c (reject option)
 imap <C-@> <C-space>
 imap <C-space> <C-x><C-o>
+imap <C-c> <C-e>
 
 " Enable default autocompletion.
 set omnifunc=syntaxcomplete#Complete

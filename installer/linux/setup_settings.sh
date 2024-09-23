@@ -15,6 +15,18 @@ gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape']"
 echo "Removing Alt-Esc system key mapping..."
 gsettings set org.gnome.desktop.wm.keybindings cycle-windows "[]"
 
+echo "Replacing Super with Alt in the switch applications shortcuts..."
+gsettings set org.gnome.desktop.wm.keybindings switch-applications \
+  "['<Alt>Tab']"
+gsettings set org.gnome.desktop.wm.keybindings switch-applications-backward \
+  "['<Alt><Control>Tab']"
+
+echo "Replacing Alt with Super in the switch windows shortcuts..."
+gsettings set org.gnome.desktop.wm.keybindings switch-windows \
+  "['<Super>Tab']"
+gsettings set org.gnome.desktop.wm.keybindings switch-windows-backward \
+  "['<Shift><Super>Tab']"
+
 echo "Setting system theme to dark mode..."
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 
