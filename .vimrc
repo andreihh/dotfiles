@@ -176,7 +176,7 @@ execute "set <A-CR>=\e\<CR>"
 " - Alt-= (resize all panes equally)
 " - Ctrl-z (close all panes except current one)
 " - Ctrl-w (close pane)
-" - Ctrl-q (close tab)
+" - Ctrl-x (close tab)
 nnoremap <A-1> 1gt
 nnoremap <A-2> 2gt
 nnoremap <A-3> 3gt
@@ -193,7 +193,7 @@ nnoremap <C-v> :vsplit<CR>
 nnoremap <silent> <A-=> <C-w>=
 nnoremap <C-z> :only<CR>
 nnoremap <C-w> :quit<CR>
-nnoremap <C-q> :tabclose<CR>
+nnoremap <C-x> :tabclose<CR>
 
 " Toggle quickfix pane.
 nnoremap <expr> <leader>q empty(filter(getwininfo(), 'v:val.quickfix'))

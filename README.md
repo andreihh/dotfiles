@@ -34,6 +34,30 @@ export GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
 ...
 ```
 
+### Hotkeys
+
+Keyboard layout changes:
+- Swap `Caps Lock` with `Esc`
+- Linux modifiers: `Super Alt Ctrl`
+- MacOS modifiers: `Ctrl Opt Cmd`
+
+Common shortcuts (`C = Ctrl / Cmd`, `A = Alt / Opt`, `S = Shift`):
+- New tab: `C-t`
+- Close window / tab: `C-w`
+- Quit app: `C-q`
+- Cycle tabs: `C-[S]-tab`
+- Cycle windows: `A-[S]-tab` (requires https://alt-tab-macos.netlify.app/)
+- Lock screen: `C-A-l`
+
+Terminal settings:
+- Remap `Cmd` to `Ctrl` in `iTerm2`
+- Open maximized window in the `work` Tmux session: `C-A-w`
+- Open window for SSH: `C-A-s`
+- Paste `A-p`
+- Close window: `C-q`
+- Send interrupt signal: `C-c`
+- Disable copy, zoom, tabs, and new window
+
 ### Code formatters
 
 Update the `nvm` and code formatter versions in the setup scripts as needed. The
@@ -53,12 +77,6 @@ Firefox settings in `about:config`:
 - `browser.cache.disk.enable = false`
 - `browser.cache.memory.enable = true`
 - `browser.cache.memory.capacity = -1`
-
-### Terminal Settings
-
-Follow platform-specific instructions to update terminal settings:
-- Paste with `Alt-p`
-- Open a new maximized window in the `work` TMUX session with `Ctrl-Alt-t`
 
 ### Licensing
 
