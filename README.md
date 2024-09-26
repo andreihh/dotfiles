@@ -38,8 +38,8 @@ export GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
 
 Keyboard layout changes:
 - Swap `Caps Lock` with `Esc`
-- Linux modifiers: `Super Alt Ctrl`
-- MacOS modifiers: `Ctrl Opt Cmd`
+- Linux modifiers: `Super Alt Ctrl Space Alt Ctrl`
+- MacOS modifiers: `Ctrl Opt Cmd Space Opt Cmd`
 
 Common shortcuts (`C = Ctrl / Cmd`, `A = Alt / Opt`, `S = Shift`):
 - New tab: `C-t`
@@ -48,6 +48,7 @@ Common shortcuts (`C = Ctrl / Cmd`, `A = Alt / Opt`, `S = Shift`):
 - Cycle tabs: `C-[S]-tab`
 - Cycle windows: `A-[S]-tab` (requires https://alt-tab-macos.netlify.app/)
 - Lock screen: `C-A-l`
+- Zoom in / out: `C-=` / `C--`
 
 Terminal settings:
 - Remap `Cmd` to `Ctrl` in `iTerm2`
