@@ -4,6 +4,7 @@
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
+readonly GNOME_KEYBINDINGS="org.gnome.desktop.wm.keybindings"
 readonly GNOME_MEDIA_KEYS="org.gnome.settings-daemon.plugins.media-keys"
 readonly NEW_TMUX_KEY="/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
 readonly NEW_TMUX_COMMAND="gnome-terminal --window --maximize -- /bin/bash -c 'tmux new -A -s work'"
@@ -15,24 +16,26 @@ echo "Updating system settings..."
 echo "Setting keyboard layout to US..."
 gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us')]"
 
-echo "Removing Alt-Esc system key mapping..."
-gsettings set org.gnome.desktop.wm.keybindings cycle-windows "[]"
-
-echo "Enforce Alt-[Shift]-Tab shortcuts to switch windows..."
-gsettings set org.gnome.desktop.wm.keybindings switch-windows "['<Alt>Tab']"
-gsettings set org.gnome.desktop.wm.keybindings switch-windows-backward \
-  "['<Shift><Alt>Tab']"
-
-echo "Swapping Caps Lock with Esc and reordering modifiers [Super Alt Ctrl]..."
+echo "Swapping Caps Lock with Esc and reordering modifiers to Super|Alt|Ctrl..."
 gsettings set org.gnome.desktop.input-sources xkb-options \
   "['caps:swapescape', 'ctrl:swap_lalt_lctl_lwin']"
+
+echo "Removing Alt-Esc system key mapping..."
+gsettings set "$GNOME_KEYBINDINGS" cycle-windows "[]"
+
+echo "Setting switch windows shortcuts to Ctrl-[Shift]-Tab..."
+gsettings set "$GNOME_KEYBINDINGS" switch-windows "['<Primary>Tab']"
+gsettings set "$GNOME_KEYBINDINGS" switch-windows-backward \
+  "['<Shift><Primary>Tab']"
+
+echo "Setting toggle maximized shortcut to Ctrl-Alt-m..."
+gsettings set "$GNOME_KEYBINDINGS" toggle-maximized "['<Primary><Alt>m']"
 
 echo "Setting lock screen shortcut to Ctrl-Alt-l..."
 gsettings set "$GNOME_MEDIA_KEYS" screensaver "['<Primary><Alt>l']"
 
 echo "Setting new terminal shortcut to Ctrl-Alt-s..."
-gsettings set "$GNOME_MEDIA_KEYS" terminal \
-  "['<Primary><Alt>s']"
+gsettings set "$GNOME_MEDIA_KEYS" terminal "['<Primary><Alt>s']"
 
 echo "Setting new Tmux terminal shortcut to Ctrl-Alt-w..."
 gsettings set "$GNOME_MEDIA_KEYS" custom-keybindings "['$NEW_TMUX_KEY']"

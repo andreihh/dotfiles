@@ -45,15 +45,17 @@ Common shortcuts (`C = Ctrl / Cmd`, `A = Alt / Opt`, `S = Shift`):
 - New tab: `C-t`
 - Close window / tab: `C-w`
 - Quit app: `C-q`
-- Cycle tabs: `C-[S]-tab`
-- Cycle windows: `A-[S]-tab` (requires https://alt-tab-macos.netlify.app/)
+- Cycle tabs: `C-,` / `C-.`
+- Cycle history: `C-[` / `C-]`
+- Cycle windows: `C-[S]-tab` (requires https://alt-tab-macos.netlify.app/)
+- Toggle window maximization: `C-A-m`
 - Lock screen: `C-A-l`
 - Zoom in / out: `C-=` / `C--`
 
 Terminal settings:
 - Remap `Cmd` to `Ctrl` in `iTerm2`
-- Open maximized window in the `work` Tmux session: `C-A-w`
-- Open window for SSH: `C-A-s`
+- Open terminal window for SSH: `C-A-s`
+- Open maximized terminal window in the `work` Tmux session: `C-A-w`
 - Paste `A-p`
 - Close window: `C-q`
 - Send interrupt signal: `C-c`
