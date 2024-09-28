@@ -124,11 +124,22 @@ set wildcharm=<C-z>
 " - gj / gk (jump to previous / next location)
 " - gf (jump to file under cursor)
 " - go (open the URI under cursor / selected URI)
+" - g1 /g2 / ... / g9 (go to tab)
 " - <leader><leader> + motion (trigger EasyMotion)
 " - [c / ]c / [C / ]C (jump to previous / next / first / last changed hunk)
+" - Ctrl-u/d (scroll half page up / down)
 nnoremap gj <C-o>
 nnoremap gk <C-i>
-map go gx
+nmap go gx
+nnoremap g1 1gt
+nnoremap g2 2gt
+nnoremap g3 3gt
+nnoremap g4 4gt
+nnoremap g5 5gt
+nnoremap g6 6gt
+nnoremap g7 7gt
+nnoremap g8 8gt
+nnoremap g9 9gt
 
 " Cancels search highlighting in normal mode.
 nnoremap <leader>/ :nohlsearch<CR>
@@ -141,7 +152,7 @@ nnoremap <leader>/ :nohlsearch<CR>
 " - Enter (open option in current buffer)
 " - Ctrl-t (open option in new tab)
 " - Ctrl-s/v (open option in horizontal / vertical split)
-" - Ctrl-c / Esc (cancel)
+" - Esc (cancel)
 nnoremap <leader>o :Files<CR>
 nnoremap <leader>s :Rg<CR>
 nnoremap <leader>c :GFiles?<CR>
@@ -166,42 +177,32 @@ for key in "123456789nhjkl="
 endfor
 execute "set <A-CR>=\e\<CR>"
 
-" Control and navigate panes and tabs using Alt:
-" - Alt-1/2/.../9 (switch tabs)
-" - Alt-n (new file in current buffer)
+" Control and navigate panes and tabs:
+" - Ctrl-o (new file in current buffer)
 " - Ctrl-t (new tab)
 " - Ctrl-s/v (split pane horizontally / vertically)
 " - Ctrl-h/j/k/l (navigate panes)
 " - Alt-h/j/k/l (resize panes)
 " - Alt-= (resize all panes equally)
 " - Ctrl-z (close all panes except current one)
-" - Ctrl-w (close pane)
-" - Ctrl-x (close tab)
-nnoremap <A-1> 1gt
-nnoremap <A-2> 2gt
-nnoremap <A-3> 3gt
-nnoremap <A-4> 4gt
-nnoremap <A-5> 5gt
-nnoremap <A-6> 6gt
-nnoremap <A-7> 7gt
-nnoremap <A-8> 8gt
-nnoremap <A-9> 9gt
-nnoremap <A-n> :edit %:p:h<C-z>
+" - Ctrl-x (close pane)
+" - Ctrl-w (close tab)
+nnoremap <C-o> :edit %:p:h<C-z>
 nnoremap <C-t> :tabedit %<CR>
 nnoremap <C-s> :split<CR>
 nnoremap <C-v> :vsplit<CR>
 nnoremap <silent> <A-=> <C-w>=
 nnoremap <C-z> :only<CR>
-nnoremap <C-w> :quit<CR>
-nnoremap <C-x> :tabclose<CR>
-
-" Toggle quickfix pane.
-nnoremap <expr> <leader>q empty(filter(getwininfo(), 'v:val.quickfix'))
-  \ ? ":copen\<CR>" : ":cclose\<CR>"
+nnoremap <C-x> :quit<CR>
+nnoremap <C-w> :tabclose<CR>
 
 " Show float diagnostics only on cursor hover.
 let g:lsp_diagnostics_float_cursor = 1
 let g:lsp_diagnostics_virtual_text_enabled = 0
+
+" Toggle quickfix pane.
+nnoremap <expr> <leader>q empty(filter(getwininfo(), 'v:val.quickfix'))
+  \ ? ":copen\<CR>" : ":cclose\<CR>"
 
 " Code navigation actions.
 nmap gd <plug>(lsp-definition)
@@ -225,17 +226,17 @@ vnoremap <leader>= :FormatLines<CR>
 " - <leader>a (trigger code actions)
 " - Ctrl-n/p (cycle options)
 " - Enter (accept option)
-" - Ctrl-c / Esc (cancel)
+" - Esc (cancel)
 nmap <leader>r <plug>(lsp-rename)
 nmap <leader>a <plug>(lsp-code-action-float)
 
 " Autocomplete shortcuts:
 " - Ctrl-Space (trigger autocomplete)
 " - Ctrl-n/p (cycle options)
-" - Ctrl-c (reject option)
+" - Esc (reject option)
 imap <C-@> <C-space>
 imap <C-space> <C-x><C-o>
-imap <C-c> <C-e>
+inoremap <expr> <esc> pumvisible() ? "\<C-e>" : "\<esc>"
 
 " Enable default autocompletion.
 set omnifunc=syntaxcomplete#Complete
