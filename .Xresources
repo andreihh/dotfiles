@@ -1,3 +1,10 @@
+! ~/.Xresources
+!
+! Configures X programs. Reload changes with `xrdb ~/.Xresources`.
+
+! Set the terminal name to ensure color support.
+XTerm.termName: xterm-256color
+
 ! These are the 8 ANSI colors and their bright equivalents.
 ! 0-7, 8-15: black, red, green, yellow, blue, purple, cyan, white
 *color0: rgb:17/14/21
@@ -44,7 +51,11 @@
 ! Copy selection to clipboard.
 *selectToClipboard: true
 
+! Allow Tmux to use system clipboard.
+XTerm*disallowedWindowOps: 20,21,SetXprop
+
 ! Always support Unicode.
+*locale: false
 *utf8: 1
 *eightBitInput: false
 
