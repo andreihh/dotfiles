@@ -28,40 +28,29 @@ _config_prompt() {
     return
   fi
 
-  # Define color aliases.
-  local reset="\e[0m"
-  local bold="\e[0;1m"
+  # Define color and style aliases.
+  local bold="\[\e[1m\]"
 
-  local black="\e[1;30m"
-  local red="\e[1;31m"
-  local green="\e[1;32m"
-  local yellow="\e[1;33m"
-  local blue="\e[1;34m"
-  local purple="\e[1;35m"
-  local cyan="\e[1;36m"
-  local white="\e[1;37m"
+  local black="\[\e[30m\]"
+  local red="\[\e[31m\]"
+  local green="\[\e[32m\]"
+  local yellow="\[\e[33m\]"
+  local blue="\[\e[34m\]"
+  local purple="\[\e[35m\]"
+  local cyan="\[\e[36m\]"
+  local white="\[\e[37m\]"
+  local bright_red="\[\e[91m\]"
 
-  apply_style_to() {
-    echo "\\[$1\\]$2\\[$reset\\]"
-  }
+  local reset_style="\[\e[0m\]"
 
-  local user_style="$red"
+  local user_style="$bold$red"
   if [ "$USER" == "root" ]; then
-    user_style="$bold$red"
+    user_style="$bold$bright_red"
   fi
 
-  local host_style="$cyan"
-  local cwd_style="$blue"
+  local host_style="$bold$cyan"
+  local cwd_style="$bold$blue"
   local shell_style="$bold$green"
-
-  # Dynamically set the styled host only if the current session is remote.
-  get_styled_host_with_separator() {
-    if [ -n "$SSH_TTY" ]; then
-      local at_separator=$(apply_style_to "$shell_style" "@")
-      local host=$(apply_style_to "$host_style" "\h")
-      echo "$at_separator$host"
-    fi
-  }
 
   # Print only the first 3 and last 2 components of the current working
   # directory (not counting `$HOME`, which is collapsed to `~`).
@@ -69,13 +58,16 @@ _config_prompt() {
 
   # Set the terminal prompt.
   PS1="${debian_chroot:+($debian_chroot)}"
-  PS1+=$(apply_style_to "$user_style" "\u") # set user
-  PS1+=$(get_styled_host_with_separator) # set `@` and host if remote session
-  PS1+=$(apply_style_to "$shell_style" ":") # set `:` separator
-  PS1+=$(apply_style_to "$cwd_style" "$cwd") # set current working directory
-  PS1+=$(apply_style_to "$shell_style" "\$ ") # set shell
+  PS1+="${user_style}\u" # set user
+  if [ -n "$SSH_TTY" ]; then
+    PS1+="${shell_style}@${host_style}\h" # set `@` and host if remote session
+  fi
+  PS1+="${shell_style}:" # set `:` separator
+  PS1+="${cwd_style}$cwd" # set current working directory
+  PS1+="${shell_style}\$ " # set shell
+  PS1+="${reset_style}" # reset style
 
-  PS2=$(apply_style_to "$shell_style" '> ') # set shell
+  PS2="${shell_style}> ${reset_style}" # set shell and reset style
 
   # If this is an xterm, set the title to user@host:dir.
   case "$TERM" in
@@ -87,8 +79,6 @@ _config_prompt() {
 
   echo -ne '\e]10;#a9b7c6\e\\' # set foreground to match Darcula
   echo -ne '\e]11;#262626\e\\' # set background to match Darcula
-
-  unset apply_style_to get_styled_host_with_separator
 }
 
 _config_prompt

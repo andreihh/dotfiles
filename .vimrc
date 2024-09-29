@@ -152,7 +152,7 @@ nnoremap <leader>/ :nohlsearch<CR>
 " - Enter (open option in current buffer)
 " - Ctrl-t (open option in new tab)
 " - Ctrl-s/v (open option in horizontal / vertical split)
-" - Esc (cancel)
+" - Ctrl-c / Esc (cancel)
 nnoremap <leader>o :Files<CR>
 nnoremap <leader>s :Rg<CR>
 nnoremap <leader>c :GFiles?<CR>
@@ -212,6 +212,8 @@ nmap gt <plug>(lsp-type-definition)
 " Code inspection actions.
 nmap <leader>f <plug>(lsp-references)
 nmap <leader>h <plug>(lsp-hover)
+nmap <expr> <C-[> lsp#scroll(-5)
+nmap <expr> <C-]> lsp#scroll(+5)
 nmap [w <plug>(lsp-previous-diagnostic)
 nmap ]w <plug>(lsp-next-diagnostic)
 nmap [e <plug>(lsp-previous-error)
@@ -226,17 +228,16 @@ vnoremap <leader>= :FormatLines<CR>
 " - <leader>a (trigger code actions)
 " - Ctrl-n/p (cycle options)
 " - Enter (accept option)
-" - Esc (cancel)
+" - Ctrl-c / Esc (cancel)
 nmap <leader>r <plug>(lsp-rename)
 nmap <leader>a <plug>(lsp-code-action-float)
 
 " Autocomplete shortcuts:
 " - Ctrl-Space (trigger autocomplete)
 " - Ctrl-n/p (cycle options)
-" - Esc (reject option)
+" - Ctrl-e (cancel)
 imap <C-@> <C-space>
 imap <C-space> <C-x><C-o>
-inoremap <expr> <esc> pumvisible() ? "\<C-e>" : "\<esc>"
 
 " Enable default autocompletion.
 set omnifunc=syntaxcomplete#Complete

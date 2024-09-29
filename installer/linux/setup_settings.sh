@@ -7,9 +7,6 @@
 readonly GNOME_KEYBINDINGS="org.gnome.desktop.wm.keybindings"
 readonly GNOME_MEDIA_KEYS="org.gnome.settings-daemon.plugins.media-keys"
 readonly NEW_TMUX_KEY="/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
-readonly NEW_TMUX_COMMAND="gnome-terminal --window --maximize -- /bin/bash -c 'tmux new -A -s work'"
-readonly TERMINAL_KEYBINDINGS="org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/"
-readonly TERMINAL_DISABLED_COMMANDS="copy zoom-in zoom-out new-window new-tab close-tab"
 
 echo "Updating system settings..."
 
@@ -34,27 +31,22 @@ gsettings set "$GNOME_KEYBINDINGS" toggle-maximized "['<Primary><Alt>m']"
 echo "Setting lock screen shortcut to Ctrl-Alt-l..."
 gsettings set "$GNOME_MEDIA_KEYS" screensaver "['<Primary><Alt>l']"
 
-echo "Setting new terminal shortcut to Ctrl-Alt-s..."
+echo "Setting up 'uxterm' as default terminal..."
+if [ -f /usr/bin/uxterm ]; then
+  sudo update-alternatives --set x-terminal-emulator /usr/bin/uxterm
+fi
+
+echo "Setting new shell terminal shortcut to Ctrl-Alt-s..."
 gsettings set "$GNOME_MEDIA_KEYS" terminal "['<Primary><Alt>s']"
 
 echo "Setting new Tmux terminal shortcut to Ctrl-Alt-w..."
 gsettings set "$GNOME_MEDIA_KEYS" custom-keybindings "['$NEW_TMUX_KEY']"
 gsettings set "$GNOME_MEDIA_KEYS.custom-keybinding:$NEW_TMUX_KEY" \
-  name "'Launch tmuxw in Gnome terminal'"
+  name "'Launch tmuxw in terminal'"
 gsettings set "$GNOME_MEDIA_KEYS.custom-keybinding:$NEW_TMUX_KEY" \
-  command "\"$NEW_TMUX_COMMAND\""
+  command "\"x-terminal-emulator -e 'tmux new -A -s work'\""
 gsettings set "$GNOME_MEDIA_KEYS.custom-keybinding:$NEW_TMUX_KEY" \
   binding "'<Primary><Alt>w'"
-
-echo "Setting up terminal shortcuts..."
-gsettings set "$TERMINAL_KEYBINDINGS" paste "'<Alt>p'"
-gsettings set "$TERMINAL_KEYBINDINGS" close-window "'<Primary>q'"
-for cmd in $TERMINAL_DISABLED_COMMANDS; do
-  gsettings set "$TERMINAL_KEYBINDINGS" "$cmd" "'disabled'"
-done
-for i in {1..10}; do
-  gsettings set "$TERMINAL_KEYBINDINGS" "switch-to-tab-$i" "'disabled'"
-done
 
 echo "Setting system theme to dark mode..."
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'

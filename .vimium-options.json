@@ -1,5 +1,5 @@
 {
-  "keyMappings": "map <c-,> previousTab\nmap <c-.> nextTab\nmap <c-[> goBack\nmap <c-]> goForward",
+  "keyMappings": "map <c-1> previousTab\nmap <c-2> nextTab",
   "newTabUrl": "google.com",
   "grabBackFocus": true,
   "searchEngines": "w: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia\ng: https://www.google.com/search?q=%s Google\nd: https://duckduckgo.com/?q=%s DuckDuckGo",

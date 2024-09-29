@@ -1,4 +1,4 @@
-firefox; curl; wget; git; vim; tmux; ripgrep; tree; urlview; lm-sensors; calc; dos2unix;
+firefox; curl; wget; git; vim; xterm; tmux; ripgrep; tree; urlview; lm-sensors; calc; dos2unix;
 vim.gtk3; xsel; xclip; tlp;
 linux-tools-common; linux-tools-generic;
 

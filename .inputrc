@@ -12,6 +12,9 @@ set input-meta on
 set output-meta on
 set convert-meta off
 
+# Enable paste protection.
+set enable-bracketed-paste on
+
 # Use vi editing mode.
 set editing-mode vi
 
