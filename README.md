@@ -51,8 +51,10 @@ Common shortcuts (`C = Ctrl / Cmd`, `A = Alt / Opt`, `S = Shift`):
 - Toggle window maximization: `C-A-m`
 - Toggle fullscreen mode: `C-A-f`
 - Lock screen: `C-A-l`
+- Open file explorer: `C-A-e`
+- Open web browser: `C-A-w`
 - Open shell terminal: `C-A-s`
-- Open Tmux terminal in the `work` session: `C-A-w`
+- Open Tmux terminal in the `work` session: `C-A-x`
 
 Terminal settings:
 - Paste: `A-p`
