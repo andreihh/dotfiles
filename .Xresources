@@ -2,59 +2,53 @@
 !
 ! Configures X programs. Reload changes with `xrdb ~/.Xresources`.
 
-! Set the terminal name to ensure color support.
+! Set the terminal name and ensure color support.
 XTerm.termName: xterm-256color
+*customization: -color
 
 ! These are the 8 ANSI colors and their bright equivalents.
 ! 0-7, 8-15: black, red, green, yellow, blue, purple, cyan, white
-*color0: rgb:17/14/21
-*color1: rgb:c0/1c/28
-*color2: rgb:26/a2/69
-*color3: rgb:a2/73/4c
-*color4: rgb:12/48/8b
-*color5: rgb:a3/47/ba
-*color6: rgb:2a/a1/b3
-*color7: rgb:d0/cf/cc
-*color8: rgb:5e/5c/64
-*color9: rgb:f6/61/51
-*color10: rgb:33/d1/7a
-*color11: rgb:e9/ad/0c
-*color12: rgb:2a/7b/de
-*color13: rgb:c0/61/cb
-*color14: rgb:33/c7/de
-*color15: rgb:ff/ff/ff
+XTerm*color0: rgb:17/14/21
+XTerm*color1: rgb:c0/1c/28
+XTerm*color2: rgb:26/a2/69
+XTerm*color3: rgb:a2/73/4c
+XTerm*color4: rgb:12/48/8b
+XTerm*color5: rgb:a3/47/ba
+XTerm*color6: rgb:2a/a1/b3
+XTerm*color7: rgb:d0/cf/cc
+XTerm*color8: rgb:5e/5c/64
+XTerm*color9: rgb:f6/61/51
+XTerm*color10: rgb:33/d1/7a
+XTerm*color11: rgb:e9/ad/0c
+XTerm*color12: rgb:2a/7b/de
+XTerm*color13: rgb:c0/61/cb
+XTerm*color14: rgb:33/c7/de
+XTerm*color15: rgb:ff/ff/ff
 
 ! Set the default text, cursor and background colors to match Darcula theme.
-*foreground: rgb:a9/b7/c6
-*background: rgb:26/26/26
-*cursorColor: rgb/a9/b7/c6
+XTerm*foreground: rgb:a9/b7/c6
+XTerm*background: rgb:26/26/26
+XTerm*cursorColor: rgb/a9/b7/c6
 
 ! Do not use bright colors for bold.
-*boldMode: true
-*boldColors: false
-*colorBDMode: false
+XTerm*boldMode: true
+XTerm*boldColors: false
 
 ! Use a truetype font and size.
 *faceName: Monospace
 *faceSize: 11
 
+! Enable blinking cursor.
+*cursorBlink: true
+
 ! Enable wrapping.
 *autoWrap: true
 *reverseWrap: true
 
-! Enable blinking cursor.
-*cursorBlink: true
-
 ! Start maximized by default.
 *maximized: true
 
-! Copy selection to clipboard.
-*selectToClipboard: true
-
-! Allow Tmux to use system clipboard.
-XTerm*disallowedWindowOps: 20,21,SetXprop
-
-! Always support Unicode.
+! Always use standard UTF-8.
 *locale: false
 *utf8: 1
 *eightBitInput: false
@@ -62,13 +56,14 @@ XTerm*disallowedWindowOps: 20,21,SetXprop
 ! Allow using Alt for keyboard shortcuts.
 *metaSendsEscape: true
 
-! Remove Alt-Enter keybinding.
-*omitTranslation: fullscreen
+! Copy selection to clipboard.
+*selectToClipboard: true
 
-! Select URI with double-click.
-*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+! Allow Tmux to use system clipboard.
+XTerm*disallowedWindowOps: 20,21,SetXprop
 
-! Custom shortcuts:
+! Common shortcuts:
+! - Select URI with double-click
 ! - Paste with Alt-p
 ! - Exit with Ctrl-q
 ! - Open clipboard URI with right-click
@@ -76,3 +71,6 @@ XTerm*disallowedWindowOps: 20,21,SetXprop
   Alt <Key>p: insert-selection(CLIPBOARD) \n\
   Ctrl <Key>q: quit() \n\
   <Btn3Down>: exec-formatted("xdg-open '%t'", CLIPBOARD) \n
+
+! Remove Alt-Enter keybinding.
+*omitTranslation: fullscreen
