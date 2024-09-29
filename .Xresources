@@ -35,6 +35,9 @@
 *autoWrap: true
 *reverseWrap: true
 
+! Enable blinking cursor.
+*cursorBlink: true
+
 ! Start maximized by default.
 *maximized: true
 

@@ -31,9 +31,9 @@ gsettings set "$GNOME_KEYBINDINGS" toggle-maximized "['<Primary><Alt>m']"
 echo "Setting lock screen shortcut to Ctrl-Alt-l..."
 gsettings set "$GNOME_MEDIA_KEYS" screensaver "['<Primary><Alt>l']"
 
-echo "Setting up 'uxterm' as default terminal..."
+echo "Setting up 'xterm' as default terminal..."
 if [ -f /usr/bin/uxterm ]; then
-  sudo update-alternatives --set x-terminal-emulator /usr/bin/uxterm
+  sudo update-alternatives --set x-terminal-emulator /usr/bin/xterm
 fi
 
 echo "Setting new shell terminal shortcut to Ctrl-Alt-s..."
