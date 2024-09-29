@@ -209,7 +209,12 @@ nmap gd <plug>(lsp-definition)
 nmap gi <plug>(lsp-implementation)
 nmap gt <plug>(lsp-type-definition)
 
-" Code inspection actions.
+" Code inspection actions:
+" - <leader>f (find references)
+" - <leader>h (show help)
+" - Ctrl-[ / Ctrl-] (scroll float)
+" - Ctrl-c (close float)
+" - [w / ]w / [e / ]e (go to previous / next diagnostic / error)
 nmap <leader>f <plug>(lsp-references)
 nmap <leader>h <plug>(lsp-hover)
 nmap <expr> <C-[> lsp#scroll(-5)
