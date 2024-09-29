@@ -72,7 +72,7 @@ XTerm*disallowedWindowOps: 20,21,SetXprop
 ! - Paste with Alt-p
 ! - Exit with Ctrl-q
 ! - Open clipboard URI with right-click
-*translations: #override \n\
+*VT100*translations: #override \n\
   Alt <Key>p: insert-selection(CLIPBOARD) \n\
   Ctrl <Key>q: quit() \n\
   <Btn3Down>: exec-formatted("xdg-open '%t'", CLIPBOARD) \n
