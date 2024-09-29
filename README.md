@@ -45,7 +45,7 @@ Common shortcuts (`C = Ctrl / Cmd`, `A = Alt / Opt`, `S = Shift`):
 - New tab: `C-t`
 - Close window / tab: `C-w`
 - Quit app: `C-q`
-- Cycle tabs: `C-1` / `C-2`
+- Cycle web browser tabs: `C-1` / `C-2`
 - Cycle windows: `C-[S]-tab` (requires https://alt-tab-macos.netlify.app/)
 - Zoom in / out: `C-=` / `C--`
 - Toggle window maximization: `C-A-m`
