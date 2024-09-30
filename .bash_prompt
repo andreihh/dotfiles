@@ -38,9 +38,9 @@ _short_pwd() {
 
   local -i length=${#path[@]}
   local -i trim_length
-  (( trim_length = length - 5 ))
+  (( trim_length = length - SHORTEN_PWD_PROMPT_LEVEL ))
 
-  if (( trim_length <= 0 )); then
+  if (( trim_length <= 0 || SHORTEN_PWD_PROMPT_LEVEL <= 0 )); then
     printf "${pwd_tilde}"
     return
   fi
@@ -120,3 +120,9 @@ PROMPT_COMMAND=_make_prompt  # set dynamic prompt
 # - unset to drop VCS info from the prompt
 # - set to custom function to work with other systems
 export VCS_BRANCH_PROMPT_COMMAND="_vcs_branch"
+
+# Controls how many components are displayed from the current working directory:
+# - `0` to display full path
+# - `n` for the last `n` components, others will be collapsed to their initials
+# Must be a non-negative integer.
+export SHORTEN_PWD_PROMPT_LEVEL=5
