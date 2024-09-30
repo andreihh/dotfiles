@@ -1,5 +1,8 @@
-firefox; curl; wget; git; vim; tmux; ripgrep; tree; urlview; lm-sensors; calc; dos2unix;
---cask iterm2; macvim; reattach-to-user-namespace; pngpaste; --cask alt-tab;
+firefox; curl; wget; git; --cask iterm2;
+vim; macvim; ripgrep;
+tmux; lm-sensors; urlview; reattach-to-user-namespace;
+tree; pngpaste; calc; dos2unix;
+--cask alt-tab;
 
 --cask mactex; biber;
 
