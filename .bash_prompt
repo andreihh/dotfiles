@@ -1,5 +1,17 @@
 # ~/.bash_prompt: this file customizes the shell prompt.
 
+# Controls how many components are displayed from the current working directory:
+# - `0` to display full path
+# - `n` for the last `n` components, others will be collapsed to their initials
+# Must be a non-negative integer.
+export SHORTEN_PWD_PROMPT_LEVEL=5
+
+# Command used to detect the current VCS branch to be included in the prompt:
+# - default is `_vcs_branch`
+# - unset to drop VCS info from the prompt
+# - set to custom function to work with other systems
+export VCS_BRANCH_PROMPT_COMMAND="_vcs_branch"
+
 # Returns the current `git` branch and dirty status.
 _git_branch() {
   git rev-parse --is-inside-work-tree &>/dev/null || return
@@ -114,15 +126,3 @@ _make_prompt() {
 }
 
 PROMPT_COMMAND=_make_prompt  # set dynamic prompt
-
-# Command used to detect the current VCS branch to be included in the prompt:
-# - default is `_vcs_branch`
-# - unset to drop VCS info from the prompt
-# - set to custom function to work with other systems
-export VCS_BRANCH_PROMPT_COMMAND="_vcs_branch"
-
-# Controls how many components are displayed from the current working directory:
-# - `0` to display full path
-# - `n` for the last `n` components, others will be collapsed to their initials
-# Must be a non-negative integer.
-export SHORTEN_PWD_PROMPT_LEVEL=5
