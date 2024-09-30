@@ -25,8 +25,3 @@ alias less='less -R'
 
 # Attach to the `work` tmux session, or create it if it doesn't exist.
 alias tmuxw='tmux new -A -s work'
-
-# Prints the given message in red to stderr.
-function echoerr() {
-  echo -e "\033[0;31m$@\033[0m" >&2
-}
