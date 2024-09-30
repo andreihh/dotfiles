@@ -1,47 +1,47 @@
 #!/bin/bash -e
 
-# Installs the specified packages.
-#
-# The package index file must delimit packages by ';'. Prepend any required
-# special arguments for the installer to the package name (e.g., '--cask').
-#
-# Supports Linux and MacOS. Requires `apt` on Linux and `curl` on MacOS.
+# Updates and installs the given packages with the given installer and updater.
 
-readonly HOMEBREW_INSTALLER="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
+usage() {
+  cat << EOF
+  Usage: $0 [-h] [-d] -p <package-index> -i <installer> [-u <updater>]
 
-[[ $# -ne 1 ]] && echo "Usage: $0 PACKAGE_INDEX_FILE" && exit 1
+    -h  Print this message and exit.
+    -d  Debug / dry run mode (simulate all actions, but do not execute them).
+    -p  Path to the package index file. Packages must be delimited by ';'.
+    -i  Command to use to install packages.
+    -u  Command to use to update the package index. Optional.
+EOF
+}
+
+while getopts "hdp:i:u:" option; do
+  case "${option}" in
+    h) usage && exit 0 ;;
+    d) debug="-d" ;;
+    p) package_index="${OPTARG}" ;;
+    i) installer="${OPTARG}" ;;
+    u) updater="${OPTARG}" ;;
+    *) usage && exit 1 ;;
+  esac
+done
+
+[[ -z "${package_index}" ]] && usage && exit 1
+[[ -z "${installer}" ]] && usage && exit 1
 
 echo "Installing packages..."
+[[ -n "${debug}" ]] && echo "Running in debug mode!"
 
-shopt -s nocasematch
-case "$OSTYPE" in
-  linux*)
-    echo "Updating package index..."
-    sudo apt-get update
+if [[ -n "${updater}" ]]; then
+  echo "Updating package index..."
+  [[ -n "${debug}" ]] || ${updater}
+fi
 
-    installer="sudo apt-get -y install"
-    ;;
-  darwin*)
-    echo "Installing Homebrew..."
-    /bin/bash -c "$(curl -fsSL $HOMEBREW_INSTALLER)"
+packages=$(cat "${package_index}" | tr ";" "\n")
 
-    echo "Updating package index..."
-    brew update
-
-    installer="brew install"
-    ;;
-  *)
-    echo "Platform '$OSTYPE' not supported!"
-    exit 1
-    ;;
-esac
-shopt -u nocasematch
-
-package_index="$1"
-packages=$(cat "$package_index" | tr ";" "\n")
-echo "$packages" | while read -r package; do
-  echo "Installing package '$package'..."
-  $installer $package
+echo "${packages}" | while read -r package; do
+  [[ -z "${package}" ]] && continue
+  echo "Installing package '${package}'..."
+  [[ -n "${debug}" ]] || ${installer} ${package}
 done
 
 echo "Packages installed successfully!"

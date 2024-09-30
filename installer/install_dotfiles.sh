@@ -4,31 +4,36 @@
 #
 # If installing a single file fails, aborts the installation and reports the
 # failure.
-#
-# Supports Linux and MacOS.
 
-[[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
+usage() {
+  cat << EOF
+  Usage: $0 [-h] [-d] -o <operating-system>
+
+    -h  Print this message and exit.
+    -d  Debug / dry run mode (simulate all actions, but do not execute them).
+    -o  Operating system directory with platform-specific dotfiles.
+EOF
+}
+
+while getopts "hdo:" option; do
+  case "${option}" in
+    h) usage && exit 0 ;;
+    d) debug="-d" ;;
+    o) os_dir="${OPTARG}" ;;
+    *) usage && exit 1 ;;
+  esac
+done
+
+[[ -z "${os_dir}" ]] && usage && exit 1
 
 echo "Installing dotfiles..."
+[[ -n "${debug}" ]] && echo "Running in debug mode!"
 
-shopt -s nocasematch
-case "$OSTYPE" in
-  linux*) platform="linux" ;;
-  darwin*) platform="macos" ;;
-  *)
-    echo "Platform '$OSTYPE' not supported!"
-    exit 1
-    ;;
-esac
-shopt -u nocasematch
-
-for file in "$HOME/.dotfiles"{,/$platform}/.[!.]*; do
-  if [[ ! -f "$file" ]]; then
-    continue
-  fi
-  echo "Installing dotfile '$file'..."
-  filename=$(basename "$file")
-  ln -sfv "$file" "$HOME/$filename"
+for file in "${HOME}/.dotfiles"{,/${os_dir}}/.[!.]*; do
+  [[ ! -f "${file}" ]] && continue
+  echo "Installing dotfile '${file}'..."
+  filename=$(basename "${file}")
+  [[ -n "${debug}" ]] || ln -sfv "${file}" "${HOME}/${filename}"
 done
 
 echo "Dotfiles installed successfully!"
