@@ -45,11 +45,11 @@ if ! shopt -oq posix; then
 fi
 
 # Load custom configuration files:
-# * `~/.bash_prompt` for custom shell prompt
-# * `~/.bash_aliases` for useful aliases
-# * `~/.exports` for important environment variables
-# * `~/.platform_utils` for platform-specific utilities
-# * `~/.extras` for other settings that shouldn't be persisted across devices
+# - `~/.bash_prompt` for custom shell prompt
+# - `~/.bash_aliases` for useful aliases
+# - `~/.exports` for important environment variables
+# - `~/.platform_utils` for platform-specific utilities
+# - `~/.extras` for other settings that shouldn't be persisted across devices
 for file in ~/.{bash_prompt,bash_aliases,exports,platform_utils,extras}; do
   [ -f "$file" ] && . "$file"
 done

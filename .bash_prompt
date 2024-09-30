@@ -1,73 +1,86 @@
 # ~/.bash_prompt: this file customizes the shell prompt.
 
-_config_prompt() {
-  # Set variable identifying the chroot you work in (used in the prompt below).
-  if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
+# Returns the current `git` branch and dirty status.
+_git_branch() {
+  git rev-parse --is-inside-work-tree &>/dev/null || return
+
+  local branch="$(git symbolic-ref --quiet --short HEAD 2> /dev/null || \
+    git describe --all --exact-match HEAD 2> /dev/null || \
+    git rev-parse --short HEAD 2> /dev/null || \
+    echo '(unknown)')"
+
+  local dirty=""
+  if [[ $(git status --porcelain 2> /dev/null) ]]; then
+    dirty="*"
   fi
 
-  # Set a fancy prompt.
-  local color_prompt=
-  case "$TERM" in
-    xterm-color | *-256color) color_prompt=yes ;;
-  esac
+  echo "${branch}${dirty}"
+}
 
-  if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-    # We have color support; assume it's compliant with Ecma-48 (ISO/IEC-6429).
-    # Lack of such support is extremely rare, and such a case would tend to
-    # support setf rather than setaf.
-    color_prompt=yes
-  else
-    color_prompt=
-  fi
-
-  # If colors are not supported, use the default prompt.
-  if [ -z "$color_prompt" ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-    PS2='> '
+# Returns the branch name and optionally dirty status of the current VCS branch.
+#
+# Works with `git`.
+_vcs_branch() {
+  local git_branch="$(_git_branch)"
+  if [[ -n "$git_branch" ]]; then
+    echo "$git_branch"
     return
   fi
+}
 
-  # Define color and style aliases.
-  local bold="\[\e[1m\]"
+# Makes a custom, dynamic prompt in the following format:
+#   `(chroot) user at host on branch in dir $`
+#
+# The chroot, host and branch are optional. Colors are used only if supported.
+# Sets JetBrains Darcula foreground and background colors.
+_make_prompt() {
+  # If colors are supported, define styles and colors.
+  local ncolors=$(tput colors)
+  if [[ -n "$ncolors" ]] && [[ $ncolors -ge 8 ]]; then
+    local reset_style="\[$(tput sgr0)\]"
 
-  local black="\[\e[30m\]"
-  local red="\[\e[31m\]"
-  local green="\[\e[32m\]"
-  local yellow="\[\e[33m\]"
-  local blue="\[\e[34m\]"
-  local purple="\[\e[35m\]"
-  local cyan="\[\e[36m\]"
-  local white="\[\e[37m\]"
-  local bright_red="\[\e[91m\]"
+    local text_style="\[$(tput sgr0 && tput bold)\]"
+    local shell_style="\[$(tput sgr0 && tput bold && tput setaf 2)\]"  # green
+    local chroot_style="\[$(tput sgr0 && tput bold && tput setaf 5)\]"  # purple
+    local user_style="\[$(tput sgr0 && tput bold && tput setaf 1)\]"  # red
+    local host_style="\[$(tput sgr0 && tput bold && tput setaf 6)\]"  # cyan
+    local vcs_style="\[$(tput sgr0 && tput bold && tput setaf 3)\]"  # yellow
+    local cwd_style="\[$(tput sgr0 && tput bold && tput setaf 4)\]"  # blue
 
-  local reset_style="\[\e[0m\]"
-
-  local user_style="$bold$red"
-  if [ "$USER" == "root" ]; then
-    user_style="$bold$bright_red"
+    echo -ne '\e]10;#a9b7c6\e\\'  # set foreground to match Darcula
+    echo -ne '\e]11;#262626\e\\'  # set background to match Darcula
   fi
 
-  local host_style="$bold$cyan"
-  local cwd_style="$bold$blue"
-  local shell_style="$bold$green"
+  # Set variable identifying the chroot you work in.
+  if [[ -z "${debian_chroot:-}" ]] && [[ -r /etc/debian_chroot ]]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+  fi
 
   # Print only the first 3 and last 2 components of the current working
   # directory (not counting `$HOME`, which is collapsed to `~`).
   local cwd='`dirs +0 | sed "s#\(/[^/]\{1,\}/[^/]\{1,\}/[^/]\{1,\}/\).*\(/[^/]\{1,\}/[^/]\{1,\}\)/\{0,1\}#\1...\2#g"`'
 
   # Set the terminal prompt.
-  PS1="${debian_chroot:+($debian_chroot)}"
-  PS1+="${user_style}\u" # set user
-  if [ -n "$SSH_TTY" ]; then
-    PS1+="${shell_style}@${host_style}\h" # set `@` and host if remote session
-  fi
-  PS1+="${shell_style}:" # set `:` separator
-  PS1+="${cwd_style}$cwd" # set current working directory
-  PS1+="${shell_style}\$ " # set shell
-  PS1+="${reset_style}" # reset style
+  PS1="${debian_chroot:+${chroot_style}(${debian_chroot}) }"  # set chroot
+  PS1+="${user_style}\u"  # set current user
 
-  PS2="${shell_style}> ${reset_style}" # set shell and reset style
+  # Set the host only if the current session is remote.
+  if [[ -n "$SSH_TTY" ]]; then
+    PS1+="${text_style} at ${host_style}\h"
+  fi
+
+  # Set current VCS branch if VCS info is enabled and repository is detected.
+  if [[ -n "$VCS_BRANCH_PROMPT_COMMAND" ]]; then
+    local branch="$($VCS_BRANCH_PROMPT_COMMAND)"
+    if [[ -n "$branch" ]]; then
+      PS1+="${text_style} on ${vcs_style}${branch}"
+    fi
+  fi
+
+  PS1+="${text_style} in ${cwd_style}${cwd}"  # set current working directory
+  PS1+="${shell_style} \$ ${reset_style}"  # set shell and reset style
+
+  PS2="${shell_style}> ${reset_style}"  # set shell and reset style
 
   # If this is an xterm, set the title to user@host:dir.
   case "$TERM" in
@@ -76,9 +89,12 @@ _config_prompt() {
       ;;
     *) ;;
   esac
-
-  echo -ne '\e]10;#a9b7c6\e\\' # set foreground to match Darcula
-  echo -ne '\e]11;#262626\e\\' # set background to match Darcula
 }
 
-_config_prompt
+PROMPT_COMMAND=_make_prompt  # set dynamic prompt
+
+# Command used to detect the current VCS branch to be included in the prompt:
+# - default is `_vcs_branch`
+# - unset to drop VCS info from the prompt
+# - set to custom function to work with other systems
+export VCS_BRANCH_PROMPT_COMMAND="_vcs_branch"

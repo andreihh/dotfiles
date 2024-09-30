@@ -23,7 +23,7 @@ alias l='ls -CF'
 alias tree='tree -C'
 alias less='less -R'
 
-# Attach to the "work" tmux session, or create it if it doesn't exist.
+# Attach to the `work` tmux session, or create it if it doesn't exist.
 alias tmuxw='tmux new -A -s work'
 
 # Prints the given message in red to stderr.
