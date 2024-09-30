@@ -34,9 +34,9 @@ gsettings set "$GNOME_KEYBINDINGS" toggle-fullscreen "['<Primary><Alt>f']"
 echo "Setting lock screen shortcut to Ctrl-Alt-l..."
 gsettings set "$GNOME_MEDIA_KEYS" screensaver "['<Primary><Alt>l']"
 
-echo "Setting up 'firefox' as default browser..."
+echo "Setting up default web browser interactively..."
 if [[ -f /usr/bin/firefox ]]; then
-  sudo update-alternatives --set x-www-browser /usr/bin/firefox
+  sudo update-alternatives --config x-www-browser
 fi
 
 echo "Setting up 'xterm' as default terminal..."

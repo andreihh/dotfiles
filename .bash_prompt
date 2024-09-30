@@ -78,7 +78,7 @@ _make_prompt() {
   fi
 
   PS1+="${text_style} in ${cwd_style}${cwd}"  # set current working directory
-  PS1+="${shell_style} \$ ${reset_style}"  # set shell and reset style
+  PS1+="\n${shell_style}\$ ${reset_style}"  # set shell and reset style
 
   PS2="${shell_style}> ${reset_style}"  # set shell and reset style
 
