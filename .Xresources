@@ -59,7 +59,7 @@ XTerm*boldColors: false
 ! Copy selection to clipboard.
 *selectToClipboard: true
 
-! Allow Tmux to use system clipboard.
+! Allow `tmux` to use system clipboard.
 XTerm*disallowedWindowOps: 20,21,SetXprop
 
 ! Common shortcuts:

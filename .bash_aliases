@@ -1,7 +1,7 @@
 # ~/.bash_aliases: this file contains various user-defined aliases for
 # interactive shells.
 
-# Enable color support of ls and also add handy aliases.
+# Enable color support of `ls` and also add handy aliases.
 if [ -x /usr/bin/dircolors ]; then
   test -r ~/.dircolors \
     && eval "$(dircolors -b ~/.dircolors)" \
@@ -15,7 +15,7 @@ if [ -x /usr/bin/dircolors ]; then
   alias egrep='egrep --color=auto'
 fi
 
-# Some more ls aliases.
+# Some more `ls` aliases.
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
@@ -23,5 +23,5 @@ alias l='ls -CF'
 alias tree='tree -C'
 alias less='less -R'
 
-# Attach to the `work` tmux session, or create it if it doesn't exist.
+# Attach to the `work` `tmux` session, or create it if it doesn't exist.
 alias tmuxw='tmux new -A -s work'

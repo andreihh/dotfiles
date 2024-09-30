@@ -17,6 +17,6 @@ else
   echo "Tmux Plugin Manager already installed!"
 fi
 
-echo "Installing Tmux plugins..."
+echo "Installing 'tmux' plugins..."
 ~/.tmux/plugins/tpm/scripts/install_plugins.sh
-echo "Tmux plugins installed!"
+echo "Installed 'tmux' plugins successfully!"

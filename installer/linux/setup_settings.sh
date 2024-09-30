@@ -5,6 +5,7 @@
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
 readonly GNOME_KEYBINDINGS="org.gnome.desktop.wm.keybindings"
+readonly MUTTER_KEYBINDINGS="org.gnome.mutter.keybindings"
 readonly GNOME_MEDIA_KEYS="org.gnome.settings-daemon.plugins.media-keys"
 readonly NEW_TMUX_KEY="/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
 
@@ -24,6 +25,13 @@ echo "Setting switch windows shortcuts to Ctrl-[Shift]-Tab..."
 gsettings set "$GNOME_KEYBINDINGS" switch-windows "['<Primary>Tab']"
 gsettings set "$GNOME_KEYBINDINGS" switch-windows-backward \
   "['<Shift><Primary>Tab']"
+
+echo "Setting toggle tiled left shortcut to Ctrl-Alt-comma..."
+gsettings set "$MUTTER_KEYBINDINGS" toggle-tiled-left "['<Primary><Alt>comma']"
+
+echo "Setting toggle tiled right shortcut to Ctrl-Alt-period..."
+gsettings set "$MUTTER_KEYBINDINGS" toggle-tiled-right \
+  "['<Primary><Alt>period']"
 
 echo "Setting toggle maximized shortcut to Ctrl-Alt-m..."
 gsettings set "$GNOME_KEYBINDINGS" toggle-maximized "['<Primary><Alt>m']"
@@ -53,7 +61,7 @@ gsettings set "$GNOME_MEDIA_KEYS" www "['<Primary><Alt>w']"
 echo "Setting new shell terminal shortcut to Ctrl-Alt-s..."
 gsettings set "$GNOME_MEDIA_KEYS" terminal "['<Primary><Alt>s']"
 
-echo "Setting new Tmux terminal shortcut to Ctrl-Alt-x..."
+echo "Setting new 'tmux' terminal shortcut to Ctrl-Alt-x..."
 gsettings set "$GNOME_MEDIA_KEYS" custom-keybindings "['$NEW_TMUX_KEY']"
 gsettings set "$GNOME_MEDIA_KEYS.custom-keybinding:$NEW_TMUX_KEY" \
   name "'Launch tmuxw in terminal'"
