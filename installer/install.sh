@@ -57,15 +57,15 @@ usage() {
     -d  Debug / dry run mode (simulate all actions, but do not execute them).
     -f  Force install by deleting prior backup and installation.
     -b  Directory where dotfiles should be backed up.
-          DEFAULT: '${BACKUP_DIR_DEFAULT}'
+          Default: '${BACKUP_DIR_DEFAULT}'
     -p  Path to the package index file. Packages must be delimited by ';'.
-          DEFAULT: '${PACKAGE_INDEX_DEFAULT}'
+          Default: '${PACKAGE_INDEX_DEFAULT}'
     -i  Command to use to install packages.
-          DEFAULT: '${installer}'
+          Default: '${installer}'
     -u  Command to use to update the package index. Optional.
-          DEFAULT: '${updater}'
+          Default: '${updater}'
     -s  List of setup scripts to run delimited by ';'.
-          DEFAULT: all 'setup_*.sh' scripts from '${INSTALLER_DIR}[/${os_dir}]'.
+          Default: all 'setup_*.sh' scripts from '${INSTALLER_DIR}[/${os_dir}]'.
 EOF
 }
 
@@ -116,9 +116,9 @@ fi
 
 echo "Running backup and install scripts..."
 chmod +x "${BACKUP_DOTFILES}" "${INSTALL_DOTFILES}" "${INSTALL_PACKAGES}"
-"${BACKUP_DOTFILES}" "${debug}" -b "${backup_dir}"
-"${INSTALL_DOTFILES}" "${debug}" -o "${os_dir}"
-"${INSTALL_PACKAGES}" "${debug}" -p "${package_index}" -i "${installer}" \
+"${BACKUP_DOTFILES}" ${debug} -b "${backup_dir}"
+"${INSTALL_DOTFILES}" ${debug} -o "${os_dir}"
+"${INSTALL_PACKAGES}" ${debug} -p "${package_index}" -i "${installer}" \
   -u "${updater}"
 
 if [[ -z "${setup_scripts}" ]]; then
@@ -129,7 +129,7 @@ echo "Running setup scripts..."
 for script in ${setup_scripts}; do
   echo "Running script '${script}'..."
   chmod +x "${script}"
-  if "${script}" "${debug}"; then
+  if "${script}" ${debug}; then
     echo "Script '${script}' ran successfully!"
   else
     echo -e "\e[31mScript '${script}' failed!\e[0m"

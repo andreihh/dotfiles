@@ -51,6 +51,7 @@ Common shortcuts (`C = Ctrl / Cmd`, `A = Alt / Opt`, `S = Shift`):
 - Toggle tiled left / right: `C-A-,` / `C-A-.`
 - Toggle maximized: `C-A-m`
 - Toggle fullscreen: `C-A-f`
+- Print screen / cancel: `C-A-p` / `Esc`
 - Lock screen: `C-A-l`
 - Open file explorer: `C-A-e`
 - Open web browser: `C-A-w`

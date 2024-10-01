@@ -6,6 +6,7 @@
 
 readonly GNOME_KEYBINDINGS="org.gnome.desktop.wm.keybindings"
 readonly MUTTER_KEYBINDINGS="org.gnome.mutter.keybindings"
+readonly SHELL_KEYBINDINGS="org.gnome.shell.keybindings"
 readonly GNOME_MEDIA_KEYS="org.gnome.settings-daemon.plugins.media-keys"
 readonly NEW_TMUX_KEY="/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
 
@@ -39,17 +40,29 @@ gsettings set "$GNOME_KEYBINDINGS" toggle-maximized "['<Primary><Alt>m']"
 echo "Setting toggle fullscreen shortcut to Ctrl-Alt-f..."
 gsettings set "$GNOME_KEYBINDINGS" toggle-fullscreen "['<Primary><Alt>f']"
 
+echo "Setting print screen shortcut to Ctrl-Alt-p..."
+gsettings set "$SHELL_KEYBINDINGS" show-screenshot-ui "['<Primary><Alt>p']"
+
 echo "Setting lock screen shortcut to Ctrl-Alt-l..."
 gsettings set "$GNOME_MEDIA_KEYS" screensaver "['<Primary><Alt>l']"
 
 echo "Setting up default web browser interactively..."
-if [[ -f /usr/bin/firefox ]]; then
-  sudo update-alternatives --config x-www-browser
-fi
+sudo update-alternatives --config x-www-browser
 
 echo "Setting up 'xterm' as default terminal..."
-if [[ -f /usr/bin/uxterm ]]; then
+if [[ -f "/usr/bin/xterm" ]]; then
   sudo update-alternatives --set x-terminal-emulator /usr/bin/xterm
+else
+  echo "Did not find 'xterm'! Setting up default terminal interactively..."
+  sudo update-alternatives --config x-terminal-emulator
+fi
+
+echo "Setting up 'vim.gtk3' as default editor..."
+if [[ -f "/usr/bin/vim.gtk3" ]]; then
+  sudo update-alternatives --set editor /usr/bin/vim.gtk3
+else
+  echo "Did not find 'vim.gtk3'! Setting up default editor interactively..."
+  sudo update-alternatives --config editor
 fi
 
 echo "Setting new file explorer shortcut to Ctrl-Alt-e..."
