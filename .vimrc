@@ -224,9 +224,11 @@ nmap ]w <plug>(lsp-next-warning)
 nmap [d <plug>(lsp-previous-diagnostic)
 nmap ]d <plug>(lsp-next-diagnostic)
 
-" Show float diagnostics only on cursor hover.
+" Show diagnostics inline and as float on cursor hover.
+let g:lsp_diagnostics_virtual_text_align = "after"
+let g:lsp_diagnostics_virtual_text_padding_left = 2
+let g:lsp_diagnostics_virtual_text_wrap = "truncate"
 let g:lsp_diagnostics_float_cursor = 1
-let g:lsp_diagnostics_virtual_text_enabled = 0
 
 " Code inspection and transformation:
 " - <leader>h (show help)
@@ -235,7 +237,7 @@ let g:lsp_diagnostics_virtual_text_enabled = 0
 " - <leader>r (rename)
 " - <leader>= (format file or selected range)
 " - <leader>q (toggle quickfix pane)
-" - Ctrl-[ / Ctrl-] (scroll float)
+" - Ctrl-f/b (scroll float forward / backward)
 " - Ctrl-c (close float)
 nmap <leader>h <plug>(lsp-hover)
 nmap <leader>f <plug>(lsp-references)
@@ -245,8 +247,8 @@ nnoremap <leader>= :FormatCode<CR>
 vnoremap <leader>= :FormatLines<CR>
 nnoremap <expr> <leader>q empty(filter(getwininfo(), 'v:val.quickfix'))
   \ ? ":copen\<CR>" : ":cclose\<CR>"
-nmap <expr> <C-[> lsp#scroll(-5)
-nmap <expr> <C-]> lsp#scroll(+5)
+nmap <expr> <C-f> lsp#scroll(-5)
+nmap <expr> <C-b> lsp#scroll(+5)
 
 " Code actions shortcuts:
 " - <leader>a (trigger code actions)
