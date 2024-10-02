@@ -69,8 +69,9 @@ _short_pwd() {
 # Makes a custom, dynamic prompt in the following format:
 #   `(chroot) user at host on branch in dir $`
 #
-# The chroot, host and branch are optional. Colors are used only if supported.
-# Sets JetBrains Darcula foreground and background colors.
+# The chroot, host and branch are optional. Colors are used only if supported:
+# JetBrains Darcula theme if 256 colors are supported, otherwise system dark
+# theme.
 _make_prompt() {
   # If colors are supported, define styles and colors.
   local ncolors=$(tput colors)
@@ -85,8 +86,19 @@ _make_prompt() {
     local vcs_style="\[$(tput sgr0 && tput bold && tput setaf 3)\]"  # yellow
     local cwd_style="\[$(tput sgr0 && tput bold && tput setaf 4)\]"  # blue
 
-    echo -ne '\e]10;#a9b7c6\e\\'  # set foreground to match Darcula
-    echo -ne '\e]11;#262626\e\\'  # set background to match Darcula
+    # Set the color theme.
+    if [[ $ncolors -ge 256 ]]; then
+      # Darcula: foreground #a9b7c6, background #2b2b2b, cursor #bbbbbb
+      # 256-colors: foreground #afafaf, background #262626, cursor #bcbcbc
+      printf '%b' '\e]10;145\a'  # set foreground (grey69)
+      printf '%b' '\e]11;235\a'  # set background (grey15)
+      printf '%b' '\e]12;250\a'  # set cursor (grey74)
+    else
+      # System dark theme: foreground white, background black, cursor white
+      printf '%b' '\e]10;37\a'  # set foreground (white)
+      printf '%b' '\e]11;30\a'  # set background (black)
+      printf '%b' '\e]12;37\a'  # set cursor (white)
+    fi
   fi
 
   # Set variable identifying the chroot you work in.

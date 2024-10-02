@@ -1,0 +1,5 @@
+# Use smart case.
+--smart-case
+
+# Search hidden files, but respect `.ignore`.
+--hidden

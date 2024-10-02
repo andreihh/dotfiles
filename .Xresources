@@ -26,9 +26,9 @@ XTerm*color14: rgb:33/c7/de
 XTerm*color15: rgb:ff/ff/ff
 
 ! Set the default text, cursor and background colors to match Darcula theme.
-XTerm*foreground: rgb:a9/b7/c6
+XTerm*foreground: rgb:af/af/af
 XTerm*background: rgb:26/26/26
-XTerm*cursorColor: rgb/a9/b7/c6
+XTerm*cursorColor: rgb:bc/bc/bc
 
 ! Do not use bright colors for bold.
 XTerm*boldMode: true

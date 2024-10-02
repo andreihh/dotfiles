@@ -103,6 +103,8 @@ set background=dark
 " Optionally enable a color scheme if the terminal supports at least 256 colors.
 " The color scheme must be set after setting the background and enabling syntax.
 if &t_Co >= 256
+  " Use 256 colors to match terminal theme.
+  set t_Co=256
   colorscheme darcula
 endif
 
@@ -115,51 +117,13 @@ nnoremap Y y$
 " Exit visual mode with q.
 vnoremap q <esc>
 
+" Cancels search highlighting in normal mode.
+nnoremap ; :nohlsearch<CR>
+
 " Set <leader> and macro autocompletion keys. Must not have surrounding spaces.
 noremap <space> <nop>
 let mapleader=" "
 set wildcharm=<C-z>
-
-" Navigation actions:
-" - gj / gk (jump to previous / next location)
-" - gf (jump to file under cursor)
-" - go (open the URI under cursor / selected URI)
-" - g1 /g2 / ... / g9 (go to tab)
-" - <leader><leader> + motion (trigger EasyMotion)
-" - [c / ]c / [C / ]C (jump to previous / next / first / last changed hunk)
-" - Ctrl-u/d (scroll half page up / down)
-nnoremap gj <C-o>
-nnoremap gk <C-i>
-nmap go gx
-nnoremap g1 1gt
-nnoremap g2 2gt
-nnoremap g3 3gt
-nnoremap g4 4gt
-nnoremap g5 5gt
-nnoremap g6 6gt
-nnoremap g7 7gt
-nnoremap g8 8gt
-nnoremap g9 9gt
-
-" Cancels search highlighting in normal mode.
-nnoremap <leader>/ :nohlsearch<CR>
-
-" Fuzzy searching shortcuts:
-" - <leader>o (search files)
-" - <leader>s (search everywhere)
-" - <leader>c (search uncommitted Git files)
-" - Ctrl-n/p (cycle options)
-" - Enter (open option in current buffer)
-" - Ctrl-t (open option in new tab)
-" - Ctrl-s/v (open option in horizontal / vertical split)
-" - Ctrl-c / Esc (cancel)
-nnoremap <leader>o :Files<CR>
-nnoremap <leader>s :Rg<CR>
-nnoremap <leader>c :GFiles?<CR>
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-s': 'split',
-  \ 'ctrl-v': 'vsplit' }
 
 " Writes all buffers before navigating outside of Vim.
 let g:tmux_navigator_save_on_switch=1
@@ -172,10 +136,9 @@ let g:tmux_resizer_resize_count=5
 let g:tmux_resizer_vertical_resize_count=5
 
 " Required to map the Alt key.
-for key in "123456789nhjkl="
-  execute "set <A-" . key . ">=\e" . key
+for key in "hjkl="
+  execute "set <M-" . key . ">=\e" . key
 endfor
-execute "set <A-CR>=\e\<CR>"
 
 " Control and navigate panes and tabs:
 " - Ctrl-o (new file in current buffer)
@@ -191,50 +154,105 @@ nnoremap <C-o> :edit %:p:h<C-z>
 nnoremap <C-t> :tabedit %<CR>
 nnoremap <C-s> :split<CR>
 nnoremap <C-v> :vsplit<CR>
-nnoremap <silent> <A-=> <C-w>=
+nnoremap <M-=> <C-w>=
 nnoremap <C-z> :only<CR>
 nnoremap <C-x> :quit<CR>
 nnoremap <C-w> :tabclose<CR>
+
+" Fuzzy searching:
+" - ss (search everywhere)
+" - sf (search files)
+" - sc (search uncommitted Git files)
+" - sb (search current buffer)
+" - Ctrl-n/p (cycle options)
+" - Enter (open option in current buffer)
+" - Ctrl-t (open option in new tab)
+" - Ctrl-s/v (open option in horizontal / vertical split)
+" - Ctrl-c / Esc (cancel)
+nnoremap s <nop>
+nnoremap ss :Rg<CR>
+nnoremap sf :Files<CR>
+nnoremap sc :GFiles?<CR>
+nnoremap sb :BLines<CR>
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+" Navigation actions:
+" - g1 /g2 / ... / g9 (go to tab)
+" - gj / gk (go to previous / next location)
+" - gd (go to definition)
+" - gD (go to declaration)
+" - gi (go to implementation)
+" - gf (go to file under cursor or selected file)
+" - go (open URI under cursor or selected URI)
+" - <leader><leader> + motion (trigger EasyMotion)
+nnoremap g1 1gt
+nnoremap g2 2gt
+nnoremap g3 3gt
+nnoremap g4 4gt
+nnoremap g5 5gt
+nnoremap g6 6gt
+nnoremap g7 7gt
+nnoremap g8 8gt
+nnoremap g9 9gt
+nnoremap gj <C-o>
+nnoremap gk <C-i>
+nmap gd <plug>(lsp-definition)
+nmap gD <plug>(lsp-declaration)
+nmap gi <plug>(lsp-implementation)
+map go gx
+
+" Jump actions:
+" - [t / ]t (jump to previous / next tab)
+" - [c / ]c / [C / ]C (jump to previous / next / first / last changed hunk)
+" - [r / ]r (jump to previous / next reference)
+" - [e / ]e (jump to previous / next error)
+" - [w / ]w (jump to previous / next warning)
+" - [d / ]d (jump to previous / next diagnostic)
+" - { / } (jump to previous / next blank line)
+" - Ctrl-u/d (jump half page up / down)
+nnoremap [t gT
+nnoremap ]t gt
+nmap [r <plug>(lsp-previous-reference)
+nmap ]r <plug>(lsp-next-reference)
+nmap [e <plug>(lsp-previous-error)
+nmap ]e <plug>(lsp-next-error
+nmap [w <plug>(lsp-previous-warning)
+nmap ]w <plug>(lsp-next-warning)
+nmap [d <plug>(lsp-previous-diagnostic)
+nmap ]d <plug>(lsp-next-diagnostic)
 
 " Show float diagnostics only on cursor hover.
 let g:lsp_diagnostics_float_cursor = 1
 let g:lsp_diagnostics_virtual_text_enabled = 0
 
-" Toggle quickfix pane.
-nnoremap <expr> <leader>q empty(filter(getwininfo(), 'v:val.quickfix'))
-  \ ? ":copen\<CR>" : ":cclose\<CR>"
-
-" Code navigation actions.
-nmap gd <plug>(lsp-definition)
-nmap gi <plug>(lsp-implementation)
-nmap gt <plug>(lsp-type-definition)
-
-" Code inspection actions:
-" - <leader>f (find references)
+" Code inspection and transformation:
 " - <leader>h (show help)
+" - <leader>f (find references)
+" - <leader>t (type hierarchy)
+" - <leader>r (rename)
+" - <leader>= (format file or selected range)
+" - <leader>q (toggle quickfix pane)
 " - Ctrl-[ / Ctrl-] (scroll float)
 " - Ctrl-c (close float)
-" - [w / ]w / [e / ]e (go to previous / next diagnostic / error)
-nmap <leader>f <plug>(lsp-references)
 nmap <leader>h <plug>(lsp-hover)
-nmap <expr> <C-[> lsp#scroll(-5)
-nmap <expr> <C-]> lsp#scroll(+5)
-nmap [w <plug>(lsp-previous-diagnostic)
-nmap ]w <plug>(lsp-next-diagnostic)
-nmap [e <plug>(lsp-previous-error)
-nmap ]e <plug>(lsp-next-error
-
-" Code formatting actions.
+nmap <leader>f <plug>(lsp-references)
+nmap <leader>t <plug>(lsp-type-hierarchy)
+nmap <leader>r <plug>(lsp-rename)
 nnoremap <leader>= :FormatCode<CR>
 vnoremap <leader>= :FormatLines<CR>
+nnoremap <expr> <leader>q empty(filter(getwininfo(), 'v:val.quickfix'))
+  \ ? ":copen\<CR>" : ":cclose\<CR>"
+nmap <expr> <C-[> lsp#scroll(-5)
+nmap <expr> <C-]> lsp#scroll(+5)
 
 " Code actions shortcuts:
-" - <leader>r (rename)
 " - <leader>a (trigger code actions)
 " - Ctrl-n/p (cycle options)
 " - Enter (accept option)
 " - Ctrl-c / Esc (cancel)
-nmap <leader>r <plug>(lsp-rename)
 nmap <leader>a <plug>(lsp-code-action-float)
 
 " Autocomplete shortcuts:
@@ -253,8 +271,8 @@ function! s:on_lsp_buffer_enabled() abort
   setlocal signcolumn=yes
   if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
 
-  " Code completion actions.
-  imap <C-space> <plug>(asyncomplete_force_refresh)
+  " Override autocomplete action.
+  imap <buffer> <C-space> <plug>(asyncomplete_force_refresh)
 endfunction
 
 augroup lsp_install
