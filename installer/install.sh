@@ -53,7 +53,6 @@ usage() {
   cat << EOF
   Usage: $0 [-h] [-d] [-b <backup-directory>] [-p <package-index>]
 
-    -h  Print this message and exit.
     -d  Debug / dry run mode (simulate all actions, but do not execute them).
     -f  Force install by deleting prior backup and installation.
     -b  Directory where dotfiles should be backed up.
@@ -66,14 +65,14 @@ usage() {
           Default: '${updater}'
     -s  List of setup scripts to run delimited by ';'.
           Default: all 'setup_*.sh' scripts from '${INSTALLER_DIR}[/${os_dir}]'.
+    -h  Print this message and exit.
 EOF
 }
 
 backup_dir="${BACKUP_DIR_DEFAULT}"
 package_index="${PACKAGE_INDEX_DEFAULT}"
-while getopts "hdfb:p:i:u:s:" option; do
+while getopts "dfb:p:i:u:s:h" option; do
   case "${option}" in
-    h) usage && exit 0 ;;
     d) debug="-d" ;;
     f) force="-f" ;;
     b) backup_dir="${OPTARG}" ;;
@@ -81,6 +80,7 @@ while getopts "hdfb:p:i:u:s:" option; do
     i) installer="${OPTARG}" ;;
     u) updater="${OPTARG}" ;;
     s) setup_scripts="${OPTARG//;/ }" ;;
+    h) usage && exit 0 ;;
     *) usage && exit 1 ;;
   esac
 done
@@ -117,7 +117,7 @@ fi
 echo "Running backup and install scripts..."
 chmod +x "${BACKUP_DOTFILES}" "${INSTALL_DOTFILES}" "${INSTALL_PACKAGES}"
 "${BACKUP_DOTFILES}" ${debug} -b "${backup_dir}"
-"${INSTALL_DOTFILES}" ${debug} -o "${os_dir}"
+"${INSTALL_DOTFILES}" ${debug}
 "${INSTALL_PACKAGES}" ${debug} -p "${package_index}" -i "${installer}" \
   -u "${updater}"
 

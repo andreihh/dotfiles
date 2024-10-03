@@ -15,7 +15,7 @@ EOF
 }
 
 while getopts "dh" option; do
-  case "${option}" in
+  case "$option" in
     d) debug="-d" ;;
     h) usage && exit 0 ;;
     *) usage && exit 1 ;;
@@ -23,13 +23,13 @@ while getopts "dh" option; do
 done
 
 echo "Installing dotfiles..."
-[[ -n "${debug}" ]] && echo "Running in debug mode!"
+[[ -n "$debug" ]] && echo "Running in debug mode!"
 
-for file in "${HOME}/.dotfiles"/.[!.]*; do
-  [[ ! -f "${file}" ]] && continue
-  echo "Installing dotfile '${file}'..."
-  filename=$(basename "${file}")
-  [[ -n "${debug}" ]] || ln -sfv "${file}" "${HOME}/${filename}"
+for file in "$HOME/.dotfiles"/.[!.]*; do
+  [[ ! -f "$file" ]] && continue
+  echo "Installing dotfile '$file'..."
+  filename=$(basename "$file")
+  [[ -n "$debug" ]] || ln -sfv "$file" "$HOME/$filename"
 done
 
 echo "Dotfiles installed successfully!"
