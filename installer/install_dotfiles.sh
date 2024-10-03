@@ -9,27 +9,23 @@ usage() {
   cat << EOF
   Usage: $0 [-h] [-d] -o <operating-system>
 
-    -h  Print this message and exit.
     -d  Debug / dry run mode (simulate all actions, but do not execute them).
-    -o  Operating system directory with platform-specific dotfiles.
+    -h  Print this message and exit.
 EOF
 }
 
-while getopts "hdo:" option; do
+while getopts "dh" option; do
   case "${option}" in
-    h) usage && exit 0 ;;
     d) debug="-d" ;;
-    o) os_dir="${OPTARG}" ;;
+    h) usage && exit 0 ;;
     *) usage && exit 1 ;;
   esac
 done
 
-[[ -z "${os_dir}" ]] && usage && exit 1
-
 echo "Installing dotfiles..."
 [[ -n "${debug}" ]] && echo "Running in debug mode!"
 
-for file in "${HOME}/.dotfiles"{,/${os_dir}}/.[!.]*; do
+for file in "${HOME}/.dotfiles"/.[!.]*; do
   [[ ! -f "${file}" ]] && continue
   echo "Installing dotfile '${file}'..."
   filename=$(basename "${file}")

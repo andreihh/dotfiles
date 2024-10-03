@@ -48,9 +48,8 @@ fi
 # - `~/.bash_prompt` for custom shell prompt
 # - `~/.bash_aliases` for useful aliases
 # - `~/.exports` for important environment variables
-# - `~/.platform_utils` for platform-specific utilities
 # - `~/.extras` for other settings that shouldn't be persisted across devices
-for file in ~/.{bash_prompt,bash_aliases,exports,platform_utils,extras}; do
+for file in ~/.{bash_prompt,bash_aliases,exports,extras}; do
   [ -f "$file" ] && . "$file"
 done
 unset file

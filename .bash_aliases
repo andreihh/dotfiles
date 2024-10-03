@@ -1,6 +1,9 @@
 # ~/.bash_aliases: this file contains various user-defined aliases for
 # interactive shells.
 
+# Open argument with the default program.
+alias o='open &> /dev/null'
+
 # Enable color support of `ls` and also add handy aliases.
 if [ -x /usr/bin/dircolors ]; then
   test -r ~/.dircolors \

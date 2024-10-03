@@ -1,7 +1,7 @@
-firefox; curl; wget; git; xterm;
+stow; firefox; curl; wget; git; xterm;
 vim; vim.gtk3; ripgrep;
 tmux; lm-sensors; urlview; xsel;
-tree; xclip; calc; dos2unix;
+tree; calc; dos2unix;
 tlp; linux-tools-common; linux-tools-generic;
 
 texlive; texlive-latex-extra; texlive-science; texlive-fonts-extra; latexmk;

@@ -1,9 +1,0 @@
-# ~/.platform_utils: this file contains various user-defined, platform-specific
-# utilities for interactive shells.
-
-# Open file with the default program.
-alias o='xdg-open'
-
-# Paste the clipboard to the given file as a png image. Use like so:
-#   pngpaste screenshot.png
-alias pngpaste='xclip -selection clipboard -t image/png -o > '
