@@ -124,7 +124,7 @@ nnoremap Y y$
 vnoremap q <esc>
 
 " Cancels search highlighting in normal mode.
-nnoremap ; :nohlsearch<CR>
+nnoremap ' :nohlsearch<CR>
 
 " Set <leader> and macro autocompletion keys. Must not have surrounding spaces.
 noremap <space> <nop>
