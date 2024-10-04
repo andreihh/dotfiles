@@ -13,11 +13,34 @@ export EDITOR='vim'
 # Make Firefox the default browser.
 export BROWSER='firefox'
 
+# Export XDG directories:
+# - https://specifications.freedesktop.org/basedir-spec/latest/index.html
+# - https://wiki.archlinux.org/title/XDG_Base_Directory
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+
+# Export `readline` config file.
+export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
+
 # Export `ripgrep` config file.
-export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/ripgreprc"
 
 # Make `fzf` use `ripgrep`.
 export FZF_DEFAULT_COMMAND='rg --files'
 
 # Export the JRE for apps that rely on `$JAVA_HOME`.
 export JAVA_HOME=$(readlink -e "/usr/bin/java" | sed "s:/bin/java::")
+
+# Export local Maven repository.
+export MAVEN_OPTS="-Dmaven.repo.local='$XDG_DATA_HOME/maven/repository'"
+
+# Export directory for Gradle global config properties, caches, logs, etc.
+export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle"
+
+# Export Go path.
+export GOPATH="XDG_DATA_HOME/go"
+
+# Export `calc` history file.
+export CALCHISTFILE="$XDG_CACHE_HOME/calc_history"

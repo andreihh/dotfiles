@@ -54,10 +54,15 @@ for file in ~/.{bash_prompt,bash_aliases,exports,extras}; do
 done
 unset file
 
+# Save history in XDG-compliant file.
+mkdir -p "${XDG_STATE_HOME:-$HOME/.local/state}/bash"
+HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/bash/history"
+
 # Load `fzf` with completion.
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash ] \
+  && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash
 
 # Load `nvm` with completion.
-export NVM_DIR="$HOME/.nvm"
+export NVM_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
