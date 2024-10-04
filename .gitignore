@@ -5,5 +5,5 @@
 .config/tmux/plugins
 
 ### Vim ###
-.config/vim
+.config/vim/*
 !.config/vim/vimrc
