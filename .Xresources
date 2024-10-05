@@ -1,4 +1,4 @@
-! .Xresources
+! ~/.Xresources
 !
 ! Configures X programs. Reload changes with `xrdb ~/.Xresources`.
 

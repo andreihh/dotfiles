@@ -15,6 +15,12 @@ chmod +x install.sh
 rm install.sh
 ```
 
+### XDG directories
+
+The dotfiles follow the XDG specification where possible:
+- https://specifications.freedesktop.org/basedir-spec/latest/index.html
+- https://wiki.archlinux.org/title/XDG\_Base\_Directory
+
 ### Private `~/.extras`
 
 The `~/.extras` file should not be persisted across devices, and therefore is

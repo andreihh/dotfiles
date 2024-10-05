@@ -26,5 +26,8 @@ alias l='ls -CF'
 alias tree='tree -C'
 alias less='less -R'
 
+# Colored GCC warnings and errors.
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
 # Attach to the `work` `tmux` session, or create it if it doesn't exist.
 alias tmuxw='tmux new -A -s work'

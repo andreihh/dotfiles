@@ -11,14 +11,13 @@ let xdg_config_home = empty($XDG_CONFIG_HOME) ? '~/.config' : $XDG_CONFIG_HOME
 " - :PlugInstall
 " - :PlugUpdate
 " - :PlugClean
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+if empty(glob(xdg_config_home . '/vim/autoload/plug.vim'))
+  silent execute '!curl -fLo ' . xdg_config_home . '/vim/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 " Enable plugins via vim-plug.
-call plug#begin()
+call plug#begin(xdg_config_home . '/vim/plugged')
 Plug 'editorconfig/editorconfig-vim'  " File encodings, indentation, etc.
 Plug 'tpope/vim-sensible'  " Sensible settings.
 Plug 'tpope/vim-surround'  " Better surround motions.

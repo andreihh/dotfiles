@@ -19,6 +19,10 @@ shopt -s histappend
 HISTSIZE=1000
 HISTFILESIZE=2000
 
+# Save history in XDG-compliant file.
+mkdir -p "${XDG_STATE_HOME:-$HOME/.local/state}/bash"
+HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/bash/history"
+
 # Check the window size after each command and, if necessary, update the values
 # of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -29,9 +33,6 @@ shopt -s checkwinsize
 
 # Make less more friendly for non-text input files, see lesspipe(1).
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-# Colored GCC warnings and errors.
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # Enable programmable completion features (you don't need to enable this, if
 # it's already enabled in /etc/bash.bashrc and /etc/profile sources
@@ -53,10 +54,6 @@ for file in ~/.{bash_prompt,bash_aliases,exports,extras}; do
   [ -f "$file" ] && . "$file"
 done
 unset file
-
-# Save history in XDG-compliant file.
-mkdir -p "${XDG_STATE_HOME:-$HOME/.local/state}/bash"
-HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/bash/history"
 
 # Load `fzf` with completion.
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash ] \
