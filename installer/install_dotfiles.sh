@@ -59,7 +59,7 @@ if [[ -n "$backup_dir" ]]; then
   [[ -n "$debug" ]] || mkdir -p "$backup_dir"
 
   echo "Backing up dotfiles..."
-  [[ -n "$debug" ]] || cp -Prv "$DOTFILES_HOME" "$backup_dir"
+  [[ -n "$debug" ]] || cp -Pr "$DOTFILES_HOME" "$backup_dir"
 fi
 
 echo "Reverting changes from adopted files..."
