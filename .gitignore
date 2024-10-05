@@ -1,9 +1,0 @@
-### Git ###
-.config/git/credentials
-
-### tmux ###
-.config/tmux/plugins
-
-### Vim ###
-.config/vim/*
-!.config/vim/vimrc
