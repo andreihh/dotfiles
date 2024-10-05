@@ -49,15 +49,15 @@ if [[ -n "$backup_dir" ]]; then
     echo "You must move the existing backup '$backup_dir' elsewhere!"
     [[ -n "$debug" ]] || exit 1
   fi
-
-  echo "Setting up backup directory '$backup_dir'..."
-  [[ -n "$debug" ]] || mkdir -p "$backup_dir"
 fi
 
 echo "Stowing dotfiles, adopting conflicting files..."
 stow $stow_opts --no-folding --adopt -t "$HOME" -d "$DOTFILES_HOME" .
 
 if [[ -n "$backup_dir" ]]; then
+  echo "Setting up backup directory '$backup_dir'..."
+  [[ -n "$debug" ]] || mkdir -p "$backup_dir"
+
   echo "Backing up dotfiles..."
   [[ -n "$debug" ]] || cp -Prv "$DOTFILES_HOME" "$backup_dir"
 fi
