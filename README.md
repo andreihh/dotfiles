@@ -5,14 +5,10 @@ alongside an installation script.
 
 ### Installation
 
-To install the dotfiles, run the following commands (requires `curl`):
+To install the dotfiles, run the following command (requires `curl`):
 
 ```
-curl -LO \
-  https://raw.githubusercontent.com/andreihh/.dotfiles/main/installer/install.sh
-chmod +x install.sh
-./install.sh
-rm install.sh
+curl -L https://raw.githubusercontent.com/andreihh/dotfiles/main/installer/install.sh | bash
 ```
 
 ### XDG directories
