@@ -1,4 +1,4 @@
-## Windows Settings
+# Windows Settings
 
 - Microsoft PowerToys:
   - Install from Microsoft Store or https://github.com/microsoft/PowerToys
