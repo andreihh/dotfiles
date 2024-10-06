@@ -42,7 +42,7 @@ case "${OSTYPE}" in
 esac
 shopt -u nocasematch
 
-readonly BACKUP_DIR_DEFAULT="${HOME}/.dotfiles.bak"
+readonly BACKUP_DIR_DEFAULT="${XDG_CONFIG_HOME:-$HOME/.config}/dotfiles.bak"
 readonly PACKAGE_INDEX_DEFAULT="${INSTALLER_DIR}/${os_dir}/package_index.txt"
 
 usage() {
