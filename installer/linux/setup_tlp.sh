@@ -2,7 +2,7 @@
 
 # Configures TLP.
 
-readonly TLP_CONFIG="$HOME/.dotfiles/linux/tlp.conf"
+readonly TLP_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/dotfiles/linux/tlp.conf"
 readonly TLP_CONFIGS_DIR="/etc/tlp.d"
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1

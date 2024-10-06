@@ -8,7 +8,8 @@ alongside an installation script.
 To install the dotfiles, run the following command (requires `curl`):
 
 ```
-curl -L https://raw.githubusercontent.com/andreihh/dotfiles/main/installer/install.sh | bash
+curl -Lo - https://raw.githubusercontent.com/andreihh/dotfiles/main/installer/install.sh \
+  | bash
 ```
 
 ### XDG directories

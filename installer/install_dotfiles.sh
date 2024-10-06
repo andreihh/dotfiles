@@ -64,4 +64,8 @@ fi
 echo "Reverting changes from adopted files..."
 [[ -n "${debug}" ]] || git -C "${DOTFILES_HOME}" checkout .
 
+# Remove after https://github.com/vim/vim/pull/14182 is included in Vim release.
+echo "Setting up Vim legacy runtime..."
+ln -svf "${XDG_CONFIG_HOME:-$HOME/.config}/vim" "${HOME}/.vim"
+
 echo "Dotfiles installed successfully!"

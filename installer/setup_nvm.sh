@@ -7,7 +7,8 @@
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
 echo "Installing latest LTS version of 'nvm'..."
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+curl -Lo - https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh \
+  | bash
 . "${XDG_CONFIG_HOME:-$HOME/.config}/nvm/nvm.sh"
 nvm install --lts
 echo "Installed 'nvm' successfully!"
