@@ -5,8 +5,10 @@
 " Configure XDG-compliant directories.
 let vim_home = $XDG_CONFIG_HOME . '/vim'
 let fzf_home = $XDG_DATA_HOME . '/fzf'
+set viminfo+=n$XDG_STATE_HOME/viminfo
 
-" Remove after https://github.com/vim/vim/pull/14182 is included in Vim release.
+" Remove if using Vim9.1.0327 or newer.
+set runtimepath+=$XDG_CONFIG_HOME/vim,$XDG_CONFIG_HOME/vim/after
 
 " Install `vim-plug` for plugin management if not found. Manage with the
 " following commands:
@@ -47,12 +49,11 @@ Plug 'google/vim-codefmt'
 call plug#end()
 call glaive#Install()
 
-" Store all backups, swap files and undo histories under /var/tmp (they should
-" persist across reboots), or fallback to /tmp.
+" Store all backups, swap files and undo histories under `/var/tmp` (they should
+" persist across reboots), or fallback to `/tmp`.
 set backupdir=/var/tmp//,/tmp//
 set directory=/var/tmp//,/tmp//
 set undodir=/var/tmp//,/tmp//
-set viminfo+=n$XDG_CACHE_HOME/viminfo
 
 " Use the system clipboard.
 set clipboard=unnamedplus
