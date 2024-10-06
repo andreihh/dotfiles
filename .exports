@@ -22,6 +22,21 @@ export RIPGREP_CONFIG_PATH="${XDG_CONFIG_HOME:-$HOME/.config}/ripgrep/ripgreprc"
 # Make `fzf` use `ripgrep`.
 export FZF_DEFAULT_COMMAND='rg --files'
 
+# Export `wget` config file.
+export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
+
+# Remove after bundled `less` is at least version `600`.
+export LESSHISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/lesshst"
+
+# Export `calc` history file.
+export CALCHISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/calc_history"
+
+# Export LaTeX directories.
+export TEXMFHOME="${XDG_DATA_HOME:-$HOME/.local/share}/texmf"
+export TEXMFVAR="${XDG_CACHE_HOME:-$HOME/.cache}/texlive/texmf-var"
+export TEXMFCONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/texlive/texmf-config"
+export TEXMACS_HOME_PATH="${XDG_STATE_HOME:-$HOME/.local/state}/texmacs"
+
 # Export the JRE for apps that rely on `$JAVA_HOME`.
 export JAVA_HOME=$(readlink -e "/usr/bin/java" | sed "s:/bin/java::")
 
@@ -33,6 +48,3 @@ export GRADLE_USER_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/gradle"
 
 # Export Go path.
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
-
-# Export `calc` history file.
-export CALCHISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/calc_history"
