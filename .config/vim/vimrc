@@ -50,6 +50,7 @@ call glaive#Install()
 set backupdir=/var/tmp//,/tmp//
 set directory=/var/tmp//,/tmp//
 set undodir=/var/tmp//,/tmp//
+set viminfo+=n$XDG_CACHE_HOME/viminfo
 
 " Use the system clipboard.
 set clipboard=unnamedplus
