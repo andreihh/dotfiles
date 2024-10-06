@@ -17,11 +17,13 @@ wget -O - https://raw.githubusercontent.com/andreihh/dotfiles/main/installer/ins
   | bash
 ```
 
+Then, reload the Bash config: `. ~/.bashrc`.
+
 To add new dotfiles, commit all the changes to bring the repository to a clean
 state and run the following command:
 
 ```
-"${XDG_CONFIG_HOME:-$HOME/.config}/dotfiles/installer/install_dotfiles.sh"
+"${XDG_CONFIG_HOME}/dotfiles/installer/install_dotfiles.sh"
 ```
 
 ## XDG directories
@@ -29,6 +31,9 @@ state and run the following command:
 The dotfiles follow the XDG specification where possible:
 - https://specifications.freedesktop.org/basedir-spec/latest/index.html
 - https://wiki.archlinux.org/title/XDG\_Base\_Directory
+
+The XDG environment variables **must** be defined. By default, they are defined
+in `~/.exports`.
 
 ## Private `~/.extras`
 

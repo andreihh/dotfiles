@@ -19,10 +19,6 @@ shopt -s histappend
 HISTSIZE=1000
 HISTFILESIZE=2000
 
-# Save history in XDG-compliant file.
-mkdir -p "${XDG_STATE_HOME:-$HOME/.local/state}/bash"
-HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/bash/history"
-
 # Check the window size after each command and, if necessary, update the values
 # of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -54,6 +50,9 @@ for file in ~/.{bash_prompt,bash_aliases,exports,extras}; do
   [ -f "$file" ] && . "$file"
 done
 unset file
+
+# Save history in XDG-compliant file.
+HISTFILE="${XDG_STATE_HOME}/bash_history"
 
 # Load `fzf` with completion.
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash ] \
