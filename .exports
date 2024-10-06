@@ -48,6 +48,9 @@ export TEXMFVAR="${XDG_CACHE_HOME}/texlive/texmf-var"
 export TEXMFCONFIG="${XDG_CONFIG_HOME}/texlive/texmf-config"
 export TEXMACS_HOME_PATH="${XDG_STATE_HOME}/texmacs"
 
+# Export GnuPG directory.
+export GNUPGHOME="${XDG_DATA_HOME}/gnupg"
+
 # Export the JRE for apps that rely on `$JAVA_HOME`.
 export JAVA_HOME=$(readlink -e "/usr/bin/java" | sed "s:/bin/java::")
 

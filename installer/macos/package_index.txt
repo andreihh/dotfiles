@@ -1,6 +1,6 @@
-stow; firefox; curl; wget; git; --cask iterm2;
+git; stow; curl; wget; gnupg; firefox;
+--cask iterm2; tmux; lm-sensors; urlview; reattach-to-user-namespace;
 vim; macvim; ripgrep;
-tmux; lm-sensors; urlview; reattach-to-user-namespace;
 tree; calc; dos2unix;
 --cask alt-tab;
 
