@@ -5,8 +5,7 @@ alongside an installation script.
 
 ### Installation
 
-To install the dotfiles, run one of the following commands (requires `curl` or
-`wget`):
+To install the dotfiles, run one of the following commands:
 
 ```
 curl -Lo - https://raw.githubusercontent.com/andreihh/dotfiles/main/installer/install.sh \
