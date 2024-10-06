@@ -117,7 +117,7 @@ echo "Running setup scripts..."
 for script in ${setup_scripts}; do
   echo "Running script '${script}'..."
   chmod +x "${script}"
-  if "${script}" ${debug}; then
+  if "${script}" ${debug} <&0; then
     echo "Script '${script}' ran successfully!"
   else
     echo -e "\e[31mScript '${script}' failed!\e[0m"

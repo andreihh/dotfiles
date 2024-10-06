@@ -5,10 +5,16 @@ alongside an installation script.
 
 ### Installation
 
-To install the dotfiles, run the following command (requires `curl`):
+To install the dotfiles, run one of the following commands (requires `curl` or
+`wget`):
 
 ```
 curl -Lo - https://raw.githubusercontent.com/andreihh/dotfiles/main/installer/install.sh \
+  | bash
+```
+
+```
+wget -O - https://raw.githubusercontent.com/andreihh/dotfiles/main/installer/install.sh \
   | bash
 ```
 
