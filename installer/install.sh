@@ -12,7 +12,7 @@
 # run this script again. However, you must move any generated backups to a
 # different location.
 #
-# Supports Linux and MacOS. Requires `unzip` and `curl`.
+# Supports Linux and MacOS.
 
 readonly HOMEBREW_INSTALLER="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
 
