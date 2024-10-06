@@ -8,6 +8,9 @@ case $- in
   *) return ;;
 esac
 
+# Save history in XDG-compliant file.
+HISTFILE="${XDG_STATE_HOME}/bash_history"
+
 # Don't put duplicate lines or lines starting with space in the history. See
 # bash(1) for more options.
 HISTCONTROL=ignoreboth
@@ -41,18 +44,14 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# Load custom configuration files:
+# Load custom config files:
 # - `~/.bash_prompt` for custom shell prompt
 # - `~/.bash_aliases` for useful aliases
-# - `~/.exports` for important environment variables
-# - `~/.extras` for other settings that shouldn't be persisted across devices
-for file in ~/.{bash_prompt,bash_aliases,exports,extras}; do
-  [ -f "$file" ] && . "$file"
+# - `~/.extras` for device-specific configs
+for file in ~/.{bash_prompt,bash_aliases,extras}; do
+  [ -f "${file}" ] && . "${file}"
 done
 unset file
-
-# Save history in XDG-compliant file.
-HISTFILE="${XDG_STATE_HOME}/bash_history"
 
 # Load `fzf` with completion.
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash ] \

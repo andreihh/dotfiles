@@ -6,6 +6,8 @@
 let vim_home = $XDG_CONFIG_HOME . '/vim'
 let fzf_home = $XDG_DATA_HOME . '/fzf'
 
+" Remove after https://github.com/vim/vim/pull/14182 is included in Vim release.
+
 " Install `vim-plug` for plugin management if not found. Manage with the
 " following commands:
 " - :PlugInstall

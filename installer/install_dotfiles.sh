@@ -64,8 +64,12 @@ fi
 echo "Reverting changes from adopted files..."
 [[ -n "${debug}" ]] || git -C "${DOTFILES_HOME}" checkout .
 
-# Remove after https://github.com/vim/vim/pull/14182 is included in Vim release.
-echo "Setting up Vim legacy runtime..."
-ln -svf "${XDG_CONFIG_HOME:-$HOME/.config}/vim" "${HOME}/.vim"
+echo "Removing shell-specific profile config files..."
+for shell_profile_file in ~/.{bash_profile,zprofile}; do
+  [[ -n "${debug}" ]] || rm -vf "$shell_profile_file"
+done
+
+echo "Changing default shell to Bash..."
+chsh -s "/bin/bash"
 
 echo "Dotfiles installed successfully!"

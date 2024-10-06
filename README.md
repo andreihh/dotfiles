@@ -17,7 +17,8 @@ wget -O - https://raw.githubusercontent.com/andreihh/dotfiles/main/installer/ins
   | bash
 ```
 
-Then, reload the Bash config: `. ~/.bashrc`.
+After installing the dotfiles for the first time, you may need to restart your
+system to reload the custom environment variables properly.
 
 To add new dotfiles, commit all the changes to bring the repository to a clean
 state and run the following command:
