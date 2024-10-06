@@ -2,22 +2,25 @@
 "
 " Requires Vim9+ and `ripgrep`.
 
-" The user-specific configuration directory:
-" - https://specifications.freedesktop.org/basedir-spec/latest/index.html
-let xdg_config_home = empty($XDG_CONFIG_HOME) ? '~/.config' : $XDG_CONFIG_HOME
+" Get XDG-compliant configuration directories.
+let xdg_config_home =
+    \ empty($XDG_CONFIG_HOME) ? $HOME . '/.config' : $XDG_CONFIG_HOME
+let vim_home = xdg_config_home . '/vim'
+let fzf_home = xdg_config_home . '/fzf'
 
 " Install `vim-plug` for plugin management if not found. Manage with the
 " following commands:
 " - :PlugInstall
 " - :PlugUpdate
 " - :PlugClean
-if empty(glob(xdg_config_home . '/vim/autoload/plug.vim'))
-  silent execute '!curl -fLo ' . xdg_config_home . '/vim/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+if empty(glob(vim_home . '/autoload/plug.vim'))
+  silent execute '!curl -fLo "' . vim_home . '/autoload/plug.vim" --create-dirs'
+      \ . ' https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 " Enable plugins via vim-plug.
-call plug#begin(xdg_config_home . '/vim/plugged')
+call plug#begin(vim_home . '/plugged')
 Plug 'editorconfig/editorconfig-vim'  " File encodings, indentation, etc.
 Plug 'tpope/vim-sensible'  " Sensible settings.
 Plug 'tpope/vim-surround'  " Better surround motions.
@@ -31,8 +34,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'RyanMillerC/better-vim-tmux-resizer'
 " Fuzzy searching.
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/fzf',
-    \ { 'dir': xdg_config_home . '/fzf', 'do': './install --xdg --all' }
+Plug 'junegunn/fzf', { 'dir': fzf_home, 'do': './install --xdg --all' }
 " Vim LSP plugins.
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete.vim'
@@ -180,9 +182,9 @@ nnoremap sf :Files<CR>
 nnoremap sc :GFiles?<CR>
 nnoremap sb :BLines<CR>
 let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-s': 'split',
-  \ 'ctrl-v': 'vsplit' }
+    \ 'ctrl-t': 'tab split',
+    \ 'ctrl-s': 'split',
+    \ 'ctrl-v': 'vsplit' }
 
 " Navigation actions:
 " - g1 /g2 / ... / g9 (go to tab)
@@ -250,8 +252,9 @@ nmap <leader>t <plug>(lsp-type-hierarchy)
 nmap <leader>r <plug>(lsp-rename)
 nnoremap <leader>= :FormatCode<CR>
 vnoremap <leader>= :FormatLines<CR>
-nnoremap <expr> <leader>q empty(filter(getwininfo(), 'v:val.quickfix'))
-  \ ? ":copen\<CR>" : ":cclose\<CR>"
+nnoremap <expr> <leader>q
+    \ empty(filter(getwininfo(), 'v:val.quickfix'))
+    \ ? ":copen\<CR>" : ":cclose\<CR>"
 nmap <expr> <C-f> lsp#scroll(-5)
 nmap <expr> <C-b> lsp#scroll(+5)
 
