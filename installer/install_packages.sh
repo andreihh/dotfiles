@@ -17,31 +17,31 @@ EOF
 while getopts "dp:i:u:h" option; do
   case "$option" in
     d) debug="-d" ;;
-    p) package_index="$OPTARG" ;;
-    i) installer="$OPTARG" ;;
-    u) updater="$OPTARG" ;;
+    p) package_index="${OPTARG}" ;;
+    i) installer="${OPTARG}" ;;
+    u) updater="${OPTARG}" ;;
     h) usage && exit 0 ;;
     *) usage && exit 1 ;;
   esac
 done
 
-[[ -z "$package_index" ]] && usage && exit 1
-[[ -z "$installer" ]] && usage && exit 1
+[[ -z "${package_index}" ]] && usage && exit 1
+[[ -z "${installer}" ]] && usage && exit 1
 
 echo "Installing packages..."
-[[ -n "$debug" ]] && echo "Running in debug mode!"
+[[ -n "${debug}" ]] && echo "Running in debug mode!"
 
-if [[ -n "$updater" ]]; then
+if [[ -n "${updater}" ]]; then
   echo "Updating package index..."
-  [[ -n "$debug" ]] || $updater
+  [[ -n "${debug}" ]] || ${updater}
 fi
 
-packages=$(cat "$package_index" | tr ";" "\n")
+packages=$(cat "${package_index}" | tr ";" "\n")
 
-echo "$packages" | while read -r package; do
-  [[ -z "$package" ]] && continue
-  echo "Installing package '$package'..."
-  [[ -n "$debug" ]] || $installer $package
+echo "${packages}" | while read -r package; do
+  [[ -z "${package}" ]] && continue
+  echo "Installing package '${package}'..."
+  [[ -n "${debug}" ]] || ${installer} ${package}
 done
 
 echo "Packages installed successfully!"

@@ -16,13 +16,9 @@
 
 readonly HOMEBREW_INSTALLER="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
 
-readonly REPO="https://github.com/andreihh/.dotfiles"
-readonly BRANCH="main"
-readonly REPO_ZIP="${REPO}/archive/${BRANCH}.zip"
-
-readonly DOTFILES_DIR="${HOME}/.dotfiles"
-readonly INSTALLER_DIR="${DOTFILES_DIR}/installer"
-readonly BACKUP_DOTFILES="${INSTALLER_DIR}/backup_dotfiles.sh"
+readonly REPOSITORY_URL="https://github.com/andreihh/dotfiles"
+readonly DOTFILES_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/dotfiles"
+readonly INSTALLER_DIR="${DOTFILES_HOME}/installer"
 readonly INSTALL_DOTFILES="${INSTALLER_DIR}/install_dotfiles.sh"
 readonly INSTALL_PACKAGES="${INSTALLER_DIR}/install_packages.sh"
 
@@ -93,31 +89,23 @@ if [[ -n "${install_homebrew}" ]]; then
   [[ -n "${debug}" ]] || /bin/bash -c "$(curl -fsSL ${HOMEBREW_INSTALLER})"
 fi
 
+echo "Installing Git..."
+[[ -n "${debug}" ]] || ${installer} git
+
 if [[ -n "${force}" ]]; then
   echo "Deleting prior backup and installation..."
-  [[ -n "${debug}" ]] || rm -rf "${backup_dir}" "${DOTFILES_DIR}"
+  [[ -n "${debug}" ]] || rm -rf "${backup_dir}" "${DOTFILES_HOME}"
 else
   [[ -e "${backup_dir}" ]] && echo "Backup already exists!" && exit 1
-  [[ -e "${DOTFILES_DIR}" ]] && echo "Dotfiles already exist!" && exit 1
+  [[ -e "${DOTFILES_HOME}" ]] && echo "Dotfiles already exist!" && exit 1
 fi
 
-echo "Cleaning up prior work files..."
-[[ -n "${debug}" ]] || rm -rf "${BRANCH}.zip" ".dotfiles-${BRANCH}/"
+echo "Cloning dotfiles repository..."
+[[ -n "${debug}" ]] || git clone "${REPOSITORY_URL}" "${DOTFILES_HOME}"
 
-echo "Downloading repository..."
-[[ -n "${debug}" ]] || curl -LO "${REPO_ZIP}"
-
-echo "Unpacking repository..."
-if [[ -z "${debug}" ]]; then
-  unzip "${BRANCH}.zip"
-  rm "${BRANCH}.zip"
-  mv ".dotfiles-${BRANCH}" "${DOTFILES_DIR}"
-fi
-
-echo "Running backup and install scripts..."
-chmod +x "${BACKUP_DOTFILES}" "${INSTALL_DOTFILES}" "${INSTALL_PACKAGES}"
-"${BACKUP_DOTFILES}" ${debug} -b "${backup_dir}"
-"${INSTALL_DOTFILES}" ${debug}
+echo "Running install scripts..."
+chmod +x "${INSTALL_DOTFILES}" "${INSTALL_PACKAGES}"
+"${INSTALL_DOTFILES}" ${debug} -b "${backup_dir}"
 "${INSTALL_PACKAGES}" ${debug} -p "${package_index}" -i "${installer}" \
   -u "${updater}"
 
@@ -135,14 +123,5 @@ for script in ${setup_scripts}; do
     echo -e "\e[31mScript '${script}' failed!\e[0m"
   fi
 done
-
-echo "Initializing remote git repository..."
-if [[ -z "${debug}" ]]; then
-  cd "${DOTFILES_DIR}"
-  git init
-  git remote add origin "${REPO}.git"
-  git fetch
-  git checkout -t -f "origin/${BRANCH}"
-fi
 
 echo "Installation complete!"
