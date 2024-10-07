@@ -2,13 +2,21 @@
 "
 " Requires Vim9+ and `ripgrep`.
 
-" Configure XDG-compliant directories.
+" Set XDG-compliant directories.
 let vim_home = $XDG_CONFIG_HOME . '/vim'
-let fzf_home = $XDG_DATA_HOME . '/fzf'
-set viminfo+=n$XDG_STATE_HOME/viminfo
+let vim_state = $XDG_STATE_HOME . '/vim'
+let fzf_data = $XDG_DATA_HOME . '/fzf'
+
+" Configure state files and directories.
+let &backupdir = vim_state . '/backup//' | call mkdir(&backupdir, 'p')
+let &directory = vim_state . '/swap//' | call mkdir(&directory, 'p')
+let &viewdir = vim_state . '/view//' | call mkdir(&viewdir, 'p')
+let &undodir = vim_state . '/undo//' | call mkdir(&undodir, 'p')
+let &viminfofile = vim_state . '/viminfo'
 
 " Remove if using Vim9.1.0327 or newer.
-set runtimepath+=$XDG_CONFIG_HOME/vim,$XDG_CONFIG_HOME/vim/after
+set runtimepath^=$XDG_CONFIG_HOME/vim
+set runtimepath+=$XDG_CONFIG_HOME/vim/after
 
 " Install `vim-plug` for plugin management if not found. Manage with the
 " following commands:
@@ -36,7 +44,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'RyanMillerC/better-vim-tmux-resizer'
 " Fuzzy searching.
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/fzf', { 'dir': fzf_home, 'do': './install --xdg --all' }
+Plug 'junegunn/fzf', { 'dir': fzf_data, 'do': './install --xdg --all' }
 " Vim LSP plugins.
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete.vim'
@@ -48,12 +56,6 @@ Plug 'google/vim-glaive'
 Plug 'google/vim-codefmt'
 call plug#end()
 call glaive#Install()
-
-" Store all backups, swap files and undo histories under `/var/tmp` (they should
-" persist across reboots), or fallback to `/tmp`.
-set backupdir=/var/tmp//,/tmp//
-set directory=/var/tmp//,/tmp//
-set undodir=/var/tmp//,/tmp//
 
 " Use the system clipboard.
 set clipboard=unnamedplus
