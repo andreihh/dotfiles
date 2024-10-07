@@ -8,11 +8,12 @@ let vim_state = $XDG_STATE_HOME . '/vim'
 let fzf_data = $XDG_DATA_HOME . '/fzf'
 
 " Configure state files and directories.
-let &backupdir = vim_state . '/backup//' | call mkdir(&backupdir, 'p')
-let &directory = vim_state . '/swap//' | call mkdir(&directory, 'p')
-let &viewdir = vim_state . '/view//' | call mkdir(&viewdir, 'p')
-let &undodir = vim_state . '/undo//' | call mkdir(&undodir, 'p')
+call mkdir(vim_state, 'p')
 let &viminfofile = vim_state . '/viminfo'
+let &backupdir = vim_state . '//'
+let &directory = vim_state . '//'
+let &viewdir = vim_state . '//'
+let &undodir = vim_state . '//'
 
 " Remove if using Vim9.1.0327 or newer.
 set runtimepath^=$XDG_CONFIG_HOME/vim
