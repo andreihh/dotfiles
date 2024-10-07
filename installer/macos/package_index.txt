@@ -9,6 +9,6 @@ tree; calc; dos2unix;
 python3; yapf;
 openjdk; google-java-format; ktfmt; --cask intellij-idea-ce;
 gcc; cmake; clang-format;
-shfmt; prettier;
+shfmt; shellcheck; prettier;
 
 pdftk-java; ffmpeg; graphviz; plantuml; --cask keepassxc; --cask vlc;

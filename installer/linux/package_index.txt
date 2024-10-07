@@ -10,6 +10,6 @@ texlive-bibtex-extra; biber;
 python3; python-is-python3;
 openjdk-21-jdk;
 build-essential; cmake; clang-format;
-shfmt;
+shfmt; shellcheck;
 
 pdftk-java; ffmpeg; graphviz; plantuml; keepassxc; vlc;
