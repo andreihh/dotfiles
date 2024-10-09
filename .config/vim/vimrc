@@ -19,8 +19,7 @@ let &undodir = vim_state . '//'
 set runtimepath^=$XDG_CONFIG_HOME/vim
 set runtimepath+=$XDG_CONFIG_HOME/vim/after
 
-" Install `vim-plug` for plugin management if not found. Manage with the
-" following commands:
+" Install the `vim-plug` plugin manager. Commands:
 " - :PlugInstall
 " - :PlugUpdate
 " - :PlugClean
@@ -35,11 +34,12 @@ call plug#begin(vim_home . '/plugged')
 Plug 'editorconfig/editorconfig-vim'  " File encodings, indentation, etc.
 Plug 'tpope/vim-sensible'  " Sensible settings.
 Plug 'tpope/vim-surround'  " Better surround motions.
+Plug 'tpope/vim-commentary'  " Commenting lines.
 Plug 'easymotion/vim-easymotion'  " Better navigation motions.
 Plug 'airblade/vim-rooter'  " Auto-cd to project root if any.
 Plug 'mhinz/vim-signify'  " VCS gutter signs for changed lines.
-Plug 'doums/darcula'  " IntelliJ dark color scheme.
-Plug 'udalov/kotlin-vim'  " Kotlin syntax highlight.
+Plug 'mkitt/tabline.vim'  " Tab numbers in tab line.
+Plug 'udalov/kotlin-vim'  " Kotlin syntax highlighting.
 " Better `tmux` integration.
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'RyanMillerC/better-vim-tmux-resizer'
@@ -108,16 +108,24 @@ set smartindent
 set splitbelow
 set splitright
 
+" Don't use characters for vertical split delimiter.
+set fillchars+=vert:\ ,
+
+" Enable sign column.
+set signcolumn=yes
+
 " When set to "dark", Vim wil try to use colors that look good on a dark
 " background.
 set background=dark
 
-" Optionally enable a color scheme if the terminal supports at least 256 colors.
+" Optionally enable a color scheme if the terminal supports at least 16 colors.
 " The color scheme must be set after setting the background and enabling syntax.
-if &t_Co >= 256
-  " Use 256 colors to match terminal theme.
-  set t_Co=256
-  colorscheme darcula
+if &t_Co >= 16
+  " Use `darcula16plus` if the terminal has a 17 color palette (the 16 default
+  " ANSI colors and a background darker than ANSI black) and `darcula16`
+  " otherwise.
+  colorscheme darcula16plus
+  " colorscheme darcula16
 endif
 
 " Make Esc more responsive.
@@ -247,6 +255,7 @@ let g:lsp_diagnostics_float_cursor = 1
 " - <leader>f (find references)
 " - <leader>t (type hierarchy)
 " - <leader>r (rename)
+" - <leader>c (comment line or selected range)
 " - <leader>= (format file or selected range)
 " - <leader>q (toggle quickfix pane)
 " - Ctrl-f/b (scroll float forward / backward)
@@ -255,6 +264,7 @@ nmap <leader>h <plug>(lsp-hover)
 nmap <leader>f <plug>(lsp-references)
 nmap <leader>t <plug>(lsp-type-hierarchy)
 nmap <leader>r <plug>(lsp-rename)
+noremap <leader>c :Commentary<CR>
 nnoremap <leader>= :FormatCode<CR>
 vnoremap <leader>= :FormatLines<CR>
 nnoremap <expr> <leader>q
@@ -283,7 +293,6 @@ set omnifunc=syntaxcomplete#Complete
 function! s:on_lsp_buffer_enabled() abort
   " Enable LSP autocompletion.
   setlocal omnifunc=lsp#complete
-  setlocal signcolumn=yes
   if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
 
   " Override autocomplete action.

@@ -6,29 +6,44 @@
 XTerm.termName: xterm-256color
 *customization: -color
 
-! These are the 8 ANSI colors and their bright equivalents.
-! 0-7, 8-15: black, red, green, yellow, blue, magenta, cyan, white
-XTerm*color0: rgb:17/14/21
-XTerm*color1: rgb:c0/1c/28
-XTerm*color2: rgb:26/a2/69
-XTerm*color3: rgb:a2/73/4c
-XTerm*color4: rgb:12/48/8b
-XTerm*color5: rgb:a3/47/ba
-XTerm*color6: rgb:2a/a1/b3
-XTerm*color7: rgb:d0/cf/cc
-XTerm*color8: rgb:5e/5c/64
-XTerm*color9: rgb:f6/61/51
-XTerm*color10: rgb:33/d1/7a
-XTerm*color11: rgb:e9/ad/0c
-XTerm*color12: rgb:2a/7b/de
-XTerm*color13: rgb:c0/61/cb
-XTerm*color14: rgb:33/c7/de
-XTerm*color15: rgb:ff/ff/ff
+! Define 256-colors ANSI scheme to match JetBrains Darcula theme.
 
-! Set the default text, cursor and background colors to match Darcula theme.
+! Black
+XTerm*color0: rgb:30/30/30
+XTerm*color8: rgb:44/44/44
+
+! Red
+XTerm*color1: rgb:d7/5f/5f
+XTerm*color9: rgb:ff/87/87
+
+! Green
+XTerm*color2: rgb:5f/87/5f
+XTerm*Color10: rgb:af/af/00
+
+! Yellow
+XTerm*color3: rgb:d7/87/00
+XTerm*color11: rgb:d7/af/5f
+
+! Blue
+XTerm*color4: rgb:5f/87/af
+XTerm*color12: rgb:87/af/ff
+
+! Magenta
+XTerm*color5: rgb:af/87/d7
+XTerm*color13: rgb:d7/af/ff
+
+! Cyan
+XTerm*color6: rgb:00/87/87
+XTerm*color14: rgb:00/af/af
+
+! White
+XTerm*color7: rgb:6c/6c/6c
+XTerm*color15: rgb:af/af/af
+
+! Special
 XTerm*foreground: rgb:af/af/af
 XTerm*background: rgb:26/26/26
-XTerm*cursorColor: rgb:bc/bc/bc
+XTerm*cursorColor: rgb:af/af/af
 
 ! Do not use bright colors for bold.
 XTerm*boldMode: true

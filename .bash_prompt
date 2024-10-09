@@ -89,10 +89,9 @@ _make_prompt() {
     # Set the color theme.
     if [[ $ncolors -ge 256 ]]; then
       # Darcula: foreground #a9b7c6, background #2b2b2b, cursor #bbbbbb
-      # 256-colors: foreground #afafaf, background #262626, cursor #bcbcbc
-      printf '%b' '\e]10;145\a'  # set foreground (grey69)
-      printf '%b' '\e]11;235\a'  # set background (grey15)
-      printf '%b' '\e]12;250\a'  # set cursor (grey74)
+      printf '%b' '\e]10;145\a'  # set foreground (#afafaf / grey69)
+      printf '%b' '\e]11;235\a'  # set background (#262626 / grey15)
+      printf '%b' '\e]12;145\a'  # set cursor (#afafaf / grey69)
     else
       # System dark theme: foreground white, background black, cursor white
       printf '%b' '\e]10;37\a'  # set foreground (white)
