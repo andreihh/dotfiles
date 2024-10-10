@@ -17,26 +17,35 @@ endif
 let colors_name = 'darcula16plus'
 
 " Default highlight group links.
+hi! link NormalNC Normal
 hi! link QuickFixLine Normal
 hi! link Question Normal
 hi! link Terminal Normal
+hi! link MsgArea Normal
 hi! link CursorColumn CursorLine
 hi! link ColorColumn CursorLine
+hi! link lCursor Cursor
 hi! link CursorIM Cursor
 hi! link EndOfBuffer NonText
 hi! link Conceal NonText
 hi! link SpecialKey NonText
-hi! link ErrorMsg Error
+hi! link Whitespace NonText
 hi! link LineNrAbove LineNr
 hi! link LineNrBelow LineNr
 hi! link SignColumn LineNr
 hi! link Folded LineNr
 hi! link FoldColumn Folded
+hi! link VertSplit WinSeparator
+hi! link MsgSeparator StatusLine
 hi! link StatusLineTerm StatusLine
 hi! link StatusLineTermNC StatusLineNC
 hi! link CursorLineFold CursorLine
 hi! link CursorLineSign CursorLine
 hi! link TabLineFill TabLine
+hi! link Error ErrorMsg
+hi! link Added DiffAdd
+hi! link Changed DiffChange
+hi! link Removed DiffDelete
 hi! link diffAdded String
 hi! link diffRemoved WarningMsg
 hi! link diffOnly WarningMsg
@@ -46,9 +55,9 @@ hi! link diffIdentical WarningMsg
 hi! link diffDiffer WarningMsg
 hi! link diffCommon WarningMsg
 hi! link diffBDiffer WarningMsg
-hi! link lCursor Cursor
 hi! link CurSearch Search
 hi! link IncSearch Search
+hi! link Substitute Search
 hi! link VisualNOS Visual
 hi! link WildMenu PmenuSel
 hi! link MessageWindow Pmenu
@@ -58,9 +67,9 @@ hi! link SpellLocal SpellBad
 hi! link SpellRare SpellBad
 
 " LSP highlight group links.
-hi! link LspErrorText Error
-hi! link LspErrorHighlight Error
-hi! link LspErrorVirtualText Error
+hi! link LspErrorText ErrorMsg
+hi! link LspErrorHighlight ErrorMsg
+hi! link LspErrorVirtualText ErrorMsg
 hi! link LspWarningText WarningMsg
 hi! link LspWarningHighlight WarningMsg
 hi! link LspWarningVirtualText WarningMsg
@@ -94,14 +103,16 @@ hi! link LspInlayHintsParameter NonText
 " Appearance:
 hi Normal ctermfg=15 ctermbg=NONE cterm=NONE
 hi NonText ctermfg=7 ctermbg=NONE cterm=NONE
+hi ModeMsg ctermfg=10 ctermbg=NONE cterm=bold,nocombine
+hi MoreMsg ctermfg=14 ctermbg=NONE cterm=NONE
 hi LineNr ctermfg=7 ctermbg=0 cterm=NONE
 hi CursorLineNr ctermfg=15 ctermbg=0 cterm=NONE
 hi CursorLine ctermfg=NONE ctermbg=0 cterm=NONE
-hi VertSplit ctermfg=7 ctermbg=8 cterm=NONE
+hi WinSeparator ctermfg=7 ctermbg=8 cterm=NONE
 hi StatusLine ctermfg=15 ctermbg=8 cterm=NONE
 hi StatusLineNC ctermfg=7 ctermbg=8 cterm=NONE
 hi TabLine ctermfg=7 ctermbg=8 cterm=NONE
-hi TabLineSel ctermfg=15 ctermbg=8 cterm=NONE
+hi TabLineSel ctermfg=15 ctermbg=NONE cterm=NONE
 hi Title ctermfg=11 ctermbg=NONE cterm=NONE
 
 " Menus:
@@ -117,6 +128,7 @@ hi MatchParen ctermfg=11 ctermbg=8 cterm=NONE
 hi Directory ctermfg=4 ctermbg=NONE cterm=NONE
 hi SpellBad ctermbg=NONE cterm=undercurl,nocombine
 hi WarningMsg ctermfg=3 ctermbg=NONE cterm=NONE
+hi ErrorMsg ctermfg=1 ctermbg=NONE cterm=NONE
 
 " Diffs:
 hi DiffAdd ctermfg=2 ctermbg=NONE cterm=NONE
@@ -157,7 +169,6 @@ hi Debug ctermfg=7 ctermbg=NONE cterm=italic,nocombine
 " Other:
 hi Underlined ctermfg=4 ctermbg=NONE cterm=underline,nocombine
 hi Ignore ctermfg=0 ctermbg=NONE cterm=NONE
-hi Error ctermfg=1 ctermbg=NONE cterm=NONE
 hi Todo ctermfg=10 ctermbg=NONE cterm=italic,nocombine
 
 " LSP:

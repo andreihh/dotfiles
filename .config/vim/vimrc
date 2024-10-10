@@ -35,10 +35,10 @@ Plug 'editorconfig/editorconfig-vim'  " File encodings, indentation, etc.
 Plug 'tpope/vim-sensible'  " Sensible settings.
 Plug 'tpope/vim-surround'  " Better surround motions.
 Plug 'tpope/vim-commentary'  " Commenting lines.
-Plug 'easymotion/vim-easymotion'  " Better navigation motions.
 Plug 'mhinz/vim-signify'  " VCS gutter signs for changed lines.
 Plug 'airblade/vim-rooter'  " Auto-cd to project root if any.
 Plug 'mkitt/tabline.vim'  " Tab numbers in tab line.
+Plug 'easymotion/vim-easymotion'  " Better navigation motions.
 Plug 'udalov/kotlin-vim'  " Kotlin syntax highlighting.
 " Better `tmux` integration.
 Plug 'christoomey/vim-tmux-navigator'
@@ -91,6 +91,7 @@ let g:fzf_action = {
 " - [e / ]e (go to previous / next error)
 " - [w / ]w (go to previous / next warning)
 " - [d / ]d (go to previous / next diagnostic)
+" - <leader><leader> + motion (trigger EasyMotion)
 nmap gd <plug>(lsp-definition)
 nmap gD <plug>(lsp-declaration)
 nmap gi <plug>(lsp-implementation)

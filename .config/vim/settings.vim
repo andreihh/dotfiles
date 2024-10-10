@@ -5,7 +5,6 @@
 " - `vim-sensible`
 " - `vim-surround`
 " - `vim-commentary`
-" - `vim-easymotion`
 " - `vim-signify`
 " - `vim-rooter`
 " - `vim-tmux-navigator`
@@ -41,6 +40,9 @@ set showmode
 " Show command in the last line of the screen.
 set showcmd
 
+" Set custom status line.
+set statusline=[%f]%([%M%R%H%W]%)%q%=[\ %l,%c\ \|\ %p%%\ \|\ %LL\ ]
+
 " When there is a previous search pattern, highlight all its matches.
 set hlsearch
 
@@ -67,9 +69,6 @@ set fillchars+=vert:\ ,
 " Enable sign column.
 set signcolumn=yes
 
-" Use block cursor in all modes.
-set guicursor=n-v-c-i:block
-
 " When set to "dark", Vim wil try to use colors that look good on a dark
 " background.
 set background=dark
@@ -81,7 +80,7 @@ if &t_Co >= 16
   " ANSI colors and a background darker than ANSI black) and `darcula16`
   " otherwise.
   colorscheme darcula16plus
-  " colorscheme darcula16
+  "colorscheme darcula16
 endif
 
 " Make Esc more responsive.
@@ -141,7 +140,8 @@ nnoremap <C-w> :tabclose<CR>
 " - gf (go to file under cursor or to selected file)
 " - go (open URI under cursor or selected URI)
 " - [c / ]c / [C / ]C (go to previous / next / first / last changed hunk)
-" - <leader><leader> + motion (trigger EasyMotion)
+" - [m / ]m (go to previous / next start of Java-style method or class)
+" - [M / ]M (go to previous / next end of Java-style method or class)
 " - { / } (go to previous / next blank line)
 " - Ctrl-u/d (go half page up / down)
 nnoremap g1 1gt
