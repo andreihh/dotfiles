@@ -180,20 +180,22 @@ nnoremap <C-x> :quit<CR>
 nnoremap <C-w> :tabclose<CR>
 
 " Fuzzy searching:
-" - ss (search everywhere)
+" - ss (search everywhere in project)
 " - sf (search files)
 " - sc (search uncommitted Git files)
 " - sb (search current buffer)
+" - sh (search home directory)
 " - Ctrl-n/p (cycle options)
-" - Enter (open option in current buffer)
+" - Ctrl-o (open option in current buffer)
 " - Ctrl-t (open option in new tab)
 " - Ctrl-s/v (open option in horizontal / vertical split)
-" - Ctrl-c / Esc (cancel)
+" - Ctrl-e (cancel)
 nnoremap s <nop>
 nnoremap ss :Rg<CR>
 nnoremap sf :Files<CR>
 nnoremap sc :GFiles?<CR>
 nnoremap sb :BLines<CR>
+nnoremap sh :FZF ~<CR>
 let g:fzf_action = {
     \ 'ctrl-t': 'tab split',
     \ 'ctrl-s': 'split',
@@ -260,7 +262,7 @@ let g:lsp_diagnostics_float_cursor = 1
 " - <leader>q (toggle quickfix pane)
 " - Ctrl-f/b (scroll float forward / backward)
 " - Ctrl-c (close float)
-nmap <leader>h <plug>(lsp-hover)
+nmap <leader>h <plug>(lsp-hover-float)
 nmap <leader>f <plug>(lsp-references)
 nmap <leader>t <plug>(lsp-type-hierarchy)
 nmap <leader>r <plug>(lsp-rename)
@@ -275,9 +277,10 @@ nmap <expr> <C-b> lsp#scroll(+5)
 
 " Code actions shortcuts:
 " - <leader>a (trigger code actions)
+" - # (accept numbered option)
 " - Ctrl-n/p (cycle options)
-" - Enter (accept option)
-" - Ctrl-c / Esc (cancel)
+" - Enter (accept selected option)
+" - Esc / Ctrl-c (cancel)
 nmap <leader>a <plug>(lsp-code-action-float)
 
 " Autocomplete shortcuts:

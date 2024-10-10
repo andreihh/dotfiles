@@ -132,7 +132,6 @@ hi Constant ctermfg=5 ctermbg=NONE cterm=italic,nocombine
 hi String ctermfg=2 ctermbg=NONE cterm=NONE
 hi Character ctermfg=2 ctermbg=NONE cterm=NONE
 hi Number ctermfg=4 ctermbg=NONE cterm=NONE
-hi Boolean ctermfg=5 ctermbg=NONE cterm=NONE
 hi Float ctermfg=4 ctermbg=NONE cterm=NONE
 
 " Identifiers:
