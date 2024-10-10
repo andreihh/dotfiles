@@ -36,8 +36,8 @@ Plug 'tpope/vim-sensible'  " Sensible settings.
 Plug 'tpope/vim-surround'  " Better surround motions.
 Plug 'tpope/vim-commentary'  " Commenting lines.
 Plug 'easymotion/vim-easymotion'  " Better navigation motions.
-Plug 'airblade/vim-rooter'  " Auto-cd to project root if any.
 Plug 'mhinz/vim-signify'  " VCS gutter signs for changed lines.
+Plug 'airblade/vim-rooter'  " Auto-cd to project root if any.
 Plug 'mkitt/tabline.vim'  " Tab numbers in tab line.
 Plug 'udalov/kotlin-vim'  " Kotlin syntax highlighting.
 " Better `tmux` integration.
@@ -58,126 +58,8 @@ Plug 'google/vim-codefmt'
 call plug#end()
 call glaive#Install()
 
-" Use the system clipboard.
-set clipboard=unnamedplus
-
-" Always assume unix-style files.
-set fileformats=unix
-
-" When wrap is set to off lines will not wrap.
-set nowrap
-
-" When set, highlights the current line.
-set cursorline
-
-" Print relative line numbers in front of each line.
-set relativenumber
-
-" Print the absolute line number in front of the current line.
-set number
-
-" Highlight tabs, trailing whitespaces, and overrunning lines.
-set list
-
-" When a bracket is inserted, briefly jump to the matching one.
-set showmatch
-
-" Show current mode.
-set showmode
-
-" Show command in the last line of the screen.
-set showcmd
-
-" When there is a previous search pattern, highlight all its matches.
-set hlsearch
-
-" Ignore case in search patterns.
-set ignorecase
-
-" When increasing / decreasing indent level, round to nearest multiple of
-" shiftwidth.
-set shiftround
-
-" Copy indent from current line when starting a new line.
-set autoindent
-
-" Do smart autoindenting when starting a new line.
-set smartindent
-
-" Open new split panes to right and bottom, which feels more natural.
-set splitbelow
-set splitright
-
-" Don't use characters for vertical split delimiter.
-set fillchars+=vert:\ ,
-
-" Enable sign column.
-set signcolumn=yes
-
-" When set to "dark", Vim wil try to use colors that look good on a dark
-" background.
-set background=dark
-
-" Optionally enable a color scheme if the terminal supports at least 16 colors.
-" The color scheme must be set after setting the background and enabling syntax.
-if &t_Co >= 16
-  " Use `darcula16plus` if the terminal has a 17 color palette (the 16 default
-  " ANSI colors and a background darker than ANSI black) and `darcula16`
-  " otherwise.
-  colorscheme darcula16plus
-  " colorscheme darcula16
-endif
-
-" Make Esc more responsive.
-set timeout ttimeoutlen=10
-
-" Copy until the end of the line. Consistent with D and C.
-nnoremap Y y$
-
-" Exit visual mode with q.
-vnoremap q <esc>
-
-" Cancels search highlighting in normal mode.
-nnoremap ' :nohlsearch<CR>
-
-" Set <leader> and macro autocompletion keys. Must not have surrounding spaces.
-noremap <space> <nop>
-let mapleader=" "
-set wildcharm=<C-z>
-
-" Writes all buffers before navigating outside of Vim.
-let g:tmux_navigator_save_on_switch=1
-
-" If Vim is the zoomed pane, wraps around Vim instead of unzooming.
-let g:tmux_navigator_disable_when_zoomed=1
-
-" Panes should be resized in increments of 5.
-let g:tmux_resizer_resize_count=5
-let g:tmux_resizer_vertical_resize_count=5
-
-" Required to map the Alt key.
-for key in "hjkl="
-  execute "set <M-" . key . ">=\e" . key
-endfor
-
-" Control and navigate panes and tabs:
-" - Ctrl-o (new file in current buffer)
-" - Ctrl-t (new tab)
-" - Ctrl-s/v (split pane horizontally / vertically)
-" - Ctrl-h/j/k/l (navigate panes)
-" - Alt-h/j/k/l (resize panes)
-" - Alt-= (resize all panes equally)
-" - Ctrl-z (close all panes except current one)
-" - Ctrl-x (close pane)
-" - Ctrl-w (close tab)
-nnoremap <C-o> :edit %:p:h<C-z>
-nnoremap <C-t> :tabedit %<CR>
-nnoremap <C-s> :split<CR>
-nnoremap <C-v> :vsplit<CR>
-nnoremap <M-=> <C-w>=
-nnoremap <C-z> :only<CR>
-nnoremap <C-x> :quit<CR>
-nnoremap <C-w> :tabclose<CR>
+" Load common settings and key mappings.
+execute 'source ' . vim_home . '/settings.vim'
 
 " Fuzzy searching:
 " - ss (search everywhere in project)
@@ -201,42 +83,17 @@ let g:fzf_action = {
     \ 'ctrl-s': 'split',
     \ 'ctrl-v': 'vsplit' }
 
-" Navigation actions:
-" - g1 /g2 / ... / g9 (go to tab)
-" - gj / gk (go to previous / next location)
+" Code navigation:
 " - gd (go to definition)
 " - gD (go to declaration)
 " - gi (go to implementation)
-" - gf (go to file under cursor or selected file)
-" - go (open URI under cursor or selected URI)
-" - <leader><leader> + motion (trigger EasyMotion)
-nnoremap g1 1gt
-nnoremap g2 2gt
-nnoremap g3 3gt
-nnoremap g4 4gt
-nnoremap g5 5gt
-nnoremap g6 6gt
-nnoremap g7 7gt
-nnoremap g8 8gt
-nnoremap g9 9gt
-nnoremap gj <C-o>
-nnoremap gk <C-i>
+" - [r / ]r (go to previous / next reference)
+" - [e / ]e (go to previous / next error)
+" - [w / ]w (go to previous / next warning)
+" - [d / ]d (go to previous / next diagnostic)
 nmap gd <plug>(lsp-definition)
 nmap gD <plug>(lsp-declaration)
 nmap gi <plug>(lsp-implementation)
-map go gx
-
-" Jump actions:
-" - [t / ]t (jump to previous / next tab)
-" - [c / ]c / [C / ]C (jump to previous / next / first / last changed hunk)
-" - [r / ]r (jump to previous / next reference)
-" - [e / ]e (jump to previous / next error)
-" - [w / ]w (jump to previous / next warning)
-" - [d / ]d (jump to previous / next diagnostic)
-" - { / } (jump to previous / next blank line)
-" - Ctrl-u/d (jump half page up / down)
-nnoremap [t gT
-nnoremap ]t gt
 nmap [r <plug>(lsp-previous-reference)
 nmap ]r <plug>(lsp-next-reference)
 nmap [e <plug>(lsp-previous-error)
@@ -266,7 +123,6 @@ nmap <leader>h <plug>(lsp-hover-float)
 nmap <leader>f <plug>(lsp-references)
 nmap <leader>t <plug>(lsp-type-hierarchy)
 nmap <leader>r <plug>(lsp-rename)
-noremap <leader>c :Commentary<CR>
 nnoremap <leader>= :FormatCode<CR>
 vnoremap <leader>= :FormatLines<CR>
 nnoremap <expr> <leader>q
@@ -282,16 +138,6 @@ nmap <expr> <C-b> lsp#scroll(+5)
 " - Enter (accept selected option)
 " - Esc / Ctrl-c (cancel)
 nmap <leader>a <plug>(lsp-code-action-float)
-
-" Autocomplete shortcuts:
-" - Ctrl-Space (trigger autocomplete)
-" - Ctrl-n/p (cycle options)
-" - Ctrl-e (cancel)
-imap <C-@> <C-space>
-imap <C-space> <C-x><C-o>
-
-" Enable default autocompletion.
-set omnifunc=syntaxcomplete#Complete
 
 function! s:on_lsp_buffer_enabled() abort
   " Enable LSP autocompletion.
