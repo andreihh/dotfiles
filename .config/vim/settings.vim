@@ -41,7 +41,7 @@ set showmode
 set showcmd
 
 " Set custom status line.
-set statusline=[%f]%([%M%R%H%W]%)%q%=[\ %l,%c\ \|\ %p%%\ \|\ %LL\ ]
+set statusline=[%f]%([%M%R%H%W]%)%q%=[\ %l:%c\ \|\ %p%%\ \|\ %LL\ ]
 
 " When there is a previous search pattern, highlight all its matches.
 set hlsearch
@@ -73,14 +73,10 @@ set signcolumn=yes
 " background.
 set background=dark
 
-" Optionally enable a color scheme if the terminal supports at least 16 colors.
-" The color scheme must be set after setting the background and enabling syntax.
-if &t_Co >= 16
-  " Use `darcula16plus` if the terminal has a 17 color palette (the 16 default
-  " ANSI colors and a background darker than ANSI black) and `darcula16`
-  " otherwise.
-  colorscheme darcula16plus
-  "colorscheme darcula16
+" Optionally enable a color scheme if the terminal supports colors. The color
+" scheme must be set after setting the background and enabling syntax.
+if &t_Co >= 256
+  colorscheme darcula256
 endif
 
 " Make Esc more responsive.

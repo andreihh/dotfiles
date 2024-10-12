@@ -82,7 +82,7 @@ _make_prompt() {
     local shell_style="\[$(tput sgr0 && tput bold && tput setaf 2)\]"  # green
     local chroot_style="\[$(tput sgr0 && tput bold && tput setaf 5)\]"  # purple
     local user_style="\[$(tput sgr0 && tput bold && tput setaf 1)\]"  # red
-    local host_style="\[$(tput sgr0 && tput bold && tput setaf 6)\]"  # cyan
+    local host_style="\[$(tput sgr0 && tput bold && tput setaf 2)\]"  # green
     local vcs_style="\[$(tput sgr0 && tput bold && tput setaf 3)\]"  # yellow
     local cwd_style="\[$(tput sgr0 && tput bold && tput setaf 4)\]"  # blue
 

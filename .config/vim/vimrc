@@ -59,7 +59,16 @@ call plug#end()
 call glaive#Install()
 
 " Load common settings and key mappings.
-execute 'source ' . vim_home . '/settings.vim'
+runtime settings.vim
+
+" Show cursor line only in focused pane.
+augroup CursorLine
+  au!
+  au VimEnter * setlocal cursorline
+  au WinEnter * setlocal cursorline
+  au BufEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
 
 " Fuzzy searching:
 " - ss (search everywhere in project)

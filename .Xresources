@@ -8,39 +8,41 @@ XTerm.termName: xterm-256color
 
 ! Define 256-colors ANSI scheme to match JetBrains Darcula theme.
 
-! Black
+! Black: 236:Grey19 / 238:Grey27
 XTerm*color0: rgb:30/30/30
 XTerm*color8: rgb:44/44/44
 
-! Red
+! Red: 167:IndianRed / 179:LightGoldenrod3
 XTerm*color1: rgb:d7/5f/5f
-XTerm*color9: rgb:ff/87/87
+XTerm*color9: rgb:d7/af/5f
 
-! Green
-XTerm*color2: rgb:5f/87/5f
-XTerm*Color10: rgb:af/af/00
+! Green: 101:Wheat4 / 65:DarkSeaGreen4
+XTerm*color2: rgb:87/87/5f
+XTerm*Color10: rgb:5f/87/5f
 
-! Yellow
+! Yellow: 172:Orange3 / 142:Gold3
 XTerm*color3: rgb:d7/87/00
-XTerm*color11: rgb:d7/af/5f
+XTerm*Color11: rgb:af/af/00
 
-! Blue
+! Blue: 67:SteelBlue / 146:LightSteelBlue3
 XTerm*color4: rgb:5f/87/af
-XTerm*color12: rgb:87/af/ff
+XTerm*color12: rgb:af/af/d7
 
-! Magenta
-XTerm*color5: rgb:af/87/d7
-XTerm*color13: rgb:d7/af/ff
+! Magenta: 97:MediumPurple3 / 103:LightSlateGrey
+XTerm*color5: rgb:5f/5f/87
+XTerm*color13: rgb:87/87/af
 
-! Cyan
-XTerm*color6: rgb:00/87/87
-XTerm*color14: rgb:00/af/af
+! Cyan: 23:DeepSkyBlue4 / 66:PaleTurquoise4
+XTerm*color6: rgb:00/5f/5f
+XTerm*color14: rgb:5f/87/87
 
-! White
-XTerm*color7: rgb:6c/6c/6c
+! White: 243:Grey46 / 145:Grey69
+XTerm*color7: rgb:76/76/76
 XTerm*color15: rgb:af/af/af
 
 ! Special
+! Foreground, Cursor: 145:Grey69
+! Background: 235:Grey15
 XTerm*foreground: rgb:af/af/af
 XTerm*background: rgb:26/26/26
 XTerm*cursorColor: rgb:af/af/af
@@ -50,7 +52,7 @@ XTerm*boldMode: true
 XTerm*boldColors: false
 
 ! Use a truetype font and size.
-*faceName: Monospace
+*faceName: JetBrainsMono Nerd Font
 *faceSize: 11
 
 ! Enable blinking cursor.
