@@ -1,6 +1,6 @@
 git; stow; curl; wget; gnupg; firefox;
 --cask iterm2; tmux; lm-sensors; urlview; reattach-to-user-namespace;
-vim; macvim; ripgrep;
+vim; macvim; nvim; ripgrep; --cask font-jetbrains-mono-nerd-font;
 tree; calc; dos2unix;
 --cask alt-tab;
 

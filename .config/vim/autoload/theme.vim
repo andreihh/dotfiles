@@ -67,6 +67,7 @@ let theme#ansi={
 "   - WarningFg
 "   - InfoFg
 "   - HintFg
+"   - CodeActionFg
 " - syn
 "   - ConstantFg, NumberFg, StringFg, BooleanFg
 "   - IdentifierFg, FunctionFg, VariableFg, TypeFg
@@ -118,6 +119,7 @@ function! theme#ApplyColorTheme(ui, vcs, lsp, syn) abort
   hi! link VisualNOS Visual
   hi! link PmenuSbar Pmenu
   hi! link WildMenu PmenuSel
+  hi! link NormalFloat Pmenu
   hi! link MessageWindow Pmenu
   hi! link PopupNotification Todo
   hi! link SpellCap SpellBad
@@ -156,6 +158,7 @@ function! theme#ApplyColorTheme(ui, vcs, lsp, syn) abort
   hi! link LspHintVirtualText HintMsg
   hi! link LspInlayHintsType HintMsg
   hi! link LspInlayHintsParameter HintMsg
+  hi! link LspCodeActionText CodeActionSign
 
   " Appearance:
   call s:Hi('Normal', a:ui.NormalFg, a:ui.Bg, s:none)
@@ -179,7 +182,7 @@ function! theme#ApplyColorTheme(ui, vcs, lsp, syn) abort
 
   " Highlighting:
   call s:Hi('Search', a:ui.SelectionFg, a:ui.SelectionBg, s:none)
-  call s:Hi('MatchParen', a:ui.MatchParenFg, a:lsp.ReferenceBg, s:none)
+  call s:Hi('MatchParen', a:ui.MatchParenFg, a:ui.ReferenceBg, s:none)
   call s:Hi('Directory', a:ui.UriFg, s:none, s:none)
   call s:Hi('Underlined', a:ui.UriFg, s:none, s:style.Underline)
 
@@ -205,6 +208,7 @@ function! theme#ApplyColorTheme(ui, vcs, lsp, syn) abort
   call s:Hi('WarningSign', a:lsp.WarningFg, a:ui.GutterBg, s:none)
   call s:Hi('InfoSign', a:lsp.InfoFg, a:ui.GutterBg, s:none)
   call s:Hi('HintSign', a:lsp.HintFg, a:ui.GutterBg, s:none)
+  call s:Hi('CodeActionSign', a:lsp.CodeActionFg, a:ui.GutterBg, s:none)
 
   " Comments:
   call s:Hi('Comment', a:syn.CommentFg, s:none, s:none)
@@ -241,5 +245,5 @@ function! theme#ApplyColorTheme(ui, vcs, lsp, syn) abort
   call s:Hi('Todo', a:syn.TodoFg, s:none, s:style.Italic)
 
   " LSP:
-  call s:Hi('LspReference', s:none, a:lsp.ReferenceBg, s:none)
+  call s:Hi('LspReference', s:none, a:ui.ReferenceBg, s:none)
 endfunction

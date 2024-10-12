@@ -28,9 +28,9 @@ XTerm*Color11: rgb:af/af/00
 XTerm*color4: rgb:5f/87/af
 XTerm*color12: rgb:af/af/d7
 
-! Magenta: 97:MediumPurple3 / 103:LightSlateGrey
+! Magenta: 97:MediumPurple3 / 140:MediumPurple2
 XTerm*color5: rgb:5f/5f/87
-XTerm*color13: rgb:87/87/af
+XTerm*color13: rgb:af/87/d7
 
 ! Cyan: 23:DeepSkyBlue4 / 66:PaleTurquoise4
 XTerm*color6: rgb:00/5f/5f

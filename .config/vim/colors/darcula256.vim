@@ -41,6 +41,7 @@ let s:ui={
     \ 'FloatThumb': s:palette.Grey2,
     \ 'UriFg': s:palette.Blue,
     \ 'MatchParenFg': s:palette.Yellow,
+    \ 'ReferenceBg': s:palette.Grey0,
     \ }
 
 let s:vcs={
@@ -55,7 +56,7 @@ let s:lsp={
     \ 'WarningFg': s:palette.Orange,
     \ 'InfoFg': s:palette.Grey2,
     \ 'HintFg': s:palette.Grey2,
-    \ 'ReferenceBg': s:palette.Grey0,
+    \ 'CodeActionFg': s:palette.White,
     \ }
 
 let s:syn={
