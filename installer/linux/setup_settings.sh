@@ -46,25 +46,6 @@ gsettings set "$SHELL_KEYBINDINGS" show-screenshot-ui "['<Primary><Alt>p']"
 echo "Setting lock screen shortcut to Ctrl-Alt-l..."
 gsettings set "$GNOME_MEDIA_KEYS" screensaver "['<Primary><Alt>l']"
 
-echo "Setting up default web browser interactively..."
-sudo update-alternatives --config x-www-browser
-
-echo "Setting up 'xterm' as default terminal..."
-if [[ -f "/usr/bin/xterm" ]]; then
-  sudo update-alternatives --set x-terminal-emulator /usr/bin/xterm
-else
-  echo "Did not find 'xterm'! Setting up default terminal interactively..."
-  sudo update-alternatives --config x-terminal-emulator
-fi
-
-echo "Setting up 'vim.gtk3' as default editor..."
-if [[ -f "/usr/bin/vim.gtk3" ]]; then
-  sudo update-alternatives --set editor /usr/bin/vim.gtk3
-else
-  echo "Did not find 'vim.gtk3'! Setting up default editor interactively..."
-  sudo update-alternatives --config editor
-fi
-
 echo "Setting new file explorer shortcut to Ctrl-Alt-e..."
 gsettings set "$GNOME_MEDIA_KEYS" home "['<Primary><Alt>e']"
 
@@ -82,6 +63,27 @@ gsettings set "$GNOME_MEDIA_KEYS.custom-keybinding:$NEW_TMUX_KEY" \
   command "\"x-terminal-emulator -e 'tmux new -A -s work'\""
 gsettings set "$GNOME_MEDIA_KEYS.custom-keybinding:$NEW_TMUX_KEY" \
   binding "'<Primary><Alt>x'"
+
+echo "Setting up default web browser interactively..."
+sudo update-alternatives --config x-www-browser
+
+echo "Setting up 'xterm' as default terminal..."
+if [[ -f "/usr/bin/xterm" ]]; then
+  sudo update-alternatives --set x-terminal-emulator /usr/bin/xterm
+else
+  echo "Did not find 'xterm'! Setting up default terminal interactively..."
+  sudo update-alternatives --config x-terminal-emulator
+fi
+
+echo "Setting up 'nvim' as default editor..."
+readonly NVIM="$(which nvim)"
+if [[ -f "${NVIM}" ]]; then
+  sudo update-alternatives --install /usr/bin/editor editor "${NVIM}" 100
+  sudo update-alternatives --set editor "${NVIM}"
+else
+  echo "Did not find 'nvim'! Setting up default editor interactively..."
+  sudo update-alternatives --config editor
+fi
 
 echo "Making hidden startup applications visible..."
 sudo sed -i "s/NoDisplay=true/NoDisplay=false/g" /etc/xdg/autostart/*.desktop

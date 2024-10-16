@@ -6,9 +6,8 @@ tree; calc; dos2unix;
 
 --cask mactex; biber;
 
-python3; yapf;
-openjdk; google-java-format; ktfmt; --cask intellij-idea-ce;
-gcc; cmake; clang-format;
-shfmt; shellcheck; prettier;
+python3;
+openjdk; --cask intellij-idea-ce;
+gcc; make; cmake; clang-format;
 
 pdftk-java; ffmpeg; graphviz; plantuml; --cask keepassxc; --cask vlc;
