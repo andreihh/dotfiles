@@ -19,8 +19,14 @@ set fileformats=unix
 " When wrap is set to off lines will not wrap.
 set nowrap
 
-" When set, highlights the current line.
-set cursorline
+" Show cursor line only in focused pane.
+augroup CursorLine
+  au!
+  au VimEnter * setlocal cursorline
+  au WinEnter * setlocal cursorline
+  au BufEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
 
 " Print relative line numbers in front of each line.
 set relativenumber
@@ -89,7 +95,7 @@ nnoremap Y y$
 vnoremap q <esc>
 
 " Cancels search highlighting in normal mode.
-nnoremap ' :nohlsearch<CR>
+nnoremap <esc> :nohlsearch<CR>
 
 " Set <leader> and macro autocompletion keys. Must not have surrounding spaces.
 noremap <space> <nop>

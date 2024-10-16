@@ -15,6 +15,9 @@ let &directory = vim_state . '//'
 let &viewdir = vim_state . '//'
 let &undodir = vim_state . '//'
 
+" Load Neovim color themes and utils.
+set runtimepath+=$XDG_CONFIG_HOME/nvim
+
 " Remove if using Vim9.1.0327 or newer.
 set runtimepath^=$XDG_CONFIG_HOME/vim
 set runtimepath+=$XDG_CONFIG_HOME/vim/after
@@ -61,20 +64,12 @@ call glaive#Install()
 " Load common settings and key mappings.
 runtime settings.vim
 
-" Show cursor line only in focused pane.
-augroup CursorLine
-  au!
-  au VimEnter * setlocal cursorline
-  au WinEnter * setlocal cursorline
-  au BufEnter * setlocal cursorline
-  au WinLeave * setlocal nocursorline
-augroup END
-
 " Fuzzy searching:
 " - ss (search everywhere in project)
 " - sf (search files)
 " - sc (search uncommitted Git files)
-" - sb (search current buffer)
+" - sb (search open buffers)
+" - s/ (search inside current buffer)
 " - sh (search home directory)
 " - Ctrl-n/p (cycle options)
 " - Ctrl-o (open option in current buffer)
@@ -85,7 +80,8 @@ nnoremap s <nop>
 nnoremap ss :Rg<CR>
 nnoremap sf :Files<CR>
 nnoremap sc :GFiles?<CR>
-nnoremap sb :BLines<CR>
+nnoremap sb :Buffers<CR>
+nnoremap s/ :BLines<CR>
 nnoremap sh :FZF ~<CR>
 let g:fzf_action = {
     \ 'ctrl-t': 'tab split',
