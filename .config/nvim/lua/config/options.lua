@@ -2,15 +2,6 @@
 --  See `:help vim.opt`
 --  For more options, see `:help option-list`
 
--- Set to true if you have a Nerd Font installed and selected in the terminal.
-vim.g.nerd_font_enabled = true
-
--- Set the Darcula color scheme.
-vim.cmd("colorscheme darcula256")
-
--- Set <C-z> as macro autocompletion key.
-vim.opt.wildcharm = vim.fn.char2nr("")
-
 -- Don't show the mode, since it's already in the status line.
 vim.opt.showmode = false
 
@@ -34,8 +25,20 @@ vim.opt.signcolumn = "yes"
 vim.opt.list = true
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
--- Don't use characters for vertical split delimiter.
-vim.opt.fillchars = "vert: "
+vim.diagnostic.config({
+  signs = {
+    -- Increase diagnostic gutter signs priority over VCS and sort by severity.
+    priority = 11,
+    severity_sort = true,
+    -- Set diagnostic gutter icons if you have a Nerd Font.
+    text = vim.g.nerd_font_enabled and {
+      [vim.diagnostic.severity.ERROR] = "",
+      [vim.diagnostic.severity.WARN] = "",
+      [vim.diagnostic.severity.INFO] = "",
+      [vim.diagnostic.severity.HINT] = "󰌶",
+    } or {},
+  },
+})
 
 -- Configure how new splits should be opened.
 vim.opt.splitright = true
@@ -47,7 +50,9 @@ vim.opt.mouse = "a"
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  See `:help 'clipboard'`
-vim.schedule(function() vim.opt.clipboard = "unnamedplus" end)
+vim.schedule(function()
+  vim.opt.clipboard = "unnamedplus"
+end)
 
 -- When changing indent level, round to nearest multiple of `shiftwidth`.
 vim.opt.shiftround = true

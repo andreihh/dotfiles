@@ -38,7 +38,9 @@ return {
         completion = { completeopt = "menu,menuone,noselect" },
 
         snippet = {
-          expand = function(args) vim.fn["vsnip#anonymous"](args.body) end,
+          expand = function(args)
+            vim.fn["vsnip#anonymous"](args.body)
+          end,
         },
 
         formatting = {

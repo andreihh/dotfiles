@@ -36,6 +36,9 @@
 --  - <C-h> = show [s]ignature help
 --  - <leader> + c/r/a/=/H = perform code action
 
+-- Set <C-z> as macro autocompletion key.
+vim.opt.wildcharm = vim.fn.char2nr("")
+
 local function noremap(mode, lhs, rhs, description)
   vim.keymap.set(mode, lhs, rhs, { desc = description, noremap = true })
 end

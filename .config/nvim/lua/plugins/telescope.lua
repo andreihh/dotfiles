@@ -8,7 +8,9 @@ return {
         "nvim-telescope/telescope-fzf-native.nvim",
         -- Install, load and build only if `make` is available.
         build = "make",
-        cond = function() return vim.fn.executable("make") == 1 end,
+        cond = function()
+          return vim.fn.executable("make") == 1
+        end,
       },
       { "nvim-telescope/telescope-ui-select.nvim" },
       { "nvim-telescope/telescope-hop.nvim" },

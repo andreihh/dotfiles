@@ -16,11 +16,12 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     error("Error cloning lazy.nvim:\n" .. out)
   end
-end ---@diagnostic disable-next-line: undefined-field
+end
+---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 -- Setup lazy.nvim.
 require("lazy").setup("plugins", {
   -- Don't show config change notifications in command prompt.
-  change_detection = { notify = false }
+  change_detection = { notify = false },
 })

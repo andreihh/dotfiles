@@ -1,3 +1,6 @@
+-- [[ LSP configs ]]
+--  See `help mason-lspconfig-dynamic-server-setup`
+
 local M = {
   -- Enable the following language servers.
   --  Add/remove desired LSPs here. They will automatically be installed.
