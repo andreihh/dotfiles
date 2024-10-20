@@ -90,6 +90,11 @@ vim.opt.updatetime = 250
 -- Save undo history.
 vim.opt.undofile = true
 
--- Set to true if your terminal supports true colors (24 bit colors).
---  NOTE: must happen before color schemes are loaded.
-vim.opt.termguicolors = true
+-- Neovim doesn't automatically enable `termguicolors` inside `tmux`, even if it
+-- has true color capabilities.
+local is_tmux = string.find(vim.env.TERM, "tmux")
+local tmux_has_rgb =
+  string.find(vim.fn.system("tmux display -p '#{client_termfeatures}'") , "RGB")
+if is_tmux and tmux_has_rgb then
+  vim.opt.termguicolors = true
+end
