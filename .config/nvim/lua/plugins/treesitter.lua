@@ -1,3 +1,5 @@
+local lsp_opts = require("config.lsp")
+
 return {
   { -- Highlight, edit, and navigate code
     "nvim-treesitter/nvim-treesitter",
@@ -5,6 +7,7 @@ return {
     main = "nvim-treesitter.configs", -- Sets main module to use for opts
     -- See `:help nvim-treesitter`
     opts = {
+      ensure_installed = lsp_opts.parsers or {},
       -- Autoinstall languages that are not installed.
       auto_install = true,
       highlight = {
