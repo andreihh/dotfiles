@@ -32,11 +32,6 @@ return {
 
       -- [[ Configure Telescope ]]
       --  See `:help telescope` and `:help telescope.setup()`
-      --
-      --  Open a window that shows all of the keymaps for the current Telescope
-      --  picker with the following shortcuts:
-      --   - Insert mode: <C-/>
-      --   - Normal mode: ?
       local telescope = require("telescope")
       local builtin = require("telescope.builtin")
       local keymaps = {
@@ -46,6 +41,7 @@ return {
         ["<C-h>"] = function(prompt_bufnr)
           require("telescope").extensions.hop._hop(prompt_bufnr)
         end,
+        ["<C-\\>"] = "which_key",
       }
 
       telescope.setup({
@@ -78,9 +74,6 @@ return {
       nnoremap("ss", builtin.builtin, "[S]earch [S]elect")
       nnoremap("sh", builtin.help_tags, "[S]earch [H]elp")
       nnoremap("sk", builtin.keymaps, "[S]earch [K]eymaps")
-      nnoremap("sn", function()
-        builtin.find_files({ cwd = vim.fn.stdpath("config") })
-      end, "[S]earch [N]eovim files")
 
       nnoremap("sf", builtin.find_files, "[S]earch [F]iles")
       nnoremap("sr", builtin.oldfiles, "[S]earch [R]ecent files")

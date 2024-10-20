@@ -8,11 +8,10 @@ return {
         ["gf"] = "actions.select",
         ["gp"] = "actions.parent",
         ["gx"] = "actions.open_external",
-        ["t."] = "actions.toggle_hidden",
-        ["t\\"] = "actions.toggle_trash",
+        ["th"] = "actions.toggle_hidden",
         ["<C-l>"] = "actions.refresh",
         ["<C-e>"] = "actions.close",
-        ["<leader>?"] = "actions.show_help",
+        ["<C-\\>"] = "actions.show_help",
       },
     },
     dependencies = {
