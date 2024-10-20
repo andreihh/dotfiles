@@ -47,7 +47,7 @@ return {
           format = require("lspkind").cmp_format({
             -- Show symbols if you have a Nerd Font.
             mode = vim.g.nerd_font_enabled and "symbol_text" or "text",
-            menu = require("config.lsp").cmp_source_tags or {},
+            menu = require("config.lsp").completion_source_tags or {},
           }),
         },
 

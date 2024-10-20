@@ -2,6 +2,22 @@
 --  See `help mason-lspconfig-dynamic-server-setup`
 
 local M = {
+  -- Enable the following parsers.
+  --  Add/remove desired parsers here. They will be automatically installed.
+  parsers = {
+    "lua",
+    "luadoc",
+    "vim",
+    "vimdoc",
+    "markdown",
+    "diff",
+    "query",
+    "bash",
+    "python",
+    "cpp",
+    "java",
+    "kotlin",
+  },
   -- Enable the following language servers.
   --  Add/remove desired LSPs here. They will automatically be installed.
   --
@@ -39,7 +55,7 @@ local M = {
   --  Add/remove desired formatters here. They will be automatically installed.
   formatters_by_ft = {
     lua = { "stylua" },
-    sh = { "shfmt", "shellcheck" },
+    sh = { "shfmt" },
     python = { "yapf" },
     cpp = { "clang-format" },
     java = { "google-java-format" },
@@ -48,11 +64,18 @@ local M = {
   },
   -- Configure formatters that don't support a config file to use Google style.
   formatter_opts = {
-    shfmt = { prepend_args = { "-i", "2", "-sr", "-ci", "-bn", "-kp" } },
     ktfmt = { prepend_args = { "--google-style" } },
   },
+  -- Enable the following linters.
+  --  Add/remove desired linters here. They will be automatically installed.
+  linters_by_ft = {
+    -- `bashls` integrates with `shellcheck` if installed
+    python = { "pylint" },
+    -- `clangd` embeds `clang-tidy`
+    java = { "checkstyle" },
+  },
   -- Set tags to highlight sources in the completion menu.
-  cmp_source_tags = {
+  completion_source_tags = {
     nvim_lsp = "[LSP]",
     vsnip = "[Snip]",
     buffer = "[Buffer]",
@@ -60,11 +83,15 @@ local M = {
   },
 }
 
--- You can add other tools that you want to install here.
 M.ensure_installed = vim.tbl_keys(M.servers or {})
 vim.list_extend(
   M.ensure_installed,
   vim.iter(vim.tbl_values(M.formatters_by_ft or {})):flatten():totable()
 )
+
+-- Add other tools you want to install here.
+vim.list_extend(M.ensure_installed, {
+  "shellcheck", -- `bashls` integrates with `shellcheck` if installed
+})
 
 return M
