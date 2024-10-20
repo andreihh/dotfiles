@@ -15,9 +15,6 @@ let &directory = vim_state . '//'
 let &viewdir = vim_state . '//'
 let &undodir = vim_state . '//'
 
-" Load Neovim color themes and utils.
-set runtimepath+=$XDG_CONFIG_HOME/nvim
-
 " Remove if using Vim9.1.0327 or newer.
 set runtimepath^=$XDG_CONFIG_HOME/vim
 set runtimepath+=$XDG_CONFIG_HOME/vim/after
@@ -43,6 +40,8 @@ Plug 'airblade/vim-rooter'  " Auto-cd to project root if any.
 Plug 'mkitt/tabline.vim'  " Tab numbers in tab line.
 Plug 'easymotion/vim-easymotion'  " Better navigation motions.
 Plug 'udalov/kotlin-vim'  " Kotlin syntax highlighting.
+Plug 'sainnhe/sonokai'  " Sonokai colorscheme.
+Plug 'joshdick/onedark.vim'  " Onedark colorscheme.
 " Better `tmux` integration.
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'RyanMillerC/better-vim-tmux-resizer'
@@ -63,6 +62,12 @@ call glaive#Install()
 
 " Load common settings and key mappings.
 runtime settings.vim
+
+" Optionally enable a color scheme if the terminal supports colors. The color
+" scheme must be set after setting the background and enabling syntax.
+if &t_Co >= 256
+  colorscheme sonokai
+endif
 
 " Fuzzy searching:
 " - ss (search everywhere in project)

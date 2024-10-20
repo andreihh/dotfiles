@@ -79,12 +79,6 @@ set signcolumn=yes
 " background.
 set background=dark
 
-" Optionally enable a color scheme if the terminal supports colors. The color
-" scheme must be set after setting the background and enabling syntax.
-if &t_Co >= 256
-  colorscheme darcula256
-endif
-
 " Make Esc more responsive.
 set timeout ttimeoutlen=10
 
