@@ -14,8 +14,9 @@ vim.g.maplocalleader = " "
 --  NOTE: Must happen before options and plugins are loaded.
 vim.g.nerd_font_enabled = true
 
--- Set color scheme.
-vim.cmd.colorscheme("darcula256")
+-- Set to true if your terminal supports true colors (24 bit colors).
+--  NOTE: must happen before color schemes are loaded.
+vim.opt.termguicolors = true
 
 -- Load basic configs.
 require("config.options")
