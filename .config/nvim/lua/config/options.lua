@@ -30,7 +30,7 @@ vim.diagnostic.config({
     -- Increase diagnostic gutter signs priority over VCS and sort by severity.
     priority = 11,
     severity_sort = true,
-    -- Set diagnostic gutter icons if you have a Nerd Font.
+    -- Icons require a Nerd Font.
     text = vim.g.nerd_font_enabled and {
       [vim.diagnostic.severity.ERROR] = "",
       [vim.diagnostic.severity.WARN] = "",

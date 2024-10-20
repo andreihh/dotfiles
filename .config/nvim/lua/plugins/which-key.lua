@@ -14,7 +14,7 @@ return {
     },
     opts = {
       icons = {
-        -- Set icon mappings to true if you have a Nerd Font.
+        -- Icons require a Nerd Font.
         mappings = vim.g.nerd_font_enabled,
         -- If you are using a Nerd Font: set icons.keys to an empty table which
         -- will use the default whick-key.nvim defined Nerd Font icons,

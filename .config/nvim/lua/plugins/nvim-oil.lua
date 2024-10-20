@@ -15,7 +15,7 @@ return {
       },
     },
     dependencies = {
-      -- Useful for getting pretty icons, but requires a Nerd Font.
+      -- Icons require a Nerd Font.
       { "nvim-tree/nvim-web-devicons", enabled = vim.g.nerd_font_enabled },
     },
   },
