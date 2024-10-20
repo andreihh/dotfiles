@@ -91,12 +91,6 @@ vim.opt.updatetime = 250
 -- Save undo history.
 vim.opt.undofile = true
 
--- Write all buffers before navigating outside of Neovim.
-vim.g.tmux_navigator_save_on_switch = 1
-
--- If Neovim is the zoomed pane, wrap around Neovim instead of unzooming.
-vim.g.tmux_navigator_disable_when_zoomed = 1
-
--- Windows should be resized in increments of 5.
-vim.g.tmux_resizer_resize_count = 5
-vim.g.tmux_resizer_vertical_resize_count = 5
+-- Set to true if your terminal supports true colors (24 bit colors).
+--  NOTE: must happen before color schemes are loaded.
+vim.opt.termguicolors = true

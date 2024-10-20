@@ -10,15 +10,12 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Set to true if you have a Nerd Font installed and selected in the terminal.
+-- Enable icons if you have a Nerd Font installed and selected in the terminal.
 --  NOTE: Must happen before options and plugins are loaded.
-vim.g.nerd_font_enabled = true
-
--- Set to true if your terminal supports true colors (24 bit colors).
---  NOTE: must happen before color schemes are loaded.
-vim.opt.termguicolors = true
+vim.g.nerd_font_enabled = vim.fn.empty(vim.env.NERD_FONT_ENABLED) == 0
 
 -- Load basic configs.
+--  NOTE: must happen before plugins, colorschemes, or other options are loaded.
 require("config.options")
 require("config.keymaps")
 require("config.autocmds")
