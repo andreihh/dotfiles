@@ -44,6 +44,10 @@ vim.diagnostic.config({
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
+-- Minimal number of screen lines and columns to keep around the cursor.
+vim.opt.scrolloff = 2
+vim.opt.sidescrolloff = 2
+
 -- Enable mouse mode, can be useful for resizing splits.
 vim.opt.mouse = "a"
 
@@ -66,8 +70,12 @@ vim.opt.autoindent = true
 -- Do smart autoindenting when starting a new line.
 vim.opt.smartindent = true
 
--- Save undo history.
-vim.opt.undofile = true
+-- Use `treesitter` folds.
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+
+-- Do not automatically close folds when opening a file.
+vim.opt.foldlevelstart = 99
 
 -- Case-insensitive searching unless \C or one or more capital letters in the
 -- search term.
@@ -80,9 +88,8 @@ vim.opt.inccommand = "split"
 -- Decrease update time.
 vim.opt.updatetime = 250
 
--- Minimal number of screen lines and columns to keep around the cursor.
-vim.opt.scrolloff = 2
-vim.opt.sidescrolloff = 2
+-- Save undo history.
+vim.opt.undofile = true
 
 -- Write all buffers before navigating outside of Neovim.
 vim.g.tmux_navigator_save_on_switch = 1
