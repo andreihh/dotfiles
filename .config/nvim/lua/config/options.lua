@@ -27,8 +27,7 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 vim.diagnostic.config({
   signs = {
-    -- Increase diagnostic gutter signs priority over VCS and sort by severity.
-    priority = 11,
+    -- Prioritize diagnostic gutter signs by severity.
     severity_sort = true,
     -- Icons require a Nerd Font.
     text = vim.g.nerd_font_enabled and {
