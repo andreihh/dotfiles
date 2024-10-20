@@ -50,20 +50,20 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.lsp.protocol.Methods.textDocument_documentHighlight
       )
     then
-      local highlight_augroup =
-        vim.api.nvim_create_augroup("highlight-reference", { clear = false })
+      local highlight_references_augroup =
+        vim.api.nvim_create_augroup("highlight-references", { clear = false })
 
       vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
         desc = "Highlight references for token under cursor",
         buffer = event.buf,
-        group = highlight_augroup,
+        group = highlight_references_augroup,
         callback = vim.lsp.buf.document_highlight,
       })
 
       vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
         desc = "Clear references highlight for token under cursor",
         buffer = event.buf,
-        group = highlight_augroup,
+        group = highlight_references_augroup,
         callback = vim.lsp.buf.clear_references,
       })
 
@@ -72,7 +72,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(event2)
           vim.lsp.buf.clear_references()
           vim.api.nvim_clear_autocmds({
-            group = highlight_augroup,
+            group = highlight_references_augroup,
             buffer = event2.buf,
           })
         end,
