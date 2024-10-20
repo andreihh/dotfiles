@@ -1,14 +1,13 @@
 return {
   { -- Useful plugin to show pending keybinds
     "folke/which-key.nvim",
-    event = "VimEnter",
     keys = {
       {
         "<leader>?",
         function()
           require("which-key").show({ global = true })
         end,
-        desc = "Buffer local keymaps (which-key)",
+        desc = "Show buffer local keymaps (which-key)",
       },
     },
     opts = {
