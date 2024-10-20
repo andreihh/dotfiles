@@ -1,7 +1,7 @@
 local lsp_opts = require("config.lsp")
 
 return {
-  { -- Autoformat
+  { -- Formatting
     "stevearc/conform.nvim",
     cmd = { "ConformInfo" },
     keys = {
@@ -10,8 +10,8 @@ return {
         function()
           require("conform").format({ async = true, lsp_format = "fallback" })
         end,
-        mode = "",
-        desc = "Format buffer",
+        mode = { "n", "v" },
+        desc = "Format document",
       },
     },
     opts = {
