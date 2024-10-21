@@ -69,10 +69,6 @@ vim.opt.autoindent = true
 -- Do smart autoindenting when starting a new line.
 vim.opt.smartindent = true
 
--- Use `treesitter` folds.
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-
 -- Do not automatically close folds when opening a file.
 vim.opt.foldlevelstart = 99
 
