@@ -6,8 +6,6 @@ return {
       { "nvim-tree/nvim-web-devicons", enabled = vim.g.nerd_font_enabled },
     },
     opts = {
-      -- Icons require a Nerd Font.
-      options = { icons_enabled = vim.g.nerd_font_enabled },
       sections = {
         lualine_a = { "mode" },
         lualine_b = {
@@ -31,5 +29,16 @@ return {
         lualine_z = { "location" },
       },
     },
+    config = function(_, opts)
+      -- Icons require a Nerd Font.
+      if not vim.g.nerd_font_enabled then
+        opts.options = {
+          icons_enabled = false,
+          component_separators = { left = "|", right = "|" },
+          section_separators = "",
+        }
+      end
+      require("lualine").setup(opts)
+    end
   },
 }
