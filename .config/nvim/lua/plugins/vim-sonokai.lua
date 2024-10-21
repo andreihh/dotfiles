@@ -1,29 +1,7 @@
 return {
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    priority = 1000,
-    config = function()
-      -- vim.cmd.colorscheme("catppuccin-macchiato")
-    end,
-  },
-  {
-    "navarasu/onedark.nvim",
-    priority = 1000,
-    config = function()
-      vim.api.nvim_create_autocmd("ColorScheme", {
-        group = vim.api.nvim_create_augroup("custom-highlights-onedark", {}),
-        pattern = "onedark",
-        callback = function()
-          -- Override lualine theme.
-          require("lualine").setup({ options = { theme = "onedark" } })
-        end,
-      })
-      -- vim.cmd.colorscheme("onedark")
-    end,
-  },
-  {
+  { -- Colorscheme
     "sainnhe/sonokai",
+    -- Load before all other plugins.
     priority = 1000,
     config = function()
       -- Enable italics if the terminal supports it.
