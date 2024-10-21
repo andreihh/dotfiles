@@ -15,10 +15,13 @@ vim.g.maplocalleader = " "
 vim.g.nerd_font_enabled = vim.fn.empty(vim.env.NERD_FONT_ENABLED) == 0
 
 -- Load basic configs.
---  NOTE: must happen before plugins, colorschemes, or other options are loaded.
+--  NOTE: must happen before plugins, colorschemes, or overrides are loaded.
 require("config.options")
 require("config.keymaps")
 require("config.autocmds")
+
+-- Load optional user overrides.
+pcall(require, "config.overrides")
 
 -- [[ Configure and install plugins ]]
 --  To check the current status of your plugins, run:
