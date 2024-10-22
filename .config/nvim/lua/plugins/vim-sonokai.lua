@@ -11,12 +11,18 @@ return {
         group = vim.api.nvim_create_augroup("custom-highlights-sonokai", {}),
         pattern = "sonokai",
         callback = function()
-          -- Override window separator to match tab and status lines.
           local config = vim.fn["sonokai#get_configuration"]()
           local palette =
             vim.fn["sonokai#get_palette"](config.style, config.colors_override)
           local set_hl = vim.fn["sonokai#highlight"]
+
+          -- Override window separator to match tab and status lines.
           set_hl("VertSplit", palette.bg1, palette.bg1)
+
+          -- Override visual highlight to higher contrast.
+          set_hl("Visual", palette.none, palette.bg4)
+          set_hl("VisualNOS", palette.none, palette.bg4, "underline")
+
           -- Override lualine theme.
           require("lualine").setup({ options = { theme = "sonokai" } })
         end,
