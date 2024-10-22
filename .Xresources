@@ -6,52 +6,56 @@
 XTerm.termName: xterm-256color
 *customization: -color
 
-! Define 256-colors ANSI scheme to match JetBrains Darcula theme.
+! Sonokai color scheme: https://github.com/sainnhe/sonokai
+! TODO: find bright purple, blue, bright blue.
 
-! Black: 236:Grey19 / 238:Grey27
-XTerm*color0: rgb:30/30/30
-XTerm*color8: rgb:44/44/44
+! Black: bg0 / bg1
+XTerm*color0: rgb:2c/2e/34
+XTerm*color8: rgb:33/35/3f
 
-! Red: 167:IndianRed / 179:LightGoldenrod3
-XTerm*color1: rgb:d7/5f/5f
-XTerm*color9: rgb:d7/af/5f
+! Red: red / bg_red
+XTerm*color1: rgb:fc/5d/7c
+XTerm*color9: rgb:ff/60/77
 
-! Green: 101:Wheat4 / 65:DarkSeaGreen4
-XTerm*color2: rgb:87/87/5f
-XTerm*Color10: rgb:5f/87/5f
+! Green: green / bg_green
+XTerm*color2: rgb:9e/d0/72
+XTerm*Color10: rgb:a7/df/78
 
-! Yellow: 172:Orange3 / 142:Gold3
-XTerm*color3: rgb:d7/87/00
-XTerm*Color11: rgb:af/af/00
+! Yellow: orange / yellow
+XTerm*color3: rgb:f3/96/60
+XTerm*Color11: rgb:e7/c6/64
 
 ! Blue: 67:SteelBlue / 146:LightSteelBlue3
 XTerm*color4: rgb:5f/87/af
 XTerm*color12: rgb:af/af/d7
 
-! Magenta: 97:MediumPurple3 / 140:MediumPurple2
-XTerm*color5: rgb:5f/5f/87
-XTerm*color13: rgb:af/87/d7
+! Magenta: purple / purple
+XTerm*color5: rgb:b3/9d/f3
+XTerm*color13: rgb:b3/9d/f3
 
-! Cyan: 23:DeepSkyBlue4 / 66:PaleTurquoise4
-XTerm*color6: rgb:00/5f/5f
-XTerm*color14: rgb:5f/87/87
+! Cyan: blue / bg_blue
+XTerm*color6: rgb:76/cc/e0
+XTerm*color14: rgb:85/d3/f2
 
-! White: 243:Grey46 / 145:Grey69
-XTerm*color7: rgb:76/76/76
-XTerm*color15: rgb:af/af/af
+! White: gray / fg
+XTerm*color7: rgb:7f/84/90
+XTerm*color15: rgb:e2/e2/e3
 
-! Special
-! Foreground, Cursor: 145:Grey69
-! Background: 235:Grey15
-XTerm*foreground: rgb:af/af/af
-XTerm*background: rgb:26/26/26
-XTerm*cursorColor: rgb:af/af/af
+! Special:
+! - Foreground: fg
+! - Background: bg0
+! - Cursor: fg
+! - Highlight: bg4
+XTerm*foreground: rgb:e2/e2/e3
+XTerm*background: rgb:2c/2e/34
+XTerm*cursorColor: rgb:e2/e2/e3
+XTerm*highlightColor: rgb:41/45/50
 
 ! Do not use bright colors for bold.
 XTerm*boldMode: true
 XTerm*boldColors: false
 
-! Use a truetype font and size.
+! Use a Nerd Font.
 *faceName: JetBrainsMono Nerd Font
 *faceSize: 11
 
