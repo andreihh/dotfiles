@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Xprofile: loads `Xresources` using `xrdb`.
+# Xprofile: loads `Xresources` and `${COLORSCHEME}` using `xrdb`.
 #
-# Will attempt to load the `${COLORSCHEME}`.
+# See: https://wiki.archlinux.org/title/Xprofile.
 
 xrdb -m "${XDG_CONFIG_HOME:-$HOME/.config}/X11/Xresources"
 xrdb -m \
