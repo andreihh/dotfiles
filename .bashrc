@@ -51,8 +51,7 @@ done
 unset file
 
 # Load `fzf` with completion.
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash ] \
-  && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash
+command -v fzf &> /dev/null && eval "$(fzf --bash)"
 
 # Load `nvm` with completion.
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"

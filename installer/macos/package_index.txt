@@ -1,13 +1,12 @@
-git; stow; curl; wget; gnupg; firefox;
---cask iterm2; tmux; lm-sensors; urlview; reattach-to-user-namespace;
-vim; nvim; fd; ripgrep; --cask font-jetbrains-mono-nerd-font;
-tree; calc; dos2unix;
---cask alt-tab;
+git; stow; curl; wget; make; gnupg; firefox;
+--cask iterm2; tmux; lm-sensors; urlview; reattach-to-user-namespace; vim; nvim;
+fd; ripgrep; fzf; tree; calc; dos2unix;
+--cask font-jetbrains-mono-nerd-font; --cask alt-tab;
+
+python3;
+gcc; cmake;
+openjdk; --cask intellij-idea-ce;
 
 --cask mactex; biber;
 
-python3;
-openjdk; --cask intellij-idea-ce;
-gcc; make; cmake; clang-format;
-
-pdftk-java; ffmpeg; graphviz; plantuml; --cask keepassxc; --cask vlc;
+--cask keepassxc; --cask vlc; pdftk-java; ffmpeg; graphviz; plantuml;

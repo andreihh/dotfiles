@@ -1,14 +1,13 @@
-git; stow; curl; wget; gnupg; firefox;
-xterm; tmux; lm-sensors; urlview; xsel;
-vim; vim.gtk3; fd-find; ripgrep;
-tree; calc; dos2unix;
+git; stow; curl; wget; make; gnupg; firefox;
+xterm; tmux; lm-sensors; urlview; xsel; vim; vim.gtk3;
+fd-find; ripgrep; tree; calc; dos2unix;
 tlp; linux-tools-common; linux-tools-generic;
+
+python3;
+build-essential; cmake;
+openjdk-21-jdk;
 
 texlive; texlive-latex-extra; texlive-science; texlive-fonts-extra; latexmk;
 texlive-bibtex-extra; biber;
 
-python3; python-is-python3;
-openjdk-21-jdk;
-build-essential; make; cmake; clang-format;
-
-pdftk-java; ffmpeg; graphviz; plantuml; keepassxc; vlc;
+keepassxc; vlc; pdftk-java; ffmpeg; graphviz; plantuml;
