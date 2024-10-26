@@ -22,11 +22,12 @@ if [ -d "${HOME}/bin" ]; then
 fi
 
 # Set PATH so it includes user's private bin if it exists.
-if [ -d "$HOME/.local/bin" ]; then
+if [ -d "${HOME}/.local/bin" ]; then
   PATH="${HOME}/.local/bin${PATH:+:${PATH}}"
 fi
 
-# Load user environment variables if they exist.
-if [ -f "${HOME}/.env" ]; then
-  . "${HOME}/.env"
-fi
+# Load user configs.
+for file in "${XDG_CONFIG_HOME:-$HOME/.config}/profile.d"/*; do
+  [ -f "${file}" ] && . "${file}"
+done
+unset file

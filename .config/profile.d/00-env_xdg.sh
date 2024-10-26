@@ -1,17 +1,4 @@
-# ~/.env: this file contains exported environment variables.
-
-# Prefer Bash as shell.
-export SHELL='/bin/bash'
-
-# Prefer US English and use UTF-8.
-export LANG='en_US.UTF-8'
-export LC_ALL='en_US.UTF-8'
-
-# Make Neovim the default editor.
-export EDITOR='nvim'
-
-# Make Firefox the default browser.
-export BROWSER='firefox'
+# env_xdg.sh: exports XDG environment variables.
 
 # Configure XDG directories:
 # - https://specifications.freedesktop.org/basedir-spec/latest/index.html
@@ -21,21 +8,11 @@ export XDG_CACHE_HOME="${HOME}/.cache"
 export XDG_DATA_HOME="${HOME}/.local/share"
 export XDG_STATE_HOME="${HOME}/.local/state"
 
-# Set if terminal is configured with a Nerd Font, unset otherwise.
-export NERD_FONT_ENABLED="yes"
-
-# Set colorscheme for terminal and CLI apps (`tmux`, `vim`, `nvim`).
-export COLORSCHEME="sonokai"
-
 # Export `readline` config file.
 export INPUTRC="${XDG_CONFIG_HOME}/readline/inputrc"
 
 # Export `ripgrep` config file.
 export RIPGREP_CONFIG_PATH="${XDG_CONFIG_HOME}/ripgrep/ripgreprc"
-
-# Make `fzf` use `ripgrep` and match Vim bindings to accept / cancel.
-export FZF_DEFAULT_COMMAND='rg --files'
-export FZF_DEFAULT_OPTS='--bind=ctrl-o:accept,ctrl-e:abort'
 
 # Export `wget` config file.
 export WGETRC="${XDG_CONFIG_HOME}/wget/wgetrc"
@@ -60,9 +37,6 @@ export TEXMACS_HOME_PATH="${XDG_STATE_HOME}/texmacs"
 
 # Export GnuPG directory.
 export GNUPGHOME="${XDG_DATA_HOME}/gnupg"
-
-# Export the JRE for apps that rely on `$JAVA_HOME`.
-export JAVA_HOME=$(readlink -e "/usr/bin/java" | sed "s:/bin/java::")
 
 # Export local Maven repository.
 export MAVEN_OPTS="-Dmaven.repo.local='${XDG_DATA_HOME}/maven/repository'"

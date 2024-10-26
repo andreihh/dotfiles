@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Xprofile: loads `Xresources` using `xrdb`.
+#
+# Will attempt to load the `${COLORSCHEME}`.
+
+xrdb -m "${XDG_CONFIG_HOME:-$HOME/.config}/X11/Xresources"
+xrdb -m \
+  "${XDG_CONFIG_HOME:-$HOME/.config}/X11/Xcolors/${COLORSCHEME}.Xresources"

@@ -1,6 +1,0 @@
-! ~/.Xresources
-!
-! Configures X11 programs. Reload changes with `xrdb -m ~/.Xresources`.
-
-#include ".config/X11/Xresources"
-#include ".config/X11/Xcolors/sonokai.Xresources"

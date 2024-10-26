@@ -1,6 +1,7 @@
 #!/bin/bash -e
 
-# Installs the `${XDG_CONFIG_HOME}/dotfiles` as symlinks in the home directory.
+# Installs the `${XDG_CONFIG_HOME:-$HOME/.config}/dotfiles` as symlinks in the
+# home directory.
 #
 # If installing a single file fails, aborts the installation and reports the
 # failure.
@@ -9,21 +10,23 @@ readonly DOTFILES_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/dotfiles"
 
 usage() {
   cat << EOF
-  Usage: $0 [-h] [-d] [-b <backup_dir>]
+  Usage: $0 [-h] [-d] [-b <backup_dir>] [-o <os_type>]
 
     -d  Debug / dry run mode (simulate all actions, but do not execute them).
     -b  Backup directory where dotfiles should be copied to.
+    -o  Operating system. One of 'linux' or 'macos'. Optional.
     -h  Print this message and exit.
 EOF
 }
 
-while getopts "db:h" option; do
+while getopts "db:o:h" option; do
   case "${option}" in
     d)
       debug="-d"
       stow_debug="-n"
       ;;
     b) backup_dir="${OPTARG}" ;;
+    o) os_type="${OPTARG}" ;;
     h) usage && exit 0 ;;
     *) usage && exit 1 ;;
   esac
@@ -68,6 +71,17 @@ echo "Removing shell-specific profile config files..."
 for shell_profile_file in ~/.{bash_profile,zprofile}; do
   [[ -n "${debug}" ]] || rm -vf "$shell_profile_file"
 done
+
+if [[ "${os_type}" == "linux" ]]; then
+  echo "Setting up '~/.xprofile'..."
+  [[ -n "${debug}" ]] || ln -svf \
+    "${DOTFILES_HOME}/.config/X11/Xprofile" "${HOME}/.xprofile"
+fi
+
+# Remove if using Vim9.1.0327 or newer.
+echo "Setting up legacy '~/.vimrc'..."
+[[ -n "${debug}" ]] || ln -svf \
+  "${DOTFILES_HOME}/.config/vim/vimrc" "${HOME}/.vimrc"
 
 echo "Changing default shell to Bash..."
 chsh -s "/bin/bash"

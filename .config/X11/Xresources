@@ -1,6 +1,6 @@
-! Xresources
+! Xresources: configures X11 programs.
 !
-! Configures X11 programs. Reload changes with `xrdb -m Xresources`.
+! Reload changes with `xrdb -m Xresources`.
 
 ! Set the terminal name and ensure color support.
 XTerm.termName: xterm-256color

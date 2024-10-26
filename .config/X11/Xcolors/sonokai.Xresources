@@ -1,6 +1,6 @@
-! sonokai.Xresources
+! sonokai.Xresources: configures Sonokai colorscheme for X11 programs.
 !
-! Sonokai color scheme: https://github.com/sainnhe/sonokai.
+! Load with `xrdb -m Xresources`. See: https://github.com/sainnhe/sonokai.
 
 ! TODO: find bright purple, blue, bright blue.
 
