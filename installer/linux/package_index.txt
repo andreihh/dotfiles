@@ -1,7 +1,7 @@
-git; stow; curl; wget; make; gnupg; firefox;
+git; stow; curl; wget; zip; unzip; tar; make; gnupg; firefox;
 xterm; tmux; lm-sensors; urlview; xsel; vim; vim.gtk3;
 fd-find; ripgrep; tree; calc; dos2unix;
-tlp; linux-tools-common; linux-tools-generic;
+fontconfig; tlp; linux-tools-common; linux-tools-generic;
 
 python3;
 build-essential; cmake;

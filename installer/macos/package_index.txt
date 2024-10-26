@@ -1,4 +1,4 @@
-git; stow; curl; wget; make; gnupg; firefox;
+git; stow; curl; wget; zip; unzip; make; gnupg; firefox;
 --cask iterm2; tmux; lm-sensors; urlview; reattach-to-user-namespace; vim; nvim;
 fd; ripgrep; fzf; tree; calc; dos2unix;
 --cask font-jetbrains-mono-nerd-font; --cask alt-tab;
