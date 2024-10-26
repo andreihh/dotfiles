@@ -1,6 +1,6 @@
 git; stow; curl; wget; gnupg; firefox;
 xterm; tmux; lm-sensors; urlview; xsel;
-vim; vim.gtk3; ripgrep;
+vim; vim.gtk3; fd-find; ripgrep;
 tree; calc; dos2unix;
 tlp; linux-tools-common; linux-tools-generic;
 
