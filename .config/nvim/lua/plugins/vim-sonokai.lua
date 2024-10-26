@@ -27,7 +27,9 @@ return {
           require("lualine").setup({ options = { theme = "sonokai" } })
         end,
       })
-      vim.cmd.colorscheme("sonokai")
+      if vim.env.COLORSCHEME == "sonokai" then
+        vim.cmd.colorscheme("sonokai")
+      end
     end,
   },
 }

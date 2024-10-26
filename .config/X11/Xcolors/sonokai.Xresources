@@ -1,0 +1,48 @@
+! sonokai.Xresources
+!
+! Sonokai color scheme: https://github.com/sainnhe/sonokai.
+
+! TODO: find bright purple, blue, bright blue.
+
+! Black: bg0 / bg1
+XTerm*color0: rgb:2c/2e/34
+XTerm*color8: rgb:33/35/3f
+
+! Red: red / bg_red
+XTerm*color1: rgb:fc/5d/7c
+XTerm*color9: rgb:ff/60/77
+
+! Green: green / bg_green
+XTerm*color2: rgb:9e/d0/72
+XTerm*Color10: rgb:a7/df/78
+
+! Yellow: orange / yellow
+XTerm*color3: rgb:f3/96/60
+XTerm*Color11: rgb:e7/c6/64
+
+! Blue: 67:SteelBlue / 146:LightSteelBlue3
+XTerm*color4: rgb:5f/87/af
+XTerm*color12: rgb:af/af/d7
+
+! Magenta: purple / purple
+XTerm*color5: rgb:b3/9d/f3
+XTerm*color13: rgb:b3/9d/f3
+
+! Cyan: blue / bg_blue
+XTerm*color6: rgb:76/cc/e0
+XTerm*color14: rgb:85/d3/f2
+
+! White: gray / fg
+XTerm*color7: rgb:7f/84/90
+XTerm*color15: rgb:e2/e2/e3
+
+! Special:
+! - Foreground: fg
+! - Background: bg0
+! - Cursor: fg
+! - Highlight: bg4
+XTerm*foreground: rgb:e2/e2/e3
+XTerm*background: rgb:2c/2e/34
+XTerm*cursorColor: rgb:e2/e2/e3
+XTerm*highlightColor: rgb:41/45/50
+
