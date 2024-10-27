@@ -3,7 +3,6 @@
 --
 -- General:
 --  - <esc> = clear search highlights
---  - q = [q]uit visual mode
 --  - <C-e> = [e]xit terminal mode
 --  - u = [u]ndo
 --  - <C-r> = [r]edo
@@ -69,7 +68,6 @@ end
 noremap("n", "s", "<nop>", "Disable [S]ubstitute to allow search chaining")
 noremap("n", "<esc>", "<cmd>nohlsearch<CR>", "Clear search highlights")
 
-noremap("v", "q", "<esc>", "[Q]uit visual mode")
 noremap("t", "<C-e>", "<C-\\><C-n>", "[E]xit terminal mode")
 
 noremap("n", "<C-o>", ":edit %:h<C-z><CR>", "[O]pen file explorer in buffer")
