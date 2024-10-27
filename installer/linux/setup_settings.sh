@@ -67,21 +67,21 @@ gsettings set "$GNOME_MEDIA_KEYS.custom-keybinding:$NEW_TMUX_KEY" \
 echo "Setting up default web browser interactively..."
 sudo update-alternatives --config x-www-browser
 
-echo "Setting up 'xterm' as default terminal..."
+echo "Setting up XTerm as default terminal..."
 if [[ -f "/usr/bin/xterm" ]]; then
   sudo update-alternatives --set x-terminal-emulator /usr/bin/xterm
 else
-  echo "Did not find 'xterm'! Setting up default terminal interactively..."
+  echo "Did not find XTerm! Setting up default terminal interactively..."
   sudo update-alternatives --config x-terminal-emulator
 fi
 
-echo "Setting up 'nvim' as default editor..."
-readonly NVIM="$(which nvim)"
+echo "Setting up Neovim as default editor..."
+readonly NVIM="$(command -v nvim)"
 if [[ -f "${NVIM}" ]]; then
   sudo update-alternatives --install /usr/bin/editor editor "${NVIM}" 100
   sudo update-alternatives --set editor "${NVIM}"
 else
-  echo "Did not find 'nvim'! Setting up default editor interactively..."
+  echo "Did not find Neovim! Setting up default editor interactively..."
   sudo update-alternatives --config editor
 fi
 
