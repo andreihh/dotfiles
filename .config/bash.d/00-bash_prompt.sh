@@ -26,7 +26,7 @@ _git_branch() {
     dirty="*"
   fi
 
-  echo "$branch$dirty"
+  echo "${branch}${dirty}"
 }
 
 # Returns the branch name and optionally dirty status of the current VCS branch.
@@ -34,18 +34,18 @@ _git_branch() {
 # Works with `git`.
 _vcs_branch() {
   local git_branch="$(_git_branch)"
-  if [[ -n "$git_branch" ]]; then
-    echo "$git_branch"
+  if [[ -n "${git_branch}" ]]; then
+    echo "${git_branch}"
     return
   fi
 }
 
-# Shortens the current working directory by collapsing `$HOME` to `~` and the
+# Shortens the current working directory by collapsing `${HOME}` to `~` and the
 # path components to their initials, except for the last 5 components, which are
 # displayed in full.
 _short_pwd() {
-  local pwd_tilde="${PWD#${HOME}}"
-  [[ "$PWD" != "$pwd_tilde" ]] && printf "~"
+  local pwd_tilde="${PWD#"${HOME}"}"
+  [[ "${PWD}" != "${pwd_tilde}" ]] && printf '~'
   IFS='/' read -r -a path <<< "${pwd_tilde:1}"
 
   local -i length=${#path[@]}
@@ -53,16 +53,16 @@ _short_pwd() {
   (( trim_length = length - SHORTEN_PWD_PROMPT_LEVEL ))
 
   if (( trim_length <= 0 || SHORTEN_PWD_PROMPT_LEVEL <= 0 )); then
-    printf "$pwd_tilde"
+    printf '%s' "${pwd_tilde}"
     return
   fi
 
   local -i index
   for (( index = 0; index < trim_length; index++ )); do
-    printf "/${path[index]:0:1}"
+    printf '%s' "/${path[index]:0:1}"
   done
   for (( index = trim_length; index < length; index++ )); do
-    printf "/${path[index]}"
+    printf '%s' "/${path[index]}"
   done
 }
 
@@ -75,7 +75,7 @@ _short_pwd() {
 _make_prompt() {
   # If colors are supported, define styles and colors.
   local ncolors=$(tput colors)
-  if [[ -n "$ncolors" ]] && [[ $ncolors -ge 8 ]]; then
+  if [[ -n "${ncolors}" ]] && [[ ${ncolors} -ge 8 ]]; then
     local reset_style="\[$(tput sgr0)\]"
 
     local text_style="\[$(tput sgr0 && tput bold)\]"
@@ -87,7 +87,7 @@ _make_prompt() {
     local cwd_style="\[$(tput sgr0 && tput bold && tput setaf 4)\]"  # blue
 
     # Set the color theme.
-    if [[ $ncolors -ge 256 ]]; then
+    if [[ ${ncolors} -ge 256 ]]; then
       # Darcula: foreground #a9b7c6, background #2b2b2b, cursor #bbbbbb
       printf '%b' '\e]10;145\a'  # set foreground (#afafaf / grey69)
       printf '%b' '\e]11;235\a'  # set background (#262626 / grey15)
@@ -107,30 +107,30 @@ _make_prompt() {
 
   # Set the terminal prompt.
   PS1="${debian_chroot:+${chroot_style}(${debian_chroot}) }"  # set chroot
-  PS1+="$user_style\u"  # set current user
+  PS1+="${user_style}\u"  # set current user
 
   # Set the host only if the current session is remote.
-  if [[ -n "$SSH_TTY" ]]; then
-    PS1+="$text_style at $host_style\h"
+  if [[ -n "${SSH_TTY}" ]]; then
+    PS1+="${text_style} at ${host_style}\h"
   fi
 
   # Set current VCS branch if VCS info is enabled and repository is detected.
-  if [[ -n "$VCS_BRANCH_PROMPT_COMMAND" ]]; then
-    local branch="$($VCS_BRANCH_PROMPT_COMMAND)"
-    if [[ -n "$branch" ]]; then
-      PS1+="$text_style on $vcs_style$branch"
+  if [[ -n "${VCS_BRANCH_PROMPT_COMMAND}" ]]; then
+    local branch="$(${VCS_BRANCH_PROMPT_COMMAND})"
+    if [[ -n "${branch}" ]]; then
+      PS1+="${text_style} on ${vcs_style}${branch}"
     fi
   fi
 
-  PS1+="$text_style in $cwd_style$(_short_pwd)"  # set short cwd
-  PS1+="\n$shell_style\$ $reset_style"  # set shell and reset style
+  PS1+="${text_style} in ${cwd_style}$(_short_pwd)"  # set short cwd
+  PS1+="\n${shell_style}\$ ${reset_style}"  # set shell and reset style
 
-  PS2="$shell_style> $reset_style"  # set shell and reset style
+  PS2="${shell_style}> ${reset_style}"  # set shell and reset style
 
   # If this is an xterm, set the title to user@host:dir.
-  case "$TERM" in
+  case "${TERM}" in
     xterm* | rxvt*)
-      PS1="\[\e]0;${debian_chroot:+(${debian_chroot})}\u@\h: \W\a\]$PS1"
+      PS1="\[\e]0;${debian_chroot:+(${debian_chroot})}\u@\h: \W\a\]${PS1}"
       ;;
     *) ;;
   esac

@@ -15,7 +15,7 @@ EOF
 }
 
 while getopts "dp:i:u:h" option; do
-  case "$option" in
+  case "${option}" in
     d) debug="-d" ;;
     p) package_index="${OPTARG}" ;;
     i) installer="${OPTARG}" ;;

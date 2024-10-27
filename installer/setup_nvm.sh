@@ -9,6 +9,6 @@
 echo "Installing latest LTS version of 'nvm'..."
 curl -Lo - https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh \
   | bash
-. "${XDG_CONFIG_HOME:-$HOME/.config}/nvm/nvm.sh"
+. "${XDG_CONFIG_HOME:-${HOME}/.config}/nvm/nvm.sh"
 nvm install --lts
 echo "Installed 'nvm' successfully!"

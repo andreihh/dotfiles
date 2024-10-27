@@ -9,7 +9,7 @@ case $- in
 esac
 
 # Save history in XDG-compliant file.
-HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/bash_history"
+HISTFILE="${XDG_STATE_HOME:-${HOME}/.local/state}/bash_history"
 
 # Don't put duplicate lines or lines starting with space in the history. See
 # bash(1) for more options.
@@ -45,7 +45,7 @@ if ! shopt -oq posix; then
 fi
 
 # Load user configs.
-for file in "${XDG_CONFIG_HOME:-$HOME/.config}/bash.d"/*; do
+for file in "${XDG_CONFIG_HOME:-${HOME}/.config}/bash.d"/*; do
   [ -f "${file}" ] && . "${file}"
 done
 unset file

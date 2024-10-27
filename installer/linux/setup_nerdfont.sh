@@ -8,7 +8,7 @@
 
 readonly FONT_ZIP="JetBrainsMono.zip"
 readonly FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/${FONT_ZIP}"
-readonly FONTS_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/fonts"
+readonly FONTS_DIR="${XDG_DATA_HOME:-${HOME}/.local/share}/fonts"
 
 echo "Installing 'JetBrainsMono' font..."
 

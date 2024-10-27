@@ -12,6 +12,6 @@ readonly DROPBOX="https://www.dropbox.com/download?plat=lnx.x86_64"
 
 echo "Installing Dropbox..."
 cd ~
-wget -O - "$DROPBOX" | tar xzf -
+wget -O - "${DROPBOX}" | tar xzf -
 ~/.dropbox-dist/dropboxd &> /dev/null &
 echo "Installed Dropbox successfully!"

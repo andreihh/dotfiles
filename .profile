@@ -27,7 +27,7 @@ if [ -d "${HOME}/.local/bin" ]; then
 fi
 
 # Load user configs.
-for file in "${XDG_CONFIG_HOME:-$HOME/.config}/profile.d"/*; do
+for file in "${XDG_CONFIG_HOME:-${HOME}/.config}/profile.d"/*; do
   [ -f "${file}" ] && . "${file}"
 done
 unset file

@@ -10,8 +10,8 @@ XCOLORS="${X11_CONFIGS_DIR}/Xcolors/${COLORSCHEME}.Xresources"
 
 command -v xterm &> /dev/null || rm ~/.Xresources
 command -v xterm &> /dev/null && cat << EOF > ~/.Xresources
-${XRESOURCES:+#include \"$XRESOURCES\"}
-${XCOLORS:+#include \"$XCOLORS\"}
+${XRESOURCES:+#include \"${XRESOURCES}\"}
+${XCOLORS:+#include \"${XCOLORS}\"}
 EOF
 
 unset X11_CONFIGS_DIR

@@ -6,7 +6,7 @@
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
-readonly FZF_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/fzf"
+readonly FZF_DIR="${XDG_DATA_HOME:-${HOME}/.local/share}/fzf"
 readonly BIN="${HOME}/.local/bin"
 
 echo "Cleaning up prior 'fzf' installation..."

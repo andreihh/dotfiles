@@ -17,7 +17,7 @@
 readonly HOMEBREW_INSTALLER="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
 
 readonly REPOSITORY_URL="https://github.com/andreihh/dotfiles"
-readonly DOTFILES_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/dotfiles"
+readonly DOTFILES_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}/dotfiles"
 readonly INSTALLER_DIR="${DOTFILES_HOME}/installer"
 readonly INSTALL_DOTFILES="${INSTALLER_DIR}/install_dotfiles.sh"
 readonly INSTALL_PACKAGES="${INSTALLER_DIR}/install_packages.sh"
@@ -42,7 +42,7 @@ case "${OSTYPE}" in
 esac
 shopt -u nocasematch
 
-readonly BACKUP_DIR_DEFAULT="${XDG_CONFIG_HOME:-$HOME/.config}/dotfiles.bak"
+readonly BACKUP_DIR_DEFAULT="${XDG_CONFIG_HOME:-${HOME}/.config}/dotfiles.bak"
 readonly PACKAGE_INDEX_DEFAULT="${INSTALLER_DIR}/${os_type}/package_index.txt"
 
 usage() {

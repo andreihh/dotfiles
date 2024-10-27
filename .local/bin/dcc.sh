@@ -34,18 +34,18 @@ Options:
 END
 )
 
-[[ $# -ne 1 ]] && echo "$USAGE" && exit 1
+[[ $# -ne 1 ]] && echo "${USAGE}" && exit 1
 
 case "$1" in
   --stat)
-    $DCC --ThermalManagement
-    $DCC --PrimaryBattChargeCfg
+    ${DCC} --ThermalManagement
+    ${DCC} --PrimaryBattChargeCfg
     ;;
-  --optimized-mode) $DCC --ThermalManagement=Optimized ;;
-  --performance-mode) $DCC --ThermalManagement=UltraPerformance ;;
-  --cool-mode) $DCC --ThermalManagement=Cool ;;
-  --battery-care) $DCC --PrimaryBattChargeCfg=Custom:70-80 ;;
-  --express-charge) $DCC --PrimaryBattChargeCfg=Express ;;
-  --adaptive-charge) $DCC --PrimaryBattChargeCfg=Adaptive ;;
-  *) echo "$USAGE" && exit 1 ;;
+  --optimized-mode) ${DCC} --ThermalManagement=Optimized ;;
+  --performance-mode) ${DCC} --ThermalManagement=UltraPerformance ;;
+  --cool-mode) ${DCC} --ThermalManagement=Cool ;;
+  --battery-care) ${DCC} --PrimaryBattChargeCfg=Custom:70-80 ;;
+  --express-charge) ${DCC} --PrimaryBattChargeCfg=Express ;;
+  --adaptive-charge) ${DCC} --PrimaryBattChargeCfg=Adaptive ;;
+  *) echo "${USAGE}" && exit 1 ;;
 esac

@@ -5,7 +5,7 @@
 # If installing a single file fails, aborts the installation and reports the
 # failure.
 
-readonly DOTFILES_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/dotfiles"
+readonly DOTFILES_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}/dotfiles"
 
 usage() {
   cat << EOF
@@ -66,7 +66,7 @@ echo "Reverting changes from adopted files..."
 
 echo "Removing shell-specific profile config files..."
 for shell_profile_file in ~/.{bash_profile,zprofile}; do
-  [[ -n "${debug}" ]] || rm -vf "$shell_profile_file"
+  [[ -n "${debug}" ]] || rm -vf "${shell_profile_file}"
 done
 
 # Remove if using Vim9.1.0327 or newer.
