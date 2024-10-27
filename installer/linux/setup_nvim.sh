@@ -1,6 +1,8 @@
 #!/bin/bash -e
 
 # Installs Neovim for Linux systems.
+#
+# Requires `snapd`.
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
