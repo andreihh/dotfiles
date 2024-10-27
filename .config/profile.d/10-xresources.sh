@@ -1,7 +1,7 @@
 # xresources.sh: creates `~/.Xresources` file with appropriate `include`s if
-# `xterm` is installed, or cleans it up otherwise.
+# XTerm is installed, or cleans it up otherwise.
 
-X11_CONFIGS_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/X11"
+X11_CONFIGS_DIR="${XDG_CONFIG_HOME:-${HOME}/.config}/X11"
 XRESOURCES="${X11_CONFIGS_DIR}/Xresources"
 XCOLORS="${X11_CONFIGS_DIR}/Xcolors/${COLORSCHEME}.Xresources"
 
