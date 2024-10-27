@@ -1,5 +1,5 @@
 git; stow; curl; wget; zip; unzip; tar; make; gnupg; firefox;
-xterm; tmux; lm-sensors; urlview; xsel; vim; vim.gtk3;
+xterm; tmux; lm-sensors; xsel; urlscan; vim; vim.gtk3;
 fd-find; ripgrep; tree; calc; dos2unix;
 fontconfig; tlp; linux-tools-common; linux-tools-generic;
 
