@@ -14,7 +14,7 @@ max_line_length = 80
 indent_size = 2
 continuation_indent_size = 4
 
-[*.{sh,kt,kts}]
+[*.{sh,tmux,kt,kts}]
 continuation_indent_size = 2
 
 [*.{py,pyi}]
@@ -28,7 +28,7 @@ max_line_length = 100
 indent_style = tab
 
 # Configure `shfmt` to follow Google style
-[*.sh]
+[*.{sh,tmux}]
 switch_case_indent = true
 binary_next_line = true
 space_redirects = true
