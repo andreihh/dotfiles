@@ -1,7 +1,6 @@
 #!/bin/bash -e
 
-# Installs the `${XDG_CONFIG_HOME:-$HOME/.config}/dotfiles` as symlinks in the
-# home directory.
+# Installs the dotfiles repository as symlinks in the home directory.
 #
 # If installing a single file fails, aborts the installation and reports the
 # failure.

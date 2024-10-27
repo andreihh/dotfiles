@@ -25,15 +25,15 @@ readonly INSTALL_PACKAGES="${INSTALLER_DIR}/install_packages.sh"
 shopt -s nocasematch
 case "${OSTYPE}" in
   linux*)
-    os_dir="linux"
+    os_type="linux"
     installer="sudo apt-get -y install"
     updater="sudo apt-get update"
     ;;
   darwin*)
-    os_dir="macos"
+    os_type="macos"
     installer="brew install"
     updater="brew update"
-    command -v brew || install_homebrew=1
+    command -v brew &> /dev/null || install_homebrew=1
     ;;
   *)
     echo "System '${OSTYPE}' not supported!"
@@ -43,7 +43,7 @@ esac
 shopt -u nocasematch
 
 readonly BACKUP_DIR_DEFAULT="${XDG_CONFIG_HOME:-$HOME/.config}/dotfiles.bak"
-readonly PACKAGE_INDEX_DEFAULT="${INSTALLER_DIR}/${os_dir}/package_index.txt"
+readonly PACKAGE_INDEX_DEFAULT="${INSTALLER_DIR}/${os_type}/package_index.txt"
 
 usage() {
   cat << EOF
@@ -60,7 +60,7 @@ usage() {
     -u  Command to use to update the package index. Optional.
           Default: '${updater}'
     -s  List of setup scripts to run delimited by ';'.
-          Default: all 'setup_*.sh' scripts from '${INSTALLER_DIR}[/${os_dir}]'.
+          Default: all 'setup_*.sh' scripts in '${INSTALLER_DIR}[/${os_type}]'.
     -h  Print this message and exit.
 EOF
 }
@@ -105,12 +105,12 @@ echo "Cloning dotfiles repository..."
 
 echo "Running install scripts..."
 chmod +x "${INSTALL_DOTFILES}" "${INSTALL_PACKAGES}"
-"${INSTALL_DOTFILES}" ${debug} -b "${backup_dir}"
+"${INSTALL_DOTFILES}" ${debug} -b "${backup_dir}" -o "${os_type}"
 "${INSTALL_PACKAGES}" ${debug} -p "${package_index}" -i "${installer}" \
   -u "${updater}"
 
 if [[ -z "${setup_scripts}" ]]; then
-  setup_scripts=$(echo "${INSTALLER_DIR}"{,/${os_dir}}/setup_*.sh)
+  setup_scripts=$(echo "${INSTALLER_DIR}"{,/${os_type}}/setup_*.sh)
 fi
 
 echo "Running setup scripts..."
