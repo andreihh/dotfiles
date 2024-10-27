@@ -2,7 +2,7 @@
 #
 # See: https://wiki.archlinux.org/title/Xprofile.
 
-readonly X11_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/X11"
+readonly X11_CONFIGS_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/X11"
 
-xrdb -m "${X11_HOME}/Xresources"
-xrdb -m "${X11_HOME}/Xcolors/${COLORSCHEME}.Xresources"
+xrdb -m "${X11_CONFIGS_DIR}/Xresources"
+xrdb -m "${X11_CONFIGS_DIR}/Xcolors/${COLORSCHEME}.Xresources"
