@@ -1,4 +1,4 @@
-! sonokai.Xresources: configures Sonokai colorscheme for X11 programs.
+! sonokai.Xresources: configures Sonokai colorscheme for XTerm.
 !
 ! Load with `xrdb -m Xresources`. See: https://github.com/sainnhe/sonokai.
 
