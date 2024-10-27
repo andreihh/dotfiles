@@ -33,18 +33,22 @@ The dotfiles follow the XDG specification where possible:
 - https://specifications.freedesktop.org/basedir-spec/latest/index.html
 - https://wiki.archlinux.org/title/XDG\_Base\_Directory
 
-The XDG environment variables **must** be defined. By default, they are defined
-in `~/.exports`.
+Some tools only work if the XDG environment variables are explicitly defined. By
+default, they are defined in `~/.config/profile.d/00-env_xdg.sh`.
 
-## Private `~/.extras`
+## Private configs
 
-The `~/.extras` file should not be persisted across devices, and therefore is
-not included in the repository. You should create it in the `$HOME` directory
-and customize it appropriately. Example:
+User or device specific configs and binaries that should not be included in the
+repository can be provided in:
+
+- `~/.config/profile.d/`
+- `~/.config/bash.d/`
+- `~/.local/bin/`
+
+Example `~/.bash.d/10-extras.sh`:
 
 ```
-# ~/.extras: this file contains exported settings and installation paths for
-# various software packages, making them available in interactive shells.
+# extras.sh: exports device-specific settings.
 
 # Export Git credentials.
 export GIT_AUTHOR_NAME="Andrei Heidelbacher"
@@ -85,18 +89,6 @@ Terminal settings:
 - Send interrupt signal: `C-c`
 - Swap `Cmd` with `Ctrl` in `iTerm2`
 - Do not remap modifiers `Cmd-[S]-Tab`, `` Cmd-` ``, `Cmd-q` in `iTerm2`
-
-## Code formatters
-
-Update the `nvm` and code formatter versions in the setup scripts as needed. The
-code formatters are configured to use Google style where possible. The following
-formatters are configured:
-- `shfmt`
-- `prettier`
-- `yapf`
-- `clang-format`
-- `google-java-format`
-- `ktfmt`
 
 ## Firefox Settings
 
