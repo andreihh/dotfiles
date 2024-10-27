@@ -36,7 +36,6 @@ Plug 'tpope/vim-sensible'  " Sensible settings.
 Plug 'tpope/vim-surround'  " Better surround motions.
 Plug 'tpope/vim-commentary'  " Commenting lines.
 Plug 'mhinz/vim-signify'  " VCS gutter signs for changed lines.
-Plug 'airblade/vim-rooter'  " Auto-cd to project root if any.
 Plug 'mkitt/tabline.vim'  " Tab numbers in tab line.
 Plug 'easymotion/vim-easymotion'  " Better navigation motions.
 Plug 'udalov/kotlin-vim'  " Kotlin syntax highlighting.
@@ -134,9 +133,6 @@ set timeout ttimeoutlen=10
 " Copy until the end of the line. Consistent with D and C.
 nnoremap Y y$
 
-" Exit visual mode with q.
-vnoremap q <esc>
-
 " Cancels search highlighting in normal mode.
 nnoremap <esc> :nohlsearch<CR>
 
@@ -161,7 +157,7 @@ for key in "hjkl="
 endfor
 
 " Control and navigate panes:
-" - Ctrl-o (new file in current buffer)
+" - Ctrl-o (open explorer in current buffer's directory)
 " - Ctrl-t (new tab)
 " - Ctrl-s/v (split pane horizontally / vertically)
 " - Ctrl-h/j/k/l (navigate panes)
@@ -170,7 +166,7 @@ endfor
 " - Ctrl-z (close all panes except current one)
 " - Ctrl-x (close pane)
 " - Ctrl-w (close tab)
-nnoremap <C-o> :edit %:p:h<C-z>
+nnoremap <C-o> :edit %:p:h<CR>
 nnoremap <C-t> :tabedit %<CR>
 nnoremap <C-s> :split<CR>
 nnoremap <C-v> :vsplit<CR>
@@ -183,7 +179,7 @@ nnoremap <C-w> :tabclose<CR>
 " - g1 /g2 / ... / g9 (go to tab)
 " - gj / gk (go to previous / next location)
 " - gf (go to file under cursor or to selected file)
-" - go (open URI under cursor or selected URI)
+" - gx (open URI under cursor or selected URI)
 " - [c / ]c / [C / ]C (go to previous / next / first / last changed hunk)
 " - [m / ]m (go to previous / next start of Java-style method or class)
 " - [M / ]M (go to previous / next end of Java-style method or class)
@@ -200,7 +196,6 @@ nnoremap g8 8gt
 nnoremap g9 9gt
 nnoremap gj <C-o>
 nnoremap gk <C-i>
-map go gx
 
 " Code commenting:
 " - <leader>c (comment line or selected range)
@@ -216,6 +211,12 @@ imap <C-space> <C-x><C-o>
 
 " Enable default autocompletion.
 set omnifunc=syntaxcomplete#Complete
+
+" If the terminal supports colors, try to enable true colors. Disable with
+" `set notermguicolors` if the colors don't render properly.
+if &t_Co >= 256 && has('termguicolors')
+  set termguicolors
+endif
 
 function! s:try_set_colorscheme()
   " Optionally enable a color scheme if the terminal supports colors. The color
@@ -247,9 +248,9 @@ augroup END
 " - Ctrl-s/v (open option in horizontal / vertical split)
 " - Ctrl-e (cancel)
 nnoremap s <nop>
-nnoremap ss :Rg<CR>
 nnoremap sf :Files<CR>
 nnoremap sc :GFiles?<CR>
+nnoremap sg :Rg<CR>
 nnoremap sb :Buffers<CR>
 nnoremap s/ :BLines<CR>
 nnoremap sh :FZF ~<CR>
@@ -262,6 +263,7 @@ let g:fzf_action = {
 " - gd (go to definition)
 " - gD (go to declaration)
 " - gi (go to implementation)
+" - gr (go to references)
 " - [r / ]r (go to previous / next reference)
 " - [e / ]e (go to previous / next error)
 " - [w / ]w (go to previous / next warning)
@@ -270,6 +272,7 @@ let g:fzf_action = {
 nmap gd <plug>(lsp-definition)
 nmap gD <plug>(lsp-declaration)
 nmap gi <plug>(lsp-implementation)
+nmap gr <plug>(lsp-references)
 nmap [r <plug>(lsp-previous-reference)
 nmap ]r <plug>(lsp-next-reference)
 nmap [e <plug>(lsp-previous-error)
@@ -285,15 +288,8 @@ let g:lsp_diagnostics_virtual_text_padding_left = 2
 let g:lsp_diagnostics_virtual_text_wrap = 'truncate'
 let g:lsp_diagnostics_float_cursor = 1
 
-" Use Nerd Font icons for diagnostics.
-let g:lsp_diagnostics_signs_error = {'text': ''}
-let g:lsp_diagnostics_signs_warning = {'text': ''}
-let g:lsp_diagnostics_signs_information = {'text': ''}
-let g:lsp_document_code_action_signs_hint = {'text': '󰌶'}
-
 " Code inspection and transformation:
 " - <leader>h (show help)
-" - <leader>f (find references)
 " - <leader>t (type hierarchy)
 " - <leader>r (rename)
 " - <leader>c (comment line or selected range)
@@ -302,7 +298,6 @@ let g:lsp_document_code_action_signs_hint = {'text': '󰌶'}
 " - Ctrl-f/b (scroll float forward / backward)
 " - Ctrl-c (close float)
 nmap <leader>h <plug>(lsp-hover-float)
-nmap <leader>f <plug>(lsp-references)
 nmap <leader>t <plug>(lsp-type-hierarchy)
 nmap <leader>r <plug>(lsp-rename)
 nnoremap <leader>= :FormatCode<CR>
@@ -336,5 +331,3 @@ augroup lsp_install
   " registered.
   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
-
-Glaive codefmt shfmt_options=`['-i', '2', '-sr', '-ci', '-bn', '-kp']`
