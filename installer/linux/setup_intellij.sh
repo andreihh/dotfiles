@@ -6,10 +6,10 @@
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
-echo "Installing 'snapd'..."
+echo "Installing Snap..."
 sudo apt-get install snapd
 
-echo "Refreshing snap packages..."
+echo "Refreshing Snap packages..."
 sudo snap refresh
 
 echo "Installing IntelliJ IDEA CE..."
