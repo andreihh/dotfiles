@@ -6,6 +6,7 @@ fd; ripgrep; fzf; tree; calc; dos2unix;
 python3;
 gcc; cmake;
 openjdk; --cask intellij-idea-ce;
+go;
 
 --cask mactex; biber;
 
