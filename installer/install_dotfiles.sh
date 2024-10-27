@@ -9,11 +9,10 @@ readonly DOTFILES_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/dotfiles"
 
 usage() {
   cat << EOF
-  Usage: $0 [-h] [-d] [-b <backup_dir>] [-o <os_type>]
+  Usage: $0 [-h] [-d] [-b <backup_dir>]
 
     -d  Debug / dry run mode (simulate all actions, but do not execute them).
     -b  Backup directory where dotfiles should be copied to.
-    -o  Operating system. One of 'linux' or 'macos'. Optional.
     -h  Print this message and exit.
 EOF
 }
@@ -25,7 +24,6 @@ while getopts "db:o:h" option; do
       stow_debug="-n"
       ;;
     b) backup_dir="${OPTARG}" ;;
-    o) os_type="${OPTARG}" ;;
     h) usage && exit 0 ;;
     *) usage && exit 1 ;;
   esac
@@ -70,12 +68,6 @@ echo "Removing shell-specific profile config files..."
 for shell_profile_file in ~/.{bash_profile,zprofile}; do
   [[ -n "${debug}" ]] || rm -vf "$shell_profile_file"
 done
-
-if [[ "${os_type}" == "linux" ]]; then
-  echo "Setting up '~/.xprofile'..."
-  [[ -n "${debug}" ]] || ln -svf \
-    "${DOTFILES_HOME}/.config/X11/Xprofile" "${HOME}/.xprofile"
-fi
 
 # Remove if using Vim9.1.0327 or newer.
 echo "Setting up legacy '~/.vimrc'..."

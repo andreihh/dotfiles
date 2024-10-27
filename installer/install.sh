@@ -105,7 +105,7 @@ echo "Cloning dotfiles repository..."
 
 echo "Running install scripts..."
 chmod +x "${INSTALL_DOTFILES}" "${INSTALL_PACKAGES}"
-"${INSTALL_DOTFILES}" ${debug} -b "${backup_dir}" -o "${os_type}"
+"${INSTALL_DOTFILES}" ${debug} -b "${backup_dir}"
 "${INSTALL_PACKAGES}" ${debug} -p "${package_index}" -i "${installer}" \
   -u "${updater}"
 
