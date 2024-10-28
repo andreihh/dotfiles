@@ -1,6 +1,7 @@
 return {
   { -- Autocompletion
     "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
     dependencies = {
       -- Adds other completion capabilities.
       --  `nvim-cmp` does not ship with all sources by default. They are split
@@ -21,7 +22,6 @@ return {
       -- Pictograms and source annotations for completion items.
       "onsails/lspkind.nvim",
     },
-    event = "InsertEnter",
     config = function()
       -- See `:help cmp`
       local cmp = require("cmp")
