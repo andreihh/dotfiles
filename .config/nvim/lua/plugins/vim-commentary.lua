@@ -1,7 +1,6 @@
 return {
   { -- Commenting lines
     "tpope/vim-commentary",
-    lazy = false,
     keys = {
       {
         "<leader>c",
