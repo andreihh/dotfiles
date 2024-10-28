@@ -1,6 +1,14 @@
 return {
   { -- File explorer
     "stevearc/oil.nvim",
+    cmd = { "Oil" },
+    keys = {
+      {
+        "<C-o>",
+        "<cmd>Oil<CR>",
+        desc = "[O]pen explorer in current buffer's directory",
+      },
+    },
     opts = {
       use_default_keymaps = false,
       view_options = { show_hidden = true },

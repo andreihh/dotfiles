@@ -70,13 +70,12 @@ noremap("n", "<esc>", "<cmd>nohlsearch<CR>", "Clear search highlights")
 
 noremap("t", "<C-e>", "<C-\\><C-n>", "[E]xit terminal mode")
 
-noremap("n", "<C-o>", ":edit %:h<C-z><CR>", "[O]pen file explorer in buffer")
-noremap("n", "<C-s>", ":split<CR>", "[S]plit window horizontally")
-noremap("n", "<C-v>", ":vsplit<CR>", "Split window [V]ertically")
-noremap("n", "<C-t>", ":tabedit %<CR>", "New [T]ab")
-noremap("n", "<C-z>", ":only<CR>", "Close all windows except current one")
-noremap("n", "<C-x>", ":quit<CR>", "Close window")
-noremap("n", "<C-w>", ":tabclose<CR>", "Close tab")
+noremap("n", "<C-s>", "<cmd>split<CR>", "[S]plit window horizontally")
+noremap("n", "<C-v>", "<cmd>vsplit<CR>", "Split window [V]ertically")
+noremap("n", "<C-t>", "<cmd>tabedit %<CR>", "New [T]ab")
+noremap("n", "<C-z>", "<cmd>only<CR>", "Close all windows except current one")
+noremap("n", "<C-x>", "<cmd>quit<CR>", "Close window")
+noremap("n", "<C-w>", "<cmd>tabclose<CR>", "Close tab")
 noremap("n", "<M-=>", "<C-w>=", "Resize all windows equally")
 
 for i = 1, 9 do
