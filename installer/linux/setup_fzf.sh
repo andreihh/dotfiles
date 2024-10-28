@@ -1,5 +1,5 @@
 #!/bin/bash -e
-
+#
 # Installs `fzf` for Linux systems.
 #
 # Requires `git`.

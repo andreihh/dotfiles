@@ -1,5 +1,5 @@
 #!/bin/bash -e
-
+#
 # Configures swappiness.
 
 readonly SYSCTL_CONFIG="/etc/sysctl.conf"

@@ -1,5 +1,5 @@
 #!/bin/bash -e
-
+#
 # Installs IntelliJ IDEA CE for Linux systems.
 #
 # Requires `snapd`.

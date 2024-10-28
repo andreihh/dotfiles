@@ -1,5 +1,5 @@
 #!/bin/bash -e
-
+#
 # Installs `JetBrainsMono` Nerd Font for Linux systems.
 #
 # Requires `wget`, `unzip` and `fontconfig`.

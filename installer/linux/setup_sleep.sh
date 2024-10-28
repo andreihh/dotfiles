@@ -1,5 +1,5 @@
 #!/bin/bash -e
-
+#
 # Configures device sleep modes.
 
 readonly SLEEP_CONFIG="${XDG_CONFIG_HOME:-${HOME}/.config}/sleep/sleep.conf"

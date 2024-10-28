@@ -1,5 +1,5 @@
 #!/bin/bash -e
-
+#
 # Installs the latest LTS version of `nvm`.
 #
 # Requires `curl`.

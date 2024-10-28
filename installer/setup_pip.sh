@@ -1,5 +1,5 @@
 #!/bin/bash -e
-
+#
 # Installs `pip`.
 #
 # Requires `curl`.

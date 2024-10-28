@@ -1,5 +1,5 @@
 #!/bin/bash -e
-
+#
 # Installs Dropbox for Linux systems.
 #
 # See headless installation instructions on https://dropbox.com/install-linux.

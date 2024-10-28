@@ -1,5 +1,5 @@
 #!/bin/bash -e
-
+#
 # Configures various system settings (keyboard layout, dark mode, etc.).
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1

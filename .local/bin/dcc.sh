@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#
 # Configures Dell machines with common thermal / performance / battery settings.
 #
 # To run this script, you must install the Dell Command | Configure (DCC)

@@ -1,5 +1,5 @@
 #!/bin/bash -e
-
+#
 # Installs Neovim for Linux systems.
 #
 # Requires `snapd`.

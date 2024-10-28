@@ -1,5 +1,5 @@
 #!/bin/bash -e
-
+#
 # Installs the dotfiles repository as symlinks in the home directory.
 #
 # If installing a single file fails, aborts the installation and reports the

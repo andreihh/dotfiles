@@ -1,5 +1,5 @@
 #!/bin/bash -e
-
+#
 # Downloads the dotfiles repository and runs:
 # - the dotfile backup script
 # - the package installer script

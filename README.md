@@ -52,9 +52,9 @@ Example `~/.bash.d/10-extras.sh`:
 
 # Export Git credentials.
 export GIT_AUTHOR_NAME="Andrei Heidelbacher"
-export GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
+export GIT_COMMITTER_NAME="${GIT_AUTHOR_NAME}"
 export GIT_AUTHOR_EMAIL="andrei.heidelbacher@gmail.com"
-export GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
+export GIT_COMMITTER_EMAIL="${GIT_AUTHOR_EMAIL}"
 
 ...
 ```
@@ -85,6 +85,7 @@ Common shortcuts (`C = Ctrl / Cmd`, `A = Alt / Opt`, `S = Shift`):
 
 Terminal settings:
 - Paste: `A-p`
+- Open clipboard selection with external system handler: `A-o`
 - Close window: `C-q`
 - Send interrupt signal: `C-c`
 - Swap `Cmd` with `Ctrl` in `iTerm2`

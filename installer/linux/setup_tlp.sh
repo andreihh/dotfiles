@@ -1,5 +1,5 @@
 #!/bin/bash -e
-
+#
 # Configures TLP.
 
 readonly TLP_CONFIG="${XDG_CONFIG_HOME:-${HOME}/.config}/tlp/tlp.conf"

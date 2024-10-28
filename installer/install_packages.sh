@@ -1,5 +1,5 @@
 #!/bin/bash -e
-
+#
 # Updates and installs the given packages with the given installer and updater.
 
 usage() {
