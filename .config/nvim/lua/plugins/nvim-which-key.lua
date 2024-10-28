@@ -1,7 +1,7 @@
 return {
   { -- Useful plugin to show pending keybinds
     "folke/which-key.nvim",
-    lazy = false,
+    event = { "VeryLazy" },
     keys = {
       {
         "<C-\\>",
