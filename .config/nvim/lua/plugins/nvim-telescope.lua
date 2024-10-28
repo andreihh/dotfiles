@@ -1,6 +1,79 @@
 return {
   { -- Fuzzy Finder (files, lsp, etc)
     "nvim-telescope/telescope.nvim",
+    cmd = { "Telescope" },
+    keys = {
+      {
+        "sp",
+        "<cmd>Telescope builtin<CR>",
+        desc = "[S]earch [P]icker",
+      },
+      {
+        "sh",
+        "<cmd>Telescope help_tags<CR>",
+        desc = "[S]earch [H]elp",
+      },
+      {
+        "sk",
+        "<cmd>Telescope keymaps<CR>",
+        desc = "[S]earch [K]eymaps",
+      },
+      {
+        "sf",
+        "<cmd>Telescope find_files<CR>",
+        desc = "[S]earch [F]iles",
+      },
+      {
+        "sr",
+        "<cmd>Telescope oldfiles<CR>",
+        desc = "[S]earch [R]ecent files",
+      },
+      {
+        "sc",
+        "<cmd>Telescope git_status<CR>",
+        desc = "[S]earch [C]hanges",
+      },
+      {
+        "sg",
+        "<cmd>Telescope live_grep<CR>",
+        desc = "[S]earch by [G]rep",
+      },
+      {
+        "sd",
+        "<md>Telescope diagnostics<CR>",
+        desc = "[S]earch [D]iagnostics",
+      },
+      {
+        "sq",
+        "<cmd>Telescope quickfix<CR>",
+        desc = "[S]earch [Q]uickfix",
+      },
+      {
+        "sw",
+        "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>",
+        desc = "[S]earch [W]orkspace",
+      },
+      {
+        "s/",
+        "<cmd>Telescope current_buffer_fuzzy_find<CR>",
+        desc = "[S]earch [/] in current buffer",
+      },
+      {
+        "gd",
+        "<cmd>Telescope lsp_definitions<CR>",
+        desc = "[G]oto [D]efinition",
+      },
+      {
+        "gi",
+        "<cmd>Telescope lsp_implementations<CR>",
+        desc = "[G]oto [I]mplementation",
+      },
+      {
+        "gr",
+        "<cmd>Telescope lsp_references<CR>",
+        desc = "[G]oto [R]eferences",
+      },
+    },
     dependencies = {
       "nvim-lua/plenary.nvim",
       {
@@ -33,7 +106,6 @@ return {
       -- [[ Configure Telescope ]]
       --  See `:help telescope` and `:help telescope.setup()`
       local telescope = require("telescope")
-      local builtin = require("telescope.builtin")
       local keymaps = {
         ["<C-o>"] = "select_default",
         ["<C-s>"] = "select_horizontal",
@@ -66,38 +138,6 @@ return {
       pcall(telescope.load_extension, "fzf")
       pcall(telescope.load_extension, "ui-select")
       pcall(telescope.load_extension, "hop")
-
-      local function nnoremap(lhs, rhs, description)
-        vim.keymap.set("n", lhs, rhs, { desc = description, noremap = true })
-      end
-
-      nnoremap("ss", builtin.builtin, "[S]earch [S]elect")
-      nnoremap("sh", builtin.help_tags, "[S]earch [H]elp")
-      nnoremap("sk", builtin.keymaps, "[S]earch [K]eymaps")
-
-      nnoremap("sf", builtin.find_files, "[S]earch [F]iles")
-      nnoremap("sr", builtin.oldfiles, "[S]earch [R]ecent files")
-      nnoremap("sc", builtin.git_status, "[S]earch [C]hanges")
-      nnoremap("sg", builtin.live_grep, "[S]earch by [G]rep")
-
-      nnoremap("sd", builtin.diagnostics, "[S]earch [D]iagnostics")
-      nnoremap("sq", builtin.quickfix, "[S]earch [Q]uickfix")
-
-      nnoremap(
-        "sw",
-        builtin.lsp_dynamic_workspace_symbols,
-        "[S]earch [W]orkspace"
-      )
-
-      nnoremap(
-        "s/",
-        builtin.current_buffer_fuzzy_find,
-        "[S]earch [/] in current buffer"
-      )
-
-      nnoremap("gd", builtin.lsp_definitions, "[G]oto [D]efinition")
-      nnoremap("gi", builtin.lsp_implementations, "[G]oto [I]mplementation")
-      nnoremap("gr", builtin.lsp_references, "[G]oto [R]eferences")
     end,
   },
 }

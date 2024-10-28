@@ -8,11 +8,11 @@ return {
     lazy = false,
     keys = {
       {
-        "sp",
+        "ss",
         "<cmd>SessionSearch<CR>",
-        desc = "[S]earch [P]roject sessions",
+        desc = "[S]earch [S]essions",
       },
     },
-    config = true,
+    opts = { session_lens = { load_on_setup = false } },
   },
 }

@@ -31,8 +31,8 @@
 --  - <C-e> = [e]xit
 --  - <C-h> = trigger [h]op
 --  - <C-\> = show keymap help
---  - s + s/h/k/v/f/r/c/g/d/q/w// = [s]earch with picker
---  - s + p = [s]earch [p]roject session
+--  - s + p/h/k/v/f/r/c/g/d/q/w// = [s]earch with picker
+--  - s + s = [s]earch [s]essions
 --    - <C-d> = [d]elete session
 -- Completion:
 --  - <C-n/p> = select [n]ext / [p]revious option
