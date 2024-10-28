@@ -63,9 +63,6 @@ vim.opt.shiftround = true
 -- Keep current indent for wrapped lines.
 vim.opt.breakindent = true
 
--- Keep current indent when starting a new line.
-vim.opt.autoindent = true
-
 -- Do smart autoindenting when starting a new line.
 vim.opt.smartindent = true
 
@@ -85,6 +82,9 @@ vim.opt.updatetime = 250
 
 -- Save undo history.
 vim.opt.undofile = true
+
+-- Use POSIX shell syntax highlighting.
+vim.g.is_posix = 1
 
 -- Neovim doesn't automatically enable `termguicolors` inside `tmux`, even if it
 -- has true color capabilities.
