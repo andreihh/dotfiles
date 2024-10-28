@@ -14,7 +14,6 @@ return {
   { "Bilal2453/luvit-meta", lazy = true },
   { -- Completion source for require statements and module annotations
     "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
     opts = function(_, opts)
       opts.sources = opts.sources or {}
       table.insert(opts.sources, {
