@@ -1,6 +1,7 @@
 return {
   { -- Commenting lines
     "tpope/vim-commentary",
+    cmd = { "Commentary" },
     keys = {
       {
         "<leader>c",
