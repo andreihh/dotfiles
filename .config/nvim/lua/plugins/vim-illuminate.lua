@@ -1,7 +1,7 @@
 return {
   { -- Highlighting and jumping to references
     "RRethy/vim-illuminate",
-    lazy = false,
+    event = { "VeryLazy" },
     keys = {
       {
         "[r",
