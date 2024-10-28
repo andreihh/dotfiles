@@ -48,7 +48,7 @@
 --    - <leader>h = focus [h]elp
 --    - q = [q]uit help if focused
 --  - <C-h> = show [s]ignature help
---  - <leader> + f/r/a/h/H/c/=/l/L = perform code action
+--  - <leader> + f/r/a/h/H/s/c/=/l/L = perform code action
 
 -- Set <C-z> as macro autocompletion key.
 vim.opt.wildcharm = vim.fn.char2nr("")
