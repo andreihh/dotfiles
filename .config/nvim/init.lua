@@ -1,6 +1,4 @@
--- init.lua
---
--- Neovim configuration file.
+-- init.lua: configures Neovim.
 --
 -- Requires `git`, `make`, `ripgrep`, and optionally a Nerd Font.
 

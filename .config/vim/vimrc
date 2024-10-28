@@ -1,4 +1,4 @@
-" vimrc
+" vimrc: configures Vim.
 "
 " Requires Vim9+ and `ripgrep`.
 

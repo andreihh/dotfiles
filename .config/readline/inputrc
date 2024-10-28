@@ -1,3 +1,5 @@
+# inputrc: configures `readline`.
+
 # Enhanced autocomplete.
 set visible-stats on
 set colored-stats on
