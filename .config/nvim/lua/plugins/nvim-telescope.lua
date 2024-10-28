@@ -31,7 +31,7 @@ return {
       {
         "sc",
         "<cmd>Telescope git_status<CR>",
-        desc = "[S]earch [C]hanges",
+        desc = "[S]earch [C]hanged files",
       },
       {
         "sg",
