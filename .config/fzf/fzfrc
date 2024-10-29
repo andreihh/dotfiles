@@ -1,0 +1,1 @@
+--bind=ctrl-o:accept,ctrl-e:abort
