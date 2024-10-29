@@ -2,10 +2,20 @@
 "
 " Requires Vim9+ and `ripgrep`.
 
+" Define XDG directories if unset.
+if empty($XDG_CONFIG_HOME)
+  let $XDG_CONFIG_HOME = $HOME . "/.config"
+endif
+if empty($XDG_STATE_HOME)
+  let $XDG_STATE_HOME = $HOME . "/.local/state"
+endif
+
 " Set XDG-compliant directories.
 let vim_home = $XDG_CONFIG_HOME . '/vim'
 let vim_state = $XDG_STATE_HOME . '/vim'
-let fzf_data = $XDG_DATA_HOME . '/fzf'
+
+" Configure spell directory.
+call mkdir(vim_home . 'spell', 'p')
 
 " Configure state files and directories.
 call mkdir(vim_state, 'p')
@@ -14,10 +24,7 @@ let &backupdir = vim_state . '//'
 let &directory = vim_state . '//'
 let &viewdir = vim_state . '//'
 let &undodir = vim_state . '//'
-
-" Remove if using Vim9.1.0327 or newer.
-set runtimepath^=$XDG_CONFIG_HOME/vim
-set runtimepath+=$XDG_CONFIG_HOME/vim/after
+let g:netrw_home = vim_state
 
 " Install the `vim-plug` plugin manager. Commands:
 " - :PlugInstall
@@ -30,7 +37,7 @@ if empty(glob(vim_home . '/autoload/plug.vim'))
 endif
 
 " Enable plugins via vim-plug.
-call plug#begin(vim_home . '/plugged')
+call plug#begin(vim_state . '/plugged')
 Plug 'editorconfig/editorconfig-vim'  " File encodings, indentation, etc.
 Plug 'tpope/vim-sensible'  " Sensible settings.
 Plug 'tpope/vim-surround'  " Better surround motions.
@@ -44,8 +51,8 @@ Plug 'sainnhe/sonokai'  " Sonokai colorscheme.
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'RyanMillerC/better-vim-tmux-resizer'
 " Fuzzy searching.
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/fzf', { 'dir': fzf_data, 'do': './install --xdg --bin' }
 " Vim LSP plugins.
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete.vim'

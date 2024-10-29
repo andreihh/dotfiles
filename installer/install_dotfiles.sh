@@ -69,11 +69,6 @@ for shell_profile_file in ~/.{bash_profile,zprofile}; do
   [[ -n "${debug}" ]] || rm -vf "${shell_profile_file}"
 done
 
-# Remove if using Vim9.1.0327 or newer.
-echo "Setting up legacy '~/.vimrc'..."
-[[ -n "${debug}" ]] || ln -svf \
-  "${DOTFILES_HOME}/.config/vim/vimrc" "${HOME}/.vimrc"
-
 echo "Changing default shell to Bash..."
 chsh -s "/bin/bash"
 
