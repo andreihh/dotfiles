@@ -5,7 +5,7 @@
 # Requires `git`.
 #
 # This is needed because the `fzf` version available in package managers is too
-# old and doesn't support shell completion.
+# old and doesn't support shell completion (requires version 0.48.0 or newer).
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
