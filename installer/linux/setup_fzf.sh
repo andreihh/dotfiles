@@ -1,13 +1,17 @@
 #!/bin/bash -e
 #
-# Installs `fzf` for Linux systems.
+# Installs `fzf` from sources for Linux systems.
 #
 # Requires `git`.
+#
+# This is needed because the `fzf` version available in package managers is too
+# old and doesn't support shell completion.
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
-readonly FZF_DIR="${XDG_DATA_HOME:-${HOME}/.local/share}/fzf"
-readonly BIN="${HOME}/.local/bin"
+readonly FZF_DIR="${HOME}/.local/src/fzf"
+
+echo "Installing 'fzf'..."
 
 echo "Cleaning up prior 'fzf' installation..."
 rm -rf "${FZF_DIR}"
@@ -16,9 +20,9 @@ echo "Downloading 'fzf'..."
 git clone --depth 1 https://github.com/junegunn/fzf.git "${FZF_DIR}"
 
 echo "Running 'fzf' installer..."
-"${FZF_DIR}/install" --xdg --bin
+"${FZF_DIR}/install" --bin
 
 echo "Setting up 'fzf' symlink in user 'bin'..."
-ln -svf "${FZF_DIR}/bin/fzf" "${BIN}/fzf"
+ln -svf "${FZF_DIR}/bin/fzf" "${HOME}/.local/bin/fzf"
 
 echo "Installed 'fzf' successfully!"
