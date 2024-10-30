@@ -138,8 +138,31 @@ set signcolumn=yes
 " background.
 set background=dark
 
+" If the terminal supports colors, try to enable true colors. Disable with
+" `set notermguicolors` if the colors don't render properly.
+if &t_Co >= 256 && has('termguicolors')
+  set termguicolors
+endif
+
+function! s:try_set_colorscheme()
+  " Optionally enable a color scheme if the terminal supports colors. The color
+  " scheme must be set after setting the background and enabling syntax.
+  if &t_Co >= 256
+    try
+      colorscheme $COLORSCHEME
+    catch
+      echo "Colorscheme " . $COLORSCHEME . " not found!"
+    endtry
+  endif
+endfunction
+
+augroup ColorScheme
+  au!
+  autocmd VimEnter * call s:try_set_colorscheme()
+augroup END
+
 " Make Esc more responsive.
-set timeout ttimeoutlen=10
+set timeout ttimeoutlen=50
 
 " Copy until the end of the line. Consistent with D and C.
 nnoremap Y y$
@@ -147,10 +170,9 @@ nnoremap Y y$
 " Cancels search highlighting in normal mode.
 nnoremap <esc> :nohlsearch<CR>
 
-" Set <leader> and macro autocompletion keys. Must not have surrounding spaces.
+" Set <leader> key. Must not have surrounding spaces.
 noremap <space> <nop>
 let mapleader=" "
-set wildcharm=<C-z>
 
 " Writes all buffers before navigating outside of Vim.
 let g:tmux_navigator_save_on_switch=1
@@ -168,7 +190,6 @@ for key in "hjkl="
 endfor
 
 " Control and navigate panes:
-" - Ctrl-o (open explorer in current buffer's directory)
 " - Ctrl-t (new tab)
 " - Ctrl-s/v (split pane horizontally / vertically)
 " - Ctrl-h/j/k/l (navigate panes)
@@ -177,7 +198,6 @@ endfor
 " - Ctrl-z (close all panes except current one)
 " - Ctrl-x (close pane)
 " - Ctrl-w (close tab)
-nnoremap <C-o> :edit %:p:h<CR>
 nnoremap <C-t> :tabedit %<CR>
 nnoremap <C-s> :split<CR>
 nnoremap <C-v> :vsplit<CR>
@@ -185,6 +205,32 @@ nnoremap <M-=> <C-w>=
 nnoremap <C-z> :only<CR>
 nnoremap <C-x> :quit<CR>
 nnoremap <C-w> :tabclose<CR>
+
+" File explorer should use long listing style and disable the netrw banner.
+let g:netrw_banner = 0
+let g:netrw_liststyle = 1
+
+" File explorer actions:
+" - <leader>e (open / refresh file explorer)
+" - j/k (navigate down / up)
+" - gf (activate node)
+" - gp (change root to parent directory)
+" - ad (create new directory)
+" - af (create new file)
+" - cc (rename node)
+" - dd (delete node)
+" - gx (open with external handler)
+" - <esc> (exit file explorer)
+nnoremap <leader>e :Explore<CR>
+au filetype netrw map <buffer> <leader>e <C-l>
+au filetype netrw map <buffer> gp -
+au filetype netrw map <buffer> gf <CR>
+au filetype netrw map <buffer> cc R
+au filetype netrw map <buffer> af %
+au filetype netrw map <buffer> ad d
+au filetype netrw map <buffer> dd D
+au filetype netrw map <buffer> gx x
+au filetype netrw map <buffer> <esc> :Rexplore<CR>
 
 " Navigation actions:
 " - g1 /g2 / ... / g9 (go to tab)
@@ -214,57 +260,37 @@ noremap <leader>c :Commentary<CR>
 
 " Autocomplete shortcuts:
 " - Ctrl-Space (trigger autocomplete)
-" - Ctrl-n/p (cycle options)
+" - Ctrl-j/k (cycle options)
 " - Ctrl-y (accept option)
 " - Ctrl-e (cancel)
 imap <C-@> <C-space>
 imap <C-space> <C-x><C-o>
+inoremap <C-j> <C-n>
+inoremap <C-k> <C-p>
 
 " Enable default autocompletion.
 set omnifunc=syntaxcomplete#Complete
 
-" If the terminal supports colors, try to enable true colors. Disable with
-" `set notermguicolors` if the colors don't render properly.
-if &t_Co >= 256 && has('termguicolors')
-  set termguicolors
-endif
-
-function! s:try_set_colorscheme()
-  " Optionally enable a color scheme if the terminal supports colors. The color
-  " scheme must be set after setting the background and enabling syntax.
-  if &t_Co >= 256
-    try
-      colorscheme $COLORSCHEME
-    catch
-      echo "Colorscheme " . $COLORSCHEME . " not found!"
-    endtry
-  endif
-endfunction
-
-augroup ColorScheme
-  au!
-  autocmd VimEnter * call s:try_set_colorscheme()
-augroup END
-
 " Fuzzy searching:
-" - ss (search everywhere in project)
+" - sh (search help)
+" - sk (search keymaps)
 " - sf (search files)
 " - sc (search uncommitted Git files)
 " - sb (search open buffers)
 " - s/ (search inside current buffer)
-" - sh (search home directory)
-" - Ctrl-n/p (cycle options)
+" - Ctrl-j/k (cycle options)
 " - Ctrl-o (open option in current buffer)
 " - Ctrl-t (open option in new tab)
 " - Ctrl-s/v (open option in horizontal / vertical split)
 " - Ctrl-e (cancel)
 nnoremap s <nop>
+nnoremap sh :Helptags<CR>
+nnoremap sk :Maps<CR>
 nnoremap sf :Files<CR>
 nnoremap sc :GFiles?<CR>
 nnoremap sg :Rg<CR>
 nnoremap sb :Buffers<CR>
 nnoremap s/ :BLines<CR>
-nnoremap sh :FZF ~<CR>
 let g:fzf_action = {
     \ 'ctrl-t': 'tab split',
     \ 'ctrl-s': 'split',
@@ -322,9 +348,9 @@ nmap <expr> <C-b> lsp#scroll(+5)
 " Code actions shortcuts:
 " - <leader>a (trigger code actions)
 " - # (accept numbered option)
-" - Ctrl-n/p (cycle options)
+" - j/k (cycle options)
 " - Enter (accept selected option)
-" - Esc / Ctrl-c (cancel)
+" - Esc (cancel)
 nmap <leader>a <plug>(lsp-code-action-float)
 
 function! s:on_lsp_buffer_enabled() abort

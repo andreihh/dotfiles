@@ -1,1 +1,1 @@
---bind=ctrl-o:accept,ctrl-e:abort
+--bind=ctrl-j:next-selected,ctrl-k:prev-selected,ctrl-o:accept,ctrl-e:abort
