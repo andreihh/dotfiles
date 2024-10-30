@@ -6,12 +6,16 @@
 if empty($XDG_CONFIG_HOME)
   let $XDG_CONFIG_HOME = $HOME . "/.config"
 endif
+if empty($XDG_DATA_HOME)
+  let $XDG_DATA_HOME = $HOME . "/.local/share"
+endif
 if empty($XDG_STATE_HOME)
   let $XDG_STATE_HOME = $HOME . "/.local/state"
 endif
 
 " Set XDG-compliant directories.
 let vim_home = $XDG_CONFIG_HOME . '/vim'
+let vim_data = $XDG_DATA_HOME . '/vim'
 let vim_state = $XDG_STATE_HOME . '/vim'
 
 " Configure spell directory.
@@ -37,7 +41,7 @@ if empty(glob(vim_home . '/autoload/plug.vim'))
 endif
 
 " Enable plugins via vim-plug.
-call plug#begin(vim_state . '/plugged')
+call plug#begin(vim_data . '/plugged')
 Plug 'editorconfig/editorconfig-vim'  " File encodings, indentation, etc.
 Plug 'tpope/vim-sensible'  " Sensible settings.
 Plug 'tpope/vim-surround'  " Better surround motions.
