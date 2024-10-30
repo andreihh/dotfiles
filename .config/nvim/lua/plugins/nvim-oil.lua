@@ -4,21 +4,21 @@ return {
     cmd = { "Oil" },
     keys = {
       {
-        "<C-o>",
+        "<leader>e",
         "<cmd>Oil<CR>",
-        desc = "[O]pen explorer in current buffer's directory",
+        desc = "Open file [E]xplorer in current buffer's directory",
       },
     },
     opts = {
       use_default_keymaps = false,
       view_options = { show_hidden = true },
       keymaps = {
+        ["<leader>e"] = "actions.refresh",
         ["gf"] = "actions.select",
         ["gp"] = "actions.parent",
         ["gx"] = "actions.open_external",
         ["th"] = "actions.toggle_hidden",
-        ["<C-l>"] = "actions.refresh",
-        ["<C-e>"] = "actions.close",
+        ["<esc>"] = "actions.close",
         ["<C-\\>"] = "actions.show_help",
       },
     },

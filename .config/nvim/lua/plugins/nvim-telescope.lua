@@ -107,6 +107,8 @@ return {
       --  See `:help telescope` and `:help telescope.setup()`
       local telescope = require("telescope")
       local keymaps = {
+        ["<C-j>"] = "move_selection_next",
+        ["<C-k>"] = "move_selection_previous",
         ["<C-o>"] = "select_default",
         ["<C-s>"] = "select_horizontal",
         ["<C-e>"] = "close",

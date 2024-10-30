@@ -40,11 +40,11 @@ XTerm*disallowedWindowOps: 20,21,SetXprop
 
 ! Common shortcuts:
 ! - Select URI with double-click
-! - Paste with Alt-p
+! - Paste with Ctrl-p
 ! - Exit with Ctrl-q
 ! - Open clipboard URI with Alt-o or right-click
 *VT100*translations: #override \n\
-  Alt <Key>p: insert-selection(CLIPBOARD) \n\
+  Ctrl <Key>p: insert-selection(CLIPBOARD) \n\
   Ctrl <Key>q: quit() \n\
   Alt <Key>o: exec-formatted("xdg-open '%t'", CLIPBOARD) \n\
   <Btn3Down>: exec-formatted("xdg-open '%t'", CLIPBOARD) \n

@@ -32,5 +32,5 @@ set keymap vi-command
 set keymap vi-insert
 
 # Vim-like autocomplete.
-"\C-n": menu-complete
-"\C-p": menu-complete-backward
+"\C-j": menu-complete
+"\C-k": menu-complete-backward
