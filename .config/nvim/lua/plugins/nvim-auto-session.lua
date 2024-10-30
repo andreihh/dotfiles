@@ -13,6 +13,11 @@ return {
         desc = "[S]earch [S]essions",
       },
     },
-    opts = { session_lens = { load_on_setup = false } },
+    opts = {
+      -- Load the Telescope picker lazily.
+      session_lens = { load_on_setup = false },
+      -- Don't start sessions in the root, home, or their direct children.
+      suppressed_dirs = { '/', '/*', '~/', '~/*' },
+    },
   },
 }
