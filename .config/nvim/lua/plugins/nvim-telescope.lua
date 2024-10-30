@@ -40,7 +40,7 @@ return {
       },
       {
         "sd",
-        "<md>Telescope diagnostics<CR>",
+        "<cmd>Telescope diagnostics<CR>",
         desc = "[S]earch [D]iagnostics",
       },
       {
@@ -51,7 +51,7 @@ return {
       {
         "sw",
         "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>",
-        desc = "[S]earch [W]orkspace",
+        desc = "[S]earch [W]orkspace symbols",
       },
       {
         "s/",

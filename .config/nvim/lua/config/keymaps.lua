@@ -33,7 +33,7 @@
 --  - <esc> = [e]xit insert / normal mode
 --  - <C-e> = [e]xit
 --  - <C-\> = show keymap help
---  - s + p/h/k/v/f/r/c/g/d/q/w// = [s]earch with picker
+--  - s + p/h/k/f/r/c/g/d/q/w// = [s]earch with picker
 --  - ss = [s]earch [s]essions
 --    - <C-d> = [d]elete selected session
 -- Completion:
