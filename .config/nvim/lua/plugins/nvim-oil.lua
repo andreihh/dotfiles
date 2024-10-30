@@ -17,7 +17,7 @@ return {
         ["gf"] = "actions.select",
         ["gp"] = "actions.parent",
         ["gx"] = "actions.open_external",
-        ["th"] = "actions.toggle_hidden",
+        ["gh"] = "actions.toggle_hidden",
         ["<esc>"] = "actions.close",
         ["<C-\\>"] = "actions.show_help",
       },

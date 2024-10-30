@@ -22,7 +22,7 @@
 --  - gf = [g]o to [f]ile / [f]older
 --  - gp = [g]o to [p]arent directory
 --  - gx = [g]o to URI with e[x]ternal system handler
---  - th = [t]oggle [h]idden files
+--  - gh = toggle [g]o to [h]idden files
 --  - <esc> = [e]xit
 --  - <C-\> = show keymap help
 -- Telescope:

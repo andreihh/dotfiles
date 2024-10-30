@@ -220,6 +220,7 @@ let g:netrw_liststyle = 1
 " - cc (rename node)
 " - dd (delete node)
 " - gx (open with external handler)
+" - gh (toggle go to hidden files)
 " - <esc> (exit file explorer)
 nnoremap <leader>e :Explore<CR>
 au filetype netrw map <buffer> <leader>e <C-l>
