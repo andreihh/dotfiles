@@ -17,7 +17,7 @@ return {
           local set_hl = vim.fn["sonokai#highlight"]
 
           -- Override window separator to match tab and status lines.
-          set_hl("VertSplit", palette.bg1, palette.bg1)
+          set_hl("VertSplit", palette.grey_dim, palette.bg1)
 
           -- Override visual highlight to higher contrast.
           set_hl("Visual", palette.none, palette.bg4)
