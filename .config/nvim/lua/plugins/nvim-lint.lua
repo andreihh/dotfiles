@@ -9,7 +9,7 @@ return {
         function()
           require("lint").try_lint()
         end,
-        desc = "Lint document and add diagnostics",
+        desc = "[L]int document and add diagnostics",
       },
     },
     config = function()
