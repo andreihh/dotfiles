@@ -84,7 +84,7 @@ Common shortcuts (`C = Ctrl / Cmd`, `A = Alt / Opt`, `S = Shift`):
 - Open `tmux` terminal in the `work` session: `C-A-x`
 
 Terminal settings:
-- Paste: `A-p`
+- Paste: `C-p`
 - Open clipboard selection with external system handler: `A-o`
 - Close window: `C-q`
 - Send interrupt signal: `C-c`

@@ -8,7 +8,8 @@
 --  - g + 1..9 = [g]o to tab 1..9
 --  - gj / gk = [g]o to previous / next location
 --  - gx = [g]o to URI with e[x]ternal system handler
---  - [c / ]c = jump to previous / next [c]hanged hunk
+--  - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
+--  - [c / ]c / [C / ]C = jump to previous / next / first / last [c]hanged hunk
 --  - <C-\> = show keymap help
 -- Window:
 --  - <C-s/v/t/z/x/w> = perform window action
@@ -33,7 +34,7 @@
 --  - <esc> = [e]xit insert / normal mode
 --  - <C-e> = [e]xit
 --  - <C-\> = show keymap help
---  - s + p/h/k/f/r/c/g/d/q/w// = [s]earch with picker
+--  - s + p/h/k/f/r/c/g/d/w// = [s]earch with picker
 --  - ss = [s]earch [s]essions
 --    - <C-d> = [d]elete selected session
 -- Completion:

@@ -44,11 +44,6 @@ return {
         desc = "[S]earch [D]iagnostics",
       },
       {
-        "sq",
-        "<cmd>Telescope quickfix<CR>",
-        desc = "[S]earch [Q]uickfix",
-      },
-      {
         "sw",
         "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>",
         desc = "[S]earch [W]orkspace symbols",
