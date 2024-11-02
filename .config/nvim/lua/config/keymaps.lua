@@ -16,7 +16,7 @@
 --  - <C-h/j/k/l> = navigate panes across Vim and `tmux`
 --  - <M-h/j/k/l/=> = resize panes across Vim and `tmux`
 -- Terminal:
---  - <leader>t = open [t]erminal
+--  - t = open [t]erminal
 --  - <C-e> = [e]xit terminal mode
 -- Explorer:
 --  - <leader>e = open / refresh file [e]xplorer
@@ -66,10 +66,10 @@ local function noremap(mode, lhs, rhs, desc, opts)
 end
 
 noremap("n", "<esc>", "<cmd>nohlsearch<CR>", "Clear search highlights")
-noremap("n", "s", "<nop>", "Disable [S]ubstitute to allow search chaining")
-
 noremap("c", "<C-j>", "<C-n>", "Select the next item")
 noremap("c", "<C-k>", "<C-p>", "Select the previous item")
+
+noremap("n", "s", "<nop>", "Disable [S]ubstitute to allow search chaining")
 
 noremap("n", "<C-s>", "<cmd>split<CR>", "[S]plit window horizontally")
 noremap("n", "<C-v>", "<cmd>vsplit<CR>", "Split window [V]ertically")
@@ -79,7 +79,7 @@ noremap("n", "<C-x>", "<cmd>quit<CR>", "Close window")
 noremap("n", "<C-w>", "<cmd>tabclose<CR>", "Close tab")
 noremap("n", "<M-=>", "<C-w>=", "Resize all windows equally")
 
-noremap("n", "<leader>t", "<cmd>terminal<CR>", "Open [T]erminal")
+noremap("n", "t", "<cmd>terminal<CR>", "Open [T]erminal")
 noremap("t", "<C-e>", "<C-\\><C-n>", "[E]xit terminal mode")
 
 for i = 1, 9 do
