@@ -23,7 +23,13 @@ vim.opt.signcolumn = "yes"
 -- Sets how to display certain whitespace characters in the editor.
 --  See `:help 'list'` and `:help 'listchars'`
 vim.opt.list = true
-vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+vim.opt.listchars = {
+  tab = "» ",
+  trail = "·",
+  nbsp = "␣",
+  extends = ">",
+  precedes = "<",
+}
 
 vim.diagnostic.config({
   signs = {
