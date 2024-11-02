@@ -128,9 +128,6 @@ set smartindent
 set splitbelow
 set splitright
 
-" Don't use characters for vertical split delimiter.
-set fillchars+=vert:\ ,
-
 " Enable sign column.
 set signcolumn=yes
 
@@ -150,6 +147,20 @@ function! s:try_set_colorscheme()
   if &t_Co >= 256
     try
       colorscheme $COLORSCHEME
+      if $COLORSCHEME == "sonokai"
+        let l:palette = sonokai#get_palette("default", {})
+
+        " Override window separator to match tab and status lines.
+        call sonokai#highlight("VertSplit", l:palette.grey_dim, l:palette.bg1)
+
+        " Override visual highlight to higher contrast.
+        call sonokai#highlight("Visual", l:palette.none, l:palette.bg4)
+        call sonokai#highlight(
+            \ "VisualNOS",
+            \ l:palette.none,
+            \ l:palette.bg4,
+            \ "underline")
+      endif
     catch
       echo "Colorscheme " . $COLORSCHEME . " not found!"
     endtry
