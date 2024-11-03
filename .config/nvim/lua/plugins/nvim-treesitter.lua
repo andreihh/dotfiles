@@ -1,9 +1,5 @@
 local lsp_opts = require("config.lsp")
 
--- Use `treesitter` folds.
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-
 return {
   { -- Highlight, edit, and navigate code
     "nvim-treesitter/nvim-treesitter",
@@ -25,6 +21,11 @@ return {
       },
       indent = { enable = true, disable = { "ruby" } },
     },
+    init = function()
+      -- Use `treesitter` folds.
+      vim.opt.foldmethod = "expr"
+      vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+    end,
     -- For incremental selection, see:
     --   `:help nvim-treesitter-incremental-selection-mod`
   },
