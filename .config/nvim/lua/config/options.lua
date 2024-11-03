@@ -50,7 +50,7 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 -- Minimal number of screen lines and columns to keep around the cursor.
-vim.opt.scrolloff = 2
+vim.opt.scrolloff = 1
 vim.opt.sidescrolloff = 2
 
 -- Enable mouse mode, can be useful for resizing splits.
@@ -96,7 +96,7 @@ vim.g.is_posix = 1
 -- has true color capabilities.
 local is_tmux = string.find(vim.env.TERM, "tmux")
 local tmux_has_rgb =
-  string.find(vim.fn.system("tmux display -p '#{client_termfeatures}'") , "RGB")
+  string.find(vim.fn.system("tmux display -p '#{client_termfeatures}'"), "RGB")
 if is_tmux and tmux_has_rgb then
   vim.opt.termguicolors = true
 end
