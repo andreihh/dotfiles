@@ -7,7 +7,7 @@ return {
         "<leader>-",
         ":Commentary<CR>",
         mode = { "n", "v" },
-        desc = "Comment out line or selected range",
+        desc = "Toggle comment (line)",
       },
     },
   },
