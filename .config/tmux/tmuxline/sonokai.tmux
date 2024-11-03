@@ -13,7 +13,7 @@ tmux set -g @status_bg "#33353f"  # bg1
 tmux set -g @seg_bg "#414550"  # bg4
 tmux set -g @current_seg_bg "#ff6077"  # bg_red
 tmux set -g @activity_seg_fg "#76cce0"  # blue
-tmux set -g @host_seg_bg "#85d3f2"  # bg_blue
+tmux set -g @host_seg_bg "#a7df78"  # bg_green
 
 # Icons require a Nerd Font.
 if [ -n "${NERD_FONT_ENABLED}" ]; then

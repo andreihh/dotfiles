@@ -16,10 +16,10 @@ export VCS_BRANCH_PROMPT_COMMAND="_vcs_branch"
 _git_branch() {
   git rev-parse --is-inside-work-tree &> /dev/null || return
 
-  local branch="$(git symbolic-ref --quiet --short HEAD 2> /dev/null || \
-    git describe --all --exact-match HEAD 2> /dev/null || \
-    git rev-parse --short HEAD 2> /dev/null || \
-    echo '(unknown)')"
+  local branch="$(git symbolic-ref --quiet --short HEAD 2> /dev/null \
+    || git describe --all --exact-match HEAD 2> /dev/null \
+    || git rev-parse --short HEAD 2> /dev/null \
+    || echo '(unknown)')"
 
   local dirty=""
   if [[ $(git status --porcelain 2> /dev/null) ]]; then
@@ -50,18 +50,18 @@ _short_pwd() {
 
   local -i length=${#path[@]}
   local -i trim_length
-  (( trim_length = length - SHORTEN_PWD_PROMPT_LEVEL ))
+  ((trim_length = length - SHORTEN_PWD_PROMPT_LEVEL))
 
-  if (( trim_length <= 0 || SHORTEN_PWD_PROMPT_LEVEL <= 0 )); then
+  if ((trim_length <= 0 || SHORTEN_PWD_PROMPT_LEVEL <= 0)); then
     printf '%s' "${pwd_tilde}"
     return
   fi
 
   local -i index
-  for (( index = 0; index < trim_length; index++ )); do
+  for ((index = 0; index < trim_length; index++)); do
     printf '%s' "/${path[index]:0:1}"
   done
-  for (( index = trim_length; index < length; index++ )); do
+  for ((index = trim_length; index < length; index++)); do
     printf '%s' "/${path[index]}"
   done
 }
@@ -79,25 +79,12 @@ _make_prompt() {
     local reset_style="\[$(tput sgr0)\]"
 
     local text_style="\[$(tput sgr0 && tput bold)\]"
-    local shell_style="\[$(tput sgr0 && tput bold && tput setaf 10)\]"  # bgreen
+    local shell_style="\[$(tput sgr0 && tput bold && tput setaf 2)\]"  # green
     local chroot_style="\[$(tput sgr0 && tput bold && tput setaf 5)\]"  # purple
     local user_style="\[$(tput sgr0 && tput bold && tput setaf 1)\]"  # red
     local host_style="\[$(tput sgr0 && tput bold && tput setaf 2)\]"  # green
     local vcs_style="\[$(tput sgr0 && tput bold && tput setaf 3)\]"  # yellow
     local cwd_style="\[$(tput sgr0 && tput bold && tput setaf 4)\]"  # blue
-
-    # Set the color theme.
-    if [[ ${ncolors} -ge 256 ]]; then
-      # Darcula: foreground #a9b7c6, background #2b2b2b, cursor #bbbbbb
-      printf '%b' '\e]10;145\a'  # set foreground (#afafaf / grey69)
-      printf '%b' '\e]11;235\a'  # set background (#262626 / grey15)
-      printf '%b' '\e]12;145\a'  # set cursor (#afafaf / grey69)
-    else
-      # System dark theme: foreground white, background black, cursor white
-      printf '%b' '\e]10;37\a'  # set foreground (white)
-      printf '%b' '\e]11;30\a'  # set background (black)
-      printf '%b' '\e]12;37\a'  # set cursor (white)
-    fi
   fi
 
   # Set variable identifying the chroot you work in.
