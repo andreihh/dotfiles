@@ -131,6 +131,12 @@ set splitright
 " Enable sign column.
 set signcolumn=yes
 
+" Don't automatically close folds when opening a file.
+set foldlevelstart=99
+
+" Use indent folds by default.
+set foldmethod=indent
+
 " When set to "dark", Vim wil try to use colors that look good on a dark
 " background.
 set background=dark
@@ -209,6 +215,7 @@ endfor
 " - Ctrl-z (close all panes except current one)
 " - Ctrl-x (close pane)
 " - Ctrl-w (close tab)
+" - Q (quit)
 nnoremap <C-t> :tabedit %<CR>
 nnoremap <C-s> :split<CR>
 nnoremap <C-v> :vsplit<CR>
@@ -216,13 +223,14 @@ nnoremap <M-=> <C-w>=
 nnoremap <C-z> :only<CR>
 nnoremap <C-x> :quit<CR>
 nnoremap <C-w> :tabclose<CR>
+nnoremap Q :quitall<CR>
 
 " File explorer should use long listing style and disable the netrw banner.
 let g:netrw_banner = 0
 let g:netrw_liststyle = 1
 
 " File explorer actions:
-" - <leader>e (open / refresh file explorer)
+" - <C-o> (open / refresh file explorer)
 " - j/k (navigate down / up)
 " - gf (activate node)
 " - gp (change root to parent directory)
@@ -233,8 +241,8 @@ let g:netrw_liststyle = 1
 " - gx (open with external handler)
 " - gh (toggle go to hidden files)
 " - <esc> (exit file explorer)
-nnoremap <leader>e :Explore<CR>
-au filetype netrw map <buffer> <leader>e <C-l>
+nnoremap <C-o> :Explore<CR>
+au filetype netrw map <buffer> <C-o> <C-l>
 au filetype netrw map <buffer> gp -
 au filetype netrw map <buffer> gf <CR>
 au filetype netrw map <buffer> cc R
@@ -266,19 +274,24 @@ nnoremap g9 9gt
 nnoremap gj <C-o>
 nnoremap gk <C-i>
 
+" Folding:
+" - <leader>f (toggle fold)
+nnoremap <leader>f za
+
 " Code commenting:
-" - <leader>c (comment line or selected range)
-noremap <leader>c :Commentary<CR>
+" - <leader>- (comment line or selected range)
+noremap <leader>- :Commentary<CR>
 
 " Autocomplete shortcuts:
 " - Ctrl-Space (trigger autocomplete)
-" - Ctrl-j/k (cycle options)
-" - Ctrl-y (accept option)
+" - Ctrl-j/k (cycle items)
+" - Tab (accept item)
 " - Ctrl-e (cancel)
 imap <C-@> <C-space>
 imap <C-space> <C-x><C-o>
 inoremap <C-j> <C-n>
 inoremap <C-k> <C-p>
+inoremap <expr> <tab> pumvisible() ? "\<C-y>" : "\<tab>"
 
 " Enable default autocompletion.
 set omnifunc=syntaxcomplete#Complete
@@ -290,10 +303,10 @@ set omnifunc=syntaxcomplete#Complete
 " - sc (search uncommitted Git files)
 " - sb (search open buffers)
 " - s/ (search inside current buffer)
-" - Ctrl-j/k (cycle options)
-" - Ctrl-o (open option in current buffer)
-" - Ctrl-t (open option in new tab)
-" - Ctrl-s/v (open option in horizontal / vertical split)
+" - Ctrl-j/k (cycle items)
+" - Ctrl-o (open item in current buffer)
+" - Ctrl-t (open item in new tab)
+" - Ctrl-s/v (open item in horizontal / vertical split)
 " - Ctrl-e (cancel)
 nnoremap s <nop>
 nnoremap sh :Helptags<CR>
@@ -359,9 +372,9 @@ nmap <expr> <C-b> lsp#scroll(+5)
 
 " Code actions shortcuts:
 " - <leader>a (trigger code actions)
-" - # (accept numbered option)
-" - j/k (cycle options)
-" - Enter (accept selected option)
+" - # (accept numbered item)
+" - j/k (cycle items)
+" - Enter (accept selected item)
 " - Esc (cancel)
 nmap <leader>a <plug>(lsp-code-action-float)
 
