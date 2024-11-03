@@ -28,16 +28,16 @@ return {
     -- For incremental selection, see:
     --   `:help nvim-treesitter-incremental-selection-mod`
   },
-  { -- Show scope context
+  { -- Show context
     "nvim-treesitter/nvim-treesitter-context",
     cmd = { "TSContextToggle", "TSContextEnable", "TSContextDisable" },
     init = function()
       -- Registering the command in `keys` leads to a failure when triggered.
       vim.keymap.set(
         "n",
-        "<leader>s",
+        "<leader>c",
         "<cmd>TSContextToggle<CR>",
-        { noremap = true, desc = "Toggle [S]cope context" }
+        { noremap = true, desc = "Toggle [C]ontext" }
       )
     end,
     opts = { enable = false },

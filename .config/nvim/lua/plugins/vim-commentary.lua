@@ -4,10 +4,10 @@ return {
     cmd = { "Commentary" },
     keys = {
       {
-        "<leader>c",
+        "<leader>-",
         ":Commentary<CR>",
         mode = { "n", "v" },
-        desc = "[C]omment out line or selected range",
+        desc = "Comment out line or selected range",
       },
     },
   },

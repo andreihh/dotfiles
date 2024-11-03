@@ -51,7 +51,7 @@
 --    - <leader>h = focus [h]elp
 --    - q = [q]uit help if focused
 --  - <C-h> = show [s]ignature help
---  - <leader> + f/r/a/H/s/c/=/l/L = perform code action
+--  - <leader> + f/r/a/H/c/-/=/l/L = perform code action
 
 local function map(mode, lhs, rhs, desc, opts)
   opts = opts or {}
