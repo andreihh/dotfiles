@@ -85,6 +85,10 @@ return {
       -- Icons require a Nerd Font.
       { "nvim-tree/nvim-web-devicons", enabled = vim.g.nerd_font_enabled },
     },
+    init = function()
+      -- Disable [S]ubstitute to allow search chaining.
+      vim.keymap.set("n", "s", "<nop>")
+    end,
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things
       -- that it can fuzzy find! It's more than just a "file finder", it can

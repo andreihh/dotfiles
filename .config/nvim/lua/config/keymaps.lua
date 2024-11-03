@@ -68,7 +68,6 @@ end
 noremap("n", "<esc>", "<cmd>nohlsearch<CR>", "Clear search highlights")
 noremap("c", "<C-j>", "<C-n>", "Select the next item")
 noremap("c", "<C-k>", "<C-p>", "Select the previous item")
-noremap("n", "s", "<nop>", "Disable [S]ubstitute to allow search chaining")
 
 noremap("n", "<C-s>", "<cmd>split<CR>", "[S]plit window horizontally")
 noremap("n", "<C-v>", "<cmd>vsplit<CR>", "Split window [V]ertically")
