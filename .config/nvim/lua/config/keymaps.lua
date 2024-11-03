@@ -15,6 +15,7 @@
 --  - <C-s/v/t/z/x/w> = perform window action
 --  - <C-h/j/k/l> = navigate panes across Vim and `tmux`
 --  - <M-h/j/k/l/=> = resize panes across Vim and `tmux`
+--  - Q = [q]uit all
 -- Terminal:
 --  - t = open [t]erminal
 --  - <C-e> = [e]xit terminal mode
@@ -76,6 +77,7 @@ noremap("n", "<C-z>", "<cmd>only<CR>", "Close all windows except current one")
 noremap("n", "<C-x>", "<cmd>quit<CR>", "Close window")
 noremap("n", "<C-w>", "<cmd>tabclose<CR>", "Close tab")
 noremap("n", "<M-=>", "<C-w>=", "Resize all windows equally")
+noremap("n", "Q", "<cmd>quitall<CR>", "Quit")
 
 noremap("n", "t", "<cmd>terminal<CR>", "Open [T]erminal")
 noremap("t", "<C-e>", "<C-\\><C-n>", "[E]xit terminal mode")
