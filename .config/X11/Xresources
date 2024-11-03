@@ -6,7 +6,7 @@
 XTerm.termName: xterm-256color
 *customization: -color
 
-! Do not use bright colors for bold.
+! Don't use bright colors for bold.
 XTerm*boldMode: true
 XTerm*boldColors: false
 

@@ -72,8 +72,11 @@ vim.opt.breakindent = true
 -- Do smart autoindenting when starting a new line.
 vim.opt.smartindent = true
 
--- Do not automatically close folds when opening a file.
+-- Don't automatically close folds when opening a file.
 vim.opt.foldlevelstart = 99
+
+-- Use indent folds by default.
+vim.opt.foldmethod = "indent"
 
 -- Case-insensitive searching unless \C or one or more capital letters in the
 -- search term.

@@ -8,7 +8,7 @@ case $- in
   *) return ;;
 esac
 
-# Do not exit the shell on EOF.
+# Don't exit the shell on EOF.
 IGNOREEOF=10
 
 # Save history in XDG-compliant file.
