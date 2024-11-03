@@ -1,5 +1,3 @@
-local lsp_opts = require("config.lsp")
-
 -- Use `treesitter` folds.
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
@@ -8,10 +6,19 @@ return {
   { -- Highlight, edit, and navigate code
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    main = "nvim-treesitter.configs", -- Sets main module to use for opts
+    main = "nvim-treesitter.configs",
     -- See `:help nvim-treesitter`
     opts = {
-      ensure_installed = lsp_opts.parsers or {},
+      -- Enable the following parsers.
+      ensure_installed = {
+        "lua",
+        "luadoc",
+        "vim",
+        "vimdoc",
+        "markdown",
+        "diff",
+        "query",
+      },
       -- Autoinstall languages that are not installed.
       auto_install = true,
       highlight = {

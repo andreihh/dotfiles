@@ -2,22 +2,6 @@
 --  See `help mason-lspconfig-dynamic-server-setup`
 
 local M = {
-  -- Enable the following parsers.
-  --  Add/remove desired parsers here. They will be automatically installed.
-  parsers = {
-    "lua",
-    "luadoc",
-    "vim",
-    "vimdoc",
-    "markdown",
-    "diff",
-    "query",
-    "bash",
-    "python",
-    "cpp",
-    "java",
-    "kotlin",
-  },
   -- Enable the following language servers.
   --  Add/remove desired LSPs here. They will automatically be installed.
   --
