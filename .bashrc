@@ -8,6 +8,9 @@ case $- in
   *) return ;;
 esac
 
+# Do not exit the shell on EOF.
+IGNOREEOF=10
+
 # Save history in XDG-compliant file.
 HISTFILE="${XDG_STATE_HOME:-${HOME}/.local/state}/bash_history"
 
