@@ -10,6 +10,7 @@
 --  - gx = [g]o to URI with e[x]ternal system handler
 --  - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
 --  - [c / ]c / [C / ]C = jump to previous / next / first / last [c]hanged hunk
+--  - <leader><leader> = trigger Flash
 --  - <C-\> = show keymap help
 -- Window:
 --  - <C-s/v/t/z/x/w> = perform window action

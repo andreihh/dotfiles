@@ -1,30 +1,28 @@
-return {
-  { -- File explorer
-    "stevearc/oil.nvim",
-    cmd = { "Oil" },
-    keys = {
-      {
-        "<C-o>",
-        "<cmd>Oil<CR>",
-        desc = "[O]pen file explorer in current buffer's directory",
-      },
+return { -- File explorer
+  "stevearc/oil.nvim",
+  cmd = { "Oil" },
+  keys = {
+    {
+      "<C-o>",
+      "<cmd>Oil<CR>",
+      desc = "[O]pen file explorer in current buffer's directory",
     },
-    opts = {
-      use_default_keymaps = false,
-      view_options = { show_hidden = true },
-      keymaps = {
-        ["<C-o>"] = "actions.refresh",
-        ["gf"] = "actions.select",
-        ["gp"] = "actions.parent",
-        ["gx"] = "actions.open_external",
-        ["gh"] = "actions.toggle_hidden",
-        ["<esc>"] = { "actions.close", mode = "n" },
-        ["<C-\\>"] = "actions.show_help",
-      },
-    },
-    dependencies = {
-      -- Icons require a Nerd Font.
-      { "nvim-tree/nvim-web-devicons", enabled = vim.g.nerd_font_enabled },
+  },
+  dependencies = {
+    -- Icons require a Nerd Font.
+    { "nvim-tree/nvim-web-devicons", enabled = vim.g.nerd_font_enabled },
+  },
+  opts = {
+    use_default_keymaps = false,
+    view_options = { show_hidden = true },
+    keymaps = {
+      ["<C-o>"] = "actions.refresh",
+      ["gf"] = "actions.select",
+      ["gp"] = "actions.parent",
+      ["gx"] = "actions.open_external",
+      ["gh"] = "actions.toggle_hidden",
+      ["<esc>"] = { "actions.close", mode = "n" },
+      ["<C-\\>"] = "actions.show_help",
     },
   },
 }

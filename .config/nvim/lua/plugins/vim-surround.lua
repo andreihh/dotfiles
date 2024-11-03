@@ -1,3 +1,3 @@
-return {
-  "tpope/vim-surround", -- Better surround motions
+return { -- Better surround motions
+  "tpope/vim-surround",
 }

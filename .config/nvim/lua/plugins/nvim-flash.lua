@@ -1,5 +1,5 @@
-return {
-  "folke/flash.nvim", -- Better navigation motions
+return { -- Better navigation motions
+  "folke/flash.nvim",
   keys = {
     {
       "<leader><leader>",

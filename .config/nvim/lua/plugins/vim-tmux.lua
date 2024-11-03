@@ -8,7 +8,7 @@ vim.g.tmux_navigator_disable_when_zoomed = 1
 vim.g.tmux_resizer_resize_count = 5
 vim.g.tmux_resizer_vertical_resize_count = 5
 
-return {
-  "christoomey/vim-tmux-navigator", -- Navigate panes across Vim and `tmux`
-  "RyanMillerC/better-vim-tmux-resizer", -- Resize panes across Vim and `tmux`
+return { -- Better `tmux` integration
+  "christoomey/vim-tmux-navigator",
+  "RyanMillerC/better-vim-tmux-resizer",
 }
