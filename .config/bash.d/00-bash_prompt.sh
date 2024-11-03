@@ -7,13 +7,13 @@
 export SHORTEN_PWD_PROMPT_LEVEL=5
 
 # Command used to detect the current VCS branch to be included in the prompt:
-# - default is `_vcs_branch`
+# - default is `__vcs_branch`
 # - unset to drop VCS info from the prompt
 # - set to custom function to work with other systems
-export VCS_BRANCH_PROMPT_COMMAND="_vcs_branch"
+export VCS_BRANCH_PROMPT_COMMAND="__vcs_branch"
 
 # Returns the current `git` branch and dirty status.
-_git_branch() {
+__git_branch() {
   git rev-parse --is-inside-work-tree &> /dev/null || return
 
   local branch="$(git symbolic-ref --quiet --short HEAD 2> /dev/null \
@@ -32,8 +32,8 @@ _git_branch() {
 # Returns the branch name and optionally dirty status of the current VCS branch.
 #
 # Works with `git`.
-_vcs_branch() {
-  local git_branch="$(_git_branch)"
+__vcs_branch() {
+  local git_branch="$(__git_branch)"
   if [[ -n "${git_branch}" ]]; then
     echo "${git_branch}"
     return
@@ -43,7 +43,7 @@ _vcs_branch() {
 # Shortens the current working directory by collapsing `${HOME}` to `~` and the
 # path components to their initials, except for the last 5 components, which are
 # displayed in full.
-_short_pwd() {
+__short_pwd() {
   local pwd_tilde="${PWD#"${HOME}"}"
   [[ "${PWD}" != "${pwd_tilde}" ]] && printf '~'
   IFS='/' read -r -a path <<< "${pwd_tilde:1}"
@@ -69,10 +69,8 @@ _short_pwd() {
 # Makes a custom, dynamic prompt in the following format:
 #   `(chroot) user at host on branch in dir $`
 #
-# The chroot, host and branch are optional. Colors are used only if supported:
-# JetBrains Darcula theme if 256 colors are supported, otherwise system dark
-# theme.
-_make_prompt() {
+# The chroot, host and branch are optional. Colors are used only if supported.
+__make_prompt() {
   # If colors are supported, define styles and colors.
   local ncolors=$(tput colors)
   if [[ -n "${ncolors}" ]] && [[ ${ncolors} -ge 8 ]]; then
@@ -109,7 +107,7 @@ _make_prompt() {
     fi
   fi
 
-  PS1+="${text_style} in ${cwd_style}$(_short_pwd)"  # set short cwd
+  PS1+="${text_style} in ${cwd_style}$(__short_pwd)"  # set short cwd
   PS1+="\n${shell_style}\$ ${reset_style}"  # set shell and reset style
 
   PS2="${shell_style}> ${reset_style}"  # set shell and reset style
@@ -123,4 +121,4 @@ _make_prompt() {
   esac
 }
 
-PROMPT_COMMAND=_make_prompt  # set dynamic prompt
+PROMPT_COMMAND=__make_prompt  # set dynamic prompt
