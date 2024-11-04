@@ -23,7 +23,7 @@ return { -- Autocompletion
     -- Pictograms and source annotations for completion items.
     "onsails/lspkind.nvim",
   },
-  config = function()
+  opts = function(_, opts)
     -- See `:help cmp`
     local cmp = require("cmp")
 
@@ -97,17 +97,15 @@ return { -- Autocompletion
       end, { "i", "s" }),
     }
 
-    cmp.setup({
+    return vim.tbl_deep_extend("force", opts, {
       completion = { completeopt = "menu,menuone,noselect" },
-
       snippet = {
         expand = function(args)
           vim.fn["vsnip#anonymous"](args.body)
         end,
       },
-
       formatting = {
-        format = require("lspkind").cmp_format({
+        format = {
           -- Icons require a Nerd Font.
           mode = vim.g.nerd_font_enabled and "symbol_text" or "text",
           -- Set tags to highlight sources in the completion menu.
@@ -118,11 +116,9 @@ return { -- Autocompletion
             path = "[Path]",
             cmdline = "[Cmd]",
           },
-        }),
+        },
       },
-
       mapping = mappings,
-
       sources = cmp.config.sources({
         { name = "nvim_lsp" },
         { name = "nvim_lsp_signature_help" },
@@ -132,16 +128,25 @@ return { -- Autocompletion
         { name = "path" },
       }),
     })
+  end,
+  config = function(_, opts)
+    local cmp = require("cmp")
+    local lspkind = require("lspkind")
+
+    -- Apply the lspkind formatting function with the specified options.
+    opts.formatting.format = lspkind.cmp_format(opts.formatting.format)
+
+    cmp.setup(opts)
 
     cmp.setup.cmdline({ "/", "?" }, {
-      mapping = mappings,
+      mapping = opts.mapping,
       sources = cmp.config.sources({
         { name = "buffer" },
       }),
     })
 
     cmp.setup.cmdline(":", {
-      mapping = mappings,
+      mapping = opts.mapping,
       sources = cmp.config.sources({
         { name = "path" },
       }, {

@@ -22,7 +22,8 @@ return { -- LSP configuration
     -- Useful status updates for LSP.
     { "j-hui/fidget.nvim", config = true },
   },
-  config = function()
+  opts = { servers = lsp_opts.servers or {} },
+  config = function(_, opts)
     -- LSP servers and clients are able to communicate to each other what
     -- features they support.
     --  By default, Neovim doesn't support everything that is in the LSP
@@ -35,16 +36,17 @@ return { -- LSP configuration
       require("cmp_nvim_lsp").default_capabilities()
     )
 
-    for server_name, server_config in pairs(lsp_opts.servers or {}) do
+    local lspconfig = require("lspconfig")
+    for server_name, server_opts in pairs(opts.servers or {}) do
       -- This handles overriding only values explicitly passed by the server
       -- configuration. Useful when disabling certain features of an LSP (for
       -- example, turning off formatting for ts_ls).
-      server_config.capabilities = vim.tbl_deep_extend(
+      server_opts.capabilities = vim.tbl_deep_extend(
         "force",
         capabilities,
-        server_config.capabilities or {}
+        server_opts.capabilities or {}
       )
-      require("lspconfig")[server_name].setup(server_config)
+      lspconfig[server_name].setup(server_opts)
     end
   end,
 }
