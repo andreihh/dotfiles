@@ -87,8 +87,8 @@ for i = 1, 9 do
   noremap("n", "g" .. i, i .. "gt", "[G]o to tab number [" .. i .. "]")
 end
 
-noremap("n", "gj", "<C-o>", "[G]o to previous location")
-noremap("n", "gk", "<C-i>", "[G]o to next location")
+noremap("n", "gj", "<C-o>", "[G]oto previous location")
+noremap("n", "gk", "<C-i>", "[G]oto next location")
 
 -- NOTE: This is not Goto Definition, this is Goto Declaration.
 --  For example, in C this would take you to the header.

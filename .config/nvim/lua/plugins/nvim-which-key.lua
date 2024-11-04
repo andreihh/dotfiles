@@ -52,7 +52,7 @@ return { -- Useful plugin to show pending keybinds
     -- Document existing key chains.
     spec = {
       { "<leader>", group = "Code", mode = { "n" } },
-      { "g", group = "[G]o to …", mode = { "n", "v" } },
+      { "g", group = "[G]oto …", mode = { "n", "v" } },
       { "s", group = "[S]earch with Telescope", mode = { "n" } },
       { "[", group = "Jump to previous …", mode = { "n" } },
       { "]", group = "Jump to next …", mode = { "n" } },
