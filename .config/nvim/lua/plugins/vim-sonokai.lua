@@ -21,9 +21,6 @@ return { -- Colorscheme
         -- Override visual highlight to higher contrast.
         set_hl("Visual", palette.none, palette.bg4)
         set_hl("VisualNOS", palette.none, palette.bg4, "underline")
-
-        -- Override lualine theme.
-        require("lualine").setup({ options = { theme = "sonokai" } })
       end,
     })
     if vim.env.COLORSCHEME == "sonokai" then

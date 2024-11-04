@@ -27,16 +27,13 @@ return { -- Simple and easy statusline
       lualine_y = { "progress" },
       lualine_z = { "location" },
     },
-  },
-  config = function(_, opts)
     -- Icons require a Nerd Font.
-    if not vim.g.nerd_font_enabled then
-      opts.options = {
-        icons_enabled = false,
-        component_separators = { left = "|", right = "|" },
-        section_separators = "",
-      }
-    end
-    require("lualine").setup(opts)
-  end,
+    options = vim.g.nerd_font_enabled and {
+      icons_enabled = true,
+    } or {
+      icons_enabled = false,
+      component_separators = { left = "|", right = "|" },
+      section_separators = "",
+    },
+  },
 }
