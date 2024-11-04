@@ -187,6 +187,9 @@ nnoremap Y y$
 " Cancels search highlighting in normal mode.
 nnoremap <esc> :nohlsearch<CR>
 
+" Save buffer.
+nnoremap S :w<CR>
+
 " Set <leader> key. Must not have surrounding spaces.
 noremap <space> <nop>
 let mapleader=" "
