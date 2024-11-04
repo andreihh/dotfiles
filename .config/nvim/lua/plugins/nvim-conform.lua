@@ -1,5 +1,3 @@
-local lsp_opts = require("config.lsp")
-
 return { -- Formatting
   "stevearc/conform.nvim",
   cmd = "ConformInfo",
@@ -15,7 +13,7 @@ return { -- Formatting
   },
   opts = {
     notify_on_error = false,
-    formatters = lsp_opts.formatter_opts or {},
-    formatters_by_ft = lsp_opts.formatters_by_ft or {},
+    formatters = vim.g.lsp_opts.formatter_opts or {},
+    formatters_by_ft = vim.g.lsp_opts.formatters_by_ft or {},
   },
 }

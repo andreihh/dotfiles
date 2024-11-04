@@ -1,5 +1,3 @@
-local lsp_opts = require("config.lsp")
-
 return { -- Linting
   "mfussenegger/nvim-lint",
   keys = {
@@ -12,6 +10,6 @@ return { -- Linting
     },
   },
   config = function()
-    require("lint").linters_by_ft = lsp_opts.linters_by_ft or {}
+    require("lint").linters_by_ft = vim.g.lsp_opts.linters_by_ft or {}
   end,
 }

@@ -1,5 +1,3 @@
-local lsp_opts = require("config.lsp")
-
 return { -- LSP configuration
   "neovim/nvim-lspconfig",
   dependencies = {
@@ -13,7 +11,7 @@ return { -- LSP configuration
     { "williamboman/mason-lspconfig.nvim", config = true },
     { -- Automatically install LSPs and related tools to stdpath for Neovim.
       "WhoIsSethDaniel/mason-tool-installer.nvim",
-      opts = { ensure_installed = lsp_opts.ensure_installed or {} },
+      opts = { ensure_installed = vim.g.lsp_opts.ensure_installed or {} },
     },
 
     -- Allows extra capabilities provided by nvim-cmp.
@@ -22,7 +20,7 @@ return { -- LSP configuration
     -- Useful status updates for LSP.
     { "j-hui/fidget.nvim", config = true },
   },
-  opts = { servers = lsp_opts.servers or {} },
+  opts = { servers = vim.g.lsp_opts.servers or {} },
   config = function(_, opts)
     -- LSP servers and clients are able to communicate to each other what
     -- features they support.

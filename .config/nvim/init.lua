@@ -17,6 +17,7 @@ vim.g.nerd_font_enabled = vim.fn.empty(vim.env.NERD_FONT_ENABLED) == 0
 require("config.options")
 require("config.keymaps")
 require("config.autocmds")
+require("config.lsp")
 
 -- Load optional user overrides.
 pcall(require, "config.overrides")
