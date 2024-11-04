@@ -10,6 +10,7 @@ vim.g.maplocalleader = " "
 
 -- Enable icons if you have a Nerd Font installed and selected in the terminal.
 --  NOTE: Must happen before options and plugins are loaded.
+---@type boolean
 vim.g.nerd_font_enabled = vim.fn.empty(vim.env.NERD_FONT_ENABLED) == 0
 
 -- Load basic configs.
