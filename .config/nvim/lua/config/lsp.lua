@@ -58,14 +58,6 @@ local M = {
     -- `clangd` embeds `clang-tidy`
     java = { "checkstyle" },
   },
-  -- Set tags to highlight sources in the completion menu.
-  completion_source_tags = {
-    nvim_lsp = "[LSP]",
-    vsnip = "[Snip]",
-    buffer = "[Buffer]",
-    path = "[Path]",
-    cmdline = "[Cmd]",
-  },
 }
 
 -- Add configured servers.

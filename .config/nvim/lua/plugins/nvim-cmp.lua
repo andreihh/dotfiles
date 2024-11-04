@@ -1,5 +1,3 @@
-local lsp_opts = require("config.lsp")
-
 return { -- Autocompletion
   "hrsh7th/nvim-cmp",
   event = { "InsertEnter", "CmdlineEnter" },
@@ -112,7 +110,14 @@ return { -- Autocompletion
         format = require("lspkind").cmp_format({
           -- Icons require a Nerd Font.
           mode = vim.g.nerd_font_enabled and "symbol_text" or "text",
-          menu = lsp_opts.completion_source_tags or {},
+          -- Set tags to highlight sources in the completion menu.
+          menu = {
+            nvim_lsp = "[LSP]",
+            vsnip = "[Snip]",
+            buffer = "[Buffer]",
+            path = "[Path]",
+            cmdline = "[Cmd]",
+          },
         }),
       },
 
