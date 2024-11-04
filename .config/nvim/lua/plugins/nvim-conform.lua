@@ -2,7 +2,7 @@ local lsp_opts = require("config.lsp")
 
 return { -- Formatting
   "stevearc/conform.nvim",
-  cmd = { "ConformInfo" },
+  cmd = "ConformInfo",
   keys = {
     {
       "<leader>=",
@@ -10,7 +10,7 @@ return { -- Formatting
         require("conform").format({ async = true, lsp_format = "fallback" })
       end,
       mode = { "n", "v" },
-      desc = "Format document",
+      desc = "Format document (selection)",
     },
   },
   opts = {

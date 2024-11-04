@@ -42,7 +42,7 @@ return {
         "n",
         "<leader>c",
         "<cmd>TSContextToggle<CR>",
-        { noremap = true, desc = "Toggle [C]ontext" }
+        { desc = "Toggle [C]ontext" }
       )
     end,
     opts = { enable = false },

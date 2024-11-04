@@ -3,7 +3,7 @@ vim.keymap.set("n", "s", "<nop>")
 
 return { -- Fuzzy Finder (files, lsp, etc)
   "nvim-telescope/telescope.nvim",
-  cmd = { "Telescope" },
+  cmd = "Telescope",
   keys = {
     {
       "sp",

@@ -1,6 +1,6 @@
 return { -- File explorer
   "stevearc/oil.nvim",
-  cmd = { "Oil" },
+  cmd = "Oil",
   keys = {
     {
       "<C-o>",

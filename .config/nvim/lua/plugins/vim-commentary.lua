@@ -1,12 +1,12 @@
 return { -- Commenting lines
   "tpope/vim-commentary",
-  cmd = { "Commentary" },
+  cmd = "Commentary",
   keys = {
     {
       "<leader>-",
       ":Commentary<CR>",
       mode = { "n", "v" },
-      desc = "Toggle comment (line)",
+      desc = "Toggle comment (selection)",
     },
   },
 }
