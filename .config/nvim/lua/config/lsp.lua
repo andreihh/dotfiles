@@ -80,5 +80,4 @@ vim.list_extend(M.ensure_installed, {
   "shellcheck", -- `bashls` integrates with `shellcheck` if installed
 })
 
----@type table
 vim.g.lsp_opts = M
