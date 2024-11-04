@@ -2,7 +2,8 @@ local lsp_opts = require("config.lsp")
 
 return { -- Autocompletion
   "hrsh7th/nvim-cmp",
-  event = "InsertEnter",
+  event = { "InsertEnter", "CmdlineEnter" },
+  cmd = { "CmpStatus" },
   dependencies = {
     -- Adds other completion capabilities.
     --  `nvim-cmp` does not ship with all sources by default. They are split
@@ -12,6 +13,7 @@ return { -- Autocompletion
     "hrsh7th/cmp-vsnip",
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-path",
+    "hrsh7th/cmp-cmdline",
 
     -- Snippets engine.
     "hrsh7th/vim-vsnip",
@@ -36,6 +38,67 @@ return { -- Autocompletion
       )
     end
 
+    -- Don't automatically insert the selected item.
+    local select_behavior = cmp.SelectBehavior.Select
+
+    -- See `:help ins-completion`
+    local mappings = {
+      -- Select the next / previous item.
+      ["<C-j>"] = {
+        i = cmp.mapping.select_next_item({ behavior = select_behavior }),
+        c = cmp.mapping.select_next_item({ behavior = select_behavior }),
+      },
+      ["<C-k>"] = {
+        i = cmp.mapping.select_prev_item({ behavior = select_behavior }),
+        c = cmp.mapping.select_prev_item({ behavior = select_behavior }),
+      },
+
+      -- Accept the selected completion.
+      --  This will auto-import if your LSP supports it.
+      --  This will expand snippets if the LSP sent a snippet.
+      ["<tab>"] = {
+        i = cmp.mapping.confirm({ select = true }),
+        c = cmp.mapping.confirm({ select = true }),
+      },
+
+      -- Abort the completion.
+      ["<C-e>"] = {
+        i = cmp.mapping.abort(),
+        c = cmp.mapping.abort(),
+      },
+
+      -- Manually trigger a completion from nvim-cmp.
+      --  Generally you don't need this, because nvim-cmp will display
+      --  completions whenever it has completion options available.
+      ["<C-space>"] = {
+        i = cmp.mapping.complete({}),
+        c = cmp.mapping.complete({}),
+      },
+
+      -- Scroll the documentation window [u]p / [d]own.
+      ["<C-u>"] = cmp.mapping.scroll_docs(-5),
+      ["<C-d>"] = cmp.mapping.scroll_docs(5),
+
+      -- Think of <c-l> as moving to the right of your snippet expansion.
+      --  So if you have a snippet that's like:
+      --  function $name($args)
+      --    $body
+      --  end
+      --
+      -- <c-l> will move you to the right of each of the expansion locations.
+      -- <c-h> is similar, except moving you backwards.
+      ["<C-l>"] = cmp.mapping(function()
+        if vim.fn["vsnip#available"](1) == 1 then
+          feedkey("<plug>(vsnip-expand-or-jump)")
+        end
+      end, { "i", "s" }),
+      ["<C-h>"] = cmp.mapping(function()
+        if vim.fn["vsnip#available"](-1) == 1 then
+          feedkey("<plug>(vsnip-jump-prev)")
+        end
+      end, { "i", "s" }),
+    }
+
     cmp.setup({
       completion = { completeopt = "menu,menuone,noselect" },
 
@@ -53,56 +116,32 @@ return { -- Autocompletion
         }),
       },
 
-      -- See `:help ins-completion`
-      mapping = cmp.mapping.preset.insert({
-        -- Select the next / previous item.
-        ["<C-j>"] = cmp.mapping.select_next_item({
-          behavior = cmp.SelectBehavior.Select,
-        }),
-        ["<C-k>"] = cmp.mapping.select_prev_item({
-          behavior = cmp.SelectBehavior.Select,
-        }),
+      mapping = mappings,
 
-        -- Scroll the documentation window [u]p / [d]own.
-        ["<C-u>"] = cmp.mapping.scroll_docs(-5),
-        ["<C-d>"] = cmp.mapping.scroll_docs(5),
-
-        -- Accept the selected completion.
-        --  This will auto-import if your LSP supports it.
-        --  This will expand snippets if the LSP sent a snippet.
-        ["<tab>"] = cmp.mapping.confirm({ select = true }),
-
-        -- Manually trigger a completion from nvim-cmp.
-        --  Generally you don't need this, because nvim-cmp will display
-        --  completions whenever it has completion options available.
-        ["<C-space>"] = cmp.mapping.complete({}),
-
-        -- Think of <c-l> as moving to the right of your snippet expansion.
-        --  So if you have a snippet that's like:
-        --  function $name($args)
-        --    $body
-        --  end
-        --
-        -- <c-l> will move you to the right of each of the expansion locations.
-        -- <c-h> is similar, except moving you backwards.
-        ["<C-l>"] = cmp.mapping(function()
-          if vim.fn["vsnip#available"](1) == 1 then
-            feedkey("<plug>(vsnip-expand-or-jump)")
-          end
-        end, { "i", "s" }),
-        ["<C-h>"] = cmp.mapping(function()
-          if vim.fn["vsnip#available"](-1) == 1 then
-            feedkey("<plug>(vsnip-jump-prev)")
-          end
-        end, { "i", "s" }),
-      }),
-      sources = {
+      sources = cmp.config.sources({
         { name = "nvim_lsp" },
         { name = "nvim_lsp_signature_help" },
         { name = "vsnip" },
+      }, {
         { name = "buffer" },
         { name = "path" },
-      },
+      }),
+    })
+
+    cmp.setup.cmdline({ "/", "?" }, {
+      mapping = mappings,
+      sources = cmp.config.sources({
+        { name = "buffer" },
+      }),
+    })
+
+    cmp.setup.cmdline(":", {
+      mapping = mappings,
+      sources = cmp.config.sources({
+        { name = "path" },
+      }, {
+        { name = "cmdline" },
+      }),
     })
   end,
 }

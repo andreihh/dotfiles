@@ -3,6 +3,7 @@
 --
 -- General:
 --  - <esc> = clear search highlights
+--  - S = [s]ave buffer
 --  - u = [u]ndo
 --  - <C-r> = [r]edo
 --  - g + 1..9 = [g]o to tab 1..9
@@ -68,8 +69,7 @@ local function noremap(mode, lhs, rhs, desc, opts)
 end
 
 noremap("n", "<esc>", "<cmd>nohlsearch<CR>", "Clear search highlights")
-noremap("c", "<C-j>", "<C-n>", "Select the next item")
-noremap("c", "<C-k>", "<C-p>", "Select the previous item")
+noremap("n", "S", "<cmd>write<CR>", "[S]ave buffer")
 
 noremap("n", "<C-s>", "<cmd>split<CR>", "[S]plit window horizontally")
 noremap("n", "<C-v>", "<cmd>vsplit<CR>", "Split window [V]ertically")

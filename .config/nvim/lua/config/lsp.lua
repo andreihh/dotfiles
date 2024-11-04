@@ -64,6 +64,7 @@ local M = {
     vsnip = "[Snip]",
     buffer = "[Buffer]",
     path = "[Path]",
+    cmdline = "[Cmd]",
   },
 }
 
