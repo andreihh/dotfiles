@@ -87,22 +87,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     -- Icons require a Nerd Font.
     { "nvim-tree/nvim-web-devicons", enabled = vim.g.nerd_font_enabled },
   },
-  config = function()
-    -- Telescope is a fuzzy finder that comes with a lot of different things
-    -- that it can fuzzy find! It's more than just a "file finder", it can
-    -- search many different aspects of Neovim, your workspace, LSP, and more!
-    --
-    -- The easiest way to use Telescope, is to start by doing something like:
-    --  :Telescope help_tags
-    --
-    -- After running this command, a window will open up and you're able to type
-    -- in the prompt window. You'll see a list of `help_tags` options and a
-    -- corresponding preview of the help.
-    --
-
-    -- [[ Configure Telescope ]]
-    --  See `:help telescope` and `:help telescope.setup()`
-    local telescope = require("telescope")
+  opts = function(_, opts)
     local keymaps = {
       ["<C-j>"] = "move_selection_next",
       ["<C-k>"] = "move_selection_previous",
@@ -114,8 +99,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
       end,
       ["<C-\\>"] = "which_key",
     }
-
-    telescope.setup({
+    return vim.tbl_deep_extend("force", opts, {
       defaults = {
         mappings = {
           i = keymaps,
@@ -127,15 +111,21 @@ return { -- Fuzzy Finder (files, lsp, etc)
         current_buffer_fuzzy_find = { previewer = false },
       },
       extensions = {
-        ["ui-select"] = {
-          require("telescope.themes").get_dropdown(),
-        },
+        fzf = {},
+        hop = {},
+        ["ui-select"] = { require("telescope.themes").get_dropdown() },
       },
     })
+  end,
+  config = function(_, opts)
+    -- [[ Configure Telescope ]]
+    --  See `:help telescope` and `:help telescope.setup()`
+    local telescope = require("telescope")
+    telescope.setup(opts)
 
     -- Enable Telescope extensions if they are installed.
-    pcall(telescope.load_extension, "fzf")
-    pcall(telescope.load_extension, "ui-select")
-    pcall(telescope.load_extension, "hop")
+    for extension, _ in pairs(opts.extensions or {}) do
+      pcall(telescope.load_extension, extension)
+    end
   end,
 }
