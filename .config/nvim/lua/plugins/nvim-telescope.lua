@@ -110,10 +110,11 @@ return { -- Fuzzy Finder (files, lsp, etc)
       pickers = {
         current_buffer_fuzzy_find = { previewer = false },
       },
+      -- Configure all extensions explicitly so they can be loaded dynamically.
       extensions = {
         fzf = {},
-        hop = {},
         ["ui-select"] = { require("telescope.themes").get_dropdown() },
+        hop = {},
       },
     })
   end,
