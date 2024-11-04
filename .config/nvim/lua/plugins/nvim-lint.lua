@@ -11,7 +11,7 @@ return { -- Linting
       desc = "[L]int document and add diagnostics",
     },
   },
-  opts = {
-    linters_by_ft = lsp_opts.linters_by_ft or {},
-  },
+  config = function()
+    require("lint").linters_by_ft = lsp_opts.linters_by_ft or {}
+  end,
 }

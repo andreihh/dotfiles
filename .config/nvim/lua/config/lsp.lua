@@ -68,10 +68,19 @@ local M = {
   },
 }
 
+-- Add configured servers.
 M.ensure_installed = vim.tbl_keys(M.servers or {})
+
+-- Add configured formatters.
 vim.list_extend(
   M.ensure_installed,
   vim.iter(vim.tbl_values(M.formatters_by_ft or {})):flatten():totable()
+)
+
+-- Add configured linters.
+vim.list_extend(
+  M.ensure_installed,
+  vim.iter(vim.tbl_values(M.linters_by_ft or {})):flatten():totable()
 )
 
 -- Add other tools you want to install here.
