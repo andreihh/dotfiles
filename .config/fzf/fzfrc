@@ -1,1 +1,7 @@
---bind=ctrl-o:accept,ctrl-e:abort
+--bind=tab:accept
+--bind=shift-tab:toggle
+--bind=ctrl-f:jump
+--bind=ctrl-d:preview-half-page-down
+--bind=ctrl-u:preview-half-page-up
+--bind=ctrl-l:toggle-preview-wrap
+--bind=ctrl-o:accept
