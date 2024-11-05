@@ -44,4 +44,18 @@ echo "${packages}" | while read -r package; do
   [[ -n "${debug}" ]] || ${installer} ${package}
 done
 
+# shellcheck disable=SC2155
+readonly FDFIND="$(command -v fdfind)"
+if [[ -f "${FDFIND}" ]]; then
+  echo "Linking 'fd' to 'fdfind'..."
+  [[ -n "${debug}" ]] || ln -svf "${FDFIND}" "${HOME}/.local/bin/fd"
+fi
+
+# shellcheck disable=SC2155
+readonly BATCAT="$(command -v batcat)"
+if [[ -f "${BATCAT}" ]]; then
+  echo "Linking 'bat' to 'batcat'..."
+  [[ -n "${debug}" ]] || ln -svf "${BATCAT}" "${HOME}/.local/bin/bat"
+fi
+
 echo "Packages installed successfully!"

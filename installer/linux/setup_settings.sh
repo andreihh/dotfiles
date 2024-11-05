@@ -77,6 +77,7 @@ else
 fi
 
 echo "Setting up Neovim as default editor..."
+# shellcheck disable=SC2155
 readonly NVIM="$(command -v nvim)"
 if [[ -f "${NVIM}" ]]; then
   sudo update-alternatives --install /usr/bin/editor editor "${NVIM}" 100
