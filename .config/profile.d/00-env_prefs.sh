@@ -20,4 +20,5 @@ export NERD_FONT_ENABLED="yes"
 export COLORSCHEME="sonokai"
 
 # Export the JRE for apps that rely on `${JAVA_HOME}`.
+# shellcheck disable=SC2155
 export JAVA_HOME=$(readlink -e "/usr/bin/java" | sed "s:/bin/java::")
