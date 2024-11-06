@@ -7,3 +7,4 @@
 --bind=ctrl-o:accept
 --ansi
 --highlight-line
+--info=inline-right
