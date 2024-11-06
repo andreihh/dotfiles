@@ -2,8 +2,9 @@
 --  See `:help vim.keymap.set()`
 --
 -- General:
---  - <esc> = clear search highlights
+--  - L = [L]azy plugin manager
 --  - S = [s]ave buffer
+--  - <esc> = clear search highlights
 --  - u = [u]ndo
 --  - <C-r> = [r]edo
 --  - g + 1..9 = [g]o to tab 1..9
@@ -11,7 +12,7 @@
 --  - gx = [g]o to URI with e[x]ternal system handler
 --  - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
 --  - [c / ]c / [C / ]C = jump to previous / next / first / last [c]hanged hunk
---  - <leader><leader> = trigger Flash
+--  - <C-f> = trigger [F]lash
 --  - <C-\> = show keymap help
 -- Window:
 --  - <C-s/v/t/z/x/w> = perform window action
@@ -21,7 +22,7 @@
 -- Terminal:
 --  - t = open [t]erminal
 --  - <C-e> = [e]xit terminal mode
--- Oil:
+-- Explorer:
 --  - <C-o> = [o]pen / refresh file explorer
 --  - gf = [g]o to [f]ile / [f]older
 --  - gp = [g]o to [p]arent directory
@@ -29,17 +30,17 @@
 --  - gh = toggle [g]o to [h]idden files
 --  - <esc> = [e]xit
 --  - <C-\> = show keymap help
--- Telescope:
+-- Search:
+--  - s + p/s/D/h/k/f/r/c/g/d/w// = [s]earch with picker
 --  - <C-j/k> = select next / previous item
---  - <C-h> = [h]op
+--  - <C-f> = [f]lash jump
 --  - <C-u/d> = scroll preview [u]p / [d]own
+--  - <C-l> = toggle wrapping [l]ong preview lines
+--  - <tab> = accept selected / toggled items
+--  - <S-tab> = toggle selected item
 --  - <C-o/s/v/t> = open selected item in window
---  - <esc> = [e]xit insert / normal mode
---  - <C-e> = [e]xit
+--  - <esc> = [e]xit
 --  - <C-\> = show keymap help
---  - s + p/h/k/f/r/c/g/d/w// = [s]earch with picker
---  - ss = [s]earch [s]essions
---    - <C-d> = [d]elete selected session
 -- Completion:
 --  - <C-space> = trigger completion
 --  - <C-j/k> = select next / previous item
@@ -68,8 +69,9 @@ local function noremap(mode, lhs, rhs, desc, opts)
   map(mode, lhs, rhs, desc, opts)
 end
 
-noremap("n", "<esc>", "<cmd>nohlsearch<CR>", "Clear search highlights")
+noremap("n", "L", "<cmd>Lazy<CR>", "Launch [L]azy plugin manager")
 noremap("n", "S", "<cmd>write<CR>", "[S]ave buffer")
+noremap("n", "<esc>", "<cmd>nohlsearch<CR>", "Clear search highlights")
 
 noremap("n", "<C-s>", "<cmd>split<CR>", "[S]plit window horizontally")
 noremap("n", "<C-v>", "<cmd>vsplit<CR>", "Split window [V]ertically")

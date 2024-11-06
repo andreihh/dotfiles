@@ -2,7 +2,7 @@ return { -- Better navigation motions
   "folke/flash.nvim",
   keys = {
     {
-      "<leader><leader>",
+      "<C-f>",
       function()
         require("flash").jump()
       end,

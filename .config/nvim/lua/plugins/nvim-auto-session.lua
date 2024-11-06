@@ -4,18 +4,19 @@ vim.o.sessionoptions =
 
 return { -- Session management
   "rmagatti/auto-session",
-  lazy = false,
+  lazy = false, -- Ensure auto-loading
   keys = {
     {
       "ss",
-      "<cmd>SessionSearch<CR>",
-      desc = "[S]earch [S]essions",
+      "<cmd>Autosession search<CR>",
+      desc = "[S]earch [S]ession",
+    },
+    {
+      "sD",
+      "<cmd>Autosession delete<CR>",
+      desc = "[S]ession [D]elete",
     },
   },
-  opts = {
-    -- Load the Telescope picker lazily.
-    session_lens = { load_on_setup = false },
-    -- Don't start sessions in the root, home, or their direct children.
-    suppressed_dirs = { "/", "/*", "~/", "~/*" },
-  },
+  -- Don't start sessions in the root, home, or their direct children.
+  opts = { suppressed_dirs = { "/", "/*", "~/", "~/*" } },
 }
