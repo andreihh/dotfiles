@@ -97,6 +97,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     },
     files = { cwd_prompt = false, prompt = "Files>" },
     oldfiles = { include_current_session = true },
+    grep = { RIPGREP_CONFIG_PATH = vim.env.RIPGREP_CONFIG_PATH },
     file_icon_padding = " ",
     winopts = {
       preview = {
