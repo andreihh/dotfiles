@@ -3,7 +3,7 @@ vim.keymap.set("n", "s", "<nop>")
 
 return { -- Fuzzy Finder (files, lsp, etc)
   "ibhagwan/fzf-lua",
-  lazy = false, -- Ensure `vim.ui.select` registration
+  event = "VeryLazy", -- Ensure `vim.ui.select` registration
   keys = {
     {
       "sp",
