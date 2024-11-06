@@ -1,6 +1,6 @@
 -- init.lua: configures Neovim.
 --
--- Requires `git`, `make`, `ripgrep`, and optionally a Nerd Font.
+-- Requires `git`, `fzf`, `fd`, `ripgrep`, and optionally a Nerd Font.
 
 -- Set <space> as the leader key.
 --  See `:help mapleader`
