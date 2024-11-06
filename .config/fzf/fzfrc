@@ -5,3 +5,5 @@
 --bind=ctrl-u:preview-half-page-up
 --bind=ctrl-l:toggle-preview-wrap
 --bind=ctrl-o:accept
+--ansi
+--highlight-line
