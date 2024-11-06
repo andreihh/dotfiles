@@ -22,6 +22,9 @@
 -- Terminal:
 --  - t = open [t]erminal
 --  - <C-e> = [e]xit terminal mode
+-- Session:
+--  - sS = [s]ession [s]ave
+--  - sD = [s]ession [d]elete
 -- Explorer:
 --  - <C-o> = [o]pen / refresh file explorer
 --  - gf = [g]o to [f]ile / [f]older
@@ -31,7 +34,7 @@
 --  - <esc> = [e]xit
 --  - <C-\> = show keymap help
 -- Search:
---  - s + p/s/D/h/k/f/r/c/g/d/w// = [s]earch with picker
+--  - s + p/s/h/k/f/r/c/g/d/w// = [s]earch with picker
 --  - <C-j/k> = select next / previous item
 --  - <C-f> = [f]lash jump
 --  - <C-u/d> = scroll preview [u]p / [d]own

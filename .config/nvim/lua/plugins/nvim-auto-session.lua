@@ -16,7 +16,15 @@ return { -- Session management
       "<cmd>Autosession delete<CR>",
       desc = "[S]ession [D]elete",
     },
+    {
+      "sS",
+      "<cmd>SessionSave<CR>",
+      desc = "[S]ession [S]ave",
+    },
   },
-  -- Don't start sessions in the root, home, or their direct children.
-  opts = { suppressed_dirs = { "/", "/*", "~/", "~/*" } },
+  opts = {
+    use_git_branch = true,
+    -- Don't start sessions in root, home, or their direct children.
+    suppressed_dirs = { "/", "/*", "~/", "~/*" },
+  },
 }
