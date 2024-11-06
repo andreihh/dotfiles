@@ -95,6 +95,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
         ["ctrl-o"] = "accept",
       },
     },
+    fzf_args = "--no-scrollbar",
     files = { cwd_prompt = false, prompt = "Files>" },
     oldfiles = { include_current_session = true },
     grep = { RIPGREP_CONFIG_PATH = vim.env.RIPGREP_CONFIG_PATH },
