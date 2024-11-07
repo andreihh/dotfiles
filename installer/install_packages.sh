@@ -36,7 +36,7 @@ if [[ -n "${updater}" ]]; then
   [[ -n "${debug}" ]] || ${updater}
 fi
 
-packages=$(cat "${package_index}" | tr ";" "\n")
+packages=$(tr ";" "\n" < "${package_index}")
 
 echo "${packages}" | while read -r package; do
   [[ -z "${package}" ]] && continue
