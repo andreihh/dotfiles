@@ -16,7 +16,7 @@ export VCS_BRANCH_PROMPT_COMMAND="__vcs_branch"
 __git_branch() {
   git rev-parse --is-inside-work-tree &> /dev/null || return
 
-  local branch="$(git symbolic-ref --quiet --short HEAD 2> /dev/null \
+  local -r branch="$(git symbolic-ref --quiet --short HEAD 2> /dev/null \
     || git describe --all --exact-match HEAD 2> /dev/null \
     || git rev-parse --short HEAD 2> /dev/null \
     || echo '(unknown)')"
@@ -33,7 +33,7 @@ __git_branch() {
 #
 # Works with `git`.
 __vcs_branch() {
-  local git_branch="$(__git_branch)"
+  local -r git_branch="$(__git_branch)"
   if [[ -n "${git_branch}" ]]; then
     echo "${git_branch}"
     return
@@ -44,11 +44,11 @@ __vcs_branch() {
 # path components to their initials, except for the last 5 components, which are
 # displayed in full.
 __short_pwd() {
-  local pwd_tilde="${PWD#"${HOME}"}"
+  local -r pwd_tilde="${PWD#"${HOME}"}"
   [[ "${PWD}" != "${pwd_tilde}" ]] && printf '~'
   IFS='/' read -r -a path <<< "${pwd_tilde:1}"
 
-  local -i length=${#path[@]}
+  local -r -i length=${#path[@]}
   local -i trim_length
   ((trim_length = length - SHORTEN_PWD_PROMPT_LEVEL))
 
@@ -72,17 +72,16 @@ __short_pwd() {
 # The chroot, host and branch are optional. Colors are used only if supported.
 __make_prompt() {
   # If colors are supported, define styles and colors.
-  local ncolors=$(tput colors)
+  local -r ncolors=$(tput colors)
   if [[ -n "${ncolors}" ]] && [[ ${ncolors} -ge 8 ]]; then
-    local reset_style="\[$(tput sgr0)\]"
-
-    local text_style="\[$(tput sgr0 && tput bold)\]"
-    local shell_style="\[$(tput sgr0 && tput bold && tput setaf 2)\]"  # green
-    local chroot_style="\[$(tput sgr0 && tput bold && tput setaf 5)\]"  # purple
-    local user_style="\[$(tput sgr0 && tput bold && tput setaf 1)\]"  # red
-    local host_style="\[$(tput sgr0 && tput bold && tput setaf 2)\]"  # green
-    local vcs_style="\[$(tput sgr0 && tput bold && tput setaf 3)\]"  # yellow
-    local cwd_style="\[$(tput sgr0 && tput bold && tput setaf 4)\]"  # blue
+    local -r reset_style="\[$(tput sgr0)\]"
+    local -r text_style="\[$(tput sgr0 && tput bold)\]"
+    local -r shell_style="\[$(tput sgr0 && tput bold && tput setaf 2)\]"  # green
+    local -r chroot_style="\[$(tput sgr0 && tput bold && tput setaf 5)\]"  # purple
+    local -r user_style="\[$(tput sgr0 && tput bold && tput setaf 1)\]"  # red
+    local -r host_style="\[$(tput sgr0 && tput bold && tput setaf 2)\]"  # green
+    local -r vcs_style="\[$(tput sgr0 && tput bold && tput setaf 3)\]"  # yellow
+    local -r cwd_style="\[$(tput sgr0 && tput bold && tput setaf 4)\]"  # blue
   fi
 
   # Set variable identifying the chroot you work in.
@@ -101,7 +100,7 @@ __make_prompt() {
 
   # Set current VCS branch if VCS info is enabled and repository is detected.
   if [[ -n "${VCS_BRANCH_PROMPT_COMMAND}" ]]; then
-    local branch="$(${VCS_BRANCH_PROMPT_COMMAND})"
+    local -r branch="$(${VCS_BRANCH_PROMPT_COMMAND})"
     if [[ -n "${branch}" ]]; then
       PS1+="${text_style} on ${vcs_style}${branch}"
     fi
