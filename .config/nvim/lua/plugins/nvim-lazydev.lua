@@ -4,6 +4,7 @@ return {
     -- used for completion, annotations and signatures of Neovim apis.
     "folke/lazydev.nvim",
     ft = "lua",
+    cmd = "LazyDev",
     opts = {
       library = {
         -- Load luvit types when the `vim.uv` word is found.
@@ -15,11 +16,12 @@ return {
   { -- Completion source for require statements and module annotations
     "hrsh7th/nvim-cmp",
     opts = function(_, opts)
-      opts.sources = opts.sources or {}
-      table.insert(opts.sources, {
-        name = "lazydev",
-        -- Set group index to 0 to skip loading Lua LS completions.
-        group_index = 0,
+      local sources = opts.sources or {}
+      -- Set group index to 0 to skip loading Lua LS completions.
+      table.insert(sources, { name = "lazydev", group_index = 0 })
+      return vim.tbl_deep_extend("force", opts, {
+        sources = sources,
+        formatting = { format = { menu = { lazydev = "[API]" } } },
       })
     end,
   },

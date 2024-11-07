@@ -97,6 +97,19 @@ return { -- Autocompletion
       end, { "i", "s" }),
     }
 
+    local sources = opts.sources or {}
+    vim.list_extend(
+      sources,
+      cmp.config.sources({
+        { name = "nvim_lsp" },
+        { name = "nvim_lsp_signature_help" },
+        { name = "vsnip" },
+      }, {
+        { name = "buffer" },
+        { name = "path" },
+      })
+    )
+
     return vim.tbl_deep_extend("force", opts, {
       completion = { completeopt = "menu,menuone,noselect" },
       snippet = {
@@ -119,24 +132,17 @@ return { -- Autocompletion
         },
       },
       mapping = mappings,
-      sources = cmp.config.sources({
-        { name = "nvim_lsp" },
-        { name = "nvim_lsp_signature_help" },
-        { name = "vsnip" },
-      }, {
-        { name = "buffer" },
-        { name = "path" },
-      }),
+      sources = sources,
     })
   end,
   config = function(_, opts)
     local cmp = require("cmp")
-    local lspkind = require("lspkind")
 
-    -- Apply the lspkind formatting function with the specified options.
-    opts.formatting.format = lspkind.cmp_format(opts.formatting.format)
-
-    cmp.setup(opts)
+    cmp.setup(vim.tbl_deep_extend("force", opts, {
+      formatting = {
+        format = require("lspkind").cmp_format(opts.formatting.format),
+      },
+    }))
 
     cmp.setup.cmdline({ "/", "?" }, {
       mapping = opts.mapping,
