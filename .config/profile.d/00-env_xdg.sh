@@ -11,11 +11,11 @@ export XDG_STATE_HOME="${HOME}/.local/state"
 # Export `readline` config file.
 export INPUTRC="${XDG_CONFIG_HOME}/readline/inputrc"
 
-# Export `ripgrep` config file.
-export RIPGREP_CONFIG_PATH="${XDG_CONFIG_HOME}/ripgrep/ripgreprc"
-
 # Export `fzf` config file.
 export FZF_DEFAULT_OPTS_FILE="${XDG_CONFIG_HOME}/fzf/fzfrc"
+
+# Export `ripgrep` config file.
+export RIPGREP_CONFIG_PATH="${XDG_CONFIG_HOME}/ripgrep/ripgreprc"
 
 # Export `wget` config file.
 export WGETRC="${XDG_CONFIG_HOME}/wget/wgetrc"

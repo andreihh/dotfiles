@@ -69,8 +69,10 @@ echo "Setting up default web browser interactively..."
 sudo update-alternatives --config x-www-browser
 
 echo "Setting up XTerm as default terminal..."
-if [[ -f "/usr/bin/xterm" ]]; then
-  sudo update-alternatives --set x-terminal-emulator /usr/bin/xterm
+# shellcheck disable=SC2155
+readonly XTERM="$(command -v xterm)"
+if [[ -f "${XTERM}" ]]; then
+  sudo update-alternatives --set x-terminal-emulator "${XTERM}"
 else
   echo "Did not find XTerm! Setting up default terminal interactively..."
   sudo update-alternatives --config x-terminal-emulator
