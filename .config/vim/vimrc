@@ -69,6 +69,9 @@ Plug 'google/vim-codefmt'
 call plug#end()
 call glaive#Install()
 
+" Make Esc more responsive.
+set timeout ttimeoutlen=5
+
 " Use the system clipboard.
 set clipboard=unnamedplus
 
@@ -177,9 +180,6 @@ augroup ColorScheme
   au!
   autocmd VimEnter * call s:try_set_colorscheme()
 augroup END
-
-" Make Esc more responsive.
-set timeout ttimeoutlen=50
 
 " Copy until the end of the line. Consistent with D and C.
 nnoremap Y y$

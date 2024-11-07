@@ -2,6 +2,9 @@
 --  See `:help vim.opt`
 --  For more options, see `:help option-list`
 
+-- Make Esc more responsive.
+vim.o.ttimeoutlen = 5
+
 -- Don't show the mode, since it's already in the status line.
 vim.opt.showmode = false
 
