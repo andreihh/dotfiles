@@ -70,6 +70,6 @@ for shell_profile_file in ~/.{bash_profile,zprofile}; do
 done
 
 echo "Changing default shell to Bash..."
-chsh -s "/bin/bash"
+[[ -n "${debug}" ]] || chsh -s "/bin/bash"
 
 echo "Dotfiles installed successfully!"
