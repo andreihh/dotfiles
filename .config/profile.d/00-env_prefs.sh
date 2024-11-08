@@ -1,4 +1,6 @@
 # env_prefs.sh: exports preferences as environment variables.
+#
+# shellcheck shell=sh
 
 # Prefer Bash as shell.
 export SHELL='/bin/bash'
