@@ -1,0 +1,17 @@
+# Follow constant external sources.
+external-sources=true
+
+# Don't follow non-constant external sources.
+disable=SC1090
+
+# Suggest `${VAR}` in place of `$VAR`.
+enable=require-variable-braces
+
+# Suggest explicitly using `-n` in `[ $var ]`.
+enable=avoid-nullary-conditions
+
+# Suggest adding a default case in `case` statements.
+enable=add-default-case
+
+# Suggest `command -v` instead of `which`.
+enable=deprecate-which
