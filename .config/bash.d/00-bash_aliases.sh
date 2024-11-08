@@ -1,4 +1,6 @@
 # bash_aliases.sh: contains various aliases for interactive shells.
+#
+# shellcheck shell=bash
 
 # Open argument with the default program.
 alias o='open &> /dev/null'

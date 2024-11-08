@@ -1,4 +1,6 @@
 # bash_prompt.sh: customizes the shell prompt.
+#
+# shellcheck shell=bash
 
 # Controls how many components are displayed from the current working directory:
 # - `0` to display full path
@@ -22,7 +24,7 @@ __git_branch() {
     || echo '(unknown)')"
 
   local dirty=""
-  if [[ $(git status --porcelain 2> /dev/null) ]]; then
+  if [[ -n $(git status --porcelain 2> /dev/null) ]]; then
     dirty="*"
   fi
 
