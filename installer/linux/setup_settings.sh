@@ -69,8 +69,8 @@ echo "Setting up default web browser interactively..."
 sudo update-alternatives --config x-www-browser
 
 echo "Setting up XTerm as default terminal..."
-# shellcheck disable=SC2155
-readonly XTERM="$(command -v xterm)"
+XTERM="$(command -v xterm)"
+readonly XTERM
 if [[ -f "${XTERM}" ]]; then
   sudo update-alternatives --set x-terminal-emulator "${XTERM}"
 else
@@ -79,8 +79,8 @@ else
 fi
 
 echo "Setting up Neovim as default editor..."
-# shellcheck disable=SC2155
-readonly NVIM="$(command -v nvim)"
+NVIM="$(command -v nvim)"
+readonly NVIM
 if [[ -f "${NVIM}" ]]; then
   sudo update-alternatives --install /usr/bin/editor editor "${NVIM}" 100
   sudo update-alternatives --set editor "${NVIM}"
