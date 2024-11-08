@@ -21,7 +21,9 @@
 # --SysFanSpeed=(FullSpeed|NoiseReduce)
 
 readonly DCC="sudo /opt/dell/dcc/cctk"
-readonly USAGE=$(cat <<-END
+
+usage() {
+  cat << EOF
 Usage: $0 OPTION
 Options:
   --stat  Prints the current thermal / performance / battery settings.
@@ -31,21 +33,18 @@ Options:
   --battery-care  Starts charging if battery is < 70% and stops charging at 80%.
   --express-charge  Switches charging profile to 'Express'.
   --adaptive-charge  Switches charging profile to 'Adaptive'.
-END
-)
+EOF
+}
 
-[[ $# -ne 1 ]] && echo "${USAGE}" && exit 1
+[[ $# -ne 1 ]] && usage && exit 1
 
 case "$1" in
-  --stat)
-    ${DCC} --ThermalManagement
-    ${DCC} --PrimaryBattChargeCfg
-    ;;
+  --stat) ${DCC} --ThermalManagement && ${DCC} --PrimaryBattChargeCfg ;;
   --optimized-mode) ${DCC} --ThermalManagement=Optimized ;;
   --performance-mode) ${DCC} --ThermalManagement=UltraPerformance ;;
   --cool-mode) ${DCC} --ThermalManagement=Cool ;;
   --battery-care) ${DCC} --PrimaryBattChargeCfg=Custom:70-80 ;;
   --express-charge) ${DCC} --PrimaryBattChargeCfg=Express ;;
   --adaptive-charge) ${DCC} --PrimaryBattChargeCfg=Adaptive ;;
-  *) echo "${USAGE}" && exit 1 ;;
+  *) usage && exit 1 ;;
 esac
