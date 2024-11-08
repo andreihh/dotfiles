@@ -1,8 +1,11 @@
 # Follow constant external sources.
 external-sources=true
 
-# Don't follow non-constant external sources.
+# Don't follow dynamic external sources.
 disable=SC1090
+
+# Require [[ and warn about [ in Bash.
+enable=require-double-brackets
 
 # Suggest `${VAR}` in place of `$VAR`.
 enable=require-variable-braces
