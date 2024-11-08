@@ -16,7 +16,7 @@ tmux set -g @activity_seg_fg "#76cce0"  # blue
 tmux set -g @host_seg_bg "#a7df78"  # bg_green
 
 # Icons require a Nerd Font.
-if [ -n "${NERD_FONT_ENABLED}" ]; then
+if [[ -n "${NERD_FONT_ENABLED}" ]]; then
   tmux set -g @seg_start ""
   tmux set -g @seg_end ""
   tmux set -g @seg_sep ""

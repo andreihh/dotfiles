@@ -23,12 +23,12 @@ indent_size = 4
 [*.{java,kt,kts}]
 max_line_length = 100
 
-# Makefiles and .gitconfig always use tabs for indentation
+# Makefiles and .gitconfig always use tabs for indentation.
 [{Makefile,.gitconfig}]
 indent_style = tab
 
-# Configure `shfmt` to follow Google style
-[*.{sh,tmux}]
+# Configure `shfmt` to follow Google style.
+[{*.sh,*.tmux,.bash*,.profile}]
 switch_case_indent = true
 binary_next_line = true
 space_redirects = true
