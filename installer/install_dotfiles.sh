@@ -38,7 +38,7 @@ if [[ ! -d "${DOTFILES_HOME}" ]]; then
 fi
 
 echo "Checking that the Git repository is clean..."
-if [[ $(git -C "${DOTFILES_HOME}" status --porcelain 2> /dev/null) ]]; then
+if [[ -n $(git -C "${DOTFILES_HOME}" status --porcelain 2> /dev/null) ]]; then
   echo "You must commit changes to the Git repository and get to a clean state!"
   exit 1
 fi
