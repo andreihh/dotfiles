@@ -13,14 +13,13 @@
 --  - gx = [g]o to URI with e[x]ternal system handler
 --  - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
 --  - [c / ]c / [C / ]C = jump to previous / next / first / last [c]hanged hunk
---  - <C-f> = trigger [F]lash
+--  - <C-f> = trigger multi-window [F]lash
 --  - <C-\> = show keymap help
 -- Window:
 --  - <C-s/v/t/z/x/w> = perform window action
 --  - <C-h/j/k/l> = navigate panes across Vim and `tmux`
 --  - <M-h/j/k/l/=> = resize panes across Vim and `tmux`
 -- Terminal:
---  - t = open [t]erminal
 --  - <C-e> = [e]xit terminal mode
 -- Session:
 --  - ss = [s]ession [s]earch
@@ -55,9 +54,9 @@
 -- LSP:
 --  - g + d/D/i/r = perform code navigation
 --  - [d / ]d / [w / ]w / [e / ]e = jump to previous / next diagnostic severity
---  - <leader>h = show [h]elp
---    - <leader>h = focus [h]elp
---    - q = [q]uit help if focused
+--  - <leader> + h/D = show [h]elp / [d]iagnostic
+--    - <leader> + h/D = focus [h]elp / [d]iagnostic
+--    - q = [q]uit help / diagnostic if focused
 --  - <C-h> = show [s]ignature help
 --  - <leader> + f/r/a/H/c/-/=/l/L = perform code action
 
@@ -86,7 +85,6 @@ noremap("n", "<C-x>", "<cmd>quit<CR>", "Close window")
 noremap("n", "<C-w>", "<cmd>tabclose<CR>", "Close tab")
 noremap("n", "<M-=>", "<C-w>=", "Resize all windows equally")
 
-noremap("n", "t", "<cmd>terminal<CR>", "Open [T]erminal")
 noremap("t", "<C-e>", "<C-\\><C-n>", "[E]xit terminal mode")
 
 for i = 1, 9 do
@@ -117,6 +115,7 @@ noremap("n", "]w", function()
 end, "Jump to next [W]arning")
 
 noremap("n", "<leader>h", vim.lsp.buf.hover, "Show [H]elp")
+noremap("n", "<leader>D", vim.diagnostic.open_float, "Show [D]iagnostic")
 noremap("i", "<C-s>", vim.lsp.buf.signature_help, "Show [S]ignature help")
 noremap("n", "<leader>H", function()
   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())

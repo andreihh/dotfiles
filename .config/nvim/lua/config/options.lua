@@ -46,6 +46,8 @@ vim.diagnostic.config({
       [vim.diagnostic.severity.HINT] = "󰌶",
     } or {},
   },
+  -- Include diagnostic source in float.
+  float = { source = true },
 })
 
 -- Configure how new splits should be opened.
