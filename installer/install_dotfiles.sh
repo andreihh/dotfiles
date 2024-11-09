@@ -9,11 +9,11 @@ readonly DOTFILES_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}/dotfiles"
 
 usage() {
   cat << EOF
-  Usage: $0 [-h] [-d] [-b <backup_dir>]
+Usage: $0 [-h] [-d] [-b <backup_dir>]
 
-    -d  Debug / dry run mode (simulate all actions, but do not execute them).
-    -b  Backup directory where dotfiles should be copied to.
-    -h  Print this message and exit.
+  -d  Debug / dry run mode (simulate all actions, but do not execute them).
+  -b  Backup directory where dotfiles should be copied to.
+  -h  Print this message and exit.
 EOF
 }
 

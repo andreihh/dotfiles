@@ -47,21 +47,21 @@ readonly PACKAGE_INDEX_DEFAULT="${INSTALLER_DIR}/${os_type}/package_index.txt"
 
 usage() {
   cat << EOF
-  Usage: $0 [-h] [-d] [-b <backup-directory>] [-p <package-index>]
+Usage: $0 [-h] [-d] [-b <backup-directory>] [-p <package-index>]
 
-    -d  Debug / dry run mode (simulate all actions, but do not execute them).
-    -f  Force install by deleting prior backup and installation.
-    -b  Directory where dotfiles should be backed up.
-          Default: '${BACKUP_DIR_DEFAULT}'
-    -p  Path to the package index file. Packages must be delimited by ';'.
-          Default: '${PACKAGE_INDEX_DEFAULT}'
-    -i  Command to use to install packages.
-          Default: '${installer}'
-    -u  Command to use to update the package index. Optional.
-          Default: '${updater}'
-    -s  List of setup scripts to run delimited by ';'.
-          Default: all 'setup_*.sh' scripts in '${INSTALLER_DIR}[/${os_type}]'.
-    -h  Print this message and exit.
+  -d  Debug / dry run mode (simulate all actions, but do not execute them).
+  -f  Force install by deleting prior backup and installation.
+  -b  Directory where dotfiles should be backed up.
+        Default: '${BACKUP_DIR_DEFAULT}'
+  -p  Path to the package index file. Packages must be delimited by ';'.
+        Default: '${PACKAGE_INDEX_DEFAULT}'
+  -i  Command to use to install packages.
+        Default: '${installer}'
+  -u  Command to use to update the package index. Optional.
+        Default: '${updater}'
+  -s  List of setup scripts to run delimited by ';'.
+        Default: all 'setup_*.sh' scripts in '${INSTALLER_DIR}[/${os_type}]'.
+  -h  Print this message and exit.
 EOF
 }
 

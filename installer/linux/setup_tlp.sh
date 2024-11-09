@@ -2,10 +2,10 @@
 #
 # Configures TLP.
 
+[[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
+
 readonly TLP_CONFIG="${XDG_CONFIG_HOME:-${HOME}/.config}/tlp/tlp.conf"
 readonly TLP_CONFIGS_DIR="/etc/tlp.d"
-
-[[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
 echo "Configuring TLP..."
 

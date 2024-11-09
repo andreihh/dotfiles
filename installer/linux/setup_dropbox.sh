@@ -6,9 +6,9 @@
 #
 # Requires `wget` and `tar`.
 
-readonly DROPBOX="https://www.dropbox.com/download?plat=lnx.x86_64"
-
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
+
+readonly DROPBOX="https://www.dropbox.com/download?plat=lnx.x86_64"
 
 echo "Installing Dropbox..."
 cd ~

@@ -4,13 +4,13 @@
 
 usage() {
   cat << EOF
-  Usage: $0 [-h] [-d] -p <package-index> -i <installer> [-u <updater>]
+Usage: $0 [-h] [-d] -p <package-index> -i <installer> [-u <updater>]
 
-    -d  Debug / dry run mode (simulate all actions, but do not execute them).
-    -p  Path to the package index file. Packages must be delimited by ';'.
-    -i  Command to use to install packages.
-    -u  Command to use to update the package index. Optional.
-    -h  Print this message and exit.
+  -d  Debug / dry run mode (simulate all actions, but do not execute them).
+  -p  Path to the package index file. Packages must be delimited by ';'.
+  -i  Command to use to install packages.
+  -u  Command to use to update the package index. Optional.
+  -h  Print this message and exit.
 EOF
 }
 

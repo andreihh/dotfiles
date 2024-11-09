@@ -2,10 +2,10 @@
 #
 # Configures device sleep modes.
 
+[[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
+
 readonly SLEEP_CONFIG="${XDG_CONFIG_HOME:-${HOME}/.config}/sleep/sleep.conf"
 readonly SLEEP_CONFIGS_DIR="/etc/systemd/sleep.conf.d"
-
-[[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
 echo "Configuring device sleep modes..."
 
