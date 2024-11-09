@@ -20,7 +20,7 @@ sudo rm -rf /usr/local/share/nvim/
 
 echo "Downloading Neovim stable branch..."
 mkdir -p "${NVIM_DIR}"
-git clone --b stable --depth 1 https://github.com/neovim/neovim "${NVIM_DIR}"
+git clone -b stable --depth 1 https://github.com/neovim/neovim "${NVIM_DIR}"
 
 echo "Running Neovim installer..."
 cd "${NVIM_DIR}"
