@@ -6,9 +6,21 @@ return { -- Better navigation motions
       function()
         require("flash").jump()
       end,
-      mode = { "n", "v" },
-      desc = "Trigger [F]lash",
+      desc = "Trigger multi-window [F]lash",
+    },
+    { "f", mode = { "n", "v" } },
+    { "F", mode = { "n", "v" } },
+    { "t", mode = { "n", "v" } },
+    { "T", mode = { "n", "v" } },
+    { ";", mode = { "n", "v" } },
+    { ",", mode = { "n", "v" } },
+  },
+  opts = {
+    modes = {
+      char = {
+        jump_labels = true,
+        jump = { autojump = true },
+      },
     },
   },
-  config = true,
 }
