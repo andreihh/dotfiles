@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 #
 # Configures Dell machines with common thermal / performance / battery settings.
 #

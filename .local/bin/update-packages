@@ -1,0 +1,31 @@
+#!/bin/bash -e
+#
+# Updates all installed packages using the available package managers.
+#
+# Uses `apt` on Linux and `brew` on MacOS. Also updates manual `fzf` and `nvim`
+# insallations if `apt` is available.
+
+[[ $# -gt 0 ]] && echo "Usage $0" && exit 1
+
+readonly DOTFILES_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}/dotfiles"
+readonly INSTALLER_DIR="${DOTFILES_HOME}/installer"
+readonly FZF_INSTALLER="${INSTALLER_DIR}/linux/setup_fzf.sh"
+readonly NVIM_INSTALLER="${INSTALLER_DIR}/linux/setup_nvim.sh"
+
+echo "Updating packages..."
+
+command -v apt &> /dev/null \
+  && sudo apt update -y \
+  && sudo apt upgrade --autoremove -y \
+  && sudo apt autoclean -y \
+  && "${FZF_INSTALLER}" \
+  && "${NVIM_INSTALLER}" \
+  || echo "Package manager 'apt' not found, skipping..."
+
+command -v brew &> /dev/null \
+  && brew update \
+  && brew upgrade \
+  && brew cleanup \
+  || echo "Package manager 'brew' not found, skipping..."
+
+echo "Updated packages successfully!"
