@@ -60,7 +60,7 @@ vim.opt.sidescrolloff = 2
 vim.opt.mouse = "a"
 
 -- Sync clipboard between OS and Neovim.
---  Schedule the setting after `UiEnter` because it can increase startup-time.
+--  Schedule the setting after `UIEnter` because it can increase startup-time.
 --  See `:help 'clipboard'`
 vim.schedule(function()
   vim.opt.clipboard = "unnamedplus"
@@ -81,7 +81,7 @@ vim.opt.foldlevelstart = 99
 -- Use indent folds by default.
 vim.opt.foldmethod = "indent"
 
--- Case-insensitive searching unless \C or one or more capital letters in the
+-- Case-insensitive searching unless `\C` or one or more capital letters in the
 -- search term.
 vim.opt.ignorecase = true
 vim.opt.smartcase = true

@@ -4,6 +4,7 @@
 -- General:
 --  - L = [L]azy plugin manager
 --  - S = [s]ave buffer
+--  - Q = [q]uit
 --  - <esc> = clear search highlights
 --  - u = [u]ndo
 --  - <C-r> = [r]edo
@@ -18,11 +19,11 @@
 --  - <C-s/v/t/z/x/w> = perform window action
 --  - <C-h/j/k/l> = navigate panes across Vim and `tmux`
 --  - <M-h/j/k/l/=> = resize panes across Vim and `tmux`
---  - Q = [q]uit all
 -- Terminal:
 --  - t = open [t]erminal
 --  - <C-e> = [e]xit terminal mode
 -- Session:
+--  - ss = [s]ession [s]earch
 --  - sS = [s]ession [s]ave
 --  - sD = [s]ession [d]elete
 -- Explorer:
@@ -34,7 +35,7 @@
 --  - <esc> = [e]xit
 --  - <C-\> = show keymap help
 -- Search:
---  - s + p/s/h/k/f/r/c/g/d/w// = [s]earch with picker
+--  - s + p/h/k/f/r/c/g/d/w// = [s]earch with picker
 --  - <C-j/k> = select next / previous item
 --  - <C-f> = [f]lash jump
 --  - <C-u/d> = scroll preview [u]p / [d]own
@@ -74,6 +75,7 @@ end
 
 noremap("n", "L", "<cmd>Lazy<CR>", "Launch [L]azy plugin manager")
 noremap("n", "S", "<cmd>write<CR>", "[S]ave buffer")
+noremap("n", "Q", "<cmd>quitall<CR>", "[Q]uit")
 noremap("n", "<esc>", "<cmd>nohlsearch<CR>", "Clear search highlights")
 
 noremap("n", "<C-s>", "<cmd>split<CR>", "[S]plit window horizontally")
@@ -83,7 +85,6 @@ noremap("n", "<C-z>", "<cmd>only<CR>", "Close all windows except current one")
 noremap("n", "<C-x>", "<cmd>quit<CR>", "Close window")
 noremap("n", "<C-w>", "<cmd>tabclose<CR>", "Close tab")
 noremap("n", "<M-=>", "<C-w>=", "Resize all windows equally")
-noremap("n", "Q", "<cmd>quitall<CR>", "Quit")
 
 noremap("n", "t", "<cmd>terminal<CR>", "Open [T]erminal")
 noremap("t", "<C-e>", "<C-\\><C-n>", "[E]xit terminal mode")

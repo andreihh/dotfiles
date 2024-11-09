@@ -9,7 +9,7 @@ return { -- Session management
     {
       "ss",
       "<cmd>Autosession search<CR>",
-      desc = "[S]earch [S]ession",
+      desc = "[S]ession [S]earch",
     },
     {
       "sD",

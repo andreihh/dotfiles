@@ -80,4 +80,6 @@ vim.list_extend(M.ensure_installed, {
   "shellcheck", -- `bashls` integrates with `shellcheck` if installed
 })
 
+-- Global LSP options: servers, formatters, linters, tools to install, etc. Must
+-- be defined. Fields may be overridden.
 vim.g.lsp_opts = M
