@@ -7,7 +7,7 @@
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
 echo "Installing Snap..."
-sudo apt-get install snapd
+sudo apt install snapd
 
 echo "Refreshing Snap packages..."
 sudo snap refresh

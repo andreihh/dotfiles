@@ -14,7 +14,7 @@ readonly VIM_DIR="${HOME}/.local/src/vim"
 echo "Installing Vim..."
 
 echo "Installing Vim build dependencies..."
-sudo apt-get install libncurses-dev
+sudo apt install libncurses-dev
 
 echo "Cleaning up prior Vim installation..."
 rm -rf "${VIM_DIR}"

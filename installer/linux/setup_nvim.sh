@@ -11,7 +11,7 @@ readonly NVIM_DIR="${HOME}/.local/src/nvim"
 echo "Installing Neovim..."
 
 echo "Installing Neovim build dependencies..."
-sudo apt-get install -y ninja-build gettext cmake unzip curl build-essential
+sudo apt install -y ninja-build gettext cmake unzip curl build-essential
 
 echo "Cleaning up prior Neovim installation..."
 rm -rf "${NVIM_DIR}"

@@ -26,8 +26,8 @@ shopt -s nocasematch
 case "${OSTYPE}" in
   linux*)
     os_type="linux"
-    installer="sudo apt-get -y install"
-    updater="sudo apt-get update"
+    installer="sudo apt install -y"
+    updater="sudo apt update -y"
     ;;
   darwin*)
     os_type="macos"
