@@ -55,3 +55,6 @@ export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
 
 # Export Go path.
 export GOPATH="${XDG_DATA_HOME}/go"
+
+# Export Cargo path.
+export CARGO_HOME="${XDG_DATA_HOME}/cargo"
