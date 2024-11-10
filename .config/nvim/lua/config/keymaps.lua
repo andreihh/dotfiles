@@ -20,6 +20,7 @@
 --  - <C-h/j/k/l> = navigate panes across Vim and `tmux`
 --  - <M-h/j/k/l/=> = resize panes across Vim and `tmux`
 -- Terminal:
+--  - X = open terminal
 --  - <C-e> = [e]xit terminal mode
 -- Session:
 --  - ss = [s]ession [s]earch
@@ -85,6 +86,7 @@ noremap("n", "<C-x>", "<cmd>quit<CR>", "Close window")
 noremap("n", "<C-w>", "<cmd>tabclose<CR>", "Close tab")
 noremap("n", "<M-=>", "<C-w>=", "Resize all windows equally")
 
+noremap("n", "X", "<cmd>terminal<CR>", "Open terminal")
 noremap("t", "<C-e>", "<C-\\><C-n>", "[E]xit terminal mode")
 
 for i = 1, 9 do
