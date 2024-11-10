@@ -1,5 +1,7 @@
 return { -- Better navigation motions
   "folke/flash.nvim",
+  -- Ensure enhanced `fFtT;,` motions are configured.
+  event = "VeryLazy",
   keys = {
     {
       "<C-f>",
@@ -8,12 +10,6 @@ return { -- Better navigation motions
       end,
       desc = "Trigger multi-window [F]lash",
     },
-    { "f", mode = { "n", "v" } },
-    { "F", mode = { "n", "v" } },
-    { "t", mode = { "n", "v" } },
-    { "T", mode = { "n", "v" } },
-    { ";", mode = { "n", "v" } },
-    { ",", mode = { "n", "v" } },
   },
   opts = {
     modes = {

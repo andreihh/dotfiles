@@ -13,8 +13,9 @@
 --  - gx = [g]o to URI with e[x]ternal system handler
 --  - gb = [g]o to [b]lame
 --  - gG = [g]o to Lazy[g]it
---  - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
 --  - [c / ]c / [C / ]C = jump to previous / next / first / last [c]hanged hunk
+--  - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
+--  - f/F/t/T/;/, = enhanced [F]lash motions
 --  - <C-f> = trigger multi-window [F]lash
 --  - <C-\> = show keymap help
 -- Window:
