@@ -9,6 +9,24 @@ vim.g.tmux_resizer_resize_count = 5
 vim.g.tmux_resizer_vertical_resize_count = 5
 
 return { -- Better `tmux` integration
-  "christoomey/vim-tmux-navigator",
-  "RyanMillerC/better-vim-tmux-resizer",
+  {
+    "christoomey/vim-tmux-navigator",
+    cmd = {
+      "TmuxNavigateLeft",
+      "TmuxNavigateDown",
+      "TmuxNavigateUp",
+      "TmuxNavigateRight",
+    },
+    keys = { "<C-h>", "<C-j>", "<C-k>", "<C-l>" },
+  },
+  {
+    "RyanMillerC/better-vim-tmux-resizer",
+    cmd = {
+      "TmuxResizeLeft",
+      "TmuxResizeDown",
+      "TmuxResizeUp",
+      "TmuxResizeRight",
+    },
+    keys = { "<M-h>", "<M-j>", "<M-k>", "<M-l>" },
+  },
 }
