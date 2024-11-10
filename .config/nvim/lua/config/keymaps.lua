@@ -49,6 +49,12 @@
 --  - <C-o/s/v/t> = open selected item in window
 --  - <esc> = [e]xit
 --  - <C-\> = show keymap help
+-- Input:
+--  - <C-j/k> = select previous / next from history
+--  - <C-h> = backspace
+--  - <tab> = accept input
+--  - <esc> = [e]xit from insert / visual / normal mode
+--  - <C-e> = [e]xit
 -- Completion:
 --  - <C-space> = trigger completion
 --  - <C-j/k> = select next / previous item
