@@ -5,5 +5,5 @@ This product includes software developed by Andrei Heidelbacher
 (andrei.heidelbacher@gmail.com).
 
 This product contains parts of the following software:
-- /etc/skel/.bash{rc,_profile,_logout} files bundled with Ubuntu
+- /etc/skel/{.profile,.bashrc,.bash_logout} files bundled with Ubuntu
 - kickstart.nvim configuration (https://github.com/nvim-lua/kickstart.nvim)
