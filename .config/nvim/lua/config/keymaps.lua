@@ -11,8 +11,8 @@
 --  - g + 1..9 = [g]o to tab 1..9
 --  - gj / gk = [g]o to previous / next location
 --  - gx = [g]o to URI with e[x]ternal system handler
---  - gb = [g]o to [b]lame
---  - gG = [g]o to Lazy[g]it
+--  - gb / gG = [g]o to [b]lame / Lazy[g]it
+--    - q = [q]uit
 --  - [c / ]c / [C / ]C = jump to previous / next / first / last [c]hanged hunk
 --  - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
 --  - f/F/t/T/;/, = enhanced [F]lash motions
