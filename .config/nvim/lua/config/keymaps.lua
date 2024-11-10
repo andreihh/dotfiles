@@ -12,6 +12,7 @@
 --  - gj / gk = [g]o to previous / next location
 --  - gx = [g]o to URI with e[x]ternal system handler
 --  - gb = [g]o to [b]lame
+--  - gG = [g]o to Lazy[g]it
 --  - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
 --  - [c / ]c / [C / ]C = jump to previous / next / first / last [c]hanged hunk
 --  - <C-f> = trigger multi-window [F]lash

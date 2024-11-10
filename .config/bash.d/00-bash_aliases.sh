@@ -36,5 +36,8 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
+# Launch Lazygit.
+alias lgit='lazygit'
+
 # Attach to the `work` `tmux` session, or create it if it doesn't exist.
 alias tmuxw='tmux new -A -s work'

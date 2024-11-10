@@ -18,13 +18,6 @@ return {
       desc = "Jump to next [R]eference",
     },
     {
-      "gb",
-      function()
-        Snacks.git.blame_line()
-      end,
-      desc = "[G]oto Git [B]lame",
-    },
-    {
       "<leader>H",
       function()
         Snacks.toggle.inlay_hints():toggle()
@@ -37,6 +30,20 @@ return {
         Snacks.toggle.treesitter():toggle()
       end,
       desc = "Toggle [T]reesitter",
+    },
+    {
+      "gb",
+      function()
+        Snacks.git.blame_line()
+      end,
+      desc = "[G]oto Git [B]lame",
+    },
+    {
+      "gG",
+      function()
+        Snacks.lazygit.open()
+      end,
+      desc = "[G]oto Lazy[G]it",
     },
   },
   dependencies = {

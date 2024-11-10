@@ -11,6 +11,7 @@ readonly DOTFILES_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}/dotfiles"
 readonly INSTALLER_DIR="${DOTFILES_HOME}/installer"
 readonly FZF_INSTALLER="${INSTALLER_DIR}/linux/setup_fzf.sh"
 readonly NVIM_INSTALLER="${INSTALLER_DIR}/linux/setup_nvim.sh"
+readonly LAZYGIT_INSTALLER="${INSTALLER_DIR}/linux/setup_lazygit.sh"
 
 echo "Updating packages..."
 
@@ -20,6 +21,7 @@ command -v apt &> /dev/null \
   && sudo apt autoclean -y \
   && "${FZF_INSTALLER}" \
   && "${NVIM_INSTALLER}" \
+  && "${LAZYGIT_INSTALLER}" \
   || echo "Package manager 'apt' not found, skipping..."
 
 command -v brew &> /dev/null \
