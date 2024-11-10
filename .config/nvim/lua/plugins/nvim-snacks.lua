@@ -47,8 +47,7 @@ return {
     -- Disable Treesitter, LSP, folds, undo, etc. on big files.
     bigfile = {
       -- Mark files over 2 MiB as big.
-      -- size = 2 * 1024 * 1024,
-      size = 2,
+      size = 2 * 1024 * 1024,
       setup = function(ctx)
         vim.opt_local.swapfile = false
         vim.opt_local.foldmethod = "manual"
