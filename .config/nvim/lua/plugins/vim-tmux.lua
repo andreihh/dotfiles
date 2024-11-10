@@ -1,8 +1,14 @@
+-- Use custom navigation keymaps.
+vim.g.tmux_navigator_no_mappings = 1
+
 -- Write all buffers before navigating outside of Neovim.
 vim.g.tmux_navigator_save_on_switch = 1
 
 -- If Neovim is the zoomed pane, wrap around Neovim instead of unzooming.
 vim.g.tmux_navigator_disable_when_zoomed = 1
+
+-- Use custom resizing keymaps.
+vim.g.tmux_resizer_no_mappings = 1
 
 -- Windows should be resized in increments of 5.
 vim.g.tmux_resizer_resize_count = 5
@@ -16,8 +22,14 @@ return { -- Better `tmux` integration
       "TmuxNavigateDown",
       "TmuxNavigateUp",
       "TmuxNavigateRight",
+      "TmuxNavigatePrevious",
     },
-    keys = { "<C-h>", "<C-j>", "<C-k>", "<C-l>" },
+    keys = {
+      { "<C-h>", "<cmd>TmuxNavigateLeft<CR>", desc = "Navigate window left" },
+      { "<C-j>", "<cmd>TmuxNavigateDown<CR>", desc = "Navigate window down" },
+      { "<C-k>", "<cmd>TmuxNavigateUp<CR>", desc = "Navigate window up" },
+      { "<C-l>", "<cmd>TmuxNavigateRight<CR>", desc = "Navigate window right" },
+    },
   },
   {
     "RyanMillerC/better-vim-tmux-resizer",
@@ -27,6 +39,11 @@ return { -- Better `tmux` integration
       "TmuxResizeUp",
       "TmuxResizeRight",
     },
-    keys = { "<M-h>", "<M-j>", "<M-k>", "<M-l>" },
+    keys = {
+      { "<M-h>", "<cmd>TmuxResizeLeft<CR>", desc = "Resize window left" },
+      { "<M-j>", "<cmd>TmuxResizeDown<CR>", desc = "Resize window down" },
+      { "<M-k>", "<cmd>TmuxResizeUp<CR>", desc = "Resize window up" },
+      { "<M-l>", "<cmd>TmuxResizeRight<CR>", desc = "Resize window right" },
+    },
   },
 }
