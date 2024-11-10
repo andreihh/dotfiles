@@ -21,7 +21,7 @@ return { -- File explorer
       ["gp"] = "actions.parent",
       ["gx"] = "actions.open_external",
       ["gh"] = "actions.toggle_hidden",
-      ["<esc>"] = { "actions.close", mode = "n" },
+      ["<C-e>"] = "actions.close",
       ["<C-\\>"] = "actions.show_help",
     },
   },

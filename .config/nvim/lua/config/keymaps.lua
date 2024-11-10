@@ -35,11 +35,12 @@
 --  - gp = [g]o to [p]arent directory
 --  - gx = [g]o to URI with e[x]ternal system handler
 --  - gh = toggle [g]o to [h]idden files
---  - <esc> = [e]xit
+--  - <C-e> = [e]xit
 --  - <C-\> = show keymap help
 -- Search:
 --  - s + p/h/k/f/r/c/g/d/w// = [s]earch with picker
 --  - <C-j/k> = select next / previous item
+--  - <C-h> = bacpskace
 --  - <C-f> = [f]lash jump
 --  - <C-u/d> = scroll preview [u]p / [d]own
 --  - <C-l> = toggle wrapping [l]ong preview lines
