@@ -10,7 +10,7 @@ vim.g.tmux_navigator_disable_when_zoomed = 1
 -- Use custom resizing keymaps.
 vim.g.tmux_resizer_no_mappings = 1
 
--- Windows should be resized in increments of 5.
+-- Resize windows in increments of 5.
 vim.g.tmux_resizer_resize_count = 5
 vim.g.tmux_resizer_vertical_resize_count = 5
 
