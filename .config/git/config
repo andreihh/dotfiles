@@ -10,6 +10,9 @@
 [diff]
   tool = nvimdiff
 
+[difftool]
+  prompt = false
+
 [credential "https://github.com"]
 	helper = store
 
@@ -19,4 +22,4 @@
 	ar = add -A
 	c = commit
 	a = git commit --amend
-	d = diff
+	d = difftool
