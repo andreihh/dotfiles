@@ -8,7 +8,7 @@
 --  - <esc> = clear search highlights
 --  - u = [u]ndo
 --  - <C-r> = [r]edo
---  - g + 1..9 = [g]o to tab 1..9
+--  - g1 / ... / g9 = [g]o to tab 1..9
 --  - gj / gk = [g]o to previous / next location
 --  - gx = [g]o to URI with e[x]ternal system handler
 --  - gb / gG = [g]o to [b]lame / Lazy[g]it
@@ -29,14 +29,6 @@
 --  - ss = [s]ession [s]earch
 --  - sS = [s]ession [s]ave
 --  - sD = [s]ession [d]elete
--- Explorer:
---  - <C-o> = [o]pen / refresh file explorer
---  - gf = [g]o to [f]ile / [f]older
---  - gp = [g]o to [p]arent directory
---  - gx = [g]o to URI with e[x]ternal system handler
---  - gh = toggle [g]o to [h]idden files
---  - <C-e> = [e]xit
---  - <C-\> = show keymap help
 -- Search:
 --  - s + p/h/k/f/r/c/g/d/w// = [s]earch with picker
 --  - <C-j/k> = select next / previous item
@@ -47,13 +39,21 @@
 --  - <tab> = accept selected / toggled items
 --  - <S-tab> = toggle selected item
 --  - <C-o/s/v/t> = open selected item in window
---  - <esc> = [e]xit
+--  - <esc> = exit
+--  - <C-\> = show keymap help
+-- Explorer:
+--  - <C-o> = [o]pen / refresh file explorer
+--  - gf = [g]o to [f]ile / [f]older
+--  - gp = [g]o to [p]arent directory
+--  - gx = [g]o to URI with e[x]ternal system handler
+--  - gh = toggle [g]o to [h]idden files
+--  - <C-e> = [e]xit
 --  - <C-\> = show keymap help
 -- Input:
 --  - <C-j/k> = select previous / next from history
 --  - <C-h> = backspace
 --  - <tab> = accept input
---  - <esc> = [e]xit from insert / visual / normal mode
+--  - <esc> = exit from insert / visual / normal mode
 --  - <C-e> = [e]xit
 -- Completion:
 --  - <C-space> = trigger completion
