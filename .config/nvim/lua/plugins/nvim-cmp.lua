@@ -122,6 +122,9 @@ return { -- Autocompletion
       },
       formatting = {
         format = {
+          -- Trim long suggestions.
+          maxwidth = { menu = 30, abbr = 50 },
+          ellipsis_char = "…",
           -- Icons require a Nerd Font.
           mode = vim.g.nerd_font_enabled and "symbol_text" or "text",
           -- Set tags to highlight sources in the completion menu.
