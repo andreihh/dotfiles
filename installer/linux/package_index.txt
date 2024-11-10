@@ -1,4 +1,4 @@
-git; stow; curl; wget; zip; unzip; tar; make; gnupg; firefox;
+git; stow; curl; wget; zip; gzip; unzip; tar; make; gnupg; firefox;
 xterm; tmux; lm-sensors; xsel; wl-clipboard; urlscan; vim; vim.gtk3;
 fd-find; ripgrep; bat; tree; calc; dos2unix;
 fontconfig; tlp; linux-tools-common; linux-tools-generic;
