@@ -88,6 +88,7 @@ Terminal settings:
 - Open clipboard selection with external system handler: `A-o`
 - Close window: `C-q`
 - Send interrupt signal: `C-c`
+- Switch `tmux` tab: `C-1` / ... / `C-9`
 - Swap `Cmd` with `Ctrl` in `iTerm2`
 - Do not remap modifiers `Cmd-[S]-Tab`, `` Cmd-` ``, `Cmd-q` in `iTerm2`
 
