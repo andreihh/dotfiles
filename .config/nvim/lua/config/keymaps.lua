@@ -99,7 +99,7 @@ noremap("n", "X", "<cmd>terminal<CR>", "Open terminal")
 noremap("t", "<C-e>", "<C-\\><C-n>", "[E]xit terminal mode")
 
 for i = 1, 9 do
-  noremap("n", "g" .. i, i .. "gt", "[G]o to tab number [" .. i .. "]")
+  noremap("n", "g" .. i, i .. "gt", "[G]oto tab " .. i)
 end
 
 noremap("n", "gj", "<C-o>", "[G]oto previous location")
