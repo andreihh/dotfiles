@@ -243,7 +243,7 @@ let g:netrw_liststyle = 1
 " - dd (delete node)
 " - gx (open with external handler)
 " - gh (toggle go to hidden files)
-" - <esc> (exit file explorer)
+" - <C-e> (exit file explorer)
 nnoremap <C-o> :Explore<CR>
 au filetype netrw map <buffer> <C-o> <C-l>
 au filetype netrw map <buffer> gp -
@@ -253,10 +253,10 @@ au filetype netrw map <buffer> af %
 au filetype netrw map <buffer> ad d
 au filetype netrw map <buffer> dd D
 au filetype netrw map <buffer> gx x
-au filetype netrw map <buffer> <esc> :Rexplore<CR>
+au filetype netrw map <buffer> <C-e> :Rexplore<CR>
 
 " Navigation actions:
-" - g1 /g2 / ... / g9 (go to tab)
+" - g1 / g2 / ... / g9 (go to tab)
 " - gj / gk (go to previous / next location)
 " - gf (go to file under cursor or to selected file)
 " - gx (open URI under cursor or selected URI)
