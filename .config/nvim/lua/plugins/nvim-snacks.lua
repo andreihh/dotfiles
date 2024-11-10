@@ -63,6 +63,8 @@ return {
         vim.opt_local.list = false
         vim.schedule(function()
           vim.bo[ctx.buf].syntax = ctx.ft
+          vim.bo[ctx.buf].commentstring =
+            vim.filetype.get_option(ctx.ft, "commentstring")
         end)
       end,
     },
