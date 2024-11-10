@@ -30,6 +30,7 @@ local M = {
         },
       },
     },
+    vimls = {},
     bashls = {},
     pyright = {},
     clangd = {},
@@ -46,6 +47,8 @@ local M = {
     java = { "google-java-format" },
     kotlin = { "ktfmt" },
     markdown = { "prettier" },
+    json = { "prettier" },
+    yaml = { "prettier" },
   },
   -- Configure formatters that don't support a config file to use Google style.
   formatter_opts = {
