@@ -1,4 +1,4 @@
-return {
+return { -- Highlight and jump to references, Lazygit, handle big files, etc.
   "folke/snacks.nvim",
   priority = 1000,
   lazy = false,

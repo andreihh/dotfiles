@@ -68,7 +68,7 @@
 --  - <leader>h / <C-h> / <leader>D = show (signature) [h]elp / [d]iagnostic
 --    - <leader>h / <C-h> / <leader>D = focus float
 --    - q = [q]uit float if focused
---  - <leader> + f/r/a/c/-/=/l/L/H/T = perform code action
+--  - <leader> + -/=/f/r/a/c/l/L/H/T = perform code action
 
 local function map(mode, lhs, rhs, desc, opts)
   opts = opts or {}
@@ -129,7 +129,9 @@ noremap("n", "<leader>h", vim.lsp.buf.hover, "Show [H]elp")
 noremap("i", "<C-h>", vim.lsp.buf.signature_help, "Show signature [H]elp")
 noremap("n", "<leader>D", vim.diagnostic.open_float, "Show [D]iagnostic")
 
+noremap({ "n", "v" }, "<leader>-", "<cmd>:normal gcc<CR>", "Toggle comment")
 noremap("n", "<leader>f", "za", "Toggle [F]old under cursor")
+
 noremap("n", "<leader>r", vim.lsp.buf.rename, "[R]ename")
 noremap("n", "<leader>a", vim.lsp.buf.code_action, "Code [A]ction")
 noremap("n", "<leader>L", vim.diagnostic.reset, "Clear diagnostics")

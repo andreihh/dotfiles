@@ -1,4 +1,4 @@
--- Use `treesitter` folds.
+-- Use Treesitter folds.
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
@@ -47,5 +47,10 @@ return {
       )
     end,
     opts = { enable = false },
+  },
+  { -- Better Treesitter comment strings
+    "folke/ts-comments.nvim",
+    event = "VeryLazy",
+    config = true,
   },
 }
