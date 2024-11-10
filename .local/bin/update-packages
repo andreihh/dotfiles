@@ -19,8 +19,8 @@ command -v apt &> /dev/null \
   && sudo apt update -y \
   && sudo apt upgrade --autoremove -y \
   && sudo apt autoclean -y \
-  && "${FZF_INSTALLER}" \
   && "${NVIM_INSTALLER}" \
+  && "${FZF_INSTALLER}" \
   && "${LAZYGIT_INSTALLER}" \
   || echo "Package manager 'apt' not found, skipping..."
 
