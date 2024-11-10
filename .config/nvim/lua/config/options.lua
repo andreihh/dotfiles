@@ -100,6 +100,9 @@ vim.opt.undofile = true
 -- Use POSIX shell syntax highlighting.
 vim.g.is_posix = 1
 
+-- Don't emit completion messages.
+vim.opt.shortmess:append("c")
+
 -- Neovim doesn't automatically enable `termguicolors` inside `tmux`, even if it
 -- has true color capabilities.
 local is_tmux = string.find(vim.env.TERM, "tmux")
