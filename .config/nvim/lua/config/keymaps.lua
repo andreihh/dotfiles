@@ -65,10 +65,9 @@
 -- LSP:
 --  - g + d/D/i/r = perform code navigation
 --  - [d / ]d / [w / ]w / [e / ]e = jump to previous / next diagnostic severity
---  - <leader> + h/D = show [h]elp / [d]iagnostic
---    - <leader> + h/D = focus [h]elp / [d]iagnostic
---    - q = [q]uit help / diagnostic if focused
---  - <C-s> = show [s]ignature help
+--  - <leader>h / <C-h> / <leader>D = show (signature) [h]elp / [d]iagnostic
+--    - <leader>h / <C-h> / <leader>D = focus float
+--    - q = [q]uit float if focused
 --  - <leader> + f/r/a/c/-/=/l/L/H/T = perform code action
 
 local function map(mode, lhs, rhs, desc, opts)
@@ -127,8 +126,8 @@ noremap("n", "]w", function()
 end, "Jump to next [W]arning")
 
 noremap("n", "<leader>h", vim.lsp.buf.hover, "Show [H]elp")
+noremap("i", "<C-h>", vim.lsp.buf.signature_help, "Show signature [H]elp")
 noremap("n", "<leader>D", vim.diagnostic.open_float, "Show [D]iagnostic")
-noremap("i", "<C-s>", vim.lsp.buf.signature_help, "Show [S]ignature help")
 
 noremap("n", "<leader>f", "za", "Toggle [F]old under cursor")
 noremap("n", "<leader>r", vim.lsp.buf.rename, "[R]ename")

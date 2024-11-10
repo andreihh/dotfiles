@@ -90,9 +90,12 @@ return { -- Autocompletion
           feedkey("<plug>(vsnip-expand-or-jump)")
         end
       end, { "i", "s" }),
-      ["<C-h>"] = cmp.mapping(function()
+      ["<C-h>"] = cmp.mapping(function(fallback)
         if vim.fn["vsnip#available"](-1) == 1 then
           feedkey("<plug>(vsnip-jump-prev)")
+        elseif vim.fn["vsnip#available"](1) ~= 1 then
+          -- Use fallback if we can't move in the snippet in either direction.
+          fallback()
         end
       end, { "i", "s" }),
     }
