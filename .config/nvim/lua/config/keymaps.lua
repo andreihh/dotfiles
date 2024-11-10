@@ -11,6 +11,7 @@
 --  - g + 1..9 = [g]o to tab 1..9
 --  - gj / gk = [g]o to previous / next location
 --  - gx = [g]o to URI with e[x]ternal system handler
+--  - gb = [g]o to [b]lame
 --  - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
 --  - [c / ]c / [C / ]C = jump to previous / next / first / last [c]hanged hunk
 --  - <C-f> = trigger multi-window [F]lash
@@ -58,8 +59,8 @@
 --  - <leader> + h/D = show [h]elp / [d]iagnostic
 --    - <leader> + h/D = focus [h]elp / [d]iagnostic
 --    - q = [q]uit help / diagnostic if focused
---  - <C-h> = show [s]ignature help
---  - <leader> + f/r/a/H/c/-/=/l/L = perform code action
+--  - <C-s> = show [s]ignature help
+--  - <leader> + f/r/a/c/-/=/l/L/H/T = perform code action
 
 local function map(mode, lhs, rhs, desc, opts)
   opts = opts or {}
@@ -119,9 +120,6 @@ end, "Jump to next [W]arning")
 noremap("n", "<leader>h", vim.lsp.buf.hover, "Show [H]elp")
 noremap("n", "<leader>D", vim.diagnostic.open_float, "Show [D]iagnostic")
 noremap("i", "<C-s>", vim.lsp.buf.signature_help, "Show [S]ignature help")
-noremap("n", "<leader>H", function()
-  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-end, "Toggle inlay [H]ints")
 
 noremap("n", "<leader>f", "za", "Toggle [F]old under cursor")
 noremap("n", "<leader>r", vim.lsp.buf.rename, "[R]ename")
