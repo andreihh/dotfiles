@@ -1,7 +1,3 @@
--- Use Treesitter folds.
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-
 return {
   { -- Highlight, edit, and navigate code
     "nvim-treesitter/nvim-treesitter",
@@ -33,6 +29,11 @@ return {
       },
       indent = { enable = true, disable = { "ruby" } },
     },
+    init = function()
+      -- Use Treesitter folds.
+      vim.opt.foldmethod = "expr"
+      vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+    end,
   },
   { -- Show context
     "nvim-treesitter/nvim-treesitter-context",
