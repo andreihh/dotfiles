@@ -86,6 +86,7 @@ noremap("n", "L", "<cmd>Lazy<CR>", "Launch [L]azy plugin manager")
 noremap("n", "S", "<cmd>write<CR>", "[S]ave buffer")
 noremap("n", "Q", "<cmd>quitall<CR>", "[Q]uit")
 noremap("n", "<esc>", "<cmd>nohlsearch<CR>", "Clear search highlights")
+noremap("n", "s", "<nop>", "Disable [S]ubstitute to allow search chaining")
 
 noremap("n", "<C-s>", "<cmd>split<CR>", "[S]plit window horizontally")
 noremap("n", "<C-v>", "<cmd>vsplit<CR>", "Split window [V]ertically")

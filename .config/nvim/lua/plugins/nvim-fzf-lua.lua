@@ -1,6 +1,3 @@
--- Disable [S]ubstitute to allow search chaining.
-vim.keymap.set("n", "s", "<nop>")
-
 return { -- Fuzzy Finder (files, lsp, etc)
   "ibhagwan/fzf-lua",
   event = "VeryLazy", -- Ensure `vim.ui.select` registration
