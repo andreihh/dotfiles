@@ -2,7 +2,7 @@ return { -- Decorate tabline with tab index, buffer flags, etc.
   "nanozuki/tabby.nvim",
   dependencies = {
     -- Icons require a Nerd Font.
-    { "nvim-tree/nvim-web-devicons", cond = vim.g.nerd_font_enabled },
+    { "nvim-tree/nvim-web-devicons", cond = NerdFontEnabled() },
   },
   opts = {
     line = function(line)
@@ -13,7 +13,7 @@ return { -- Decorate tabline with tab index, buffer flags, etc.
         tab = "TabLine",
       }
       -- Icons require a Nerd Font.
-      local icons = vim.g.nerd_font_enabled
+      local icons = NerdFontEnabled()
           and {
             vim = "  ",
             seg_start = "",
@@ -51,6 +51,6 @@ return { -- Decorate tabline with tab index, buffer flags, etc.
       }
     end,
     -- Icons require a Nerd Font.
-    option = { nerdfont = vim.g.nerd_font_enabled },
+    option = { nerdfont = NerdFontEnabled() },
   },
 }

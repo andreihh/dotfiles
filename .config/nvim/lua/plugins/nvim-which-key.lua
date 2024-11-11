@@ -14,11 +14,11 @@ return { -- Useful plugin to show pending keybinds
   opts = {
     icons = {
       -- Icons require a Nerd Font.
-      mappings = vim.g.nerd_font_enabled,
+      mappings = NerdFontEnabled(),
       -- If you are using a Nerd Font: set icons.keys to an empty table which
       -- will use the default whick-key.nvim defined Nerd Font icons, otherwise
       -- define a string table.
-      keys = vim.g.nerd_font_enabled and {} or {
+      keys = NerdFontEnabled() and {} or {
         Up = "<Up> ",
         Down = "<Down> ",
         Left = "<Left> ",
