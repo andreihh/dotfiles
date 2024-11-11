@@ -48,7 +48,7 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
   },
   dependencies = {
     -- Icons require a Nerd Font.
-    { "nvim-tree/nvim-web-devicons", enabled = vim.g.nerd_font_enabled },
+    { "nvim-tree/nvim-web-devicons", cond = vim.g.nerd_font_enabled },
   },
   opts = {
     -- Disable Treesitter, LSP, folds, undo, etc. on big files.

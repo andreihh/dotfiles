@@ -70,7 +70,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
   },
   dependencies = {
     -- Icons require a Nerd Font.
-    { "nvim-tree/nvim-web-devicons", enabled = vim.g.nerd_font_enabled },
+    { "nvim-tree/nvim-web-devicons", cond = vim.g.nerd_font_enabled },
   },
   opts = {
     keymap = {
