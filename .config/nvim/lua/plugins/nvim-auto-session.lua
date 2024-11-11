@@ -1,8 +1,3 @@
--- Session options recommended for the `auto-session` plugin.
---  Don't save unloaded and hidden buffers.
-vim.o.sessionoptions =
-  "blank,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
-
 return { -- Session management
   "rmagatti/auto-session",
   lazy = false, -- Ensure auto-loading

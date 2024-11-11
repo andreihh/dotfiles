@@ -103,6 +103,13 @@ vim.g.is_posix = 1
 -- Don't emit completion messages.
 vim.opt.shortmess:append("c")
 
+-- What to store in a session. Don't save:
+-- - unloaded and hidden buffers
+-- - global options and variables
+-- - session directory
+vim.o.sessionoptions =
+  "blank,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
 -- Neovim doesn't automatically enable `termguicolors` inside `tmux`, even if it
 -- has true color capabilities.
 local is_tmux = string.find(vim.env.TERM, "tmux")
