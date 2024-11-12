@@ -44,10 +44,11 @@ repository can be provided in:
 - `~/.config/profile.d/`
 - `~/.config/bash.d/`
 - `~/.local/bin/`
+- `~/.config/nvim/lua/config/overrides.lua`
 
 Example `~/.bash.d/10-extras.sh`:
 
-```
+```bash
 # extras.sh: exports device-specific settings.
 
 # Export Git credentials.
@@ -57,6 +58,55 @@ export GIT_AUTHOR_EMAIL="andrei.heidelbacher@gmail.com"
 export GIT_COMMITTER_EMAIL="${GIT_AUTHOR_EMAIL}"
 
 ...
+```
+
+Example `~/.config/nvim/lua/config/overrides.lua`:
+
+```lua
+-- [[ Config overrides ]]
+
+local ensure_installed = vim.g.lsp_opts.ensure_installed or {}
+vim.list_extend(ensure_installed, {
+    "pyright",
+    "clangd",
+    "jdtls",
+    "kotlin_language_server",
+    "pyink",
+    "clang-format",
+    "google-java-format",
+    "ktfmt",
+    "prettier",
+    "pylint",
+    -- `clangd` embeds `clang-tidy`
+    "checkstyle",
+})
+
+vim.g.lsp_opts = vim.tbl_deep_extend("force", vim.g.lsp_opts, {
+  servers = {
+    pyright = {},
+    clangd = {},
+    jdtls = {},
+    kotlin_language_server = {},
+  },
+  formatters_by_ft = {
+    python = { "pyink" },
+    cpp = { "clang-format" },
+    java = { "google-java-format" },
+    kotlin = { "ktfmt" },
+    markdown = { "prettier" },
+    json = { "prettier" },
+    yaml = { "prettier" },
+  },
+  formatter_opts = {
+    ktfmt = { prepend_args = { "--google-style" } },
+  },
+  linters_by_ft = {
+    python = { "pylint" },
+    -- `clangd` embeds `clang-tidy`
+    java = { "checkstyle" },
+  },
+  ensure_installed = ensure_installed,
+})
 ```
 
 ## Hotkeys
