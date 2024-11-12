@@ -19,7 +19,7 @@ return {
       -- Autoinstall languages that are not installed.
       auto_install = true,
       highlight = {
-        enable = true,
+        enable = vim.g.lsp_opts.treesitter_enabled == true,
         -- Some languages depend on vim's regex highlighting system (such as
         -- Ruby) for indent rules.
         --  If you are experiencing weird indenting issues, add the language to
@@ -27,16 +27,22 @@ return {
         --  for indent.
         additional_vim_regex_highlighting = { "ruby" },
       },
-      indent = { enable = true, disable = { "ruby" } },
+      indent = {
+        enable = vim.g.lsp_opts.treesitter_enabled == true,
+        disable = { "ruby" },
+      },
     },
     init = function()
-      -- Use Treesitter folds.
-      vim.opt.foldmethod = "expr"
-      vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+      if vim.g.lsp_opts.treesitter_enabled == true then
+        -- Use Treesitter folds.
+        vim.opt.foldmethod = "expr"
+        vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+      end
     end,
   },
   { -- Show context
     "nvim-treesitter/nvim-treesitter-context",
+    cond = vim.g.lsp_opts.treesitter_enabled == true,
     cmd = { "TSContextToggle", "TSContextEnable", "TSContextDisable" },
     init = function()
       -- Registering the command in `keys` leads to a failure when triggered.
@@ -51,6 +57,7 @@ return {
   },
   { -- Better Treesitter comment strings
     "folke/ts-comments.nvim",
+    cond = vim.g.lsp_opts.treesitter_enabled == true,
     event = "VeryLazy",
     config = true,
   },
