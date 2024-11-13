@@ -1,8 +1,9 @@
 return {
   { -- Highlight, edit, and navigate code
     "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
     main = "nvim-treesitter.configs",
+    build = ":TSUpdate",
+    event = "VeryLazy",
     dependencies = {
       { -- Add Treesitter text objects
         "nvim-treesitter/nvim-treesitter-textobjects",
@@ -81,7 +82,6 @@ return {
       end
     end,
   },
-  { -- Show context
   { -- Show current context
     "nvim-treesitter/nvim-treesitter-context",
     cond = vim.g.lsp_opts.treesitter_enabled == true,
