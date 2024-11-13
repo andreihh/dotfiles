@@ -2,18 +2,19 @@
 --  See `help mason-lspconfig-dynamic-server-setup`
 
 --- Global LSP options: servers, formatters, linters, tools to install, etc.
----  Must be defined and not `nil`. Fields may be overridden. Fields explicitly
----  unset / set to `nil` will default to empty values (empty table, `false`,
----  etc.), except for `bigfile_size`, which defaults to 1 MiB.
----  otherwise.
----@class LspOpts
----@field bigfile_size? number Big file size threshold in bytes. Default: 1 MiB
----@field treesitter_enabled? boolean Enable Treesitter
----@field servers? table<string, table> LSP server configurations
----@field formatters_by_ft? table<string, string[]> Formatters by filetype
----@field formatter_opts? table<string, table> Formatter options
----@field linters_by_ft? table<string, string[]> Linters by filetype
----@field ensure_installed? string[] List of tools to install
+---
+--- Must be defined and not `nil`. Fields may be overridden. Fields explicitly
+--- unset / set to `nil` will default to empty values (empty table, `false`,
+--- etc.), except for `bigfile_size`, which defaults to 1 MiB otherwise.
+---
+--- @class LspOpts
+--- @field bigfile_size? number Big file size threshold in bytes. Default: 1 MiB
+--- @field treesitter_enabled? boolean Enable Treesitter
+--- @field servers? table<string, table> LSP server configurations
+--- @field formatters_by_ft? table<string, string[]> Formatters by filetype
+--- @field formatters? table<string, table> Custom formatter configs
+--- @field linters_by_ft? table<string, string[]> Linters by filetype
+--- @field ensure_installed? string[] List of tools to install
 vim.g.lsp_opts = {
   -- The threshold size of a big file in bytes. If unset, defaults to 1 MiB.
   --  If a file exceeds this size, then Treesitter, LSP, folding, etc. will be
@@ -63,8 +64,8 @@ vim.g.lsp_opts = {
     sh = { "shfmt" },
   },
 
-  -- Configure formatters with custom options to achieve the desired style.
-  formatter_opts = {},
+  -- Configure custom formatters with options to achieve the desired style.
+  formatters = {},
 
   -- Enable the following linters.
   --  Add/remove desired linters here. They will be automatically installed.

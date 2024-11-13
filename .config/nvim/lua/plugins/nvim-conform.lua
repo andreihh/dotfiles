@@ -13,7 +13,7 @@ return { -- Formatting
   },
   opts = {
     notify_on_error = false,
-    formatters = vim.g.lsp_opts.formatter_opts or {},
+    formatters = vim.g.lsp_opts.formatters or {},
     formatters_by_ft = vim.g.lsp_opts.formatters_by_ft or {},
   },
 }

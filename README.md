@@ -97,7 +97,7 @@ vim.g.lsp_opts = vim.tbl_deep_extend("force", vim.g.lsp_opts, {
     json = { "prettier" },
     yaml = { "prettier" },
   },
-  formatter_opts = {
+  formatters = {
     ktfmt = { prepend_args = { "--google-style" } },
   },
   linters_by_ft = {

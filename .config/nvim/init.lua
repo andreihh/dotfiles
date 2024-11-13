@@ -9,7 +9,8 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 --- Returns if a Nerd Font is installed and selected in the terminal.
----@return boolean
+---
+--- @return boolean
 function _G.NerdFontEnabled()
   return vim.fn.empty(vim.env.NERD_FONT_ENABLED) == 0
 end
