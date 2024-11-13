@@ -7,12 +7,12 @@ alongside an installation script.
 
 To install the dotfiles, run one of the following commands:
 
-```
+```bash
 curl -Lo - https://raw.githubusercontent.com/andreihh/dotfiles/main/installer/install.sh \
   | bash
 ```
 
-```
+```bash
 wget -O - https://raw.githubusercontent.com/andreihh/dotfiles/main/installer/install.sh \
   | bash
 ```
@@ -23,7 +23,7 @@ system to reload the custom environment variables properly.
 To add new dotfiles, commit all the changes to bring the repository to a clean
 state and run the following command:
 
-```
+```bash
 "${XDG_CONFIG_HOME}/dotfiles/installer/install_dotfiles.sh"
 ```
 
@@ -46,7 +46,7 @@ repository can be provided in:
 - `~/.local/bin/`
 - `~/.config/nvim/lua/config/overrides.lua`
 
-Example `~/.bash.d/10-extras.sh`:
+Example `~/.config/bash.d/10-extras.sh`:
 
 ```bash
 # extras.sh: exports device-specific settings.
