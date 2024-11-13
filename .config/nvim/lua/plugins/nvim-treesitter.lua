@@ -38,20 +38,25 @@ return {
         enable = vim.g.lsp_opts.treesitter_enabled == true,
         disable = { "ruby" },
       },
-      -- Incremental selection of Treesitter nodes.
-      --  See `:help nvim-treesitter-incremental-selection-mod`
-      incremental_selection = {
-        enable = vim.g.lsp_opts.treesitter_enabled == true,
-        keymaps = {
-          init_selection = "<C-space>",
-          node_incremental = "<C-space>",
-          scope_incremental = false,
-          node_decremental = "<C-]>",
-        },
-      },
-      -- Jumping through Treesitter text objects.
-      --  See `:help nvim-treesitter-text-objects-move-submod`
+      -- Selecting and jumping through Treesitter text objects.
+      --  See `:help nvim-treesitter-textobjects`
       textobjects = {
+        select = {
+          enable = vim.g.lsp_opts.treesitter_enabled == true,
+          -- Automatically jump forward to text object.
+          lookahead = true,
+          keymaps = {
+            ["af"] = "@function.outer",
+            ["if"] = "@function.inner",
+            ["at"] = "@class.outer",
+            ["it"] = "@class.inner",
+            ["as"] = {
+              query = "@local.scope",
+              query_group = "locals",
+              desc = "Select [A]round [S]cope",
+            },
+          },
+        },
         move = {
           enable = vim.g.lsp_opts.treesitter_enabled == true,
           set_jumps = true,
