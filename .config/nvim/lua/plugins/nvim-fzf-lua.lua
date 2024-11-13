@@ -1,6 +1,6 @@
 return { -- Fuzzy Finder (files, lsp, etc)
   "ibhagwan/fzf-lua",
-  event = "VeryLazy", -- Ensure `vim.ui.select` registration
+  cmd = "FzfLua",
   keys = {
     {
       "sp",
