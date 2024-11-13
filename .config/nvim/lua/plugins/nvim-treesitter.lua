@@ -3,6 +3,12 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     main = "nvim-treesitter.configs",
+    dependencies = {
+      { -- Add Treesitter text objects
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        cond = vim.g.lsp_opts.treesitter_enabled == true,
+      },
+    },
     -- See `:help nvim-treesitter`
     opts = {
       -- Enable the following parsers.
@@ -42,6 +48,30 @@ return {
           node_decremental = "<C-]>",
         },
       },
+      -- Jumping through Treesitter text objects.
+      --  See `:help nvim-treesitter-text-objects-move-submod`
+      textobjects = {
+        move = {
+          enable = vim.g.lsp_opts.treesitter_enabled == true,
+          set_jumps = true,
+          goto_next_start = {
+            ["]f"] = "@function.outer",
+            ["]t"] = "@class.outer",
+          },
+          goto_next_end = {
+            ["]F"] = "@function.outer",
+            ["]T"] = "@class.outer",
+          },
+          goto_previous_start = {
+            ["[f"] = "@function.outer",
+            ["[t"] = "@class.outer",
+          },
+          goto_previous_end = {
+            ["[F"] = "@function.outer",
+            ["[T"] = "@class.outer",
+          },
+        },
+      },
     },
     init = function()
       if vim.g.lsp_opts.treesitter_enabled == true then
@@ -52,6 +82,7 @@ return {
     end,
   },
   { -- Show context
+  { -- Show current context
     "nvim-treesitter/nvim-treesitter-context",
     cond = vim.g.lsp_opts.treesitter_enabled == true,
     cmd = { "TSContextToggle", "TSContextEnable", "TSContextDisable" },
