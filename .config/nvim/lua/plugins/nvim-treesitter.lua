@@ -31,6 +31,17 @@ return {
         enable = vim.g.lsp_opts.treesitter_enabled == true,
         disable = { "ruby" },
       },
+      -- Incremental selection of Treesitter nodes.
+      --  See `:help nvim-treesitter-incremental-selection-mod`
+      incremental_selection = {
+        enable = vim.g.lsp_opts.treesitter_enabled == true,
+        keymaps = {
+          init_selection = "<C-space>",
+          node_incremental = "<C-space>",
+          scope_incremental = false,
+          node_decremental = "<C-]>",
+        },
+      },
     },
     init = function()
       if vim.g.lsp_opts.treesitter_enabled == true then
