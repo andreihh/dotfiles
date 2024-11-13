@@ -33,12 +33,9 @@ case "${OSTYPE}" in
     os_type="macos"
     installer="brew install"
     updater="brew update"
-    command -v brew &> /dev/null || install_homebrew=1
+    command -v brew &> /dev/null || install_homebrew="yes"
     ;;
-  *)
-    echo "System '${OSTYPE}' not supported!"
-    exit 1
-    ;;
+  *) echo "System '${OSTYPE}' not supported!" && exit 1 ;;
 esac
 shopt -u nocasematch
 
@@ -105,19 +102,19 @@ echo "Cloning dotfiles repository..."
 
 echo "Running install scripts..."
 chmod +x "${INSTALL_DOTFILES}" "${INSTALL_PACKAGES}"
-"${INSTALL_DOTFILES}" ${debug} -b "${backup_dir}"
-"${INSTALL_PACKAGES}" ${debug} -p "${package_index}" -i "${installer}" \
+"${INSTALL_DOTFILES}" ${debug:+"-d"} -b "${backup_dir}"
+"${INSTALL_PACKAGES}" ${debug:+"-d"} -p "${package_index}" -i "${installer}" \
   -u "${updater}"
 
 if [[ -z "${setup_scripts}" ]]; then
-  setup_scripts=$(echo "${INSTALLER_DIR}"{,/${os_type}}/setup_*.sh)
+  setup_scripts=$(echo "${INSTALLER_DIR}"{,/"${os_type}"}/setup_*.sh)
 fi
 
 echo "Running setup scripts..."
 for script in ${setup_scripts}; do
   echo "Running script '${script}'..."
   chmod +x "${script}"
-  if "${script}" ${debug} <&0; then
+  if "${script}" ${debug:+"-d"} <&0; then
     echo "Script '${script}' ran successfully!"
   else
     echo -e "\e[31mScript '${script}' failed!\e[0m"
