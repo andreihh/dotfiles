@@ -3,7 +3,6 @@ return {
     "nvim-treesitter/nvim-treesitter",
     main = "nvim-treesitter.configs",
     build = ":TSUpdate",
-    event = "VeryLazy",
     dependencies = {
       { -- Add Treesitter text objects
         "nvim-treesitter/nvim-treesitter-textobjects",
