@@ -38,7 +38,7 @@ return {
         enable = vim.g.lsp_opts.treesitter_enabled == true,
         disable = { "ruby" },
       },
-      -- Selecting and jumping through Treesitter text objects.
+      -- Select and jump through Treesitter text objects.
       --  See `:help nvim-treesitter-textobjects`
       textobjects = {
         select = {
