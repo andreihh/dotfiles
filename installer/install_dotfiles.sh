@@ -19,10 +19,7 @@ EOF
 
 while getopts "db:o:h" option; do
   case "${option}" in
-    d)
-      debug="-d"
-      stow_debug="-n"
-      ;;
+    d) debug="yes" ;;
     b) backup_dir="${OPTARG}" ;;
     h) usage && exit 0 ;;
     *) usage && exit 1 ;;
@@ -51,7 +48,7 @@ if [[ -n "${backup_dir}" ]]; then
 fi
 
 echo "Stowing dotfiles, adopting conflicting files..."
-stow ${stow_debug} -v --no-folding --adopt -t "${HOME}" -d "${DOTFILES_HOME}" .
+stow ${debug:+"-n"} -v --no-folding --adopt -t "${HOME}" -d "${DOTFILES_HOME}" .
 
 if [[ -n "${backup_dir}" ]]; then
   echo "Setting up backup directory '${backup_dir}'..."
