@@ -1,7 +1,7 @@
 return { -- Autocompletion
   "hrsh7th/nvim-cmp",
   event = { "InsertEnter", "CmdlineEnter" },
-  cmd = { "CmpStatus" },
+  cmd = "CmpStatus",
   dependencies = {
     -- Adds other completion capabilities.
     --  `nvim-cmp` does not ship with all sources by default. They are split
