@@ -69,6 +69,11 @@
 --    - <leader>h / <C-h> / <leader>D = focus float
 --    - q = [q]uit float if focused
 --  - <leader> + -/=/f/r/a/c/l/L/H/T = perform code action
+-- Treesitter:
+--  - [f / ]f / [t / ]t = jump to previous / next start of [f]unction / [t]ype
+--  - [F / ]F / [T / ]T = jump to previous / next end of [f]unction / [t]ype
+--  - af / at / as = [a]round [f]unction / [t]ype / [s]cope
+--  - if / it = [i]nside [f]unction / [t]ype
 
 local function map(mode, lhs, rhs, desc, opts)
   opts = opts or {}
