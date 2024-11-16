@@ -18,9 +18,6 @@ return { -- Session management
       desc = "[S]ession [S]ave",
     },
   },
-  opts = {
-    use_git_branch = true,
-    -- Don't start sessions in root, home, or their direct children.
-    suppressed_dirs = { "/", "/*", "~/", "~/*" },
-  },
+  -- Don't start sessions in root, home, or their direct children.
+  opts = { suppressed_dirs = { "/", "/*", "~/", "~/*" } },
 }
