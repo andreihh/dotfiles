@@ -19,7 +19,7 @@ return { -- Better core input and select UI
           ["<esc>"] = false,
         },
       },
-      win_options = { listchars = "precedes:<,extends:>" },
+      win_options = { listchars = "precedes:◀,extends:▶" },
     },
     -- Uses Telescope, `fzf-lua`, or `fzf` if installed.
     select = {

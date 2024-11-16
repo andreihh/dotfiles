@@ -30,8 +30,8 @@ vim.opt.listchars = {
   tab = "» ",
   trail = "·",
   nbsp = "␣",
-  extends = ">",
-  precedes = "<",
+  precedes = "◀",
+  extends = "▶",
 }
 
 vim.diagnostic.config({
