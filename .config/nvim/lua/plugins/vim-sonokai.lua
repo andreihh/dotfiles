@@ -9,7 +9,7 @@ return { -- Colorscheme
     vim.g.sonokai_better_performance = true
     vim.api.nvim_create_autocmd("ColorScheme", {
       desc = "Customize Sonokai color scheme",
-      group = vim.api.nvim_create_augroup("custom-highlights-sonokai", {}),
+      group = vim.api.nvim_create_augroup("configure_sonokai_highlights", {}),
       pattern = "sonokai",
       callback = function()
         local config = vim.fn["sonokai#get_configuration"]()
