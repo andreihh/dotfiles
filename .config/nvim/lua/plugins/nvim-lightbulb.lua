@@ -7,6 +7,6 @@ return { -- Show gutter sign when code action is available
     -- Decrease gutter sign priority below diagnostic signs (default 10).
     priority = 9,
     -- Icons require a Nerd Font.
-    sign = { text = NerdFontEnabled() and "󰌵" or "A" },
+    sign = { text = NerdFontEnabled() and "󰌵" or "A" }, -- `nf-md-lightbulb`
   },
 }
