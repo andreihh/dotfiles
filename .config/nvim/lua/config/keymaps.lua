@@ -8,13 +8,16 @@
 --  - <esc> = clear search highlights
 --  - u = [u]ndo
 --  - <C-r> = [r]edo
+--  - <C-u/d> = jump half page [u]p / [d]own
 --  - g1 / ... / g9 = [g]o to tab 1..9
 --  - gj / gk = [g]o to previous / next location
+--  - gf = [g]o to [f]ile under cursor / selected [f]ile
 --  - gx = [g]o to URI with e[x]ternal system handler
 --  - gb / gG = [g]o to [b]lame / Lazy[g]it
 --    - q = [q]uit
 --  - [c / ]c / [C / ]C = jump to previous / next / first / last [c]hanged hunk
 --  - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
+--  - { / } = jump to previous / next blank line
 --  - f/F/t/T/;/, = enhanced [F]lash motions
 --  - <C-f> = trigger multi-window [F]lash
 --  - <C-\> = show keymap help
@@ -64,11 +67,12 @@
 --  - <C-e> = [e]xit
 -- LSP:
 --  - g + d/D/i/r = perform code navigation
+--  - [r / ]r = jump to previous / next [r]eference
 --  - [d / ]d / [w / ]w / [e / ]e = jump to previous / next diagnostic severity
 --  - <leader>h / <C-h> / <leader>D = show (signature) [h]elp / [d]iagnostic
 --    - <leader>h / <C-h> / <leader>D = focus float
 --    - q = [q]uit float if focused
---  - <leader> + -/=/f/r/a/c/l/L/H/T = perform code action
+--  - <leader> + =/-/f/c/r/a/l/L/H/T = perform code action
 -- Treesitter:
 --  - [f / ]f / [t / ]t = jump to previous / next start of [f]unction / [t]ype
 --  - [F / ]F / [T / ]T = jump to previous / next end of [f]unction / [t]ype
