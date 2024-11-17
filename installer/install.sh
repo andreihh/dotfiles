@@ -14,13 +14,13 @@
 #
 # Supports Linux and MacOS.
 
-readonly HOMEBREW_INSTALLER="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
-
 readonly REPOSITORY_URL="https://github.com/andreihh/dotfiles"
 readonly DOTFILES_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}/dotfiles"
 readonly INSTALLER_DIR="${DOTFILES_HOME}/installer"
 readonly INSTALL_DOTFILES="${INSTALLER_DIR}/install_dotfiles.sh"
 readonly INSTALL_PACKAGES="${INSTALLER_DIR}/install_packages.sh"
+
+readonly HOMEBREW_INSTALLER="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
 
 shopt -s nocasematch
 case "${OSTYPE}" in
@@ -113,12 +113,9 @@ fi
 echo "Running setup scripts..."
 for script in ${setup_scripts}; do
   echo "Running script '${script}'..."
+  # [[ -n "${debug}" ]] && continue
   chmod +x "${script}"
-  if "${script}" ${debug:+"-d"} <&0; then
-    echo "Script '${script}' ran successfully!"
-  else
-    echo -e "\e[31mScript '${script}' failed!\e[0m"
-  fi
+  "${script}" <&0 || echo -e "\e[31mScript '${script}' failed!\e[0m"
 done
 
 echo "Installation complete!"
