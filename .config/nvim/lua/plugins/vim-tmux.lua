@@ -1,5 +1,5 @@
-return { -- Better `tmux` integration
-  {
+return {
+  { -- Neovim / `tmux` window navigation
     "christoomey/vim-tmux-navigator",
     cmd = {
       "TmuxNavigateLeft",
@@ -25,7 +25,7 @@ return { -- Better `tmux` integration
       vim.g.tmux_navigator_disable_when_zoomed = 1
     end,
   },
-  {
+  { -- Neovim / `tmux` window resizing
     "RyanMillerC/better-vim-tmux-resizer",
     cmd = {
       "TmuxResizeLeft",
