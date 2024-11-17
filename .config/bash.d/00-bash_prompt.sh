@@ -73,17 +73,23 @@ __short_pwd() {
 #
 # The chroot, host and branch are optional. Colors are used only if supported.
 __make_prompt() {
-  # If colors are supported, define styles and colors.
-  local -r ncolors=$(tput colors)
-  if [[ -n "${ncolors}" ]] && [[ ${ncolors} -ge 8 ]]; then
+  # If colors are supported, define styles and colors:
+  # - text: bold
+  # - shell: green
+  # - chroot: purple
+  # - user: red
+  # - host: green
+  # - vcs: yellow
+  # - cwd: blue
+  if [[ "$(tput colors)" -ge 8 ]]; then
     local -r reset_style="\[$(tput sgr0)\]"
     local -r text_style="\[$(tput sgr0 && tput bold)\]"
-    local -r shell_style="\[$(tput sgr0 && tput bold && tput setaf 2)\]"  # green
-    local -r chroot_style="\[$(tput sgr0 && tput bold && tput setaf 5)\]"  # purple
-    local -r user_style="\[$(tput sgr0 && tput bold && tput setaf 1)\]"  # red
-    local -r host_style="\[$(tput sgr0 && tput bold && tput setaf 2)\]"  # green
-    local -r vcs_style="\[$(tput sgr0 && tput bold && tput setaf 3)\]"  # yellow
-    local -r cwd_style="\[$(tput sgr0 && tput bold && tput setaf 4)\]"  # blue
+    local -r shell_style="\[$(tput sgr0 && tput bold && tput setaf 2)\]"
+    local -r chroot_style="\[$(tput sgr0 && tput bold && tput setaf 5)\]"
+    local -r user_style="\[$(tput sgr0 && tput bold && tput setaf 1)\]"
+    local -r host_style="\[$(tput sgr0 && tput bold && tput setaf 2)\]"
+    local -r vcs_style="\[$(tput sgr0 && tput bold && tput setaf 3)\]"
+    local -r cwd_style="\[$(tput sgr0 && tput bold && tput setaf 4)\]"
   fi
 
   # Set variable identifying the chroot you work in.
@@ -113,7 +119,7 @@ __make_prompt() {
 
   PS2="${shell_style}> ${reset_style}"  # set shell and reset style
 
-  # If this is an xterm, set the title to user@host:dir.
+  # If this is an `xterm`, set the title to `user@host:dir`.
   case "${TERM}" in
     xterm* | rxvt*)
       PS1="\[\e]0;${debian_chroot:+(${debian_chroot})}\u@\h: \W\a\]${PS1}"
