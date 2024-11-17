@@ -45,7 +45,9 @@ repository can be provided in:
 - `~/.config/bash.d/`
 - `~/.local/bin/`
 - `~/.config/vim/overrides.vim`
+- `~/.config/vim/overrides.plug.vim`
 - `~/.config/nvim/lua/config/overrides.lua`
+- `~/.config/nvim/lua/plugins/`
 
 Example `~/.config/bash.d/10-extras.sh`:
 

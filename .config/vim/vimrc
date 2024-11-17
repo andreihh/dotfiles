@@ -52,7 +52,9 @@ endfunction
 
 " Configure plugin files and directories.
 let s:plug_script = s:vim_home . '/autoload/plug.vim'
-let g:plug_dir = s:vim_data . '/plugged'
+let s:plug_dir = s:vim_data . '/plugged'
+let s:plug_url =
+    \ 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 " [[ Plugins ]]
 
@@ -61,13 +63,12 @@ let g:plug_dir = s:vim_data . '/plugged'
 " - :PlugUpdate
 " - :PlugClean
 if empty(glob(s:plug_script))
-  silent execute '!curl -fLo "' . plug_script . '" --create-dirs'
-      \ . ' https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  execute '!curl -fLo "' . s:plug_script . '" --create-dirs ' . s:plug_url
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 " Enable plugins via `vim-plug`.
-call plug#begin(g:plug_dir)
+call plug#begin(s:plug_dir)
 " Core plugins
 Plug 'editorconfig/editorconfig-vim'  " File encodings, indentation, etc.
 Plug 'tpope/vim-sensible'  " Sensible settings
@@ -105,6 +106,8 @@ Plug 'rafamadriz/friendly-snippets'  " Snippet library
 Plug 'google/vim-maktaba'  " Required dependency for `vim-codefmt`
 Plug 'google/vim-glaive'  " Flag configuration for `vim-codefmt`
 Plug 'google/vim-codefmt'  " Formatter registry and formatting commands
+" Plugin overrides
+runtime overrides.plug.vim
 call plug#end()
 call glaive#Install()
 
