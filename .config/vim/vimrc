@@ -364,12 +364,9 @@ endfunction
 
 " Returns the current filetype name.
 function! g:FileType() abort
-  if empty(&filetype)
-    return 'no ft'
-  endif
   " Icons require a Nerd Font:
   let l:icon = g:NerdFontEnabled() ? WebDevIconsGetFileTypeSymbol() . ' ' : ''
-  return l:icon . &filetype
+  return empty(&filetype) ? 'no ft' : l:icon . &filetype
 endfunction
 
 let g:lightline = {
