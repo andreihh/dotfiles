@@ -1,138 +1,163 @@
 " vimrc: configures Vim.
 "
-" Requires Vim9+ and `ripgrep`.
+" Requires Vim9+, `fzf, and `ripgrep`.
+
+" Returns if a Nerd Font is installed and selected in the terminal.
+function! NerdFontEnabled() abort
+  return !empty($NERD_FONT_ENABLED)
+endfunction
+
+" Returns if true colors are supported by the terminal.
+function! TrueColorsEnabled() abort
+  return $COLORTERM == 'truecolor' || $COLORTERM == '24bit'
+endfunction
+
+" [[ XDG specification ]]
 
 " Define XDG directories if unset.
 if empty($XDG_CONFIG_HOME)
-  let $XDG_CONFIG_HOME = $HOME . "/.config"
+  let $XDG_CONFIG_HOME = $HOME . '/.config'
 endif
 if empty($XDG_DATA_HOME)
-  let $XDG_DATA_HOME = $HOME . "/.local/share"
+  let $XDG_DATA_HOME = $HOME . '/.local/share'
 endif
 if empty($XDG_STATE_HOME)
-  let $XDG_STATE_HOME = $HOME . "/.local/state"
+  let $XDG_STATE_HOME = $HOME . '/.local/state'
 endif
 
 " Set XDG-compliant directories.
-let vim_home = $XDG_CONFIG_HOME . '/vim'
-let vim_data = $XDG_DATA_HOME . '/vim'
-let vim_state = $XDG_STATE_HOME . '/vim'
+let s:vim_home = $XDG_CONFIG_HOME . '/vim'
+let s:vim_data = $XDG_DATA_HOME . '/vim'
+let s:vim_state = $XDG_STATE_HOME . '/vim'
 
 " Configure spell directory.
-call mkdir(vim_home . 'spell', 'p')
+call mkdir(s:vim_home . 'spell', 'p')
 
 " Configure state files and directories.
-call mkdir(vim_state, 'p')
-let &viminfofile = vim_state . '/viminfo'
-let &backupdir = vim_state . '//'
-let &directory = vim_state . '//'
-let &viewdir = vim_state . '//'
-let &undodir = vim_state . '//'
-let g:netrw_home = vim_state
+for dir in ['', 'backup', 'swap', 'view', 'undo', 'session']
+  call mkdir(s:vim_state . '/' . dir, 'p')
+endfor
+let &viminfofile = s:vim_state . '/viminfo'
+let &backupdir = s:vim_state . '/backup//'
+let &directory = s:vim_state . '/swap//'
+let &viewdir = s:vim_state . '/view//'
+let &undodir = s:vim_state . '/undo//'
+let g:netrw_home = s:vim_state
+let s:sessiondir = s:vim_state . '/session'
+
+" Returns the session file for the current working directory.
+function! s:SessionFile() abort
+  return s:sessiondir . '/' . substitute(getcwd(), '[:\\/]', '%', 'g') . '.vim'
+endfunction
+
+" Configure plugin files and directories.
+let s:plug_script = s:vim_home . '/autoload/plug.vim'
+let g:plug_dir = s:vim_data . '/plugged'
+
+" [[ Plugins ]]
 
 " Install the `vim-plug` plugin manager. Commands:
 " - :PlugInstall
 " - :PlugUpdate
 " - :PlugClean
-if empty(glob(vim_home . '/autoload/plug.vim'))
-  silent execute '!curl -fLo "' . vim_home . '/autoload/plug.vim" --create-dirs'
+if empty(glob(s:plug_script))
+  silent execute '!curl -fLo "' . plug_script . '" --create-dirs'
       \ . ' https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-" Enable plugins via vim-plug.
-call plug#begin(vim_data . '/plugged')
+" Enable plugins via `vim-plug`.
+call plug#begin(g:plug_dir)
+" Core plugins
 Plug 'editorconfig/editorconfig-vim'  " File encodings, indentation, etc.
-Plug 'tpope/vim-sensible'  " Sensible settings.
-Plug 'tpope/vim-surround'  " Better surround motions.
-Plug 'tpope/vim-commentary'  " Commenting lines.
-Plug 'mhinz/vim-signify'  " VCS gutter signs for changed lines.
-Plug 'mkitt/tabline.vim'  " Tab numbers in tab line.
-Plug 'easymotion/vim-easymotion'  " Better navigation motions.
-Plug 'udalov/kotlin-vim'  " Kotlin syntax highlighting.
-Plug 'sainnhe/sonokai'  " Sonokai colorscheme.
-" Better `tmux` integration.
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'RyanMillerC/better-vim-tmux-resizer'
-" Fuzzy searching.
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
-" Vim LSP plugins.
-Plug 'prabirshrestha/vim-lsp'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'mattn/vim-lsp-settings'
-" Code formatting.
-Plug 'google/vim-maktaba'
-Plug 'google/vim-glaive'
-Plug 'google/vim-codefmt'
+Plug 'tpope/vim-sensible'  " Sensible settings
+Plug 'tpope/vim-surround'  " Better surround motions
+Plug 'tpope/vim-commentary'  " Commenting lines
+Plug 'tpope/vim-obsession'  " Session management
+Plug 'mhinz/vim-signify'  " VCS gutter signs for changed lines
+Plug 'easymotion/vim-easymotion'  " Better navigation motions
+" `tmux` integration.
+Plug 'christoomey/vim-tmux-navigator'  " Vim / `tmux` window navigation
+Plug 'RyanMillerC/better-vim-tmux-resizer'  " Vim / `tmux` window resizing
+" Searching
+Plug 'junegunn/fzf'  " Core `fzf` integration
+Plug 'junegunn/fzf.vim'  " Better `fzf` searching
+" UI
+Plug 'sainnhe/sonokai'  " Color scheme
+Plug 'machakann/vim-highlightedyank'  " Highlight yanked text
+Plug 'ryanoasis/vim-devicons'  " Nerd Font icons
+Plug 'itchyny/vim-gitbranch'  " Status line component for Git branch
+Plug 'itchyny/lightline.vim'  " Better status and tab lines
+Plug 'wellle/context.vim'  " Show current context
+" LSP
+Plug 'prabirshrestha/vim-lsp'  " LSP engine
+Plug 'mattn/vim-lsp-settings'  " LSP registry and installer
+" Completion
+Plug 'prabirshrestha/asyncomplete.vim'  " Async completion engine
+Plug 'prabirshrestha/asyncomplete-lsp.vim'  " LSP completion source
+Plug 'prabirshrestha/asyncomplete-buffer.vim'  " Buffer completion source
+Plug 'prabirshrestha/asyncomplete-file.vim'  " File path completion source
+" Snippets
+Plug 'hrsh7th/vim-vsnip'  " Snippet engine
+Plug 'hrsh7th/vim-vsnip-integ'  " Snippet expansion and completion source
+Plug 'rafamadriz/friendly-snippets'  " Snippet library
+" Formatting
+Plug 'google/vim-maktaba'  " Required dependency for `vim-codefmt`
+Plug 'google/vim-glaive'  " Flag configuration for `vim-codefmt`
+Plug 'google/vim-codefmt'  " Formatter registry and formatting commands
 call plug#end()
 call glaive#Install()
 
-" Make Esc more responsive.
-set timeout ttimeoutlen=5
+" [[ Options ]]
 
-" Use the system clipboard.
-set clipboard=unnamedplus
+" Make Esc more responsive.
+set ttimeoutlen=5
 
 " Always assume Unix-style files.
 set fileformats=unix
 
-" When wrap is set to off lines will not wrap.
-set nowrap
-
-" Show cursor line only in focused pane.
-augroup CursorLine
-  au!
-  au VimEnter * setlocal cursorline
-  au WinEnter * setlocal cursorline
-  au BufEnter * setlocal cursorline
-  au WinLeave * setlocal nocursorline
-augroup END
-
-" Print relative line numbers in front of each line.
-set relativenumber
-
-" Print the absolute line number in front of the current line.
-set number
-
-" Highlight tabs, trailing whitespaces, and overrunning lines.
-set list
-
-" When a bracket is inserted, briefly jump to the matching one.
-set showmatch
-
-" Show current mode.
-set showmode
+" Don't show the mode, since it's already in the status line.
+set noshowmode
 
 " Show command in the last line of the screen.
 set showcmd
 
-" Set custom status line.
-set statusline=[%f]%([%M%R%H%W]%)%q%=[\ %l:%c\ \|\ %p%%\ \|\ %LL\ ]
+" Don't automatically wrap lines.
+set nowrap
 
-" When there is a previous search pattern, highlight all its matches.
-set hlsearch
+" Make line numbers default.
+set number
 
-" Ignore case in search patterns.
-set ignorecase
+" Enable relative line numbers to help with jumping.
+set relativenumber
 
-" When increasing / decreasing indent level, round to nearest multiple of
-" shiftwidth.
+" Keep sign column on by default.
+set signcolumn=yes
+
+" Sets how to display split and fold delimiters.
+set fillchars=vert:│,fold:·,foldsep:│
+
+" Sets how to display certain whitespace characters in the editor.
+set list
+set listchars=tab:»\ ,trail:·,nbsp:␣,precedes:◀,extends:▶
+
+" Configure how new splits should be opened.
+set splitbelow
+set splitright
+
+" Sync clipboard between OS and Vim.
+set clipboard=unnamedplus
+
+" Use smart autoindenting when starting a new line or changing indent level.
+
+" When changing indent level, round to nearest multiple of `shiftwidth`.
 set shiftround
 
-" Copy indent from current line when starting a new line.
+" Keep the current indent when starting a new line.
 set autoindent
 
 " Do smart autoindenting when starting a new line.
 set smartindent
-
-" Open new split panes to right and bottom, which feels more natural.
-set splitbelow
-set splitright
-
-" Enable sign column.
-set signcolumn=yes
 
 " Don't automatically close folds when opening a file.
 set foldlevelstart=99
@@ -140,204 +165,450 @@ set foldlevelstart=99
 " Use indent folds by default.
 set foldmethod=indent
 
-" When set to "dark", Vim wil try to use colors that look good on a dark
-" background.
+" Case-insensitive searching unless `\C` or one or more capital letters in the
+" search term.
+set ignorecase
+set smartcase
+
+" Highlight search matches.
+set hlsearch
+
+" Save undo history.
+set undofile
+
+" Disable backups.
+set nobackup
+set nowritebackup
+
+" Don't emit completion messages.
+set shortmess+=c
+
+" Enable default completion.
+set omnifunc=syntaxcomplete#Complete
+set completeopt=menuone,noinsert,noselect
+
+" What to store in a session. Don't save:
+" - unloaded and hidden buffers
+" - global options and variables
+" - session directory
+set sessionoptions=
+    \blank,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions
+
+" Use colors that look good on a dark background.
 set background=dark
 
-" If the terminal supports colors, try to enable true colors. Disable with
-" `set notermguicolors` if the colors don't render properly.
-if &t_Co >= 256 && has('termguicolors')
+" Enable true colors if the terminal has the capability.
+if TrueColorsEnabled() && exists('+termguicolors')
   set termguicolors
 endif
 
-function! s:try_set_colorscheme()
-  " Optionally enable a color scheme if the terminal supports colors. The color
-  " scheme must be set after setting the background and enabling syntax.
-  if &t_Co >= 256
-    try
-      colorscheme $COLORSCHEME
-      if $COLORSCHEME == "sonokai"
-        let l:palette = sonokai#get_palette("default", {})
+" Configure mode cursors: blinking bar in insert / replace and blinking bar
+" elsewhere. Must be set after `termguicolors` or `set t_Co=256`.
+let &t_SI = "\e[5 q"
+let &t_SR = "\e[3 q"
+let &t_EI = "\e[1 q"
 
-        " Override window separator to match tab and status lines.
-        call sonokai#highlight("VertSplit", l:palette.grey_dim, l:palette.bg1)
+" [[ Autocommands ]]
 
-        " Override visual highlight to higher contrast.
-        call sonokai#highlight("Visual", l:palette.none, l:palette.bg4)
-        call sonokai#highlight(
-            \ "VisualNOS",
-            \ l:palette.none,
-            \ l:palette.bg4,
-            \ "underline")
-      endif
-    catch
-      echo "Colorscheme " . $COLORSCHEME . " not found!"
-    endtry
+augroup autosession
+  autocmd!
+  autocmd VimEnter * call s:AutoSession()
+augroup END
+
+" Show cursor line only in focused window.
+augroup config_cursor_line
+  autocmd!
+  autocmd VimEnter,WinEnter,FocusGained * setlocal cursorline
+  autocmd WinLeave,FocusLost * setlocal nocursorline
+augroup END
+
+augroup config_sonokai_highlights
+  autocmd!
+  " The matched pattern is `$COLORSCHEME` instead of `sonokai`.
+  autocmd ColorScheme * call s:ConfigSonokaiHighlights()
+augroup END
+
+augroup config_netrw_keymaps
+  autocmd!
+  autocmd filetype netrw call s:ConfigNetrwKeymaps()
+augroup END
+
+" Configure buffer and file path completion sources.
+augroup asyncomplete_install
+  autocmd!
+  autocmd User asyncomplete_setup call s:ConfigBufferCompletion()
+  autocmd User asyncomplete_setup call s:ConfigFilePathCompletion()
+augroup END
+
+" Configure LSP only for languages that have the server registered.
+augroup lsp_install
+  autocmd!
+  autocmd User lsp_buffer_enabled call s:OnLspBufferEnabled()
+  autocmd User lsp_float_opened call s:ConfigLspFloatKeymaps()
+  autocmd User lsp_float_closed call s:RevertLspFloatKeymaps()
+augroup END
+
+" [[ Commands ]]
+
+command! SaveSession execute 'Obsession ' . fnameescape(s:SessionFile())
+
+" [[ Plugin configs ]]
+
+" Auto-reload and auto-create session when starting Vim with no arguments.
+function! s:AutoSession() abort
+  if argc() > 0
+    return
+  endif
+  let l:session_file = s:SessionFile()
+  if filereadable(l:session_file)
+    execute 'source ' . fnameescape(l:session_file)
+    " Ensure VCS gutter signs are enabled after restoring the session.
+    SignifyEnable
+  else
+    SaveSession
   endif
 endfunction
 
-augroup ColorScheme
-  au!
-  autocmd VimEnter * call s:try_set_colorscheme()
-augroup END
+" Highlight yank for 300 ms.
+let g:highlightedyank_highlight_duration = 300
 
-" Copy until the end of the line. Consistent with D and C.
-nnoremap Y y$
+" Disable default EasyMotion keymaps.
+let g:EasyMotion_do_mapping = 0
 
-" Cancels search highlighting in normal mode.
-nnoremap <esc> :nohlsearch<CR>
+" Write all buffers before navigating outside of Vim.
+let g:tmux_navigator_save_on_switch = 1
 
-" Save buffer.
-nnoremap S :w<CR>
+" If Vim is the zoomed pane, wrap around Vim instead of unzooming.
+let g:tmux_navigator_disable_when_zoomed = 1
 
-" Set <leader> key. Must not have surrounding spaces.
-noremap <space> <nop>
-let mapleader=" "
+" Resize windows in increments of 5.
+let g:tmux_resizer_resize_count = 5
+let g:tmux_resizer_vertical_resize_count = 5
 
-" Writes all buffers before navigating outside of Vim.
-let g:tmux_navigator_save_on_switch=1
-
-" If Vim is the zoomed pane, wraps around Vim instead of unzooming.
-let g:tmux_navigator_disable_when_zoomed=1
-
-" Panes should be resized in increments of 5.
-let g:tmux_resizer_resize_count=5
-let g:tmux_resizer_vertical_resize_count=5
-
-" Required to map the Alt key.
-for key in "hjkl="
-  execute "set <M-" . key . ">=\e" . key
-endfor
-
-" Control and navigate panes:
-" - Ctrl-t (new tab)
-" - Ctrl-s/v (split pane horizontally / vertically)
-" - Ctrl-h/j/k/l (navigate panes)
-" - Alt-h/j/k/l (resize panes)
-" - Alt-= (resize all panes equally)
-" - Ctrl-z (close all panes except current one)
-" - Ctrl-x (close pane)
-" - Ctrl-w (close tab)
-" - Q (quit)
-nnoremap <C-t> :tabedit %<CR>
-nnoremap <C-s> :split<CR>
-nnoremap <C-v> :vsplit<CR>
-nnoremap <M-=> <C-w>=
-nnoremap <C-z> :only<CR>
-nnoremap <C-x> :quit<CR>
-nnoremap <C-w> :tabclose<CR>
-nnoremap Q :quitall<CR>
-
-" File explorer should use long listing style and disable the netrw banner.
-let g:netrw_banner = 0
-let g:netrw_liststyle = 1
-
-" File explorer actions:
-" - <C-o> (open / refresh file explorer)
-" - j/k (navigate down / up)
-" - gf (activate node)
-" - gp (change root to parent directory)
-" - ad (create new directory)
-" - af (create new file)
-" - cc (rename node)
-" - dd (delete node)
-" - gx (open with external handler)
-" - gh (toggle go to hidden files)
-" - <C-e> (exit file explorer)
-nnoremap <C-o> :Explore<CR>
-au filetype netrw map <buffer> <C-o> <C-l>
-au filetype netrw map <buffer> gp -
-au filetype netrw map <buffer> gf <CR>
-au filetype netrw map <buffer> cc R
-au filetype netrw map <buffer> af %
-au filetype netrw map <buffer> ad d
-au filetype netrw map <buffer> dd D
-au filetype netrw map <buffer> gx x
-au filetype netrw map <buffer> <C-e> :Rexplore<CR>
-
-" Navigation actions:
-" - g1 / g2 / ... / g9 (go to tab)
-" - gj / gk (go to previous / next location)
-" - gf (go to file under cursor or to selected file)
-" - gx (open URI under cursor or selected URI)
-" - [c / ]c / [C / ]C (go to previous / next / first / last changed hunk)
-" - [m / ]m (go to previous / next start of Java-style method or class)
-" - [M / ]M (go to previous / next end of Java-style method or class)
-" - { / } (go to previous / next blank line)
-" - Ctrl-u/d (go half page up / down)
-nnoremap g1 1gt
-nnoremap g2 2gt
-nnoremap g3 3gt
-nnoremap g4 4gt
-nnoremap g5 5gt
-nnoremap g6 6gt
-nnoremap g7 7gt
-nnoremap g8 8gt
-nnoremap g9 9gt
-nnoremap gj <C-o>
-nnoremap gk <C-i>
-
-" Folding:
-" - <leader>f (toggle fold)
-nnoremap <leader>f za
-
-" Code commenting:
-" - <leader>- (comment line or selected range)
-noremap <leader>- :Commentary<CR>
-
-" Autocomplete shortcuts:
-" - Ctrl-Space (trigger autocomplete)
-" - Ctrl-j/k (cycle items)
-" - Tab (accept item)
-" - Ctrl-e (cancel)
-imap <C-@> <C-space>
-imap <C-space> <C-x><C-o>
-inoremap <C-j> <C-n>
-inoremap <C-k> <C-p>
-inoremap <expr> <tab> pumvisible() ? "\<C-y>" : "\<tab>"
-
-" Enable default autocompletion.
-set omnifunc=syntaxcomplete#Complete
-
-" Fuzzy searching:
-" - sh (search help)
-" - sk (search keymaps)
-" - sf (search files)
-" - sc (search uncommitted Git files)
-" - sb (search open buffers)
-" - s/ (search inside current buffer)
-" - Ctrl-j/k (cycle items)
-" - Ctrl-o (open item in current buffer)
-" - Ctrl-t (open item in new tab)
-" - Ctrl-s/v (open item in horizontal / vertical split)
-" - Ctrl-e (cancel)
-nnoremap s <nop>
-nnoremap sh :Helptags<CR>
-nnoremap sk :Maps<CR>
-nnoremap sf :Files<CR>
-nnoremap sc :GFiles?<CR>
-nnoremap sg :Rg<CR>
-nnoremap sb :Buffers<CR>
-nnoremap s/ :BLines<CR>
 let g:fzf_action = {
     \ 'ctrl-t': 'tab split',
     \ 'ctrl-s': 'split',
     \ 'ctrl-v': 'vsplit' }
 
-" Code navigation:
-" - gd (go to definition)
-" - gD (go to declaration)
-" - gi (go to implementation)
-" - gr (go to references)
-" - [r / ]r (go to previous / next reference)
-" - [e / ]e (go to previous / next error)
-" - [w / ]w (go to previous / next warning)
-" - [d / ]d (go to previous / next diagnostic)
-" - <leader><leader> + motion (trigger EasyMotion)
+" Disable `netrw` banner and use long listing style.
+let g:netrw_banner = 0
+let g:netrw_liststyle = 1
+
+" Disable current context by default and don't add mappings.
+let g:context_enabled = 0
+let g:context_add_mappings = 0
+
+" Show diagnostics inline and as float on cursor hover.
+let g:lsp_diagnostics_virtual_text_align = 'after'
+let g:lsp_diagnostics_virtual_text_padding_left = 2
+let g:lsp_diagnostics_virtual_text_wrap = 'truncate'
+let g:lsp_diagnostics_float_cursor = 1
+
+" Registers buffer completion source.
+function! s:ConfigBufferCompletion() abort
+  call asyncomplete#register_source(
+      \ asyncomplete#sources#buffer#get_source_options({
+          \ 'name': 'buffer',
+          \ 'allowlist': ['*'],
+          \ 'completor': function('asyncomplete#sources#buffer#completor'),
+          \ }))
+endfunction
+
+" Registers file path completion source.
+function! s:ConfigFilePathCompletion() abort
+  call asyncomplete#register_source(
+      \ asyncomplete#sources#file#get_source_options({
+          \ 'name': 'file',
+          \ 'allowlist': ['*'],
+          \ 'completor': function('asyncomplete#sources#file#completor'),
+          \ }))
+endfunction
+
+" Enables LSP completion and tags.
+function! s:OnLspBufferEnabled() abort
+  setlocal omnifunc=lsp#complete
+  if exists('+tagfunc')
+    setlocal tagfunc=lsp#tagfunc
+  endif
+endfunction
+
+" Icons require a Nerd Font:
+" - error: `nf-cod-error`
+" - warning: `nf-cod-warning`
+" - info: `nf-seti-info`
+" - hint: `nf-md-lightbulb-outline`
+if NerdFontEnabled()
+  let g:lsp_diagnostics_signs_error = {'text': ''}
+  let g:lsp_diagnostics_signs_warning = {'text': ''}
+  let g:lsp_diagnostics_signs_information = {'text': ''}
+  let g:lsp_document_code_action_signs_hint = {'text': '󰌶'}
+endif
+
+function! SessionName() abort
+  " Icons require a Nerd Font: `nf-md-folder-cog`.
+  let l:icon = NerdFontEnabled() ? '󱁿 ' : ''
+  return ObsessionStatus(l:icon . fnamemodify(getcwd(), ':t'), '')
+endfunction
+
+function! BranchName() abort
+  " Icons require a Nerd Font: `nf-fa-code_branch`.
+  let l:icon = NerdFontEnabled() ? ' ' : ''
+  let l:branch = gitbranch#name()
+  return !empty(l:branch) ? l:icon . l:branch : ''
+endfunction
+
+function! FileType() abort
+  if empty(&filetype)
+    return 'no ft'
+  endif
+  " Icons require a Nerd Font:
+  let l:icon = NerdFontEnabled() ? WebDevIconsGetFileTypeSymbol() . ' ' : ''
+  return l:icon . &filetype
+endfunction
+
+let g:lightline = {
+    \ 'colorscheme': $COLORSCHEME,
+    \ 'active': {
+    \   'left': [
+    \     ['mode', 'paste'],
+    \     ['obsession', 'branch'],
+    \     ['filepath'],
+    \   ],
+    \   'right': [['lineinfo'], ['percentwin'], ['ft']],
+    \ },
+    \ 'inactive': {
+    \   'left': [['filepath']],
+    \   'right': [['lineinfo'], ['percentwin'], ['ft']],
+    \ },
+    \ 'separator': {
+    \   'left': NerdFontEnabled() ? "\ue0b0" : '',
+    \   'right': NerdFontEnabled() ? "\ue0b2" : '',
+    \ },
+    \ 'subseparator': {
+    \   'left': NerdFontEnabled() ? "\ue0b1" : '│',
+    \   'right': NerdFontEnabled() ? "\ue0b3" : '│',
+    \ },
+    \ 'component': {
+    \   'filepath': '%<%f %h%w%m%r',
+    \ },
+    \ 'component_function': {
+    \   'obsession': 'SessionName',
+    \   'branch': 'BranchName',
+    \   'ft': 'FileType',
+    \ },
+    \ }
+
+" [[ Color scheme ]]
+
+function! s:ConfigSonokaiHighlights() abort
+  if g:colors_name != 'sonokai'
+    return
+  endif
+
+  " Set the highlighted yank to match search.
+  highlight! link HighlightedyankRegion IncSearch
+
+  let l:palette = sonokai#get_palette('default', {})
+
+  " Override window separator to match tab and status lines.
+  call sonokai#highlight('VertSplit', l:palette.grey_dim, l:palette.bg1)
+
+  " Override visual highlight to higher contrast.
+  call sonokai#highlight('Visual', l:palette.none, l:palette.bg4)
+  call sonokai#highlight(
+      \ 'VisualNOS',
+      \ l:palette.none,
+      \ l:palette.bg4,
+      \ 'underline')
+endfunction
+
+" If the terminal supports colors, try to set the configured color scheme.
+"
+" Must be set after the `background` and `syntax`. Must be set after the
+" `config_sonokai_highlights` `augroup` and the `s:ConfigSonokaiHighlights`
+" function definitions.
+if &t_Co >= 256
+  colorscheme $COLORSCHEME
+endif
+
+" [[ Keymaps ]]
+
+" Set `<leader>` key.
+let g:mapleader = "\<space>"
+noremap <space> <nop>
+
+" Set macro completion trigger key.
+set wildcharm=<C-z>
+
+" Required to map the Alt key.
+for key in 'hjkl='
+  execute "set <M-" . key . ">=\e" . key
+endfor
+
+" General:
+" - Y = [y]ank until end of line
+" - S = [s]ave buffer
+" - R = [r]efresh status line
+" - Q = [q]uit
+" - <esc> = clear search highlights
+" - u = [u]ndo
+" - <C-r> = [r]edo
+" - <C-u/d> = jump half page [u]p / [d]own
+" - g1 / ... / g9 = [g]o to tab 1..9
+" - gj / gk = [g]o to previous / next location
+" - gf = [g]o to [f]ile under cursor / selected [f]ile
+" - gx = [g]o to URI with e[x]ternal system handler
+" - [c / ]c / [C / ]C = jump to previous / next / first / last [c]hanged hunk
+" - <C-f> = trigger multi-window [F]lash-like EasyMotion
+" - [m / ]m = jump to previous / next start of Java-style method or class
+" - [M / ]M = jump to previous / next end of Java-style method or class
+" - { / } = jump to previous / next blank line
+nnoremap Y y$
+nnoremap S :w<CR>
+nnoremap R :AirlineRefresh<CR>
+nnoremap Q :quitall<CR>
+nnoremap <esc> <C-c>:nohlsearch<CR>
+for i in [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  execute 'nnoremap g' . i . ' ' . i . 'gt'
+endfor
+nnoremap gj <C-o>
+nnoremap gk <C-i>
+nmap <C-f> <plug>(easymotion-overwin-f)
+vmap <C-f> <plug>(easymotion-s)
+
+" Window:
+" - <C-s> = horizontal [s]plit
+" - <C-v> = [v]ertical split
+" - <C-t> = new [t]ab
+" - <C-z> = [z]oom window
+" - <C-x> = close window
+" - <C-w> = close tab
+" - <C-h/j/k/l> = navigate panes across Vim and `tmux`
+" - <M-h/j/k/l/=> = resize panes across Vim and `tmux`
+nnoremap <C-s> :split<CR>
+nnoremap <C-v> :vsplit<CR>
+nnoremap <C-t> :tabedit %<CR>
+nnoremap <C-z> :only<CR>
+nnoremap <C-x> :quit<CR>
+nnoremap <C-w> :tabclose<CR>
+nnoremap <M-=> <C-w>=
+
+" Session:
+" - sS = [s]ession [s]ave
+" - sD = [s]ession [d]elete
+nnoremap sS :SaveSession<CR>
+nnoremap sD :Obsession!<CR>
+
+" Search:
+" - sh = [s]earch [h]elptags
+" - sk = [s]earch [k]eymaps
+" - sf = [s]earch [f]iles
+" - sr = [s]earch [r]ecent files
+" - sc = [s]earch [c]hanged files
+" - sg = [s]earch by [g]rep
+" - s/ = [s]earch in current [/] buffer
+" - <C-j/k> = select next / previous item
+" - <C-f> = [f]lash jump
+" - <C-u/d> = scroll preview [u]p / [d]own
+" - <C-l> = toggle wrapping [l]ong lines
+" - <tab> = accept selected / toggled items
+" - <S-tab> = toggle selected item
+" - <C-o/s/v/t> = open selected item in window
+" - <esc> = exit
+nnoremap s <nop>
+nnoremap sh :Helptags<CR>
+nnoremap sk :Maps<CR>
+nnoremap sf :Files<CR>
+nnoremap sr :History<CR>
+nnoremap sc :GFiles?<CR>
+nnoremap sg :Rg<CR>
+nnoremap s/ :BLines<CR>
+
+" Explorer:
+" - <C-o> = [o]pen / refresh file explorer
+" - j/k (navigate down / up)
+" - gf = [g]o to [f]ile / [f]older
+" - gp = [g]o to [p]arent directory
+" - gx = [g]o to URI with e[x]ternal system handler
+" - gh = toggle [g]o to [h]idden files
+" - ad = [a]dd new [d]irectory
+" - af = [a]dd new [f]ile
+" - cc = [r]ename node
+" - dd = [d]elete node
+" - <C-e> = [e]xit
+nnoremap <C-o> :Explore<CR>
+function! s:ConfigNetrwKeymaps() abort
+  map <buffer> <C-o> <C-l>
+  map <buffer> gp -
+  map <buffer> gf <CR>
+  map <buffer> cc R
+  map <buffer> af %
+  map <buffer> ad d
+  map <buffer> dd D
+  map <buffer> gx x
+  map <buffer> <C-e> :Rexplore<CR>
+endfunction
+
+" Completion:
+" - <C-space> = trigger completion
+" - <C-j/k> = select next / previous item
+" - <tab> = accept selected item
+" - <C-e> = [e]xit
+imap <C-@> <plug>(asyncomplete_force_refresh)
+imap <C-space> <plug>(asyncomplete_force_refresh)
+inoremap <C-j> <C-n>
+inoremap <C-k> <C-p>
+inoremap <expr> <tab> pumvisible() ? '<C-y>' : '<tab>'
+imap <expr> <C-l> vsnip#available(1) ? '<plug>(vsnip-expand-or-jump)' : ''
+smap <expr> <C-l> vsnip#available(1) ? '<plug>(vsnip-expand-or-jump)' : ''
+imap <expr> <C-h> vsnip#available(-1) ? '<plug>(vsnip-jump-prev)' : ''
+smap <expr> <C-h> vsnip#available(-1) ? '<plug>(vsnip-jump-prev)' : ''
+cnoremap <C-@> <C-z>
+cnoremap <C-space> <C-z>
+cnoremap <C-j> <C-n>
+cnoremap <C-k> <C-p>
+cnoremap <tab> <C-y>
+
+" Code:
+" - <leader>= = format document / selection
+" - <leader>- = toggle comment
+" - <leader>f = toggle [f]old
+" - <leader>c = toggle current [c]ontext
+" - <leader>q = toggle [q]uickfix window
+nnoremap <leader>= :FormatCode<CR>
+vnoremap <leader>= :FormatLines<CR>
+noremap <leader>- :Commentary<CR>
+nnoremap <leader>f za
+nnoremap <leader>c :ContextToggleWindow<CR>
+nnoremap <expr> <leader>q
+    \ empty(filter(getwininfo(), 'v:val.quickfix'))
+    \ ? ':copen<CR>' : ':cclose<CR>'
+
+" LSP:
+" - L = install [L]SP server for current file
+" - gd = [g]o to [d]efinition
+" - gD = [g]o to [d]eclaration
+" - gi = [g]o to [i]mplementation
+" - gr = [g]o to [r]eferences
+" - gt = [g]o to [t]ype hierarchy
+" - [r / ]r = jump to previous / next [r]eference
+" - [d / ]d / [w / ]w / [e / ]e = jump to previous / next diagnostic by seveirty
+" - <leader>h = show [h]elp
+"   - <C-u/d> = scroll help [u]p / [d]own
+"   - <esc> = [e]xit
+" - <leader>H = toggle inlay [h]ints
+" - <leader>r = [r]ename symbol under cursor
+" - <leader>a = code [a]ctions
+"   - j/k = select next / previous item
+"   - # = accept item #
+"   - <CR> = accept selected item
+"   - <esc> = [e]xit
+nnoremap L :LspInstallServer<CR>
 nmap gd <plug>(lsp-definition)
 nmap gD <plug>(lsp-declaration)
 nmap gi <plug>(lsp-implementation)
 nmap gr <plug>(lsp-references)
+nmap gt <plug>(lsp-type-hierarchy)
 nmap [r <plug>(lsp-previous-reference)
 nmap ]r <plug>(lsp-next-reference)
 nmap [e <plug>(lsp-previous-error)
@@ -346,53 +617,22 @@ nmap [w <plug>(lsp-previous-warning)
 nmap ]w <plug>(lsp-next-warning)
 nmap [d <plug>(lsp-previous-diagnostic)
 nmap ]d <plug>(lsp-next-diagnostic)
-
-" Show diagnostics inline and as float on cursor hover.
-let g:lsp_diagnostics_virtual_text_align = 'after'
-let g:lsp_diagnostics_virtual_text_padding_left = 2
-let g:lsp_diagnostics_virtual_text_wrap = 'truncate'
-let g:lsp_diagnostics_float_cursor = 1
-
-" Code inspection and transformation:
-" - <leader>h (show help)
-" - <leader>t (type hierarchy)
-" - <leader>r (rename)
-" - <leader>c (comment line or selected range)
-" - <leader>= (format file or selected range)
-" - <leader>q (toggle quickfix pane)
-" - Ctrl-f/b (scroll float forward / backward)
-" - Ctrl-c (close float)
 nmap <leader>h <plug>(lsp-hover-float)
-nmap <leader>t <plug>(lsp-type-hierarchy)
 nmap <leader>r <plug>(lsp-rename)
-nnoremap <leader>= :FormatCode<CR>
-vnoremap <leader>= :FormatLines<CR>
-nnoremap <expr> <leader>q
-    \ empty(filter(getwininfo(), 'v:val.quickfix'))
-    \ ? ":copen\<CR>" : ":cclose\<CR>"
-nmap <expr> <C-f> lsp#scroll(-5)
-nmap <expr> <C-b> lsp#scroll(+5)
-
-" Code actions shortcuts:
-" - <leader>a (trigger code actions)
-" - # (accept numbered item)
-" - j/k (cycle items)
-" - Enter (accept selected item)
-" - Esc (cancel)
 nmap <leader>a <plug>(lsp-code-action-float)
 
-function! s:on_lsp_buffer_enabled() abort
-  " Enable LSP autocompletion.
-  setlocal omnifunc=lsp#complete
-  if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-
-  " Override autocomplete action.
-  imap <buffer> <C-space> <plug>(asyncomplete_force_refresh)
+function! s:ConfigLspFloatKeymaps() abort
+  nmap <buffer> <esc> <C-c><plug>(lsp-preview-close)
+  nnoremap <buffer> <expr> <C-u> lsp#scroll(-5)
+  nnoremap <buffer> <expr> <C-d> lsp#scroll(+5)
 endfunction
 
-augroup lsp_install
-  au!
-  " Call s:on_lsp_buffer_enabled only for languages that have the server
-  " registered.
-  autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-augroup END
+function! s:RevertLspFloatKeymaps() abort
+  silent! nunmap <buffer> <esc>
+  silent! nunmap <buffer> <C-u>
+  silent! nunmap <buffer> <C-d>
+endfunction
+
+" [[ Config overrides ]]
+
+runtime overrides.vim
