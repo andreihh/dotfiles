@@ -87,6 +87,7 @@ if [[ -n "${install_homebrew}" ]]; then
   export ENV="${XDG_CONFIG_HOME:-${HOME}/.config}/profile.d/00-brew.sh"
 
   echo "Installing Homebrew..."
+  # `curl` should be installed by default on MacOS.
   [[ -n "${debug}" ]] || /bin/bash -c "$(curl -fsSL ${HOMEBREW_INSTALLER})"
   echo "Installed Homebrew successfully!"
 
