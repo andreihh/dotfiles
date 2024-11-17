@@ -82,8 +82,17 @@ echo "Installing dotfiles repository..."
 [[ -n "${debug}" ]] && echo "Running in debug mode!"
 
 if [[ -n "${install_homebrew}" ]]; then
+  # Set environment variables for the Homebrew installer.
+  export SHELL="/bin/sh"
+  export ENV="${XDG_CONFIG_HOME:-${HOME}/.config}/profile.d/00-brew.sh"
+
   echo "Installing Homebrew..."
   [[ -n "${debug}" ]] || /bin/bash -c "$(curl -fsSL ${HOMEBREW_INSTALLER})"
+  echo "Installed Homebrew successfully!"
+
+  # Reset environment variables.
+  export SHELL="/bin/bash"
+  unset ENV
 fi
 
 echo "Installing Git..."
