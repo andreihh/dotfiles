@@ -3,12 +3,12 @@
 " Requires Vim9+, `fzf, and `ripgrep`.
 
 " Returns if a Nerd Font is installed and selected in the terminal.
-function! NerdFontEnabled() abort
+function! g:NerdFontEnabled() abort
   return !empty($NERD_FONT_ENABLED)
 endfunction
 
 " Returns if true colors are supported by the terminal.
-function! TrueColorsEnabled() abort
+function! s:TrueColorsEnabled() abort
   return $COLORTERM == 'truecolor' || $COLORTERM == '24bit'
 endfunction
 
@@ -201,7 +201,7 @@ set sessionoptions=
 set background=dark
 
 " Enable true colors if the terminal has the capability.
-if TrueColorsEnabled() && exists('+termguicolors')
+if s:TrueColorsEnabled() && exists('+termguicolors')
   set termguicolors
 endif
 
@@ -340,32 +340,35 @@ endfunction
 " - warning: `nf-cod-warning`
 " - info: `nf-seti-info`
 " - hint: `nf-md-lightbulb-outline`
-if NerdFontEnabled()
+if g:NerdFontEnabled()
   let g:lsp_diagnostics_signs_error = {'text': ''}
   let g:lsp_diagnostics_signs_warning = {'text': ''}
   let g:lsp_diagnostics_signs_information = {'text': ''}
   let g:lsp_document_code_action_signs_hint = {'text': '󰌶'}
 endif
 
-function! SessionName() abort
+" Returns the current session name.
+function! g:SessionName() abort
   " Icons require a Nerd Font: `nf-md-folder-cog`.
-  let l:icon = NerdFontEnabled() ? '󱁿 ' : ''
+  let l:icon = g:NerdFontEnabled() ? '󱁿 ' : ''
   return ObsessionStatus(l:icon . fnamemodify(getcwd(), ':t'), '')
 endfunction
 
-function! BranchName() abort
+" Returns the current Git branch name.
+function! g:BranchName() abort
   " Icons require a Nerd Font: `nf-fa-code_branch`.
-  let l:icon = NerdFontEnabled() ? ' ' : ''
+  let l:icon = g:NerdFontEnabled() ? ' ' : ''
   let l:branch = gitbranch#name()
   return !empty(l:branch) ? l:icon . l:branch : ''
 endfunction
 
-function! FileType() abort
+" Returns the current filetype name.
+function! g:FileType() abort
   if empty(&filetype)
     return 'no ft'
   endif
   " Icons require a Nerd Font:
-  let l:icon = NerdFontEnabled() ? WebDevIconsGetFileTypeSymbol() . ' ' : ''
+  let l:icon = g:NerdFontEnabled() ? WebDevIconsGetFileTypeSymbol() . ' ' : ''
   return l:icon . &filetype
 endfunction
 
@@ -384,20 +387,20 @@ let g:lightline = {
     \   'right': [['lineinfo'], ['percentwin'], ['ft']],
     \ },
     \ 'separator': {
-    \   'left': NerdFontEnabled() ? "\ue0b0" : '',
-    \   'right': NerdFontEnabled() ? "\ue0b2" : '',
+    \   'left': g:NerdFontEnabled() ? "\ue0b0" : '',
+    \   'right': g:NerdFontEnabled() ? "\ue0b2" : '',
     \ },
     \ 'subseparator': {
-    \   'left': NerdFontEnabled() ? "\ue0b1" : '│',
-    \   'right': NerdFontEnabled() ? "\ue0b3" : '│',
+    \   'left': g:NerdFontEnabled() ? "\ue0b1" : '│',
+    \   'right': g:NerdFontEnabled() ? "\ue0b3" : '│',
     \ },
     \ 'component': {
     \   'filepath': '%<%f %h%w%m%r',
     \ },
     \ 'component_function': {
-    \   'obsession': 'SessionName',
-    \   'branch': 'BranchName',
-    \   'ft': 'FileType',
+    \   'obsession': 'g:SessionName',
+    \   'branch': 'g:BranchName',
+    \   'ft': 'g:FileType',
     \ },
     \ }
 
