@@ -16,7 +16,7 @@ function _G.NerdFontEnabled()
 end
 
 -- Load basic configs.
---  NOTE: must happen before plugins, colorschemes, or overrides are loaded.
+--  NOTE: must happen before plugins, color schemes, or overrides are loaded.
 require("config.options")
 require("config.keymaps")
 require("config.autocmds")

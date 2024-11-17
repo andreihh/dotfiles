@@ -18,5 +18,5 @@ export BROWSER='firefox'
 # Set if terminal is configured with a Nerd Font, unset otherwise.
 export NERD_FONT_ENABLED="yes"
 
-# Set colorscheme for terminal and CLI apps (`tmux`, `vim`, `nvim`).
+# Set color scheme for terminal apps (`xterm`, `tmux`, `vim`, `nvim`).
 export COLORSCHEME="sonokai"

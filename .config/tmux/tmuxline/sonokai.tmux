@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# sonokai.tmux: Sonokai colorscheme for `tmux` status line.
+# sonokai.tmux: Sonokai color scheme for `tmux` status line.
 #
 # Optionally uses Nerd Font symbols. See: https://github.com/sainnhe/sonokai.
 

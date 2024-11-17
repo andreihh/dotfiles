@@ -1,4 +1,4 @@
-return { -- Colorscheme
+return { -- Color scheme
   "sainnhe/sonokai",
   -- Load before all other plugins.
   priority = 1000,
