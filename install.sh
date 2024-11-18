@@ -1,23 +1,21 @@
 #!/bin/bash -e
 #
-# Downloads the dotfiles repository and runs:
-# - the dotfile backup script
-# - the package installer script
-# - the dotfile installer script
-# - the given setup scripts
-#
-# After the installation is complete, it sets up the remote git repository.
+# Dotfiles installation script:
+# - clones the dotfiles repository
+# - backs up existing dotfiles
+# - installs the dotfiles
+# - runs setup scripts
 #
 # If any step in the installation fails, you may fix the issues manually and
 # run this script again. However, you must move any generated backups to a
-# different location.
+# different location, or force overwriting.
 #
 # Supports Linux and MacOS. Requires `git`, which is bundled with most Linux
 # distributions and with XCode Command Line Tools on MacOS.
 
 readonly REPOSITORY_URL="https://github.com/andreihh/dotfiles"
 readonly DOTFILES_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}/dotfiles"
-readonly INSTALLER_DIR="${DOTFILES_HOME}/installer"
+readonly RUN_DIR="${DOTFILES_HOME}/run"
 
 shopt -s nocasematch
 case "${OSTYPE}" in
@@ -35,25 +33,25 @@ readonly BACKUP_DIR_DEFAULT="${XDG_CONFIG_HOME:-${HOME}/.config}/dotfiles.bak"
 
 usage() {
   cat << EOF
-Usage: $0 [-h] [-d] [-f] [-b <backup-directory>] [-s <script-list> ]
+Usage: $0 [-h] [-d] [-f] [-b <backup-directory>] [-r <script-list> ]
 
   -d  Debug / dry run mode (simulate all actions, but do not execute them).
   -f  Force install by deleting prior backup and installation.
   -b  Directory where dotfiles should be backed up.
         Default: '${BACKUP_DIR_DEFAULT}'
-  -s  List of setup scripts to run delimited by ';'.
-        Default: all 'setup_*.sh' scripts in '${INSTALLER_DIR}[/${os_type}]'.
+  -r  List of scripts to run delimited by ';'.
+        Default: all '*.sh' scripts in '${RUN_DIR}[/${os_type}]'.
   -h  Print this message and exit.
 EOF
 }
 
 backup_dir="${BACKUP_DIR_DEFAULT}"
-while getopts "dfb:s:h" option; do
+while getopts "dfb:r:h" option; do
   case "${option}" in
     d) debug="-d" ;;
     f) force="-f" ;;
     b) backup_dir="${OPTARG}" ;;
-    s) setup_scripts="${OPTARG//;/ }" ;;
+    r) run_scripts="${OPTARG//;/ }" ;;
     h) usage && exit 0 ;;
     *) usage && exit 1 ;;
   esac
@@ -103,12 +101,12 @@ done
 
 echo "Dotfiles installed successfully!"
 
-if [[ -z "${setup_scripts}" ]]; then
-  setup_scripts=$(echo "${INSTALLER_DIR}"{,/"${os_type}"}/setup_*.sh)
+if [[ -z "${run_scripts+set}" ]]; then
+  run_scripts=$(echo "${RUN_DIR}"{,/"${os_type}"}/*.sh)
 fi
 
-echo "Running setup scripts..."
-for script in ${setup_scripts}; do
+echo "Running scripts..."
+for script in ${run_scripts}; do
   echo "Running script '${script}'..."
   [[ -n "${debug}" ]] && continue
   chmod +x "${script}"

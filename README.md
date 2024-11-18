@@ -8,12 +8,12 @@ alongside an installation script.
 To install the dotfiles, run one of the following commands:
 
 ```bash
-curl -Lo - https://raw.githubusercontent.com/andreihh/dotfiles/main/installer/install.sh \
+curl -Lo - https://raw.githubusercontent.com/andreihh/dotfiles/main/install.sh \
   | bash
 ```
 
 ```bash
-wget -O - https://raw.githubusercontent.com/andreihh/dotfiles/main/installer/install.sh \
+wget -O - https://raw.githubusercontent.com/andreihh/dotfiles/main/install.sh \
   | bash
 ```
 
@@ -24,7 +24,7 @@ To add new dotfiles, commit all the changes to bring the repository to a clean
 state and run the following command:
 
 ```bash
-"${XDG_CONFIG_HOME}/dotfiles/installer/install_dotfiles.sh"
+"${XDG_CONFIG_HOME}/dotfiles/install.sh -r ''"
 ```
 
 ## XDG directories
