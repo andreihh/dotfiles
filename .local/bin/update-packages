@@ -2,8 +2,8 @@
 #
 # Updates all installed packages using the available package managers.
 #
-# Uses `apt` on Linux and `brew` on MacOS. Also updates manual `fzf` and `nvim`
-# insallations if `apt` is available.
+# Uses `apt` on Linux and `brew` on MacOS. Also updates `nvim`, `fzf`, and
+# `lazygit` source insallations if `apt` is available.
 
 [[ $# -gt 0 ]] && echo "Usage $0" && exit 1
 
