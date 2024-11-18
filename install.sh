@@ -13,8 +13,11 @@
 # Supports Linux and MacOS. Requires `git`, which is bundled with most Linux
 # distributions and with XCode Command Line Tools on MacOS.
 
+readonly CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
+
 readonly REPOSITORY_URL="https://github.com/andreihh/dotfiles"
-readonly DOTFILES_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}/dotfiles"
+readonly DOTFILES_HOME="${CONFIG_HOME}/dotfiles"
+readonly BACKUP_DIR_DEFAULT="${CONFIG_HOME}/dotfiles.bak"
 readonly RUN_DIR="${DOTFILES_HOME}/run"
 
 shopt -s nocasematch
@@ -29,11 +32,9 @@ case "${OSTYPE}" in
 esac
 shopt -u nocasematch
 
-readonly BACKUP_DIR_DEFAULT="${XDG_CONFIG_HOME:-${HOME}/.config}/dotfiles.bak"
-
 usage() {
   cat << EOF
-Usage: $0 [-h] [-d] [-f] [-b <backup-directory>] [-r <script-list> ]
+Usage: $0 [-h] [-d] [-f] [-b <backup-directory>] [-r <script-list>]
 
   -d  Debug / dry run mode (simulate all actions, but do not execute them).
   -f  Force install by deleting prior backup and installation.
@@ -71,7 +72,7 @@ if [[ -e "${DOTFILES_HOME}" ]]; then
   echo "Dotfiles repository already cloned!"
 else
   echo "Cloning dotfiles repository..."
-  [[ -n "${debug}" ]] || git clone "${REPOSITORY_URL}" "${DOTFILES_HOME}"
+  git clone "${REPOSITORY_URL}" "${DOTFILES_HOME}"
 fi
 
 echo "Checking that the Git repository is clean..."
