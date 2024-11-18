@@ -113,7 +113,4 @@ for script in ${run_scripts}; do
   "${script}" <&0 || echo -e "\e[31mScript '${script}' failed!\e[0m"
 done
 
-echo "Changing default shell to Bash..."
-[[ -n "${debug}" ]] || chsh -s "/bin/bash"
-
 echo "Installation complete!"

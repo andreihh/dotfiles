@@ -89,6 +89,9 @@ else
   sudo update-alternatives --config editor
 fi
 
+echo "Changing default shell to Bash..."
+[[ -n "${debug}" ]] || chsh -s "/bin/bash"
+
 echo "Making hidden startup applications visible..."
 sudo sed -i "s/NoDisplay=true/NoDisplay=false/g" /etc/xdg/autostart/*.desktop
 
