@@ -18,7 +18,6 @@
 readonly REPOSITORY_URL="https://github.com/andreihh/dotfiles"
 readonly DOTFILES_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}/dotfiles"
 readonly INSTALLER_DIR="${DOTFILES_HOME}/installer"
-readonly INSTALL_DOTFILES="${INSTALLER_DIR}/install_dotfiles.sh"
 
 shopt -s nocasematch
 case "${OSTYPE}" in
@@ -60,21 +59,50 @@ while getopts "dfb:s:h" option; do
   esac
 done
 
+echo "Installing dotfiles..."
+[[ -n "${debug}" ]] && echo "Running in debug mode!"
+
 if [[ -n "${force}" ]]; then
   echo "Deleting prior backup and installation..."
   [[ -n "${debug}" ]] || rm -rf "${backup_dir}" "${DOTFILES_HOME}"
 else
-  [[ -e "${backup_dir}" ]] && echo "Backup already exists!" && exit 1
-  [[ -e "${DOTFILES_HOME}" ]] && echo "Dotfiles already exist!" && exit 1
+  [[ -e "${backup_dir}" ]] && echo "Not overwriting existing backup!" && exit 1
 fi
 
-echo "Cloning dotfiles repository..."
-[[ -n "${debug}" ]] || git clone "${REPOSITORY_URL}" "${DOTFILES_HOME}"
+if [[ -e "${DOTFILES_HOME}" ]]; then
+  echo "Dotfiles repository already cloned!"
+else
+  echo "Cloning dotfiles repository..."
+  [[ -n "${debug}" ]] || git clone "${REPOSITORY_URL}" "${DOTFILES_HOME}"
+fi
 
-chmod +x "${INSTALL_DOTFILES}"
-"${INSTALL_DOTFILES}" ${debug:+"-d"} -b "${backup_dir}"
+echo "Checking that the Git repository is clean..."
+if [[ -n $(git -C "${DOTFILES_HOME}" status --porcelain 2> /dev/null) ]]; then
+  echo "You must commit changes to the Git repository and get to a clean state!"
+  [[ -n "${debug}" ]] || exit 1
+fi
 
-echo "Running scripts..."
+echo "Stowing dotfiles, adopting conflicting files..."
+stow ${debug:+"-n"} -v --no-folding --adopt -t "${HOME}" -d "${DOTFILES_HOME}" .
+
+if [[ -n "${backup_dir}" ]]; then
+  echo "Setting up backup directory '${backup_dir}'..."
+  [[ -n "${debug}" ]] || mkdir -p "${backup_dir}"
+
+  echo "Backing up dotfiles..."
+  [[ -n "${debug}" ]] || cp -Pr "${DOTFILES_HOME}" "${backup_dir}"
+fi
+
+echo "Reverting changes from adopted files..."
+[[ -n "${debug}" ]] || git -C "${DOTFILES_HOME}" checkout .
+
+echo "Removing shell-specific profile config files..."
+for shell_profile_file in ~/.{bash_profile,zprofile}; do
+  [[ -n "${debug}" ]] || rm -vf "${shell_profile_file}"
+done
+
+echo "Dotfiles installed successfully!"
+
 if [[ -z "${setup_scripts}" ]]; then
   setup_scripts=$(echo "${INSTALLER_DIR}"{,/"${os_type}"}/setup_*.sh)
 fi
@@ -86,5 +114,8 @@ for script in ${setup_scripts}; do
   chmod +x "${script}"
   "${script}" <&0 || echo -e "\e[31mScript '${script}' failed!\e[0m"
 done
+
+echo "Changing default shell to Bash..."
+[[ -n "${debug}" ]] || chsh -s "/bin/bash"
 
 echo "Installation complete!"
