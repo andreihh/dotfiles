@@ -8,10 +8,10 @@
 [[ $# -gt 0 ]] && echo "Usage $0" && exit 1
 
 readonly DOTFILES_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}/dotfiles"
-readonly INSTALLER_DIR="${DOTFILES_HOME}/installer"
-readonly FZF_INSTALLER="${INSTALLER_DIR}/linux/setup_fzf.sh"
-readonly NVIM_INSTALLER="${INSTALLER_DIR}/linux/setup_nvim.sh"
-readonly LAZYGIT_INSTALLER="${INSTALLER_DIR}/linux/setup_lazygit.sh"
+readonly RUN_DIR="${DOTFILES_HOME}/run"
+readonly FZF_INSTALLER="${RUN_DIR}/linux/setup_fzf.sh"
+readonly NVIM_INSTALLER="${RUN_DIR}/linux/setup_nvim.sh"
+readonly LAZYGIT_INSTALLER="${RUN_DIR}/linux/setup_lazygit.sh"
 
 echo "Updating packages..."
 
