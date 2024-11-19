@@ -54,12 +54,19 @@ return { -- Fuzzy Finder (files, lsp, etc)
     },
     {
       "gd",
-      "<cmd>FzfLua lsp_definitions<CR>",
+      "<cmd>FzfLua lsp_definitions jump_to_single_result=true<CR>",
       desc = "[G]oto [D]efinition",
     },
     {
+      "gD",
+      "<cmd>FzfLua lsp_declarations jump_to_single_result=true<CR>",
+      -- NOTE: This is not Goto Definition, this is Goto Declaration.
+      --  For example, in C this would take you to the header.
+      desc = "[G]oto [D]eclaration",
+    },
+    {
       "gi",
-      "<cmd>FzfLua lsp_implementations<CR>",
+      "<cmd>FzfLua lsp_implementations jump_to_single_result=true<CR>",
       desc = "[G]oto [I]mplementation",
     },
     {

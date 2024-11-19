@@ -115,10 +115,6 @@ end
 noremap("n", "gj", "<C-o>", "[G]oto previous location")
 noremap("n", "gk", "<C-i>", "[G]oto next location")
 
--- NOTE: This is not Goto Definition, this is Goto Declaration.
---  For example, in C this would take you to the header.
-noremap("n", "gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-
 noremap("n", "[e", function()
   vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
 end, "Jump to previous [E]rror")
