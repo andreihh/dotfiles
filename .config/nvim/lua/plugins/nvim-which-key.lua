@@ -1,13 +1,14 @@
 return { -- Useful plugin to show pending keybinds
   "folke/which-key.nvim",
   event = "VeryLazy",
+  cmd = "WhichKey",
   keys = {
     {
       "<C-\\>",
       function()
         require("which-key").show({ global = true })
       end,
-      mode = { "n", "i", "v" },
+      mode = { "n", "i", "x", "s", "o", "t", "c" },
       desc = "Show buffer local keymaps (which-key)",
     },
   },
@@ -49,6 +50,8 @@ return { -- Useful plugin to show pending keybinds
         F12 = "<F12>",
       },
     },
+    -- Trigger only on explicit command or keymap.
+    triggers = {},
     -- Document existing key chains.
     spec = {
       { "<leader>", group = "Code", mode = { "n" } },
