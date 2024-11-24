@@ -135,7 +135,7 @@ noremap("n", "<leader>h", vim.lsp.buf.hover, "Show [H]elp")
 noremap("i", "<C-h>", vim.lsp.buf.signature_help, "Show signature [H]elp")
 noremap("n", "<leader>D", vim.diagnostic.open_float, "Show [D]iagnostic")
 
-noremap({ "n", "v" }, "<leader>-", "<cmd>:normal gcc<CR>", "Toggle comment")
+noremap({ "n", "x" }, "<leader>-", "<cmd>:normal gcc<CR>", "Toggle comment")
 noremap("n", "<leader>f", "za", "Toggle [F]old under cursor")
 
 noremap("n", "<leader>r", vim.lsp.buf.rename, "[R]ename")

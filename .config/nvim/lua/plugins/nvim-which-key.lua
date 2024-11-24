@@ -55,7 +55,7 @@ return { -- Useful plugin to show pending keybinds
     -- Document existing key chains.
     spec = {
       { "<leader>", group = "Code", mode = { "n" } },
-      { "g", group = "Goto …", mode = { "n", "v" } },
+      { "g", group = "Goto …", mode = { "n", "x" } },
       { "s", group = "Search …", mode = { "n" } },
       { "[", group = "Jump to previous …", mode = { "n" } },
       { "]", group = "Jump to next …", mode = { "n" } },
