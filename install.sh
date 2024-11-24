@@ -103,7 +103,8 @@ done
 echo "Dotfiles installed successfully!"
 
 if [[ -z "${run_scripts+set}" ]]; then
-  run_scripts=$(echo "${RUN_DIR}"{,/"${os_type}"}/*.sh)
+  # Run common scripts last to ensure OS packages are installed first.
+  run_scripts=$(echo "${RUN_DIR}"{/"${os_type}",}/*.sh)
 fi
 
 echo "Running scripts..."
