@@ -8,7 +8,8 @@ readonly GNOME_KEYBINDINGS="org.gnome.desktop.wm.keybindings"
 readonly MUTTER_KEYBINDINGS="org.gnome.mutter.keybindings"
 readonly SHELL_KEYBINDINGS="org.gnome.shell.keybindings"
 readonly GNOME_MEDIA_KEYS="org.gnome.settings-daemon.plugins.media-keys"
-readonly NEW_TMUX_KEY="/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+readonly NEW_SHELL_KEY="/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+readonly NEW_TMUX_KEY="/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
 
 echo "Updating system settings..."
 
@@ -53,11 +54,19 @@ gsettings set "${GNOME_MEDIA_KEYS}" home "['<Primary><Alt>e']"
 echo "Setting new web browser shortcut to Ctrl-Alt-w..."
 gsettings set "${GNOME_MEDIA_KEYS}" www "['<Primary><Alt>w']"
 
+echo "Setting custom shortcuts..."
+gsettings set "${GNOME_MEDIA_KEYS}" custom-keybindings \
+  "['${NEW_SHELL_KEY}', '${NEW_TMUX_KEY}']"
+
 echo "Setting new shell terminal shortcut to Ctrl-Alt-s..."
-gsettings set "${GNOME_MEDIA_KEYS}" terminal "['<Primary><Alt>s']"
+gsettings set "${GNOME_MEDIA_KEYS}.custom-keybinding:${NEW_SHELL_KEY}" \
+  name "'Launch shell in terminal'"
+gsettings set "${GNOME_MEDIA_KEYS}.custom-keybinding:${NEW_SHELL_KEY}" \
+  command "\"x-terminal-emulator\""
+gsettings set "${GNOME_MEDIA_KEYS}.custom-keybinding:${NEW_SHELL_KEY}" \
+  binding "'<Primary><Alt>s'"
 
 echo "Setting new 'tmux' terminal shortcut to Ctrl-Alt-x..."
-gsettings set "${GNOME_MEDIA_KEYS}" custom-keybindings "['${NEW_TMUX_KEY}']"
 gsettings set "${GNOME_MEDIA_KEYS}.custom-keybinding:${NEW_TMUX_KEY}" \
   name "'Launch tmuxw in terminal'"
 gsettings set "${GNOME_MEDIA_KEYS}.custom-keybinding:${NEW_TMUX_KEY}" \
