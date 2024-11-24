@@ -34,6 +34,6 @@ set keymap vi-command
 # Set insert mode key bindings.
 set keymap vi-insert
 
-# Vim-like autocomplete.
-"\C-j": menu-complete
-"\C-k": menu-complete-backward
+# Set search command history key bindings.
+"\C-f": history-search-forward
+"\C-b": history-search-backward
