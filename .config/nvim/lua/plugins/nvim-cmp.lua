@@ -42,36 +42,30 @@ return { -- Autocompletion
     -- See `:help ins-completion`
     local mappings = {
       -- Select the next / previous item.
-      ["<C-j>"] = {
-        i = cmp.mapping.select_next_item({ behavior = select_behavior }),
-        c = cmp.mapping.select_next_item({ behavior = select_behavior }),
-      },
-      ["<C-k>"] = {
-        i = cmp.mapping.select_prev_item({ behavior = select_behavior }),
-        c = cmp.mapping.select_prev_item({ behavior = select_behavior }),
-      },
+      ["<C-j>"] = cmp.mapping(
+        cmp.mapping.select_next_item({ behavior = select_behavior }),
+        { "i", "c" }
+      ),
+      ["<C-k>"] = cmp.mapping(
+        cmp.mapping.select_prev_item({ behavior = select_behavior }),
+        { "i", "c" }
+      ),
 
       -- Accept the selected completion.
       --  This will auto-import if your LSP supports it.
       --  This will expand snippets if the LSP sent a snippet.
-      ["<tab>"] = {
-        i = cmp.mapping.confirm({ select = true }),
-        c = cmp.mapping.confirm({ select = true }),
-      },
+      ["<tab>"] = cmp.mapping(
+        cmp.mapping.confirm({ select = true }),
+        { "i", "c" }
+      ),
 
       -- Abort the completion.
-      ["<C-e>"] = {
-        i = cmp.mapping.abort(),
-        c = cmp.mapping.abort(),
-      },
+      ["<C-e>"] = cmp.mapping(cmp.mapping.abort(), { "i", "c" }),
 
       -- Manually trigger a completion from nvim-cmp.
       --  Generally you don't need this, because nvim-cmp will display
       --  completions whenever it has completion options available.
-      ["<C-space>"] = {
-        i = cmp.mapping.complete({}),
-        c = cmp.mapping.complete({}),
-      },
+      ["<C-space>"] = cmp.mapping(cmp.mapping.complete({}), { "i", "c" }),
 
       -- Scroll the documentation window [u]p / [d]own.
       ["<C-u>"] = cmp.mapping.scroll_docs(-5),
