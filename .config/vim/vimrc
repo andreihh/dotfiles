@@ -58,6 +58,11 @@ let s:plug_url =
 
 " [[ Plugins ]]
 
+" Enable native plugins.
+packadd! editorconfig  " File encodings, indentation, etc.
+packadd! comment  " Commenting lines
+packadd! matchit  " Better % matching
+
 " Install the `vim-plug` plugin manager. Commands:
 " - :PlugInstall
 " - :PlugUpdate
@@ -70,10 +75,8 @@ endif
 " Enable plugins via `vim-plug`.
 call plug#begin(s:plug_dir)
 " Core plugins
-Plug 'editorconfig/editorconfig-vim'  " File encodings, indentation, etc.
 Plug 'tpope/vim-sensible'  " Sensible settings
 Plug 'tpope/vim-surround'  " Better surround motions
-Plug 'tpope/vim-commentary'  " Commenting lines
 Plug 'tpope/vim-obsession'  " Session management
 Plug 'mhinz/vim-signify'  " VCS gutter signs for changed lines
 Plug 'easymotion/vim-easymotion'  " Better navigation motions
@@ -576,7 +579,8 @@ cnoremap <tab> <C-y>
 " - <leader>q = toggle [q]uickfix window
 nnoremap <leader>= :FormatCode<CR>
 xnoremap <leader>= :FormatLines<CR>
-noremap <leader>- :Commentary<CR>
+nmap <leader>- gcc
+xmap <leader>- gc
 nnoremap <leader>f za
 nnoremap <leader>c :ContextToggleWindow<CR>
 nnoremap <expr> <leader>q
