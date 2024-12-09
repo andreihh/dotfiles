@@ -41,12 +41,12 @@ return { -- Autocompletion
 
     -- See `:help ins-completion`
     local mappings = {
-      -- Select the next / previous item.
-      ["<C-j>"] = cmp.mapping(
+      -- Select the [n]ext / [p]revious item.
+      ["<C-n>"] = cmp.mapping(
         cmp.mapping.select_next_item({ behavior = select_behavior }),
         { "i", "c" }
       ),
-      ["<C-k>"] = cmp.mapping(
+      ["<C-p>"] = cmp.mapping(
         cmp.mapping.select_prev_item({ behavior = select_behavior }),
         { "i", "c" }
       ),
@@ -62,8 +62,8 @@ return { -- Autocompletion
       -- Abort the completion.
       ["<C-e>"] = cmp.mapping(cmp.mapping.abort(), { "i", "c" }),
 
-      -- Manually trigger a completion from nvim-cmp.
-      --  Generally you don't need this, because nvim-cmp will display
+      -- Manually trigger a completion from `nvim-cmp`.
+      --  Generally you don't need this, because `nvim-cmp` will display
       --  completions whenever it has completion options available.
       ["<C-space>"] = cmp.mapping(cmp.mapping.complete({}), { "i", "c" }),
 

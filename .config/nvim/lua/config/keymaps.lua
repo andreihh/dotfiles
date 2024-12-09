@@ -31,7 +31,7 @@
 --  - sD = [s]ession [d]elete
 -- Search:
 --  - s + p/h/k/f/r/c/g/d/w// = [s]earch with picker
---  - <C-j/k> = select next / previous item
+--  - <C-n/p> = select [n]ext / [p]revious item
 --  - <C-h> = bacpskace
 --  - <C-f> = [f]lash jump
 --  - <C-u/d> = scroll preview [u]p / [d]own
@@ -50,14 +50,14 @@
 --  - <C-e> = [e]xit
 --  - <C-\> = show keymap help
 -- Input:
---  - <C-j/k> = select previous / next from history
+--  - <C-n/p> = select [n]ext / [p]revious from history
 --  - <C-h> = backspace
 --  - <tab> = accept input
 --  - <esc> = exit from insert / visual / normal mode
 --  - <C-e> = [e]xit
 -- Completion:
 --  - <C-space> = trigger completion
---  - <C-j/k> = select next / previous item
+--  - <C-n/p> = select [n]ext / [p]revious item
 --  - <C-l/h> = jump to next / previous in snippet
 --  - <C-u/d> = scroll documentation [u]p / [d]own
 --  - <tab> = accept selected item

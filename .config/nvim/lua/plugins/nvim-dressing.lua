@@ -9,8 +9,8 @@ return { -- Better core input and select UI
           ["<C-e>"] = "Close",
         },
         i = {
-          ["<C-j>"] = "HistoryPrev",
-          ["<C-k>"] = "HistoryNext",
+          ["<C-n>"] = "HistoryNext",
+          ["<C-p>"] = "HistoryPrev",
           ["<tab>"] = "Confirm",
           ["<C-e>"] = "Close",
         },

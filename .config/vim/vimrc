@@ -510,7 +510,7 @@ nnoremap sD :Obsession!<CR>
 " - sc = [s]earch [c]hanged files
 " - sg = [s]earch by [g]rep
 " - s/ = [s]earch in current [/] buffer
-" - <C-j/k> = select next / previous item
+" - <C-n/p> = select [n]ext / [p]revious item
 " - <C-f> = [f]lash jump
 " - <C-u/d> = scroll preview [u]p / [d]own
 " - <C-l> = toggle wrapping [l]ong lines
@@ -554,13 +554,11 @@ endfunction
 
 " Completion:
 " - <C-space> = trigger completion
-" - <C-j/k> = select next / previous item
+" - <C-n/p> = select [n]ext / [p]revious item
 " - <tab> = accept selected item
 " - <C-e> = [e]xit
 imap <C-@> <plug>(asyncomplete_force_refresh)
 imap <C-space> <plug>(asyncomplete_force_refresh)
-inoremap <C-j> <C-n>
-inoremap <C-k> <C-p>
 inoremap <expr> <tab> pumvisible() ? '<C-y>' : '<tab>'
 imap <expr> <C-l> vsnip#available(1) ? '<plug>(vsnip-expand-or-jump)' : ''
 smap <expr> <C-l> vsnip#available(1) ? '<plug>(vsnip-expand-or-jump)' : ''
@@ -568,8 +566,6 @@ imap <expr> <C-h> vsnip#available(-1) ? '<plug>(vsnip-jump-prev)' : ''
 smap <expr> <C-h> vsnip#available(-1) ? '<plug>(vsnip-jump-prev)' : ''
 cnoremap <C-@> <C-z>
 cnoremap <C-space> <C-z>
-cnoremap <C-j> <C-n>
-cnoremap <C-k> <C-p>
 cnoremap <tab> <C-y>
 
 " Code:
@@ -602,7 +598,7 @@ nnoremap <expr> <leader>q
 " - <leader>H = toggle inlay [h]ints
 " - <leader>r = [r]ename symbol under cursor
 " - <leader>a = code [a]ctions
-"   - j/k = select next / previous item
+"   - <C-n/p> = select [n]ext / [p]revious item
 "   - # = accept item #
 "   - <CR> = accept selected item
 "   - <esc> = [e]xit
