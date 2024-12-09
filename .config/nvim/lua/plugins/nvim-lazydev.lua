@@ -15,15 +15,16 @@ return {
   -- Manage `luvit` types with Lazy. Plugin will never be loaded.
   { "Bilal2453/luvit-meta", lazy = true },
   { -- Completion source for `require` statements and module annotations
-    "hrsh7th/nvim-cmp",
-    opts = function(_, opts)
-      local sources = opts.sources or {}
-      -- Set group index to 0 to skip loading LuaLS completions.
-      table.insert(sources, { name = "lazydev", group_index = 0 })
-      return vim.tbl_deep_extend("force", opts, {
-        sources = sources,
-        formatting = { format = { menu = { lazydev = "[API]" } } },
-      })
-    end,
+    "saghen/blink.cmp",
+    opts = {
+      sources = {
+        completion = { enabled_providers = { "lazydev" } },
+        providers = {
+          -- Don't show LuaLS `require` statements when `lazydev` has items.
+          lsp = { fallback_for = { "lazydev" } },
+          lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },
+        },
+      },
+    },
   },
 }
