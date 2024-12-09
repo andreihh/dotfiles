@@ -80,7 +80,7 @@ Plug 'tpope/vim-surround'  " Better surround motions
 Plug 'tpope/vim-obsession'  " Session management
 Plug 'mhinz/vim-signify'  " VCS gutter signs for changed lines
 Plug 'easymotion/vim-easymotion'  " Better navigation motions
-" `tmux` integration.
+" `tmux` integration
 Plug 'christoomey/vim-tmux-navigator'  " Vim / `tmux` window navigation
 Plug 'RyanMillerC/better-vim-tmux-resizer'  " Vim / `tmux` window resizing
 " Searching
