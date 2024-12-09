@@ -13,9 +13,6 @@
 --  - gj / gk = [g]o to previous / next location
 --  - gf = [g]o to [f]ile under cursor / selected [f]ile
 --  - gx = [g]o to URI with e[x]ternal system handler
---  - gb / gG = [g]o to [b]lame / Lazy[g]it
---    - q = [q]uit
---  - [c / ]c / [C / ]C = jump to previous / next / first / last [c]hanged hunk
 --  - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
 --  - { / } = jump to previous / next blank line
 --  - f/F/t/T/;/, = enhanced [F]lash motions
@@ -65,6 +62,10 @@
 --  - <C-u/d> = scroll documentation [u]p / [d]own
 --  - <tab> = accept selected item
 --  - <C-e> = [e]xit
+-- VCS:
+--  - [c / ]c / [C / ]C = jump to previous / next / first / last [c]hanged hunk
+--  - <leader>b / <leader>g = open Git [b]lame / Lazy[G]it
+--    - q = [q]uit
 -- LSP:
 --  - g + d/D/i/r = perform code navigation
 --  - [r / ]r = jump to previous / next [r]eference
