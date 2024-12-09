@@ -477,7 +477,7 @@ endfor
 nnoremap gj <C-o>
 nnoremap gk <C-i>
 nmap <C-f> <plug>(easymotion-overwin-f)
-vmap <C-f> <plug>(easymotion-s)
+xmap <C-f> <plug>(easymotion-s)
 
 " Window:
 " - <C-s> = horizontal [s]plit
@@ -579,7 +579,7 @@ cnoremap <tab> <C-y>
 " - <leader>c = toggle current [c]ontext
 " - <leader>q = toggle [q]uickfix window
 nnoremap <leader>= :FormatCode<CR>
-vnoremap <leader>= :FormatLines<CR>
+xnoremap <leader>= :FormatLines<CR>
 noremap <leader>- :Commentary<CR>
 nnoremap <leader>f za
 nnoremap <leader>c :ContextToggleWindow<CR>
