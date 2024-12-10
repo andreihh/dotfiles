@@ -33,9 +33,5 @@ require("config.lsp")
 -- Load optional user overrides.
 pcall(require, "config.overrides")
 
--- [[ Configure and install plugins ]]
---  To check the current status of your plugins, run:
---    :Lazy
---
---  Press `?` in this menu for help. Use `q` to close the window.
+-- Configure and install plugins.
 require("config.lazy")

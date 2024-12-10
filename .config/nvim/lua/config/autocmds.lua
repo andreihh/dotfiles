@@ -1,4 +1,4 @@
--- [[ Basic Autocommands ]]
+-- [[ Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
 local cursorline_augroup =
