@@ -4,6 +4,13 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
   lazy = false,
   keys = {
     {
+      "<C-z>",
+      function()
+        Snacks.zen.zoom()
+      end,
+      "[Z]oom window",
+    },
+    {
       "[r",
       function()
         Snacks.words.jump(-1, true)
