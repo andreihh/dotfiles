@@ -30,6 +30,7 @@ state and run the following command:
 ## XDG directories
 
 The dotfiles follow the XDG specification where possible:
+
 - https://specifications.freedesktop.org/basedir-spec/latest/index.html
 - https://wiki.archlinux.org/title/XDG\_Base\_Directory
 
@@ -70,18 +71,18 @@ Example `~/.config/nvim/lua/config/overrides.lua`:
 
 local ensure_installed = vim.g.lsp_opts.ensure_installed or {}
 vim.list_extend(ensure_installed, {
-    "pyright",
-    "clangd",
-    "jdtls",
-    "kotlin_language_server",
-    "pyink",
-    "clang-format",
-    "google-java-format",
-    "ktfmt",
-    "prettier",
-    "pylint",
-    -- `clangd` embeds `clang-tidy`
-    "checkstyle",
+  "pyright",
+  "clangd",
+  "jdtls",
+  "kotlin_language_server",
+  "pyink",
+  "clang-format",
+  "google-java-format",
+  "ktfmt",
+  "prettier",
+  "pylint",
+  -- `clangd` embeds `clang-tidy`
+  "checkstyle",
 })
 
 vim.g.lsp_opts = vim.tbl_deep_extend("force", vim.g.lsp_opts, {
@@ -115,11 +116,13 @@ vim.g.lsp_opts = vim.tbl_deep_extend("force", vim.g.lsp_opts, {
 ## Hotkeys
 
 Keyboard layout changes:
+
 - Swap `Caps Lock` with `Esc`
 - Linux modifiers: `Super Alt Ctrl Space Alt Ctrl`
 - MacOS modifiers: `Ctrl Opt Cmd Space Opt Cmd`
 
 Common shortcuts (`C = Ctrl / Cmd`, `A = Alt / Opt`, `S = Shift`):
+
 - New tab: `C-t`
 - Close window / tab: `C-w`
 - Quit app: `C-q`
@@ -137,6 +140,7 @@ Common shortcuts (`C = Ctrl / Cmd`, `A = Alt / Opt`, `S = Shift`):
 - Open `tmux` terminal in the `work` session: `C-A-x`
 
 Terminal settings:
+
 - Paste: `C-S-v`
 - Open clipboard selection with external system handler: `A-o`
 - Close window: `C-q`
@@ -148,6 +152,7 @@ Terminal settings:
 ## Firefox Settings
 
 Firefox settings in `about:config`:
+
 - `browser.sessionstore.interval = 150000`
 - `browser.cache.disk.enable = false`
 - `browser.cache.memory.enable = true`
