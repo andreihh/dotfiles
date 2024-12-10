@@ -21,16 +21,6 @@ return { -- LSP configuration
   },
   opts = { servers = vim.g.lsp_opts.servers or {} },
   config = function(_, opts)
-    -- Define command to display attached LSP capabilities.
-    vim.api.nvim_create_user_command("LspCapabilities", function()
-      local clients =
-        vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() })
-      for _, client in pairs(clients) do
-        vim.print("LSP capabilities for server " .. client.name .. ":")
-        vim.print(client.server_capabilities)
-      end
-    end, { desc = "Display the attached LSP capabilities" })
-
     local lspconfig = require("lspconfig")
     for server_name, server_opts in pairs(opts.servers or {}) do
       -- LSP servers and clients are able to communicate to each other what
