@@ -25,10 +25,10 @@ end
 
 -- Load basic configs.
 --  NOTE: must happen before plugins, color schemes, or overrides are loaded.
-require("config.options")
-require("config.keymaps")
+require("config.settings")
 require("config.commands")
 require("config.autocmds")
+require("config.mappings")
 require("config.lsp")
 
 -- Load optional user overrides.

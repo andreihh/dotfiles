@@ -1,4 +1,4 @@
--- [[ Basic Keymaps ]]
+-- [[ Keymaps ]]
 --  See `:help vim.keymap.set()`
 --
 -- General:
