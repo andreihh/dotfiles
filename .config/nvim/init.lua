@@ -27,6 +27,7 @@ end
 --  NOTE: must happen before plugins, color schemes, or overrides are loaded.
 require("config.options")
 require("config.keymaps")
+require("config.commands")
 require("config.autocmds")
 require("config.lsp")
 
