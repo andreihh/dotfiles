@@ -39,12 +39,14 @@ vim.diagnostic.config({
     -- Prioritize diagnostic gutter signs by severity.
     severity_sort = true,
     -- Icons require a Nerd Font.
-    text = NerdFontEnabled() and {
-      [vim.diagnostic.severity.ERROR] = "", -- `nf-cod-error`
-      [vim.diagnostic.severity.WARN] = "", -- `nf-cod-warning`
-      [vim.diagnostic.severity.INFO] = "", -- `nf-seti-info`
-      [vim.diagnostic.severity.HINT] = "󰌶", -- `nf-md-lightbulb-outline`
-    } or {},
+    text = NerdFontEnabled()
+        and {
+          [vim.diagnostic.severity.ERROR] = "", -- `nf-cod-error`
+          [vim.diagnostic.severity.WARN] = "", -- `nf-cod-warning`
+          [vim.diagnostic.severity.INFO] = "", -- `nf-seti-info`
+          [vim.diagnostic.severity.HINT] = "󰌶", -- `nf-md-lightbulb-outline`
+        }
+      or {},
   },
   -- Include diagnostic source in float.
   float = { source = true },
