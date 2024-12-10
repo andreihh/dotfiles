@@ -77,9 +77,5 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
     },
     -- Highlighting and jumping to references.
     words = { notify_end = false },
-    -- Disable unused features.
-    notifier = { enabled = false },
-    quickfile = { enabled = false },
-    statuscolumn = { enabled = false },
   },
 }
