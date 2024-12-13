@@ -1,51 +1,28 @@
-return {
-  { -- Neovim / `tmux` window navigation
-    "christoomey/vim-tmux-navigator",
-    cmd = {
-      "TmuxNavigateLeft",
-      "TmuxNavigateDown",
-      "TmuxNavigateUp",
-      "TmuxNavigateRight",
-      "TmuxNavigatePrevious",
-    },
-    keys = {
-      { "<C-h>", "<cmd>TmuxNavigateLeft<CR>", desc = "Navigate window left" },
-      { "<C-j>", "<cmd>TmuxNavigateDown<CR>", desc = "Navigate window down" },
-      { "<C-k>", "<cmd>TmuxNavigateUp<CR>", desc = "Navigate window up" },
-      { "<C-l>", "<cmd>TmuxNavigateRight<CR>", desc = "Navigate window right" },
-    },
-    init = function()
-      -- Use custom navigation keymaps.
-      vim.g.tmux_navigator_no_mappings = 1
-
-      -- Write all buffers before navigating outside of Neovim.
-      vim.g.tmux_navigator_save_on_switch = 1
-
-      -- If Neovim is the zoomed pane, wrap around Neovim instead of unzooming.
-      vim.g.tmux_navigator_disable_when_zoomed = 1
-    end,
+return { -- `tmux` integration for window navigation and resizing
+  "aserowy/tmux.nvim",
+  keys = {
+    { "<C-h>", desc = "Navigate window left" },
+    { "<C-j>", desc = "Navigate window down" },
+    { "<C-k>", desc = "Navigate window up" },
+    { "<C-l>", desc = "Navigate window right" },
+    { "<M-h>", desc = "Resize window left" },
+    { "<M-j>", desc = "Resize window down" },
+    { "<M-k>", desc = "Resize window up" },
+    { "<M-l>", desc = "Resize window right" },
   },
-  { -- Neovim / `tmux` window resizing
-    "RyanMillerC/better-vim-tmux-resizer",
-    cmd = {
-      "TmuxResizeLeft",
-      "TmuxResizeDown",
-      "TmuxResizeUp",
-      "TmuxResizeRight",
+  opts = {
+    -- Disable `tmux` copy sync because Neovim already uses system clipboard.
+    copy_sync = { enable = false },
+    navigation = {
+      enable_default_keybindings = true,
+      -- If Neovim is the zoomed `tmux` pane, wrap around instead of unzooming.
+      persist_zoom = true,
     },
-    keys = {
-      { "<M-h>", "<cmd>TmuxResizeLeft<CR>", desc = "Resize window left" },
-      { "<M-j>", "<cmd>TmuxResizeDown<CR>", desc = "Resize window down" },
-      { "<M-k>", "<cmd>TmuxResizeUp<CR>", desc = "Resize window up" },
-      { "<M-l>", "<cmd>TmuxResizeRight<CR>", desc = "Resize window right" },
-    },
-    init = function()
-      -- Use custom resizing keymaps.
-      vim.g.tmux_resizer_no_mappings = 1
-
+    resize = {
+      enable_default_keybindings = true,
       -- Resize windows in increments of 5.
-      vim.g.tmux_resizer_resize_count = 5
-      vim.g.tmux_resizer_vertical_resize_count = 5
-    end,
+      resize_step_x = 5,
+      resize_step_y = 5,
+    },
   },
 }
