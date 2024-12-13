@@ -1,5 +1,16 @@
 return { -- Better surround motions
   "tpope/vim-surround",
-  -- Ensure enhanced surround motions are configured.
-  event = "VeryLazy",
+  keys = {
+    { "ys" },
+    { "yss" },
+    { "yS" },
+    { "ySS" },
+    { "ds" },
+    { "cs" },
+    { "cS" },
+    { "S", mode = "x" },
+    { "gS", mode = "x" },
+    { "<C-g>s", mode = "i" },
+    { "<C-g>S", mode = "i" },
+  },
 }
