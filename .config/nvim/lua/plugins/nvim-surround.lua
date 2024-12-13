@@ -1,5 +1,5 @@
-return { -- Better surround motions
-  "tpope/vim-surround",
+return { -- Surround commands
+  "kylechui/nvim-surround",
   keys = {
     { "ys" },
     { "yss" },
@@ -13,4 +13,5 @@ return { -- Better surround motions
     { "<C-g>s", mode = "i" },
     { "<C-g>S", mode = "i" },
   },
+  config = true,
 }
