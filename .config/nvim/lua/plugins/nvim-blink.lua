@@ -51,31 +51,31 @@ return { -- Autocompletion
       -- Adjusts spacing to ensure icons are aligned.
       nerd_font_variant = "normal",
       kind_icons = {
-        Text = "󰉿",
-        Method = "󰊕",
-        Function = "󰊕",
-        Constructor = "",
-        Field = "󰜢",
-        Variable = "󰀫",
-        Property = "󰜢",
-        Class = "󰠱",
-        Interface = "",
-        Struct = "󰙅",
-        Module = "",
-        Unit = "󰑭",
-        Value = "󰎠",
-        Enum = "",
-        EnumMember = "",
-        Keyword = "󰌋",
-        Constant = "󰏿",
-        Snippet = "",
-        Color = "󰏘",
-        File = "󰈙",
-        Reference = "󰈇",
-        Folder = "󰉋",
-        Event = "",
-        Operator = "󰆕",
-        TypeParameter = "󰬛",
+        Text = "󰉿", -- `nf-md-format_size`
+        Method = "󰊕", -- `nf-md-function`
+        Function = "󰊕", -- `nf-md-function`
+        Constructor = "", -- `nf-oct-gear`
+        Field = "󰜢", -- `nf-md-tag_plus`
+        Variable = "󰀫", -- `nf-md-alpha`
+        Property = "󰜢", -- `nf-md-tag_plus`
+        Class = "󰠱", -- `nf-md-shape`
+        Interface = "", -- `nf-fa-sitemap`
+        Struct = "󰙅", -- `nf-md-file_tree`
+        Module = "", -- `nf-oct-package`
+        Unit = "󰑭", -- `nf-md-ruler`
+        Value = "󰎠", -- `nf-md-numeric`
+        Enum = "", -- `nf-fa-sort_alpha_asc`
+        EnumMember = "", -- `nf-fa-sort_alpha_asc`
+        Keyword = "󰌋", -- `nf-md-key_variant`
+        Constant = "󰏿", -- `nf-md-pi`
+        Snippet = "", -- `nf-oct-code`
+        Color = "󰏘", -- `nf-md-palette`
+        File = "󰈙", -- `nf-md-file_document`
+        Reference = "󰈇", -- `nf-md-export`
+        Folder = "󰉋", -- `nf-md-folder`
+        Event = "", -- `nf-fa-bolt`
+        Operator = "󰆕", -- `nf-md-contrast`
+        TypeParameter = "󰬛", -- `nf-md-alpha_t_box`
       },
     },
   },
