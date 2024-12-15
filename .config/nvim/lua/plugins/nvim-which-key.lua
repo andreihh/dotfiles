@@ -1,15 +1,12 @@
 return { -- Useful plugin to show pending keybinds
   "folke/which-key.nvim",
-  event = "VeryLazy",
   cmd = "WhichKey",
   keys = {
     {
       "<C-\\>",
-      function()
-        require("which-key").show({ global = true })
-      end,
+      "<cmd>WhichKey<CR>",
       mode = { "n", "i", "x", "s", "o", "t", "c" },
-      desc = "Show buffer local keymaps (which-key)",
+      desc = "Show keymaps (which-key)",
     },
   },
   opts = {
