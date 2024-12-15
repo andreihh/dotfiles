@@ -105,6 +105,9 @@ return { -- Fuzzy Finder (files, lsp, etc)
       },
     },
     fzf_args = "--no-scrollbar",
+    previewers = {
+      builtin = { treesitter = { enable = vim.g.lsp_opts.treesitter_enabled } },
+    },
     files = { cwd_prompt = false, prompt = "Files>" },
     oldfiles = { include_current_session = true },
     grep = { RIPGREP_CONFIG_PATH = vim.env.RIPGREP_CONFIG_PATH },
