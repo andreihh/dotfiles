@@ -48,6 +48,11 @@ return { -- Fuzzy Finder (files, lsp, etc)
       desc = "[S]earch [W]orkspace symbols",
     },
     {
+      "s:",
+      "<cmd>FzfLua command_history<CR>",
+      desc = "[S]earch [:] command history"
+    },
+    {
       "s/",
       "<cmd>FzfLua blines<CR>",
       desc = "[S]earch [/] current buffer",
