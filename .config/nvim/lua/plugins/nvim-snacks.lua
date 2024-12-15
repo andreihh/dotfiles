@@ -6,9 +6,9 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
     {
       "<C-z>",
       function()
-        Snacks.toggle.zoom():toggle()
+        Snacks.zen.zen()
       end,
-      desc = "[Z]oom window",
+      desc = "Toggle [Z]en mode",
     },
     {
       "[r",
@@ -80,5 +80,7 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
     indent = { scope = { enabled = false } },
     -- Highlighting and jumping to references.
     words = { notify_end = false },
+    -- Don't dim code outside of the current scope in Zen mode.
+    zen = { toggles = { dim = false } },
   },
 }
