@@ -1,9 +1,8 @@
 return { -- Color scheme
   "sainnhe/sonokai",
-  -- Load before all other plugins.
-  priority = 1000,
+  priority = 1000, -- Load before all other plugins
   config = function()
-    -- Enable italics (most terminals supports it).
+    -- Enable italics (supported by most terminals).
     vim.g.sonokai_enable_italic = true
     -- Speed up loading time by loading optimized syntax on-demand.
     vim.g.sonokai_better_performance = true
@@ -13,9 +12,9 @@ return { -- Color scheme
       pattern = "sonokai",
       callback = function()
         local config = vim.fn["sonokai#get_configuration"]()
+        local set_hl = vim.fn["sonokai#highlight"]
         local palette =
           vim.fn["sonokai#get_palette"](config.style, config.colors_override)
-        local set_hl = vim.fn["sonokai#highlight"]
 
         -- Override window separator to match tab and status lines.
         set_hl("VertSplit", palette.grey_dim, palette.bg1)
