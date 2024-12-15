@@ -6,9 +6,9 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
     {
       "<C-z>",
       function()
-        Snacks.zen.zoom()
+        Snacks.toggle.zoom():toggle()
       end,
-      "[Z]oom window",
+      desc = "[Z]oom window",
     },
     {
       "[r",
