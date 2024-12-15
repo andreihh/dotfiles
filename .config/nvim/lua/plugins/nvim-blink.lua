@@ -12,7 +12,7 @@ return { -- Autocompletion
       ["<C-u>"] = { "scroll_documentation_up", "fallback" },
       ["<C-d>"] = { "scroll_documentation_down", "fallback" },
       ["<Tab>"] = { "select_and_accept", "fallback" },
-      ["<C-e>"] = { "hide" },
+      ["<C-e>"] = { "cancel" },
     },
     completion = {
       -- Don't trigger inside a snippet to avoid conflicting keymaps.
@@ -75,7 +75,7 @@ return { -- Autocompletion
         Folder = "󰉋", -- `nf-md-folder`
         Event = "", -- `nf-fa-bolt`
         Operator = "󰆕", -- `nf-md-contrast`
-        TypeParameter = "󰬛", -- `nf-md-alpha_t_box`
+        TypeParameter = "󰗴", -- `nf-md-format_title`
       },
     },
   },
