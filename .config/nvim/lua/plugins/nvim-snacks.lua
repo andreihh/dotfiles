@@ -68,6 +68,7 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
         vim.opt_local.undolevels = -1
         vim.opt_local.undoreload = 0
         vim.opt_local.list = false
+        vim.b[ctx.buf].snacks_indent = false
         vim.schedule(function()
           vim.bo[ctx.buf].syntax = ctx.ft
           vim.bo[ctx.buf].commentstring =
@@ -75,6 +76,8 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
         end)
       end,
     },
+    -- Indent guides without scope highlighting.
+    indent = { scope = { enabled = false } },
     -- Highlighting and jumping to references.
     words = { notify_end = false },
   },
