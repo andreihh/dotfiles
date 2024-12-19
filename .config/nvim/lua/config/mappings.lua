@@ -30,7 +30,7 @@
 --  - sS = [s]ession [s]ave
 --  - sD = [s]ession [d]elete
 -- Search:
---  - s + p/h/k/f/r/c/g/d/w/:// = [s]earch with picker
+--  - s + p/h/k/f/r/c/g/d/w/./:// = [s]earch with picker
 --  - <C-n/p> = select [n]ext / [p]revious item
 --  - <C-h> = bacpskace
 --  - <C-f> = [f]lash jump

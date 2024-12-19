@@ -48,9 +48,14 @@ return { -- Fuzzy Finder (files, lsp, etc)
       desc = "[S]earch [W]orkspace symbols",
     },
     {
+      "s.",
+      "<cmd>FzfLua files cwd='%:h'<CR>",
+      desc = "[S]earch files in [.] current buffer's working directory",
+    },
+    {
       "s:",
       "<cmd>FzfLua command_history<CR>",
-      desc = "[S]earch [:] command history"
+      desc = "[S]earch [:] command history",
     },
     {
       "s/",
@@ -106,7 +111,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     },
     fzf_args = "--no-scrollbar",
     previewers = {
-      builtin = { treesitter = { enable = vim.g.lsp_opts.treesitter_enabled } },
+      builtin = { treesitter = { enabled = vim.g.lsp.treesitter_enabled } },
     },
     files = { cwd_prompt = false, prompt = "Files>" },
     oldfiles = { include_current_session = true },
