@@ -2,12 +2,6 @@
 --
 -- Requires `git`, `curl`, `fzf`, `fd`, `ripgrep`, and optionally a Nerd Font.
 
--- Set <space> as the leader key.
---  See `:help mapleader`
---  NOTE: Must happen before plugins are loaded.
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
 --- Returns if a Nerd Font is installed and selected in the terminal.
 ---
 --- @return boolean

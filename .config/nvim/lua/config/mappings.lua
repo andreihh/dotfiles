@@ -79,6 +79,12 @@
 --  - af / at / as = [a]round [f]unction / [t]ype / [s]cope
 --  - if / it = [i]nside [f]unction / [t]ype
 
+-- Set `<space>` as the leader key.
+--  See `:help mapleader`
+--  NOTE: Must happen before setting any keymaps or loading any plugins.
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 local function map(mode, lhs, rhs, desc, opts)
   opts = opts or {}
   opts.desc = desc
