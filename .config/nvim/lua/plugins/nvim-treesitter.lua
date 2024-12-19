@@ -6,7 +6,7 @@ return {
     dependencies = {
       { -- Add Treesitter text objects
         "nvim-treesitter/nvim-treesitter-textobjects",
-        cond = vim.g.lsp_opts.treesitter_enabled == true,
+        cond = vim.g.lsp.treesitter_enabled,
       },
     },
     -- See `:help nvim-treesitter`
@@ -25,7 +25,7 @@ return {
       -- Autoinstall languages that are not installed.
       auto_install = true,
       highlight = {
-        enable = vim.g.lsp_opts.treesitter_enabled == true,
+        enable = vim.g.lsp.treesitter_enabled,
         -- Some languages depend on vim's regex highlighting system (such as
         -- Ruby) for indent rules.
         --  If you are experiencing weird indenting issues, add the language to
@@ -34,14 +34,14 @@ return {
         additional_vim_regex_highlighting = { "ruby" },
       },
       indent = {
-        enable = vim.g.lsp_opts.treesitter_enabled == true,
+        enable = vim.g.lsp.treesitter_enabled,
         disable = { "ruby" },
       },
       -- Select and jump through Treesitter text objects.
       --  See `:help nvim-treesitter-textobjects`
       textobjects = {
         select = {
-          enable = vim.g.lsp_opts.treesitter_enabled == true,
+          enable = vim.g.lsp.treesitter_enabled,
           -- Automatically jump forward to text object.
           lookahead = true,
           keymaps = {
@@ -57,7 +57,7 @@ return {
           },
         },
         move = {
-          enable = vim.g.lsp_opts.treesitter_enabled == true,
+          enable = vim.g.lsp.treesitter_enabled,
           set_jumps = true,
           goto_next_start = {
             ["]f"] = "@function.outer",
@@ -79,7 +79,7 @@ return {
       },
     },
     init = function()
-      if vim.g.lsp_opts.treesitter_enabled == true then
+      if vim.g.lsp.treesitter_enabled then
         -- Use Treesitter folds.
         vim.opt.foldmethod = "expr"
         vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
@@ -88,7 +88,7 @@ return {
   },
   { -- Show current context
     "nvim-treesitter/nvim-treesitter-context",
-    cond = vim.g.lsp_opts.treesitter_enabled == true,
+    cond = vim.g.lsp.treesitter_enabled,
     cmd = { "TSContextToggle", "TSContextEnable", "TSContextDisable" },
     init = function()
       -- Registering the command in `keys` leads to a failure when triggered.
@@ -103,7 +103,7 @@ return {
   },
   { -- Better Treesitter comment strings
     "folke/ts-comments.nvim",
-    cond = vim.g.lsp_opts.treesitter_enabled == true,
+    cond = vim.g.lsp.treesitter_enabled,
     event = "VeryLazy",
     config = true,
   },

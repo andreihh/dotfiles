@@ -60,8 +60,7 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
   opts = {
     -- Disable Treesitter, LSP, folds, undo, etc. on big files.
     bigfile = {
-      -- Mark big files as configured (default is over 1 MiB).
-      size = vim.g.lsp_opts.bigfile_size or (1024 * 1024),
+      size = vim.g.lsp.bigfile_size, -- Set big file size threshold
       setup = function(ctx)
         vim.opt_local.swapfile = false
         vim.opt_local.foldmethod = "manual"

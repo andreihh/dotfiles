@@ -45,10 +45,10 @@ repository can be provided in:
 - `~/.config/profile.d/`
 - `~/.config/bash.d/`
 - `~/.local/bin/`
-- `~/.config/vim/overrides.vim`
-- `~/.config/vim/overrides.plug.vim`
 - `~/.config/nvim/lua/config/overrides.lua`
 - `~/.config/nvim/lua/plugins/`
+- `~/.config/vim/overrides.vim`
+- `~/.config/vim/overrides.plug.vim`
 
 Example `~/.config/bash.d/10-extras.sh`:
 
@@ -69,7 +69,7 @@ Example `~/.config/nvim/lua/config/overrides.lua`:
 ```lua
 -- [[ Config overrides ]]
 
-local ensure_installed = vim.g.lsp_opts.ensure_installed or {}
+local ensure_installed = vim.g.lsp.ensure_installed
 vim.list_extend(ensure_installed, {
   "pyright",
   "clangd",
@@ -85,7 +85,7 @@ vim.list_extend(ensure_installed, {
   "checkstyle",
 })
 
-vim.g.lsp_opts = vim.tbl_deep_extend("force", vim.g.lsp_opts, {
+vim.g.lsp = vim.tbl_deep_extend("force", vim.g.lsp, {
   servers = {
     pyright = {},
     clangd = {},

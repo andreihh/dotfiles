@@ -1,54 +1,79 @@
 -- [[ LSP configs ]]
 --  See `help mason-lspconfig-dynamic-server-setup`
 
---- Global LSP options: servers, formatters, linters, tools to install, etc.
+--- Global LSP configs: servers, formatters, linters, tools to install, etc.
 ---
---- Must be defined and not `nil`. Fields may be overridden. Fields explicitly
---- unset / set to `nil` will default to empty values (empty table, `false`,
---- etc.), except for `bigfile_size`, which defaults to 1 MiB otherwise.
+--- All fields must be defined and not `nil`. Some features (Treesitter, LSP,
+--- folding, etc.) are disabled locally for big files.
 ---
---- @class LspOpts
---- @field bigfile_size? number Big file size threshold in bytes. Default: 1 MiB
---- @field treesitter_enabled? boolean Enable Treesitter
---- @field servers? table<string, table> LSP server configurations
---- @field formatters_by_ft? table<string, string[]> Formatters by filetype
---- @field formatters? table<string, table> Custom formatter configs
---- @field linters_by_ft? table<string, string[]> Linters by filetype
---- @field ensure_installed? string[] List of tools to install
-vim.g.lsp_opts = {
-  -- The threshold size of a big file in bytes. If unset, defaults to 1 MiB.
-  --  If a file exceeds this size, then Treesitter, LSP, folding, etc. will be
-  --  disabled locally.
+---@class config.LspConfig
+---@field bigfile_size number Big file size threshold in bytes
+---@field treesitter_enabled boolean Enable / disable Treesitter globally
+---@field servers table<string, config.LspServerConfig> LSP server configs
+---@field formatters_by_ft table<string, string[]> Formatters by filetype
+---@field formatters table<string, config.FormatterConfig> Formatter configs
+---@field linters_by_ft table<string, string[]> Linters by filetype
+---@field ensure_installed string[] List of tools to install automatically
+
+--- LSP server configuration: command, filetypes, capabilities, etc.
+---
+--- Server-specific options can be forwarded through the `settings`. For
+--- example, for `lua_ls` options, see:
+---   https://luals.github.io/wiki/settings/
+---
+--- See `:help lspconfig-all` for a list of all pre-configured LSPs.
+---
+---@class config.LspServerConfig
+---@field cmd? string[] Command used to start the server
+---@field filetypes? string[] List of associated filetypes for the server
+---@field capabilities? lsp.ClientCapabilities LSP features to disable / enhance
+---@field root_dir? string Root directory in which to start the server
+---@field settings? table Settings passed when initializing the server
+
+--- Formatter configuration: command, args, etc.
+---
+--- See `:help conform-formatters` for a list of all pre-configured formatters.
+---
+---@class config.FormatterConfig
+---@field command? string Command to run the formatter
+---@field args? string[] Command args provided to the formatter
+---@field prepend_args? string[] Command args to prepend to default args
+---@field append_args? string[] Command args to append to default args
+---@field range_args? fun(ctx: config.RangeContext): string[] Range format args
+---@field env? table<string, string> Environment args provided to the formatter
+
+--- Buffer range context.
+---
+---@class config.RangeContext
+---@field range config.Range
+
+--- Buffer range with `{row, col}` tuples using `(1, 0)` indexing.
+---
+---@class config.Range
+---@field start integer[]
+---@field end integer[]
+
+--- Global LSP configs.
+---
+--- Must be defined and not `nil`. By default, it has:
+--- - Treesitter enabled
+--- - Big file size threshold of 1 MiB
+--- - LSPs, formatters and linters for Lua, Vimscript and Bash.
+---
+--- NOTE: `ensure_installed` is a list and needs to be extended with
+--- `vim.list_extend` or fully overwritten with `vim.tbl_deep_extend`.
+---
+---@type config.LspConfig
+vim.g.lsp = {
   bigfile_size = 1 * 1024 * 1024,
-
-  -- Enable or disable Treesitter globally.
-  --  See `:help nvim-treesitter`
   treesitter_enabled = true,
-
-  -- Enable the following language servers.
-  --  Add/remove desired LSPs here. They will automatically be installed.
-  --
-  --  Add any additional override configuration in the following tables.
-  --  Available keys are:
-  --  - cmd (table): Override the default command used to start the server
-  --  - filetypes (table): Override the default list of associated filetypes for
-  --    the server
-  --  - capabilities (table): Override fields in capabilities. Can be used to
-  --    disable certain LSP features.
-  --  - settings (table): Override the default settings passed when initializing
-  --    the server.
-  --
-  --  For example, to see the options for `lua_ls`, you could go to:
-  --    https://luals.github.io/wiki/settings/
-  --
-  --  See `:help lspconfig-all` for a list of all the pre-configured LSPs.
   servers = {
     lua_ls = {
       settings = {
         Lua = {
           telemetry = { enable = false },
           completion = { callSnippet = "Replace" },
-          -- Ignore Lua_LS's noisy `missing-fields` warnings.
+          -- Ignore LuaLS's noisy `missing-fields` warnings.
           diagnostics = { disable = { "missing-fields" } },
         },
       },
@@ -56,24 +81,12 @@ vim.g.lsp_opts = {
     vimls = {},
     bashls = {},
   },
-
-  -- Enable the following formatters.
-  --  Add/remove desired formatters here. They will be automatically installed.
   formatters_by_ft = {
     lua = { "stylua" },
     sh = { "shfmt" },
   },
-
-  -- Configure custom formatters with options to achieve the desired style.
   formatters = {},
-
-  -- Enable the following linters.
-  --  Add/remove desired linters here. They will be automatically installed.
-  linters_by_ft = {}, -- `bashls` integrates with `shellcheck` if installed
-
-  -- Add other tools you want to install here.
-  --  NOTE: this is a list and needs to be extended with `vim.list_extend` or
-  --  fully overwritten with `vim.tbl_deep_extend`.
+  linters_by_ft = {},
   ensure_installed = {
     "lua_ls",
     "vimls",

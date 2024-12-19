@@ -11,7 +11,7 @@ return { -- LSP configuration
     { "williamboman/mason-lspconfig.nvim", config = true },
     { -- Automatically install LSPs and related tools to stdpath for Neovim.
       "WhoIsSethDaniel/mason-tool-installer.nvim",
-      opts = { ensure_installed = vim.g.lsp_opts.ensure_installed or {} },
+      opts = { ensure_installed = vim.g.lsp.ensure_installed },
     },
 
     "saghen/blink.cmp", -- Allows extra capabilities provided by `blink.cmp`
@@ -19,20 +19,20 @@ return { -- LSP configuration
     -- Useful status updates for LSP.
     { "j-hui/fidget.nvim", config = true },
   },
-  opts = { servers = vim.g.lsp_opts.servers or {} },
+  opts = { servers = vim.g.lsp.servers },
   config = function(_, opts)
     local lspconfig = require("lspconfig")
-    for server_name, server_opts in pairs(opts.servers or {}) do
+    local blink = require("blink.cmp")
+    for server, config in pairs(opts.servers) do
       -- LSP servers and clients are able to communicate to each other what
       -- features they support.
       --  By default, Neovim doesn't support everything that is in the LSP
       --  specification. When you add `blink.cmp`, `luasnip`, etc. Neovim now
       --  has *more* capabilities. So, we create new capabilities with
       --  `blink.cmp`, and then broadcast that to the servers.
-      server_opts.capabilities = require("blink.cmp").get_lsp_capabilities(
-        server_opts.capabilities or {}
-      )
-      lspconfig[server_name].setup(server_opts)
+      config.capabilities =
+        blink.get_lsp_capabilities(config.capabilities or {})
+      lspconfig[server].setup(config)
     end
   end,
 }
