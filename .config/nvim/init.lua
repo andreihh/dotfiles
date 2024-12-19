@@ -15,14 +15,6 @@ function _G.NerdFontEnabled()
   return vim.fn.empty(vim.env.NERD_FONT_ENABLED) == 0
 end
 
---- Returns if true colors are supported by the terminal.
----
---- @return boolean
-function _G.TrueColorsEnabled()
-  local color_support = vim.env.COLORTERM
-  return color_support == "truecolor" or color_support == "24bit"
-end
-
 -- Load basic configs.
 --  NOTE: must happen before plugins, color schemes, or overrides are loaded.
 require("config.settings")

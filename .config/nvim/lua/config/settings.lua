@@ -2,6 +2,10 @@
 --  See `:help vim.opt`
 --  For more options, see `:help option-list`
 
+-- Enable true colors if supported by the terminal.
+vim.opt.termguicolors = vim.env.COLORTERM == "truecolor"
+  or vim.env.COLORTERM == "24bit"
+
 -- Make Esc more responsive.
 vim.o.ttimeoutlen = 5
 
@@ -111,6 +115,3 @@ vim.opt.shortmess:append("c")
 -- - session directory
 vim.o.sessionoptions =
   "blank,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
-
--- Enable true colors if supported by the terminal.
-vim.opt.termguicolors = TrueColorsEnabled()
