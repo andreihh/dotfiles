@@ -98,16 +98,7 @@ return { -- Fuzzy finder (files, lsp, etc.)
         ["<C-u>"] = "preview-half-page-up",
         ["<C-l>"] = "toggle-preview-wrap",
       },
-      fzf = {
-        false,
-        ["tab"] = "accept",
-        ["shift-tab"] = "toggle",
-        ["ctrl-f"] = "jump",
-        ["ctrl-d"] = "preview-half-page-down",
-        ["ctrl-u"] = "preview-half-page-up",
-        ["ctrl-l"] = "toggle-preview-wrap",
-        ["ctrl-o"] = "accept",
-      },
+      fzf = { false },
     },
     fzf_colors = true,
     previewers = {
