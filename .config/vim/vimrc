@@ -1,15 +1,10 @@
 " vimrc: configures Vim.
 "
-" Requires Vim9+, `fzf, and `ripgrep`.
+" Requires Vim9+, `fzf`, `fd`, `ripgrep`, and optionally a Nerd Font.
 
 " Returns if a Nerd Font is installed and selected in the terminal.
 function! g:NerdFontEnabled() abort
   return !empty($NERD_FONT_ENABLED)
-endfunction
-
-" Returns if true colors are supported by the terminal.
-function! s:TrueColorsEnabled() abort
-  return $COLORTERM == 'truecolor' || $COLORTERM == '24bit'
 endfunction
 
 " [[ XDG specification ]]
@@ -203,8 +198,8 @@ set sessionoptions=
 " Use colors that look good on a dark background.
 set background=dark
 
-" Enable true colors if the terminal has the capability.
-if s:TrueColorsEnabled() && exists('+termguicolors')
+" Enable true colors if supported by the terminal.
+if $COLORTERM == 'truecolor' || $COLORTERM == '24bit'
   set termguicolors
 endif
 
