@@ -9,6 +9,7 @@
 --  - u = [u]ndo
 --  - <C-r> = [r]edo
 --  - <C-u/d> = jump half page [u]p / [d]own
+--  - <C-h> = backspace
 --  - g1 / ... / g9 = [g]o to tab 1..9
 --  - gj / gk = [g]o to previous / next location
 --  - gf = [g]o to [f]ile under cursor / selected [f]ile
@@ -32,7 +33,6 @@
 -- Search:
 --  - s + p/h/k/f/r/c/g/d/w/./:// = [s]earch with picker
 --  - <C-n/p> = select [n]ext / [p]revious item
---  - <C-h> = bacpskace
 --  - <C-f> = [f]lash jump
 --  - <C-u/d> = scroll preview [u]p / [d]own
 --  - <C-l> = toggle wrapping [l]ong preview lines
@@ -67,7 +67,7 @@
 --  - g + d/D/i/r = perform code navigation
 --  - [r / ]r = jump to previous / next [r]eference
 --  - [d / ]d / [w / ]w / [e / ]e = jump to previous / next diagnostic severity
---  - <leader>h / <C-h> / <leader>D = show (signature) [h]elp / [d]iagnostic
+--  - <leader>h / <C-s> / <leader>D = show [h]elp / [s]ignature / [d]iagnostic
 --    - <leader>h / <C-h> / <leader>D = focus float
 --    - q = [q]uit float if focused
 --  - <leader> + =/-/f/c/r/a/l/L/H/T = perform code action
@@ -135,7 +135,7 @@ noremap("n", "]w", function()
 end, "Jump to next [W]arning")
 
 noremap("n", "<leader>h", vim.lsp.buf.hover, "Show [H]elp")
-noremap("i", "<C-h>", vim.lsp.buf.signature_help, "Show signature [H]elp")
+noremap("i", "<C-s>", vim.lsp.buf.signature_help, "Show signature [H]elp")
 noremap("n", "<leader>D", vim.diagnostic.open_float, "Show [D]iagnostic")
 
 noremap({ "n", "x" }, "<leader>-", "<cmd>:normal gcc<CR>", "Toggle comment")
