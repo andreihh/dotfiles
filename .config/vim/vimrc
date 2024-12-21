@@ -270,6 +270,18 @@ function! s:AutoSession() abort
   endif
 endfunction
 
+" Toggle maximization of the current window.
+let s:zen_mode = 0
+function! s:ToggleZenMode() abort
+  if s:zen_mode
+    let s:zen_mode = 0
+    call feedkeys("\<C-w>=", 'n')
+  else
+    let s:zen_mode = 1
+    call feedkeys("\<C-w>\|\<C-w>_", 'n')
+  endif
+endfunction
+
 " Highlight yank for 300 ms.
 let g:highlightedyank_highlight_duration = 300
 
@@ -484,7 +496,7 @@ xmap <C-f> <plug>(easymotion-s)
 nnoremap <C-s> :split<CR>
 nnoremap <C-v> :vsplit<CR>
 nnoremap <C-t> :tabedit %<CR>
-nnoremap <C-z> :only<CR>
+nnoremap <expr> <C-z> <SID>ToggleZenMode()
 nnoremap <C-x> :quit<CR>
 nnoremap <C-w> :tabclose<CR>
 nnoremap <M-=> <C-w>=
