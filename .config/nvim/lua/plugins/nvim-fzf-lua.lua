@@ -1,4 +1,4 @@
-return { -- Fuzzy Finder (files, lsp, etc)
+return { -- Fuzzy finder (files, lsp, etc.)
   "ibhagwan/fzf-lua",
   cmd = "FzfLua",
   keys = {
@@ -109,7 +109,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
         ["ctrl-o"] = "accept",
       },
     },
-    fzf_args = "--no-scrollbar",
+    fzf_colors = true,
     previewers = {
       builtin = { treesitter = { enabled = vim.g.lsp.treesitter_enabled } },
     },
@@ -124,4 +124,14 @@ return { -- Fuzzy Finder (files, lsp, etc)
       },
     },
   },
+  init = function()
+    -- Register `fzf-lua` for `vim.ui.select` lazily.
+    vim.schedule(function()
+      ---@diagnostic disable-next-line: duplicate-set-field
+      vim.ui.select = function(...)
+        require("fzf-lua").register_ui_select()
+        return vim.ui.select(...)
+      end
+    end)
+  end,
 }

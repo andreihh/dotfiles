@@ -50,8 +50,6 @@
 --  - <C-e> = [e]xit
 --  - <C-\> = show keymap help
 -- Input:
---  - <C-n/p> = select [n]ext / [p]revious from history
---  - <C-h> = backspace
 --  - <tab> = accept input
 --  - <esc> = exit from insert / visual / normal mode
 --  - <C-e> = [e]xit
