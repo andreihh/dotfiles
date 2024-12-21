@@ -1,11 +1,12 @@
 return { -- Autocompletion
   "saghen/blink.cmp",
-  lazy = false, -- Lazy loading is handled internally
   version = "*", -- Download pre-built binaries for the latest release
+  event = { "InsertEnter", "CmdlineEnter" },
   -- Provides snippets for the snippet source.
   dependencies = { "rafamadriz/friendly-snippets" },
   opts = {
     keymap = {
+      preset = "none",
       ["<C-space>"] = { "show" },
       ["<C-n>"] = { "snippet_forward", "select_next" },
       ["<C-p>"] = { "snippet_backward", "select_prev" },
@@ -20,13 +21,13 @@ return { -- Autocompletion
       -- Always show documentation for selected item.
       documentation = {
         auto_show = true,
-        auto_show_delay_ms = 5,
-        update_delays_ms = 10,
-        treesitter_highlighting = vim.g.lsp_opts.treesitter_enabled,
+        auto_show_delay_ms = 50,
+        treesitter_highlighting = vim.g.lsp.treesitter_enabled,
       },
       menu = {
         draw = {
-          treesitter = vim.g.lsp_opts.treesitter_enabled,
+          -- Enable Treesitter rendering only for LSP items.
+          treesitter = vim.g.lsp.treesitter_enabled and { "lsp" } or {},
           columns = {
             -- Icons require a Nerd Font.
             { NerdFontEnabled() and "kind_icon" or "kind" },
@@ -34,13 +35,6 @@ return { -- Autocompletion
             { "source_name" },
           },
         },
-      },
-    },
-    sources = {
-      completion = {
-        -- Default list of enabled providers defined so that you can extend it
-        -- elsewhere in your config, without redefining it, via `opts_extend`.
-        enabled_providers = { "lsp", "snippets", "buffer", "path" },
       },
     },
     appearance = {
@@ -78,8 +72,9 @@ return { -- Autocompletion
         TypeParameter = "󰗴", -- `nf-md-format_title`
       },
     },
+    sources = { default = { "lsp", "path", "snippets", "buffer" } },
   },
-  -- Allows extending the `enabled_providers` array elsewhere in your config
+  -- Allows extending the `sources.default` array elsewhere in your config
   -- without having to redefine it.
-  opts_extend = { "sources.completion.enabled_providers" },
+  opts_extend = { "sources.default" },
 }

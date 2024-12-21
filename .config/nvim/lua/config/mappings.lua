@@ -57,7 +57,7 @@
 --  - <C-e> = [e]xit
 -- Completion:
 --  - <C-space> = trigger completion
---  - <C-n/p> = select [n]ext / [p]revious item or snippet expansion location
+--  - <C-n/p> = select [n]ext / [p]revious item or snippet placeholder
 --  - <C-u/d> = scroll documentation [u]p / [d]own
 --  - <tab> = accept selected item
 --  - <C-e> = [e]xit
