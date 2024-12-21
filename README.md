@@ -81,7 +81,6 @@ vim.list_extend(ensure_installed, {
   "ktfmt",
   "prettier",
   "pylint",
-  -- `clangd` embeds `clang-tidy`
   "checkstyle",
 })
 

@@ -81,7 +81,7 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
     words = { notify_end = false },
     -- Don't dim code outside of the current scope in Zen mode.
     zen = { toggles = { dim = false } },
-    input = { -- Better input UI
+    input = { -- Register `snacks` for `vim.ui.input`
       -- Icons require a Nerd Font: `nf-fa-edit`.
       icon = NerdFontEnabled() and " " or "",
       win = {
