@@ -8,16 +8,16 @@ return { -- Autocompletion
     keymap = {
       preset = "none",
       ["<C-space>"] = { "show" },
-      ["<C-n>"] = { "snippet_forward", "select_next" },
-      ["<C-p>"] = { "snippet_backward", "select_prev" },
-      ["<C-u>"] = { "scroll_documentation_up", "fallback" },
-      ["<C-d>"] = { "scroll_documentation_down", "fallback" },
+      ["<C-j>"] = { "select_next" },
+      ["<C-k>"] = { "select_prev" },
+      ["<C-h>"] = { "snippet_backward" },
+      ["<C-l>"] = { "snippet_forward" },
+      ["<C-u>"] = { "scroll_documentation_up" },
+      ["<C-d>"] = { "scroll_documentation_down" },
       ["<Tab>"] = { "select_and_accept", "fallback" },
       ["<C-e>"] = { "cancel" },
     },
     completion = {
-      -- Don't trigger inside a snippet to avoid conflicting keymaps.
-      trigger = { show_in_snippet = false },
       -- Always show documentation for selected item.
       documentation = {
         auto_show = true,

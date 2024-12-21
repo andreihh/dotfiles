@@ -33,7 +33,3 @@ set keymap vi-command
 
 # Set insert mode key bindings.
 set keymap vi-insert
-
-# Set search command history key bindings.
-"\C-n": history-search-forward
-"\C-p": history-search-backward

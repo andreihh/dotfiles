@@ -9,7 +9,6 @@
 --  - u = [u]ndo
 --  - <C-r> = [r]edo
 --  - <C-u/d> = jump half page [u]p / [d]own
---  - <C-h> = backspace
 --  - g1 / ... / g9 = [g]o to tab 1..9
 --  - gj / gk = [g]o to previous / next location
 --  - gf = [g]o to [f]ile under cursor / selected [f]ile
@@ -32,10 +31,10 @@
 --  - sD = [s]ession [d]elete
 -- Search:
 --  - s + p/h/k/f/r/c/g/d/w/./:// = [s]earch with picker
---  - <C-n/p> = select [n]ext / [p]revious item
+--  - <C-j/k> = select next / previous item
 --  - <C-f> = [f]lash jump
 --  - <C-u/d> = scroll preview [u]p / [d]own
---  - <C-l> = toggle wrapping [l]ong preview lines
+--  - <C-l/p> = toggle [l]ine / [p]review wrapping for long lines
 --  - <tab> = accept selected / toggled items
 --  - <S-tab> = toggle selected item
 --  - <C-o/s/v/t> = open selected item in window
@@ -55,7 +54,8 @@
 --  - <C-e> = [e]xit
 -- Completion:
 --  - <C-space> = trigger completion
---  - <C-n/p> = select [n]ext / [p]revious item or snippet placeholder
+--  - <C-j/k> = select next / previus item
+--  - <C-h/l> = jump to previous / next snippet placeholder
 --  - <C-u/d> = scroll documentation [u]p / [d]own
 --  - <tab> = accept selected item
 --  - <C-e> = [e]xit
