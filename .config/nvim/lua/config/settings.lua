@@ -44,11 +44,11 @@ vim.diagnostic.config({
     severity_sort = true,
     -- Icons require a Nerd Font.
     text = NerdFontEnabled()
-        and {
-          [vim.diagnostic.severity.ERROR] = "", -- `nf-cod-error`
-          [vim.diagnostic.severity.WARN] = "", -- `nf-cod-warning`
-          [vim.diagnostic.severity.INFO] = "", -- `nf-seti-info`
-          [vim.diagnostic.severity.HINT] = "󰌶", -- `nf-md-lightbulb-outline`
+        and { -- Match Lualine diagnostic icons
+          [vim.diagnostic.severity.ERROR] = "󰅚", -- `nf-md-close_circle_outline`
+          [vim.diagnostic.severity.WARN] = "󰀪", -- `nf-md-alert_outline`
+          [vim.diagnostic.severity.INFO] = "󰋽", -- `nf-md-information_outline`
+          [vim.diagnostic.severity.HINT] = "󰌶", -- `nf-md-lightbulb_outline`
         }
       or {},
   },
