@@ -65,7 +65,7 @@ return { -- Autocompletion
         Snippet = "", -- `nf-oct-code`
         Color = "󰏘", -- `nf-md-palette`
         File = "󰈙", -- `nf-md-file_document`
-        Reference = "󰈇", -- `nf-md-export`
+        Reference = "", -- `nf-cod-references`
         Folder = "󰉋", -- `nf-md-folder`
         Event = "", -- `nf-fa-bolt`
         Operator = "󰆕", -- `nf-md-contrast`
