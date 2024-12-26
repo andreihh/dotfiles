@@ -2,46 +2,14 @@ return { -- Fuzzy finder (files, lsp, etc.)
   "ibhagwan/fzf-lua",
   cmd = "FzfLua",
   keys = {
-    {
-      "sp",
-      "<cmd>FzfLua builtin<CR>",
-      desc = "[S]earch [P]icker",
-    },
-    {
-      "sh",
-      "<cmd>FzfLua helptags<CR>",
-      desc = "[S]earch [H]elp",
-    },
-    {
-      "sk",
-      "<cmd>FzfLua keymaps<CR>",
-      desc = "[S]earch [K]eymaps",
-    },
-    {
-      "sf",
-      "<cmd>FzfLua files<CR>",
-      desc = "[S]earch [F]iles",
-    },
-    {
-      "sr",
-      "<cmd>FzfLua oldfiles<CR>",
-      desc = "[S]earch [R]ecent files",
-    },
-    {
-      "sb",
-      "<cmd>FzfLua buffers<CR>",
-      desc = "[S]earch [B]uffers",
-    },
-    {
-      "sc",
-      "<cmd>FzfLua git_status<CR>",
-      desc = "[S]earch [C]hanged files",
-    },
-    {
-      "sg",
-      "<cmd>FzfLua live_grep<CR>",
-      desc = "[S]earch by [G]rep",
-    },
+    { "sp", "<cmd>FzfLua builtin<CR>", desc = "[S]earch [P]icker" },
+    { "sh", "<cmd>FzfLua helptags<CR>", desc = "[S]earch [H]elp" },
+    { "sk", "<cmd>FzfLua keymaps<CR>", desc = "[S]earch [K]eymaps" },
+    { "sf", "<cmd>FzfLua files<CR>", desc = "[S]earch [F]iles" },
+    { "sr", "<cmd>FzfLua oldfiles<CR>", desc = "[S]earch [R]ecent files" },
+    { "sb", "<cmd>FzfLua buffers<CR>", desc = "[S]earch [B]uffers" },
+    { "sc", "<cmd>FzfLua git_status<CR>", desc = "[S]earch [C]hanged files" },
+    { "sg", "<cmd>FzfLua live_grep<CR>", desc = "[S]earch by [G]rep" },
     {
       "sd",
       "<cmd>FzfLua diagnostics_workspace<CR>",
@@ -62,11 +30,7 @@ return { -- Fuzzy finder (files, lsp, etc.)
       "<cmd>FzfLua command_history<CR>",
       desc = "[S]earch [:] command history",
     },
-    {
-      "s/",
-      "<cmd>FzfLua blines<CR>",
-      desc = "[S]earch [/] current buffer",
-    },
+    { "s/", "<cmd>FzfLua blines<CR>", desc = "[S]earch [/] current buffer" },
     {
       "gd",
       "<cmd>FzfLua lsp_definitions jump_to_single_result=true<CR>",
@@ -84,16 +48,8 @@ return { -- Fuzzy finder (files, lsp, etc.)
       "<cmd>FzfLua lsp_implementations jump_to_single_result=true<CR>",
       desc = "[G]oto [I]mplementation",
     },
-    {
-      "gr",
-      "<cmd>FzfLua lsp_references<CR>",
-      desc = "[G]oto [R]eferences",
-    },
-    {
-      "<leader>a",
-      "<cmd>FzfLua lsp_code_actions<CR>",
-      desc = "Code [A]ction",
-    },
+    { "gr", "<cmd>FzfLua lsp_references<CR>", desc = "[G]oto [R]eferences" },
+    { "<leader>a", "<cmd>FzfLua lsp_code_actions<CR>", desc = "Code [A]ction" },
   },
   dependencies = {
     -- Icons require a Nerd Font.

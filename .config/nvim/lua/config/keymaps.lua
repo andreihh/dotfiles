@@ -68,7 +68,7 @@
 --  - [r / ]r = jump to previous / next [r]eference
 --  - [d / ]d / [w / ]w / [e / ]e = jump to previous / next diagnostic severity
 --  - <leader>h / <C-s> / <leader>D = show [h]elp / [s]ignature / [d]iagnostic
---    - <leader>h / <C-h> / <leader>D = focus float
+--    - <leader>h / <C-s> / <leader>D = focus float
 --    - q = [q]uit float if focused
 --  - <leader> + =/-/f/c/r/a/l/L/H/T = perform code action
 -- Treesitter:
@@ -135,7 +135,7 @@ noremap("n", "]w", function()
 end, "Jump to next [W]arning")
 
 noremap("n", "<leader>h", vim.lsp.buf.hover, "Show [H]elp")
-noremap("i", "<C-s>", vim.lsp.buf.signature_help, "Show signature [H]elp")
+noremap("i", "<C-s>", vim.lsp.buf.signature_help, "Show [S]ignature help")
 noremap("n", "<leader>D", vim.diagnostic.open_float, "Show [D]iagnostic")
 
 noremap({ "n", "x" }, "<leader>-", "<cmd>:normal gcc<CR>", "Toggle comment")
