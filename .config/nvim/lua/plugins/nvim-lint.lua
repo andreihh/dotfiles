@@ -8,6 +8,11 @@ return { -- Linting
       end,
       desc = "[L]int document and add diagnostics",
     },
+    {
+      "<leader>L",
+      vim.diagnostic.reset,
+      desc = "Clear [L]ints and diagnostics",
+    },
   },
   config = function()
     require("lint").linters_by_ft = vim.g.lsp.linters_by_ft
