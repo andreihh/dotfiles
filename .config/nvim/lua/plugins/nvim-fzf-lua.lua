@@ -89,6 +89,11 @@ return { -- Fuzzy finder (files, lsp, etc.)
       "<cmd>FzfLua lsp_references<CR>",
       desc = "[G]oto [R]eferences",
     },
+    {
+      "<leader>a",
+      "<cmd>FzfLua lsp_code_actions<CR>",
+      desc = "Code [A]ction",
+    },
   },
   dependencies = {
     -- Icons require a Nerd Font.
