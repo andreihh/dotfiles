@@ -508,7 +508,7 @@ nnoremap sS :SaveSession<CR>
 nnoremap sD :Obsession!<CR>
 
 " Search:
-" - s + h/k/f/r/c/g/./:// = [s]earch with picker
+" - s + h/k/f/r/b/c/g/./:// = [s]earch with picker
 " - <C-j/k> = select next / previous item
 " - <C-f> = [f]lash jump
 " - <C-u/d> = scroll preview [u]p / [d]own
@@ -522,6 +522,7 @@ nnoremap sh :Helptags<CR>
 nnoremap sk :Maps<CR>
 nnoremap sf :Files<CR>
 nnoremap sr :History<CR>
+nnoremap sb :Buffers<CR>
 nnoremap sc :GFiles?<CR>
 nnoremap sg :Rg<CR>
 nnoremap s. :Files %:h<CR>

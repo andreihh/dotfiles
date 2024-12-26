@@ -28,6 +28,11 @@ return { -- Fuzzy finder (files, lsp, etc.)
       desc = "[S]earch [R]ecent files",
     },
     {
+      "sb",
+      "<cmd>FzfLua buffers<CR>",
+      desc = "[S]earch [B]uffers",
+    },
+    {
       "sc",
       "<cmd>FzfLua git_status<CR>",
       desc = "[S]earch [C]hanged files",
