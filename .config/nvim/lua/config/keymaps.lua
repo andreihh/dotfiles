@@ -8,17 +8,17 @@
 --  - <esc> = clear search highlights
 --  - u = [u]ndo
 --  - <C-r> = [r]edo
---  - <C-u/d> = jump half page [u]p / [d]own
---  - g1 / ... / g9 = [g]o to tab 1..9
+--  - 12 / 21 / 112 / 221 = sort ascending / descending (unique)
 --  - gj / gk = [g]o to previous / next location
 --  - gf = [g]o to [f]ile under cursor / selected [f]ile
 --  - gx = [g]o to URI with e[x]ternal system handler
+--  - g1 / ... / g9 = [g]o to tab 1..9
+--  - <C-u/d> = jump half page [u]p / [d]own
 --  - { / } = jump to previous / next blank line
 --  - f/F/t/T/;/, = enhanced [F]lash motions
 --  - <C-f> = trigger multi-window [F]lash
 --  - [c / ]c / [C / ]C = jump to previous / next / first / last [c]hanged hunk
 --  - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
---  - 12 / 21 / 112 / 221 = sort ascending / descending (unique)
 --  - <C-\> = show keymap help
 -- Window:
 --  - <C-s/v/t/z/x/w> = perform window action
@@ -93,11 +93,17 @@ map("n", "L", "<cmd>Lazy<CR>", "Launch [L]azy plugin manager")
 map("n", "S", "<cmd>write<CR>", "[S]ave buffer")
 map("n", "Q", "<cmd>quitall<CR>", "[Q]uit")
 map("n", "<esc>", "<cmd>nohlsearch<CR>", "Clear search highlights")
-map("n", "s", "<nop>", "Disable [S]ubstitute to allow search chaining")
 map("x", "12", ":sort u<CR>", "Sort ascending unique")
 map("x", "21", ":sort! u<CR>", "Sort descending unique")
 map("x", "112", ":sort<CR>", "Sort ascending")
 map("x", "221", ":sort!<CR>", "Sort descending")
+map("n", "s", "<nop>", "Disable [S]ubstitute to allow search chaining")
+
+map("n", "gj", "<C-o>", "[G]oto previous location")
+map("n", "gk", "<C-i>", "[G]oto next location")
+for i = 1, 9 do
+  map("n", "g" .. i, i .. "gt", "[G]oto tab " .. i)
+end
 
 map("n", "<C-s>", "<cmd>split<CR>", "[S]plit window horizontally")
 map("n", "<C-v>", "<cmd>vsplit<CR>", "Split window [V]ertically")
@@ -108,12 +114,6 @@ map("n", "<M-=>", "<C-w>=", "Resize all windows equally")
 
 map("n", "X", "<cmd>terminal<CR>", "Open terminal")
 map("t", "<C-e>", "<C-\\><C-n>", "[E]xit terminal mode")
-
-for i = 1, 9 do
-  map("n", "g" .. i, i .. "gt", "[G]oto tab " .. i)
-end
-map("n", "gj", "<C-o>", "[G]oto previous location")
-map("n", "gk", "<C-i>", "[G]oto next location")
 
 map("n", "[e", function()
   vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })

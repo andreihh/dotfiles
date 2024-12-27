@@ -461,38 +461,37 @@ endfor
 " General:
 " - Y = [y]ank until end of line
 " - S = [s]ave buffer
-" - R = [r]efresh status line
 " - Q = [q]uit
 " - <esc> = clear search highlights
 " - u = [u]ndo
 " - <C-r> = [r]edo
-" - <C-u/d> = jump half page [u]p / [d]own
-" - g1 / ... / g9 = [g]o to tab 1..9
+" - 12 / 21 / 112 / 221 = sort ascending / descending (unique)
 " - gj / gk = [g]o to previous / next location
 " - gf = [g]o to [f]ile under cursor / selected [f]ile
 " - gx = [g]o to URI with e[x]ternal system handler
+" - g1 / ... / g9 = [g]o to tab 1..9
+" - <C-u/d> = jump half page [u]p / [d]own
 " - { / } = jump to previous / next blank line
+" - f/F/t/T/;/, = find character in line motions
 " - <C-f> = trigger multi-window [F]lash-like EasyMotion
 " - [c / ]c / [C / ]C = jump to previous / next / first / last [c]hanged hunk
 " - [m / ]m = jump to previous / next start of Java-style method or class
 " - [M / ]M = jump to previous / next end of Java-style method or class
-" - 12 / 21 / 112 / 221 = sort ascending / descending (unique)
 nnoremap Y y$
 nnoremap S :w<CR>
-nnoremap R :AirlineRefresh<CR>
 nnoremap Q :quitall<CR>
 nnoremap <esc> <C-c>:nohlsearch<CR>
-for i in [1, 2, 3, 4, 5, 6, 7, 8, 9]
-  execute 'nnoremap g' . i . ' ' . i . 'gt'
-endfor
-nnoremap gj <C-o>
-nnoremap gk <C-i>
-nmap <C-f> <plug>(easymotion-overwin-f)
-xmap <C-f> <plug>(easymotion-s)
 xnoremap 12 :sort u<CR>
 xnoremap 21 :sort! u<CR>
 xnoremap 112 :sort<CR>
 xnoremap 221 :sort!<CR>
+nnoremap gj <C-o>
+nnoremap gk <C-i>
+for i in [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  execute 'nnoremap g' . i . ' ' . i . 'gt'
+endfor
+nmap <C-f> <plug>(easymotion-overwin-f)
+xmap <C-f> <plug>(easymotion-s)
 
 " Window:
 " - <C-s/v/t/z/x/w> = perform window action
