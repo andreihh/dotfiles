@@ -84,7 +84,8 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 local function map(mode, lhs, rhs, desc)
-  vim.keymap.set(mode, lhs, rhs, { desc = desc, noremap = true })
+  -- Core keymaps shouldn't be recursive or have conflicts (thus no wait time).
+  vim.keymap.set(mode, lhs, rhs, { desc = desc, noremap = true, nowait = true })
 end
 
 map("n", "L", "<cmd>Lazy<CR>", "Launch [L]azy plugin manager")
