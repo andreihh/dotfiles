@@ -26,6 +26,24 @@ return { -- Fuzzy finder (files, lsp, etc.)
       desc = "[S]earch files in [.] current buffer's working directory",
     },
     {
+      "s+",
+      function()
+        local unsaved_buffers = {}
+        for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+          if vim.api.nvim_get_option_value("modified", { buf = bufnr }) then
+            table.insert(unsaved_buffers, bufnr)
+          end
+        end
+        require("fzf-lua").buffers({
+          -- Update after https://github.com/ibhagwan/fzf-lua/issues/1647.
+          -- buffers = unsaved_buffers,
+          query = "+",
+          fzf_opts = { ["--header-lines"] = false },
+        })
+      end,
+      desc = "[S]earch [+] modified buffers",
+    },
+    {
       "s:",
       "<cmd>FzfLua command_history<CR>",
       desc = "[S]earch [:] command history",
