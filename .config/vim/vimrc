@@ -252,6 +252,12 @@ augroup END
 " [[ Commands ]]
 
 command! SaveSession execute 'Obsession ' . fnameescape(s:SessionFile())
+command! DiffUnsaved let filetype=&ft
+    \ | tab split
+    \ | let t:is_diff_tab=1
+    \ | vnew | r # | execute "normal! 1Gdd"
+    \ | execute 'setlocal bt=nofile bh=wipe nobl noswf ro noma ft=' . filetype
+    \ | windo :diffthis
 
 " [[ Plugin configs ]]
 
@@ -472,11 +478,13 @@ endfor
 " - g1 / ... / g9 = [g]o to tab 1..9
 " - <C-u/d> = jump half page [u]p / [d]own
 " - { / } = jump to previous / next blank line
+" - [m / ]m = jump to previous / next start of Java-style method or class
+" - [M / ]M = jump to previous / next end of Java-style method or class
 " - f/F/t/T/;/, = find character in line motions
 " - <C-f> = trigger multi-window [F]lash-like EasyMotion
 " - [c / ]c / [C / ]C = jump to previous / next / first / last [c]hanged hunk
-" - [m / ]m = jump to previous / next start of Java-style method or class
-" - [M / ]M = jump to previous / next end of Java-style method or class
+" - du = [d]iff [u]nsaved changes
+"   - q = [q]uit diff tab
 nnoremap Y y$
 nnoremap S :w<CR>
 nnoremap Q :quitall<CR>
@@ -492,6 +500,8 @@ for i in [1, 2, 3, 4, 5, 6, 7, 8, 9]
 endfor
 nmap <C-f> <plug>(easymotion-overwin-f)
 xmap <C-f> <plug>(easymotion-s)
+nnoremap du :DiffUnsaved<CR>
+nnoremap <expr> q exists('t:is_diff_tab') ? ':tabclose<CR>' : 'q'
 
 " Window:
 " - <C-s/v/t/z/x/w> = perform window action

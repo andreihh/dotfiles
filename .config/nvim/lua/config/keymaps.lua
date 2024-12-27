@@ -17,6 +17,8 @@
 --  - { / } = jump to previous / next blank line
 --  - f/F/t/T/;/, = enhanced [F]lash motions
 --  - <C-f> = trigger multi-window [F]lash
+--  - du = [d]iff [u]nsaved changes
+--    - q = [q]uit diff tab
 --  - [c / ]c / [C / ]C = jump to previous / next / first / last [c]hanged hunk
 --  - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
 --  - <C-\> = show keymap help
@@ -104,6 +106,18 @@ map("n", "gk", "<C-i>", "[G]oto next location")
 for i = 1, 9 do
   map("n", "g" .. i, i .. "gt", "[G]oto tab " .. i)
 end
+
+map("n", "du", function()
+  vim.cmd([[
+    nnoremap <expr> q exists('t:is_diff_tab') ? ':tabclose<CR>' : 'q'
+    let filetype=&ft
+    tab split
+    let t:is_diff_tab=1
+    vnew | r # | normal! 1Gdd
+    execute "setlocal bt=nofile bh=wipe nobl noswf ro noma ft=" . filetype
+    windo :diffthis
+  ]])
+end, "[D]iff [U]nsaved changes")
 
 map("n", "<C-s>", "<cmd>split<CR>", "[S]plit window horizontally")
 map("n", "<C-v>", "<cmd>vsplit<CR>", "Split window [V]ertically")
