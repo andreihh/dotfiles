@@ -28,16 +28,14 @@ return { -- Fuzzy finder (files, lsp, etc.)
     {
       "s+",
       function()
-        local unsaved_buffers = {}
-        for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-          if vim.api.nvim_get_option_value("modified", { buf = bufnr }) then
-            table.insert(unsaved_buffers, bufnr)
+        local modified_buffers = {}
+        for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+          if vim.api.nvim_get_option_value("modified", { buf = buf }) then
+            table.insert(modified_buffers, buf)
           end
         end
         require("fzf-lua").buffers({
-          -- Update after https://github.com/ibhagwan/fzf-lua/issues/1647.
-          -- buffers = unsaved_buffers,
-          query = "+",
+          buffers = modified_buffers,
           fzf_opts = { ["--header-lines"] = false },
         })
       end,
