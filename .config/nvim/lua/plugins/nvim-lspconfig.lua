@@ -19,6 +19,7 @@ return { -- LSP configuration
     -- Useful status updates for LSP.
     { "j-hui/fidget.nvim", config = true },
   },
+  cond = not vim.tbl_contains(vim.v.argv, "-d"), -- Disable LSPs in diff mode
   opts = { servers = vim.g.lsp.servers },
   config = function(_, opts)
     local lspconfig = require("lspconfig")
