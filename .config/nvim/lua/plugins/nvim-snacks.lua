@@ -39,13 +39,6 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
       desc = "Toggle [T]reesitter",
     },
     {
-      "<leader>b",
-      function()
-        Snacks.git.blame_line()
-      end,
-      desc = "Open Git [B]lame",
-    },
-    {
       "<leader>g",
       function()
         Snacks.lazygit.open()

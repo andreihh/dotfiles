@@ -64,7 +64,7 @@
 --  - <tab> = accept selected item
 --  - <C-e> = [e]xit
 -- VCS:
---  - <leader>b / <leader>g = open Git [b]lame / Lazy[G]it
+--  - <leader>g = open Lazy[G]it
 --    - q = [q]uit
 -- LSP:
 --  - g + d/D/i/r = perform code navigation
