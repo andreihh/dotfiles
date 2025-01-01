@@ -17,7 +17,7 @@
 --  - { / } = jump to previous / next blank line
 --  - f/F/t/T/;/, = enhanced [F]lash motions
 --  - <C-f> = trigger multi-window [F]lash
---  - du = [d]iff [u]nsaved changes
+--  - dvu = [d]iff [v]iew [u]nsaved changes
 --    - q = [q]uit diff tab
 --  - [c / ]c / [C / ]C = jump to previous / next / first / last [c]hanged hunk
 --  - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
@@ -107,13 +107,13 @@ for i = 1, 9 do
   map("n", "g" .. i, i .. "gt", "[G]oto tab " .. i)
 end
 
-map("n", "du", function()
+map("n", "dvu", function()
   vim.cmd([[
     nnoremap <expr> q exists('t:is_diff_tab') ? ':tabclose<CR>' : 'q'
     let filetype=&ft
     tab split
     let t:is_diff_tab=1
-    vnew | r # | normal! 1Gdd
+    leftabove vnew | read ++edit # | normal! 1Gdd
     execute "setlocal bt=nofile bh=wipe nobl noswf ro noma ft=" . filetype
     windo :diffthis
   ]])
