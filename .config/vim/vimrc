@@ -255,7 +255,7 @@ command! SaveSession execute 'Obsession ' . fnameescape(s:SessionFile())
 command! DiffUnsaved let filetype=&ft
     \ | tab split
     \ | let t:is_diff_tab=1
-    \ | leftabove vnew | read ++edit # | execute "normal! 1Gdd"
+    \ | leftabove vnew | read ++edit # | execute 'normal! 1Gdd'
     \ | execute 'setlocal bt=nofile bh=wipe nobl noswf ro noma ft=' . filetype
     \ | windo :diffthis
 
@@ -555,6 +555,7 @@ nnoremap s/ :BLines<CR>
 " - cc = [r]ename node
 " - dd = [d]elete node
 " - <C-e> = [e]xit
+" - g? = show help
 nnoremap <C-o> :Explore<CR>
 function! s:ConfigNetrwKeymaps() abort
   map <buffer> <C-o> <C-l>
@@ -566,6 +567,7 @@ function! s:ConfigNetrwKeymaps() abort
   map <buffer> dd D
   map <buffer> gx x
   map <buffer> <C-e> :Rexplore<CR>
+  map <buffer> g? <F1>
 endfunction
 
 " Completion:

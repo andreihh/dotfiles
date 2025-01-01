@@ -22,7 +22,7 @@ return { -- File explorer
       ["gx"] = "actions.open_external",
       ["gh"] = "actions.toggle_hidden",
       ["<C-e>"] = "actions.close",
-      ["<C-\\>"] = "actions.show_help",
+      ["g?"] = "actions.show_help",
     },
   },
 }
