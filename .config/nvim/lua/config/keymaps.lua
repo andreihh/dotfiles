@@ -56,7 +56,24 @@
 -- VCS:
 --  - [c / ]c / [C / ]C = jump to previous / next / first / last [c]hanged hunk
 --  - dvu = [d]iff [v]iew [u]nsaved buffer changes
+--  - dv + o/h/H/b = [d]iff [v]iew [o]pen / (file) [h]istory / [b]lame
+--    - <tab> / <S-tab> = diff next / previous file
+--    - gf = [g]o to edit [f]ile
+--    - j/k = select next / previous entry
+--    - l = open selected entry
+--    - h = close fold
+--    - y = [y]ank commit hash
+--    - L = open commit [l]og
+--    - R = [r]efresh entries
+--    - dp = [d]iff [p]ut
+--    - do = [d]iff [o]btain
+--    - 1/2/3 + do = [d]iff [o]btain from BASE / OURS / THEIRS
+--    - [x / ]x = jump to previous / next conflict
+--    - dx / dX = [d]elete (all) conflict(s)
+--    - <leader>c + b/B/o/O/t/T/a/A = [c]hoose (all) conflict(s) from:
+--        [B]ASE / [O]URS / [T]HEIRS / [a]ll
 --    - q = [q]uit diff tab
+--    - g? = show help
 --  - <leader>g = open Lazy[G]it
 --    - q = [q]uit
 -- Completion:
