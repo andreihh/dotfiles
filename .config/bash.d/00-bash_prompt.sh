@@ -16,7 +16,7 @@ export VCS_BRANCH_PROMPT_COMMAND="__vcs_branch"
 
 # Returns the current `git` branch and dirty status.
 __git_branch() {
-  git rev-parse --is-inside-work-tree &> /dev/null || return
+  git rev-parse --is-inside-work-tree &> /dev/null || return 1
 
   local -r branch="$(git symbolic-ref --quiet --short HEAD 2> /dev/null \
     || git describe --all --exact-match HEAD 2> /dev/null \
@@ -35,11 +35,7 @@ __git_branch() {
 #
 # Works with `git`.
 __vcs_branch() {
-  local -r git_branch="$(__git_branch)"
-  if [[ -n "${git_branch}" ]]; then
-    echo "${git_branch}"
-    return
-  fi
+  __git_branch
 }
 
 # Shortens the current working directory by collapsing `${HOME}` to `~` and the
