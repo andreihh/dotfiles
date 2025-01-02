@@ -17,9 +17,6 @@
 --  - { / } = jump to previous / next blank line
 --  - f/F/t/T/;/, = enhanced [F]lash motions
 --  - <C-f> = trigger multi-window [F]lash
---  - dvu = [d]iff [v]iew [u]nsaved changes
---    - q = [q]uit diff tab
---  - [c / ]c / [C / ]C = jump to previous / next / first / last [c]hanged hunk
 --  - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
 --  - <C-\> = show keymap help
 -- Window:
@@ -51,11 +48,17 @@
 --  - gx = [g]o to URI with e[x]ternal system handler
 --  - gh = toggle [g]o to [h]idden files
 --  - <C-e> = [e]xit
---  - <C-\> = show keymap help
+--  - g? = show help
 -- Input:
 --  - <tab> = accept input
 --  - <esc> = exit from insert / visual / normal mode
 --  - <C-e> = [e]xit
+-- VCS:
+--  - [c / ]c / [C / ]C = jump to previous / next / first / last [c]hanged hunk
+--  - dvu = [d]iff [v]iew [u]nsaved buffer changes
+--    - q = [q]uit diff tab
+--  - <leader>g = open Lazy[G]it
+--    - q = [q]uit
 -- Completion:
 --  - <C-space> = trigger completion
 --  - <C-j/k> = select next / previus item
@@ -63,9 +66,6 @@
 --  - <C-u/d> = scroll documentation [u]p / [d]own
 --  - <tab> = accept selected item
 --  - <C-e> = [e]xit
--- VCS:
---  - <leader>g = open Lazy[G]it
---    - q = [q]uit
 -- LSP:
 --  - g + d/D/i/r = perform code navigation
 --  - [r / ]r = jump to previous / next [r]eference
@@ -109,7 +109,6 @@ end
 
 map("n", "dvu", function()
   vim.cmd([[
-    nnoremap <expr> q exists('t:is_diff_tab') ? ':tabclose<CR>' : 'q'
     let filetype=&ft
     tab split
     let t:is_diff_tab=1
@@ -118,6 +117,13 @@ map("n", "dvu", function()
     windo :diffthis
   ]])
 end, "[D]iff [U]nsaved changes")
+
+vim.keymap.set(
+  "n",
+  "q",
+  "exists('t:is_diff_tab') ? ':tabclose<CR>' : 'q'",
+  { desc = "[Q]uit diff tab", noremap = true, nowait = true, expr = true }
+)
 
 map("n", "<C-s>", "<cmd>split<CR>", "[S]plit window horizontally")
 map("n", "<C-v>", "<cmd>vsplit<CR>", "Split window [V]ertically")

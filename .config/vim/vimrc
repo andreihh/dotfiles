@@ -73,7 +73,6 @@ call plug#begin(s:plug_dir)
 Plug 'tpope/vim-sensible'  " Sensible settings
 Plug 'tpope/vim-surround'  " Better surround motions
 Plug 'tpope/vim-obsession'  " Session management
-Plug 'mhinz/vim-signify'  " VCS gutter signs for changed lines
 Plug 'easymotion/vim-easymotion'  " Better navigation motions
 " `tmux` integration
 Plug 'christoomey/vim-tmux-navigator'  " Vim / `tmux` window navigation
@@ -88,6 +87,8 @@ Plug 'ryanoasis/vim-devicons'  " Nerd Font icons
 Plug 'itchyny/vim-gitbranch'  " Status line component for Git branch
 Plug 'itchyny/lightline.vim'  " Better status and tab lines
 Plug 'wellle/context.vim'  " Show current context
+" VCS
+Plug 'mhinz/vim-signify'  " VCS gutter signs for changed lines
 " LSP
 Plug 'prabirshrestha/vim-lsp'  " LSP engine
 Plug 'mattn/vim-lsp-settings'  " LSP registry and installer
@@ -482,9 +483,6 @@ endfor
 " - [M / ]M = jump to previous / next end of Java-style method or class
 " - f/F/t/T/;/, = find character in line motions
 " - <C-f> = trigger multi-window [F]lash-like EasyMotion
-" - [c / ]c / [C / ]C = jump to previous / next / first / last [c]hanged hunk
-" - dvu = [d]iff [v]iew [u]nsaved changes
-"   - q = [q]uit diff tab
 nnoremap Y y$
 nnoremap S :w<CR>
 nnoremap Q :quitall<CR>
@@ -500,8 +498,6 @@ for i in [1, 2, 3, 4, 5, 6, 7, 8, 9]
 endfor
 nmap <C-f> <plug>(easymotion-overwin-f)
 xmap <C-f> <plug>(easymotion-s)
-nnoremap dvu :DiffUnsaved<CR>
-nnoremap <expr> q exists('t:is_diff_tab') ? ':tabclose<CR>' : 'q'
 
 " Window:
 " - <C-s/v/t/z/x/w> = perform window action
@@ -569,6 +565,13 @@ function! s:ConfigNetrwKeymaps() abort
   map <buffer> <C-e> :Rexplore<CR>
   map <buffer> g? <F1>
 endfunction
+
+" VCS:
+" - [c / ]c / [C / ]C = jump to previous / next / first / last [c]hanged hunk
+" - dvu = [d]iff [v]iew [u]nsaved buffer changes
+"   - q = [q]uit diff tab
+nnoremap dvu :DiffUnsaved<CR>
+nnoremap <expr> q exists('t:is_diff_tab') ? ':tabclose<CR>' : 'q'
 
 " Completion:
 " - <C-space> = trigger completion
