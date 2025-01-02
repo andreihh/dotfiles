@@ -8,7 +8,7 @@ return { -- Formatting
         require("conform").format({ async = true, lsp_format = "fallback" })
       end,
       mode = { "n", "x" },
-      desc = "Format document (selection)",
+      desc = "Format",
     },
   },
   opts = {
