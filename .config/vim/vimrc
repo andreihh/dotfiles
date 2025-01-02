@@ -483,6 +483,7 @@ endfor
 " - [M / ]M = jump to previous / next end of Java-style method or class
 " - f/F/t/T/;/, = find character in line motions
 " - <C-f> = trigger multi-window [F]lash-like EasyMotion
+" - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
 nnoremap Y y$
 nnoremap S :w<CR>
 nnoremap Q :quitall<CR>
@@ -498,6 +499,10 @@ for i in [1, 2, 3, 4, 5, 6, 7, 8, 9]
 endfor
 nmap <C-f> <plug>(easymotion-overwin-f)
 xmap <C-f> <plug>(easymotion-s)
+nnoremap [q :cprev<CR>
+nnoremap ]q :cnext<CR>
+nnoremap [Q :cfirst<CR>
+nnoremap ]Q :clast<CR>
 
 " Window:
 " - <C-s/v/t/z/x/w> = perform window action
