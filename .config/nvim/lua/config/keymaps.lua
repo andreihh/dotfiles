@@ -56,7 +56,7 @@
 -- VCS:
 --  - [c / ]c / [C / ]C = jump to previous / next / first / last [c]hanged hunk
 --  - dvu = [d]iff [v]iew [u]nsaved buffer changes
---  - dv + o/h/H/b = [d]iff [v]iew [o]pen / (file) [h]istory / [b]lame
+--  - dv + o/O/h/H/b = [d]iff [v]iew [o]pen / (file) [h]istory / [b]lame
 --    - <tab> / <S-tab> = diff next / previous file
 --    - gf = [g]o to edit [f]ile
 --    - j/k = select next / previous entry

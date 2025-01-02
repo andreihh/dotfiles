@@ -261,7 +261,7 @@ command! DiffUnsaved let filetype=&ft
     \ | execute 'setlocal bt=nofile bh=wipe nobl noswf ro noma ft=' . filetype
     \ | windo :diffthis
 
-command! DiffGit tab split | let t:is_diff_tab=1 | Gvdiffsplit!
+command! -nargs=? DiffGit tab split | let t:is_diff_tab=1 | Gvdiffsplit! <args>
 command! DiffGitFileHistory Git log --oneline % | nnoremap <buffer> q :close<CR>
 command! DiffGitHistory Git log --oneline | nnoremap <buffer> q :close<CR>
 command! DiffGitBlame Git blame | nnoremap <buffer> q :close<CR>
@@ -580,11 +580,12 @@ endfunction
 " VCS:
 " - [c / ]c / [C / ]C = jump to previous / next / first / last [c]hanged hunk
 " - dvu = [d]iff [v]iew [u]nsaved buffer changes
-" - dv + o/h/H/b = [d]iff [v]iew [o]pen / (file) [h]istory / [b]lame
+" - dv + o/O/h/H/b = [d]iff [v]iew [o]pen / (file) [h]istory / [b]lame
 "   - q = [q]uit diff tab / window
 "   - g? = show help
 nnoremap dvu :DiffUnsaved<CR>
 nnoremap dvo :DiffGit<CR>
+nnoremap dvO :DiffGit
 nnoremap dvh :DiffGitFileHistory<CR>
 nnoremap dvH :DiffGitHistory<CR>
 nnoremap dvb :DiffGitBlame<CR>

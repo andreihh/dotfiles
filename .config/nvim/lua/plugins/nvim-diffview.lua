@@ -3,6 +3,7 @@ return { -- Better diff views
   cmd = { "DiffviewOpen", "DiffviewFileHistory" },
   keys = {
     { "dvo", "<cmd>DiffviewOpen<CR>", desc = "[D]iff [V]iew [O]pen" },
+    { "dvO", ":DiffviewOpen ", desc = "[D]iff [V]iew [O]pen" },
     {
       "dvh",
       "<cmd>DiffviewFileHistory %<CR>",
