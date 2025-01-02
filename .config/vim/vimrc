@@ -253,12 +253,18 @@ augroup END
 " [[ Commands ]]
 
 command! SaveSession execute 'Obsession ' . fnameescape(s:SessionFile())
+
 command! DiffUnsaved let filetype=&ft
     \ | tab split
     \ | let t:is_diff_tab=1
     \ | leftabove vnew | read ++edit # | execute 'normal! 1Gdd'
     \ | execute 'setlocal bt=nofile bh=wipe nobl noswf ro noma ft=' . filetype
     \ | windo :diffthis
+
+command! DiffGit tab split | let t:is_diff_tab=1 | Gvdiffsplit!
+command! DiffGitFileHistory Git log --oneline % | nnoremap <buffer> q :close<CR>
+command! DiffGitHistory Git log --oneline | nnoremap <buffer> q :close<CR>
+command! DiffGitBlame Git blame | nnoremap <buffer> q :close<CR>
 
 " [[ Plugin configs ]]
 
@@ -574,8 +580,14 @@ endfunction
 " VCS:
 " - [c / ]c / [C / ]C = jump to previous / next / first / last [c]hanged hunk
 " - dvu = [d]iff [v]iew [u]nsaved buffer changes
-"   - q = [q]uit diff tab
+" - dv + o/h/H/b = [d]iff [v]iew [o]pen / (file) [h]istory / [b]lame
+"   - q = [q]uit diff tab / window
+"   - g? = show help
 nnoremap dvu :DiffUnsaved<CR>
+nnoremap dvo :DiffGit<CR>
+nnoremap dvh :DiffGitFileHistory<CR>
+nnoremap dvH :DiffGitHistory<CR>
+nnoremap dvb :DiffGitBlame<CR>
 nnoremap <expr> q exists('t:is_diff_tab') ? ':tabclose<CR>' : 'q'
 
 " Completion:
