@@ -84,11 +84,11 @@ Plug 'junegunn/fzf.vim'  " Better `fzf` searching
 Plug 'sainnhe/sonokai'  " Color scheme
 Plug 'machakann/vim-highlightedyank'  " Highlight yanked text
 Plug 'ryanoasis/vim-devicons'  " Nerd Font icons
-Plug 'itchyny/vim-gitbranch'  " Status line component for Git branch
 Plug 'itchyny/lightline.vim'  " Better status and tab lines
 Plug 'wellle/context.vim'  " Show current context
 " VCS
 Plug 'mhinz/vim-signify'  " VCS gutter signs for changed lines
+Plug 'tpope/vim-fugitive'  " Git integration
 " LSP
 Plug 'prabirshrestha/vim-lsp'  " LSP engine
 Plug 'mattn/vim-lsp-settings'  " LSP registry and installer
@@ -375,7 +375,7 @@ endfunction
 function! g:BranchName() abort
   " Icons require a Nerd Font: `nf-fa-code_branch`.
   let l:icon = g:NerdFontEnabled() ? ' ' : ''
-  let l:branch = gitbranch#name()
+  let l:branch = FugitiveHead()
   return !empty(l:branch) ? l:icon . l:branch : ''
 endfunction
 
