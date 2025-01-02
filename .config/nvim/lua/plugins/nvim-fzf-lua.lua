@@ -72,15 +72,14 @@ return { -- Fuzzy finder (files, lsp, etc.)
     { "nvim-tree/nvim-web-devicons", cond = NerdFontEnabled() },
   },
   opts = {
-    keymap = {
+    keymap = { -- Disable default keymaps
       builtin = {
-        false,
         ["<C-\\>"] = "toggle-help",
         ["<C-d>"] = "preview-half-page-down",
         ["<C-u>"] = "preview-half-page-up",
         ["<C-p>"] = "toggle-preview-wrap",
       },
-      fzf = { false },
+      fzf = {},
     },
     fzf_colors = true,
     previewers = {

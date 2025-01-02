@@ -585,7 +585,7 @@ endfunction
 "   - g? = show help
 nnoremap dvu :DiffUnsaved<CR>
 nnoremap dvo :DiffGit<CR>
-nnoremap dvO :DiffGit
+nnoremap dvO :DiffGit<space>
 nnoremap dvh :DiffGitFileHistory<CR>
 nnoremap dvH :DiffGitHistory<CR>
 nnoremap dvb :DiffGitBlame<CR>

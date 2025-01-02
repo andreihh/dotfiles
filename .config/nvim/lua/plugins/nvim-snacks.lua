@@ -80,8 +80,7 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
       win = {
         -- Show float relative to cursor.
         relative = "cursor",
-        row = -3,
-        col = 0,
+        row = 1,
         keys = {
           -- Override default tab action.
           i_tab = { "<tab>", "confirm", mode = { "n", "i" } },
