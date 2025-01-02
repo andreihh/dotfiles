@@ -14,7 +14,7 @@ return { -- Autocompletion
       ["<C-l>"] = { "snippet_forward" },
       ["<C-u>"] = { "scroll_documentation_up" },
       ["<C-d>"] = { "scroll_documentation_down" },
-      ["<Tab>"] = { "select_and_accept", "fallback" },
+      ["<tab>"] = { "select_and_accept", "fallback" },
       ["<C-e>"] = { "cancel" },
     },
     completion = {
