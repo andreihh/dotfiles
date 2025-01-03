@@ -2,9 +2,10 @@
 --  See `:help vim.keymap.set()`
 --
 -- General:
---  - L = [L]azy plugin manager
+--  - M = [m]anage plugins
 --  - S = [s]ave buffer
 --  - Q = [q]uit
+--  - K = show [k]eyword help
 --  - <esc> = clear search highlights
 --  - u = [u]ndo
 --  - <C-r> = [r]edo
@@ -76,6 +77,7 @@
 --    - g? = show help
 --  - <leader>g = open Lazy[G]it
 --    - q = [q]uit
+--    - ? = show help
 -- Completion:
 --  - <C-space> = trigger completion
 --  - <C-j/k> = select next / previus item
@@ -87,8 +89,8 @@
 --  - g + d/D/i/r = perform code navigation
 --  - [r / ]r = jump to previous / next [r]eference
 --  - [d / ]d / [w / ]w / [e / ]e = jump to previous / next diagnostic severity
---  - <leader>h / <C-s> / <leader>D = show [h]elp / [s]ignature / [d]iagnostic
---    - <leader>h / <C-s> / <leader>D = focus float
+--  - H / <C-s> / L = show [h]elp / [s]ignature / [l]int
+--    - H / <C-s> / L = focus float
 --    - q = [q]uit float if focused
 --  - <leader> + =/-/f/c/r/a/l/L/H/T = perform code action
 -- Treesitter:
@@ -108,7 +110,7 @@ local function map(mode, lhs, rhs, desc)
   vim.keymap.set(mode, lhs, rhs, { desc = desc, noremap = true, nowait = true })
 end
 
-map("n", "L", "<cmd>Lazy<CR>", "Launch [L]azy plugin manager")
+map("n", "M", "<cmd>Lazy<CR>", "Open Lazy plugin [M]anager")
 map("n", "S", "<cmd>write<CR>", "[S]ave buffer")
 map("n", "Q", "<cmd>quitall<CR>", "[Q]uit")
 map("n", "<esc>", "<cmd>nohlsearch<CR>", "Clear search highlights")
@@ -168,9 +170,9 @@ map("n", "]w", function()
   vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.WARN })
 end, "Jump to next [W]arning")
 
-map("n", "<leader>h", vim.lsp.buf.hover, "Show [H]elp")
+map("n", "H", vim.lsp.buf.hover, "Show [H]elp")
 map("i", "<C-s>", vim.lsp.buf.signature_help, "Show [S]ignature help")
-map("n", "<leader>D", vim.diagnostic.open_float, "Show [D]iagnostic")
+map("n", "L", vim.diagnostic.open_float, "Show [L]int / diagnostic")
 
 map({ "n", "x" }, "<leader>-", "<cmd>:normal gcc<CR>", "Toggle comment")
 map("n", "<leader>f", "za", "Toggle [F]old under cursor")

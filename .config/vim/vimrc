@@ -472,9 +472,10 @@ for key in 'hjkl='
 endfor
 
 " General:
-" - Y = [y]ank until end of line
+" - M = [m]anage plugins
 " - S = [s]ave buffer
 " - Q = [q]uit
+" - K = show [k]eyword help
 " - <esc> = clear search highlights
 " - u = [u]ndo
 " - <C-r> = [r]edo
@@ -490,7 +491,8 @@ endfor
 " - f/F/t/T/;/, = find character in line motions
 " - <C-f> = trigger multi-window [F]lash-like EasyMotion
 " - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
-nnoremap Y y$
+map Y y$
+nnoremap M :PlugStatus<CR>
 nnoremap S :w<CR>
 nnoremap Q :quitall<CR>
 nnoremap <esc> <C-c>:nohlsearch<CR>
@@ -613,7 +615,7 @@ cnoremap <C-k> <C-p>
 cnoremap <tab> <C-y>
 
 " Code:
-" - <leader>= = format document / selection
+" - <leader>= = format
 " - <leader>- = toggle comment
 " - <leader>f = toggle [f]old
 " - <leader>c = toggle current [c]ontext
@@ -633,7 +635,7 @@ nnoremap <expr> <leader>q
 " - g + d/D/i/r/t = perform code navigation
 " - [r / ]r = jump to previous / next [r]eference
 " - [d / ]d / [w / ]w / [e / ]e = jump to previous / next diagnostic by seveirty
-" - <leader>h = show [h]elp
+" - H = show [h]elp
 "   - <C-u/d> = scroll help [u]p / [d]own
 "   - <esc> = [e]xit
 " - <leader>H = toggle inlay [h]ints
@@ -657,7 +659,7 @@ nmap [w <plug>(lsp-previous-warning)
 nmap ]w <plug>(lsp-next-warning)
 nmap [d <plug>(lsp-previous-diagnostic)
 nmap ]d <plug>(lsp-next-diagnostic)
-nmap <leader>h <plug>(lsp-hover-float)
+nmap H <plug>(lsp-hover-float)
 nmap <leader>r <plug>(lsp-rename)
 nmap <leader>a <plug>(lsp-code-action-float)
 
