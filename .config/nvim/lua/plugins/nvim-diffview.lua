@@ -32,6 +32,8 @@ return { -- Better diff views
           vim.api.nvim_tabpage_set_var(0, "is_diff_tab", 1)
         end,
       },
+      -- Always track file history through renames.
+      default_args = { DiffviewFileHistory = { "--follow" } },
       keymaps = {
         file_panel = {
           { "n", "<C-u>", actions.scroll_view(-0.5), { desc = "Scroll up" } },
