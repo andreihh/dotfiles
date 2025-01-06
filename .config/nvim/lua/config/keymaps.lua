@@ -20,6 +20,12 @@
 --  - <C-f> = multi-window Flash [f]ind
 --  - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
 --  - <C-\> = show keymap help
+-- Marks:
+--  - m + {a-zA-Z} = set [m]ark
+--  - dm + {a-zA-Z} = [d]elete [m]ark
+--  - dm + !/* = [d]elete buffer / all [m]arks
+--  - ' + {a-zA-Z} = go to mark line
+--  - ` + {a-zA-Z} = go to mark
 -- Window:
 --  - <C-s/v/t/z/x/w> = perform window action
 --  - <C-h/j/k/l> = navigate panes across Vim and `tmux`
@@ -32,7 +38,7 @@
 --  - sS = [s]ession [s]ave
 --  - sD = [s]ession [d]elete
 -- Search:
---  - s + p/h/k/f/r/b/c/g/d/w/./+/:// = [s]earch with picker
+--  - s + p/h/k/f/r/b/c/g/m/d/w/./+/:// = [s]earch with picker
 --  - <C-j/k> = select next / previous item
 --  - <C-f> = Flash-like [f]ind
 --  - <C-u/d> = scroll preview [u]p / [d]own
@@ -125,6 +131,12 @@ map("n", "gk", "<C-i>", "[G]oto next location")
 for i = 1, 9 do
   map("n", "g" .. i, i .. "gt", "[G]oto tab " .. i)
 end
+
+for m in ("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"):gmatch(".") do
+  map("n", "dm" .. m, "<cmd>delmarks " .. m .. "<CR>", "[D]elete [M]ark " .. m)
+end
+map("n", "dm!", "<cmd>delmarks!<CR>", "[D]elete [!] buffer [M]arks")
+map("n", "dm*", "<cmd>delmarks a-zA-Z<CR>", "[D]elete [*] all [M]arks")
 
 map("n", "dvu", function()
   vim.cmd([[

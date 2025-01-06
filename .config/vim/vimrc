@@ -512,6 +512,18 @@ nnoremap ]q :cnext<CR>
 nnoremap [Q :cfirst<CR>
 nnoremap ]Q :clast<CR>
 
+" Marks:
+" - m + {a-zA-Z} = set [m]ark
+" - dm + {a-zA-Z} = [d]elete [m]ark
+" - dm + !/* = [d]elete buffer / all [m]arks
+" - ' + {a-zA-Z} = go to mark line
+" - ` + {a-zA-Z} = go to mark
+for m in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  execute 'nnoremap dm' . m . ' :delmarks ' . m . '<CR>'
+endfor
+nnoremap dm! :delmarks!<CR>
+nnoremap dm* :delmarks a-zA-Z<CR>
+
 " Window:
 " - <C-s/v/t/z/x/w> = perform window action
 " - <C-h/j/k/l> = navigate panes across Vim and `tmux`
@@ -531,7 +543,7 @@ nnoremap sS :SaveSession<CR>
 nnoremap sD :Obsession!<CR>
 
 " Search:
-" - s + h/k/f/r/b/c/g/./:// = [s]earch with picker
+" - s + h/k/f/r/b/c/g/m/./:// = [s]earch with picker
 " - <C-j/k> = select next / previous item
 " - <C-f> = EasyMotion-like [f]ind
 " - <C-u/d> = scroll preview [u]p / [d]own
@@ -548,6 +560,7 @@ nnoremap sr :History<CR>
 nnoremap sb :Buffers<CR>
 nnoremap sc :GFiles?<CR>
 nnoremap sg :Rg<CR>
+nnoremap sm :Marks<CR>
 nnoremap s. :Files %:h<CR>
 nnoremap s: :History:<CR>
 nnoremap s/ :BLines<CR>

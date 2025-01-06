@@ -10,6 +10,7 @@ return { -- Fuzzy finder (files, lsp, etc.)
     { "sb", "<cmd>FzfLua buffers<CR>", desc = "[S]earch [B]uffers" },
     { "sc", "<cmd>FzfLua git_status<CR>", desc = "[S]earch [C]hanged files" },
     { "sg", "<cmd>FzfLua live_grep<CR>", desc = "[S]earch by [G]rep" },
+    { "sm", "<cmd>FzfLua marks marks=%a<CR>", desc = "[S]earch [M]arks" },
     {
       "sd",
       "<cmd>FzfLua diagnostics_workspace<CR>",
