@@ -90,4 +90,7 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
       },
     },
   },
+  init = function()
+    vim.g.snacks_animate = false -- Globally disable all animations
+  end,
 }

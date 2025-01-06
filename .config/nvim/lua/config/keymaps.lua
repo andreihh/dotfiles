@@ -13,11 +13,11 @@
 --  - gj / gk = [g]o to previous / next location
 --  - gf = [g]o to [f]ile under cursor / selected [f]ile
 --  - gx = [g]o to URI with e[x]ternal system handler
---  - g1 / ... / g9 = [g]o to tab 1..9
+--  - g + {1-9} = [g]o to tab
 --  - <C-u/d> = jump half page [u]p / [d]own
 --  - { / } = jump to previous / next blank line
 --  - f/F/t/T/;/, = enhanced [F]lash motions
---  - <C-f> = trigger multi-window [F]lash
+--  - <C-f> = multi-window Flash [f]ind
 --  - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
 --  - <C-\> = show keymap help
 -- Window:
@@ -34,7 +34,7 @@
 -- Search:
 --  - s + p/h/k/f/r/b/c/g/d/w/./+/:// = [s]earch with picker
 --  - <C-j/k> = select next / previous item
---  - <C-f> = [f]lash jump
+--  - <C-f> = Flash-like [f]ind
 --  - <C-u/d> = scroll preview [u]p / [d]own
 --  - <C-l/p> = toggle [l]ine / [p]review wrapping for long lines
 --  - <tab> = accept selected / toggled items

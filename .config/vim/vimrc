@@ -483,13 +483,13 @@ endfor
 " - gj / gk = [g]o to previous / next location
 " - gf = [g]o to [f]ile under cursor / selected [f]ile
 " - gx = [g]o to URI with e[x]ternal system handler
-" - g1 / ... / g9 = [g]o to tab 1..9
+" - g + {1-9} = [g]o to tab
 " - <C-u/d> = jump half page [u]p / [d]own
 " - { / } = jump to previous / next blank line
 " - [m / ]m = jump to previous / next start of Java-style method or class
 " - [M / ]M = jump to previous / next end of Java-style method or class
 " - f/F/t/T/;/, = find character in line motions
-" - <C-f> = trigger multi-window [F]lash-like EasyMotion
+" - <C-f> = multi-window EasyMotion [f]ind
 " - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
 map Y y$
 nnoremap M :PlugStatus<CR>
@@ -502,7 +502,7 @@ xnoremap 112 :sort<CR>
 xnoremap 221 :sort!<CR>
 nnoremap gj <C-o>
 nnoremap gk <C-i>
-for i in [1, 2, 3, 4, 5, 6, 7, 8, 9]
+for i in '123456789'
   execute 'nnoremap g' . i . ' ' . i . 'gt'
 endfor
 nmap <C-f> <plug>(easymotion-overwin-f)
@@ -533,7 +533,7 @@ nnoremap sD :Obsession!<CR>
 " Search:
 " - s + h/k/f/r/b/c/g/./:// = [s]earch with picker
 " - <C-j/k> = select next / previous item
-" - <C-f> = [f]lash jump
+" - <C-f> = EasyMotion-like [f]ind
 " - <C-u/d> = scroll preview [u]p / [d]own
 " - <C-l/p> = toggle [l]ine / [p]review wrapping for long lines
 " - <tab> = accept selected / toggled items

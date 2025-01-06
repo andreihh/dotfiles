@@ -103,9 +103,6 @@ vim.opt.updatetime = 250
 -- Save undo history.
 vim.opt.undofile = true
 
--- Use POSIX shell syntax highlighting.
-vim.g.is_posix = 1
-
 -- Don't emit completion messages.
 vim.opt.shortmess:append("c")
 
@@ -115,3 +112,6 @@ vim.opt.shortmess:append("c")
 -- - session directory
 vim.o.sessionoptions =
   "blank,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
+-- Use POSIX shell syntax highlighting.
+vim.g.is_posix = 1

@@ -6,7 +6,7 @@ return { -- Better navigation motions
       function()
         require("flash").jump()
       end,
-      desc = "Trigger multi-window [F]lash",
+      desc = "Multi-window Flash [F]ind",
     },
     { "f", mode = { "n", "x", "o" } },
     { "F", mode = { "n", "x", "o" } },
