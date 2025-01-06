@@ -98,7 +98,7 @@
 --  - H / <C-s> / L = show [h]elp / [s]ignature / [l]int
 --    - H / <C-s> / L = focus float
 --    - q = [q]uit float if focused
---  - <leader> + =/-/f/c/r/a/l/L/H/T = perform code action
+--  - <leader> + =/-/f/c/r/a/l/L/H/T/D = perform code action
 -- Treesitter:
 --  - [f / ]f / [t / ]t = jump to previous / next start of [f]unction / [t]ype
 --  - [F / ]F / [T / ]T = jump to previous / next end of [f]unction / [t]ype

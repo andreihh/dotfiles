@@ -39,6 +39,13 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
       desc = "Toggle [T]reesitter",
     },
     {
+      "<leader>D",
+      function()
+        Snacks.toggle.diagnostics():toggle()
+      end,
+      desc = "Toggle [D]iagnostics",
+    },
+    {
       "<leader>g",
       function()
         Snacks.lazygit.open()
