@@ -2,12 +2,6 @@
 #
 # shellcheck shell=bash
 
-# Controls how many components are displayed from the current working directory:
-# - `0` to display full path
-# - `n` for the last `n` components, others will be collapsed to their initials
-# Must be a non-negative integer.
-export SHORTEN_PWD_PROMPT_LEVEL=5
-
 # Command used to detect the current VCS branch to be included in the prompt:
 # - default is `__vcs_branch`
 # - unset to drop VCS info from the prompt
@@ -36,32 +30,6 @@ __git_branch() {
 # Works with `git`.
 __vcs_branch() {
   __git_branch
-}
-
-# Shortens the current working directory by collapsing `${HOME}` to `~` and the
-# path components to their initials, except for the last 5 components, which are
-# displayed in full.
-__short_pwd() {
-  local -r pwd_tilde="${PWD#"${HOME}"}"
-  [[ "${PWD}" != "${pwd_tilde}" ]] && printf '~'
-  IFS='/' read -r -a path <<< "${pwd_tilde:1}"
-
-  local -r -i length=${#path[@]}
-  local -i trim_length
-  ((trim_length = length - SHORTEN_PWD_PROMPT_LEVEL))
-
-  if ((trim_length <= 0 || SHORTEN_PWD_PROMPT_LEVEL <= 0)); then
-    printf '%s' "${pwd_tilde}"
-    return
-  fi
-
-  local -i index
-  for ((index = 0; index < trim_length; index++)); do
-    printf '%s' "/${path[index]:0:1}"
-  done
-  for ((index = trim_length; index < length; index++)); do
-    printf '%s' "/${path[index]}"
-  done
 }
 
 # Makes a custom, dynamic prompt in the following format:
@@ -110,7 +78,7 @@ __make_prompt() {
     fi
   fi
 
-  PS1+="${text_style} in ${cwd_style}$(__short_pwd)"  # set short cwd
+  PS1+="${text_style} in ${cwd_style}\w"  # set cwd
   PS1+="\n${shell_style}\$ ${reset_style}"  # set shell and reset style
 
   PS2="${shell_style}> ${reset_style}"  # set shell and reset style
