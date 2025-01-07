@@ -38,10 +38,6 @@ return { -- Autocompletion
       },
     },
     appearance = {
-      -- Sets the fallback highlight groups to `nvim-cmp` highlight groups.
-      -- Useful for when your theme doesn't support `blink.cmp`. Will be removed
-      -- in a future release.
-      use_nvim_cmp_as_default = true,
       -- Adjusts spacing to ensure icons are aligned.
       nerd_font_variant = "normal",
       kind_icons = {
