@@ -18,6 +18,8 @@ return { -- Autocompletion
       ["<C-e>"] = { "cancel" },
     },
     completion = {
+      -- Don't automatically insert selected item.
+      list = { selection = { auto_insert = false } },
       -- Always show documentation for selected item.
       documentation = {
         auto_show = true,
