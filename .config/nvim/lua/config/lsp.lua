@@ -7,7 +7,6 @@
 --- folding, etc.) are disabled locally for big files.
 ---
 ---@class config.LspConfig
----@field bigfile_size number Big file size threshold in bytes
 ---@field treesitter_enabled boolean Enable / disable Treesitter globally
 ---@field servers table<string, config.LspServerConfig> LSP server configs
 ---@field formatters_by_ft table<string, string[]> Formatters by filetype
@@ -65,7 +64,6 @@
 ---
 ---@type config.LspConfig
 vim.g.lsp = {
-  bigfile_size = 1 * 1024 * 1024,
   treesitter_enabled = true,
   servers = {
     lua_ls = {
