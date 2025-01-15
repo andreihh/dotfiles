@@ -10,6 +10,7 @@
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
 readonly FZF_DIR="${HOME}/.local/src/fzf"
+readonly MAN_DIR="${XDG_DATA_HOME}/man"
 
 echo "Installing 'fzf'..."
 
@@ -24,5 +25,9 @@ echo "Running 'fzf' installer..."
 
 echo "Setting up 'fzf' symlink in user 'bin'..."
 ln -svf "${FZF_DIR}/bin/fzf" "${HOME}/.local/bin/fzf"
+
+echo "Setting up 'man' pages for 'fzf'..."
+cp -r "${FZF_DIR}/man" "${MAN_DIR}"
+mandb --no-purge
 
 echo "Installed 'fzf' successfully!"
