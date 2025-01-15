@@ -38,7 +38,7 @@
 --  - sS = [s]ession [s]ave
 --  - sD = [s]ession [d]elete
 -- Search:
---  - s + p/h/k/f/r/b/c/g/m/d/w/./+/:// = [s]earch with picker
+--  - s + p/h/m/k/f/r/b/c/g/d/w/./+/:/'// = [s]earch with picker
 --  - <C-j/k> = select next / previous item
 --  - <C-f> = Flash-like [f]ind
 --  - <C-u/d> = scroll preview [u]p / [d]own

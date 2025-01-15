@@ -3,14 +3,14 @@ return { -- Fuzzy finder (files, lsp, etc.)
   cmd = "FzfLua",
   keys = {
     { "sp", "<cmd>FzfLua builtin<CR>", desc = "[S]earch [P]icker" },
-    { "sh", "<cmd>FzfLua helptags<CR>", desc = "[S]earch [H]elp" },
+    { "sh", "<cmd>FzfLua helptags<CR>", desc = "[S]earch [H]elp tags" },
+    { "sm", "<cmd>FzfLua manpages<CR>", desc = "[S]earch [M]an pages" },
     { "sk", "<cmd>FzfLua keymaps<CR>", desc = "[S]earch [K]eymaps" },
     { "sf", "<cmd>FzfLua files<CR>", desc = "[S]earch [F]iles" },
     { "sr", "<cmd>FzfLua oldfiles<CR>", desc = "[S]earch [R]ecent files" },
     { "sb", "<cmd>FzfLua buffers<CR>", desc = "[S]earch [B]uffers" },
     { "sc", "<cmd>FzfLua git_status<CR>", desc = "[S]earch [C]hanged files" },
     { "sg", "<cmd>FzfLua live_grep<CR>", desc = "[S]earch by [G]rep" },
-    { "sm", "<cmd>FzfLua marks marks=%a<CR>", desc = "[S]earch [M]arks" },
     {
       "sd",
       "<cmd>FzfLua diagnostics_workspace<CR>",
@@ -47,6 +47,7 @@ return { -- Fuzzy finder (files, lsp, etc.)
       "<cmd>FzfLua command_history<CR>",
       desc = "[S]earch [:] command history",
     },
+    { "s'", "<cmd>FzfLua marks marks=%a<CR>", desc = "[S]earch ['] marks" },
     { "s/", "<cmd>FzfLua blines<CR>", desc = "[S]earch [/] current buffer" },
     {
       "gd",
