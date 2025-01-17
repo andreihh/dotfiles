@@ -34,11 +34,10 @@
 --  - X = open terminal
 --  - <C-e> = [e]xit terminal mode
 -- Session:
---  - ss = [s]ession [s]earch
---  - sS = [s]ession [s]ave
---  - sD = [s]ession [d]elete
+--  - dS = [d]elete [s]ession
+--  - <M-S> = [s]ave session
 -- Search:
---  - s + p/h/m/k/f/r/b/c/g/d/w/./+/:/'// = [s]earch with picker
+--  - s + p/s/h/m/k/f/r/b/c/g/d/w/./+/:/'// = [s]earch with picker
 --  - <C-j/k> = select next / previous item
 --  - <C-f> = Flash-like [f]ind
 --  - <C-u/d> = scroll preview [u]p / [d]own

@@ -252,7 +252,7 @@ augroup END
 
 " [[ Commands ]]
 
-command! SaveSession execute 'Obsession ' . fnameescape(s:SessionFile())
+command! SessionSave execute 'Obsession ' . fnameescape(s:SessionFile())
 
 command! DiffUnsaved let filetype=&ft
     \ | tab split
@@ -279,7 +279,7 @@ function! s:AutoSession() abort
     " Ensure VCS gutter signs are enabled after restoring the session.
     SignifyEnable
   else
-    SaveSession
+    SessionSave
   endif
 endfunction
 
@@ -467,7 +467,7 @@ noremap <space> <nop>
 set wildcharm=<C-z>
 
 " Required to map the Alt key.
-for key in 'hjkl='
+for key in 'hjkl=S'
   execute "set <M-" . key . ">=\e" . key
 endfor
 
@@ -537,10 +537,10 @@ nnoremap <C-w> :tabclose<CR>
 nnoremap <M-=> <C-w>=
 
 " Session:
-" - sS = [s]ession [s]ave
-" - sD = [s]ession [d]elete
-nnoremap sS :SaveSession<CR>
-nnoremap sD :Obsession!<CR>
+" - dS = [d]elete [s]ession
+" - <M-S> = [s]ave session
+nnoremap dS :Obsession!<CR>
+nnoremap <M-S> :SessionSave<CR>
 
 " Search:
 " - s + h/k/f/r/b/c/g/./:/'// = [s]earch with picker
