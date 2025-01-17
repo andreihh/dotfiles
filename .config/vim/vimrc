@@ -536,6 +536,12 @@ nnoremap <C-x> :quit<CR>
 nnoremap <C-w> :tabclose<CR>
 nnoremap <M-=> <C-w>=
 
+" Terminal:
+" - X = open terminal
+" - <C-e> = [e]xit terminal mode
+nnoremap X :terminal<CR>
+tnoremap <C-e> <C-\><C-n>
+
 " Session:
 " - dS = [d]elete [s]ession
 " - <M-S> = [s]ave session
