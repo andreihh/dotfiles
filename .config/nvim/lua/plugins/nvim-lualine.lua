@@ -15,7 +15,18 @@ return { -- Simple and easy statusline
           icon = "󱁿", -- `nf-md-folder-cog`
         },
         { "branch", icon = "" }, -- `nf-fa-code_branch`
-        "diagnostics",
+        {
+          "diagnostics",
+          -- Icons require a Nerd Font.
+          symbols = NerdFontEnabled()
+              and {
+                error = " ", -- `nf-fa-times_circle`
+                warn = " ", -- `nf-fa-warning`
+                info = " ", -- `nf-fa-info_circle`
+                hint = " ", -- `nf-fa-lightbulb`
+              }
+            or {},
+        },
       },
       lualine_c = { { "filename", path = 1 } },
       lualine_x = { "filetype" },
