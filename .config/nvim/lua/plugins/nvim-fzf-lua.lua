@@ -87,7 +87,7 @@ return { -- Fuzzy finder (files, lsp, etc.)
       builtin = { treesitter = { enabled = vim.g.lsp.treesitter_enabled } },
     },
     fzf_colors = true, -- Match `fzf` colors with colorscheme
-    file_icon_padding = " ", -- Required for double-width icons
+    file_icon_padding = " ", -- Required for double-width icon rendering
     -- Make files prompt consistent with other pickers.
     files = { cwd_prompt = false, prompt = "Files>" },
     -- Include current session files in recent files.
