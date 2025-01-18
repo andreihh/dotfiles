@@ -32,10 +32,6 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
       desc = "Open Lazy[G]it",
     },
   },
-  dependencies = {
-    -- Icons require a Nerd Font.
-    { "nvim-tree/nvim-web-devicons", cond = NerdFontEnabled() },
-  },
   opts = {
     -- Disable Treesitter, LSP, folds, undo, etc. on big files.
     bigfile = {

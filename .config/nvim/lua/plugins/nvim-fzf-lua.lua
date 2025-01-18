@@ -69,10 +69,6 @@ return { -- Fuzzy finder (files, lsp, etc.)
     { "gr", "<cmd>FzfLua lsp_references<CR>", desc = "[G]oto [R]eferences" },
     { "<leader>a", "<cmd>FzfLua lsp_code_actions<CR>", desc = "Code [A]ction" },
   },
-  dependencies = {
-    -- Icons require a Nerd Font.
-    { "nvim-tree/nvim-web-devicons", cond = NerdFontEnabled() },
-  },
   opts = {
     keymap = { -- Disable default keymaps
       builtin = {

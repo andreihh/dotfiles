@@ -1,9 +1,5 @@
 return { -- Simple and easy statusline
   "nvim-lualine/lualine.nvim",
-  dependencies = {
-    -- Icons require a Nerd Font.
-    { "nvim-tree/nvim-web-devicons", cond = NerdFontEnabled() },
-  },
   opts = {
     sections = {
       lualine_a = { "mode" },

@@ -12,10 +12,6 @@ return { -- Better diff views
     { "dvH", "<cmd>DiffviewFileHistory<CR>", desc = "[D]iff [V]iew [H]istory" },
     { "dvb", "<cmd>.DiffviewFileHistory<CR>", desc = "[D]iff [V]iew [B]lame" },
   },
-  dependencies = {
-    -- Icons require a Nerd Font.
-    { "nvim-tree/nvim-web-devicons", cond = NerdFontEnabled() },
-  },
   opts = function()
     local actions = require("diffview.actions")
     return {

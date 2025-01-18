@@ -8,10 +8,6 @@ return { -- File explorer
       desc = "[O]pen file explorer in current buffer's directory",
     },
   },
-  dependencies = {
-    -- Icons require a Nerd Font.
-    { "nvim-tree/nvim-web-devicons", cond = NerdFontEnabled() },
-  },
   opts = {
     use_default_keymaps = false,
     view_options = { show_hidden = true },
