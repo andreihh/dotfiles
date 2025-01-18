@@ -66,6 +66,7 @@ return { -- Fuzzy finder (files, lsp, etc.)
     { "<leader>a", "<cmd>FzfLua lsp_code_actions<CR>", desc = "Code [A]ction" },
   },
   opts = {
+    "default",
     keymap = { -- Disable default keymaps
       builtin = {
         ["<C-\\>"] = "toggle-help",
@@ -81,7 +82,7 @@ return { -- Fuzzy finder (files, lsp, etc.)
     fzf_colors = true, -- Match `fzf` colors with colorscheme
     file_icon_padding = " ", -- Required for double-width icon rendering
     -- Make files prompt consistent with other pickers.
-    files = { cwd_prompt = false, prompt = "Files>" },
+    files = { cwd_prompt = false, prompt = "Files> " },
     -- Include current session files in recent files.
     oldfiles = { include_current_session = true },
     -- Load options from `ripgrep` config.
