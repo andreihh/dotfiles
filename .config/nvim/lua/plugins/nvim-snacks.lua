@@ -75,6 +75,61 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
         },
       },
     },
+    dashboard = {
+      preset = {
+        -- Icons require a Nerd Font.
+        keys = {
+          {
+            icon = NerdFontEnabled() and "" or "", -- `nf-fa-file_text`
+            key = "n",
+            action = ":enew",
+            desc = "New file",
+          },
+          {
+            icon = NerdFontEnabled() and "" or "", -- `nf-fa-folder`
+            key = "o",
+            action = "<C-o>",
+            desc = "Open explorer",
+          },
+          {
+            icon = NerdFontEnabled() and "" or "", -- `nf-fa-search`
+            key = "f",
+            action = "sf",
+            desc = "Find file",
+          },
+          {
+            icon = NerdFontEnabled() and "" or "", -- `nf-fa-list_alt`
+            key = "g",
+            action = "sg",
+            desc = "Grep text",
+          },
+          {
+            icon = NerdFontEnabled() and "" or "", -- `nf-fa-copy`
+            key = "r",
+            action = "sr",
+            desc = "Recent files",
+          },
+          {
+            icon = NerdFontEnabled() and "" or "", -- `nf-fa-save`
+            key = "s",
+            action = "ss",
+            desc = "Restore session",
+          },
+          {
+            icon = NerdFontEnabled() and "" or "", -- `nf-fa-plug`
+            key = "m",
+            action = "M",
+            desc = "Manage plugins",
+          },
+          {
+            icon = NerdFontEnabled() and "" or "", -- `nf-fa-sign_out`
+            key = "q",
+            action = "Q",
+            desc = "Quit",
+          },
+        },
+      },
+    },
   },
   init = function()
     vim.g.snacks_animate = false -- Globally disable all animations
