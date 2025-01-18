@@ -71,8 +71,6 @@ vim.opt.inccommand = "split" -- Preview substitutions live, as you type
 
 vim.opt.undofile = true -- Save undo history
 
-vim.opt.shortmess:append("c") -- Don't emit completion messages
-
 -- What to store in a session. Don't save:
 -- - unloaded and hidden buffers
 -- - global options and variables

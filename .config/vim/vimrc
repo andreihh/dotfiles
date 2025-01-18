@@ -183,9 +183,6 @@ set undofile
 set nobackup
 set nowritebackup
 
-" Don't emit completion messages.
-" set shortmess+=c
-
 " Enable default completion.
 set omnifunc=syntaxcomplete#Complete
 set completeopt=menuone,noinsert,noselect
