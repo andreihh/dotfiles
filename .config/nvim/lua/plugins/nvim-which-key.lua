@@ -10,9 +10,7 @@ return { -- Useful plugin to show pending keybinds
     },
   },
   opts = {
-    -- Trigger only on explicit command or keymap.
-    triggers = {},
-    -- Document existing key chains.
+    triggers = {}, -- Trigger only on explicit command or keymap
     spec = {
       { "<leader>", group = "Code" },
       { "g", group = "Goto …" },

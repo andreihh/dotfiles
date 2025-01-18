@@ -29,14 +29,10 @@ return { -- Fuzzy finder (files, lsp, etc.)
     {
       "s+",
       function()
-        local modified_buffers = {}
-        for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-          if vim.api.nvim_get_option_value("modified", { buf = buf }) then
-            table.insert(modified_buffers, buf)
-          end
-        end
         require("fzf-lua").buffers({
-          buffers = modified_buffers,
+          buffers = vim.tbl_filter(function(buf)
+            return vim.api.nvim_get_option_value("modified", { buf = buf })
+          end, vim.api.nvim_list_bufs()),
           fzf_opts = { ["--header-lines"] = false },
         })
       end,

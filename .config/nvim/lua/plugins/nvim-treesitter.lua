@@ -11,8 +11,7 @@ return {
     },
     -- See `:help nvim-treesitter`
     opts = {
-      -- Enable the following parsers.
-      ensure_installed = {
+      ensure_installed = { -- Enable the following parsers
         "lua",
         "luadoc",
         "vim",
@@ -22,8 +21,7 @@ return {
         "query",
         "regex",
       },
-      -- Autoinstall languages that are not installed.
-      auto_install = true,
+      auto_install = true, -- Autoinstall languages that are not installed
       highlight = {
         enable = vim.g.lsp.treesitter_enabled,
         -- Some languages depend on vim's regex highlighting system (such as
@@ -42,8 +40,7 @@ return {
       textobjects = {
         select = {
           enable = vim.g.lsp.treesitter_enabled,
-          -- Automatically jump forward to text object.
-          lookahead = true,
+          lookahead = true, -- Automatically jump forward to text object
           keymaps = {
             ["af"] = "@function.outer",
             ["if"] = "@function.inner",

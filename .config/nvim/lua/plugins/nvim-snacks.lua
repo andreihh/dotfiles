@@ -33,8 +33,7 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
     },
   },
   opts = {
-    -- Disable Treesitter, LSP, folds, undo, etc. on big files.
-    bigfile = {
+    bigfile = { -- Disable Treesitter, LSP, folds, undo, etc. on big files
       size = 1024 * 1024, -- Set big file size threshold to 1 MiB
       setup = function(ctx)
         vim.opt_local.swapfile = false
@@ -52,15 +51,12 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
     },
     -- Indent guides without scope highlighting.
     indent = { scope = { enabled = false } },
-    -- Highlighting and jumping to references.
-    words = { notify_end = false },
-    -- Don't dim code outside of the current scope in Zen mode.
-    zen = { toggles = { dim = false } },
+    words = {}, -- Highlighting and jumping to references
+    zen = { toggles = { dim = false } }, -- Don't dim outer scopes in Zen mode
     input = { -- Register `snacks` for `vim.ui.input`
       win = {
-        -- Show float relative to cursor.
-        relative = "cursor",
-        row = -3,
+        relative = "cursor", -- Show float relative to cursor
+        row = -3, -- Show float above cursor
         keys = {
           -- Override default tab action.
           i_tab = { "<tab>", "confirm", mode = { "n", "i" } },
@@ -69,18 +65,18 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
         },
       },
     },
+    -- Starting dashboard with icons:
+    --  - `nf-fa-file_text`
+    --  - `nf-fa-folder`
+    --  - `nf-fa-search`
+    --  - `nf-fa-list_alt`
+    --  - `nf-fa-copy`
+    --  - `nf-fa-save`
+    --  - `nf-fa-plug`
+    --  - `nf-fa-sign_out`
     dashboard = {
       preset = {
         keys = {
-          -- Icons:
-          --  - `nf-fa-file_text`
-          --  - `nf-fa-folder`
-          --  - `nf-fa-search`
-          --  - `nf-fa-list_alt`
-          --  - `nf-fa-copy`
-          --  - `nf-fa-save`
-          --  - `nf-fa-plug`
-          --  - `nf-fa-sign_out`
           { icon = "", key = "n", action = ":enew", desc = "New file" },
           { icon = "", key = "o", action = "<C-o>", desc = "Open explorer" },
           { icon = "", key = "f", action = "sf", desc = "Find file" },

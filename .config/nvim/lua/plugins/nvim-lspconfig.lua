@@ -16,8 +16,7 @@ return { -- LSP configuration
 
     "saghen/blink.cmp", -- Allows extra capabilities provided by `blink.cmp`
 
-    -- Useful status updates for LSP.
-    { "j-hui/fidget.nvim", config = true },
+    { "j-hui/fidget.nvim", config = true }, -- Useful status updates for LSP
   },
   cond = not vim.tbl_contains(vim.v.argv, "-d"), -- Disable LSPs in diff mode
   opts = { servers = vim.g.lsp.servers },

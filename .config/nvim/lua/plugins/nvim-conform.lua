@@ -12,7 +12,6 @@ return { -- Formatting
     },
   },
   opts = {
-    notify_on_error = false,
     formatters = vim.g.lsp.formatters,
     formatters_by_ft = vim.g.lsp.formatters_by_ft,
   },
