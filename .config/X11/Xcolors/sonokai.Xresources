@@ -2,7 +2,7 @@
 !
 ! Load with `xrdb -m Xresources`. See: https://github.com/sainnhe/sonokai.
 
-! Black: black / grey
+! Black: black / gray
 XTerm*color0: rgb:18/18/19
 XTerm*color8: rgb:7f/84/90
 

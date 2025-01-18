@@ -12,7 +12,7 @@ return { -- Simple and easy statusline
           function()
             return require("auto-session.lib").current_session_name(true)
           end,
-          icon = "󱁿", -- `nf-md-folder-cog`
+          icon = "", -- `nf-fa-folder`
         },
         { "branch", icon = "" }, -- `nf-fa-code_branch`
         "diagnostics",
