@@ -51,11 +51,38 @@ return { -- Useful plugin to show pending keybinds
     triggers = {},
     -- Document existing key chains.
     spec = {
-      { "<leader>", group = "Code", mode = { "n" } },
-      { "g", group = "Goto …", mode = { "n", "x" } },
-      { "s", group = "Search …", mode = { "n" } },
-      { "[", group = "Jump to previous …", mode = { "n" } },
-      { "]", group = "Jump to next …", mode = { "n" } },
+      { "<leader>", group = "Code" },
+      { "g", group = "Goto …" },
+      { "[", group = "Jump to previous …" },
+      { "]", group = "Jump to next …" },
+      { "s", group = "Search" },
+      {
+        "1",
+        group = "Sort ascending",
+        icon = "", -- `nf-fa-sort_alpha_asc`
+        mode = "x",
+      },
+      {
+        "2",
+        group = "Sort descending",
+        icon = "", -- `nf-fa-sort_alpha_desc`
+        mode = "x",
+      },
+      { "dm", group = "Delete marks", icon = "󰸕" }, -- `nf-md-bookmark_multiple`
+      { "dv", group = "Diff view …", icon = "" }, -- `nf-cod-diff`
+      { "M", icon = "" }, -- `nf-fa-plug`
+      { "S", icon = "" }, -- `nf-fa-save`
+      { "Q", icon = "" }, -- `nf-fa-sign_out`
+      { "<C-f>", icon = "" }, -- `nf-fa-flash`
+      { "dS", icon = "󱙄" }, -- `nf-md-content_save_off_outline`
+      { "H", icon = "󰋗" }, -- `nf-md-help_circle`
+      { "<C-s>", icon = "󰋗", mode = "i" }, -- `nf-md-help_circle`
+      { "gd", icon = "" }, -- `nf-fa-code`
+      { "gD", icon = "" }, -- `nf-fa-code`
+      { "gi", icon = "" }, -- `nf-fa-code`
+      { "gr", icon = "" }, -- `nf-cod-references`
+      { "[r", icon = "" }, -- `nf-cod-references`
+      { "]r", icon = "" }, -- `nf-cod-references`
     },
   },
 }
