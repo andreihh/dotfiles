@@ -6,7 +6,7 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
     {
       "<C-z>",
       function()
-        Snacks.zen.zen()
+        Snacks.zen()
       end,
       desc = "Toggle [Z]en mode",
     },
@@ -15,40 +15,19 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
       function()
         Snacks.words.jump(-1, true)
       end,
-      desc = "Jump to previous [R]eference",
+      desc = "Jump to the previous [R]eference",
     },
     {
       "]r",
       function()
         Snacks.words.jump(1, true)
       end,
-      desc = "Jump to next [R]eference",
-    },
-    {
-      "<leader>H",
-      function()
-        Snacks.toggle.inlay_hints():toggle()
-      end,
-      desc = "Toggle inlay [H]ints",
-    },
-    {
-      "<leader>T",
-      function()
-        Snacks.toggle.treesitter():toggle()
-      end,
-      desc = "Toggle [T]reesitter",
-    },
-    {
-      "<leader>D",
-      function()
-        Snacks.toggle.diagnostics():toggle()
-      end,
-      desc = "Toggle [D]iagnostics",
+      desc = "Jump to the next [R]eference",
     },
     {
       "<leader>g",
       function()
-        Snacks.lazygit.open()
+        Snacks.lazygit()
       end,
       desc = "Open Lazy[G]it",
     },
@@ -99,5 +78,15 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
   },
   init = function()
     vim.g.snacks_animate = false -- Globally disable all animations
+    vim.api.nvim_create_autocmd("User", {
+      desc = "Configure Snacks toggle keymaps",
+      group = vim.api.nvim_create_augroup("configure_snacks_toggles", {}),
+      pattern = "VeryLazy",
+      callback = function()
+        Snacks.toggle.inlay_hints():map("<leader>H")
+        Snacks.toggle.treesitter():map("<leader>T")
+        Snacks.toggle.diagnostics():map("<leader>D")
+      end,
+    })
   end,
 }

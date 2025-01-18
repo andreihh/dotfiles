@@ -115,7 +115,7 @@ local function map(mode, lhs, rhs, desc)
   vim.keymap.set(mode, lhs, rhs, { desc = desc, noremap = true, nowait = true })
 end
 
-map("n", "M", "<cmd>Lazy<CR>", "Open Lazy plugin [M]anager")
+map("n", "M", "<cmd>Lazy<CR>", "[M]anage plugins")
 map("n", "S", "<cmd>write<CR>", "[S]ave buffer")
 map("n", "Q", "<cmd>quitall<CR>", "[Q]uit")
 map("n", "<esc>", "<cmd>nohlsearch<CR>", "Clear search highlights")
@@ -157,7 +157,7 @@ vim.keymap.set(
 
 map("n", "<C-s>", "<cmd>split<CR>", "[S]plit window horizontally")
 map("n", "<C-v>", "<cmd>vsplit<CR>", "Split window [V]ertically")
-map("n", "<C-t>", "<cmd>tabedit %<CR>", "New [T]ab")
+map("n", "<C-t>", "<cmd>tabedit %<CR>", "Open window in new [T]ab")
 map("n", "<C-x>", "<cmd>quit<CR>", "Close window")
 map("n", "<C-w>", "<cmd>tabclose<CR>", "Close tab")
 map("n", "<M-=>", "<C-w>=", "Resize all windows equally")
@@ -167,23 +167,23 @@ map("t", "<C-e>", "<C-\\><C-n>", "[E]xit terminal mode")
 
 map("n", "[e", function()
   vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
-end, "Jump to previous [E]rror")
+end, "Jump to the previous [E]rror diagnostic")
 
 map("n", "]e", function()
   vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
-end, "Jump to next [E]rror")
+end, "Jump to the next [E]rror diagnostic")
 
 map("n", "[w", function()
   vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.WARN })
-end, "Jump to previous [W]arning")
+end, "Jump to the previous [W]arning diagnostic")
 
 map("n", "]w", function()
   vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.WARN })
-end, "Jump to next [W]arning")
+end, "Jump to the next [W]arning diagnostic")
 
 map("n", "H", vim.lsp.buf.hover, "Show [H]elp")
 map("i", "<C-s>", vim.lsp.buf.signature_help, "Show [S]ignature help")
-map("n", "L", vim.diagnostic.open_float, "Show [L]int / diagnostic")
+map("n", "L", vim.diagnostic.open_float, "Show [L]int diagnostic")
 
 map({ "n", "x" }, "<leader>-", "<cmd>:normal gcc<CR>", "Toggle comment")
 map("n", "<leader>f", "za", "Toggle [F]old under cursor")
