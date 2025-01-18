@@ -118,7 +118,7 @@ set ttimeoutlen=5
 " Always assume Unix-style files.
 set fileformats=unix
 
-" Don't show the mode, since it's already in the status line.
+" Don't show the mode, it's already in the status line.
 set noshowmode
 
 " Show command in the last line of the screen.
@@ -127,13 +127,13 @@ set showcmd
 " Don't automatically wrap lines.
 set nowrap
 
-" Make line numbers default.
+" Enable line numbers.
 set number
 
-" Enable relative line numbers to help with jumping.
+" Enable relative line numbers.
 set relativenumber
 
-" Keep sign column on by default.
+" Enable sign column.
 set signcolumn=yes
 
 " Sets how to display split and fold delimiters.
@@ -150,18 +150,19 @@ set splitright
 " Sync clipboard between OS and Vim.
 set clipboard=unnamedplus
 
-" Use smart autoindenting when starting a new line or changing indent level.
-
-" When changing indent level, round to nearest multiple of `shiftwidth`.
+" Round indents to nearest multiple of `shiftwidth`.
 set shiftround
 
-" Keep the current indent when starting a new line.
+" Keep current indent when starting a new line.
 set autoindent
+
+" Keep current indent for wrapped lines.
+set breakindent
 
 " Do smart autoindenting when starting a new line.
 set smartindent
 
-" Don't automatically close folds when opening a file.
+" Don't auto-close folds when opening a file.
 set foldlevelstart=99
 
 " Use indent folds by default.
@@ -183,7 +184,7 @@ set nobackup
 set nowritebackup
 
 " Don't emit completion messages.
-set shortmess+=c
+" set shortmess+=c
 
 " Enable default completion.
 set omnifunc=syntaxcomplete#Complete
@@ -372,8 +373,8 @@ endif
 
 " Returns the current session name.
 function! g:SessionName() abort
-  " Icons require a Nerd Font: `nf-md-folder-cog`.
-  let l:icon = g:NerdFontEnabled() ? '󱁿 ' : ''
+  " Icons require a Nerd Font: `nf-fa-folder`.
+  let l:icon = g:NerdFontEnabled() ? ' ' : ''
   return ObsessionStatus(l:icon . fnamemodify(getcwd(), ':t'), '')
 endfunction
 

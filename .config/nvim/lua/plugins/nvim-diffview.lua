@@ -15,7 +15,6 @@ return { -- Better diff views
   opts = function()
     local actions = require("diffview.actions")
     return {
-      use_icons = NerdFontEnabled(), -- Icons require a Nerd Font
       file_panel = { listing_style = "list" },
       view = {
         default = { disable_diagnostics = true },

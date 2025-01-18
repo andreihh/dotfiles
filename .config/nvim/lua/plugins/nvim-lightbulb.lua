@@ -4,9 +4,7 @@ return { -- Show gutter sign when code action is available
   opts = {
     autocmd = { enabled = true },
     number = { enabled = true },
-    -- Decrease gutter sign priority below diagnostic signs (default 10).
-    priority = 9,
-    -- Icons require a Nerd Font: `nf-md-lightbulb`.
-    sign = { text = NerdFontEnabled() and "󰌵" or "A" },
+    priority = 9, -- Decrease sign priority below diagnostic signs (default 10)
+    sign = { text = "󰌵" }, -- `nf-md-lightbulb`
   },
 }

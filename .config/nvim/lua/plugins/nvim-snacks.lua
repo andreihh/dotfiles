@@ -57,8 +57,6 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
     -- Don't dim code outside of the current scope in Zen mode.
     zen = { toggles = { dim = false } },
     input = { -- Register `snacks` for `vim.ui.input`
-      -- Icons require a Nerd Font: `nf-fa-edit`.
-      icon = NerdFontEnabled() and " " or "",
       win = {
         -- Show float relative to cursor.
         relative = "cursor",
@@ -73,56 +71,24 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
     },
     dashboard = {
       preset = {
-        -- Icons require a Nerd Font.
         keys = {
-          {
-            icon = NerdFontEnabled() and "" or "", -- `nf-fa-file_text`
-            key = "n",
-            action = ":enew",
-            desc = "New file",
-          },
-          {
-            icon = NerdFontEnabled() and "" or "", -- `nf-fa-folder`
-            key = "o",
-            action = "<C-o>",
-            desc = "Open explorer",
-          },
-          {
-            icon = NerdFontEnabled() and "" or "", -- `nf-fa-search`
-            key = "f",
-            action = "sf",
-            desc = "Find file",
-          },
-          {
-            icon = NerdFontEnabled() and "" or "", -- `nf-fa-list_alt`
-            key = "g",
-            action = "sg",
-            desc = "Grep text",
-          },
-          {
-            icon = NerdFontEnabled() and "" or "", -- `nf-fa-copy`
-            key = "r",
-            action = "sr",
-            desc = "Recent files",
-          },
-          {
-            icon = NerdFontEnabled() and "" or "", -- `nf-fa-save`
-            key = "s",
-            action = "ss",
-            desc = "Restore session",
-          },
-          {
-            icon = NerdFontEnabled() and "" or "", -- `nf-fa-plug`
-            key = "m",
-            action = "M",
-            desc = "Manage plugins",
-          },
-          {
-            icon = NerdFontEnabled() and "" or "", -- `nf-fa-sign_out`
-            key = "q",
-            action = "Q",
-            desc = "Quit",
-          },
+          -- Icons:
+          --  - `nf-fa-file_text`
+          --  - `nf-fa-folder`
+          --  - `nf-fa-search`
+          --  - `nf-fa-list_alt`
+          --  - `nf-fa-copy`
+          --  - `nf-fa-save`
+          --  - `nf-fa-plug`
+          --  - `nf-fa-sign_out`
+          { icon = "", key = "n", action = ":enew", desc = "New file" },
+          { icon = "", key = "o", action = "<C-o>", desc = "Open explorer" },
+          { icon = "", key = "f", action = "sf", desc = "Find file" },
+          { icon = "", key = "g", action = "sg", desc = "Grep text" },
+          { icon = "", key = "r", action = "sr", desc = "Recent files" },
+          { icon = "", key = "s", action = "ss", desc = "Restore session" },
+          { icon = "", key = "m", action = "M", desc = "Manage plugins" },
+          { icon = "", key = "q", action = "Q", desc = "Quit" },
         },
       },
     },

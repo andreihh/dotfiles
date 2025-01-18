@@ -31,8 +31,7 @@ return { -- Autocompletion
           -- Enable Treesitter rendering only for LSP items.
           treesitter = vim.g.lsp.treesitter_enabled and { "lsp" } or {},
           columns = {
-            -- Icons require a Nerd Font.
-            { NerdFontEnabled() and "kind_icon" or "kind" },
+            { "kind_icon" },
             { "label", "label_description", gap = 1 },
             { "source_name" },
           },

@@ -36,13 +36,7 @@ return { -- Simple and easy statusline
         },
       },
     },
-    options = vim.tbl_deep_extend("force", {
-      -- Show the tabline only if there is more than one tab.
-      always_show_tabline = false,
-    }, NerdFontEnabled() and {} or { -- Icons require a Nerd Font
-      icons_enabled = false,
-      component_separators = { left = "│", right = "│" },
-      section_separators = "",
-    }),
+    -- Show the tabline only if there is more than one tab.
+    options = { always_show_tabline = false },
   },
 }

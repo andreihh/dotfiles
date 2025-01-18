@@ -1,13 +1,6 @@
 -- init.lua: configures Neovim.
 --
--- Requires `git`, `curl`, `fzf`, `fd`, `ripgrep`, and optionally a Nerd Font.
-
---- Returns if a Nerd Font is installed and selected in the terminal.
----
---- @return boolean
-function _G.NerdFontEnabled()
-  return vim.fn.empty(vim.env.NERD_FONT_ENABLED) == 0
-end
+-- Requires `git`, `curl`, `fzf`, `fd`, `ripgrep`, and a Nerd Font.
 
 -- Load basic configs.
 --  NOTE: must happen before plugins, color schemes, or overrides are loaded.
