@@ -5,22 +5,31 @@
 # - updates terminal configs that don't support dynamic loading of color schemes
 
 [[ $# -ne 1 ]] && echo "Usage $0 COLORSCHEME" && exit 1
-readonly colorscheme="$1"
 
 readonly CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
+readonly COLORSCHEME="$1"
 
 cat << EOF > "${CONFIG_HOME}/profile.d/00-colorscheme.sh"
 # colorscheme.sh: auto-generated to set the color scheme environment variable.
 #
 # Regenerate with the \`colorscheme\` command.
 
-export COLORSCHEME="${colorscheme}"
+export COLORSCHEME="${COLORSCHEME}"
 EOF
 
-readonly X11_CONFIG_DIR="${CONFIG_HOME}/X11"
+# Set up a script to load X11 resources explicitly because `xterm` config is not
+# XDG-compliant and cannot import dynamic files.
+readonly XRESOURCES_SH="${CONFIG_HOME}/profile.d/10-xresources.sh"
 
-# Load X11 resources explicitly because `xterm` config is not XDG-compliant and
-# cannot import files dynamically.
 command -v xterm > /dev/null 2>&1 \
-  && xrdb -merge "${X11_CONFIG_DIR}/Xresources" \
-  && xrdb -merge "${X11_CONFIG_DIR}/Xcolors/${colorscheme}.Xresources"
+  && cat << EOF > "${XRESOURCES_SH}"
+# xresources.sh: auto-generated to load X11 resources and color scheme.
+#
+# Regenerate or clean up with the \`colorscheme\` command.
+
+xrdb -merge "\${CONFIG_HOME}/X11/Xresources"
+xrdb -merge "\${CONFIG_HOME}/X11/Xcolors/\${COLORSCHEME}.Xresources"
+EOF
+
+# Clean up X11 resources loading script if `xterm` is not installed.
+command -v xterm > /dev/null 2>&1 || rm "${XRESOURCES_SH}"
