@@ -2,9 +2,6 @@
 !
 ! Load with `xrdb -m Xresources`.
 
-! Color scheme inferred from the `${COLORSCHEME}` environment variable.
-#include "colorscheme.Xresources"
-
 ! Set the terminal name and ensure color support.
 XTerm.termName: xterm-256color
 *customization: -color
