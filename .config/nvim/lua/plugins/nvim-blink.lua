@@ -1,6 +1,7 @@
 return { -- Autocompletion
   "saghen/blink.cmp",
   version = "*", -- Download pre-built binaries for the latest release
+  cmd = "BlinkCmp",
   event = { "InsertEnter", "CmdlineEnter" },
   -- Provides snippets for the snippet source.
   dependencies = { "rafamadriz/friendly-snippets" },

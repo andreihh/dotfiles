@@ -1,8 +1,8 @@
 return {
   { -- Configures LuaLS for Neovim APIs, runtime, plugins, annotations, etc.
     "folke/lazydev.nvim",
-    ft = "lua",
     cmd = "LazyDev",
+    ft = "lua",
     opts = {
       library = {
         -- Load `luvit` types when the `vim.uv` word is found.

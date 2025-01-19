@@ -2,6 +2,7 @@ return { -- Fuzzy finder (files, lsp, etc.)
   "ibhagwan/fzf-lua",
   cmd = "FzfLua",
   keys = {
+    { "s ", "<cmd>FzfLua resume<CR>", desc = "[S]earch resume" },
     { "sp", "<cmd>FzfLua builtin<CR>", desc = "[S]earch [P]icker" },
     { "sh", "<cmd>FzfLua helptags<CR>", desc = "[S]earch [H]elp tags" },
     { "sm", "<cmd>FzfLua manpages<CR>", desc = "[S]earch [M]an pages" },

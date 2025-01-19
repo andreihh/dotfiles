@@ -87,15 +87,9 @@ return {
     "nvim-treesitter/nvim-treesitter-context",
     cond = vim.g.lsp.treesitter_enabled,
     cmd = { "TSContextToggle", "TSContextEnable", "TSContextDisable" },
-    init = function()
-      -- Registering the command in `keys` leads to a failure when triggered.
-      vim.keymap.set(
-        "n",
-        "<leader>c",
-        "<cmd>TSContextToggle<CR>",
-        { desc = "Toggle [C]ontext" }
-      )
-    end,
+    keys = {
+      { "<leader>c", "<cmd>TSContextToggle<CR>", desc = "Toggle [C]ontext" },
+    },
     opts = { enable = false },
   },
   { -- Better Treesitter comment strings

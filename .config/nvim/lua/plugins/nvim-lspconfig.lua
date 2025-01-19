@@ -1,5 +1,6 @@
 return { -- LSP configuration
   "neovim/nvim-lspconfig",
+  cond = not vim.tbl_contains(vim.v.argv, "-d"), -- Disable LSPs in diff mode
   dependencies = {
     { "j-hui/fidget.nvim", config = true }, -- Useful status updates for LSP
     -- Ensure the servers and required tools are installed.
@@ -17,7 +18,6 @@ return { -- LSP configuration
 
     "saghen/blink.cmp", -- Allows extra capabilities provided by `blink.cmp`
   },
-  cond = not vim.tbl_contains(vim.v.argv, "-d"), -- Disable LSPs in diff mode
   opts = { servers = vim.g.lsp.servers },
   config = function(_, opts)
     local lspconfig = require("lspconfig")
