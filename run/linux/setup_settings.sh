@@ -77,15 +77,17 @@ gsettings set "${GNOME_MEDIA_KEYS}.custom-keybinding:${NEW_TMUX_KEY}" \
 echo "Setting up default web browser interactively..."
 sudo update-alternatives --config x-www-browser
 
-echo "Setting up XTerm as default terminal..."
-XTERM="$(command -v xterm)"
-readonly XTERM
-if [[ -f "${XTERM}" ]]; then
-  sudo update-alternatives --set x-terminal-emulator "${XTERM}"
-else
-  echo "Did not find XTerm! Setting up default terminal interactively..."
-  sudo update-alternatives --config x-terminal-emulator
-fi
+for term in "ghostty" "alacritty"; do
+  term_bin="$(command -v ${term})"
+  [[ -f "${term_bin}" ]] \
+    && echo "Installing '${term}' as terminal alternative..." \
+    && sudo update-alternatives --install \
+      /usr/bin/x-terminal-emulator x-terminal-emulator \
+      "${term_bin}" 50
+done
+
+echo "Setting up default terminal interactively..."
+sudo update-alternatives --config x-terminal-emulator
 
 echo "Setting up Neovim as default editor..."
 NVIM="$(command -v nvim)"
