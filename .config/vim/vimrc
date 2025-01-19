@@ -112,6 +112,18 @@ call glaive#Install()
 
 " [[ Options ]]
 
+" Enable true colors. Disable if not supported by the terminal.
+set termguicolors
+
+" Use colors that look good on a dark background.
+set background=dark
+
+" Configure mode cursors: blinking bar in insert / replace and blinking bar
+" elsewhere. Must be set after `termguicolors` or `set t_Co=256`.
+let &t_SI = "\e[5 q"
+let &t_SR = "\e[3 q"
+let &t_EI = "\e[1 q"
+
 " Make Esc more responsive.
 set ttimeoutlen=5
 
@@ -193,20 +205,6 @@ set completeopt=menuone,noinsert,noselect
 " - session directory
 set sessionoptions=
     \blank,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions
-
-" Use colors that look good on a dark background.
-set background=dark
-
-" Enable true colors if supported by the terminal.
-if $COLORTERM == 'truecolor' || $COLORTERM == '24bit'
-  set termguicolors
-endif
-
-" Configure mode cursors: blinking bar in insert / replace and blinking bar
-" elsewhere. Must be set after `termguicolors` or `set t_Co=256`.
-let &t_SI = "\e[5 q"
-let &t_SR = "\e[3 q"
-let &t_EI = "\e[1 q"
 
 " [[ Autocommands ]]
 

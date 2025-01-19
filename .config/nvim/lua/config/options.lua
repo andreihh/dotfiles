@@ -2,9 +2,8 @@
 --  See `:help vim.opt`
 --  For more options, see `:help option-list`
 
--- Enable true colors if supported by the terminal.
-vim.opt.termguicolors = vim.env.COLORTERM == "truecolor"
-  or vim.env.COLORTERM == "24bit"
+-- Enable true colors. Disable if not supported by the terminal.
+vim.opt.termguicolors = true
 
 vim.o.ttimeoutlen = 5 -- Make Esc more responsive
 vim.opt.updatetime = 250 -- Decrease update time
