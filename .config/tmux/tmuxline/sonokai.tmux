@@ -7,6 +7,8 @@
 tmux set -g @fg "#e2e2e3"  # fg
 tmux set -g @reverse_fg "#2c2e34"  # bg0
 tmux set -g @highlight_bg "#414550"  # bg4
+tmux set -g @search_bg "#a7df78"  # bg_green
+tmux set -g @match_bg "#ff6077"  # bg_red
 tmux set -g @pane_fg "#7f8490"  # gray
 tmux set -g @current_pane_fg "#76cce0"  # blue
 tmux set -g @status_bg "#33353f"  # bg1
@@ -32,6 +34,8 @@ fi
 tmux setw -gF pane-border-style "fg=#{@pane_fg}"
 tmux setw -gF pane-active-border-style "fg=#{@current_pane_fg}"
 tmux setw -gF mode-style "bg=#{@highlight_bg}"
+tmux setw -gF copy-mode-match-style "fg=#{@reverse_fg},bg=#{@search_bg}"
+tmux setw -gF copy-mode-current-match-style "fg=#{@reverse_fg},bg=#{@match_bg}"
 tmux set -gF message-command-style "bg=#{@highlight_bg}"
 tmux set -gF message-style "bg=#{@highlight_bg}"
 tmux set -gFa status-style "fg=#{@fg},bg=#{@status_bg}"  # Append to retain bold
