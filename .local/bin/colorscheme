@@ -34,3 +34,13 @@ EOF
 
 # Clean up X11 resources loading script if `xterm` is not installed.
 command -v xterm > /dev/null 2>&1 || rm "${XRESOURCES_SH}"
+
+# Alacritty config cannot import dynamic files.
+command -v alacritty > /dev/null 2>&1 \
+  && echo "Setting up Alacritty color scheme config..." \
+  && cat << EOF > "${CONFIG_HOME}/alacritty/colorscheme.toml"
+# colorscheme.toml: auto-generated from \`\${COLORSCHEME}\`.
+
+[general]
+import = ["themes/${COLORSCHEME}.toml"]
+EOF

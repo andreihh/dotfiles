@@ -14,7 +14,7 @@ XTerm*boldColors: false
 *faceName: JetBrainsMono Nerd Font
 *faceSize: 11
 
-! Enable blinking cursor.
+! Force blinking cursor.
 *cursorBlink: true
 
 ! Enable wrapping.
