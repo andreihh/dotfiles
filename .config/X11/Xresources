@@ -61,6 +61,3 @@ XTerm*disallowedWindowOps: 20,21,SetXprop
   Ctrl <Key>9: string("0x1b") string("9") \n\
   Alt <Key>o: exec-formatted("xdg-open '%t'", CLIPBOARD) \n\
   <Btn3Down>: exec-formatted("xdg-open '%t'", CLIPBOARD) \n
-
-! Remove Alt-Enter keybinding.
-*omitTranslation: fullscreen
