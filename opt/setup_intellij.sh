@@ -7,7 +7,12 @@
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
 echo "Installing IntelliJ IDEA CE..."
-command -v &> /dev/null && brew install --cask intellij-idea-ce
+
+# Use Homebrew if Available.
+command -v brew &> /dev/null \
+  && brew install --cask intellij-idea-ce \
+  && echo "Installed IntelliJ IDEA CE successfully!" \
+  && exit 0
 
 echo "Installing Snap..."
 sudo apt install snapd
