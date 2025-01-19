@@ -17,6 +17,8 @@ wget -O - https://raw.githubusercontent.com/andreihh/dotfiles/main/install.sh \
   | bash
 ```
 
+To configure the color scheme for terminal apps, run the `colorscheme` command.
+
 After installing the dotfiles for the first time, you may need to restart your
 system to reload the custom environment variables properly.
 

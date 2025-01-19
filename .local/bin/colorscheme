@@ -1,0 +1,25 @@
+#!/bin/bash -e
+#
+# Configures the color scheme for terminal apps (`tmux`, `vim`, `nvim`, etc.):
+# - exports the system-wide `${COLORSCHEME}` environment variable
+# - updates terminal configs that don't support dynamic loading of color schemes
+
+readonly CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
+
+colorscheme="$1"
+
+cat << EOF > "${CONFIG_HOME}/profile.d/00-colorscheme.sh"
+# colorscheme.sh: auto-generated to set the color scheme environment variable.
+#
+# Run \`colorscheme \${COLORSCHEME}\` to regenerate.
+
+export COLORSCHEME="${colorscheme}"
+EOF
+
+readonly X11_CONFIG_DIR="${CONFIG_HOME}/X11"
+
+# Load X11 resources explicitly because `xterm` config is not XDG-compliant and
+# cannot import files dynamically.
+command -v xterm > /dev/null 2>&1 \
+  && xrdb -merge "${X11_CONFIG_DIR}/Xresources" \
+  && xrdb -merge "${X11_CONFIG_DIR}/Xcolors/${colorscheme}.Xresources"
