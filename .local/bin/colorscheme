@@ -27,8 +27,9 @@ command -v xterm &> /dev/null \
 #
 # Regenerate or clean up with the \`colorscheme\` command.
 
-xrdb -merge "\${CONFIG_HOME}/X11/Xresources"
-xrdb -merge "\${CONFIG_HOME}/X11/Xcolors/\${COLORSCHEME}.Xresources"
+xrdb -merge "\${XDG_CONFIG_HOME:-\${HOME}/.config}/X11/Xresources"
+xrdb -merge \\
+  "\${XDG_CONFIG_HOME:-\${HOME}/.config}/X11/Xcolors/${COLORSCHEME}.Xresources"
 EOF
 
 # Clean up X11 resources loading script if `xterm` is not installed.
