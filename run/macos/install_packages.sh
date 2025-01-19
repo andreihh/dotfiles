@@ -1,6 +1,6 @@
 #!/bin/bash -e
 #
-# Updates and installs required packages.
+# Installs required packages. Must run before all other scripts.
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 

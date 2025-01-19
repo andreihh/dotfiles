@@ -45,8 +45,8 @@ XTerm*disallowedWindowOps: 20,21,SetXprop
 ! - Paste with Ctrl-Shift-v
 ! - Exit with Ctrl-q
 ! - Emit Alt-# when pressing Ctrl-#
-! - Select URI with double-click
 ! - Open clipboard URI with Alt-o or right-click
+! - Select URI with double-click
 *VT100*translations: #override \n\
   Ctrl Shift <Key>v: insert-selection(CLIPBOARD) \n\
   Ctrl <Key>q: quit() \n\
