@@ -24,8 +24,6 @@ return { -- Color scheme
         set_hl("VisualNOS", palette.none, palette.bg4, "underline")
       end,
     })
-    if vim.env.COLORSCHEME == "sonokai" then
-      vim.cmd.colorscheme("sonokai")
-    end
+    vim.cmd.colorscheme(vim.env.COLORSCHEME)
   end,
 }

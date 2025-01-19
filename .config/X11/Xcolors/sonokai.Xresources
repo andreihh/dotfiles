@@ -1,6 +1,8 @@
-! sonokai.Xresources: configures Sonokai color scheme for XTerm.
+! sonokai.Xresources: Sonokai color scheme for XTerm.
 !
-! Load with `xrdb -m Xresources`. See: https://github.com/sainnhe/sonokai.
+! Load with `xrdb -m Xresources`.
+!
+! See: https://github.com/sainnhe/sonokai.
 
 ! Black: black / gray
 XTerm*color0: rgb:18/18/19

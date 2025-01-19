@@ -2,7 +2,9 @@
 #
 # sonokai.tmux: Sonokai color scheme for `tmux` status line.
 #
-# Optionally uses Nerd Font symbols. See: https://github.com/sainnhe/sonokai.
+# Requires a Nerd Font.
+#
+# See: https://github.com/sainnhe/sonokai.
 
 # Configure color palette.
 tmux set -g @fg "#e2e2e3"  # fg
