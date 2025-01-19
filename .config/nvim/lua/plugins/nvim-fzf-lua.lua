@@ -79,7 +79,7 @@ return { -- Fuzzy finder (files, lsp, etc.)
     previewers = {
       builtin = { treesitter = { enabled = vim.g.lsp.treesitter_enabled } },
     },
-    fzf_colors = true, -- Match `fzf` colors with colorscheme
+    fzf_colors = true, -- Match `fzf` colors with color scheme
     file_icon_padding = " ", -- Required for double-width icon rendering
     -- Make files prompt consistent with other pickers.
     files = { cwd_prompt = false, prompt = "Files> " },

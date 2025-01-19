@@ -1,4 +1,4 @@
-# colorscheme.sh: sets up colorschemes for terminal apps that don't support
+# colorscheme.sh: sets up color schemes for terminal apps that don't support
 # dynamic themes based on the `${COLORSCHEMME}` environment variable.
 #
 # shellcheck shell=sh
