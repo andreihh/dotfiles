@@ -14,6 +14,3 @@ export EDITOR='nvim'
 
 # Make Firefox the default browser.
 export BROWSER='firefox'
-
-# Set if terminal is configured with a Nerd Font, unset otherwise.
-export NERD_FONT_ENABLED="yes"

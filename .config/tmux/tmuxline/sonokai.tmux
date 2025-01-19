@@ -4,6 +4,7 @@
 #
 # Optionally uses Nerd Font symbols. See: https://github.com/sainnhe/sonokai.
 
+# Configure color palette.
 tmux set -g @fg "#e2e2e3"  # fg
 tmux set -g @reverse_fg "#2c2e34"  # bg0
 tmux set -g @highlight_bg "#414550"  # bg4
@@ -17,18 +18,11 @@ tmux set -g @current_seg_bg "#ff6077"  # bg_red
 tmux set -g @activity_seg_fg "#76cce0"  # blue
 tmux set -g @host_seg_bg "#a7df78"  # bg_green
 
-# Icons require a Nerd Font.
-if [[ -n "${NERD_FONT_ENABLED}" ]]; then
-  tmux set -g @seg_start ""  # `nf-ple-lower_right_triangle`
-  tmux set -g @seg_end ""  # `nf-ple-upper_left_triangle`
-  tmux set -g @seg_sep ""  # `nf-ple-forwardslash_separator`
-  tmux setw -g @win_sep ""
-else
-  tmux set -g @seg_start ""
-  tmux set -g @seg_end ""
-  tmux set -g @seg_sep "│"
-  tmux set -g @win_sep " "
-fi
+# Configure separator symbols.
+tmux set -g @seg_start ""  # `nf-ple-lower_right_triangle`
+tmux set -g @seg_end ""  # `nf-ple-upper_left_triangle`
+tmux set -g @seg_sep ""  # `nf-ple-forwardslash_separator`
+tmux setw -g @win_sep ""
 
 # Set color scheme.
 tmux setw -gF pane-border-style "fg=#{@pane_fg}"
