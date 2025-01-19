@@ -1,0 +1,99 @@
+# config: configures Ghostty.
+#
+# Run `ghostty +show-config --default --docs` to list all available options.
+
+# Color scheme inferred from the `${COLORSCHEME}`.
+config-file = colorscheme
+
+# JetBrains Mono Nerd Font is built into Ghostty as the default font.
+font-family =
+font-size = 11
+
+# Disable font ligatures.
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig
+
+# Force block cursor.
+cursor-style = block
+shell-integration-features = no-cursor
+
+# Start maximized by default.
+window-width = 9999
+window-height = 9999
+
+# Disable superfluous window decorations.
+window-decoration = false
+
+# Hide mouse cursor while typing.
+mouse-hide-while-typing = true
+
+# Close terminal without confirmation when last window is closed.
+quit-after-last-window-closed = true
+confirm-close-surface = false
+
+# Common shortcuts:
+# - Paste with C-S-v
+# - Exit with C-q
+# - Emit A-# when pressing C-#
+# - Open URI with C-click outside of `tmux`
+# - Select URI with double-click in `tmux`
+keybind = ctrl+shift+v=paste_from_clipboard
+keybind = ctrl+q=quit
+keybind = ctrl+1=esc:1
+keybind = ctrl+2=esc:2
+keybind = ctrl+3=esc:3
+keybind = ctrl+4=esc:4
+keybind = ctrl+5=esc:5
+keybind = ctrl+6=esc:6
+keybind = ctrl+7=esc:7
+keybind = ctrl+8=esc:8
+keybind = ctrl+9=esc:9
+keybind = cmd+shift+v=paste_from_clipboard
+keybind = cmd+q=quit
+keybind = cmd+1=esc:1
+keybind = cmd+2=esc:2
+keybind = cmd+3=esc:3
+keybind = cmd+4=esc:4
+keybind = cmd+5=esc:5
+keybind = cmd+6=esc:6
+keybind = cmd+7=esc:7
+keybind = cmd+8=esc:8
+keybind = cmd+9=esc:9
+
+# Required for key bindings in terminal apps on MacOS.
+#
+# Do not bind `cmd+q` because it's already used to exit.
+macos-option-as-alt = true
+keybind = cmd+@=text:\x00
+keybind = cmd+a=text:\x01
+keybind = cmd+b=text:\x02
+keybind = cmd+c=text:\x03
+keybind = cmd+d=text:\x04
+keybind = cmd+e=text:\x05
+keybind = cmd+f=text:\x06
+keybind = cmd+g=text:\x07
+keybind = cmd+h=text:\x08
+keybind = cmd+i=text:\x09
+keybind = cmd+j=text:\x0a
+keybind = cmd+k=text:\x0b
+keybind = cmd+l=text:\x0c
+keybind = cmd+m=text:\x0d
+keybind = cmd+n=text:\x0e
+keybind = cmd+o=text:\x0f
+keybind = cmd+p=text:\x10
+keybind = cmd+r=text:\x12
+keybind = cmd+s=text:\x13
+keybind = cmd+t=text:\x14
+keybind = cmd+u=text:\x15
+keybind = cmd+v=text:\x16
+keybind = cmd+w=text:\x17
+keybind = cmd+x=text:\x18
+keybind = cmd+y=text:\x19
+keybind = cmd+z=text:\x1a
+keybind = cmd+[=text:\x1b
+keybind = cmd+\=text:\x1c
+keybind = cmd+]=text:\x1d
+keybind = cmd+^=text:\x1e
+keybind = cmd+_=text:\x1f
+keybind = cmd+space=text:\x20

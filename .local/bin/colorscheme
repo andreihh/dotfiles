@@ -35,6 +35,17 @@ EOF
 # Clean up X11 resources loading script if `xterm` is not installed.
 command -v xterm > /dev/null 2>&1 || rm "${XRESOURCES_SH}"
 
+# Ghostty config cannot set dynamic themes.
+command -v ghostty > /dev/null 2>&1 \
+  && echo "Setting up Ghostty color scheme config..." \
+  && cat << EOF > "${CONFIG_HOME}/ghostty/colorscheme"
+# colorscheme: auto-generated to set the Ghostty theme.
+#
+# Regenerate with the \`colorscheme\` command.
+
+theme = ${COLORSCHEME}
+EOF
+
 # Alacritty config cannot import dynamic files.
 command -v alacritty > /dev/null 2>&1 \
   && echo "Setting up Alacritty color scheme config..." \

@@ -1,0 +1,47 @@
+# sonokai: Sonokai color scheme for Ghostty.
+#
+# See: https://github.com/sainnhe/sonokai.
+
+# Special:
+# - Foreground: fg
+# - Background: bg0
+# - Cursor: fg
+# - Highlight: bg4
+foreground = e2e2e3
+background = 2c2e34
+cursor-color = e2e2e3
+selection-foreground = e2e2e3
+selection-background = 414550
+selection-invert-fg-bg = false
+
+# Black: black / grey
+palette = 0=181819
+palette = 8=7f8490
+
+# Red: red
+palette = 1=fc5d7c
+palette = 9=fc5d7c
+
+# Green: green
+palette = 2=9ed072
+palette = 10=9ed072
+
+# Yellow: yellow
+palette = 3=e7c664
+palette = 11=e7c664
+
+# Blue: blue
+palette = 4=76cce0
+palette = 12=76cce0
+
+# Magenta: purple
+palette = 5=b39df3
+palette = 13=b39df3
+
+# Cyan: orange
+palette = 6=f39660
+palette = 14=f39660
+
+# White: fg
+palette = 7=e2e2e3
+palette = 15=e2e2e3
