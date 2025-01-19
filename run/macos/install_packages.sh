@@ -21,13 +21,10 @@ brew update
 echo "Installing packages..."
 brew install \
   git stow curl wget zip gzip unzip make gnupg firefox \
-  --cask iterm2 tmux lm-sensors reattach-to-user-namespace urlscan vim nvim \
+  --cask ghostty tmux lm-sensors reattach-to-user-namespace urlscan vim nvim \
   fzf fd ripgrep bat lazygit tree calc dos2unix --cask alt-tab \
   \
-  python3 \
-  gcc cmake \
-  openjdk --cask intellij-idea-ce \
-  go \
+  python3 gcc cmake openjdk go \
   \
   --cask mactex biber \
   \
