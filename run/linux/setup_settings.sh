@@ -78,7 +78,7 @@ echo "Setting up default web browser interactively..."
 sudo update-alternatives --config x-www-browser
 
 for term in "ghostty" "alacritty"; do
-  term_bin="$(command -v ${term})"
+  term_bin="$(command -v "${term}")" || true
   [[ -f "${term_bin}" ]] \
     && echo "Installing '${term}' as terminal alternative..." \
     && sudo update-alternatives --install \
