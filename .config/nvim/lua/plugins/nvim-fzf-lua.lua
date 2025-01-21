@@ -10,7 +10,7 @@ return { -- Fuzzy finder (files, lsp, etc.)
     { "sf", "<cmd>FzfLua files<CR>", desc = "[S]earch [F]iles" },
     { "sr", "<cmd>FzfLua oldfiles<CR>", desc = "[S]earch [R]ecent files" },
     { "sb", "<cmd>FzfLua buffers<CR>", desc = "[S]earch [B]uffers" },
-    { "sc", "<cmd>FzfLua git_status<CR>", desc = "[S]earch [C]hanged files" },
+    { "sc", "<cmd>FzfLua git_status<CR>", desc = "[S]earch Git [C]hanges" },
     { "sg", "<cmd>FzfLua live_grep<CR>", desc = "[S]earch by [G]rep" },
     {
       "sd",
@@ -67,7 +67,6 @@ return { -- Fuzzy finder (files, lsp, etc.)
     { "<leader>a", "<cmd>FzfLua lsp_code_actions<CR>", desc = "Code [A]ction" },
   },
   opts = {
-    "default",
     keymap = { -- Disable default keymaps
       builtin = {
         ["<C-\\>"] = "toggle-help",
@@ -83,7 +82,7 @@ return { -- Fuzzy finder (files, lsp, etc.)
     fzf_colors = true, -- Match `fzf` colors with color scheme
     file_icon_padding = " ", -- Required for double-width icon rendering
     -- Make files prompt consistent with other pickers.
-    files = { cwd_prompt = false, prompt = "Files> " },
+    files = { cwd_prompt = false },
     -- Include current session files in recent files.
     oldfiles = { include_current_session = true },
     -- Load options from `ripgrep` config.
