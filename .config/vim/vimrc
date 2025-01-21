@@ -376,6 +376,11 @@ function! g:FileType() abort
   return empty(&filetype) ? 'no ft' : l:icon . &filetype
 endfunction
 
+" Lightline separator icons:
+" - `nf-pl-left_hard_divider`
+" - `nf-pl-right_hard_divider`
+" - `nf-pl-left_soft_divider`
+" - `nf-pl-right_soft_divider`
 let g:lightline = {
     \ 'colorscheme': $COLORSCHEME,
     \ 'active': {
@@ -390,8 +395,8 @@ let g:lightline = {
     \   'left': [['filepath']],
     \   'right': [['lineinfo'], ['percentwin'], ['ft']],
     \ },
-    \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-    \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" },
+    \ 'separator': { 'left': "", 'right': "" },
+    \ 'subseparator': { 'left': "", 'right': "" },
     \ 'component': { 'filepath': '%<%f %h%w%m%r' },
     \ 'component_function': {
     \   'obsession': 'g:SessionName',
