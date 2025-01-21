@@ -57,6 +57,7 @@
 --  - g? = show help
 -- Input:
 --  - <tab> = accept input
+--  - <C-j/k> = select previous / next item from input history
 --  - <esc> = exit from insert / visual / normal mode
 --  - <C-e> = [e]xit
 -- VCS:

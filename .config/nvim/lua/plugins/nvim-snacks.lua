@@ -60,6 +60,9 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
         keys = {
           -- Override default tab action.
           i_tab = { "<tab>", "confirm", mode = { "n", "i" } },
+          -- Scroll through input history.
+          c_j = { "<C-j>", "hist_up", mode = { "n", "i" } },
+          c_k = { "<C-k>", "hist_down", mode = { "n", "i" } },
           -- Exit from any mode.
           c_e = { "<C-e>", "cancel", mode = { "n", "i", "x" } },
         },
