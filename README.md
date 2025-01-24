@@ -147,7 +147,7 @@ Common shortcuts (`C = Ctrl / Cmd`, `A = Alt / Opt`, `S = Shift`):
 - Open file explorer: `C-A-e`
 - Open web browser: `C-A-w`
 - Open shell terminal: `C-A-s`
-- Open `tmux` terminal in the `work` session: `C-A-x`
+- Open `tmux` terminal in the `main` session: `C-A-x`
 
 Terminal settings:
 
@@ -156,8 +156,6 @@ Terminal settings:
 - Switch `tmux` tab: `C-1` / ... / `C-9`
 - Send interrupt signal: `C-c`
 - Open clipboard selection with external system handler: `A-o`
-- Swap `Cmd` with `Ctrl` in `iTerm2`
-- Do not remap modifiers `Cmd-[S]-Tab`, `` Cmd-` ``, `Cmd-q` in `iTerm2`
 
 ## Firefox Settings
 

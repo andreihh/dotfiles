@@ -5,6 +5,12 @@
 # Open argument with the default program.
 alias o='open &> /dev/null'
 
+# Attach to the `main` `tmux` session, or create it if it doesn't exist.
+alias tmx='tmux new -A -s main'
+
+# Launch Lazygit.
+alias lgit='lazygit'
+
 # Enable colors in `less`.
 alias less='less -R'
 
@@ -35,9 +41,3 @@ alias fd='fd --color=always --hidden --follow'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-
-# Launch Lazygit.
-alias lgit='lazygit'
-
-# Attach to the `work` `tmux` session, or create it if it doesn't exist.
-alias tmuxw='tmux new -A -s work'
