@@ -4,14 +4,9 @@
 # Print column numbers for matches.
 --column
 
-# Print only the number of matches for long lines.
+# Trim long lines.
 --max-columns=4096
+--max-columns-preview
 
 # Use smart case.
 --smart-case
-
-# Search hidden files, but respect `.ignore`.
---hidden
-
-# Always enable colored output.
---color=always

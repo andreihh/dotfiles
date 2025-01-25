@@ -80,13 +80,12 @@ return { -- Fuzzy finder (files, lsp, etc.)
       builtin = { treesitter = { enabled = vim.g.lsp.treesitter_enabled } },
     },
     fzf_colors = true, -- Match `fzf` colors with color scheme
+    defaults = { formatter = "path.dirname_first" },
     file_icon_padding = " ", -- Required for double-width icon rendering
     -- Make files prompt consistent with other pickers.
     files = { cwd_prompt = false },
     -- Include current session files in recent files.
     oldfiles = { include_current_session = true },
-    -- Load options from `ripgrep` config.
-    grep = { RIPGREP_CONFIG_PATH = vim.env.RIPGREP_CONFIG_PATH },
   },
   init = function()
     -- Register `fzf-lua` for `vim.ui.select` lazily.

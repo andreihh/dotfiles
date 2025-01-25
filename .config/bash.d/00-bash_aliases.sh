@@ -31,13 +31,13 @@ alias ll='ls ${ls_color_flag} -alF'
 alias la='ls ${ls_color_flag} -A'
 alias l='ls ${ls_color_flag} -CF'
 
-# Enable colored `tree` output.
-alias tree='tree -C'
+# Enable colored `fd` output, and show hidden files.
+alias fd='fd --color=always --hidden'
 
-# Enable colored `fd` output, show hidden files and follow symlinks.
-alias fd='fd --color=always --hidden --follow'
+# Enable colored `rg` output, and show hidden files.
+alias rg='rg --color=always --hidden'
 
 # Enable colored `grep` output.
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
+alias grep='grep --color=always'
+alias fgrep='fgrep --color=always'
+alias egrep='egrep --color=always'
