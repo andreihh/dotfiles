@@ -71,9 +71,9 @@ vim.opt.inccommand = "split" -- Preview substitutions live, as you type
 vim.opt.undofile = true -- Save undo history
 
 -- What to store in a session. Don't save:
--- - unloaded and hidden buffers
--- - global options and variables
--- - session directory
+-- - Unloaded and hidden buffers
+-- - Global options and variables
+-- - Session directory
 vim.o.sessionoptions =
   "blank,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 

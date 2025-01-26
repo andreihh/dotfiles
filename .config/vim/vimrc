@@ -195,9 +195,9 @@ set omnifunc=syntaxcomplete#Complete
 set completeopt=menuone,noinsert,noselect
 
 " What to store in a session. Don't save:
-" - unloaded and hidden buffers
-" - global options and variables
-" - session directory
+" - Unloaded and hidden buffers
+" - Global options and variables
+" - Session directory
 set sessionoptions=
     \blank,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions
 
@@ -350,10 +350,10 @@ function! s:OnLspBufferEnabled() abort
 endfunction
 
 " Diagnostic icons:
-" - error: `nf-md-close_circle_outline`
-" - warning: `nf-md-alert_outline`
-" - info: `nf-md-information_outline`
-" - hint: `nf-md-lightbulb_outline`
+" - Error: `nf-md-close_circle_outline`
+" - Warning: `nf-md-alert_outline`
+" - Info: `nf-md-information_outline`
+" - Hint: `nf-md-lightbulb_outline`
 let g:lsp_diagnostics_signs_error = {'text': '󰅚'}
 let g:lsp_diagnostics_signs_warning = {'text': '󰀪'}
 let g:lsp_diagnostics_signs_information = {'text': '󰋽'}

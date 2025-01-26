@@ -3,9 +3,9 @@
 # shellcheck shell=bash
 
 # Command used to detect the current VCS branch to be included in the prompt:
-# - default is `__vcs_branch`
-# - unset to drop VCS info from the prompt
-# - set to custom function to work with other systems
+# - Default is `__vcs_branch`
+# - Unset to drop VCS info from the prompt
+# - Set to custom function to work with other systems
 export VCS_BRANCH_PROMPT_COMMAND="__vcs_branch"
 
 # Returns the current `git` branch and dirty status.
@@ -38,13 +38,13 @@ __vcs_branch() {
 # The chroot, host and branch are optional. Colors are used only if supported.
 __make_prompt() {
   # If colors are supported, define styles and colors:
-  # - text: bold
-  # - shell: green
-  # - chroot: purple
-  # - user: red
-  # - host: green
-  # - vcs: yellow
-  # - cwd: blue
+  # - Text: bold
+  # - Shell: green
+  # - Chroot: purple
+  # - User: red
+  # - Host: green
+  # - VCS: yellow
+  # - Current working directory: blue
   if [[ "$(tput colors)" -ge 8 ]]; then
     local -r reset_style="\[$(tput sgr0)\]"
     local -r text_style="\[$(tput sgr0 && tput bold)\]"
