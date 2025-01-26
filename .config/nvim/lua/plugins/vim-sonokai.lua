@@ -22,6 +22,11 @@ return { -- Color scheme
         -- Override visual highlight to higher contrast.
         set_hl("Visual", palette.none, palette.bg4)
         set_hl("VisualNOS", palette.none, palette.bg4, "underline")
+        -- Override `fzf-lua` info and spinner highlights.
+        vim.cmd([[
+          let g:fzf_colors['info'] = ['fg', 'Comment']
+          let g:fzf_colors['spinner'] = ['fg', 'Comment']
+        ]])
       end,
     })
     vim.cmd.colorscheme(vim.env.COLORSCHEME)
