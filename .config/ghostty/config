@@ -7,7 +7,7 @@ config-file = colorscheme
 
 # JetBrains Mono Nerd Font is built into Ghostty as the default font.
 font-family =
-font-size = 11
+font-size = 12
 
 # Disable font ligatures.
 font-feature = -calt

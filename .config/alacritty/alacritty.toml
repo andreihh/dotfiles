@@ -3,8 +3,9 @@
 [general]
 import = ["colorscheme.toml"]  # Color scheme inferred from `${COLORSCHEME}`
 
-[font.normal]
-family = "JetBrainsMono Nerd Font"  # Use a Nerd Font
+[font]
+normal = { family = "JetBrainsMono Nerd Font" }  # Use a Nerd Font
+size = 12
 
 [cursor.style]
 blinking = "Always"  # Force blinking cursor

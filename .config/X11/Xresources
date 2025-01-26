@@ -12,7 +12,7 @@ XTerm*boldColors: false
 
 ! Use a Nerd Font.
 *faceName: JetBrainsMono Nerd Font
-*faceSize: 11
+*faceSize: 12
 
 ! Force blinking cursor.
 *cursorBlink: true
