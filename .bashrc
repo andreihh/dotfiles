@@ -58,8 +58,3 @@ for file in "${XDG_CONFIG_HOME:-${HOME}/.config}/bash.d"/*; do
   [[ -f "${file}" ]] && . "${file}"
 done
 unset file
-
-# Load `fzf` with completion:
-# - <C-r> = search command history
-# - **<tab> = complete path
-command -v fzf &> /dev/null && eval "$(fzf --bash)"
