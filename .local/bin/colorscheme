@@ -60,12 +60,4 @@ command -v alacritty &> /dev/null \
 import = ["themes/${COLORSCHEME}.toml"]
 EOF
 
-readonly FZF_SH="${CONFIG_HOME}/profile.d/10-fzf.sh"
-readonly FZF_COLORSCHEME="${CONFIG_HOME}/fzf/themes/${COLORSCHEME}.sh"
-command -v fzf &> /dev/null \
-  && echo "Linking 'fzf' color scheme..." \
-  && [[ -f "${FZF_COLORSCHEME}" ]] \
-  && ln -sf "${CONFIG_HOME}/fzf/themes/${COLORSCHEME}.sh" "${FZF_SH}" \
-  || echo "Failed to apply 'fzf' color scheme!"
-
 echo "Color scheme updated to '${COLORSCHEME}!"

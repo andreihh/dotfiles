@@ -11,3 +11,5 @@
 --info=inline-right
 --no-scrollbar
 --reverse
+--color=fg:-1,bg:-1,fg+:-1,gutter:-1,query:-1
+--color=prompt:green:bold
