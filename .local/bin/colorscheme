@@ -11,9 +11,11 @@ readonly COLORSCHEME="$1"
 
 echo "Configuring '\${COLORSCHEME}' environment variable..."
 cat << EOF > "${CONFIG_HOME}/profile.d/00-colorscheme.sh"
-# colorscheme.sh: auto-generated to set the color scheme environment variable.
+# colorscheme.sh: auto-generated to set the color scheme environment.
 #
 # Regenerate with the \`colorscheme\` command.
+#
+# shellcheck shell=sh
 
 export COLORSCHEME="${COLORSCHEME}"
 EOF
@@ -26,6 +28,8 @@ command -v xterm &> /dev/null \
 # xresources.sh: auto-generated to load X11 resources and color scheme.
 #
 # Regenerate or clean up with the \`colorscheme\` command.
+#
+# shellcheck shell=sh
 
 xrdb -merge "\${XDG_CONFIG_HOME:-\${HOME}/.config}/X11/Xresources"
 xrdb -merge \\
@@ -55,3 +59,13 @@ command -v alacritty &> /dev/null \
 [general]
 import = ["themes/${COLORSCHEME}.toml"]
 EOF
+
+readonly FZF_SH="${CONFIG_HOME}/profile.d/10-fzf.sh"
+readonly FZF_COLORSCHEME="${CONFIG_HOME}/fzf/themes/${COLORSCHEME}.sh"
+command -v fzf &> /dev/null \
+  && echo "Linking 'fzf' color scheme..." \
+  && [[ -f "${FZF_COLORSCHEME}" ]] \
+  && ln -sf "${CONFIG_HOME}/fzf/themes/${COLORSCHEME}.sh" "${FZF_SH}" \
+  || echo "Failed to apply 'fzf' color scheme!"
+
+echo "Color scheme updated to '${COLORSCHEME}!"

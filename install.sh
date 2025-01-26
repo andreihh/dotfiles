@@ -1,10 +1,10 @@
 #!/bin/bash -e
 #
 # Dotfiles installation script:
-# - clones the dotfiles repository
-# - backs up existing dotfiles
-# - installs the dotfiles
-# - runs setup scripts
+# - Clones the dotfiles repository
+# - Backs up existing dotfiles
+# - Installs the dotfiles
+# - Runs setup scripts
 #
 # If any step in the installation fails, you may fix the issues manually and
 # run this script again. However, you must move any generated backups to a
