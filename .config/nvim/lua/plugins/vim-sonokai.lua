@@ -29,6 +29,9 @@ return { -- Color scheme
           let g:fzf_colors['spinner'] = ['fg', 'Comment']
           let g:fzf_colors['bg+'] = ['bg', 'Pmenu']
         ]])
+
+        -- Override Snacks dashboard highlights.
+        set_hl("SnacksDashboardHeader", palette.red, palette.none)
       end,
     })
     vim.cmd.colorscheme(vim.env.COLORSCHEME)
