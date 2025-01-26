@@ -428,9 +428,10 @@ function! s:ConfigSonokaiHighlights() abort
       \ l:palette.bg4,
       \ 'underline')
 
-  " Override `fzf.vim` info and spinner highlights.
+  " Override `fzf-lua` highlights for better contrast.
   let g:fzf_colors['info'] = ['fg', 'Comment']
   let g:fzf_colors['spinner'] = ['fg', 'Comment']
+  let g:fzf_colors['bg+'] = ['bg', 'Pmenu']
 endfunction
 
 " If the terminal supports colors, try to set the configured color scheme.
