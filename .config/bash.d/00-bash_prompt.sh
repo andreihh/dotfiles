@@ -1,4 +1,6 @@
-# bash_prompt.sh: customizes the shell prompt.
+# bash_prompt.sh: configures the shell prompt.
+#
+# Requires a Nerd Font.
 #
 # shellcheck shell=bash
 
@@ -22,12 +24,12 @@ __git_branch() {
     dirty="*"
   fi
 
-  echo "${branch}${dirty}"
+  echo " ${branch}${dirty}"  # `nf-fa-code_branch
 }
 
 # Returns the branch name and optionally dirty status of the current VCS branch.
 #
-# Works with `git`.
+# Supports `git`.
 __vcs_branch() {
   __git_branch
 }
@@ -35,7 +37,7 @@ __vcs_branch() {
 # Makes a custom, dynamic prompt in the following format:
 #   `(chroot) user at host on branch in dir $`
 #
-# The chroot, host and branch are optional. Colors are used only if supported.
+# The `chroot`, host and branch are optional. Colors are used if supported.
 __make_prompt() {
   # If colors are supported, define styles and colors:
   # - Text: bold
@@ -56,18 +58,18 @@ __make_prompt() {
     local -r cwd_style="\[$(tput sgr0 && tput bold && tput setaf 4)\]"
   fi
 
-  # Set variable identifying the chroot you work in.
+  # Set variable identifying the `chroot` you work in.
   if [[ -z "${debian_chroot:-}" ]] && [[ -r /etc/debian_chroot ]]; then
     debian_chroot=$(cat /etc/debian_chroot)
   fi
 
   # Set the terminal prompt.
-  PS1="${debian_chroot:+${chroot_style}(${debian_chroot}) }"  # set chroot
-  PS1+="${user_style}\u"  # set current user
+  PS1="${debian_chroot:+${chroot_style}(${debian_chroot}) }"  # Set `chroot`
+  PS1+="${user_style} \u"  # Set current user, `nf-fa-user`
 
   # Set the host only if the current session is remote.
   if [[ -n "${SSH_TTY}" ]]; then
-    PS1+="${text_style} at ${host_style}\h"
+    PS1+="${text_style} at ${host_style}󰍹 \h"  # `nf-md-monitor`
   fi
 
   # Set current VCS branch if VCS info is enabled and repository is detected.
@@ -78,10 +80,10 @@ __make_prompt() {
     fi
   fi
 
-  PS1+="${text_style} in ${cwd_style}\w"  # set cwd
-  PS1+="\n${shell_style}\$ ${reset_style}"  # set shell and reset style
+  PS1+="${text_style} in ${cwd_style} \w"  # Set `cwd`, `nf-fa-folder`
+  PS1+="\n${shell_style}\$ ${reset_style}"  # Set shell and reset style
 
-  PS2="${shell_style}> ${reset_style}"  # set shell and reset style
+  PS2="${shell_style}> ${reset_style}"  # Set shell and reset style
 
   # If this is an `xterm`, set the title to `user@host:dir`.
   case "${TERM}" in
