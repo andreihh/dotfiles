@@ -69,10 +69,10 @@ return { -- Fuzzy finder (files, lsp, etc.)
   opts = {
     keymap = { -- Disable default keymaps
       builtin = {
-        ["<C-\\>"] = "toggle-help",
         ["<C-d>"] = "preview-half-page-down",
         ["<C-u>"] = "preview-half-page-up",
         ["<C-p>"] = "toggle-preview-wrap",
+        ["<C-\\>"] = "toggle-help",
       },
       fzf = {},
     },
