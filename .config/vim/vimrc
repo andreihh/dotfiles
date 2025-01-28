@@ -420,14 +420,6 @@ function! s:ConfigSonokaiHighlights() abort
   " Override window separator to match tab and status lines.
   call sonokai#highlight('VertSplit', l:palette.grey_dim, l:palette.bg1)
 
-  " Override visual highlight to higher contrast.
-  call sonokai#highlight('Visual', l:palette.none, l:palette.bg4)
-  call sonokai#highlight(
-      \ 'VisualNOS',
-      \ l:palette.none,
-      \ l:palette.bg4,
-      \ 'underline')
-
   " Override `fzf-lua` highlights for better contrast.
   let g:fzf_colors['info'] = ['fg', 'Comment']
   let g:fzf_colors['spinner'] = ['fg', 'Comment']
@@ -682,4 +674,5 @@ endfunction
 
 " [[ Config overrides ]]
 
+" Load optional user overrides.
 runtime overrides.vim

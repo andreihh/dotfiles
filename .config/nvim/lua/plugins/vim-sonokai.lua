@@ -19,10 +19,6 @@ return { -- Color scheme
         -- Override window separator to match tab and status lines.
         set_hl("VertSplit", palette.grey_dim, palette.bg1)
 
-        -- Override visual highlight to higher contrast.
-        set_hl("Visual", palette.none, palette.bg4)
-        set_hl("VisualNOS", palette.none, palette.bg4, "underline")
-
         -- Override `fzf-lua` highlights for better contrast.
         vim.cmd([[
           let g:fzf_colors['info'] = ['fg', 'Comment']

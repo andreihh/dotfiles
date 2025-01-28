@@ -94,4 +94,4 @@ __make_prompt() {
   esac
 }
 
-PROMPT_COMMAND=__make_prompt  # set dynamic prompt
+PROMPT_COMMAND=__make_prompt  # Set dynamic prompt
