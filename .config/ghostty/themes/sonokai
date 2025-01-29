@@ -5,11 +5,12 @@
 # Special:
 # - Foreground: fg
 # - Background: bg0
-# - Cursor: fg
+# - Cursor: reverse
 # - Highlight: bg4
 foreground = e2e2e3
 background = 2c2e34
 cursor-color = e2e2e3
+cursor-text = 2c2e34
 selection-foreground = e2e2e3
 selection-background = 414550
 selection-invert-fg-bg = false

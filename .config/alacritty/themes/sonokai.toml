@@ -27,7 +27,7 @@ cyan = "#f39660"  # orange
 white = "#e2e2e3"  # fg
 
 [colors.cursor]
-text = "#181819"  # black
+text = "#2c2e34"  # bg0
 cursor = "#e2e2e3"  # fg
 
 [colors.selection]

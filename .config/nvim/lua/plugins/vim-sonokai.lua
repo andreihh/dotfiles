@@ -26,7 +26,7 @@ return { -- Color scheme
           let g:fzf_colors['bg+'] = ['bg', 'Pmenu']
         ]])
 
-        -- Override Snacks dashboard highlights.
+        -- Override Snacks dashboard header to match title.
         set_hl("SnacksDashboardHeader", palette.red, palette.none)
       end,
     })
