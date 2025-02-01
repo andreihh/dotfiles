@@ -5,8 +5,8 @@
 # Open argument with the default program.
 alias o='open &> /dev/null'
 
-# Attach to the `main` `tmux` session, or create it if it doesn't exist.
-alias tmx='tmux new -A -s main'
+# Create and attach to a given `tmux` session. Append `-d` to skip attaching.
+alias tmx='tmux new -A -s'
 
 # Launch Lazygit.
 alias lgit='lazygit'
