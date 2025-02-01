@@ -32,13 +32,15 @@ theme = ${COLORSCHEME}
 EOF
 
 # Alacritty config cannot import dynamic files.
-command -v alacritty &> /dev/null \
-  && echo "Setting up Alacritty color scheme config..." \
-  && cat << EOF > "${CONFIG_HOME}/alacritty/colorscheme.toml"
-# colorscheme.toml: auto-generated from \`\${COLORSCHEME}\`.
+if command -v alacritty &> /dev/null; then
+  readonly ALACRITTY_HOME="${CONFIG_HOME}/alacritty"
+  readonly ALACRITTY_COLORSCHEME="${ALACRITTY_HOME}/themes/${COLORSCHEME}.toml"
+  readonly ALACRITTY_LINK="${ALACRITTY_HOME}/colorscheme.toml"
 
-[general]
-import = ["themes/${COLORSCHEME}.toml"]
-EOF
+  echo "Linking Alacritty color scheme..."
+  [[ -f "${ALACRITTY_COLORSCHEME}" ]] \
+    && ln -sf "${ALACRITTY_COLORSCHEME}" "${ALACRITTY_LINK}" \
+    || echo "Failed to apply Alacritty color scheme!"
+fi
 
 echo "Color scheme updated to '${COLORSCHEME}!"
