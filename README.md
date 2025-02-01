@@ -148,12 +148,13 @@ Common shortcuts (`C = Ctrl / Cmd`, `A = Alt / Opt`, `S = Shift`):
 - Open web browser: `C-A-w`
 - Open shell terminal: `C-A-s`
 - Open `tmux` terminal in the `main` session: `C-A-x`
+- Open SSH terminal to cloud workstation: `C-A-c`
 
 Terminal settings:
 
 - Paste: `C-S-v`
-- Close window: `C-q`
-- Switch `tmux` tab: `C-1` / ... / `C-9`
+- Close terminal: `C-q`
+- Switch `tmux` tab: `C-#` (mapped to `M-#`)
 - Send interrupt signal: `C-c`
 - Open clipboard selection with external system handler: `A-o`
 
