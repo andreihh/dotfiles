@@ -8,18 +8,6 @@
 #
 # shellcheck shell=sh
 
-# The default umask is set in `/etc/profile`; for setting the umask for ssh
-# logins, install and configure the `libpam-umask` package.
-#umask 022
-
-# If running bash.
-if [ -n "${BASH_VERSION}" ]; then
-  # Include `.bashrc` if it exists.
-  if [ -f "${HOME}/.bashrc" ]; then
-    . "${HOME}/.bashrc"
-  fi
-fi
-
 # Set `PATH` so it includes user's private `bin` if it exists.
 if [ -d "${HOME}/.local/bin" ]; then
   PATH="${HOME}/.local/bin${PATH:+:${PATH}}"
@@ -30,3 +18,9 @@ for file in "${XDG_CONFIG_HOME:-${HOME}/.config}/profile.d"/*; do
   [ -f "${file}" ] && . "${file}"
 done
 unset file
+
+# Include `.bashrc` if running bash and it exists, but only after loading all
+# shell-agnostic configs and environment.
+if [ -n "${BASH_VERSION}" ] && [ -f "${HOME}/.bashrc" ]; then
+  . "${HOME}/.bashrc"
+fi
