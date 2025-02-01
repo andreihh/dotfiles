@@ -20,25 +20,6 @@ cat << EOF > "${CONFIG_HOME}/profile.d/00-colorscheme.sh"
 export COLORSCHEME="${COLORSCHEME}"
 EOF
 
-# X11 config is not XDG-compliant and cannot import dynamic files.
-readonly XRESOURCES_SH="${CONFIG_HOME}/profile.d/10-xresources.sh"
-command -v xterm &> /dev/null \
-  && echo "Seting up script to load X11 resources..." \
-  && cat << EOF > "${XRESOURCES_SH}"
-# xresources.sh: auto-generated to load X11 resources and color scheme.
-#
-# Regenerate or clean up with the \`colorscheme\` command.
-#
-# shellcheck shell=sh
-
-xrdb -merge "\${XDG_CONFIG_HOME:-\${HOME}/.config}/X11/Xresources"
-xrdb -merge \\
-  "\${XDG_CONFIG_HOME:-\${HOME}/.config}/X11/Xcolors/${COLORSCHEME}.Xresources"
-EOF
-
-# Clean up X11 resources loading script if `xterm` is not installed.
-command -v xterm &> /dev/null || rm "${XRESOURCES_SH}"
-
 # Ghostty config cannot set dynamic themes.
 command -v ghostty &> /dev/null \
   && echo "Setting up Ghostty color scheme config..." \
