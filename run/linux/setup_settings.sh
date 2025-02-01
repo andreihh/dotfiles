@@ -66,11 +66,11 @@ gsettings set "${GNOME_MEDIA_KEYS}.custom-keybinding:${NEW_SHELL_KEY}" \
 gsettings set "${GNOME_MEDIA_KEYS}.custom-keybinding:${NEW_SHELL_KEY}" \
   binding "'<Primary><Alt>s'"
 
-echo "Setting new 'tmux' terminal shortcut to Ctrl-Alt-x..."
+echo "Setting new 'tmx' terminal shortcut to Ctrl-Alt-x..."
 gsettings set "${GNOME_MEDIA_KEYS}.custom-keybinding:${NEW_TMUX_KEY}" \
-  name "'Launch tmux terminal in the main session'"
+  name "'Launch tmx terminal'"
 gsettings set "${GNOME_MEDIA_KEYS}.custom-keybinding:${NEW_TMUX_KEY}" \
-  command "'x-terminal-emulator -e tmux new -A -s main'"
+  command "'x-terminal-emulator -e tmx'"
 gsettings set "${GNOME_MEDIA_KEYS}.custom-keybinding:${NEW_TMUX_KEY}" \
   binding "'<Primary><Alt>x'"
 

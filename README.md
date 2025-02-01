@@ -147,7 +147,7 @@ Common shortcuts (`C = Ctrl / Cmd`, `A = Alt / Opt`, `S = Shift`):
 - Open file explorer: `C-A-e`
 - Open web browser: `C-A-w`
 - Open shell terminal: `C-A-s`
-- Open `tmux` terminal in the `main` session: `C-A-x`
+- Open `tmx` terminal: `C-A-x`
 - Open SSH terminal to cloud workstation: `C-A-c`
 
 Terminal settings:

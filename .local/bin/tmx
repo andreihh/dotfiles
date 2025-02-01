@@ -1,0 +1,16 @@
+#!/bin/bash -e
+#
+# Creates and attaches to the specified `tmux` session, or to the last session
+# if none is specified, or to the `main` session if no sessions exist.
+
+[[ $# -gt 1 ]] && echo "Usage: $0 [SESSION]" && exit 1
+
+session="$1"
+if [[ -z "${TMUX}" ]]; then
+  # Try to attach to session, else create and attach to it (defaults to `main`).
+  tmux attach -t "${session}" &> /dev/null || tmux new -A -s "${session:-main}"
+elif [[ -n "${session}" ]]; then
+  # Create session if it doesn't exist, then switch to it.
+  tmux has -t "${session}" &> /dev/null || tmux new -d -s "${session}"
+  tmux switch -t "${session}"
+fi
