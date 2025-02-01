@@ -22,6 +22,9 @@ shell-integration-features = no-cursor
 window-width = 9999
 window-height = 9999
 
+# Don't display window size after resizing.
+resize-overlay = never
+
 # Disable superfluous window decorations.
 window-decoration = false
 
