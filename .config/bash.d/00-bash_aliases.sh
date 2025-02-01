@@ -5,8 +5,22 @@
 # Open argument with the default program.
 alias o='open &> /dev/null'
 
-# Create and attach to a given `tmux` session. Append `-d` to skip attaching.
-alias tmx='tmux new -A -s'
+# Creates and attaches to the specified `tmux` session, or to the last session
+# if none is specified, or to the `main` session if no sessions exist.
+function tmx() {
+  [[ $# -gt 1 ]] && echo "Usage: tmx [SESSION]" && return 1
+
+  local session="$1"
+  if [[ -z "${TMUX}" ]]; then
+    # Try to attach to session, else create and attach to it (default: `main`).
+    tmux attach -t "${session}" &> /dev/null \
+      || tmux new -A -s "${session:-main}"
+  elif [[ -n "${session}" ]]; then
+    # Create session if it doesn't exist, then switch to it.
+    tmux has -t "${session}" &> /dev/null || tmux new -d -s "${session}"
+    tmux switch -t "${session}"
+  fi
+}
 
 # Launch Lazygit.
 alias lgit='lazygit'
