@@ -5,6 +5,16 @@
 # Open argument with the default program.
 alias o='open &> /dev/null'
 
+# Starts a `tmux` session for the current project, trying to find:
+# - The root of the Git repository
+# - The current working directory
+function tmxp() {
+  local project_root
+  project_root="$(git rev-parse --show-toplevel)"
+  [[ -z "${project_root}" ]] && project_root="${PWD}"
+  tmx "$(basename "${project_root}")"
+}
+
 # Launch Lazygit.
 alias lgit='lazygit'
 
