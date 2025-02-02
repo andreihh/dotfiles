@@ -11,7 +11,7 @@ readonly COLORSCHEME="$1"
 
 echo "Configuring 'COLORSCHEME' environment variable..."
 cat << EOF > "${CONFIG_HOME}/profile.d/00-colorscheme.sh"
-# colorscheme.sh: auto-generated to set the color scheme environment.
+# colorscheme.sh: auto-generated to set the color scheme environment variables.
 #
 # Regenerate with the \`colorscheme\` command.
 #

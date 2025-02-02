@@ -5,6 +5,6 @@
 command -v tmux &> /dev/null \
   && command -v tmx &> /dev/null \
   && [[ -z "${TMUX}" ]] \
-  && [[ $- == *i* ]] \
+  && [[ $- =~ i ]] \
   && [[ -n "${SSH_TTY}" ]] \
   && tmx
