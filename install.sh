@@ -22,9 +22,9 @@ readonly RUN_DIR="${DOTFILES_HOME}/run"
 
 shopt -s nocasematch
 case "${OSTYPE}" in
-  linux*) os_type="linux" ;;
+  linux*) os_type='linux' ;;
   darwin*)
-    os_type="macos"
+    os_type='macos'
     echo "Installing XCode Command Line Tools..."
     xcode-select --install
     ;;
@@ -47,10 +47,10 @@ EOF
 }
 
 backup_dir="${BACKUP_DIR_DEFAULT}"
-while getopts "dfb:r:h" option; do
+while getopts 'dfb:r:h' option; do
   case "${option}" in
-    d) debug="-d" ;;
-    f) force="-f" ;;
+    d) debug='-d' ;;
+    f) force='-f' ;;
     b) backup_dir="${OPTARG}" ;;
     r) run_scripts="${OPTARG//;/ }" ;;
     h) usage && exit 0 ;;

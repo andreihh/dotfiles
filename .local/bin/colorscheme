@@ -9,7 +9,7 @@
 readonly CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
 readonly COLORSCHEME="$1"
 
-echo "Configuring '\${COLORSCHEME}' environment variable..."
+echo "Configuring 'COLORSCHEME' environment variable..."
 cat << EOF > "${CONFIG_HOME}/profile.d/00-colorscheme.sh"
 # colorscheme.sh: auto-generated to set the color scheme environment.
 #

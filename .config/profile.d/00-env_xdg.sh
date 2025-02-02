@@ -39,7 +39,7 @@ export TEXMACS_HOME_PATH="${XDG_STATE_HOME}/texmacs"
 
 # Export the JRE for apps that rely on `${JAVA_HOME}`.
 # shellcheck disable=SC2155
-export JAVA_HOME="$(readlink -e "/usr/bin/java" | sed "s:/bin/java::")"
+export JAVA_HOME="$(readlink -e '/usr/bin/java' | sed 's:/bin/java::')"
 
 # Export local Maven repository.
 export MAVEN_OPTS="-Dmaven.repo.local='${XDG_DATA_HOME}/maven/repository'"

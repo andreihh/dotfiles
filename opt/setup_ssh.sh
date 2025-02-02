@@ -4,7 +4,7 @@
 
 readonly SSH_CONFIG="${HOME}/.ssh/config"
 readonly SSHD_CONFIG="/etc/ssh/sshd_config"
-readonly X11_OPTION_PATTERN="#?X11Forwarding .*"
+readonly X11_OPTION_PATTERN='#?X11Forwarding .*'
 readonly SED_X11_OPTION_PATTERN="s/${X11_OPTION_PATTERN}/X11Forwarding yes/"
 
 usage() {
@@ -17,10 +17,10 @@ Usage: $0 [-h] [-s] [-c <trusted-hosts-pattern>]
 EOF
 }
 
-while getopts "sc:h" option; do
+while getopts 'sc:h' option; do
   case "${option}" in
     h) usage && exit 0 ;;
-    s) server="-s" ;;
+    s) server='-s' ;;
     c) hosts_pattern="${OPTARG//;/ }" ;;
     *) usage && exit 1 ;;
   esac

@@ -8,7 +8,7 @@
 # - Default is `__vcs_branch`
 # - Unset to drop VCS info from the prompt
 # - Set to custom function to work with other systems
-export VCS_BRANCH_PROMPT_COMMAND="__vcs_branch"
+export VCS_BRANCH_PROMPT_COMMAND='__vcs_branch'
 
 # Returns the current `git` branch and dirty status.
 __git_branch() {
@@ -19,9 +19,9 @@ __git_branch() {
     || git rev-parse --short HEAD 2> /dev/null \
     || echo '(unknown)')"
 
-  local dirty=""
+  local dirty=''
   if [[ -n $(git status --porcelain 2> /dev/null) ]]; then
-    dirty="*"
+    dirty='*'
   fi
 
   echo " ${branch}${dirty}"  # `nf-fa-code_branch
@@ -94,4 +94,4 @@ __make_prompt() {
   esac
 }
 
-PROMPT_COMMAND=__make_prompt  # Set dynamic prompt
+PROMPT_COMMAND='__make_prompt'  # Set dynamic prompt

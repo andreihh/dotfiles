@@ -77,7 +77,7 @@ gsettings set "${GNOME_MEDIA_KEYS}.custom-keybinding:${NEW_TMX_KEY}" \
 echo "Setting up default web browser interactively..."
 sudo update-alternatives --config x-www-browser
 
-for term in "ghostty" "alacritty"; do
+for term in 'ghostty' 'alacritty'; do
   term_bin="$(command -v "${term}")" || true
   [[ -f "${term_bin}" ]] \
     && echo "Installing '${term}' as terminal alternative..." \
@@ -101,9 +101,9 @@ else
 fi
 
 echo "Changing default shell to Bash..."
-[[ -n "${debug}" ]] || chsh -s "/bin/bash"
+[[ -n "${debug}" ]] || chsh -s '/bin/bash'
 
 echo "Making hidden startup applications visible..."
-sudo sed -i "s/NoDisplay=true/NoDisplay=false/g" /etc/xdg/autostart/*.desktop
+sudo sed -i 's/NoDisplay=true/NoDisplay=false/g' /etc/xdg/autostart/*.desktop
 
 echo "System settings updated!"

@@ -5,7 +5,7 @@
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
 readonly SYSCTL_CONFIG="/etc/sysctl.conf"
-readonly OPTION_PATTERN="#?vm.swappiness=.*"
+readonly OPTION_PATTERN='#?vm.swappiness=.*'
 readonly SED_REPLACE_OPTION_PATTERN="s/${OPTION_PATTERN}/vm.swappiness=1/"
 
 echo "Setting swappiness to 1..."
