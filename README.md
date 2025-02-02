@@ -22,6 +22,10 @@ To configure the color scheme for terminal apps, run the `colorscheme` command.
 After installing the dotfiles for the first time, you may need to restart your
 system to reload the custom environment variables properly.
 
+Optional setup scripts and executables are found under the `opt/` directory.
+These are not used by default, you must manually run the setup scripts or link
+the executables into the `PATH`.
+
 To add new dotfiles, commit all the changes to bring the repository to a clean
 state and run the following command:
 
@@ -51,6 +55,7 @@ repository can be provided in:
 - `~/.config/nvim/lua/plugins/`
 - `~/.config/vim/overrides.vim`
 - `~/.config/vim/overrides.plug.vim`
+- `~/.config/tmux/overrides.tmux`
 
 Example `~/.config/bash.d/10-extras.sh`:
 
