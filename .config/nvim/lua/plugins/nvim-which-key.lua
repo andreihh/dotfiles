@@ -17,18 +17,7 @@ return { -- Useful plugin to show pending keybinds
       { "[", group = "Jump to previous …" },
       { "]", group = "Jump to next …" },
       { "s", group = "Search" },
-      {
-        "1",
-        group = "Sort ascending",
-        icon = "", -- `nf-fa-sort_alpha_asc`
-        mode = "x",
-      },
-      {
-        "2",
-        group = "Sort descending",
-        icon = "", -- `nf-fa-sort_alpha_desc`
-        mode = "x",
-      },
+      { "s", group = "Sort", icon = "", mode = "x" }, -- `nf-fa-sort_alpha_asc`
       { "dm", group = "Delete marks", icon = "󰸕" }, -- `nf-md-bookmark_multiple`
       { "dv", group = "Diff view …", icon = "" }, -- `nf-cod-diff`
       { "M", icon = "" }, -- `nf-fa-plug`
@@ -36,8 +25,8 @@ return { -- Useful plugin to show pending keybinds
       { "Q", icon = "" }, -- `nf-fa-sign_out`
       { "<C-f>", icon = "" }, -- `nf-fa-flash`
       { "dS", icon = "󱙄" }, -- `nf-md-content_save_off_outline`
-      { "H", icon = "󰋗" }, -- `nf-md-help_circle`
-      { "<C-s>", icon = "󰋗", mode = "i" }, -- `nf-md-help_circle`
+      { "H", icon = "" }, -- `nf-fa-question`
+      { "<C-s>", icon = "", mode = "i" }, -- `nf-fa-question`
       { "gd", icon = "" }, -- `nf-fa-code`
       { "gD", icon = "" }, -- `nf-fa-code`
       { "gi", icon = "" }, -- `nf-fa-code`

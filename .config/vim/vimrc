@@ -457,8 +457,8 @@ endfor
 " - <esc> = clear search highlights
 " - u = [u]ndo
 " - <C-r> = [r]edo
-" - 12 / 21 / 112 / 221 = sort ascending / descending (unique)
 " - <C-c> = [c]opy last yank to system clipboard using OSC52
+" - s + a/d/A/S = [s]ort [a]scending / [d]escending (unique)
 " - gj / gk = [g]o to previous / next location
 " - gf = [g]o to [f]ile under cursor / selected [f]ile
 " - gx = [g]o to URI with e[x]ternal system handler
@@ -475,11 +475,11 @@ nnoremap M :PlugStatus<CR>
 nnoremap S :w<CR>
 nnoremap Q :quitall<CR>
 nnoremap <esc> <C-c>:nohlsearch<CR>
-xnoremap 12 :sort u<CR>
-xnoremap 21 :sort! u<CR>
-xnoremap 112 :sort<CR>
-xnoremap 221 :sort!<CR>
 nmap <C-c> :OSCYankRegister<CR>
+xnoremap sa :sort u<CR>
+xnoremap sd :sort! u<CR>
+xnoremap sA :sort<CR>
+xnoremap sD :sort!<CR>
 nnoremap gj <C-o>
 nnoremap gk <C-i>
 for i in '123456789'
