@@ -1,6 +1,8 @@
 " vimrc: configures Vim.
 "
-" Requires `curl`, `fzf`, `fd`, `ripgrep`, and a Nerd Font.
+" Requirements:
+" - Terminal capabilities: truecolors, Nerd Font, OSC52
+" - Tools: `git`, `curl`, `fzf`, `fd`, `ripgrep`
 
 " [[ XDG specification ]]
 
@@ -69,6 +71,7 @@ Plug 'tpope/vim-sensible'  " Sensible settings
 Plug 'tpope/vim-surround'  " Better surround motions
 Plug 'tpope/vim-obsession'  " Session management
 Plug 'easymotion/vim-easymotion'  " Better navigation motions
+Plug 'ojroques/vim-oscyank'  " OSC52 support
 " `tmux` integration
 Plug 'christoomey/vim-tmux-navigator'  " Vim / `tmux` window navigation
 Plug 'RyanMillerC/better-vim-tmux-resizer'  " Vim / `tmux` window resizing
@@ -107,6 +110,9 @@ call glaive#Install()
 
 " [[ Options ]]
 
+" Make Esc more responsive.
+set ttimeoutlen=5
+
 " Enable true colors. Disable if not supported by the terminal.
 set termguicolors
 
@@ -118,9 +124,6 @@ set background=dark
 let &t_SI = "\e[5 q"
 let &t_SR = "\e[3 q"
 let &t_EI = "\e[1 q"
-
-" Make Esc more responsive.
-set ttimeoutlen=5
 
 " Always assume Unix-style files.
 set fileformats=unix
@@ -153,9 +156,6 @@ set listchars=tab:»\ ,trail:·,nbsp:␣,precedes:◀,extends:▶
 " Configure how new splits should be opened.
 set splitbelow
 set splitright
-
-" Sync clipboard between OS and Vim.
-set clipboard=unnamedplus
 
 " Round indents to nearest multiple of `shiftwidth`.
 set shiftround
@@ -457,6 +457,7 @@ endfor
 " - <esc> = clear search highlights
 " - u = [u]ndo
 " - <C-r> = [r]edo
+" - <C-c> = [c]opy to system clipboard using OSC52
 " - 12 / 21 / 112 / 221 = sort ascending / descending (unique)
 " - gj / gk = [g]o to previous / next location
 " - gf = [g]o to [f]ile under cursor / selected [f]ile
@@ -474,6 +475,9 @@ nnoremap M :PlugStatus<CR>
 nnoremap S :w<CR>
 nnoremap Q :quitall<CR>
 nnoremap <esc> <C-c>:nohlsearch<CR>
+nmap <C-c> <Plug>OSCYankOperator
+nmap <C-c><C-c> <C-c>_
+xmap <C-c> <Plug>OSCYankVisual
 xnoremap 12 :sort u<CR>
 xnoremap 21 :sort! u<CR>
 xnoremap 112 :sort<CR>

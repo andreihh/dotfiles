@@ -2,11 +2,23 @@
 --  See `:help vim.opt`
 --  For more options, see `:help option-list`
 
+vim.o.ttimeoutlen = 5 -- Make Esc more responsive
+vim.opt.updatetime = 250 -- Decrease update time
+
 -- Enable true colors. Disable if not supported by the terminal.
 vim.opt.termguicolors = true
 
-vim.o.ttimeoutlen = 5 -- Make Esc more responsive
-vim.opt.updatetime = 250 -- Decrease update time
+-- Sync clipboard between OS and Neovim using OSC52.
+--  Schedule the setting after `UIEnter` because it can increase startup-time.
+--  See `:help 'clipboard'`
+vim.schedule(function()
+  local osc52 = require("vim.ui.clipboard.osc52")
+  vim.g.clipboard = {
+    name = "OSC 52",
+    copy = { ["+"] = osc52.copy("+"), ["*"] = osc52.copy("*") },
+    paste = { ["+"] = osc52.paste("+"), ["*"] = osc52.paste("*") },
+  }
+end)
 
 vim.opt.showmode = false -- Don't show the mode, it's already in the status line
 vim.opt.wrap = false -- Don't automatically wrap lines
@@ -46,13 +58,6 @@ vim.opt.splitbelow = true
 -- Minimal number of screen lines and columns to keep around the cursor.
 vim.opt.scrolloff = 1
 vim.opt.sidescrolloff = 2
-
--- Sync clipboard between OS and Neovim.
---  Schedule the setting after `UIEnter` because it can increase startup-time.
---  See `:help 'clipboard'`
-vim.schedule(function()
-  vim.opt.clipboard = "unnamedplus"
-end)
 
 vim.opt.shiftround = true -- Round indents to nearest multiple of `shiftwidth`
 vim.opt.breakindent = true -- Keep current indent for wrapped lines

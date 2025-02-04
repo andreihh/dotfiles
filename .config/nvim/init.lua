@@ -1,6 +1,8 @@
 -- init.lua: configures Neovim.
 --
--- Requires `git`, `curl`, `fzf`, `fd`, `ripgrep`, and a Nerd Font.
+-- Requirements:
+--  - Terminal capabilities: truecolors, Nerd Font, OSC52
+--  - Tools: `git`, `curl`, `fzf`, `fd`, `ripgrep`
 
 -- Load basic configs.
 --  NOTE: must happen before plugins, color schemes, or overrides are loaded.

@@ -9,6 +9,7 @@
 --  - <esc> = clear search highlights
 --  - u = [u]ndo
 --  - <C-r> = [r]edo
+--  - <C-c> = [c]opy to system clipboard using OSC52
 --  - 12 / 21 / 112 / 221 = sort ascending / descending (unique)
 --  - gj / gk = [g]o to previous / next location
 --  - gf = [g]o to [f]ile under cursor / selected [f]ile
@@ -121,6 +122,8 @@ map("n", "M", "<cmd>Lazy<CR>", "[M]anage plugins")
 map("n", "S", "<cmd>write<CR>", "[S]ave buffer")
 map("n", "Q", "<cmd>quitall<CR>", "[Q]uit")
 map("n", "<esc>", "<cmd>nohlsearch<CR>", "Clear search highlights")
+map({ "n", "x" }, "<C-c>", "\"+y", "[C]opy to system clipboard using OSC52")
+map("n", "<C-c><C-c>", "\"+y_", "[C]opy line to system clipboard using OSC52")
 map("x", "12", ":sort u<CR>", "Sort ascending unique")
 map("x", "21", ":sort! u<CR>", "Sort descending unique")
 map("x", "112", ":sort<CR>", "Sort ascending")
