@@ -49,8 +49,6 @@ if [[ -n "${hosts_pattern}" ]]; then
   cat << EOF >> "${SSH_CONFIG}"
 
 Match host ${hosts_pattern}
-  ForwardX11 yes  # Required for X11 forwarding
-  ForwardX11Trusted yes  # Required to sync clipboards
   # Required for SSH multiplexing:
   ControlMaster auto
   ControlPath ~/.ssh/ctrl-%C

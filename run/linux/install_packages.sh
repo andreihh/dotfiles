@@ -10,7 +10,7 @@ sudo apt update -y
 echo "Installing packages..."
 sudo apt install -y \
   git stow curl wget zip gzip unzip tar make gnupg firefox \
-  tmux lm-sensors xsel wl-clipboard urlscan vim \
+  tmux lm-sensors urlscan vim \
   fd-find ripgrep bat tree calc dos2unix \
   tlp linux-tools-common linux-tools-generic \
   \
