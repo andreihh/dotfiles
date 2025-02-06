@@ -46,7 +46,8 @@
 --  - <tab> = accept selected / toggled items
 --  - <S-tab> = toggle selected item
 --  - <C-o/s/v/t> = open selected item in window
---  - <M-i/h/f> = toggle [i]gnored / [h]idden / [f]ollow flags
+--  - <M-h/i/f> = toggle [h]idden / [i]gnored / [f]ollow flags
+--  - <C-x> = close buffer / delete mark / reset changes
 --  - <esc> = exit
 --  - <C-\> = show keymap help
 -- Explorer:
