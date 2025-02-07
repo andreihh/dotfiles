@@ -91,6 +91,7 @@ vim.list_extend(ensure_installed, {
   "clangd",
   "jdtls",
   "kotlin_language_server",
+  "isort",
   "pyink",
   "clang-format",
   "google-java-format",
@@ -108,7 +109,7 @@ vim.g.lsp = vim.tbl_deep_extend("force", vim.g.lsp, {
     kotlin_language_server = {},
   },
   formatters_by_ft = {
-    python = { "pyink" },
+    python = { "isort", "pyink" },
     cpp = { "clang-format" },
     java = { "google-java-format" },
     kotlin = { "ktfmt" },
