@@ -33,8 +33,7 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
     },
   },
   opts = {
-    bigfile = { -- Disable Treesitter, LSP, folds, undo, etc. on big files
-      size = 1024 * 1024, -- Set big file size threshold to 1 MiB
+    bigfile = { -- Disable Treesitter, LSP, folds, undo, etc. in big files
       setup = function(ctx)
         vim.opt_local.swapfile = false
         vim.opt_local.foldmethod = "manual"
@@ -43,9 +42,11 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
         vim.opt_local.list = false
         vim.b[ctx.buf].snacks_indent = false
         vim.schedule(function()
-          vim.bo[ctx.buf].syntax = ctx.ft
-          vim.bo[ctx.buf].commentstring =
-            vim.filetype.get_option(ctx.ft, "commentstring")
+          if vim.api.nvim_buf_is_valid(ctx.buf) then
+            vim.bo[ctx.buf].syntax = ctx.ft
+            vim.bo[ctx.buf].commentstring =
+              vim.filetype.get_option(ctx.ft, "commentstring")
+          end
         end)
       end,
     },
