@@ -42,7 +42,7 @@ confirm-close-surface = false
 # - Open URI with C-click outside of `tmux`
 # - Select URI with double-click in `tmux`
 keybind = ctrl+shift+v=paste_from_clipboard
-keybind = ctrl+q=quit
+keybind = ctrl+q=close_window
 keybind = ctrl+1=esc:1
 keybind = ctrl+2=esc:2
 keybind = ctrl+3=esc:3
