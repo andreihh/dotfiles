@@ -5,7 +5,9 @@
 # The font is required for terminals other than Ghostty, which has this font
 # built in.
 #
-# Requires `wget`, `unzip` and `fontconfig` on Linux, or Homebrew on MacOS.
+# Requirements:
+# - Linux: `wget`, `unzip`, `fontconfig`
+# - MacOS: Homebrew
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 

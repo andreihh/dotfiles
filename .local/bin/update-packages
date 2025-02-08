@@ -12,22 +12,50 @@ readonly RUN_DIR="${DOTFILES_HOME}/run"
 readonly FZF_INSTALLER="${RUN_DIR}/linux/setup_fzf.sh"
 readonly NVIM_INSTALLER="${RUN_DIR}/linux/setup_nvim.sh"
 readonly LAZYGIT_INSTALLER="${RUN_DIR}/linux/setup_lazygit.sh"
+readonly NVM_INSTALLER="${RUN_DIR}/setup_nvm.sh"
 
 echo "Updating packages..."
 
-command -v apt &> /dev/null \
-  && sudo apt update -y \
-  && sudo apt upgrade --autoremove -y \
-  && sudo apt autoclean -y \
-  && "${NVIM_INSTALLER}" \
-  && "${FZF_INSTALLER}" \
-  && "${LAZYGIT_INSTALLER}" \
-  || echo "Package manager 'apt' not found, skipping..."
+if command -v apt &> /dev/null; then
+  echo "Updating 'apt' packages..."
+  sudo apt update -y
+  sudo apt upgrade --autoremove -y
+  sudo apt autoclean -y
 
-command -v brew &> /dev/null \
-  && brew update \
-  && brew upgrade \
-  && brew cleanup \
-  || echo "Package manager 'brew' not found, skipping..."
+  command -v nvim &> /dev/null \
+    && echo "Updating Neovim..." \
+    && "${NVIM_INSTALLER}"
+
+  command -v fzf &> /dev/null \
+    && echo "Updating 'fzf'..." \
+    && "${FZF_INSTALLER}"
+
+  command -v lazygit &> /dev/null \
+    && echo "Updating Lazygit..." \
+    && "${LAZYGIT_INSTALLER}"
+
+  command -v pyenv &> /dev/null \
+    && echo "Updating 'pyenv'..." \
+    && pyenv update
+fi
+
+if command -v brew &> /dev/null; then
+  echo "Updating Homebrew packages..."
+  brew update
+  brew upgrade
+  brew cleanup
+fi
+
+command -v nvm &> /dev/null \
+  && echo "Updating 'nvm'..." \
+  && "${NVM_INSTALLER}"
+
+command -v pip &> /dev/null \
+  && echo "Updating 'pip'..." \
+  && pip install --upgrade pip
+
+command -v rustup &> /dev/null \
+  && echo "Updating 'rustup'..." \
+  && rustup update
 
 echo "Updated packages successfully!"

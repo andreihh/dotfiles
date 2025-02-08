@@ -2,20 +2,22 @@
 #
 # Installs IntelliJ IDEA CE for Linux or MacOS systems.
 #
-# Requires Homebrew on MacOS.
+# Requirements:
+# - Linux: Snap
+# - MacOS: Homebrew
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
 echo "Installing IntelliJ IDEA CE..."
 
-# Use Homebrew if Available.
+# Use Homebrew if available.
 command -v brew &> /dev/null \
   && brew install --cask intellij-idea-ce \
   && echo "Installed IntelliJ IDEA CE successfully!" \
   && exit 0
 
 echo "Installing Snap..."
-sudo apt install snapd
+sudo apt install -y snapd
 
 echo "Refreshing Snap packages..."
 sudo snap refresh
