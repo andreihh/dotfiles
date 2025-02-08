@@ -17,19 +17,31 @@ readonly NVM_INSTALLER="${RUN_DIR}/setup_nvm.sh"
 
 echo "Updating packages..."
 
-if command -v apt &> /dev/null; then
-  echo "Updating 'apt' packages..."
-  sudo apt update -y
-  sudo apt upgrade --autoremove -y
-  sudo apt autoclean -y
-fi
+command -v apt &> /dev/null \
+  && echo "Updating 'apt' packages..." \
+  && sudo apt update -y \
+  && sudo apt upgrade --autoremove -y \
+  && sudo apt autoclean -y
 
-if command -v brew &> /dev/null; then
-  echo "Updating Homebrew packages..."
-  brew update
-  brew upgrade
-  brew cleanup
-else
+command -v brew &> /dev/null \
+  && echo "Updating Homebrew packages..." \
+  && brew update \
+  && brew upgrade \
+  && brew cleanup
+
+command -v pip &> /dev/null \
+  && echo "Updating 'pip'..." \
+  && pip install --upgrade pip
+
+[[ -d "${NVM_DIR}" ]] \
+  && echo "Updating 'nvm'..." \
+  && "${NVM_INSTALLER}"
+
+command -v rustup &> /dev/null \
+  && echo "Updating 'rustup'..." \
+  && rustup update
+
+if ! command -v brew &> /dev/null; then
   # Only Homebrew has the latest versions of the following tools.
   command -v ghostty &> /dev/null \
     && echo "Updating Ghostty..." \
@@ -51,17 +63,5 @@ else
     && echo "Updating 'pyenv'..." \
     && pyenv update
 fi
-
-command -v nvm &> /dev/null \
-  && echo "Updating 'nvm'..." \
-  && "${NVM_INSTALLER}"
-
-command -v pip &> /dev/null \
-  && echo "Updating 'pip'..." \
-  && pip install --upgrade pip
-
-command -v rustup &> /dev/null \
-  && echo "Updating 'rustup'..." \
-  && rustup update
 
 echo "Updated packages successfully!"
