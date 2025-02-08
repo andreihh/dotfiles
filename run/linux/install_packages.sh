@@ -14,7 +14,7 @@ sudo apt install -y \
   fd-find ripgrep bat tree calc dos2unix \
   tlp linux-tools-common linux-tools-generic \
   \
-  python3 build-essential cmake openjdk-21-jdk golang-go \
+  python3 build-essential cmake \
   \
   texlive texlive-latex-extra texlive-science texlive-fonts-extra latexmk \
   texlive-bibtex-extra biber \
