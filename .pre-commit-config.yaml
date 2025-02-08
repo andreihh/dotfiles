@@ -1,0 +1,40 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+        exclude: .ignore # Don't trim `Icon` trailing whitespace
+      - id: mixed-line-ending
+        exclude: .ignore # Don't fix `Icon` mixed line ending
+      - id: check-case-conflict
+      - id: check-executables-have-shebangs
+      - id: check-shebang-scripts-are-executable
+      - id: check-symlinks
+      - id: check-yaml
+        args: ["--allow-multiple-documents"] # Allow for `clang-format` config
+      - id: check-json
+      - id: check-toml
+  - repo: https://github.com/JohnnyMorganz/StyLua
+    rev: v2.0.2
+    hooks:
+      - id: stylua-github
+  - repo: https://github.com/maxwinterstein/shfmt-py
+    rev: v3.7.0.1
+    hooks:
+      - id: shfmt
+        args: ["-w", "-i", "2", "-ci", "-bn", "-sr", "-kp"]
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.10.0.1
+    hooks:
+      - id: shellcheck
+        args: ["--rcfile=.config/shellcheckrc"]
+  - repo: https://github.com/pycqa/isort
+    rev: 6.0.0
+    hooks:
+      - id: isort
+  - repo: https://github.com/google/pyink
+    rev: 24.10.1
+    hooks:
+      - id: pyink
+        args: ["--config=.config/pyink"]
