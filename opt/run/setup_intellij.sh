@@ -3,8 +3,8 @@
 # Installs IntelliJ IDEA CE for Linux or MacOS systems.
 #
 # Requirements:
-# - Linux: Snap
-# - MacOS: Homebrew
+# - Linux: Snap, Java
+# - MacOS: Homebrew, Java
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
