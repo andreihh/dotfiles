@@ -21,7 +21,15 @@ if command -v apt &> /dev/null; then
   sudo apt update -y
   sudo apt upgrade --autoremove -y
   sudo apt autoclean -y
+fi
 
+if command -v brew &> /dev/null; then
+  echo "Updating Homebrew packages..."
+  brew update
+  brew upgrade
+  brew cleanup
+else
+  # Only Homebrew has the latest versions of the following tools.
   command -v nvim &> /dev/null \
     && echo "Updating Neovim..." \
     && "${NVIM_INSTALLER}"
@@ -37,13 +45,6 @@ if command -v apt &> /dev/null; then
   command -v pyenv &> /dev/null \
     && echo "Updating 'pyenv'..." \
     && pyenv update
-fi
-
-if command -v brew &> /dev/null; then
-  echo "Updating Homebrew packages..."
-  brew update
-  brew upgrade
-  brew cleanup
 fi
 
 command -v nvm &> /dev/null \
