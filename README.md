@@ -30,7 +30,7 @@ To add new dotfiles, commit all the changes to bring the repository to a clean
 state and run the following command:
 
 ```bash
-"${XDG_CONFIG_HOME}/dotfiles/install.sh -r ''"
+"${XDG_CONFIG_HOME}/dotfiles/install.sh" -r ''
 ```
 
 ## XDG directories
@@ -40,8 +40,9 @@ The dotfiles follow the XDG specification where possible:
 - https://specifications.freedesktop.org/basedir-spec/latest/index.html
 - https://wiki.archlinux.org/title/XDG\_Base\_Directory
 
-Some tools only work if the XDG environment variables are explicitly defined. By
-default, they are defined in `~/.config/profile.d/00-env_xdg.sh`.
+The XDG environment variables are defined in
+`~/.config/profile.d/00-envxdg.sh`, because some tools don't fall back on proper
+defaults and only work if they are explicitly defined.
 
 ## Private configs
 
@@ -51,11 +52,11 @@ repository can be provided in:
 - `~/.config/profile.d/`
 - `~/.config/bash.d/`
 - `~/.local/bin/`
+- `~/.config/tmux/overrides.tmux`
 - `~/.config/nvim/lua/config/overrides.lua`
 - `~/.config/nvim/lua/plugins/`
 - `~/.config/vim/overrides.vim`
 - `~/.config/vim/overrides.plug.vim`
-- `~/.config/tmux/overrides.tmux`
 
 Example `~/.config/bash.d/10-extras.sh`:
 
