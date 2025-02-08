@@ -4,8 +4,6 @@
 
 readonly SSH_CONFIG="${HOME}/.ssh/config"
 readonly SSHD_CONFIG="/etc/ssh/sshd_config"
-readonly X11_OPTION_PATTERN='#?X11Forwarding .*'
-readonly SED_X11_OPTION_PATTERN="s/${X11_OPTION_PATTERN}/X11Forwarding yes/"
 
 usage() {
   cat << EOF
@@ -27,17 +25,10 @@ while getopts 'sc:h' option; do
 done
 
 if [[ -n "${server}" ]]; then
-  echo "Configuring server SSHD..."
+  echo "Configuring server SSH..."
 
-  echo "Installing 'xauth'..."
-  sudo apt install -y xauth
-
-  echo "Enabling X11 forwarding in 'sshd' config..."
-  if grep -Ex "${X11_OPTION_PATTERN}" "${SSHD_CONFIG}"; then
-    sudo sed -i -E "${SED_X11_OPTION_PATTERN}" "${SSHD_CONFIG}"
-  else
-    echo "X11Forwarding yes" | sudo tee -a "${SSHD_CONFIG}"
-  fi
+  echo "Ensuring agent forwarding is not disabled..."
+  sudo sed -i -e '/^AllowAgentForwarding no/ s/^#*/#/' "${SSHD_CONFIG}"
 
   echo "Configured server SSH successfully!"
 fi
@@ -45,7 +36,7 @@ fi
 if [[ -n "${hosts_pattern}" ]]; then
   echo "Configuring client SSH for trusted hosts..."
 
-  echo "Appending X11 forwarding and SSH multiplexing options to SSH config..."
+  echo "Appending SSH multiplexing options to SSH config..."
   cat << EOF >> "${SSH_CONFIG}"
 
 Match host ${hosts_pattern}
