@@ -9,8 +9,9 @@
 
 readonly DOTFILES_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}/dotfiles"
 readonly RUN_DIR="${DOTFILES_HOME}/run"
-readonly FZF_INSTALLER="${RUN_DIR}/linux/setup_fzf.sh"
+readonly GHOSTTY_INSTALLER="${RUN_DIR}/linux/setup_ghostty.sh"
 readonly NVIM_INSTALLER="${RUN_DIR}/linux/setup_nvim.sh"
+readonly FZF_INSTALLER="${RUN_DIR}/linux/setup_fzf.sh"
 readonly LAZYGIT_INSTALLER="${RUN_DIR}/linux/setup_lazygit.sh"
 readonly NVM_INSTALLER="${RUN_DIR}/setup_nvm.sh"
 
@@ -30,6 +31,10 @@ if command -v brew &> /dev/null; then
   brew cleanup
 else
   # Only Homebrew has the latest versions of the following tools.
+  command -v ghostty &> /dev/null \
+    && echo "Updating Ghostty..." \
+    && "${GHOSTTY_INSTALLER}"
+
   command -v nvim &> /dev/null \
     && echo "Updating Neovim..." \
     && "${NVIM_INSTALLER}"
