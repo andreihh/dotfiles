@@ -38,7 +38,7 @@ Usage: $0 [-h] [-d] [-f] [-b <backup-directory>] [-r <script-list>]
 
   -d  Debug / dry run mode (simulate all actions, but do not execute them).
   -f  Force install by deleting prior backup and installation.
-  -b  Directory where dotfiles should be backed up.
+  -b  Directory where dotfiles should be backed up, or skip if empty string.
         Default: '${BACKUP_DIR_DEFAULT}'
   -r  List of scripts to run delimited by ';'.
         Default: all '*.sh' scripts in '${RUN_DIR}[/${os_type}]'.

@@ -39,7 +39,7 @@ To add new dotfiles, commit all the changes to bring the repository to a clean
 state and run the following command:
 
 ```bash
-"${XDG_CONFIG_HOME}/dotfiles/install.sh" -r ''
+./install.sh -r '' -b ''
 ```
 
 ## XDG directories
