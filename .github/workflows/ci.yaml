@@ -25,4 +25,4 @@ jobs:
           pre-commit autoupdate
 
       - name: Run pre-commit checks
-        run: pre-commit run -a -v
+        run: pre-commit run --all-files --verbose

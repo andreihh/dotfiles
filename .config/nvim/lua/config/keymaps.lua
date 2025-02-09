@@ -105,8 +105,7 @@
 -- Treesitter:
 --  - [f / ]f / [t / ]t = jump to previous / next start of [f]unction / [t]ype
 --  - [F / ]F / [T / ]T = jump to previous / next end of [f]unction / [t]ype
---  - af / at / as = [a]round [f]unction / [t]ype / [s]cope
---  - if / it = [i]nside [f]unction / [t]ype
+--  - a/i + f/t/b = [a]round / [i]nside [f]unction / [t]ype / [b]lock
 
 -- Set `<space>` as the leader key.
 --  See `:help mapleader`

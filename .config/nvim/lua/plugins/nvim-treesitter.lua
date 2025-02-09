@@ -46,11 +46,8 @@ return {
             ["if"] = "@function.inner",
             ["at"] = "@class.outer",
             ["it"] = "@class.inner",
-            ["as"] = {
-              query = "@local.scope",
-              query_group = "locals",
-              desc = "Select [A]round [S]cope",
-            },
+            ["ab"] = "@block.outer",
+            ["ib"] = "@block.inner",
           },
         },
         move = {
