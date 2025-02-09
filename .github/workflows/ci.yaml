@@ -18,9 +18,6 @@ jobs:
       # Checks out the repository under `${GITHUB_WORKSPACE}`.
       - uses: actions/checkout@v4
 
-      - name: Checkout repository
-        run: cd "${GITHUB_WORKSPACE}"
-
       - name: Install pre-commit checks
         run: |
           pip install pre-commit
