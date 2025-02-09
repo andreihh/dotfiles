@@ -50,8 +50,8 @@ The dotfiles follow the XDG specification where possible:
 - https://wiki.archlinux.org/title/XDG\_Base\_Directory
 
 The XDG environment variables are defined in
-`~/.config/profile.d/00-envxdg.sh`, because some tools don't fall back on proper
-defaults and only work if they are explicitly defined.
+`~/.config/profile.d/00-env_xdg.sh`, because some tools don't fall back on
+proper defaults and only work if they are explicitly defined.
 
 ## Private configs
 
