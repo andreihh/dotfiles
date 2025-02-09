@@ -1,0 +1,31 @@
+# Workflow that runs CI checks.
+name: CI
+
+# Trigger the workflow on push or pull request events on the `main` branch.
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+  # Allow running this workflow manually from the `Actions` tab.
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks out the repository under `${GITHUB_WORKSPACE}`.
+      - uses: actions/checkout@v4
+
+      - name: Checkout repository
+        run: cd "${GITHUB_WORKSPACE}"
+
+      - name: Install pre-commit checks
+        run: |
+          pip install pre-commit
+          pre-commit install
+          pre-commit autoupdate
+
+      - name: Run pre-commit checks
+        run: pre-commit run -a -v
