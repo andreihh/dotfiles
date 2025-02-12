@@ -187,7 +187,7 @@ map("n", "]w", function()
 end, "Jump to the next [W]arning diagnostic")
 
 map("n", "H", vim.lsp.buf.hover, "Show [H]elp")
-map("i", "<C-s>", vim.lsp.buf.signature_help, "Show [S]ignature help")
+map({ "i", "s" }, "<C-s>", vim.lsp.buf.signature_help, "Show [S]ignature help")
 map("n", "L", vim.diagnostic.open_float, "Show [L]int diagnostic")
 
 map({ "n", "x" }, "<leader>-", "<cmd>:normal gcc<CR>", "Toggle comment")

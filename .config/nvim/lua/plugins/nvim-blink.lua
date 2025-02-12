@@ -4,12 +4,11 @@ return {
     version = "*", -- Download pre-built binaries for the latest release
     cmd = "BlinkCmp",
     event = { "InsertEnter", "CmdlineEnter" },
-    -- Provides snippets for the snippet source.
-    dependencies = { "rafamadriz/friendly-snippets" },
+    dependencies = { "rafamadriz/friendly-snippets" }, -- Snippets library
     opts = {
       keymap = {
         preset = "none",
-        ["<C-space>"] = { "show" },
+        ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
         ["<C-j>"] = { "select_next" },
         ["<C-k>"] = { "select_prev" },
         ["<C-h>"] = { "snippet_backward" },
@@ -22,10 +21,7 @@ return {
       completion = {
         -- Don't automatically insert selected item.
         list = { selection = { auto_insert = false } },
-        -- Always show documentation for selected item.
         documentation = {
-          auto_show = true,
-          auto_show_delay_ms = 50,
           treesitter_highlighting = vim.g.lsp.treesitter_enabled,
         },
         menu = {
