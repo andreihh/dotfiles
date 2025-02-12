@@ -2,7 +2,7 @@
 #
 # sonokai.tmux: Sonokai color scheme for `tmux`.
 #
-# See: https://github.com/sainnhe/sonokai.
+# See https://github.com/sainnhe/sonokai.
 
 # Configure color palette.
 tmux set -g @fg '#e2e2e3'  # fg

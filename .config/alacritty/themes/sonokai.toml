@@ -1,6 +1,6 @@
 # sonokai.toml: Sonokai color scheme for Alacritty.
 #
-# See: https://github.com/sainnhe/sonokai.
+# See https://github.com/sainnhe/sonokai.
 
 [colors.primary]
 foreground = "#e2e2e3"  # fg

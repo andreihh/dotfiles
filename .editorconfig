@@ -1,6 +1,6 @@
-# .editorconfig
+# editorconfig: general file formatting settings.
 #
-# General file formatting settings.
+# See https://editorconfig.org.
 
 root = true
 
@@ -12,10 +12,12 @@ trim_trailing_whitespace = true
 max_line_length = 80
 indent_style = space
 indent_size = 2
+# Domain-specific continuation indent:
 continuation_indent_size = 4
 
-[*.{sh,tmux,kt,kts}]
-continuation_indent_size = 2
+# Makefiles and .gitconfig always use tabs for indentation:
+[{Makefile,.gitconfig}]
+indent_style = tab
 
 [*.{py,pyi}]
 indent_size = 4
@@ -23,18 +25,18 @@ indent_size = 4
 [*.{java,kt,kts}]
 max_line_length = 100
 
-# Makefiles and .gitconfig always use tabs for indentation.
-[{Makefile,.gitconfig}]
-indent_style = tab
+[*.{kt,kts}]
+continuation_indent_size = 2
 
-# Configure `shfmt` to follow Google style.
-[{*.sh,*.tmux,.bash*,.profile}]
+[{*.sh,.bash*,.profile,*.tmux}]
+continuation_indent_size = 2
+# Configure `shfmt`:
 switch_case_indent = true
 binary_next_line = true
 space_redirects = true
 keep_padding = true
 
-# Apply `shfmt` config to Bash scripts without extension.
+# Apply `shfmt` config to Bash scripts without extension:
 [[bash]]
 switch_case_indent = true
 binary_next_line = true
