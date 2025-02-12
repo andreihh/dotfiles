@@ -13,7 +13,7 @@ return { -- Simple and easy statusline
         { "branch", icon = "" }, -- `nf-fa-code_branch`
         "diagnostics",
       },
-      lualine_c = { { "filename", path = 1 } },
+      lualine_c = { "filename" },
       lualine_x = { "filetype" },
       lualine_y = { "progress" },
       lualine_z = { "location" },
@@ -21,7 +21,7 @@ return { -- Simple and easy statusline
     inactive_sections = {
       lualine_a = {},
       lualine_b = {},
-      lualine_c = { { "filename", path = 1 } },
+      lualine_c = { "filename" },
       lualine_x = { "filetype" },
       lualine_y = { "progress" },
       lualine_z = { "location" },
