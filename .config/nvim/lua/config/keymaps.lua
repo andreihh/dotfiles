@@ -101,7 +101,7 @@
 --  - H / <C-s> / L = show [h]elp / [s]ignature / [l]int
 --    - H / <C-s> / L = focus float
 --    - q = [q]uit float if focused
---  - <leader> + =/-/f/c/r/a/l/L/H/T/D = perform code action
+--  - <leader> + =/--/-/f/c/r/a/l/L/H/T/D = perform code action
 -- Treesitter:
 --  - [f / ]f / [t / ]t = jump to previous / next start of [f]unction / [t]ype
 --  - [F / ]F / [T / ]T = jump to previous / next end of [f]unction / [t]ype
@@ -201,6 +201,12 @@ map("n", "H", vim.lsp.buf.hover, "Show [H]elp")
 map({ "i", "s" }, "<C-s>", vim.lsp.buf.signature_help, "Show [S]ignature help")
 map("n", "L", vim.diagnostic.open_float, "Show [L]int diagnostic")
 
-map({ "n", "x" }, "<leader>-", "<cmd>:normal gcc<CR>", "Toggle comment")
+map("n", "<leader>--", "gcc", { desc = "Toggle line comment", remap = true })
+map({ "n", "x" }, "<leader>-", "gc", {
+  desc = "Toggle comment",
+  remap = true,
+  nowait = false,
+})
+
 map("n", "<leader>f", "za", "Toggle [F]old under cursor")
 map("n", "<leader>r", vim.lsp.buf.rename, "[R]ename")

@@ -614,13 +614,15 @@ cnoremap <tab> <C-y>
 
 " Code:
 " - <leader>= = format
+" - <leader>-- = toggle line comment
 " - <leader>- = toggle comment
 " - <leader>f = toggle [f]old
 " - <leader>c = toggle current [c]ontext
 " - <leader>q = toggle [q]uickfix window
 nnoremap <leader>= :FormatCode<CR>
 xnoremap <leader>= :FormatLines<CR>
-nmap <leader>- gcc
+nmap <leader>-- gcc
+nmap <leader>- gc
 xmap <leader>- gc
 nnoremap <leader>f za
 nnoremap <leader>c :ContextToggleWindow<CR>
