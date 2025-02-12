@@ -113,9 +113,22 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-local function map(mode, lhs, rhs, desc)
-  -- Core keymaps shouldn't be recursive or have conflicts (thus no wait time).
-  vim.keymap.set(mode, lhs, rhs, { desc = desc, noremap = true, nowait = true })
+--- Sets the given keymap with the provided description or options.
+---
+--- Core keymaps shouldn't be recursive or have conflicts (thus no wait time),
+--- so default options are:
+---  - `remap = false`
+---  - `nowait = true`
+---
+---@param mode string|string[] The modes where the keymap applies
+---@param lhs string The left-hand side of the keymap
+---@param rhs string|function The right-hand side of they keymap
+---@param desc_or_opts string|table The keymap description or options
+local function map(mode, lhs, rhs, desc_or_opts)
+  local opts = type(desc_or_opts) == "table" and desc_or_opts
+    or { desc = desc_or_opts }
+  opts = vim.tbl_extend("keep", opts, { remap = false, nowait = true })
+  vim.keymap.set(mode, lhs, rhs, opts)
 end
 
 map("n", "M", "<cmd>Lazy<CR>", "[M]anage plugins")
