@@ -387,17 +387,16 @@ let g:lightline = {
     \   'left': [
     \     ['mode', 'paste'],
     \     ['obsession', 'branch'],
-    \     ['filepath'],
+    \     ['filename'],
     \   ],
     \   'right': [['lineinfo'], ['percentwin'], ['ft']],
     \ },
     \ 'inactive': {
-    \   'left': [['filepath']],
+    \   'left': [['filename']],
     \   'right': [['lineinfo'], ['percentwin'], ['ft']],
     \ },
     \ 'separator': { 'left': "", 'right': "" },
     \ 'subseparator': { 'left': "", 'right': "" },
-    \ 'component': { 'filepath': '%<%f %h%w%m%r' },
     \ 'component_function': {
     \   'obsession': 'g:SessionName',
     \   'branch': 'g:BranchName',
