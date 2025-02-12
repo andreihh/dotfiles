@@ -166,12 +166,10 @@ map("n", "dvu", function()
   ]])
 end, "[D]iff [U]nsaved changes")
 
-vim.keymap.set(
-  "n",
-  "q",
-  "exists('t:is_diff_tab') ? ':tabclose<CR>' : 'q'",
-  { desc = "[Q]uit diff tab", noremap = true, nowait = true, expr = true }
-)
+map("n", "q", "exists('t:is_diff_tab') ? ':tabclose<CR>' : 'q'", {
+  desc = "[Q]uit diff tab",
+  expr = true,
+})
 
 map("n", "<C-s>", "<cmd>split<CR>", "[S]plit window horizontally")
 map("n", "<C-v>", "<cmd>vsplit<CR>", "Split window [V]ertically")
