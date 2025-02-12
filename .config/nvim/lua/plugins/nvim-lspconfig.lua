@@ -2,7 +2,6 @@ return { -- LSP configuration
   "neovim/nvim-lspconfig",
   cond = not vim.tbl_contains(vim.v.argv, "-d"), -- Disable LSPs in diff mode
   dependencies = {
-    { "j-hui/fidget.nvim", config = true }, -- Useful status updates for LSP
     -- Ensure the servers and required tools are installed.
     --  To check the current status of installed tools and/or manually install
     --  other tools, you can run:

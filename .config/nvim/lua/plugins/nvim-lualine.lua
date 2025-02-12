@@ -14,7 +14,7 @@ return { -- Simple and easy statusline
         "diagnostics",
       },
       lualine_c = { "filename" },
-      lualine_x = { "filetype" },
+      lualine_x = { "lsp_status", "filetype" },
       lualine_y = { "progress" },
       lualine_z = { "location" },
     },
