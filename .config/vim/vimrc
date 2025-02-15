@@ -376,6 +376,12 @@ function! g:FileType() abort
   return empty(&filetype) ? 'no ft' : l:icon . &filetype
 endfunction
 
+" Returns the active LSPs and icon (`nf-fa-cog`).
+function! g:LspStatus() abort
+  let l:lsps = lsp#get_allowed_servers()
+  return !empty(l:lsps) ? ' ' . join(l:lsps) : ''
+endfunction
+
 " Lightline separator icons:
 " - `nf-pl-left_hard_divider`
 " - `nf-pl-right_hard_divider`
@@ -384,12 +390,8 @@ endfunction
 let g:lightline = {
     \ 'colorscheme': $COLORSCHEME,
     \ 'active': {
-    \   'left': [
-    \     ['mode', 'paste'],
-    \     ['obsession', 'branch'],
-    \     ['filename'],
-    \   ],
-    \   'right': [['lineinfo'], ['percentwin'], ['ft']],
+    \   'left': [['mode', 'paste'], ['obsession', 'branch'], ['filename']],
+    \   'right': [['lineinfo'], ['percentwin'], ['lsp_status', 'ft']],
     \ },
     \ 'inactive': {
     \   'left': [['filename']],
@@ -401,6 +403,7 @@ let g:lightline = {
     \   'obsession': 'g:SessionName',
     \   'branch': 'g:BranchName',
     \   'ft': 'g:FileType',
+    \   'lsp_status': 'g:LspStatus',
     \ },
     \ }
 
@@ -469,6 +472,7 @@ endfor
 " - f/F/t/T/;/, = find character in line motions
 " - <C-f> = multi-window EasyMotion [f]ind
 " - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
+" - <leader>w = print [w]inbar info (current buffer path)
 map Y y$
 nnoremap M :PlugStatus<CR>
 nnoremap S :w<CR>
@@ -490,6 +494,7 @@ nnoremap [q :cprev<CR>
 nnoremap ]q :cnext<CR>
 nnoremap [Q :cfirst<CR>
 nnoremap ]Q :clast<CR>
+nnoremap <leader>w :echo expand('%')<CR>
 
 " Marks:
 " - m + {a-zA-Z} = set [m]ark
