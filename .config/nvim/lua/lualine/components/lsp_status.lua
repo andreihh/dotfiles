@@ -7,6 +7,7 @@ local M = lualine_require.require("lualine.component"):extend()
 local default_options = {
   icon = "", -- `nf-fa-gear`
   symbols = {
+    separator = " ",
     -- Use standard unicode characters for the `spinner` and `done` symbols.
     spinner = {
       "⠋",
@@ -21,7 +22,6 @@ local default_options = {
       "⠏",
     },
     done = "✓",
-    separator = " ",
   },
 }
 
@@ -36,23 +36,23 @@ function M:init(options)
   -- Apply symbols.
   self.symbols = self.options.symbols or {}
 
-  -- Initialize LSP progress symbols by client id to store and use when rendering component.
+  -- Store LSP progress symbols by client id to use for rendering.
   self.lsp_progress_by_client_id = {}
 
   vim.api.nvim_create_autocmd("LspProgress", {
     desc = "Update the Lualine LSP status component with progress",
     group = vim.api.nvim_create_augroup("lualine_lsp_progress", {}),
-    ---@param ev {data: {client_id: integer, params: lsp.ProgressParams}}
-    callback = function(ev)
-      local is_done = ev.data.params.value.kind == "end"
-      local i = math.floor(vim.uv.hrtime() / (1e6 * 80)) % #self.symbols.spinner
-        + 1
-      local prev_progress = self.lsp_progress_by_client_id[ev.data.client_id]
+    ---@param event {data: {client_id: integer, params: lsp.ProgressParams}}
+    callback = function(event)
+      -- Set spinner based on current time and update every 100ms.
+      local i = math.floor(vim.uv.hrtime() / 1e8) % #self.symbols.spinner + 1
+      local is_done = event.data.params.value.kind == "end"
+      local prev_progress = self.lsp_progress_by_client_id[event.data.client_id]
       local next_progress = is_done and self.symbols.done
         or self.symbols.spinner[i]
 
       -- Update the stored LSP progress symbol.
-      self.lsp_progress_by_client_id[ev.data.client_id] = next_progress
+      self.lsp_progress_by_client_id[event.data.client_id] = next_progress
 
       -- Refresh Lualine to update the LSP progress symbol if it changed.
       if prev_progress ~= next_progress then

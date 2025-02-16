@@ -13,7 +13,6 @@ cursor-color = e2e2e3
 cursor-text = 2c2e34
 selection-foreground = e2e2e3
 selection-background = 414550
-selection-invert-fg-bg = false
 
 # Black: black / grey
 palette = 0=181819

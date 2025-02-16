@@ -402,8 +402,8 @@ let g:lightline = {
     \ 'component_function': {
     \   'obsession': 'g:SessionName',
     \   'branch': 'g:BranchName',
-    \   'ft': 'g:FileType',
     \   'lsp_status': 'g:LspStatus',
+    \   'ft': 'g:FileType',
     \ },
     \ }
 
