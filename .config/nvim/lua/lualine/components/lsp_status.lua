@@ -63,15 +63,18 @@ function M:init(options)
 end
 
 function M:update_status()
-  local bufnr = vim.api.nvim_get_current_buf()
   local result = {}
+
+  -- Advance spinner symbol every 100ms.
+  local time = math.floor(vim.uv.hrtime() / 1e8)
+  local spinner_symbol = self.symbols.spinner[time % #self.symbols.spinner + 1]
+
+  local bufnr = vim.api.nvim_get_current_buf()
   for _, client in ipairs(vim.lsp.get_clients({ bufnr = bufnr })) do
     local status
     local work = self.lsp_work_by_client_id[client.id]
     if work ~= nil and work > 0 then
-      -- Set spinner based on current time and update every 100ms.
-      local i = math.floor(vim.uv.hrtime() / 1e8) % #self.symbols.spinner + 1
-      status = self.symbols.spinner[i]
+      status = spinner_symbol
     elseif work ~= nil and work == 0 then
       status = self.symbols.done
     end
@@ -79,6 +82,7 @@ function M:update_status()
     -- Append the status to the LSP only if it supports progress reporting.
     table.insert(result, client.name .. (status and " " .. status or ""))
   end
+
   return table.concat(result, self.symbols.separator)
 end
 
