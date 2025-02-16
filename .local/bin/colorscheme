@@ -34,7 +34,8 @@ EOF
 # Alacritty config cannot import dynamic files.
 if command -v alacritty &> /dev/null; then
   readonly ALACRITTY_HOME="${CONFIG_HOME}/alacritty"
-  readonly ALACRITTY_COLORSCHEME="${ALACRITTY_HOME}/themes/${COLORSCHEME}.toml"
+  readonly ALACRITTY_THEMES_DIR="${ALACRITTY_HOME}/themes/themes"
+  readonly ALACRITTY_COLORSCHEME="${ALACRITTY_THEMES_DIR}/${COLORSCHEME}.toml"
   readonly ALACRITTY_LINK="${ALACRITTY_HOME}/colorscheme.toml"
 
   echo "Linking Alacritty color scheme..."

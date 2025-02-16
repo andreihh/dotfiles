@@ -8,6 +8,8 @@
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
+readonly THEMES_DIR="${XDG_CONFIG_HOME:-${HOME}/.config}/alacritty/themes"
+
 echo "Installing Alacritty..."
 
 # Use Homebrew if available.
@@ -24,4 +26,10 @@ sudo snap refresh
 
 echo "Installing Alacritty Snap package..."
 sudo snap install alacritty --classic
+
+[[ ! -d "${THEMES_DIR}" ]] \
+  && echo "Cloning Alacritty themes..." \
+  && mkdir -p "${THEMES_DIR}" \
+  && git clone https://github.com/alacritty/alacritty-theme "${THEMES_DIR}"
+
 echo "Installed Alacritty successfully!"
