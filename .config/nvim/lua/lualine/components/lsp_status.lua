@@ -55,7 +55,7 @@ function M:init(options)
       self.lsp_work_by_client_id[client_id] = math.max(work + work_change, 0)
 
       -- Refresh Lualine to update the LSP status symbol if it changed.
-      if work_change ~= 0 then
+      if (work == 0 and work_change > 0) or (work == 1 and work_change < 0) then
         require("lualine").refresh()
       end
     end,
