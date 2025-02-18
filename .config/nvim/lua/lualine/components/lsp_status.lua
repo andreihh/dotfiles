@@ -1,27 +1,13 @@
 -- TODO: delete once https://github.com/nvim-lualine/lualine.nvim/issues/1375 is
 -- resolved.
-local lualine_require = require("lualine_require")
-
-local M = lualine_require.require("lualine.component"):extend()
+local M = require("lualine_require").require("lualine.component"):extend()
 
 local default_options = {
   icon = "", -- `nf-fa-gear`
   symbols = {
     separator = " ",
-    -- Use standard unicode characters for the `spinner` and `done` symbols.
-    spinner = {
-      "⠋",
-      "⠙",
-      "⠹",
-      "⠸",
-      "⠼",
-      "⠴",
-      "⠦",
-      "⠧",
-      "⠇",
-      "⠏",
-    },
-    done = "✓",
+    done = "✓", -- `U+2713`
+    spinner = Snacks.util.spinner, -- Compute spinner synmbol with a function
   },
 }
 
@@ -65,16 +51,12 @@ end
 function M:update_status()
   local result = {}
 
-  -- Advance spinner symbol every 100ms.
-  local time = math.floor(vim.uv.hrtime() / 1e8)
-  local spinner_symbol = self.symbols.spinner[time % #self.symbols.spinner + 1]
-
   local bufnr = vim.api.nvim_get_current_buf()
   for _, client in ipairs(vim.lsp.get_clients({ bufnr = bufnr })) do
     local status
     local work = self.lsp_work_by_client_id[client.id]
     if work ~= nil and work > 0 then
-      status = spinner_symbol
+      status = self.symbols.spinner()
     elseif work ~= nil and work == 0 then
       status = self.symbols.done
     end
