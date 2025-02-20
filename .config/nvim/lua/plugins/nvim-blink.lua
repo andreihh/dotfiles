@@ -19,14 +19,8 @@ return {
         ["<C-e>"] = { "cancel" },
       },
       completion = {
-        -- Don't automatically insert selected item.
+        -- Don't automatically insert the selected item.
         list = { selection = { auto_insert = false } },
-        -- Automatically show documentation for selected item.
-        documentation = {
-          auto_show = true,
-          auto_show_delay_ms = 5,
-          treesitter_highlighting = vim.g.lsp.treesitter_enabled,
-        },
         menu = {
           draw = {
             -- Enable Treesitter rendering only for LSP items.
@@ -37,6 +31,12 @@ return {
               { "source_name" },
             },
           },
+        },
+        -- Automatically show documentation for the selected item.
+        documentation = {
+          auto_show = true,
+          auto_show_delay_ms = 5,
+          treesitter_highlighting = vim.g.lsp.treesitter_enabled,
         },
       },
       appearance = {

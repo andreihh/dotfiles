@@ -5,14 +5,11 @@ return { -- Formatting
     {
       "<leader>=",
       function()
-        require("conform").format({ async = true, lsp_format = "fallback" })
+        require("conform").format({ async = true })
       end,
       mode = { "n", "x" },
       desc = "Format",
     },
   },
-  opts = {
-    formatters = vim.g.lsp.formatters,
-    formatters_by_ft = vim.g.lsp.formatters_by_ft,
-  },
+  opts = vim.g.lsp.format,
 }

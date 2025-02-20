@@ -9,9 +9,8 @@
 ---@class config.LspConfig
 ---@field treesitter_enabled boolean Enable / disable Treesitter globally
 ---@field servers table<string, config.LspServerConfig> LSP server configs
----@field formatters_by_ft table<string, string[]> Formatters by filetype
----@field formatters table<string, config.FormatterConfig> Formatter configs
----@field linters_by_ft table<string, string[]> Linters by filetype
+---@field format config.FormatConfig Formatting config
+---@field lint config.LintConfig Linting config
 ---@field ensure_installed string[] List of tools to install automatically
 
 --- LSP server configuration: command, filetypes, capabilities, etc.
@@ -20,37 +19,29 @@
 --- example, for `lua_ls` options, see:
 ---   https://luals.github.io/wiki/settings/
 ---
---- See `:help lspconfig-all` for a list of all pre-configured LSPs.
+--- See `:help lspconfig`.
 ---
----@class config.LspServerConfig
----@field cmd? string[] Command used to start the server
----@field filetypes? string[] List of associated filetypes for the server
----@field capabilities? lsp.ClientCapabilities LSP features to disable / enhance
----@field root_dir? string Root directory in which to start the server
----@field settings? table Settings passed when initializing the server
+---@alias config.LspServerConfig vim.lsp.Config
 
---- Formatter configuration: command, args, etc.
+--- Formatting configuration.
 ---
---- See `:help conform-formatters` for a list of all pre-configured formatters.
+--- See `:help conform`.
 ---
----@class config.FormatterConfig
----@field command? string Command to run the formatter
----@field args? string[] Command args provided to the formatter
----@field prepend_args? string[] Command args to prepend to default args
----@field append_args? string[] Command args to append to default args
----@field range_args? fun(ctx: config.RangeContext): string[] Range format args
----@field env? table<string, string> Environment args provided to the formatter
+---@alias config.FormatConfig conform.setupOpts
 
---- Buffer range context.
+--- Linting configuration.
 ---
----@class config.RangeContext
----@field range config.Range
+--- See `:help lint`.
+---
+---@class config.LintConfig
+---@field linters? table<string, config.Linter> Linter configs
+---@field linters_by_ft? table<string, string[]> Linters by filetype
 
---- Buffer range with `{row, col}` tuples using `(1, 0)` indexing.
+--- Linter configuration.
 ---
----@class config.Range
----@field start integer[]
----@field end integer[]
+--- See `:help lint.Linter`.
+---
+---@alias config.Linter lint.Linter
 
 --- Global LSP configs.
 ---
@@ -79,12 +70,13 @@ vim.g.lsp = {
     vimls = {},
     bashls = {},
   },
-  formatters_by_ft = {
-    lua = { "stylua" },
-    sh = { "shfmt" },
+  format = {
+    formatters_by_ft = {
+      lua = { "stylua" },
+      sh = { "shfmt" },
+    },
   },
-  formatters = {},
-  linters_by_ft = {},
+  lint = {},
   ensure_installed = {
     "lua_ls",
     "vimls",
