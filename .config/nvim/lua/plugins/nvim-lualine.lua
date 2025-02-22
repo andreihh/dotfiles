@@ -4,12 +4,7 @@ return { -- Simple and easy statusline
     sections = {
       lualine_a = { "mode" },
       lualine_b = {
-        {
-          function()
-            return require("auto-session.lib").current_session_name(true)
-          end,
-          icon = "", -- `nf-fa-folder`
-        },
+        "session",
         { "branch", icon = "" }, -- `nf-fa-code_branch`
         "diagnostics",
       },
