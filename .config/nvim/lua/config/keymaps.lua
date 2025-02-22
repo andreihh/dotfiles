@@ -20,6 +20,7 @@
 --  - f/F/t/T/;/, = enhanced [F]lash motions
 --  - <C-f> = multi-window Flash [f]ind
 --  - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
+--  - [l / ]l / [L / ]L = jump to previous / next / first / last [l]ocation
 --  - <leader>w = toggle [w]inbar
 --  - <C-\> = show keymap help
 -- Marks:

@@ -472,6 +472,7 @@ endfor
 " - f/F/t/T/;/, = find character in line motions
 " - <C-f> = multi-window EasyMotion [f]ind
 " - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
+" - [l / ]l / [L / ]L = jump to previous / next / first / last [l]ocation
 " - <leader>w = print [w]inbar info (current buffer path)
 map Y y$
 nnoremap M :PlugStatus<CR>
@@ -494,6 +495,10 @@ nnoremap [q :cprev<CR>
 nnoremap ]q :cnext<CR>
 nnoremap [Q :cfirst<CR>
 nnoremap ]Q :clast<CR>
+nnoremap [l :lprev<CR>
+nnoremap ]l :lnext<CR>
+nnoremap [L :lfirst<CR>
+nnoremap ]L :llast<CR>
 nnoremap <leader>w :echo expand('%')<CR>
 
 " Marks:
