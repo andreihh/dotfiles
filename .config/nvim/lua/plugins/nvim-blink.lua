@@ -108,12 +108,12 @@ return {
             end
             return items
           end
-
-          -- Unset custom properties to pass `blink.cmp` validation.
-          provider.compat = nil
-          provider.kind = nil
-          provider.kind_icon = nil
         end
+
+        -- Unset custom properties to pass `blink.cmp` validation.
+        provider.compat = nil
+        provider.kind_name = nil
+        provider.kind_icon = nil
       end
 
       require("blink.cmp").setup(opts)

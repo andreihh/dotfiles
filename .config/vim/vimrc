@@ -305,7 +305,8 @@ let g:tmux_resizer_vertical_resize_count = 5
 let g:fzf_action = {
     \ 'ctrl-t': 'tab split',
     \ 'ctrl-s': 'split',
-    \ 'ctrl-v': 'vsplit' }
+    \ 'ctrl-v': 'vsplit',
+    \ }
 
 " Disable `netrw` banner and use long listing style.
 let g:netrw_banner = 0
