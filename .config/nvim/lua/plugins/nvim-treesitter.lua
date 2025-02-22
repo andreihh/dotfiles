@@ -3,14 +3,9 @@ return {
     "nvim-treesitter/nvim-treesitter",
     main = "nvim-treesitter.configs",
     build = ":TSUpdate",
-    dependencies = {
-      { -- Add Treesitter text objects
-        "nvim-treesitter/nvim-treesitter-textobjects",
-        cond = vim.g.lsp.treesitter_enabled,
-      },
-    },
-    -- See `:help nvim-treesitter`
-    opts = {
+    -- Add Treesitter text objects.
+    dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
+    opts = { -- See `:help nvim-treesitter`
       ensure_installed = { -- Enable the following parsers
         "lua",
         "luadoc",
@@ -28,9 +23,7 @@ return {
       -- `highlight` and `disable` languages for `indent`.
       highlight = { enable = vim.g.lsp.treesitter_enabled },
       indent = { enable = vim.g.lsp.treesitter_enabled },
-      -- Select and jump through Treesitter text objects.
-      --  See `:help nvim-treesitter-textobjects`
-      textobjects = {
+      textobjects = { -- See `:help nvim-treesitter-textobjects`
         select = {
           enable = vim.g.lsp.treesitter_enabled,
           lookahead = true, -- Automatically jump forward to text object
@@ -75,7 +68,6 @@ return {
   },
   { -- Show current context
     "nvim-treesitter/nvim-treesitter-context",
-    cond = vim.g.lsp.treesitter_enabled,
     cmd = { "TSContextToggle", "TSContextEnable", "TSContextDisable" },
     opts = { enable = false },
   },

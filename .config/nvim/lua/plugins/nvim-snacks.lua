@@ -112,6 +112,7 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
             set = function(state)
               local lualine = require("lualine")
               local treesitter_context = require("treesitter-context")
+
               vim.g.__context_enabled = state
               vim.g.__winbar_config = vim.g.__winbar_config
                 or vim.tbl_deep_extend(
