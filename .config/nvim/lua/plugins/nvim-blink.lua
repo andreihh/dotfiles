@@ -112,7 +112,7 @@ return {
 
         -- Unset custom properties to pass `blink.cmp` validation.
         provider.compat = nil
-        provider.kind_name = nil
+        provider.kind = nil
         provider.kind_icon = nil
       end
 
