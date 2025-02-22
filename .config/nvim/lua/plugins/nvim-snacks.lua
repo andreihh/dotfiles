@@ -103,6 +103,19 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
         Snacks.toggle.inlay_hints():map("<leader>H")
         Snacks.toggle.treesitter():map("<leader>T")
         Snacks.toggle.diagnostics():map("<leader>D")
+        Snacks.toggle
+          .new({
+            name = "Winbar",
+            get = function()
+              return vim.o.winbar ~= nil and vim.o.winbar ~= ""
+            end,
+            set = function(state)
+              require("lualine").hide({ place = { "winbar" }, unhide = state })
+              vim.o.winbar = state and vim.o.winbar or ""
+            end,
+          })
+          :map("<leader>w")
+          :set(false) -- Disable winbar by default
       end,
     })
   end,

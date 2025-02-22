@@ -36,6 +36,7 @@ return { -- Simple and easy statusline
         },
       },
     },
+    winbar = { lualine_b = { { "filename", path = 1 } } },
     -- Show the tabline only if there is more than one tab.
     options = { always_show_tabline = false },
   },
