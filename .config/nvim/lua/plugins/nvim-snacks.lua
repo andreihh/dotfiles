@@ -105,17 +105,34 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
         Snacks.toggle.diagnostics():map("<leader>D")
         Snacks.toggle
           .new({
-            name = "Winbar",
+            name = "Context",
             get = function()
-              return vim.o.winbar ~= nil and vim.o.winbar ~= ""
+              return vim.g.__context_enabled == true
             end,
             set = function(state)
-              require("lualine").hide({ place = { "winbar" }, unhide = state })
-              vim.o.winbar = state and vim.o.winbar or ""
+              local lualine = require("lualine")
+              local treesitter_context = require("treesitter-context")
+              vim.g.__context_enabled = state
+              vim.g.__winbar_config = vim.g.__winbar_config
+                or vim.tbl_deep_extend(
+                  "keep",
+                  lualine.get_config().winbar, -- Save initial winbar config
+                  { lualine_b = {} } -- Ensure context is cleared from winbar
+                )
+
+              if state then
+                lualine.setup({
+                  winbar = { lualine_b = { { "filename", path = 1 } } },
+                })
+                treesitter_context.enable()
+              else
+                lualine.setup({ winbar = vim.g.__winbar_config })
+                treesitter_context.disable()
+              end
             end,
           })
-          :map("<leader>w")
-          :set(false) -- Disable winbar by default
+          :map("<leader>c")
+          :set(false) -- Disable context by default
       end,
     })
   end,

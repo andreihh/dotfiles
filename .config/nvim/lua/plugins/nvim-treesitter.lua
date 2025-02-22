@@ -77,9 +77,6 @@ return {
     "nvim-treesitter/nvim-treesitter-context",
     cond = vim.g.lsp.treesitter_enabled,
     cmd = { "TSContextToggle", "TSContextEnable", "TSContextDisable" },
-    keys = {
-      { "<leader>c", "<cmd>TSContextToggle<CR>", desc = "Toggle [C]ontext" },
-    },
     opts = { enable = false },
   },
   { -- Better Treesitter comment strings

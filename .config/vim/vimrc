@@ -478,7 +478,6 @@ endfor
 " - <C-f> = multi-window EasyMotion [f]ind
 " - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
 " - [l / ]l / [L / ]L = jump to previous / next / first / last [l]ocation
-" - <leader>w = print [w]inbar info (current buffer path)
 map Y y$
 nnoremap M :PlugStatus<CR>
 nnoremap S :w<CR>
@@ -504,7 +503,6 @@ nnoremap [l :lprev<CR>
 nnoremap ]l :lnext<CR>
 nnoremap [L :lfirst<CR>
 nnoremap ]L :llast<CR>
-nnoremap <leader>w :echo expand('%')<CR>
 
 " Marks:
 " - m + {a-zA-Z} = set [m]ark
@@ -640,7 +638,7 @@ nmap <leader>-- gcc
 nmap <leader>- gc
 xmap <leader>- gc
 nnoremap <leader>f za
-nnoremap <leader>c :ContextToggleWindow<CR>
+nnoremap <leader>c :echo expand('%')<CR>:ContextToggleWindow<CR>
 nnoremap <expr> <leader>q
     \ empty(filter(getwininfo(), 'v:val.quickfix'))
     \ ? ':copen<CR>' : ':cclose<CR>'
