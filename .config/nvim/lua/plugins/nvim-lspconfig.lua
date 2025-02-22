@@ -1,6 +1,5 @@
 return { -- LSP configuration
   "neovim/nvim-lspconfig",
-  cond = not vim.tbl_contains(vim.v.argv, "-d"), -- Disable LSPs in diff mode
   dependencies = {
     -- Ensure the servers and required tools are installed.
     --  To check the current status of installed tools and/or manually install
