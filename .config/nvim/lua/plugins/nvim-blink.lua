@@ -77,9 +77,8 @@ return {
     opts_extend = { "sources.default" },
     -- Extend providers with the following properties:
     --  @field compat boolean Set up as `blink.compat` source if `true`
-    --  @field kind string Use custom completion item kind
+    --  @field kind_name string Use custom completion item kind name
     --  @field kind_icon string Use custom completion item kind icon
-    -- NOTE: `kind` and `kind_icon` must both be either set or unset.
     config = function(_, opts)
       local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
 
@@ -92,19 +91,20 @@ return {
           provider.module = "blink.compat.source"
         end
 
-        if provider.kind then
-          -- Register custom completion item kind and icon for source.
+        if provider.kind_name or provider.kind_icon then
+          -- Register custom completion item kind name and icon for source.
           local kind_idx = #CompletionItemKind + 1
-          CompletionItemKind[kind_idx] = provider.kind
-          CompletionItemKind[provider.kind] = kind_idx
-          opts.appearance.kind_icons[provider.kind] = provider.kind_icon
+          CompletionItemKind[kind_idx] = provider.kind_name
+          CompletionItemKind[provider.kind_name] = kind_idx
+          opts.appearance.kind_icons[provider.kind_name] = provider.kind_icon
 
-          -- Use completion item kind for source.
           local transform_items = provider.transform_items
           provider.transform_items = function(ctx, items)
             items = transform_items and transform_items(ctx, items) or items
             for _, item in ipairs(items) do
               item.kind = kind_idx
+              item.kind_name = provider.kind_name or item.kind_name
+              item.kind_icon = provider.kind_icon or item.kind_icon
             end
             return items
           end
@@ -112,7 +112,7 @@ return {
 
         -- Unset custom properties to pass `blink.cmp` validation.
         provider.compat = nil
-        provider.kind = nil
+        provider.kind_name = nil
         provider.kind_icon = nil
       end
 
