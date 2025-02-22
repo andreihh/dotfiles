@@ -4,7 +4,6 @@ return (vim.o.diff or vim.o.readonly or not vim.o.modifiable)
       { "folke/flash.nvim", cond = false },
       { "folke/lazydev.nvim", cond = false },
       { "folke/ts-comments.nvim", cond = false },
-      { "ibhagwan/fzf-lua", cond = false },
       { "kosayoda/nvim-lightbulb", cond = false },
       { "kylechui/nvim-surround", cond = false },
       { "mfussenegger/nvim-lint", cond = false },
@@ -15,6 +14,5 @@ return (vim.o.diff or vim.o.readonly or not vim.o.modifiable)
       { "saghen/blink.compat", cond = false },
       { "sindrets/diffview.nvim", cond = false },
       { "stevearc/conform.nvim", cond = false },
-      { "stevearc/oil.nvim", cond = false },
     }
   or {}
