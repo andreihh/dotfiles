@@ -14,7 +14,8 @@ function M:init(options)
 end
 
 function M:update_status()
-  return require("auto-session.lib").current_session_name(true)
+  local ok, session = pcall(require, "auto-session.lib")
+  return ok and session.current_session_name(true) or ""
 end
 
 return M
