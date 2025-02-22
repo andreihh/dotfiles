@@ -35,12 +35,6 @@ let &directory = s:vim_state . '/swap//'
 let &viewdir = s:vim_state . '/view//'
 let &undodir = s:vim_state . '/undo//'
 let g:netrw_home = s:vim_state
-let s:sessiondir = s:vim_state . '/session'
-
-" Returns the session file for the current working directory.
-function! s:SessionFile() abort
-  return s:sessiondir . '/' . substitute(getcwd(), '[:\\/]', '%', 'g') . '.vim'
-endfunction
 
 " Configure plugin files and directories.
 let s:plug_script = s:vim_home . '/autoload/plug.vim'
@@ -69,7 +63,7 @@ call plug#begin(s:plug_dir)
 " Core plugins
 Plug 'tpope/vim-sensible'  " Sensible settings
 Plug 'tpope/vim-surround'  " Better surround motions
-Plug 'tpope/vim-obsession'  " Session management
+Plug 'mhinz/vim-startify'  " Starting dashboard and session management
 Plug 'easymotion/vim-easymotion'  " Better navigation motions
 Plug 'ojroques/vim-oscyank'  " OSC52 support
 " `tmux` integration
@@ -205,7 +199,7 @@ set sessionoptions=
 
 augroup autosession
   autocmd!
-  autocmd VimEnter * call s:AutoSession()
+  autocmd User StartifyReady call s:AutoSession()
 augroup END
 
 " Show cursor line only in focused window.
@@ -243,8 +237,6 @@ augroup END
 
 " [[ Commands ]]
 
-command! SessionSave execute 'Obsession ' . fnameescape(s:SessionFile())
-
 command! DiffUnsaved let filetype=&ft
     \ | tab split
     \ | let t:is_diff_tab=1
@@ -259,18 +251,26 @@ command! DiffGitBlame Git blame | nnoremap <buffer> q :close<CR>
 
 " [[ Plugin configs ]]
 
-" Auto-reload and auto-create session when starting Vim with no arguments.
-function! s:AutoSession() abort
-  if argc() > 0
-    return
-  endif
+" Auto-save current session.
+let g:startify_session_dir = s:vim_state . '/session'
+let g:startify_session_persistence = 1
+
+" Do not change current working directory when opening files.
+let g:startify_change_to_dir = 0
+
+" Ensure VCS gutter signs are enabled after restoring the session.
+let g:startify_session_savecmds = ['SignifyEnableAll']
+
+" Returns the session file for the current working directory.
+function! s:SessionFile()
+  return substitute(getcwd(), '[\\/:]', '%%', 'g') . '.vim'
+endfunction
+
+" Auto-load session for current working directory if it exists.
+function! s:AutoSession()
   let l:session_file = s:SessionFile()
-  if filereadable(l:session_file)
-    execute 'source ' . fnameescape(l:session_file)
-    " Ensure VCS gutter signs are enabled after restoring the session.
-    SignifyEnable
-  else
-    SessionSave
+  if filereadable(g:startify_session_dir . '/' . l:session_file)
+    execute 'SLoad ' . l:session_file
   endif
 endfunction
 
@@ -361,7 +361,12 @@ let g:lsp_document_code_action_signs_hint = {'text': '󰌶'}
 
 " Returns the current session name and icon (`nf-fa-folder`).
 function! g:SessionName() abort
-  return ObsessionStatus(' ' . fnamemodify(getcwd(), ':t'), '')
+  if !filereadable(v:this_session)
+    return ''
+  endif
+  let l:session_path = substitute(v:this_session, '%%', '/', 'g')
+  let l:session_name = fnamemodify(l:session_path, ':t:r')
+  return !empty(l:session_name) ? ' ' . l:session_name : ''
 endfunction
 
 " Returns the current Git branch name and icon (`nf-fa-code_branch`).
@@ -390,7 +395,7 @@ endfunction
 let g:lightline = {
     \ 'colorscheme': $COLORSCHEME,
     \ 'active': {
-    \   'left': [['mode', 'paste'], ['obsession', 'branch'], ['filename']],
+    \   'left': [['mode', 'paste'], ['session', 'branch'], ['filename']],
     \   'right': [['lineinfo'], ['percentwin'], ['lsp_status', 'ft']],
     \ },
     \ 'inactive': {
@@ -400,7 +405,7 @@ let g:lightline = {
     \ 'separator': { 'left': "", 'right': "" },
     \ 'subseparator': { 'left': "", 'right': "" },
     \ 'component_function': {
-    \   'obsession': 'g:SessionName',
+    \   'session': 'g:SessionName',
     \   'branch': 'g:BranchName',
     \   'lsp_status': 'g:LspStatus',
     \   'ft': 'g:FileType',
@@ -534,8 +539,8 @@ tnoremap <C-e> <C-\><C-n>
 " Session:
 " - dS = [d]elete [s]ession
 " - <M-S> = [s]ave session
-nnoremap dS :Obsession!<CR>
-nnoremap <M-S> :SessionSave<CR>
+nnoremap <expr> dS ':SDelete! ' . fnamemodify(v:this_session, ':t') . '<CR>'
+nnoremap <expr> <M-S> ':SSave! ' . <SID>SessionFile() . '<CR>'
 
 " Search:
 " - s + h/k/f/r/b/c/g/./:/'// = [s]earch with picker
