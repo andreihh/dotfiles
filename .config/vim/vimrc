@@ -466,7 +466,7 @@ endfor
 " - u = [u]ndo
 " - <C-r> = [r]edo
 " - <C-c> = [c]opy last yank to system clipboard using OSC52
-" - gs + s/u/r = [g]o [s]ort [s]imple / [u]nique / [r]everse
+" - s + s/u/r = [s]ort [s]imple / [u]nique / [r]everse
 " - <M-V> = [v]isual block mode
 map Y y$
 nnoremap M :PlugStatus<CR>
@@ -474,9 +474,9 @@ nnoremap S :w<CR>
 nnoremap Q :quitall<CR>
 nnoremap <esc> <C-c>:nohlsearch<CR>
 nmap <C-c> :OSCYankRegister<CR>
-xnoremap gss :sort<CR>
-xnoremap gsu :sort u<CR>
-xnoremap gsr :sort!<CR>
+xnoremap ss :sort<CR>
+xnoremap su :sort u<CR>
+xnoremap sr :sort!<CR>
 nnoremap <M-V> <C-v>
 
 " Navigation:

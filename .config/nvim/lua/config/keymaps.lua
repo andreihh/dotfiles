@@ -10,7 +10,7 @@
 --  - u = [u]ndo
 --  - <C-r> = [r]edo
 --  - <C-c> = [c]opy to system clipboard using OSC52
---  - gs + s/u/r = [g]o [s]ort [s]imple / [u]nique / [r]everse
+--  - s + s/u/r = [s]ort [s]imple / [u]nique / [r]everse
 --  - <M-V> = [v]isual block mode
 --  - <C-\> = show keymap help
 -- Navigation:
@@ -141,9 +141,9 @@ map("n", "Q", "<cmd>quitall<CR>", "[Q]uit")
 map("n", "<esc>", "<cmd>nohlsearch<CR>", "Clear search highlights")
 map({ "n", "x" }, "<C-c>", '"+y', "[C]opy to system clipboard using OSC52")
 map("n", "<C-c><C-c>", '"+y_', "[C]opy line to system clipboard using OSC52")
-map("x", "gss", ":sort<CR>", "[G]o [S]ort [S]imple")
-map("x", "gsu", ":sort u<CR>", "[G]o [S]ort [U]nique")
-map("x", "gsr", ":sort!<CR>", "[G]o [S]ort [R]everse")
+map("x", "ss", ":sort<CR>", "[S]ort [S]imple")
+map("x", "su", ":sort u<CR>", "[S]ort [U]nique")
+map("x", "sr", ":sort!<CR>", "[S]ort [R]everse")
 map("n", "<M-V>", "<C-v>", "[V]isual block mode")
 
 map("n", "gj", "<C-o>", "[G]oto previous location")
