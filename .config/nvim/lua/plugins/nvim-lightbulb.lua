@@ -4,7 +4,10 @@ return { -- Show gutter sign when code action is available
   opts = {
     autocmd = { enabled = true },
     number = { enabled = true },
-    priority = 9, -- Decrease sign priority below diagnostic signs (default 10)
-    sign = { text = "󰌵" }, -- `nf-md-lightbulb`
+    code_lenses = true,
+    sign = {
+      text = "󰌵", -- `nf-md-lightbulb`
+      lens_text = "󰍉", -- `nf-md-magnify`
+    },
   },
 }
