@@ -467,18 +467,6 @@ endfor
 " - <C-r> = [r]edo
 " - <C-c> = [c]opy last yank to system clipboard using OSC52
 " - s + a/d/A/S = [s]ort [a]scending / [d]escending (unique)
-" - gj / gk = [g]o to previous / next location
-" - gf = [g]o to [f]ile under cursor / selected [f]ile
-" - gx = [g]o to URI with e[x]ternal system handler
-" - g + {1-9} = [g]o to tab
-" - <C-u/d> = jump half page [u]p / [d]own
-" - { / } = jump to previous / next blank line
-" - [m / ]m = jump to previous / next start of Java-style method or class
-" - [M / ]M = jump to previous / next end of Java-style method or class
-" - f/F/t/T/;/, = find character in line motions
-" - <C-f> = multi-window EasyMotion [f]ind
-" - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
-" - [l / ]l / [L / ]L = jump to previous / next / first / last [l]ocation
 " - <M-V> = [v]isual block mode
 map Y y$
 nnoremap M :PlugStatus<CR>
@@ -490,6 +478,19 @@ xnoremap sa :sort u<CR>
 xnoremap sd :sort! u<CR>
 xnoremap sA :sort<CR>
 xnoremap sD :sort!<CR>
+nnoremap <M-V> <C-v>
+
+" Navigation:
+" - gj / gk = [g]o to previous / next location
+" - gf = [g]o to [f]ile under cursor / selected [f]ile
+" - gx = [g]o to URI with e[x]ternal system handler
+" - g + {1-9} = [g]o to tab
+" - <C-u/d> = jump half page [u]p / [d]own
+" - { / } = jump to previous / next blank line
+" - f/F/t/T/;/, = find character in line motions
+" - <C-f> = multi-window EasyMotion [f]ind
+" - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
+" - [l / ]l / [L / ]L = jump to previous / next / first / last [l]ocation
 nnoremap gj <C-o>
 nnoremap gk <C-i>
 for i in '123456789'
@@ -505,7 +506,6 @@ nnoremap [l :lprev<CR>
 nnoremap ]l :lnext<CR>
 nnoremap [L :lfirst<CR>
 nnoremap ]L :llast<CR>
-nnoremap <M-V> <C-v>
 
 " Marks:
 " - m + {a-zA-Z} = set [m]ark
@@ -629,6 +629,8 @@ cnoremap <C-k> <C-p>
 cnoremap <tab> <C-y>
 
 " Code:
+" - [m / ]m = jump to previous / next start of Java-style method or class
+" - [M / ]M = jump to previous / next end of Java-style method or class
 " - <leader>= = format
 " - <leader>-- = toggle line comment
 " - <leader>- = toggle comment

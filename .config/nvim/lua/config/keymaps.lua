@@ -11,18 +11,19 @@
 --  - <C-r> = [r]edo
 --  - <C-c> = [c]opy to system clipboard using OSC52
 --  - s + a/d/A/S = [s]ort [a]scending / [d]escending (unique)
+--  - <M-V> = [v]isual block mode
+--  - <C-\> = show keymap help
+-- Navigation:
 --  - gj / gk = [g]o to previous / next location
 --  - gf = [g]o to [f]ile under cursor / selected [f]ile
 --  - gx = [g]o to URI with e[x]ternal system handler
 --  - g + {1-9} = [g]o to tab
 --  - <C-u/d> = jump half page [u]p / [d]own
 --  - { / } = jump to previous / next blank line
---  - f/F/t/T/;/, = enhanced [F]lash motions
+--  - f/F/t/T/;/, = enhanced Flash motions
 --  - <C-f> = multi-window Flash [f]ind
 --  - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
 --  - [l / ]l / [L / ]L = jump to previous / next / first / last [l]ocation
---  - <M-V> = [v]isual block mode
---  - <C-\> = show keymap help
 -- Marks:
 --  - m + {a-zA-Z} = set [m]ark
 --  - dm + {a-zA-Z} = [d]elete [m]ark
@@ -96,6 +97,11 @@
 --  - <C-u/d> = scroll documentation [u]p / [d]own
 --  - <tab> = accept selected item
 --  - <C-e> = [e]xit
+-- Treesitter:
+--  - [f / ]f / [t / ]t = jump to previous / next start of [f]unction / [t]ype
+--  - [F / ]F / [T / ]T = jump to previous / next end of [f]unction / [t]ype
+--  - a/i + f/t/b = [a]round / [i]nside [f]unction / [t]ype / [b]lock
+--  - <leader> + =/--/-/f/c = perform code action
 -- LSP:
 --  - g + d/D/i/r = perform code navigation
 --  - [r / ]r = jump to previous / next [r]eference
@@ -103,11 +109,7 @@
 --  - H / <C-s> / L = show [h]elp / [s]ignature / [l]int
 --    - H / <C-s> / L = focus float
 --    - q = [q]uit float if focused
---  - <leader> + =/--/-/f/c/r/a/A/l/L/H/T/D = perform code action
--- Treesitter:
---  - [f / ]f / [t / ]t = jump to previous / next start of [f]unction / [t]ype
---  - [F / ]F / [T / ]T = jump to previous / next end of [f]unction / [t]ype
---  - a/i + f/t/b = [a]round / [i]nside [f]unction / [t]ype / [b]lock
+--  - <leader> + r/a/A/l/L/H/T/D = perform LSP action
 
 -- Set `<space>` as the leader key.
 --  See `:help mapleader`
@@ -143,7 +145,7 @@ map("x", "sa", ":sort u<CR>", "[S]ort [A]scending unique")
 map("x", "sd", ":sort! u<CR>", "[S]ort [D]escending unique")
 map("x", "sA", ":sort<CR>", "[S]ort [A]scending")
 map("x", "sD", ":sort!<CR>", "[S]ort [D]escending")
-map("n", "s", "<nop>", "Disable [S]ubstitute to allow search chaining")
+map("n", "<M-V>", "<C-v>", "[V]isual block mode")
 
 map("n", "gj", "<C-o>", "[G]oto previous location")
 map("n", "gk", "<C-i>", "[G]oto next location")
@@ -151,13 +153,23 @@ for i = 1, 9 do
   map("n", "g" .. i, i .. "gt", "[G]oto tab " .. i)
 end
 
-map("n", "<M-V>", "<C-v>", "[V]isual block mode")
-
 for m in ("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"):gmatch(".") do
   map("n", "dm" .. m, "<cmd>delmarks " .. m .. "<CR>", "[D]elete [M]ark " .. m)
 end
 map("n", "dm!", "<cmd>delmarks!<CR>", "[D]elete [!] buffer [M]arks")
 map("n", "dm*", "<cmd>delmarks a-zA-Z<CR>", "[D]elete [*] all [M]arks")
+
+map("n", "<C-s>", "<cmd>split<CR>", "[S]plit window horizontally")
+map("n", "<C-v>", "<cmd>vsplit<CR>", "Split window [V]ertically")
+map("n", "<C-t>", "<cmd>tabedit %<CR>", "Open window in new [T]ab")
+map("n", "<C-x>", "<cmd>quit<CR>", "Close window")
+map("n", "<C-w>", "<cmd>tabclose<CR>", "Close tab")
+map("n", "<M-=>", "<C-w>=", "Resize all windows equally")
+
+map("n", "X", "<cmd>terminal<CR>", "Open terminal")
+map("t", "<C-e>", "<C-\\><C-n>", "[E]xit terminal mode")
+
+map("n", "s", "<nop>", "Disable [S]ubstitute to allow search chaining")
 
 map("n", "dvu", function()
   vim.cmd([[
@@ -175,15 +187,13 @@ map("n", "q", "exists('t:is_diff_tab') ? ':tabclose<CR>' : 'q'", {
   expr = true,
 })
 
-map("n", "<C-s>", "<cmd>split<CR>", "[S]plit window horizontally")
-map("n", "<C-v>", "<cmd>vsplit<CR>", "Split window [V]ertically")
-map("n", "<C-t>", "<cmd>tabedit %<CR>", "Open window in new [T]ab")
-map("n", "<C-x>", "<cmd>quit<CR>", "Close window")
-map("n", "<C-w>", "<cmd>tabclose<CR>", "Close tab")
-map("n", "<M-=>", "<C-w>=", "Resize all windows equally")
-
-map("n", "X", "<cmd>terminal<CR>", "Open terminal")
-map("t", "<C-e>", "<C-\\><C-n>", "[E]xit terminal mode")
+map("n", "<leader>--", "gcc", { desc = "Toggle line comment", remap = true })
+map({ "n", "x" }, "<leader>-", "gc", {
+  desc = "Toggle comment",
+  remap = true,
+  nowait = false,
+})
+map("n", "<leader>f", "za", "Toggle [F]old under cursor")
 
 local WARN = vim.diagnostic.severity.WARN
 local ERROR = vim.diagnostic.severity.ERROR
@@ -202,14 +212,5 @@ end
 map("n", "H", vim.lsp.buf.hover, "Show [H]elp")
 map({ "i", "s" }, "<C-s>", vim.lsp.buf.signature_help, "Show [S]ignature help")
 map("n", "L", vim.diagnostic.open_float, "Show [L]int diagnostic")
-
-map("n", "<leader>--", "gcc", { desc = "Toggle line comment", remap = true })
-map({ "n", "x" }, "<leader>-", "gc", {
-  desc = "Toggle comment",
-  remap = true,
-  nowait = false,
-})
-
-map("n", "<leader>f", "za", "Toggle [F]old under cursor")
 map("n", "<leader>r", vim.lsp.buf.rename, "[R]ename")
 map("n", "<leader>A", vim.lsp.codelens.run, "Run code lens [A]ction")
