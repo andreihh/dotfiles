@@ -185,21 +185,19 @@ map("n", "<M-=>", "<C-w>=", "Resize all windows equally")
 map("n", "X", "<cmd>terminal<CR>", "Open terminal")
 map("t", "<C-e>", "<C-\\><C-n>", "[E]xit terminal mode")
 
-map("n", "[e", function()
-  vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
-end, "Jump to the previous [E]rror diagnostic")
-
-map("n", "]e", function()
-  vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
-end, "Jump to the next [E]rror diagnostic")
-
-map("n", "[w", function()
-  vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.WARN })
-end, "Jump to the previous [W]arning diagnostic")
-
-map("n", "]w", function()
-  vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.WARN })
-end, "Jump to the next [W]arning diagnostic")
+local WARN = vim.diagnostic.severity.WARN
+local ERROR = vim.diagnostic.severity.ERROR
+local diagnostic_jump_opts = {
+  { count = -1, severity = WARN, lhs = "[w", desc = "previous [W]arn" },
+  { count = 1, severity = WARN, lhs = "]w", desc = "next [W]arn" },
+  { count = -1, severity = ERROR, lhs = "[e", desc = "previous [E]rror" },
+  { count = 1, severity = ERROR, lhs = "]e", desc = "next [E]rror" },
+}
+for _, jump_opts in ipairs(diagnostic_jump_opts) do
+  map("n", jump_opts.lhs, function()
+    vim.diagnostic.jump(jump_opts)
+  end, "Jump to the " .. jump_opts.desc .. " diagnostic")
+end
 
 map("n", "H", vim.lsp.buf.hover, "Show [H]elp")
 map({ "i", "s" }, "<C-s>", vim.lsp.buf.signature_help, "Show [S]ignature help")
