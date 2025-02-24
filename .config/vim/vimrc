@@ -656,7 +656,7 @@ nnoremap <expr> <leader>q
 "   - <esc> = [e]xit
 " - <leader>H = toggle inlay [h]ints
 " - <leader>r = [r]ename symbol under cursor
-" - <leader>a = code [a]ctions
+" - <leader> + a/A = code (lens) [a]ctions
 "   - j/k = select next / previous item
 "   - # = accept item #
 "   - <CR> = accept selected item
@@ -678,6 +678,7 @@ nmap ]d <plug>(lsp-next-diagnostic)
 nmap H <plug>(lsp-hover-float)
 nmap <leader>r <plug>(lsp-rename)
 nmap <leader>a <plug>(lsp-code-action-float)
+nmap <leader>A <plug>(lsp-code-lens)
 
 function! s:ConfigLspFloatKeymaps() abort
   nmap <buffer> <esc> <C-c><plug>(lsp-preview-close)
