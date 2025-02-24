@@ -21,6 +21,7 @@
 --  - <C-f> = multi-window Flash [f]ind
 --  - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
 --  - [l / ]l / [L / ]L = jump to previous / next / first / last [l]ocation
+--  - <M-V> = [v]isual block mode
 --  - <C-\> = show keymap help
 -- Marks:
 --  - m + {a-zA-Z} = set [m]ark
@@ -149,6 +150,8 @@ map("n", "gk", "<C-i>", "[G]oto next location")
 for i = 1, 9 do
   map("n", "g" .. i, i .. "gt", "[G]oto tab " .. i)
 end
+
+map("n", "<M-V>", "<C-v>", "[V]isual block mode")
 
 for m in ("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"):gmatch(".") do
   map("n", "dm" .. m, "<cmd>delmarks " .. m .. "<CR>", "[D]elete [M]ark " .. m)

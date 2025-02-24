@@ -453,7 +453,7 @@ noremap <space> <nop>
 set wildcharm=<C-z>
 
 " Required to map the Alt key.
-for key in 'hjkl=S'
+for key in 'hjkl=VS'
   execute "set <M-" . key . ">=\e" . key
 endfor
 
@@ -479,6 +479,7 @@ endfor
 " - <C-f> = multi-window EasyMotion [f]ind
 " - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
 " - [l / ]l / [L / ]L = jump to previous / next / first / last [l]ocation
+" - <M-V> = [v]isual block mode
 map Y y$
 nnoremap M :PlugStatus<CR>
 nnoremap S :w<CR>
@@ -504,6 +505,7 @@ nnoremap [l :lprev<CR>
 nnoremap ]l :lnext<CR>
 nnoremap [L :lfirst<CR>
 nnoremap ]L :llast<CR>
+nnoremap <M-V> <C-v>
 
 " Marks:
 " - m + {a-zA-Z} = set [m]ark
