@@ -91,12 +91,14 @@ return {
 
         if provider.kind_name or provider.kind_icon then
           -- Register custom completion item kind name and icon for source.
+          local kind_name = provider.kind_name
+          local kind_icon = provider.kind_icon
           local transform_items = provider.transform_items
           provider.transform_items = function(ctx, items)
             items = transform_items and transform_items(ctx, items) or items
             for _, item in ipairs(items) do
-              item.kind_name = provider.kind_name or item.kind_name
-              item.kind_icon = provider.kind_icon or item.kind_icon
+              item.kind_name = item.kind_name or kind_name
+              item.kind_icon = item.kind_icon or kind_icon
             end
             return items
           end
