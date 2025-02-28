@@ -566,21 +566,22 @@ nnoremap s: :History:<CR>
 nnoremap s/ :BLines<CR>
 
 " Explorer:
-" - <C-o> = [o]pen / refresh file explorer
-" - j/k (navigate down / up)
+" - g. = [g]o to [.] current buffer's directory
+" - j/k = navigate down / up
 " - gf = [g]o to [f]ile / [f]older
 " - gp = [g]o to [p]arent directory
 " - gx = [g]o to URI with e[x]ternal system handler
 " - gh = toggle [g]o to [h]idden files
+" - gs = [g]o to change [s]orting options
 " - ad = [a]dd new [d]irectory
 " - af = [a]dd new [f]ile
 " - cc = [r]ename node
 " - dd = [d]elete node
-" - <C-e> = [e]xit
+" - q = [q]uit
 " - g? = show help
-nnoremap <C-o> :Explore<CR>
+nnoremap g. :Explore<CR>
 function! s:ConfigNetrwKeymaps() abort
-  map <buffer> <C-o> <C-l>
+  map <buffer> g. <C-l>
   map <buffer> gp -
   map <buffer> gf <CR>
   map <buffer> cc R
@@ -588,7 +589,8 @@ function! s:ConfigNetrwKeymaps() abort
   map <buffer> ad d
   map <buffer> dd D
   map <buffer> gx x
-  map <buffer> <C-e> :Rexplore<CR>
+  map <buffer> gs s
+  map <buffer> q :Rexplore<CR>
   map <buffer> g? <F1>
 endfunction
 

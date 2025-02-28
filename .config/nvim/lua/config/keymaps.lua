@@ -54,12 +54,13 @@
 --  - <esc> = exit
 --  - <C-\> = show keymap help
 -- Explorer:
---  - <C-o> = [o]pen / refresh file explorer
+--  - g. = [g]o to [.] current buffer's directory
 --  - gf = [g]o to [f]ile / [f]older
 --  - gp = [g]o to [p]arent directory
 --  - gx = [g]o to URI with e[x]ternal system handler
 --  - gh = toggle [g]o to [h]idden files
---  - <C-e> = [e]xit
+--  - gs = [g]o to change [s]orting options
+--  - q = [q]uit
 --  - g? = show help
 -- Input:
 --  - <tab> = accept input
