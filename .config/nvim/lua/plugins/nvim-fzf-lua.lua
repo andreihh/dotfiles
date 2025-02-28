@@ -45,6 +45,7 @@ return { -- Fuzzy finder (files, lsp, etc.)
       "<cmd>FzfLua lsp_workspace_symbols<CR>",
       desc = "[S]earch [W]orkspace symbols",
     },
+    { 's"', "<cmd>FzfLua registers<CR>", desc = '[S]earch ["] registers' },
     {
       "s:",
       "<cmd>FzfLua command_history<CR>",

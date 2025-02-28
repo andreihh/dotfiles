@@ -41,7 +41,7 @@
 --  - dS = [d]elete [s]ession
 --  - <M-S> = [s]ave session
 -- Search:
---  - s + <space>/p/s/h/m/k/'/b/+/f/.f/r/g/.g/c/d/w/:// = [s]earch with picker
+--  - s + <space>/p/s/h/m/k/'/b/+/f/.f/r/g/.g/c/d/w/"/:// = [s]earch with picker
 --  - <C-j/k> = select next / previous item
 --  - <C-f> = Flash-like [f]ind
 --  - <C-u/d> = scroll preview [u]p / [d]own
@@ -98,9 +98,9 @@
 --  - <tab> = accept selected item
 --  - <C-e> = [e]xit
 -- Treesitter:
+--  - a/i + f/t/b = [a]round / [i]nside [f]unction / [t]ype / [b]lock
 --  - [f / ]f / [t / ]t = jump to previous / next start of [f]unction / [t]ype
 --  - [F / ]F / [T / ]T = jump to previous / next end of [f]unction / [t]ype
---  - a/i + f/t/b = [a]round / [i]nside [f]unction / [t]ype / [b]lock
 --  - <leader> + =/--/-/f/c/xq/xl = perform code action
 -- LSP:
 --  - g + d/D/i/r = perform code navigation
