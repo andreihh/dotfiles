@@ -543,7 +543,7 @@ nnoremap <expr> dS ':SDelete! ' . fnamemodify(v:this_session, ':t') . '<CR>'
 nnoremap <expr> <M-S> ':SSave! ' . <SID>SessionFile() . '<CR>'
 
 " Search:
-" - s + h/k/f/r/b/c/g/./:/'// = [s]earch with picker
+" - s + h/k/'/b/f/.f/r/b/g/c/:// = [s]earch with picker
 " - <C-j/k> = select next / previous item
 " - <C-f> = EasyMotion-like [f]ind
 " - <C-u/d> = scroll preview [u]p / [d]own
@@ -555,14 +555,14 @@ nnoremap <expr> <M-S> ':SSave! ' . <SID>SessionFile() . '<CR>'
 nnoremap s <nop>
 nnoremap sh :Helptags<CR>
 nnoremap sk :Maps<CR>
-nnoremap sf :Files<CR>
-nnoremap sr :History<CR>
-nnoremap sb :Buffers<CR>
-nnoremap sc :GFiles?<CR>
-nnoremap sg :Rg<CR>
-nnoremap s. :Files %:h<CR>
-nnoremap s: :History:<CR>
 nnoremap s' :Marks<CR>
+nnoremap sb :Buffers<CR>
+nnoremap sf :Files<CR>
+nnoremap s.f :Files %:h<CR>
+nnoremap sr :History<CR>
+nnoremap sg :Rg<CR>
+nnoremap sc :GFiles?<CR>
+nnoremap s: :History:<CR>
 nnoremap s/ :BLines<CR>
 
 " Explorer:

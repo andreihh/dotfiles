@@ -41,7 +41,7 @@
 --  - dS = [d]elete [s]ession
 --  - <M-S> = [s]ave session
 -- Search:
---  - s + <space>/p/h/m/k/f/r/b/c/g/s/d/w/./+/:/'// = [s]earch with picker
+--  - s + <space>/p/s/h/m/k/'/b/+/f/.f/r/g/.g/c/d/w/:// = [s]earch with picker
 --  - <C-j/k> = select next / previous item
 --  - <C-f> = Flash-like [f]ind
 --  - <C-u/d> = scroll preview [u]p / [d]own
