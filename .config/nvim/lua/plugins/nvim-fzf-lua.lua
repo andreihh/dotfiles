@@ -45,6 +45,12 @@ return { -- Fuzzy finder (files, lsp, etc.)
       "<cmd>FzfLua lsp_workspace_symbols<CR>",
       desc = "[S]earch [W]orkspace symbols",
     },
+    {
+      "sxq",
+      "<cmd>FzfLua quickfix<CR>",
+      desc = "[S]earch [x] [Q]uickfix list",
+    },
+    { "sxl", "<cmd>FzfLua loclist<CR>", desc = "[S]earch [x] [L]ocation list" },
     { 's"', "<cmd>FzfLua registers<CR>", desc = '[S]earch ["] registers' },
     {
       "s:",
@@ -61,16 +67,6 @@ return { -- Fuzzy finder (files, lsp, etc.)
     },
     { "gr", "<cmd>FzfLua lsp_references<CR>", desc = "[G]oto [R]eferences" },
     { "<leader>a", "<cmd>FzfLua lsp_code_actions<CR>", desc = "Code [A]ction" },
-    {
-      "<leader>xq",
-      "<cmd>FzfLua quickfix<CR>",
-      desc = "Search [x] [Q]uickfix list",
-    },
-    {
-      "<leader>xl",
-      "<cmd>FzfLua loclist<CR>",
-      desc = "Search [x] [L]ocation list",
-    },
   },
   opts = {
     keymap = { -- Disable default keymaps

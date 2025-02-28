@@ -21,8 +21,8 @@
 --  - g + {1-9} = [g]o to tab
 --  - <C-u/d> = jump half page [u]p / [d]own
 --  - { / } = jump to previous / next blank line
---  - f/F/t/T/;/, = enhanced Flash motions
---  - <C-f> = multi-window Flash [f]ind
+--  - f/F/t/T/;/, = enhanced find motions
+--  - <C-f> = multi-window [f]ind
 --  - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
 --  - [l / ]l / [L / ]L = jump to previous / next / first / last [l]ocation
 -- Marks:
@@ -42,9 +42,8 @@
 --  - dS = [d]elete [s]ession
 --  - <M-S> = [s]ave session
 -- Search:
---  - s + <space>/p/s/h/m/k/'/b/+/f/.f/r/g/.g/c/d/w/"/:// = [s]earch with picker
---  - <C-j/k> = select next / previous item
---  - <C-f> = Flash-like [f]ind
+--  - s + <space>/p/s/h/m/k/'/b/+/f/.f/r/g/.g/c/d/w/xq/xl/"/:// = [s]earch
+--  - <C-j/k/f> = select next / previous / find item
 --  - <C-u/d> = scroll preview [u]p / [d]own
 --  - <C-l/p> = toggle [l]ine / [p]review wrapping for long lines
 --  - <tab> = accept selected / toggled items
@@ -103,7 +102,7 @@
 --  - a/i + f/t/b = [a]round / [i]nside [f]unction / [t]ype / [b]lock
 --  - [f / ]f / [t / ]t = jump to previous / next start of [f]unction / [t]ype
 --  - [F / ]F / [T / ]T = jump to previous / next end of [f]unction / [t]ype
---  - <leader> + =/--/-/f/c/xq/xl = perform code action
+--  - <leader> + =/--/-/f/c = perform code action
 -- LSP:
 --  - g + d/D/i/r = perform code navigation
 --  - [r / ]r = jump to previous / next [r]eference

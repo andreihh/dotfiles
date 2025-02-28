@@ -491,7 +491,7 @@ nnoremap <M-V> <C-v>
 " - <C-u/d> = jump half page [u]p / [d]own
 " - { / } = jump to previous / next blank line
 " - f/F/t/T/;/, = find character in line motions
-" - <C-f> = multi-window EasyMotion [f]ind
+" - <C-f> = multi-window [f]ind
 " - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
 " - [l / ]l / [L / ]L = jump to previous / next / first / last [l]ocation
 nnoremap gj <C-o>
@@ -547,9 +547,8 @@ nnoremap <expr> dS ':SDelete! ' . fnamemodify(v:this_session, ':t') . '<CR>'
 nnoremap <expr> <M-S> ':SSave! ' . <SID>SessionFile() . '<CR>'
 
 " Search:
-" - s + h/k/'/b/f/.f/r/b/g/c/:// = [s]earch with picker
-" - <C-j/k> = select next / previous item
-" - <C-f> = EasyMotion-like [f]ind
+" - s + h/k/'/b/f/.f/r/b/g/c/xq/xl/:// = [s]earch
+" - <C-j/k/f> = select next / previous / find item
 " - <C-u/d> = scroll preview [u]p / [d]own
 " - <C-l/p> = toggle [l]ine / [p]review wrapping for long lines
 " - <tab> = accept selected / toggled items
@@ -566,6 +565,8 @@ nnoremap s.f :Files %:h<CR>
 nnoremap sr :History<CR>
 nnoremap sg :Rg<CR>
 nnoremap sc :GFiles?<CR>
+nnoremap sxq :copen<CR>
+nnoremap sxl :lopen<CR>
 nnoremap s: :History:<CR>
 nnoremap s/ :BLines<CR>
 
@@ -640,8 +641,6 @@ cnoremap <tab> <C-y>
 " - <leader>- = toggle comment
 " - <leader>f = toggle [f]old
 " - <leader>c = toggle current [c]ontext
-" - <leader>xq = open [q]uickfix list
-" - <leader>xl = open [l]ocation list
 nnoremap <leader>= :FormatCode<CR>
 xnoremap <leader>= :FormatLines<CR>
 nmap <leader>-- gcc
@@ -649,8 +648,6 @@ nmap <leader>- gc
 xmap <leader>- gc
 nnoremap <leader>f za
 nnoremap <leader>c :echo expand('%')<CR>:ContextToggleWindow<CR>
-nnoremap <leader>xq :copen<CR>
-nnoremap <leader>xl :lopen<CR>
 
 " LSP:
 " - L = install [L]SP server for current file
