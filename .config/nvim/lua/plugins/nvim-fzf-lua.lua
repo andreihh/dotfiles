@@ -35,6 +35,8 @@ return { -- Fuzzy finder (files, lsp, etc.)
       desc = "[S]earch in [.] current buffer's directory by [G]rep",
     },
     { "sc", "<cmd>FzfLua git_status<CR>", desc = "[S]earch Git [C]hanges" },
+    { "sl", "<cmd>FzfLua loclist<CR>", desc = "[S]earch [L]ocation list" },
+    { "sq", "<cmd>FzfLua quickfix<CR>", desc = "[S]earch [Q]uickfix list" },
     {
       "sd",
       "<cmd>FzfLua diagnostics_workspace<CR>",
@@ -45,12 +47,6 @@ return { -- Fuzzy finder (files, lsp, etc.)
       "<cmd>FzfLua lsp_workspace_symbols<CR>",
       desc = "[S]earch [W]orkspace symbols",
     },
-    {
-      "sxq",
-      "<cmd>FzfLua quickfix<CR>",
-      desc = "[S]earch [x] [Q]uickfix list",
-    },
-    { "sxl", "<cmd>FzfLua loclist<CR>", desc = "[S]earch [x] [L]ocation list" },
     { 's"', "<cmd>FzfLua registers<CR>", desc = '[S]earch ["] registers' },
     {
       "s:",

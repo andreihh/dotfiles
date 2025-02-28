@@ -42,7 +42,7 @@
 --  - dS = [d]elete [s]ession
 --  - <M-S> = [s]ave session
 -- Search:
---  - s + <space>/p/s/h/m/k/'/b/+/f/.f/r/g/.g/c/d/w/xq/xl/"/:// = [s]earch
+--  - s + <leader>/p/s/h/m/k/'/b/+/f/.f/r/g/.g/c/l/q/d/w/"/:// = [s]earch
 --  - <C-j/k/f> = select next / previous / find item
 --  - <C-u/d> = scroll preview [u]p / [d]own
 --  - <C-l/p> = toggle [l]ine / [p]review wrapping for long lines
