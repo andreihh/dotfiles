@@ -635,7 +635,8 @@ cnoremap <tab> <C-y>
 " - <leader>- = toggle comment
 " - <leader>f = toggle [f]old
 " - <leader>c = toggle current [c]ontext
-" - <leader>q = toggle [q]uickfix window
+" - <leader>xq = open [q]uickfix list
+" - <leader>xl = open [l]ocation list
 nnoremap <leader>= :FormatCode<CR>
 xnoremap <leader>= :FormatLines<CR>
 nmap <leader>-- gcc
@@ -643,9 +644,8 @@ nmap <leader>- gc
 xmap <leader>- gc
 nnoremap <leader>f za
 nnoremap <leader>c :echo expand('%')<CR>:ContextToggleWindow<CR>
-nnoremap <expr> <leader>q
-    \ empty(filter(getwininfo(), 'v:val.quickfix'))
-    \ ? ':copen<CR>' : ':cclose<CR>'
+nnoremap <leader>xq :copen<CR>
+nnoremap <leader>xl :lopen<CR>
 
 " LSP:
 " - L = install [L]SP server for current file

@@ -60,6 +60,16 @@ return { -- Fuzzy finder (files, lsp, etc.)
     },
     { "gr", "<cmd>FzfLua lsp_references<CR>", desc = "[G]oto [R]eferences" },
     { "<leader>a", "<cmd>FzfLua lsp_code_actions<CR>", desc = "Code [A]ction" },
+    {
+      "<leader>xq",
+      "<cmd>FzfLua quickfix<CR>",
+      desc = "Search [x] [Q]uickfix list",
+    },
+    {
+      "<leader>xl",
+      "<cmd>FzfLua loclist<CR>",
+      desc = "Search [x] [L]ocation list",
+    },
   },
   opts = {
     keymap = { -- Disable default keymaps

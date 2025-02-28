@@ -101,7 +101,7 @@
 --  - [f / ]f / [t / ]t = jump to previous / next start of [f]unction / [t]ype
 --  - [F / ]F / [T / ]T = jump to previous / next end of [f]unction / [t]ype
 --  - a/i + f/t/b = [a]round / [i]nside [f]unction / [t]ype / [b]lock
---  - <leader> + =/--/-/f/c = perform code action
+--  - <leader> + =/--/-/f/c/xq/xl = perform code action
 -- LSP:
 --  - g + d/D/i/r = perform code navigation
 --  - [r / ]r = jump to previous / next [r]eference
