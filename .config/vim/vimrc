@@ -460,7 +460,8 @@ endfor
 " General:
 " - M = [m]anage plugins
 " - S = [s]ave buffer
-" - Q = [q]uit
+" - Q = [q]uit all
+" - q = [q]uit special window / tab or record macro
 " - K = show [k]eyword help
 " - <esc> = clear search highlights
 " - u = [u]ndo
@@ -472,6 +473,9 @@ map Y y$
 nnoremap M :PlugStatus<CR>
 nnoremap S :w<CR>
 nnoremap Q :quitall<CR>
+nnoremap <expr> q index(['help', 'quickfix'], &buftype) >= 0
+    \ ? ':quit<CR>'
+    \ : (exists('t:is_diff_tab') ? ':tabclose<CR>' : 'q')
 nnoremap <esc> <C-c>:nohlsearch<CR>
 nmap <C-c> :OSCYankRegister<CR>
 xnoremap ss :sort<CR>
@@ -571,7 +575,7 @@ nnoremap s/ :BLines<CR>
 " - gf = [g]o to [f]ile / [f]older
 " - gp = [g]o to [p]arent directory
 " - gx = [g]o to URI with e[x]ternal system handler
-" - gh = toggle [g]o to [h]idden files
+" - gh = [g]o to toggle [h]idden files
 " - gs = [g]o to change [s]orting options
 " - ad = [a]dd new [d]irectory
 " - af = [a]dd new [f]ile
@@ -606,7 +610,6 @@ nnoremap dvO :DiffGit<space>
 nnoremap dvh :DiffGitFileHistory<CR>
 nnoremap dvH :DiffGitHistory<CR>
 nnoremap dvb :DiffGitBlame<CR>
-nnoremap <expr> q exists('t:is_diff_tab') ? ':tabclose<CR>' : 'q'
 
 " Completion:
 " - <C-space> = trigger completion
@@ -672,12 +675,12 @@ nmap gr <plug>(lsp-references)
 nmap gt <plug>(lsp-type-hierarchy)
 nmap [r <plug>(lsp-previous-reference)
 nmap ]r <plug>(lsp-next-reference)
-nmap [e <plug>(lsp-previous-error)
-nmap ]e <plug>(lsp-next-error
-nmap [w <plug>(lsp-previous-warning)
-nmap ]w <plug>(lsp-next-warning)
 nmap [d <plug>(lsp-previous-diagnostic)
 nmap ]d <plug>(lsp-next-diagnostic)
+nmap [w <plug>(lsp-previous-warning)
+nmap ]w <plug>(lsp-next-warning)
+nmap [e <plug>(lsp-previous-error)
+nmap ]e <plug>(lsp-next-error
 nmap H <plug>(lsp-hover-float)
 nmap <leader>r <plug>(lsp-rename)
 nmap <leader>a <plug>(lsp-code-action-float)

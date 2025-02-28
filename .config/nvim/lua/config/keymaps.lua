@@ -4,7 +4,8 @@
 -- General:
 --  - M = [m]anage plugins
 --  - S = [s]ave buffer
---  - Q = [q]uit
+--  - Q = [q]uit all
+--  - q = [q]uit special window / tab or record macro
 --  - K = show [k]eyword help
 --  - <esc> = clear search highlights
 --  - u = [u]ndo
@@ -58,7 +59,7 @@
 --  - gf = [g]o to [f]ile / [f]older
 --  - gp = [g]o to [p]arent directory
 --  - gx = [g]o to URI with e[x]ternal system handler
---  - gh = toggle [g]o to [h]idden files
+--  - gh = [g]o to toggle [h]idden files
 --  - gs = [g]o to change [s]orting options
 --  - q = [q]uit
 --  - g? = show help
@@ -138,7 +139,16 @@ end
 
 map("n", "M", "<cmd>Lazy<CR>", "[M]anage plugins")
 map("n", "S", "<cmd>write<CR>", "[S]ave buffer")
-map("n", "Q", "<cmd>quitall<CR>", "[Q]uit")
+map("n", "Q", "<cmd>quitall<CR>", "[Q]uit all")
+map("n", "q", function()
+  if vim.tbl_contains({ "help", "quickfix" }, vim.bo.buftype) then
+    vim.cmd("quit")
+  elseif pcall(vim.api.nvim_tabpage_get_var, 0, "is_diff_tab") then
+    vim.cmd("tabclose")
+  else
+    vim.api.nvim_feedkeys("q", "n", false)
+  end
+end, "[Q]uit special window / tab or record macro")
 map("n", "<esc>", "<cmd>nohlsearch<CR>", "Clear search highlights")
 map({ "n", "x" }, "<C-c>", '"+y', "[C]opy to system clipboard using OSC52")
 map("n", "<C-c><C-c>", '"+y_', "[C]opy line to system clipboard using OSC52")
@@ -181,11 +191,6 @@ map("n", "dvu", function()
     windo :diffthis
   ]])
 end, "[D]iff [U]nsaved changes")
-
-map("n", "q", "exists('t:is_diff_tab') ? ':tabclose<CR>' : 'q'", {
-  desc = "[Q]uit diff tab",
-  expr = true,
-})
 
 map("n", "<leader>--", "gcc", { desc = "Toggle line comment", remap = true })
 map({ "n", "x" }, "<leader>-", "gc", {
