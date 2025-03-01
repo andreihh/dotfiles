@@ -653,7 +653,7 @@ nnoremap <leader>c :echo expand('%')<CR>:ContextToggleWindow<CR>
 " - L = install [L]SP server for current file
 " - g + d/D/i/r/t = perform code navigation
 " - [r / ]r = jump to previous / next [r]eference
-" - [d / ]d / [w / ]w / [e / ]e = jump to previous / next diagnostic by seveirty
+" - [d / ]d / [w / ]w / [e / ]e = jump to previous / next diagnostic
 " - H = show [h]elp
 "   - <C-u/d> = scroll help [u]p / [d]own
 "   - <esc> = [e]xit

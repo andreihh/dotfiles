@@ -194,16 +194,16 @@ map({ "n", "x" }, "<leader>-", "gc", {
 })
 map("n", "<leader>f", "za", "Toggle [F]old under cursor")
 
-local WARN = vim.diagnostic.severity.WARN
-local ERROR = vim.diagnostic.severity.ERROR
 -- LSP:
 --  - g + d/D/i/r = perform code navigation
 --  - [r / ]r = jump to previous / next [r]eference
---  - [d / ]d / [w / ]w / [e / ]e = jump to previous / next diagnostic severity
+--  - [d / ]d / [w / ]w / [e / ]e = jump to previous / next diagnostic
 --  - H / <C-s> / L = show [h]elp / [s]ignature / [l]int
 --    - H / <C-s> / L = focus float
 --    - q = [q]uit float if focused
 --  - <leader> + r/a/A/l/L/H/T/D = perform LSP action
+local WARN = vim.diagnostic.severity.WARN
+local ERROR = vim.diagnostic.severity.ERROR
 local diagnostic_jump_opts = {
   { count = -1, severity = WARN, lhs = "[w", desc = "previous [W]arn" },
   { count = 1, severity = WARN, lhs = "]w", desc = "next [W]arn" },
