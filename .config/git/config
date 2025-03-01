@@ -4,6 +4,9 @@
 [init]
 	defaultBranch = main
 
+[blame]
+	date = short
+
 [color]
 	ui = auto
 
