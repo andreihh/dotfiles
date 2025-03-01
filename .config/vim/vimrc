@@ -547,7 +547,7 @@ nnoremap <expr> dS ':SDelete! ' . fnamemodify(v:this_session, ':t') . '<CR>'
 nnoremap <expr> <M-S> ':SSave! ' . <SID>SessionFile() . '<CR>'
 
 " Search:
-" - s + h/k/'/b/f/.f/r/b/g/c/l/q/:// = [s]earch
+" - s + h/k/'/b/f/.f/r/b/g/c/j/l/q/:// = [s]earch
 " - <C-j/k/f> = select next / previous / find item
 " - <C-u/d> = scroll preview [u]p / [d]own
 " - <C-l/p> = toggle [l]ine / [p]review wrapping for long lines
@@ -565,6 +565,7 @@ nnoremap s.f :Files %:h<CR>
 nnoremap sr :History<CR>
 nnoremap sg :Rg<CR>
 nnoremap sc :GFiles?<CR>
+nnoremap sj :Jumps<CR>
 nnoremap sl :lopen<CR>
 nnoremap sq :copen<CR>
 nnoremap s: :History:<CR>

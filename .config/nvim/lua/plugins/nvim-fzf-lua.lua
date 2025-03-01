@@ -35,6 +35,7 @@ return { -- Fuzzy finder (files, lsp, etc.)
       desc = "[S]earch in [.] current buffer's directory by [G]rep",
     },
     { "sc", "<cmd>FzfLua git_status<CR>", desc = "[S]earch Git [C]hanges" },
+    { "sj", "<cmd>FzfLua jumps<CR>", desc = "[S]earch [J]umps" },
     { "sl", "<cmd>FzfLua loclist<CR>", desc = "[S]earch [L]ocation list" },
     { "sq", "<cmd>FzfLua quickfix<CR>", desc = "[S]earch [Q]uickfix list" },
     {
