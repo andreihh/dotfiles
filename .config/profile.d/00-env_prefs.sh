@@ -12,5 +12,5 @@ export LC_ALL='en_US.UTF-8'
 # Make Neovim the default editor.
 export EDITOR='nvim'
 
-# Make Firefox the default browser.
-export BROWSER='firefox'
+# Make LibreWolf the default browser.
+export BROWSER='librewolf'

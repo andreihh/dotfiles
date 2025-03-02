@@ -9,7 +9,8 @@ sudo apt update -y
 
 echo "Installing packages..."
 sudo apt install -y \
-  git stow curl wget zip gzip unzip tar make gnupg firefox \
+  keepassxc extrepo \
+  git stow curl wget zip gzip unzip tar make gnupg \
   tmux lm-sensors urlscan vim \
   fd-find ripgrep bat tree calc dos2unix \
   tlp linux-tools-common linux-tools-generic \
@@ -19,7 +20,11 @@ sudo apt install -y \
   texlive texlive-latex-extra texlive-science texlive-fonts-extra latexmk \
   texlive-bibtex-extra biber \
   \
-  keepassxc vlc pdftk-java ffmpeg graphviz plantuml
+  vlc pdftk-java ffmpeg graphviz plantuml
+
+echo "Installing LibreWolf..."
+sudo extrepo enable librewolf
+sudo apt update -y && sudo apt install librewolf -y
 
 FDFIND="$(command -v fdfind)"
 readonly FDFIND
