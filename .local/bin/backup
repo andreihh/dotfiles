@@ -1,0 +1,52 @@
+#!/bin/bash -e
+#
+# Manages backups for important files: dotfiles and all directories starting
+# with an uppercase letter from the home directory.
+#
+# Requirements:
+# - `tar`, `gzip`, `gnupg`
+
+usage() {
+  cat << EOF
+Usage: $0 [-h] [-l|-r|-o] -f <file>
+
+  -l List backup contents instead of backing up. Provided file must exist.
+  -r Restore backup instead of backing up. Provided file must exist.
+  -o Same as '-r', but will overwrite all existing files.
+  -f Backup file to process.
+EOF
+}
+
+while getopts 'lrof:h' option; do
+  case "${option}" in
+    l) list=true ;;
+    r) restore=true ;;
+    o) overwrite=true ;;
+    f) file="$(readlink -f "${OPTARG}")" ;;
+    h) usage && exit 0 ;;
+    *) usage && exit 1 ;;
+  esac
+done
+
+[[ $# -gt 3 ]] && usage && exit 1
+
+[[ -z "${list}${restore}${overwrite}${file}" ]] \
+  && file="${HOME}/${USER}-$(date -I).tgz.gpg"
+
+[[ -z "${file}" ]] && usage && exit 1
+
+cd "${HOME}"
+
+if [[ -n "${list}" ]]; then
+  echo "Listing backup contents from '${file}'..."
+  gpg -d "${file}" | tar -tzv
+elif [[ -n "${restore}" ]]; then
+  echo "Restoring backup from '${file}'..."
+  gpg -d "${file}" | tar -xzv --keep-newer-files
+elif [[ -n "${overwrite}" ]]; then
+  echo "Restoring backup from '${file}' (will overwrite all existing files)..."
+  gpg -d "${file}" | tar -xzv --overwrite
+else
+  echo "Backing up to '${file}'..."
+  tar -czv .config/dotfiles/ [A-Z]*/ | gpg -c -o "${file}"
+fi
