@@ -174,9 +174,9 @@ Terminal settings:
 - Send interrupt signal: `C-c`
 - Open clipboard selection with external system handler: `A-o`
 
-## Firefox Settings
+## LibreWolf Settings
 
-Firefox settings in `about:config`:
+LibreWolf settings in `about:config`:
 
 - `browser.sessionstore.interval = 150000`
 - `browser.cache.disk.enable = false`
