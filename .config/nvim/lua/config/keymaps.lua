@@ -217,7 +217,6 @@ for _, jump_opts in ipairs(diagnostic_jump_opts) do
 end
 
 map("n", "H", vim.lsp.buf.hover, "Show [H]elp")
-map({ "i", "s" }, "<C-s>", vim.lsp.buf.signature_help, "Show [S]ignature help")
 map("n", "L", vim.diagnostic.open_float, "Show [L]int diagnostic")
 map("n", "<leader>r", vim.lsp.buf.rename, "[R]ename")
 map("n", "<leader>A", vim.lsp.codelens.run, "Run code lens [A]ction")
