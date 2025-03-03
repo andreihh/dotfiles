@@ -174,14 +174,9 @@ Terminal settings:
 - Send interrupt signal: `C-c`
 - Open clipboard selection with external system handler: `A-o`
 
-## LibreWolf Settings
+## Firefox Settings
 
-LibreWolf settings in `about:config`:
-
-- `browser.sessionstore.interval = 150000`
-- `browser.cache.disk.enable = false`
-- `browser.cache.memory.enable = true`
-- `browser.cache.memory.capacity = -1`
+Follow instructions in https://github.com/arkenfox/user.js.
 
 ## Licensing
 

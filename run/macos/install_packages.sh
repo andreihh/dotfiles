@@ -20,8 +20,7 @@ brew update
 
 echo "Installing packages..."
 brew install \
-  --cask keepassxc --cask librewolf \
-  git stow curl wget zip gzip unzip make gnupg \
+  firefox git stow curl wget zip gzip unzip make gnupg \
   --cask ghostty tmux lm-sensors urlscan vim nvim \
   fzf fd ripgrep bat lazygit tree calc dos2unix --cask alt-tab \
   \
@@ -29,7 +28,7 @@ brew install \
   \
   --cask mactex biber \
   \
-  --cask vlc pdftk-java ffmpeg graphviz plantuml
+  --cask keepassxc --cask vlc pdftk-java ffmpeg graphviz plantuml
 
 FDFIND="$(command -v fdfind)"
 readonly FDFIND

@@ -74,13 +74,6 @@ gsettings set "${GNOME_MEDIA_KEYS}.custom-keybinding:${NEW_TMX_KEY}" \
 gsettings set "${GNOME_MEDIA_KEYS}.custom-keybinding:${NEW_TMX_KEY}" \
   binding "'<Primary><Alt>x'"
 
-librewolf_bin="$(command -v librewolf)" || true
-[[ -f "${librewolf_bin}" ]] \
-  && echo "Installing LibreWolf as browser alternative..." \
-  && sudo update-alternatives --install \
-    /usr/bin/x-www-browser x-www-browser \
-    "${librewolf_bin}" 50
-
 echo "Setting up default web browser interactively..."
 sudo update-alternatives --config x-www-browser
 
