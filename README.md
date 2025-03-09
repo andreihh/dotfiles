@@ -166,13 +166,12 @@ Common shortcuts (`C = Ctrl / Cmd`, `A = Alt / Opt`, `S = Shift`):
 - Open `tmx` terminal: `C-A-x`
 - Open SSH terminal to cloud workstation: `C-A-c`
 
-Terminal settings:
+Terminal:
 
 - Paste: `C-S-v`
 - Close terminal: `C-q`
 - Switch `tmux` tab: `C-#` (mapped to `M-#`)
 - Send interrupt signal: `C-c`
-- Open clipboard selection with external system handler: `A-o`
 
 ## Licensing
 
