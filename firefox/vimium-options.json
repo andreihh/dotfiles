@@ -4,14 +4,5 @@
   "grabBackFocus": true,
   "searchEngines": "w: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia\ng: https://www.google.com/search?q=%s Google\nd: https://duckduckgo.com/?q=%s DuckDuckGo",
   "settingsVersion": "2.1.2",
-  "exclusionRules": [
-    {
-      "passKeys": "",
-      "pattern": "https://facebook.com/*"
-    },
-    {
-      "passKeys": "",
-      "pattern": "https://linkedin.com/*"
-    }
-  ]
+  "exclusionRules": []
 }

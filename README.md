@@ -174,10 +174,6 @@ Terminal settings:
 - Send interrupt signal: `C-c`
 - Open clipboard selection with external system handler: `A-o`
 
-## Firefox Settings
-
-Follow instructions in https://github.com/arkenfox/user.js.
-
 ## Licensing
 
 The scripts and configurations are licensed under the MIT license.
