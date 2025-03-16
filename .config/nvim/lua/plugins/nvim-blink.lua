@@ -39,6 +39,13 @@ return {
           treesitter_highlighting = vim.g.lsp.treesitter_enabled,
         },
       },
+      cmdline = { -- Inherit top-level options
+        keymap = { preset = "inherit" },
+        completion = {
+          list = { selection = { auto_insert = false } },
+          menu = { auto_show = true },
+        },
+      },
       appearance = {
         -- Adjusts spacing to ensure icons are aligned.
         nerd_font_variant = "normal",
