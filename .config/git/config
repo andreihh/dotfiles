@@ -16,7 +16,13 @@
 [difftool]
 	prompt = false
 
+[credential "https://codeberg.org"]
+	helper = store
+
 [credential "https://github.com"]
+	helper = store
+
+[credential "https://gitlab.com"]
 	helper = store
 
 [alias]
