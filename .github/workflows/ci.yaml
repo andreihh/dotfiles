@@ -18,6 +18,11 @@ jobs:
       # Checks out the repository under `${GITHUB_WORKSPACE}`.
       - uses: actions/checkout@v4
 
+      - name: Set up Python virtual environment
+        run: |
+          python -m venv .venv
+          source .venv/bin/activate
+
       - name: Install pre-commit checks
         run: |
           pip install pre-commit
