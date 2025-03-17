@@ -30,7 +30,7 @@ jobs:
           pre-commit autoupdate
 
       - name: Copy shellcheck config to root
-        run: cp .config/shellcheckrc shellcheckrc
+        run: cp .config/shellcheckrc .shellcheckrc
 
       - name: Run pre-commit checks
         run: pre-commit run --all-files --verbose
