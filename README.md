@@ -30,9 +30,7 @@ To configure pre-commit checks, run the following commands inside the
 repository:
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install pre-commit
+python -m pip install --user pre-commit
 pre-commit install
 pre-commit autoupdate
 ```
