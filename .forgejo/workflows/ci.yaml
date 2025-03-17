@@ -22,7 +22,7 @@ jobs:
         run: |
           python -m venv .venv
           source .venv/bin/activate
-          python -m pip install --user pre-commit
+          python -m pip install pre-commit
           pre-commit install
           pre-commit autoupdate
 
