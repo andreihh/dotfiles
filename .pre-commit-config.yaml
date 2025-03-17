@@ -29,12 +29,3 @@ repos:
     hooks:
       - id: shellcheck
         args: ["--rcfile=.config/shellcheckrc"]
-  - repo: https://github.com/pycqa/isort
-    rev: 6.0.1
-    hooks:
-      - id: isort
-  - repo: https://github.com/google/pyink
-    rev: 24.10.1
-    hooks:
-      - id: pyink
-        args: ["--config=.config/pyink"]
