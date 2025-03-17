@@ -20,8 +20,6 @@ jobs:
 
       - name: Install pre-commit checks
         run: |
-          python -m venv .venv
-          source .venv/bin/activate
           python -m pip install pre-commit
           pre-commit install
           pre-commit autoupdate
