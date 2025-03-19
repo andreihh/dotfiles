@@ -109,7 +109,7 @@ map("t", "<C-e>", "<C-\\><C-n>", "[E]xit terminal mode")
 --  - <M-S> = [s]ave session
 
 -- Search:
---  - s + <leader>/p/s/h/m/k/'/b/+/f/.f/r/g/.g/c/j/l/q/d/w/"/:// = [s]earch
+--  - s + <leader>/p/s/h/m/k/'/b/+/f/-f/r/g/-g/c/j/l/q/d/w/"/:// = [s]earch
 --  - <C-j/k/f> = select next / previous / find item
 --  - <C-u/d> = scroll preview [u]p / [d]own
 --  - <C-l/p> = toggle [l]ine / [p]review wrapping for long lines
@@ -123,12 +123,12 @@ map("t", "<C-e>", "<C-\\><C-n>", "[E]xit terminal mode")
 map("n", "s", "<nop>", "Disable [S]ubstitute to allow search chaining")
 
 -- Explorer:
---  - g. = [g]o to [.] current buffer's directory
+--  - g- = [g]o to [p]arent directory
 --  - gf = [g]o to [f]ile / [f]older
---  - gp = [g]o to [p]arent directory
 --  - gx = [g]o to URI with e[x]ternal system handler
 --  - gh = [g]o to toggle [h]idden files
 --  - gs = [g]o to change [s]orting options
+--  - gr = [g]o to [r]efresh current directory
 --  - q = [q]uit
 --  - g? = show help
 
