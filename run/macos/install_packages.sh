@@ -34,14 +34,14 @@ FDFIND="$(command -v fdfind)"
 readonly FDFIND
 if [[ -f "${FDFIND}" ]]; then
   echo "Linking 'fd' to 'fdfind'..."
-  ln -svf "${FDFIND}" "${HOME}/.local/bin/fd"
+  ln -sfv "${FDFIND}" "${HOME}/.local/bin/fd"
 fi
 
 BATCAT="$(command -v batcat)"
 readonly BATCAT
 if [[ -f "${BATCAT}" ]]; then
   echo "Linking 'bat' to 'batcat'..."
-  ln -svf "${BATCAT}" "${HOME}/.local/bin/bat"
+  ln -sfv "${BATCAT}" "${HOME}/.local/bin/bat"
 fi
 
 echo "Packages installed successfully!"

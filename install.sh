@@ -97,7 +97,7 @@ echo "Reverting changes from adopted files..."
 
 echo "Removing shell-specific profile config files..."
 for shell_profile_file in ~/.{bash_profile,zprofile}; do
-  [[ -n "${debug}" ]] || rm -vf "${shell_profile_file}"
+  [[ -n "${debug}" ]] || rm -fv "${shell_profile_file}"
 done
 
 echo "Dotfiles installed successfully!"

@@ -8,10 +8,11 @@
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
 readonly CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
+export PYENV_ROOT="${XDG_DATA_HOME:-${HOME}/.local/share}/pyenv"
 
 echo "Installing 'pyenv'..."
 if command -v brew &> /dev/null; then
-  brew install pyenv
+  brew install pyenv pyenv-virtualenv
 else
   curl -fsSL https://pyenv.run | bash
 fi
@@ -26,7 +27,8 @@ cat << 'EOF' > "${CONFIG_HOME}/bash.d/00-pyenv_integration.sh"
 
 [[ -d "${PYENV_ROOT}/bin" ]] \
   && export PATH="${PYENV_ROOT}/bin:${PATH}" \
-  && eval "$(pyenv init - bash)"
+  && eval "$(pyenv init - bash)" \
+  && eval "$(pyenv virtualenv-init -)"
 EOF
 
 echo "Installed 'pyenv' successfully!"

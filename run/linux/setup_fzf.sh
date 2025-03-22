@@ -25,7 +25,7 @@ echo "Running 'fzf' installer..."
 "${FZF_DIR}/install" --bin
 
 echo "Setting up 'fzf' symlink in user 'bin'..."
-ln -svf "${FZF_DIR}/bin/fzf" "${HOME}/.local/bin/fzf"
+ln -sfv "${FZF_DIR}/bin/fzf" "${HOME}/.local/bin/fzf"
 
 echo "Setting up 'man' pages for 'fzf'..."
 cp -r "${FZF_DIR}/man" "${MAN_DIR}"

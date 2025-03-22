@@ -60,19 +60,19 @@ gsettings set "${GNOME_MEDIA_KEYS}" custom-keybindings \
 
 echo "Setting new shell terminal shortcut to Ctrl-Alt-s..."
 gsettings set "${GNOME_MEDIA_KEYS}.custom-keybinding:${NEW_SHELL_KEY}" \
-  name "'Launch shell terminal'"
+  name 'Launch shell terminal'
 gsettings set "${GNOME_MEDIA_KEYS}.custom-keybinding:${NEW_SHELL_KEY}" \
-  command "'x-terminal-emulator'"
+  command 'x-terminal-emulator'
 gsettings set "${GNOME_MEDIA_KEYS}.custom-keybinding:${NEW_SHELL_KEY}" \
-  binding "'<Primary><Alt>s'"
+  binding '<Primary><Alt>s'
 
 echo "Setting new 'tmx' terminal shortcut to Ctrl-Alt-x..."
 gsettings set "${GNOME_MEDIA_KEYS}.custom-keybinding:${NEW_TMX_KEY}" \
-  name "'Launch tmx terminal'"
+  name 'Launch tmx terminal'
 gsettings set "${GNOME_MEDIA_KEYS}.custom-keybinding:${NEW_TMX_KEY}" \
-  command "'x-terminal-emulator -e tmx'"
+  command 'x-terminal-emulator -e tmx'
 gsettings set "${GNOME_MEDIA_KEYS}.custom-keybinding:${NEW_TMX_KEY}" \
-  binding "'<Primary><Alt>x'"
+  binding '<Primary><Alt>x'
 
 echo "Setting up default web browser interactively..."
 sudo update-alternatives --config x-www-browser
