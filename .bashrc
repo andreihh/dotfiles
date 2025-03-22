@@ -56,7 +56,7 @@ if ! shopt -oq posix; then
 fi
 
 # Load user configs.
-for file in "${XDG_CONFIG_HOME:-${HOME}/.config}/bash.d"/*; do
+for file in "${XDG_CONFIG_HOME:-${HOME}/.config}/bash.d"/*.sh; do
   [[ -f "${file}" ]] && . "${file}"
 done
 unset file

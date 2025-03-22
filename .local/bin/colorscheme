@@ -6,11 +6,10 @@
 
 [[ $# -ne 1 ]] && echo "Usage $0 COLORSCHEME" && exit 1
 
-readonly CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
 readonly COLORSCHEME="$1"
 
 echo "Configuring 'COLORSCHEME' environment variable..."
-cat << EOF > "${CONFIG_HOME}/profile.d/00-colorscheme.sh"
+cat << EOF > "${XDG_CONFIG_HOME:?}/profile.d/00-colorscheme.sh"
 # colorscheme.sh: auto-generated to set the color scheme environment variables.
 #
 # Regenerate with the \`colorscheme\` command.
@@ -23,7 +22,7 @@ EOF
 # Ghostty config cannot set dynamic themes.
 command -v ghostty &> /dev/null \
   && echo "Setting up Ghostty color scheme config..." \
-  && cat << EOF > "${CONFIG_HOME}/ghostty/colorscheme"
+  && cat << EOF > "${XDG_CONFIG_HOME:?}/ghostty/colorscheme"
 # colorscheme: auto-generated to set the Ghostty theme.
 #
 # Regenerate with the \`colorscheme\` command.
@@ -33,7 +32,7 @@ EOF
 
 # Alacritty config cannot import dynamic files.
 if command -v alacritty &> /dev/null; then
-  readonly ALACRITTY_HOME="${CONFIG_HOME}/alacritty"
+  readonly ALACRITTY_HOME="${XDG_CONFIG_HOME:?}/alacritty"
   readonly ALACRITTY_THEMES_DIR="${ALACRITTY_HOME}/themes/themes"
   readonly ALACRITTY_COLORSCHEME="${ALACRITTY_THEMES_DIR}/${COLORSCHEME}.toml"
   readonly ALACRITTY_LINK="${ALACRITTY_HOME}/colorscheme.toml"

@@ -11,8 +11,7 @@
 
 [[ $# -ne 1 ]] && echo "Usage: $0 FIREFOX_PROFILE_DIR" && exit 1
 
-readonly CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
-readonly USER_OVERRIDES="${CONFIG_HOME}/dotfiles/firefox/user-overrides.js"
+readonly USER_OVERRIDES="${XDG_CONFIG_HOME:?}/dotfiles/firefox/user-overrides.js"
 readonly PROFILE_DIR="$1"
 # shellcheck disable=SC2155
 readonly TMP_DIR="$(mktemp -d)"

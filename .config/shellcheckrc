@@ -4,6 +4,9 @@ external-sources=true
 # Don't follow dynamic external sources.
 disable=SC1090
 
+# Don't follow external sources.
+disable=SC1091
+
 # Require [[ and warn about [ in Bash.
 enable=require-double-brackets
 

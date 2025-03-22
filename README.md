@@ -58,6 +58,7 @@ proper defaults and only work if they are explicitly defined.
 User or device specific configs and binaries that should not be included in the
 repository can be provided in:
 
+- `~/.env`
 - `~/.config/profile.d/`
 - `~/.config/bash.d/`
 - `~/.local/bin/`
@@ -85,15 +86,6 @@ Example `~/.config/nvim/lua/config/overrides.lua`:
 
 ```lua
 -- [[ Config overrides ]]
-
-vim.api.nvim_create_user_command("LspCapabilities", function()
-  local clients =
-    vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() })
-  for _, client in pairs(clients) do
-    vim.print("LSP capabilities for server " .. client.name .. ":")
-    vim.print(client.server_capabilities)
-  end
-end, { desc = "Display the attached LSP capabilities" })
 
 local ensure_installed = vim.g.lsp.ensure_installed
 vim.list_extend(ensure_installed, {
@@ -153,7 +145,7 @@ Common shortcuts (`C = Ctrl / Cmd`, `A = Alt / Opt`, `S = Shift`):
 - Close window / tab: `C-w`
 - Quit app: `C-q`
 - Cycle web browser tabs: `C-1` / `C-2`
-- Cycle windows: `C-[S]-tab` (requires https://alt-tab-macos.netlify.app/)
+- Cycle windows: `C-[S]-tab`
 - Zoom in / out: `C-=` / `C--`
 - Toggle tiled left / right: `C-A-,` / `C-A-.`
 - Toggle maximized: `C-A-m`

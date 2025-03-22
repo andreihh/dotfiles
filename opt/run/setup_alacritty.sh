@@ -8,7 +8,7 @@
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
-readonly THEMES_DIR="${XDG_CONFIG_HOME:-${HOME}/.config}/alacritty/themes"
+readonly THEMES_DIR="${XDG_CONFIG_HOME:?}/alacritty/themes"
 
 echo "Installing Alacritty..."
 

@@ -13,11 +13,9 @@
 # Supports Linux and MacOS. Requires `git`, which is bundled with most Linux
 # distributions and with XCode Command Line Tools on MacOS.
 
-readonly CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
-
 readonly REPOSITORY_URL="https://github.com/andreihh/dotfiles"
-readonly DOTFILES_HOME="${CONFIG_HOME}/dotfiles"
-readonly BACKUP_DIR_DEFAULT="${CONFIG_HOME}/dotfiles.bak"
+readonly DOTFILES_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}/dotfiles"
+readonly BACKUP_DIR_DEFAULT="${DOTFILES_HOME}.bak"
 readonly RUN_DIR="${DOTFILES_HOME}/run"
 
 shopt -s nocasematch
@@ -101,6 +99,9 @@ for shell_profile_file in ~/.{bash_profile,zprofile}; do
 done
 
 echo "Dotfiles installed successfully!"
+
+echo "Sourcing '${HOME}/.profile' to ensure environment is loaded properly..."
+. "${HOME}/.profile"
 
 if [[ -z "${run_scripts+set}" ]]; then
   # Run common scripts last to ensure OS packages are installed first.

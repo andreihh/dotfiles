@@ -5,7 +5,7 @@
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
 readonly HOMEBREW_INSTALLER="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
-readonly HOMEBREW_SHELLENV="${XDG_CONFIG_HOME:-${HOME}/.config}/profile.d/00-brew.sh"
+readonly HOMEBREW_SHELLENV="${XDG_CONFIG_HOME:?}/profile.d/00-brew.sh"
 
 if ! command -v brew &> /dev/null; then
   echo "Installing Homebrew..."
