@@ -26,9 +26,11 @@
 	helper = store
 
 [alias]
-	xl = log --graph --all --decorate --oneline
 	s = status
+	xl = log --graph --all --decorate --oneline
 	ar = add -A
 	c = commit
+	ci = git add --interactive && git commit
 	a = git commit --amend
+	ai = git add --interactive && git commit --amend
 	d = difftool
