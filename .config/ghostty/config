@@ -14,8 +14,9 @@ font-feature = -calt
 font-feature = -liga
 font-feature = -dlig
 
-# Force block cursor.
+# Force blinking block cursor.
 cursor-style = block
+cursor-style-blink = true
 shell-integration-features = no-cursor
 
 # Start maximized by default.
