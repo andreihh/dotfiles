@@ -15,9 +15,6 @@ function tmxp() {
   tmx "$(basename "${project_root}")"
 }
 
-# Launch Lazygit.
-alias lgit='lazygit'
-
 # Enable colors in `less`.
 alias less='less -R'
 
