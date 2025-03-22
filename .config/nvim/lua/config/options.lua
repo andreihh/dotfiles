@@ -8,17 +8,19 @@ vim.opt.updatetime = 250 -- Decrease update time
 -- Enable true colors. Disable if not supported by the terminal.
 vim.opt.termguicolors = true
 
+-- Enable mode-specific blinking cursor.
+vim.o.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50"
+  .. ",a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor"
+  .. ",sm:block-blinkwait175-blinkoff150-blinkon175"
+
 -- Sync clipboard between OS and Neovim using OSC52.
---  Schedule the setting after `UIEnter` because it can increase startup-time.
 --  See `:help 'clipboard'`
-vim.schedule(function()
-  local osc52 = require("vim.ui.clipboard.osc52")
-  vim.g.clipboard = {
-    name = "OSC 52",
-    copy = { ["+"] = osc52.copy("+"), ["*"] = osc52.copy("*") },
-    paste = { ["+"] = osc52.paste("+"), ["*"] = osc52.paste("*") },
-  }
-end)
+local osc52 = require("vim.ui.clipboard.osc52")
+vim.g.clipboard = {
+  name = "OSC 52",
+  copy = { ["+"] = osc52.copy("+"), ["*"] = osc52.copy("*") },
+  paste = { ["+"] = osc52.paste("+"), ["*"] = osc52.paste("*") },
+}
 
 vim.opt.showmode = false -- Don't show the mode, it's already in the status line
 vim.opt.wrap = false -- Don't automatically wrap lines

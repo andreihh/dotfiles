@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd({ "WinEnter", "FocusGained" }, {
   desc = "Enable cursor line highlight when entering window",
   group = cursorline_augroup,
   callback = function()
-    vim.opt.cursorline = true
+    vim.wo.cursorline = true
   end,
 })
 
@@ -16,7 +16,7 @@ vim.api.nvim_create_autocmd({ "WinLeave", "FocusLost" }, {
   desc = "Disable cursor line highlight when leaving window",
   group = cursorline_augroup,
   callback = function()
-    vim.opt.cursorline = false
+    vim.wo.cursorline = false
   end,
 })
 
