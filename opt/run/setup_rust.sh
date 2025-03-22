@@ -1,6 +1,8 @@
 #!/bin/bash -e
 #
 # Installs Rust for Linux or MacOS systems.
+#
+# Requires `curl`.
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 

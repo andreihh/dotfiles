@@ -1,0 +1,9 @@
+#!/bin/bash -e
+#
+# Connects to `${CLOUD_WORKSTATION_HOST}` via SSH and starts `tmx`.
+
+[[ -z "${CLOUD_WORKSTATION_HOST}" ]] \
+  && echo "Cloud workstation host '\${CLOUD_WORKSTATION_HOST}' not defined!" \
+  && exit 1
+
+ssh "${CLOUD_WORKSTATION_HOST}" "$@" -t '. ~/.profile && tmx'

@@ -3,7 +3,7 @@
 # Installs Alacritty for Linux or MacOS systems.
 #
 # Requirements:
-# - Linux: Snap
+# - Linux: Snap, `git`
 # - MacOS: Homebrew
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1

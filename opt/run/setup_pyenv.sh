@@ -3,6 +3,7 @@
 # Installs `pyenv` for Linux or MacOS systems.
 #
 # Requirements:
+# - Linux: `curl`
 # - MacOS: Homebrew
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
@@ -11,6 +12,8 @@ readonly CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
 export PYENV_ROOT="${XDG_DATA_HOME:-${HOME}/.local/share}/pyenv"
 
 echo "Installing 'pyenv'..."
+
+# Use Homebrew if available.
 if command -v brew &> /dev/null; then
   brew install pyenv pyenv-virtualenv
 else
