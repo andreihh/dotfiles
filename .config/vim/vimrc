@@ -468,7 +468,7 @@ endfor
 " - <C-r> = [r]edo
 " - <C-c> = [c]opy last yank to system clipboard using OSC52
 " - s + s/u/r = [s]ort [s]imple / [u]nique / [r]everse
-" - <M-V> = [v]isual block mode
+" - v + <C-V> = [v]isual block mode
 map Y y$
 nnoremap M :PlugStatus<CR>
 nnoremap S :w<CR>
@@ -477,11 +477,11 @@ nnoremap <expr> q index(['help', 'quickfix'], &buftype) >= 0
     \ ? ':quit<CR>'
     \ : (exists('t:is_diff_tab') ? ':tabclose<CR>' : 'q')
 nnoremap <esc> <C-c>:nohlsearch<CR>
-nmap <C-c> :OSCYankRegister<CR>
+nnoremap <C-a> ggVG
+nnoremap <C-c> :OSCYankRegister<CR>
 xnoremap ss :sort<CR>
 xnoremap su :sort u<CR>
 xnoremap sr :sort!<CR>
-nnoremap <M-V> <C-v>
 
 " Navigation:
 " - gj / gk = [g]o to previous / next location

@@ -34,9 +34,10 @@ end
 --  - <esc> = clear search highlights
 --  - u = [u]ndo
 --  - <C-r> = [r]edo
+--  - <C-a> = select [a]ll
 --  - <C-c> = [c]opy to system clipboard using OSC52
 --  - s + s/u/r = [s]ort [s]imple / [u]nique / [r]everse
---  - <M-V> = [v]isual block mode
+--  - v + <C-V> = [v]isual block mode
 --  - <C-\> = show keymap help
 map("n", "M", "<cmd>Lazy<CR>", "[M]anage plugins")
 map("n", "S", "<cmd>write<CR>", "[S]ave buffer")
@@ -52,11 +53,11 @@ map("n", "q", function()
 end, "[Q]uit special window / tab or record macro")
 map("n", "<esc>", "<cmd>nohlsearch<CR>", "Clear search highlights")
 map({ "n", "x" }, "<C-c>", '"+y', "[C]opy to system clipboard using OSC52")
+map("n", "<C-a>", "ggVG", "Select [A]ll")
 map("n", "<C-c><C-c>", '"+y_', "[C]opy line to system clipboard using OSC52")
 map("x", "ss", ":sort<CR>", "[S]ort [S]imple")
 map("x", "su", ":sort u<CR>", "[S]ort [U]nique")
 map("x", "sr", ":sort!<CR>", "[S]ort [R]everse")
-map("n", "<M-V>", "<C-v>", "[V]isual block mode")
 
 -- Navigation:
 --  - gj / gk = [g]o to previous / next location
