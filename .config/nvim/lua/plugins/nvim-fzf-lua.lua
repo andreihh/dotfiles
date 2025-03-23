@@ -2,7 +2,7 @@ return { -- Fuzzy finder (files, lsp, etc.)
   "ibhagwan/fzf-lua",
   cmd = "FzfLua",
   keys = {
-    { "s.", "<cmd>FzfLua resume<CR>", desc = "[S]earch [.] resume" },
+    { "s<leader>", "<cmd>FzfLua resume<CR>", desc = "[S]earch resume" },
     { "sp", "<cmd>FzfLua builtin<CR>", desc = "[S]earch [P]icker" },
     { "sh", "<cmd>FzfLua helptags<CR>", desc = "[S]earch [H]elp tags" },
     { "sm", "<cmd>FzfLua manpages<CR>", desc = "[S]earch [M]an pages" },
@@ -23,16 +23,26 @@ return { -- Fuzzy finder (files, lsp, etc.)
     },
     { "sf", "<cmd>FzfLua files<CR>", desc = "[S]earch [F]iles" },
     {
-      "s-f",
-      "<cmd>FzfLua files cwd='%:h'<CR>",
-      desc = "[S]earch in [-] parent directory for [F]iles",
+      "s.f",
+      function()
+        require("fzf-lua").files({
+          cwd = vim.bo.filetype == "oil" and require("oil").get_current_dir()
+            or "%:h",
+        })
+      end,
+      desc = "[S]earch in [.] current buffer's directory for [F]iles",
     },
     { "sr", "<cmd>FzfLua oldfiles<CR>", desc = "[S]earch [R]ecent files" },
     { "sg", "<cmd>FzfLua live_grep<CR>", desc = "[S]earch by [G]rep" },
     {
-      "s-g",
-      "<cmd>FzfLua live_grep cwd='%:h'<CR>",
-      desc = "[S]earch in [.] parent directory by [G]rep",
+      "s.g",
+      function()
+        require("fzf-lua").live_grep({
+          cwd = vim.bo.filetype == "oil" and require("oil").get_current_dir()
+            or "%:h",
+        })
+      end,
+      desc = "[S]earch in [.] current buffer's directory by [G]rep",
     },
     { "sc", "<cmd>FzfLua git_status<CR>", desc = "[S]earch Git [C]hanges" },
     { "sj", "<cmd>FzfLua jumps<CR>", desc = "[S]earch [J]umps" },

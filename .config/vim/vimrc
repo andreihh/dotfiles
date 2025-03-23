@@ -547,7 +547,7 @@ nnoremap <expr> dS ':SDelete! ' . fnamemodify(v:this_session, ':t') . '<CR>'
 nnoremap <expr> <M-S> ':SSave! ' . <SID>SessionFile() . '<CR>'
 
 " Search:
-" - s + h/k/'/b/f/-f/r/b/g/c/j/l/q/:// = [s]earch
+" - s + h/k/'/b/f/.f/r/b/g/c/j/l/q/:// = [s]earch
 " - <C-j/k/f> = select next / previous / find item
 " - <C-u/d> = scroll preview [u]p / [d]own
 " - <C-l/p> = toggle [l]ine / [p]review wrapping for long lines
@@ -561,7 +561,7 @@ nnoremap sk :Maps<CR>
 nnoremap s' :Marks<CR>
 nnoremap sb :Buffers<CR>
 nnoremap sf :Files<CR>
-nnoremap s-f :Files %:h<CR>
+nnoremap s.f :Files %:h<CR>
 nnoremap sr :History<CR>
 nnoremap sg :Rg<CR>
 nnoremap sc :GFiles?<CR>
@@ -589,7 +589,8 @@ function! s:ConfigNetrwKeymaps() abort
   map <buffer> g- -
   map <buffer> gf <CR>
   map <buffer> gx x
-  map <buffer> gs s
+  " Should map to just `s`, but need to append a no-op key to stop waiting.
+  map <buffer> gs s<tab>
   map <buffer> gr <C-l>
   map <buffer> af %
   map <buffer> ad d
@@ -597,6 +598,8 @@ function! s:ConfigNetrwKeymaps() abort
   map <buffer> dd D
   map <buffer> q :Rexplore<CR>
   map <buffer> g? <F1>
+  " Search in current directory rather than parent.
+  nnoremap <buffer> s.f :Files %<CR>
 endfunction
 
 " VCS:
