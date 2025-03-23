@@ -16,3 +16,5 @@ if command -v brew &> /dev/null; then
 else
   snap install intellij-idea-community --classic
 fi
+
+echo "Installed IntelliJ IDEA CE successfully!"
