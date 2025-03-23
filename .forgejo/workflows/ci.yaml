@@ -24,7 +24,7 @@ jobs:
           pipx install pre-commit
 
       - name: Install pre-commit checks
-      - run: |
+        run: |
           pre-commit install
           pre-commit autoupdate
 
