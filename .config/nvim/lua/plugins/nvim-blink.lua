@@ -24,7 +24,7 @@ return {
         menu = {
           draw = {
             -- Enable Treesitter rendering only for LSP items.
-            treesitter = vim.g.lsp.treesitter_enabled and { "lsp" } or {},
+            treesitter = { "lsp" },
             columns = {
               { "kind_icon" },
               { "label", "label_description", gap = 1 },

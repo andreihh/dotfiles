@@ -21,11 +21,11 @@ return {
       -- for indent rules. If you are experiencing weird indenting issues, add
       -- the language to the list of `additional_vim_regex_highlighting` for
       -- `highlight` and `disable` languages for `indent`.
-      highlight = { enable = vim.g.lsp.treesitter_enabled },
-      indent = { enable = vim.g.lsp.treesitter_enabled },
+      highlight = { enable = true },
+      indent = { enable = true },
       textobjects = { -- See `:help nvim-treesitter-textobjects`
         select = {
-          enable = vim.g.lsp.treesitter_enabled,
+          enable = true,
           lookahead = true, -- Automatically jump forward to text object
           keymaps = {
             ["af"] = "@function.outer",
@@ -37,7 +37,7 @@ return {
           },
         },
         move = {
-          enable = vim.g.lsp.treesitter_enabled,
+          enable = true,
           set_jumps = true,
           goto_next_start = {
             ["]f"] = "@function.outer",
@@ -59,11 +59,9 @@ return {
       },
     },
     init = function()
-      if vim.g.lsp.treesitter_enabled then
-        -- Use Treesitter folds.
-        vim.opt.foldmethod = "expr"
-        vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-      end
+      -- Use Treesitter folds.
+      vim.opt.foldmethod = "expr"
+      vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
     end,
   },
   { -- Show current context
@@ -73,7 +71,6 @@ return {
   },
   { -- Better Treesitter comment strings
     "folke/ts-comments.nvim",
-    cond = vim.g.lsp.treesitter_enabled,
     event = "VeryLazy",
     config = true,
   },

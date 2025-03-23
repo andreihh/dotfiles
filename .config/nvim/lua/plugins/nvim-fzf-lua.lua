@@ -85,9 +85,6 @@ return { -- Fuzzy finder (files, lsp, etc.)
       },
       fzf = {},
     },
-    previewers = {
-      builtin = { treesitter = { enabled = vim.g.lsp.treesitter_enabled } },
-    },
     fzf_colors = true, -- Match `fzf` colors with color scheme
     defaults = { formatter = "path.dirname_first" },
     file_icon_padding = " ", -- Required for double-width icon rendering

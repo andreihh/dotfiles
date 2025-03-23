@@ -7,7 +7,6 @@
 --- folding, etc.) are disabled locally for big files.
 ---
 ---@class config.LspConfig
----@field treesitter_enabled boolean Enable / disable Treesitter globally
 ---@field servers table<string, config.LspServerConfig> LSP server configs
 ---@field format config.FormatConfig Formatting config
 ---@field lint config.LintConfig Linting config
@@ -46,7 +45,6 @@
 --- Global LSP configs.
 ---
 --- Must be defined and not `nil`. By default, it has:
---- - Treesitter enabled
 --- - Big file size threshold of 1 MiB
 --- - LSPs, formatters and linters for Lua, Vimscript and Bash.
 ---
@@ -55,7 +53,6 @@
 ---
 ---@type config.LspConfig
 vim.g.lsp = {
-  treesitter_enabled = true,
   servers = {
     lua_ls = {
       settings = {
