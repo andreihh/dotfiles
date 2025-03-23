@@ -85,6 +85,7 @@ return { -- Fuzzy finder (files, lsp, etc.)
     files = { cwd_prompt = false },
     -- Include current session files in recent files.
     oldfiles = { include_current_session = true },
+    grep = { hidden = true }, -- Enable hidden files to match `files` options
     lsp = {
       symbols = {
         symbol_icons = { -- See LSP `SymbolKind` specification
