@@ -5,15 +5,27 @@ alongside an installation script.
 
 ## Installation
 
-To install the dotfiles, run one of the following commands:
+To install the dotfiles, run the following commands:
 
-```bash
-curl -Lo - https://raw.githubusercontent.com/andreihh/dotfiles/main/install.sh \
-  | bash
-```
+- Linux:
 
 ```bash
 wget -O - https://raw.githubusercontent.com/andreihh/dotfiles/main/install.sh \
+  | bash
+```
+
+- MacOS:
+
+```bash
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
+curl -Lo \
+  https://raw.githubusercontent.com/andreihh/dotfiles/main/opt/run/setup_homebrew.sh \
+  | bash
+# Follow displayed instructions to finish setting up Homebrew and dependencies.
+```
+
+```bash
+curl -Lo - https://raw.githubusercontent.com/andreihh/dotfiles/main/install.sh \
   | bash
 ```
 

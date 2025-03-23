@@ -30,6 +30,7 @@ sudo snap install alacritty --classic
 [[ ! -d "${THEMES_DIR}" ]] \
   && echo "Cloning Alacritty themes..." \
   && mkdir -p "${THEMES_DIR}" \
-  && git clone https://github.com/alacritty/alacritty-theme "${THEMES_DIR}"
+  && git clone --depth=1 https://github.com/alacritty/alacritty-theme \
+    "${THEMES_DIR}"
 
 echo "Installed Alacritty successfully!"

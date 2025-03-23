@@ -10,8 +10,14 @@
 # run this script again. However, you must move any generated backups to a
 # different location, or force overwriting.
 #
-# Supports Linux and MacOS. Requires `git`, which is bundled with most Linux
-# distributions and with XCode Command Line Tools on MacOS.
+# Supports Linux and MacOS.
+#
+# Requirements:
+# - Linux: `git`, `stow`
+# - MacOS: `git`, `stow`, Homebrew
+#
+# Most Linux systems bundle `git` and `stow`, but MacOS dependencies will have
+# to be installed separately before running this installer.
 
 readonly REPOSITORY_URL="https://github.com/andreihh/dotfiles"
 readonly DOTFILES_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}/dotfiles"
@@ -21,11 +27,7 @@ readonly RUN_DIR="${DOTFILES_HOME}/run"
 shopt -s nocasematch
 case "${OSTYPE}" in
   linux*) os_type='linux' ;;
-  darwin*)
-    os_type='macos'
-    echo "Installing XCode Command Line Tools..."
-    xcode-select --install
-    ;;
+  darwin*) os_type='macos' ;;
   *) echo "System '${OSTYPE}' not supported!" && exit 1 ;;
 esac
 shopt -u nocasematch

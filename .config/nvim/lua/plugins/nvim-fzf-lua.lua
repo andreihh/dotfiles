@@ -30,7 +30,7 @@ return { -- Fuzzy finder (files, lsp, etc.)
             or "%:h",
         })
       end,
-      desc = "[S]earch in [.] current buffer's directory for [F]iles",
+      desc = "[S]earch [.] current buffer's directory for [F]iles",
     },
     { "sr", "<cmd>FzfLua oldfiles<CR>", desc = "[S]earch [R]ecent files" },
     { "sg", "<cmd>FzfLua live_grep<CR>", desc = "[S]earch by [G]rep" },
@@ -42,7 +42,7 @@ return { -- Fuzzy finder (files, lsp, etc.)
             or "%:h",
         })
       end,
-      desc = "[S]earch in [.] current buffer's directory by [G]rep",
+      desc = "[S]earch [.] current buffer's directory by [G]rep",
     },
     { "sc", "<cmd>FzfLua git_status<CR>", desc = "[S]earch Git [C]hanges" },
     { "sj", "<cmd>FzfLua jumps<CR>", desc = "[S]earch [J]umps" },

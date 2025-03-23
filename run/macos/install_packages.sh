@@ -1,19 +1,10 @@
 #!/bin/bash -e
 #
 # Installs required packages. Must run before all other scripts.
+#
+# Requires Homebrew.
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
-
-readonly HOMEBREW_INSTALLER="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
-readonly HOMEBREW_SHELLENV="${XDG_CONFIG_HOME:?}/profile.d/00-brew.sh"
-
-if ! command -v brew &> /dev/null; then
-  echo "Installing Homebrew..."
-  # `curl` should be installed by default on MacOS.
-  [[ -n "${debug}" ]] || /bin/bash -c "$(curl -fsSL ${HOMEBREW_INSTALLER})"
-  echo "You must write the 'brew shellenv' output to '${HOMEBREW_SHELLENV}'!"
-  echo "Installed Homebrew successfully!"
-fi
 
 echo "Updating package index..."
 brew update
