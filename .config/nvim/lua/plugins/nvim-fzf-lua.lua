@@ -85,6 +85,38 @@ return { -- Fuzzy finder (files, lsp, etc.)
     files = { cwd_prompt = false },
     -- Include current session files in recent files.
     oldfiles = { include_current_session = true },
+    lsp = {
+      symbols = {
+        symbol_icons = { -- See LSP `SymbolKind` specification
+          File = "󰈙", -- `nf-md-file_document`
+          Module = "", -- `nf-oct-package`
+          Namespace = "󰦮", -- `nf-md-tournament`
+          Package = "", -- `nf-oct-package`
+          Class = "󰠱", -- `nf-md-shape`
+          Method = "󰊕", -- `nf-md-function`
+          Property = "󰓹", -- `nf-md-tag`
+          Field = "󰓹", -- `nf-md-tag`
+          Constructor = "󰒓", -- `nf-md-cog`
+          Enum = "", -- `nf-fa-sort_alpha_asc`
+          Interface = "󰒪", -- `nf-md-sitemap`
+          Function = "󰊕", -- `nf-md-function`
+          Variable = "󰀫", -- `nf-md-alpha`
+          Constant = "󰏿", -- `nf-md-pi`
+          String = "", -- 󰀬 󱀍 󱌯  󰎠 s  s
+          Number = "󰎠", -- `nf-md-numeric`
+          Boolean = "󰨙", -- `nf-md-toggle_switch_off_outline`
+          Array = "󱡠", -- `nf-md-format_list_group`
+          Object = "", -- `nf-cod-symbol_namespace`
+          Key = "󰌋", -- `nf-md-key_variant`
+          Null = "󰟢", -- `nf-md-null`
+          EnumMember = "", -- `nf-fa-sort_alpha_asc`
+          Struct = "󰙅", -- `nf-md-file_tree`
+          Event = "", -- `nf-fa-bolt`
+          Operator = "󰆕", -- `nf-md-contrast`
+          TypeParameter = "󰗴", -- `nf-md-format_title`
+        },
+      },
+    },
   },
   init = function()
     -- Register `fzf-lua` for `vim.ui.select` lazily.
