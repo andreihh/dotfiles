@@ -23,8 +23,10 @@ jobs:
 
       - name: Install pre-commit checks
         run: |
-          su - forgejo -c 'python3 -m pip install --user pre-commit'
-          su - forgejo -c 'pre-commit install && pre-commit autoupdate'
+          export PATH="${HOME}/.local/bin:${PATH}"
+          pipx ensurepath && ensurepath --global
+          pipx install pre-commit
+          pre-commit install && pre-commit autoupdate
 
       - name: Run pre-commit checks
-        run: su - forgejo -c 'pre-commit run --all-files --verbose'
+        run: pre-commit run --all-files --verbose
