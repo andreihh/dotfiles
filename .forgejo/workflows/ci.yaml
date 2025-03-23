@@ -23,9 +23,8 @@ jobs:
 
       - name: Install pre-commit checks
         run: |
-          python3 -m pip install --user pre-commit
-          pre-commit install
-          pre-commit autoupdate
+          su forgejo -c 'python3 -m pip install --user pre-commit'
+          su forgejo -c 'pre-commit install && pre-commit autoupdate'
 
       - name: Run pre-commit checks
-        run: pre-commit run --all-files --verbose
+        run: su forgejo -c 'pre-commit run --all-files --verbose'
