@@ -24,7 +24,6 @@ jobs:
       - name: Install pre-commit checks
         run: |
           export PATH="${HOME}/.local/bin:${PATH}"
-          pipx ensurepath && ensurepath --global
           pipx install pre-commit
           pre-commit install && pre-commit autoupdate
 
