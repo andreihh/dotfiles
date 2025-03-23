@@ -20,7 +20,8 @@ jobs:
 
       - name: Install pre-commit checks
         run: |
-          sudo apt install pipx
+          sudo apt-get install pipx
+          pipx ensurepath
           pipx install pre-commit
           pre-commit install
           pre-commit autoupdate
