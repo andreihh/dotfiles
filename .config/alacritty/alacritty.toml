@@ -1,7 +1,7 @@
 # alacritty.toml: configures Alacritty.
 
 [general]
-import = ["colorscheme.toml"]  # Color scheme inferred from `${COLORSCHEME}`
+import = ["colorscheme.toml"]  # Color scheme inferred from `COLORSCHEME`
 
 [font]
 normal = { family = "JetBrainsMono Nerd Font" }  # Use a Nerd Font

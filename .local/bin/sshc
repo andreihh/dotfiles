@@ -1,6 +1,6 @@
 #!/bin/bash -e
 #
-# Connects to `${CLOUD_WORKSTATION_HOST}` via SSH and starts `tmx`.
+# Connects to `CLOUD_WORKSTATION_HOST` via SSH and starts `tmx`.
 
 [[ -z "${CLOUD_WORKSTATION_HOST}" ]] \
   && echo "Host environment variable 'CLOUD_WORKSTATION_HOST' not defined!" \

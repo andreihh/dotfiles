@@ -43,7 +43,7 @@ export TEXMACS_HOME_PATH="${XDG_STATE_HOME}/texmacs"
 # Export Docker config directory.
 export DOCKER_CONFIG="${XDG_CONFIG_HOME}/docker"
 
-# Export the JRE for apps that rely on `${JAVA_HOME}`.
+# Export the JRE for apps that rely on `JAVA_HOME`.
 # shellcheck disable=SC2155
 export JAVA_HOME="$(readlink -e '/usr/bin/java' | sed 's:/bin/java::')"
 

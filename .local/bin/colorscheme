@@ -1,7 +1,7 @@
 #!/bin/bash -e
 #
 # Configures the color scheme for terminal apps (`tmux`, `vim`, `nvim`, etc.):
-# - Exports the system-wide `${COLORSCHEME}` environment variable
+# - Exports the system-wide `COLORSCHEME` environment variable
 # - Updates terminal configs that don't support dynamic loading of color schemes
 
 [[ $# -ne 1 ]] && echo "Usage $0 COLORSCHEME" && exit 1
