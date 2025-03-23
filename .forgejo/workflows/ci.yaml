@@ -16,7 +16,7 @@ jobs:
     runs-on: codeberg-tiny
     steps:
       # Sets up user and permissions.
-      - uses: https://codeberg.org/andreihh/setup-user
+      - uses: https://codeberg.org/andreihh/setup-user@main
 
       # Checks out the repository under `GITHUB_WORKSPACE`.
       - uses: https://code.forgejo.org/actions/checkout@v4
