@@ -15,16 +15,15 @@ jobs:
   check:
     runs-on: codeberg-tiny
     steps:
+      # Sets up user and permissions.
+      - uses: https://codeberg.org/andreihh/setup-user
+
       # Checks out the repository under `GITHUB_WORKSPACE`.
       - uses: https://code.forgejo.org/actions/checkout@v4
 
-      - name: Install pre-commit
-        run: |
-          pipx ensurepath
-          pipx install pre-commit
-
       - name: Install pre-commit checks
         run: |
+          python3 -m pip install --user pre-commit
           pre-commit install
           pre-commit autoupdate
 
