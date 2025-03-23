@@ -13,19 +13,18 @@ readonly THEMES_DIR="${XDG_CONFIG_HOME:?}/alacritty/themes"
 echo "Installing Alacritty..."
 
 # Use Homebrew if available.
-command -v brew &> /dev/null \
-  && brew install --cask alacritty \
-  && echo "Installed Alacritty successfully!" \
-  && exit 0
+if command -v brew &> /dev/null; then
+  brew install --cask alacritty
+else
+  echo "Installing Snap..."
+  sudo apt install -y snapd
 
-echo "Installing Snap..."
-sudo apt install -y snapd
+  echo "Refreshing Snap packages..."
+  sudo snap refresh
 
-echo "Refreshing Snap packages..."
-sudo snap refresh
-
-echo "Installing Alacritty Snap package..."
-sudo snap install alacritty --classic
+  echo "Installing Alacritty Snap package..."
+  sudo snap install alacritty --classic
+fi
 
 [[ ! -d "${THEMES_DIR}" ]] \
   && echo "Cloning Alacritty themes..." \
