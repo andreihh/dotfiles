@@ -16,14 +16,7 @@ echo "Installing Alacritty..."
 if command -v brew &> /dev/null; then
   brew install --cask alacritty
 else
-  echo "Installing Snap..."
-  sudo apt install -y snapd
-
-  echo "Refreshing Snap packages..."
-  sudo snap refresh
-
-  echo "Installing Alacritty Snap package..."
-  sudo snap install alacritty --classic
+  snap install alacritty --classic
 fi
 
 [[ ! -d "${THEMES_DIR}" ]] \

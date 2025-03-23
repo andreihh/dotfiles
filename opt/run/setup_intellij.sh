@@ -11,17 +11,8 @@
 echo "Installing IntelliJ IDEA CE..."
 
 # Use Homebrew if available.
-command -v brew &> /dev/null \
-  && brew install --cask intellij-idea-ce \
-  && echo "Installed IntelliJ IDEA CE successfully!" \
-  && exit 0
-
-echo "Installing Snap..."
-sudo apt install -y snapd
-
-echo "Refreshing Snap packages..."
-sudo snap refresh
-
-echo "Installing IntelliJ IDEA CE Snap package..."
-sudo snap install intellij-idea-community --classic
-echo "Installed IntelliJ IDEA CE successfully!"
+if command -v brew &> /dev/null; then
+  brew install --cask intellij-idea-ce
+else
+  snap install intellij-idea-community --classic
+fi
