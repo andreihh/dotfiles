@@ -3,9 +3,28 @@
 # Creates and attaches to the specified `tmux` session, or to the last session
 # if none is specified, or to the `main` session if no sessions exist.
 
-[[ $# -gt 1 ]] && echo "Usage: $0 [SESSION]" && exit 1
+usage() {
+  cat << EOF
+Usage: $0 [-h] [-l] [-s SESSION]
 
-session="$1"
+Options:
+  -l Start as a login shell.
+  -s Session to attach to. Defaults to last session, or 'main' if none exist.
+  -h Print this message and exit.
+EOF
+}
+
+while getopts 'ls:h' option; do
+  case "${option}" in
+    s) session="${OPTARG}" ;;
+    l) login=true ;;
+    h) usage && exit 0 ;;
+    *) usage && exit 1 ;;
+  esac
+done
+
+[[ -n "${login}" ]] && . "${HOME}/.profile"
+
 if [[ -z "${TMUX}" ]]; then
   # Try to attach to session, else create and attach to it (defaults to `main`).
   tmux attach -t "${session}" &> /dev/null || tmux new -A -s "${session:-main}"
