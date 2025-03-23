@@ -16,7 +16,7 @@ cat << EOF > "${XDG_CONFIG_HOME:?}/profile.d/00-colorscheme.sh"
 #
 # shellcheck shell=sh
 
-export COLORSCHEME="${COLORSCHEME}"
+export COLORSCHEME="\${COLORSCHEME-${COLORSCHEME}}"
 EOF
 
 # Ghostty config cannot set dynamic themes.
@@ -28,19 +28,22 @@ command -v ghostty &> /dev/null \
 # Regenerate with the \`colorscheme\` command.
 
 theme = ${COLORSCHEME}
+env = COLORSCHEME=${COLORSCHEME}
 EOF
 
 # Alacritty config cannot import dynamic files.
-if command -v alacritty &> /dev/null; then
-  readonly ALACRITTY_HOME="${XDG_CONFIG_HOME:?}/alacritty"
-  readonly ALACRITTY_THEMES_DIR="${ALACRITTY_HOME}/themes/themes"
-  readonly ALACRITTY_COLORSCHEME="${ALACRITTY_THEMES_DIR}/${COLORSCHEME}.toml"
-  readonly ALACRITTY_LINK="${ALACRITTY_HOME}/colorscheme.toml"
+command -v alacritty &> /dev/null \
+  && echo "Setting up Alacritty color scheme config..." \
+  && cat << EOF > "${XDG_CONFIG_HOME:?}/alacritty/colorscheme.toml"
+# colorscheme.toml: auto-generated to set the Alacritty theme.
+#
+# Regenerate with the \`colorscheme\` command.
 
-  echo "Linking Alacritty color scheme..."
-  [[ -f "${ALACRITTY_COLORSCHEME}" ]] \
-    && ln -sf "${ALACRITTY_COLORSCHEME}" "${ALACRITTY_LINK}" \
-    || echo "Failed to apply Alacritty color scheme!"
-fi
+[general]
+import = ["themes/themes/${COLORSCHEME}.toml"]
+
+[env]
+COLORSCHEME = "${COLORSCHEME}"
+EOF
 
 echo "Color scheme updated to '${COLORSCHEME}!"
