@@ -4,14 +4,18 @@ repos:
     hooks:
       - id: check-case-conflict
       - id: check-executables-have-shebangs
+      - id: check-illegal-windows-names
       - id: check-json
       - id: check-merge-conflict
       - id: check-shebang-scripts-are-executable
+      - id: check-symlinks
       - id: check-toml
+      - id: check-xml
       - id: check-yaml
         args: ["--allow-multiple-documents"] # Allow for `clang-format` config
       - id: detect-private-key
       - id: end-of-file-fixer
+      - id: fix-byte-order-marker
       - id: forbid-submodules
       - id: mixed-line-ending
         exclude: .ignore # Don't fix `Icon` mixed line ending
