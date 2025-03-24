@@ -15,17 +15,11 @@ jobs:
   check:
     runs-on: codeberg-tiny
     steps:
-      # Sets up user and permissions.
-      - uses: https://codeberg.org/andreihh/setup-user@main
-
       # Checks out the repository under `GITHUB_WORKSPACE`.
       - uses: https://code.forgejo.org/actions/checkout@v4
 
-      - name: Install pre-commit checks
+      - name: Run pre-commit checks
         run: |
           export PATH="${HOME}/.local/bin:${PATH}"
           pipx install pre-commit
-          pre-commit install && pre-commit autoupdate
-
-      - name: Run pre-commit checks
-        run: pre-commit run --all-files --verbose
+          pre-commit run --all-files --color=always --verbose
