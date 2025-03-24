@@ -42,7 +42,7 @@ To configure pre-commit checks, run the following commands inside the
 repository:
 
 ```bash
-python -m pip install --user pre-commit
+pipx install pre-commit
 pre-commit install
 pre-commit autoupdate
 ```

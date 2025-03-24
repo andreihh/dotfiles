@@ -15,7 +15,7 @@ brew install \
   --cask ghostty tmux lm-sensors urlscan vim nvim \
   fzf fd ripgrep bat lazygit tree calc dos2unix --cask alt-tab \
   \
-  python3 gcc cmake \
+  python3 pipx gcc cmake \
   \
   --cask mactex biber \
   \
