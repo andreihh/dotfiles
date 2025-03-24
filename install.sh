@@ -32,10 +32,11 @@ case "${OSTYPE}" in
 esac
 shopt -u nocasematch
 
-usage() {
+function usage() {
   cat << EOF
-Usage: $0 [-h] [-d] [-f] [-b <backup-directory>] [-r <script-list>]
+Usage: $0 [-h] [-d] [-f] [-b BACKUP_DIR] [-r SCRIPTS]
 
+Options:
   -d  Debug / dry run mode (simulate all actions, but do not execute them).
   -f  Force install by deleting prior backup and installation.
   -b  Directory where dotfiles should be backed up, or skip if empty string.

@@ -6,10 +6,11 @@
 # Requirements:
 # - `tar`, `gzip`, `gnupg`
 
-usage() {
+function usage() {
   cat << EOF
-Usage: $0 [-h] [-l|-r|-o] -f <file>
+Usage: $0 [-h] [-l|-r|-o] -f FILE
 
+Options:
   -l List backup contents instead of backing up. Provided file must exist.
   -r Restore backup instead of backing up. Provided file must exist.
   -o Same as '-r', but will overwrite all existing files.

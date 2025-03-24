@@ -5,10 +5,11 @@
 readonly SSH_CONFIG="${HOME}/.ssh/config"
 readonly SSHD_CONFIG="/etc/ssh/sshd_config"
 
-usage() {
+function usage() {
   cat << EOF
-Usage: $0 [-h] [-s] [-c <trusted-hosts-pattern>]
+Usage: $0 [-h] [-s] [-c TRUSTED_HOSTS_PATTERN]
 
+Options:
   -s  Configure SSH server.
   -c  Configure SSH client with the given pattern of trusted hosts.
   -h  Print this message and exit.

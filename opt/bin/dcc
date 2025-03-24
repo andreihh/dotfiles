@@ -22,9 +22,10 @@
 
 readonly DCC="sudo /opt/dell/dcc/cctk"
 
-usage() {
+function usage() {
   cat << EOF
 Usage: $0 OPTION
+
 Options:
   --stat  Prints the current thermal / performance / battery settings.
   --optimized-mode  Switches the thermal profile to 'Optimized'.
