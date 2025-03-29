@@ -33,11 +33,7 @@ return {
           },
         },
         -- Automatically show documentation for the selected item.
-        documentation = {
-          auto_show = true,
-          auto_show_delay_ms = 5,
-          treesitter_highlighting = vim.g.lsp.treesitter_enabled,
-        },
+        documentation = { auto_show = true, auto_show_delay_ms = 5 },
       },
       cmdline = { -- Inherit top-level options
         keymap = { preset = "inherit" },
