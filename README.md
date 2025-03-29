@@ -75,6 +75,7 @@ repository can be provided in:
 - `~/.config/bash.d/`
 - `~/.local/bin/`
 - `~/.config/tmux/overrides.tmux`
+- `~/.config/nvim/lsp/`
 - `~/.config/nvim/lua/config/overrides.lua`
 - `~/.config/nvim/lua/plugins/`
 - `~/.config/vim/overrides.vim`
@@ -99,29 +100,14 @@ Example `~/.config/nvim/lua/config/overrides.lua`:
 ```lua
 -- [[ Config overrides ]]
 
-local ensure_installed = vim.g.lsp.ensure_installed
-vim.list_extend(ensure_installed, {
-  "pyright",
-  "clangd",
-  "jdtls",
-  "kotlin_language_server",
-  "isort",
-  "pyink",
-  "clang-format",
-  "google-java-format",
-  "ktfmt",
-  "prettier",
-  "pylint",
-  "checkstyle",
-})
+-- Start LSPs automatically.
+--  Override configs with `vim.lsp.config()`.
+--  See `:help vim.lsp.Config`
+vim.lsp.enable({ "pyright", "clangd", "jdtls", "kotlin_language_server" })
 
-vim.g.lsp = vim.tbl_deep_extend("force", vim.g.lsp, {
-  servers = {
-    pyright = {},
-    clangd = {},
-    jdtls = {},
-    kotlin_language_server = {},
-  },
+-- Configure formatters.
+--  See `:help conform`
+vim.g.format_opts = {
   formatters_by_ft = {
     python = { "isort", "pyink" },
     cpp = { "clang-format" },
@@ -134,13 +120,33 @@ vim.g.lsp = vim.tbl_deep_extend("force", vim.g.lsp, {
   formatters = {
     ktfmt = { prepend_args = { "--google-style" } },
   },
+}
+
+-- Configure linters.
+--  See `:help lint`
+vim.g.lint_opts = {
   linters_by_ft = {
     python = { "pylint" },
     -- `clangd` embeds `clang-tidy`
     java = { "checkstyle" },
   },
-  ensure_installed = ensure_installed,
-})
+}
+
+-- Ensure development tools are installed by Mason.
+vim.g.ensure_installed = {
+  "pyright",
+  "clangd",
+  "jdtls",
+  "kotlin_language_server",
+  "isort",
+  "pyink",
+  "clang-format",
+  "google-java-format",
+  "ktfmt",
+  "prettier",
+  "pylint",
+  "checkstyle",
+}
 ```
 
 ## Hotkeys

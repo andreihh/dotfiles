@@ -11,5 +11,10 @@ return { -- Formatting
       desc = "Format",
     },
   },
-  opts = vim.g.lsp.format,
+  opts = vim.tbl_deep_extend("force", {
+    formatters_by_ft = {
+      lua = { "stylua" },
+      sh = { "shfmt" },
+    },
+  }, vim.g.format_opts or {}),
 }

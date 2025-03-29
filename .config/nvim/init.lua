@@ -9,7 +9,6 @@
 require("config.options")
 require("config.autocmds")
 require("config.keymaps")
-require("config.lsp")
 
 -- Load optional user overrides.
 pcall(require, "config.overrides")

@@ -16,7 +16,7 @@ return { -- Linting
   },
   config = function()
     local lint = require("lint")
-    lint.linters = vim.g.lsp.lint.linters
-    lint.linters_by_ft = vim.g.lsp.lint.linters_by_ft
+    lint.linters = vim.g.lint_opts.linters or {}
+    lint.linters_by_ft = vim.g.lint_opts.linters_by_ft or {}
   end,
 }

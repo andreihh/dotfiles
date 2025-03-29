@@ -14,7 +14,6 @@ vim.o.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50"
   .. ",sm:block-blinkwait175-blinkoff150-blinkon175"
 
 -- Sync clipboard between OS and Neovim using OSC52.
---  See `:help 'clipboard'`
 vim.g.clipboard = "osc52"
 
 vim.opt.showmode = false -- Don't show the mode, it's already in the status line
@@ -25,7 +24,6 @@ vim.opt.colorcolumn = "+1" -- Highlight column after `textwidth`
 vim.opt.signcolumn = "yes" -- Enable sign column
 
 -- Sets how to display certain whitespace characters in the editor.
---  See `:help 'list'` and `:help 'listchars'`
 vim.opt.list = true
 vim.opt.listchars = {
   tab = "» ",

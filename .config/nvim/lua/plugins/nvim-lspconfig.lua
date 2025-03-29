@@ -1,41 +1,25 @@
-return { -- LSP configuration
-  "neovim/nvim-lspconfig",
-  dependencies = {
-    -- Ensure the servers and required tools are installed.
-    --  To check the current status of installed tools and/or manually install
-    --  other tools, you can run:
-    --    :Mason
-    --
-    --  You can press `g?` for help in this menu.
-    { "williamboman/mason.nvim", config = true },
-    { "williamboman/mason-lspconfig.nvim", config = true },
-    { -- Automatically install LSPs and related tools to stdpath for Neovim.
-      "WhoIsSethDaniel/mason-tool-installer.nvim",
-      opts = { ensure_installed = vim.g.lsp.ensure_installed },
+return {
+  -- Default LSP configs.
+  --  See `:help vim.lsp.config()`
+  { "neovim/nvim-lspconfig", lazy = true },
+  -- Package manager for development tools (LSPs, formatters, linters, etc.).
+  --  To check the current status of installed tools and/or manually install
+  --  other tools run:
+  --    :Mason
+  --
+  --  You can press `g?` for help in this menu.
+  { "williamboman/mason.nvim", config = true },
+  { -- Automatically install required tools to `stdpath()`.
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    opts = {
+      ensure_installed = vim.list_extend({
+        "lua-language-server",
+        "vim-language-server",
+        "bash-language-server",
+        "stylua",
+        "shfmt",
+        "shellcheck", -- `bash-language-server` integrates with `shellcheck`
+      }, vim.g.ensure_installed or {}),
     },
-
-    "saghen/blink.cmp", -- Allows extra capabilities provided by `blink.cmp`
   },
-  opts = { servers = vim.g.lsp.servers },
-  config = function(_, opts)
-    local lspconfig = require("lspconfig")
-    local blink = require("blink.cmp")
-    for server, config in pairs(opts.servers) do
-      -- LSP servers and clients are able to communicate to each other what
-      -- features they support.
-      --  By default, Neovim doesn't support everything that is in the LSP
-      --  specification. When you add `blink.cmp`, `luasnip`, etc. Neovim now
-      --  has *more* capabilities. So, we create new capabilities with
-      --  `blink.cmp`, and then broadcast that to the servers.
-      --
-      -- TODO: skip updating capabilities on Neovim 0.11+ and remove `blink.cmp`
-      -- dependency once https://github.com/neovim/nvim-lspconfig/issues/3494
-      -- is resolved. See:
-      --  - https://github.com/Saghen/blink.cmp/pull/897
-      --  - https://github.com/Saghen/blink.cmp/issues/987
-      config.capabilities =
-        blink.get_lsp_capabilities(config.capabilities or {})
-      lspconfig[server].setup(config)
-    end
-  end,
 }
