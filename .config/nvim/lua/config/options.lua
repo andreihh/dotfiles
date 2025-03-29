@@ -15,12 +15,7 @@ vim.o.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50"
 
 -- Sync clipboard between OS and Neovim using OSC52.
 --  See `:help 'clipboard'`
-local osc52 = require("vim.ui.clipboard.osc52")
-vim.g.clipboard = {
-  name = "OSC 52",
-  copy = { ["+"] = osc52.copy("+"), ["*"] = osc52.copy("*") },
-  paste = { ["+"] = osc52.paste("+"), ["*"] = osc52.paste("*") },
-}
+vim.g.clipboard = "osc52"
 
 vim.opt.showmode = false -- Don't show the mode, it's already in the status line
 vim.opt.wrap = false -- Don't automatically wrap lines
