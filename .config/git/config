@@ -28,9 +28,17 @@
 [alias]
 	s = status
 	xl = log --graph --all --decorate --oneline
-	ar = add -A
+	go = checkout
 	c = commit
-	ci = git add --interactive && git commit
-	a = git commit --amend
-	ai = git add --interactive && git commit --amend
+	ci = !git add --interactive && git commit
+	ca = !git add -A && git commit
+	a = commit --amend
+	ai = !git add --interactive && git commit --amend
+	aa = !git add -A && git commit --amend
 	d = difftool
+	p = push
+	f = fetch
+	fr = pull --rebase
+	fm = pull --merge
+	frp = !git pull --rebase && git push
+	fmp = !git pull --merge && git push
