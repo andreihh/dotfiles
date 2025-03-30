@@ -2,7 +2,9 @@
 #
 # Installs Ghostty for Linux systems.
 #
-# Requires `curl`. See https://github.com/mkasberg/ghostty-ubuntu.
+# See https://github.com/mkasberg/ghostty-ubuntu.
+#
+# Requirements: `curl`
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 

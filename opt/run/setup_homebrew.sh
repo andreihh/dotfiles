@@ -2,7 +2,7 @@
 #
 # Installs Homebrew on MacOS systems.
 #
-# Requires `curl`, which should be installed by default on MacOS.
+# Requirements: `curl` (should be installed by default on MacOS)
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 

@@ -2,7 +2,7 @@
 #
 # Installs Vim from sources for Linux systems.
 #
-# Requires `git`. Will install other dependencies.
+# Requirements: `apt-get`, `git`, `make`
 #
 # This is needed because the Vim version available in package managers is too
 # old and doesn't support XDG directories (requires version 9.1.0327 or newer).
@@ -14,7 +14,7 @@ readonly VIM_DIR="${HOME}/.local/src/vim"
 echo "Installing Vim..."
 
 echo "Installing Vim build dependencies..."
-sudo apt install libncurses-dev
+sudo apt-get install -y libncurses-dev
 
 echo "Cleaning up prior Vim installation..."
 rm -rf "${VIM_DIR}"

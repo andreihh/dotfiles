@@ -6,7 +6,7 @@
 # built in.
 #
 # Requirements:
-# - Linux: `wget`, `unzip`, `fontconfig`
+# - Linux: `apt-get`, `wget`, `unzip`
 # - MacOS: Homebrew
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
@@ -24,7 +24,7 @@ command -v brew &> /dev/null \
   && exit 0
 
 echo "Installing 'fontconfig'..."
-sudo apt install -y fontconfig
+sudo apt-get install -y fontconfig
 
 echo "Downloading 'JetBrainsMono'..."
 wget -P "${FONTS_DIR}" "${FONT_URL}"

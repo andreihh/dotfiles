@@ -2,7 +2,7 @@
 #
 # Installs the latest LTS version of `nvm`.
 #
-# Requires `curl`.
+# Requirements: `curl`
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 

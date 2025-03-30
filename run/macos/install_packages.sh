@@ -2,7 +2,7 @@
 #
 # Installs required packages. Must run before all other scripts.
 #
-# Requires Homebrew.
+# Requirements: Homebrew
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 

@@ -2,7 +2,7 @@
 #
 # Installs `pip` for Linux or MacOS systems.
 #
-# Requires `curl`.
+# Requirements: `curl`
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 

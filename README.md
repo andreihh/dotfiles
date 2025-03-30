@@ -75,9 +75,9 @@ repository can be provided in:
 - `~/.config/bash.d/`
 - `~/.local/bin/`
 - `~/.config/tmux/overrides.tmux`
-- `~/.config/nvim/lsp/`
 - `~/.config/nvim/lua/config/overrides.lua`
 - `~/.config/nvim/lua/plugins/`
+- `~/.config/nvim/lsp/`
 - `~/.config/vim/overrides.vim`
 - `~/.config/vim/overrides.plug.vim`
 
@@ -89,9 +89,6 @@ Example `~/.config/bash.d/10-extras.sh`:
 # Export Git credentials.
 export GIT_AUTHOR_NAME="Andrei Heidelbacher"
 export GIT_COMMITTER_NAME="${GIT_AUTHOR_NAME}"
-export GIT_AUTHOR_EMAIL="andrei.heidelbacher@gmail.com"
-export GIT_COMMITTER_EMAIL="${GIT_AUTHOR_EMAIL}"
-
 ...
 ```
 
@@ -103,7 +100,7 @@ Example `~/.config/nvim/lua/config/overrides.lua`:
 -- Start LSPs automatically.
 --  Override configs with `vim.lsp.config()`.
 --  See `:help vim.lsp.Config`
-vim.lsp.enable({ "pyright", "clangd", "jdtls", "kotlin_language_server" })
+vim.lsp.enable({ "pyright", "clangd", "jdtls" })
 
 -- Configure formatters.
 --  See `:help conform`
@@ -112,13 +109,9 @@ vim.g.format_opts = {
     python = { "isort", "pyink" },
     cpp = { "clang-format" },
     java = { "google-java-format" },
-    kotlin = { "ktfmt" },
     markdown = { "prettier" },
     json = { "prettier" },
     yaml = { "prettier" },
-  },
-  formatters = {
-    ktfmt = { prepend_args = { "--google-style" } },
   },
 }
 

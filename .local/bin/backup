@@ -3,8 +3,7 @@
 # Manages backups for important files: dotfiles and all directories starting
 # with an uppercase letter from the home directory.
 #
-# Requirements:
-# - `tar`, `gzip`, `gnupg`
+# Requirements: `tar`, `gzip`, `gnupg`
 
 function usage() {
   cat << EOF

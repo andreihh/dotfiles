@@ -2,7 +2,7 @@
 #
 # Installs Neovim from sources for Linux systems.
 #
-# Requires `git`. Will install other dependencies.
+# Requirements: `apt-get`, `git`, `make`
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
@@ -11,7 +11,7 @@ readonly NVIM_DIR="${HOME}/.local/src/nvim"
 echo "Installing Neovim..."
 
 echo "Installing Neovim build dependencies..."
-sudo apt install -y ninja-build gettext cmake unzip curl build-essential
+sudo apt-get install -y ninja-build gettext cmake unzip curl build-essential
 
 echo "Cleaning up prior Neovim installation..."
 rm -rf "${NVIM_DIR}"

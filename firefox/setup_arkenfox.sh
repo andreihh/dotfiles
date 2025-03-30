@@ -7,7 +7,7 @@
 #
 # See https://github.com/arkenfox/user.js.
 #
-# Requires `git`.
+# Requirements: `git`
 
 [[ $# -ne 1 ]] && echo "Usage: $0 FIREFOX_PROFILE_DIR" && exit 1
 

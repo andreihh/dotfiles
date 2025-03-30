@@ -2,8 +2,8 @@
 #
 # Updates all installed packages using the available package managers.
 #
-# Uses `apt` on Linux and `brew` on MacOS. Also updates `nvim`, `fzf`, and
-# `lazygit` source insallations if `apt` is available.
+# Uses `apt-get` on Linux and `brew` on MacOS. Also updates `nvim`, `fzf`, and
+# `lazygit` source insallations if `apt-get` is available.
 
 [[ $# -gt 0 ]] && echo "Usage $0" && exit 1
 
@@ -16,11 +16,11 @@ readonly NVM_INSTALLER="${RUN_DIR}/setup_nvm.sh"
 
 echo "Updating packages..."
 
-command -v apt &> /dev/null \
+command -v apt-get &> /dev/null \
   && echo "Updating 'apt' packages..." \
-  && sudo apt update -y \
-  && sudo apt upgrade --autoremove -y \
-  && sudo apt autoclean -y
+  && sudo apt-get update -y \
+  && sudo apt-get upgrade --autoremove -y \
+  && sudo apt-get autoclean -y
 
 command -v brew &> /dev/null \
   && echo "Updating Homebrew packages..." \

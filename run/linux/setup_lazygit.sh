@@ -2,7 +2,7 @@
 #
 # Installs Lazygit from sources for Linux systems.
 #
-# Requires `curl`, `tar` and `install`.
+# Requirements: `curl`, `tar`, `install`
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 

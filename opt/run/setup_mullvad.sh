@@ -5,6 +5,7 @@
 # See https://mullvad.net/en/download/browser.
 #
 # Requirements:
+# - Linux: `apt-get`
 # - MacOS: Homebrew
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
@@ -25,7 +26,7 @@ else
     | sudo tee /etc/apt/sources.list.d/mullvad.list
 
   echo "Installing the Mullvad Browser package..."
-  sudo apt update -y && sudo apt install -y mullvad-browser
+  sudo apt-get update -y && sudo apt-get install -y mullvad-browser
 
   echo "Installing Mullvad Browser as browser alternative..."
   mullvad_browser_bin="$(command -v mullvad-browser)"

@@ -1,14 +1,16 @@
 #!/bin/bash -e
 #
 # Installs required packages. Must run before all other scripts.
+#
+# Requirements: `apt-get`
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
 echo "Updating package index..."
-sudo apt update -y
+sudo apt-get update -y
 
 echo "Installing packages..."
-sudo apt install -y \
+sudo apt-get install -y \
   firefox git stow curl wget zip gzip unzip tar make gnupg \
   tmux lm-sensors urlscan vim \
   fd-find ripgrep bat tree calc dos2unix \
