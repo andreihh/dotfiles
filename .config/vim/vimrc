@@ -7,9 +7,6 @@
 " [[ XDG specification ]]
 
 " Define XDG directories if unset.
-if empty($XDG_CONFIG_HOME)
-  let $XDG_CONFIG_HOME = $HOME . '/.config'
-endif
 if empty($XDG_DATA_HOME)
   let $XDG_DATA_HOME = $HOME . '/.local/share'
 endif
@@ -17,28 +14,21 @@ if empty($XDG_STATE_HOME)
   let $XDG_STATE_HOME = $HOME . '/.local/state'
 endif
 
-" Set XDG-compliant directories.
-let s:vim_home = $XDG_CONFIG_HOME . '/vim'
-let s:vim_data = $XDG_DATA_HOME . '/vim'
-let s:vim_state = $XDG_STATE_HOME . '/vim'
-
-" Configure spell directory.
-call mkdir(s:vim_home . 'spell', 'p')
-
 " Configure state files and directories.
 for dir in ['', 'backup', 'swap', 'view', 'undo', 'session']
-  call mkdir(s:vim_state . '/' . dir, 'p')
+  call mkdir($XDG_STATE_HOME . '/vim/' . dir, 'p')
 endfor
-let &viminfofile = s:vim_state . '/viminfo'
-let &backupdir = s:vim_state . '/backup//'
-let &directory = s:vim_state . '/swap//'
-let &viewdir = s:vim_state . '/view//'
-let &undodir = s:vim_state . '/undo//'
-let g:netrw_home = s:vim_state
+let &viminfofile = $XDG_STATE_HOME . '/vim/viminfo'
+let &backupdir = $XDG_STATE_HOME . '/vim/backup//'
+let &directory = $XDG_STATE_HOME . '/vim/swap//'
+let &viewdir = $XDG_STATE_HOME . '/vim/view//'
+let &undodir = $XDG_STATE_HOME . '/vim/undo//'
+let g:startify_session_dir = $XDG_STATE_HOME . '/vim/session'
+let g:netrw_home = $XDG_STATE_HOME
 
 " Configure plugin files and directories.
-let s:plug_script = s:vim_home . '/autoload/plug.vim'
-let s:plug_dir = s:vim_data . '/plugged'
+let s:plug_script = $MYVIMDIR . '/autoload/plug.vim'
+let s:plug_dir = $XDG_DATA_HOME . '/vim/plugged'
 let s:plug_url =
     \ 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
@@ -252,7 +242,6 @@ command! DiffGitBlame Git blame | nnoremap <buffer> q :close<CR>
 " [[ Plugin configs ]]
 
 " Auto-save current session.
-let g:startify_session_dir = s:vim_state . '/session'
 let g:startify_session_persistence = 1
 
 " Do not change current working directory when opening files.
