@@ -1,6 +1,6 @@
 #!/bin/bash -e
 #
-# Installs `pip`.
+# Installs `pip` for Linux or MacOS systems.
 #
 # Requires `curl`.
 
