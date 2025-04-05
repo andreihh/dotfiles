@@ -104,7 +104,7 @@ done
 echo "Dotfiles installed successfully!"
 
 echo "Sourcing '${HOME}/.profile' to ensure environment is loaded properly..."
-. "${HOME}/.profile"
+[[ -n "${debug}" ]] || . "${HOME}/.profile"
 
 if [[ -z "${run_scripts+set}" ]]; then
   # Run common scripts last to ensure OS packages are installed first.
