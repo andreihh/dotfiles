@@ -38,14 +38,8 @@ Optional setup scripts and executables are found under the `opt/` directory.
 These are not used by default, you must manually run the setup scripts or link
 the executables into the `PATH`.
 
-To configure pre-commit checks, run the following commands inside the
-repository:
+To configure pre-commit checks, run `pre-commit install` inside the repository.
 
-```bash
-pipx install pre-commit
-pre-commit install
-pre-commit autoupdate
-```
 
 To add new dotfiles, commit all the changes to bring the repository to a clean
 state and run the following command:
