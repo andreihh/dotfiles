@@ -25,7 +25,7 @@ curl -Lo \
 ```
 
 ```bash
-curl -Lo - https://raw.githubusercontent.com/andreihh/dotfiles/main/install.sh \
+curl -Lo - https://codeberg.org/andreihh/dotfiles/raw/branch/main/install.sh \
   | bash
 ```
 

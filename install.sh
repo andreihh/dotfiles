@@ -19,7 +19,7 @@
 # Most Linux systems bundle `git` and `stow`, but MacOS dependencies will have
 # to be installed separately before running this installer.
 
-readonly REPOSITORY_URL="https://github.com/andreihh/dotfiles"
+readonly REPOSITORY_URL="git@codeberg.org:andreihh/dotfiles.git"
 readonly DOTFILES_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}/dotfiles"
 readonly BACKUP_DIR_DEFAULT="${DOTFILES_HOME}.bak"
 readonly RUN_DIR="${DOTFILES_HOME}/run"
