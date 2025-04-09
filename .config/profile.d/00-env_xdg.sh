@@ -34,6 +34,9 @@ export PYTHON_HISTORY="${XDG_STATE_HOME}/python_history"
 # Export `pyenv` directory.
 export PYENV_ROOT="${XDG_DATA_HOME}/pyenv"
 
+# Export `ansible` config.
+export ANSIBLE_CONFIG="${XDG_CONFIG_HOME}/ansible/ansible.cfg"
+
 # Export LaTeX directories.
 export TEXMFHOME="${XDG_DATA_HOME}/texmf"
 export TEXMFVAR="${XDG_CACHE_HOME}/texlive/texmf-var"
