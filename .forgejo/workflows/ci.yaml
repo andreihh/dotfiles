@@ -4,9 +4,9 @@ name: CI
 # Trigger the workflow on push or pull request events on the `main` branch.
 on:
   push:
-    branches: ['main']
+    branches: ["main"]
   pull_request:
-    branches: ['main']
+    branches: ["main"]
 
   # Allow running this workflow manually from the `Actions` tab.
   workflow_dispatch:
@@ -19,7 +19,4 @@ jobs:
       - uses: https://code.forgejo.org/actions/checkout@v4
 
       - name: Run pre-commit checks
-        run: |
-          export PATH="${HOME}/.local/bin:${PATH}"
-          pipx install pre-commit
-          pre-commit run --all-files --verbose
+        run: pipx run pre-commit run --all-files --verbose
