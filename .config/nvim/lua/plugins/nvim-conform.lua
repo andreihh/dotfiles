@@ -13,8 +13,8 @@ return { -- Formatting
   },
   opts = vim.tbl_deep_extend("force", {
     formatters_by_ft = {
-      sh = { "shfmt" },
       lua = { "stylua" },
+      sh = { "shfmt" },
       yaml = { "prettier" },
       json = { "prettier" },
       markdown = { "prettier" },

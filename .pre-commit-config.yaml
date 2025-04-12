@@ -13,6 +13,7 @@ repos:
       - id: check-toml
       - id: check-xml
       - id: check-yaml
+      - id: destroyed-symlinks
       - id: detect-private-key
       - id: end-of-file-fixer
       - id: fix-byte-order-marker
@@ -21,7 +22,7 @@ repos:
         # Don't fix `.ignore` `Icon` mixed line ending.
         exclude: .ignore
       - id: trailing-whitespace
-        # Don't trim `.ignore` `Icon` trailing whitespace
+        # Don't trim `.ignore` `Icon` trailing whitespace.
         exclude: .ignore
   - repo: https://github.com/JohnnyMorganz/StyLua
     rev: v2.0.2
@@ -36,7 +37,6 @@ repos:
     rev: v3.5.3
     hooks:
       - id: prettier
-        types_or: [yaml, json, markdown]
   - repo: https://github.com/shellcheck-py/shellcheck-py
     rev: v0.10.0.1
     hooks:
