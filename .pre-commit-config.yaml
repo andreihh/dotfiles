@@ -35,6 +35,14 @@ repos:
     hooks:
       - id: shellcheck
         args: ["--rcfile=.config/shellcheckrc"]
+  - repo: https://github.com/google/yamlfmt
+    rev: v0.16.0
+    hooks:
+      - id: yamlfmt
+  - repo: https://github.com/hukkin/mdformat
+    rev: 0.7.22
+    hooks:
+      - id: mdformat
   - repo: https://github.com/ansible/ansible-lint
     rev: v25.2.1
     hooks:

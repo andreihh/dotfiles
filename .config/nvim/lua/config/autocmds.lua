@@ -32,4 +32,4 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 -- Start LSPs automatically.
 --  Override configs with `vim.lsp.config()`.
 --  See `:help vim.lsp.Config`
-vim.lsp.enable({ "ansiblels", "bashls", "lua_ls", "vimls" })
+vim.lsp.enable({ "lua_ls", "vimls", "bashls", "ansiblels" })

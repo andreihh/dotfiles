@@ -13,15 +13,16 @@ return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = {
       ensure_installed = vim.list_extend({
-        "ansible-language-server",
-        "bash-language-server",
         "lua-language-server",
         "vim-language-server",
-        "ansible-lint", -- integrates with `ansible-language-server`
+        "bash-language-server",
+        "ansible-language-server",
         "shellcheck", -- integrates with `bash-language-server`
-        "shfmt",
+        "ansible-lint", -- integrates with `ansible-language-server`
         "stylua",
-        "prettier",
+        "shfmt",
+        "yamlfmt",
+        "mdformat",
       }, vim.g.ensure_installed or {}),
     },
   },

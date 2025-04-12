@@ -8,6 +8,7 @@ alongside an installation script.
 To install the dotfiles:
 
 - Install required dependencies:
+
   - MacOS:
 
 ```bash
@@ -41,7 +42,7 @@ To update the dotfiles, run `install.sh` from the repository in a clean state.
 The dotfiles follow the XDG specification where possible:
 
 - https://specifications.freedesktop.org/basedir-spec/latest/index.html
-- https://wiki.archlinux.org/title/XDG\_Base\_Directory
+- https://wiki.archlinux.org/title/XDG_Base_Directory
 
 The XDG environment variables are defined in
 `~/.config/profile.d/00-env_xdg.sh`, because some tools don't fall back on
