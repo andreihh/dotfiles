@@ -31,6 +31,12 @@
   roles:
     - ghostty
 
+- name: Install lazygit
+  hosts: localhost
+  tags: [lazygit]
+  roles:
+    - lazygit
+
 - name: Install python
   hosts: localhost
   tags: [python]

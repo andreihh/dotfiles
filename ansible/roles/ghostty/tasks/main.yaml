@@ -14,15 +14,14 @@
 
 - name: Install COPR package
   when: ansible_distribution in ["Fedora"]
+  become: true
   block:
     - name: Add COPR repository
-      become: true
       community.general.copr:
         state: enabled
         name: pgdev/ghostty
 
     - name: Install from COPR repository
-      become: true
       ansible.builtin.dnf:
         state: present
         name: ghostty
