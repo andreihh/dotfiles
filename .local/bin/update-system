@@ -4,8 +4,6 @@
 #
 # Requires the dotfiles to have been installed.
 
-[[ $# -gt 0 ]] && echo "Usage $0" && exit 1
-
 function usage() {
   cat << EOF
 Usage: $0 [-h] [-d DISTRIBUTION] [-t TAGS]
