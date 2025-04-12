@@ -1,0 +1,59 @@
+- name: Configure system settings
+  tags: [always]
+  hosts: localhost
+  roles:
+    - gnome
+    - ssh
+
+- name: Install core packages
+  tags: [packages]
+  hosts: localhost
+  roles:
+    - packages
+    - ffmpeg
+    - nvim
+    - alacritty
+
+- name: Install Ghostty
+  tags: [ghostty]
+  hosts: localhost
+  roles:
+    - ghostty
+
+- name: Configure system health
+  tags: [syshealth]
+  hosts: localhost
+  roles:
+    - swappiness
+    - sleep
+    - tlp
+
+- name: Install python
+  tags: [python]
+  hosts: localhost
+  roles:
+    - python
+
+- name: Install nvm
+  tags: [nvm]
+  hosts: localhost
+  roles:
+    - nvm
+
+- name: Install rust
+  tags: [rust]
+  hosts: localhost
+  roles:
+    - rust
+
+- name: Install go
+  tags: [go]
+  hosts: localhost
+  roles:
+    - go
+
+- name: Install java
+  tags: [java]
+  hosts: localhost
+  roles:
+    - java

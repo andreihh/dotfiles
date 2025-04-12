@@ -1,0 +1,132 @@
+---
+# file: roles/gnome/tasks/main.yaml
+
+- name: Configure Gnome settings
+  tags: [debian, ubuntu, fedora]
+  become: false
+  block:
+    - name: Set system theme to dark mode
+      community.general.dconf:
+        key: "{{ gnome_interface }}/color-scheme"
+        value: "'prefer-dark'"
+
+    - name: Set keyboard layout to US
+      community.general.dconf:
+        key: "{{ gnome_input_sources }}/sources"
+        value: "[('xkb', 'us')]"
+
+    - name: Swap Caps Lock with Esc and reorder modifiers to Super|Alt|Ctrl
+      community.general.dconf:
+        key: "{{ gnome_input_sources }}/xkb-options"
+        value: "['caps:swapescape', 'ctrl:swap_lalt_lctl_lwin']"
+
+    - name: Set switch window forward shortcut to Ctrl-Tab
+      community.general.dconf:
+        key: "{{ gnome_desktop_wm_keybindings }}/switch-windows"
+        value: "['<Primary>Tab']"
+
+    - name: Set switch window backward shortcut to Ctrl-Shift-Tab
+      community.general.dconf:
+        key: "{{ gnome_desktop_wm_keybindings }}/switch-windows-backward"
+        value: "['<Shift><Primary>Tab']"
+
+    - name: Set toggle fullscreen shortcut to Ctrl-Alt-f
+      community.general.dconf:
+        key: "{{ gnome_desktop_wm_keybindings }}/toggle-fullscreen"
+        value: "['<Primary><Alt>f']"
+
+    - name: Set toggle maximized shortcut to Ctrl-Alt-m
+      community.general.dconf:
+        key: "{{ gnome_desktop_wm_keybindings }}/toggle-maximized"
+        value: "['<Primary><Alt>m']"
+
+    - name: Set toggle tiled left shortcut to Ctrl-Alt-comma
+      community.general.dconf:
+        key: "{{ gnome_mutter_keybindings }}/toggle-tiled-left"
+        value: "['<Primary><Alt>comma']"
+
+    - name: Set toggle tiled right shortcut to Ctrl-Alt-period
+      community.general.dconf:
+        key: "{{ gnome_mutter_keybindings }}/toggle-tiled-right"
+        value: "['<Primary><Alt>period']"
+
+    - name: Set print screen shortcut to Ctrl-Alt-p
+      community.general.dconf:
+        key: "{{ gnome_shell_keybindings }}/show-screenshot-ui"
+        value: "['<Primary><Alt>p']"
+
+    - name: Set lock screen shortcut to Ctrl-Alt-l
+      community.general.dconf:
+        key: "{{ gnome_media_keys }}/screensaver"
+        value: "['<Primary><Alt>l']"
+
+    - name: Set file explorer shortcut to Ctrl-Alt-e
+      community.general.dconf:
+        key: "{{ gnome_media_keys }}/home"
+        value: "['<Primary><Alt>e']"
+
+    - name: Set web browser shortcut to Ctrl-Alt-w
+      community.general.dconf:
+        key: "{{ gnome_media_keys }}/www"
+        value: "['<Primary><Alt>w']"
+
+    - name: Create custom shortcuts
+      community.general.dconf:
+        key: "{{ gnome_media_keys }}/custom-keybindings"
+        value: >-
+          [
+            '{{ gnome_media_keys_shell_keybinding }}/',
+            '{{ gnome_media_keys_tmx_keybinding }}/',
+            '{{ cloud_tmx_key }}/'
+          ]
+
+    - name: Create shell terminal shortcut
+      block:
+        - name: Set shell terminal shortcut name
+          community.general.dconf:
+            key: "{{ gnome_media_keys_shell_keybinding }}/name"
+            value: "'Launch shell terminal'"
+
+        - name: Set shell terminal shortcut command
+          community.general.dconf:
+            key: "{{ gnome_media_keys_shell_keybinding }}/command"
+            value: "'x-terminal-emulator'"
+
+        - name: Set shell terminal shortcut to Ctrl-Alt-s
+          community.general.dconf:
+            key: "{{ gnome_media_keys_shell_keybinding }}/binding"
+            value: "'<Primary><Alt>s'"
+
+    - name: Create tmx terminal shortcut
+      block:
+        - name: Set tmx terminal shortcut name
+          community.general.dconf:
+            key: "{{ gnome_media_keys_tmx_keybinding }}/name"
+            value: "'Launch tmx terminal'"
+
+        - name: Set tmx terminal shortcut command
+          community.general.dconf:
+            key: "{{ gnome_media_keys_tmx_keybinding }}/command"
+            value: "'x-terminal-emulator -e tmx'"
+
+        - name: Set tmx terminal shortcut to Ctrl-Alt-x
+          community.general.dconf:
+            key: "{{ gnome_media_keys_tmx_keybinding }}/binding"
+            value: "'<Primary><Alt>x'"
+
+    - name: Create cloud tmx terminal shortcut
+      block:
+        - name: Set cloud tmx terminal shortcut name
+          community.general.dconf:
+            key: "{{ gnome_media_keys_cloud_tmx_keybinding }}/name"
+            value: "'Launch cloud tmx terminal'"
+
+        - name: Set cloud tmx terminal shortcut command
+          community.general.dconf:
+            key: "{{ gnome_media_keys_cloud_tmx_keybinding }}/command"
+            value: "'x-terminal-emulator -e sshc'"
+
+        - name: Set cloud tmx terminal shortcut to Ctrl-Alt-c
+          community.general.dconf:
+            key: "{{ gnome_media_keys_cloud_tmx_keybinding }}/binding"
+            value: "'<Primary><Alt>c'"

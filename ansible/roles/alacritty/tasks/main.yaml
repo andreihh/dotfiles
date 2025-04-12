@@ -1,0 +1,42 @@
+---
+# file: roles/alacritty/tasks/main.yaml
+
+- name: Bootstrap
+  tags: [debian, ubuntu, fedora]
+  block:
+    - name: Install packages
+      become: true
+      ansible.builtin.package:
+        state: present
+        name: [alacritty, fontconfig]
+
+    - name: Download JetBrainsMono Nerd Font
+      become: false
+      ansible.builtin.unarchive:
+        src: https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
+        dest: "{{ ansible_env.XDG_DATA_HOME }}/fonts/"
+        remote_src: true
+
+    - name: Refresh font cache
+      become: false
+      changed_when: true
+      ansible.builtin.command: fc-cache -fv
+
+    # TODO: update-alternatives with ansible.builtin.alternatives
+
+
+- name: Install packages
+  tags: [macos]
+  become: false
+  community.general.homebrew_cask:
+    state: present
+    name: [alacritty, font-jetbrains-mono-nerd-font]
+
+- name: Install themes
+  tags: [debian, ubuntu, fedora, macos]
+  become: false
+  ansible.builtin.git:
+    repo: "https://github.com/alacritty/alacritty-theme.git"
+    version: master
+    depth: 1
+    dest: "{{ ansible_env.XDG_CONFIG_HOME }}/alacritty/themes"

@@ -25,8 +25,8 @@ repos:
     rev: v2.0.2
     hooks:
       - id: stylua-github
-  - repo: https://github.com/maxwinterstein/shfmt-py
-    rev: v3.11.0.2
+  - repo: https://github.com/scop/pre-commit-shfmt
+    rev: v3.11.0-1
     hooks:
       - id: shfmt
         args: ["-w", "-i", "2", "-ci", "-bn", "-sr", "-kp"]
@@ -35,3 +35,9 @@ repos:
     hooks:
       - id: shellcheck
         args: ["--rcfile=.config/shellcheckrc"]
+  - repo: https://github.com/ansible/ansible-lint
+    rev: v25.2.1
+    hooks:
+      - id: ansible-lint
+        additional_dependencies: ["ansible"]
+        args: ["--exclude=.forgejo"]

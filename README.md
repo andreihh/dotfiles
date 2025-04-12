@@ -5,48 +5,35 @@ alongside an installation script.
 
 ## Installation
 
-To install the dotfiles, run the following commands:
+To install the dotfiles:
 
-- Linux:
+- Install required dependencies:
 
-```bash
-wget -O - https://raw.githubusercontent.com/andreihh/dotfiles/main/install.sh \
-  | bash
-```
-
-- MacOS:
+  - Debian / Ubuntu: `sudo apt install -y curl`
+  - Fedora: `sudo dnf install curl`
+  - MacOS:
 
 ```bash
 export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
-curl -Lo \
-  https://raw.githubusercontent.com/andreihh/dotfiles/main/opt/run/setup_homebrew.sh \
-  | bash
-# Follow displayed instructions to finish setting up Homebrew and dependencies.
+export HOMEBREW_SHELLENV="${XDG_CONFIG_HOME:?}/profile.d/00-brew.sh"
+export HOMEBREW_INSTALLER="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
+/bin/bash -c "$(curl -fsSL "${HOMEBREW_INSTALLER}")"
+# Follow displayed instructions to finish setting up Homebrew.
 ```
+
+- Download and run the installer:
 
 ```bash
 curl -Lo - https://codeberg.org/andreihh/dotfiles/raw/branch/main/install.sh \
   | bash
 ```
 
-To configure the color scheme for terminal apps, run the `colorscheme` command.
+- Reboot your system to ensure the environment variables are loaded properly.
+- Run the `update-system` command to configure settings and install packages.
+- Run the `colorscheme` command to configure the color scheme for terminal apps.
+- Run `pre-commit install` inside the repository to configure pre-commit checks.
 
-After installing the dotfiles for the first time, you may need to restart your
-system to reload the custom environment variables properly.
-
-Optional setup scripts and executables are found under the `opt/` directory.
-These are not used by default, you must manually run the setup scripts or link
-the executables into the `PATH`.
-
-To configure pre-commit checks, run `pre-commit install` inside the repository.
-
-
-To add new dotfiles, commit all the changes to bring the repository to a clean
-state and run the following command:
-
-```bash
-./install.sh -r '' -b ''
-```
+To update the dotfiles, run `install.sh` from the repository in a clean state.
 
 ## XDG directories
 
@@ -57,7 +44,8 @@ The dotfiles follow the XDG specification where possible:
 
 The XDG environment variables are defined in
 `~/.config/profile.d/00-env_xdg.sh`, because some tools don't fall back on
-proper defaults and only work if they are explicitly defined.
+proper defaults and only work if they are explicitly defined. They can be
+overridden in `~/.env`.
 
 ## Private configs
 
@@ -103,9 +91,6 @@ vim.g.format_opts = {
     python = { "isort", "pyink" },
     cpp = { "clang-format" },
     java = { "google-java-format" },
-    markdown = { "prettier" },
-    json = { "prettier" },
-    yaml = { "prettier" },
   },
 }
 
@@ -124,13 +109,10 @@ vim.g.ensure_installed = {
   "pyright",
   "clangd",
   "jdtls",
-  "kotlin_language_server",
   "isort",
   "pyink",
   "clang-format",
   "google-java-format",
-  "ktfmt",
-  "prettier",
   "pylint",
   "checkstyle",
 }
@@ -152,9 +134,9 @@ Common shortcuts (`C = Ctrl / Cmd`, `A = Alt / Opt`, `S = Shift`):
 - Cycle web browser tabs: `C-1` / `C-2`
 - Cycle windows: `C-[S]-tab`
 - Zoom in / out: `C-=` / `C--`
-- Toggle tiled left / right: `C-A-,` / `C-A-.`
-- Toggle maximized: `C-A-m`
 - Toggle fullscreen: `C-A-f`
+- Toggle maximized: `C-A-m`
+- Toggle tiled left / right: `C-A-,` / `C-A-.`
 - Print screen / cancel: `C-A-p` / `Esc`
 - Lock screen: `C-A-l`
 - Open file explorer: `C-A-e`
@@ -165,10 +147,10 @@ Common shortcuts (`C = Ctrl / Cmd`, `A = Alt / Opt`, `S = Shift`):
 
 Terminal:
 
+- Send `SIGINT`: `C-c`
 - Paste: `C-S-v`
 - Close terminal: `C-q`
 - Switch `tmux` tab: `C-#` (mapped to `M-#`)
-- Send interrupt signal: `C-c`
 
 ## Licensing
 

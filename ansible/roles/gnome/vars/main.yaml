@@ -1,0 +1,13 @@
+---
+# file: roles/gnome/vars/main.yaml
+
+gnome_interface: "/org/gnome/desktop/interface"
+gnome_input_sources: "/org/gnome/desktop/input-sources"
+gnome_desktop_wm_keybindings: "/org/gnome/desktop/wm/keybindings"
+gnome_mutter_keybindings: "/org/gnome/mutter/keybindings"
+gnome_shell_keybindings: "/org/gnome/shell/keybindings"
+gnome_media_keys: "/org/gnome/settings-daemon/plugins/media-keys"
+
+gnome_media_keys_shell_keybinding: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0"
+gnome_media_keys_tmx_keybinding: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1"
+gnome_media_keys_cloud_tmx_keybinding: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2"

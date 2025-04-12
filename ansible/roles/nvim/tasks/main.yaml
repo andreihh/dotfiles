@@ -1,0 +1,53 @@
+---
+# file: roles/nvim/tasks/main.yaml
+# https://github.com/neovim/neovim/blob/master/BUILD.md
+
+# https://github.com/neovim/neovim/blob/master/BUILD.md#build-prerequisites
+- name: Install dependencies
+  tags: [debian, ubuntu]
+  become: true
+  ansible.builtin.package:
+    state: present
+    name: [ninja-build, gettext, cmake, curl, build-essential]
+
+- name: Install dependencies
+  tags: [fedora]
+  become: true
+  ansible.builtin.dnf:
+    state: present
+    name: [ninja-build, cmake, gcc, make, gettext, curl, glibc-gconv-extra]
+
+# https://github.com/neovim/neovim/blob/master/BUILD.md#quick-start
+- name: Compile from sources
+  tags: [debian, ubuntu, fedora]
+  vars:
+    nvim_src: "{{ ansible_env.HOME }}/.local/src/nvim"
+  block:
+    - name: Clone repository
+      become: false
+      ansible.builtin.git:
+        repo: https://github.com/neovim/neovim.git
+        version: stable
+        depth: 1
+        dest: "{{ nvim_src }}"
+
+    - name: Build binary
+      become: false
+      community.general.make:
+        chdir: "{{ nvim_src }}"
+        params: "CMAKE_BUILD_TYPE=Release"
+
+    - name: Install binary
+      become: true
+      community.general.make:
+        chdir: "{{ nvim_src }}"
+        target: install
+
+    # TODO: update-alternatives with ansible.builtin.alternatives
+
+- name: Install package
+  tags: [macos]
+  become: false
+  community.general.homebrew:
+    state: present
+    name: neovim

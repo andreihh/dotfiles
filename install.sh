@@ -3,34 +3,16 @@
 # Dotfiles installation script:
 # - Clones the dotfiles repository
 # - Backs up existing dotfiles
-# - Installs the dotfiles
-# - Runs setup scripts
+# - Installs dotfiles
 #
-# If any step in the installation fails, you may fix the issues manually and
-# run this script again. However, you must move any generated backups to a
-# different location, or force overwriting.
-#
-# Supports Linux and MacOS.
+# Supports Debian, Ubuntu, Fedora, and MacOSX.
 #
 # Requirements:
-# - Linux: `git`, `stow`
-# - MacOS: `git`, `stow`, Homebrew
-#
-# Most Linux systems bundle `git` and `stow`, but MacOS dependencies will have
-# to be installed separately before running this installer.
+# - MacOS: Homebrew
 
 readonly REPOSITORY_URL="git@codeberg.org:andreihh/dotfiles.git"
 readonly DOTFILES_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}/dotfiles"
 readonly BACKUP_DIR_DEFAULT="${DOTFILES_HOME}.bak"
-readonly RUN_DIR="${DOTFILES_HOME}/run"
-
-shopt -s nocasematch
-case "${OSTYPE}" in
-  linux*) os_type='linux' ;;
-  darwin*) os_type='macos' ;;
-  *) echo "System '${OSTYPE}' not supported!" && exit 1 ;;
-esac
-shopt -u nocasematch
 
 function usage() {
   cat << EOF
@@ -41,19 +23,16 @@ Options:
   -f  Force install by deleting prior backup and installation.
   -b  Directory where dotfiles should be backed up, or skip if empty string.
         Default: '${BACKUP_DIR_DEFAULT}'
-  -r  List of scripts to run delimited by ';'.
-        Default: all '*.sh' scripts in '${RUN_DIR}[/${os_type}]'.
   -h  Print this message and exit.
 EOF
 }
 
 backup_dir="${BACKUP_DIR_DEFAULT}"
-while getopts 'dfb:r:h' option; do
+while getopts 'dfb:h' option; do
   case "${option}" in
     d) debug='-d' ;;
     f) force='-f' ;;
     b) backup_dir="${OPTARG}" ;;
-    r) run_scripts="${OPTARG//;/ }" ;;
     h) usage && exit 0 ;;
     *) usage && exit 1 ;;
   esac
@@ -61,6 +40,13 @@ done
 
 echo "Installing dotfiles..."
 [[ -n "${debug}" ]] && echo "Running in debug mode!"
+
+echo "Installing required dependencies..."
+if [[ -z "${debug}" ]]; then
+  command -v apt-get && sudo apt-get install -y git ansible
+  command -v dnf && sudo dnf install git ansible
+  command -v brew && brew install git ansible
+fi
 
 if [[ -n "${force}" ]]; then
   echo "Deleting prior backup and installation..."
@@ -96,27 +82,23 @@ fi
 echo "Reverting changes from adopted files..."
 [[ -n "${debug}" ]] || git -C "${DOTFILES_HOME}" checkout .
 
+FDFIND="$(command -v fdfind)"
+readonly FDFIND
+if [[ -f "${FDFIND}" ]]; then
+  echo "Linking 'fd' to 'fdfind'..."
+  [[ -n "${debug}" ]] || ln -sfv "${FDFIND}" "${HOME}/.local/bin/fd"
+fi
+
+BATCAT="$(command -v batcat)"
+readonly BATCAT
+if [[ -f "${BATCAT}" ]]; then
+  echo "Linking 'bat' to 'batcat'..."
+  [[ -n "${debug}" ]] || ln -sfv "${BATCAT}" "${HOME}/.local/bin/bat"
+fi
+
 echo "Removing shell-specific profile config files..."
 for shell_profile_file in ~/.{bash_profile,zprofile}; do
   [[ -n "${debug}" ]] || rm -fv "${shell_profile_file}"
 done
 
 echo "Dotfiles installed successfully!"
-
-echo "Sourcing '${HOME}/.profile' to ensure environment is loaded properly..."
-[[ -n "${debug}" ]] || . "${HOME}/.profile"
-
-if [[ -z "${run_scripts+set}" ]]; then
-  # Run common scripts last to ensure OS packages are installed first.
-  run_scripts=$(echo "${RUN_DIR}"{/"${os_type}",}/*.sh)
-fi
-
-echo "Running scripts..."
-for script in ${run_scripts}; do
-  echo "Running script '${script}'..."
-  [[ -n "${debug}" ]] && continue
-  chmod +x "${script}"
-  "${script}" <&0 || echo -e "\e[31mScript '${script}' failed!\e[0m"
-done
-
-echo "Installation complete!"

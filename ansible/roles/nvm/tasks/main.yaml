@@ -1,0 +1,35 @@
+---
+# file: roles/nvm/tasks/main.yaml
+
+- name: Install toolchain
+  tags: [debian, ubuntu, fedora, macos]
+  become: false
+  block:
+    - name: Download latest installer
+      ansible.builtin.get_url:
+        url: https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh
+        dest: /tmp/install_nvm.sh
+        mode: u+rwx
+
+    - name: Run installer
+      changed_when: true
+      environment:
+        PROFILE: /dev/null
+      ansible.builtin.command: /tmp/install_nvm.sh
+
+    - name: Clean up installer
+      ansible.builtin.file:
+        state: absent
+        path: /tmp/install_nvm.sh
+
+    - name: Enable Bash integration
+      ansible.builtin.copy:
+        src: nvm_integration.sh
+        dest: "{{ ansible_env.XDG_CONFIG_HOME }}/bash.d/00-nvm_integration.sh"
+        mode: u=rw
+
+    - name: Install latest LTS version
+      register: result
+      changed_when: result.stderr is not search('is already installed')
+      ansible.builtin.shell: >
+        . "{{ ansible_env.NVM_DIR }}/nvm.sh" && nvm install --lts

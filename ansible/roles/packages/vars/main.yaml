@@ -1,0 +1,53 @@
+---
+# file: roles/packages/vars/main.yaml
+
+packages_list:
+  common:
+    # Also available as brew formulae.
+    core:
+      - git
+      - stow
+      - curl
+      - wget
+      - zip
+      - gzip
+      - unzip
+      - tar
+      - gnupg
+      - tmux
+      - urlscan
+      - vim
+      - fzf
+      - fd-find
+      - ripgrep
+      - bat
+      - tree
+      - calc
+      - dos2unix
+      - make
+      - automake
+      - cmake
+      - gcc
+      - pre-commit
+    # Also available as brew casks.
+    media:
+      - firefox
+      - thunderbird
+      - keepassxc
+      - vlc
+  apt:
+    - gnome-shell-extension-appindicator
+    - lm-sensors
+    - build-essential
+    - linux-tools-common
+    - linux-tools-generic
+  dnf:
+    - gnome-shell-extension-appindicator
+    - lm_sensors
+    - gcc-c++
+  brew:
+    formulae:
+      - coreutils
+      - lm-sensors
+    casks:
+      - alt-tab

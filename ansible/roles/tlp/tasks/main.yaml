@@ -1,0 +1,26 @@
+---
+# file: roles/tlp/tasks/main.yaml
+
+- name: Bootstrap
+  tags: [debian, ubuntu, fedora]
+  become: true
+  block:
+    - name: Install package
+      ansible.builtin.package:
+        state: present
+        name: tlp
+
+    - name: Install config
+      ansible.builtin.copy:
+        src: tlp.conf
+        dest: /etc/tlp.d/00-tlp.conf
+        mode: u=r,g=r,o=r
+
+    - name: Enable systemd service
+      ansible.builtin.systemd:
+        enabled: true
+        name: tlp.service
+
+    - name: Start service
+      ansible.builtin.command: tlp start
+      changed_when: true

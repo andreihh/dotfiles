@@ -1,0 +1,23 @@
+---
+# file: roles/java/tasks/main.yaml
+
+- name: Install toolchain
+  tags: [debian, ubuntu]
+  become: true
+  ansible.builtin.apt:
+    state: present
+    name: openjdk-23-jdk
+
+- name: Install toolchain
+  tags: [fedora]
+  become: true
+  ansible.builtin.dnf:
+    state: present
+    name: java-latest-openjdk-devel
+
+- name: Install toolchain
+  tags: [macos]
+  become: false
+  community.general.homebrew:
+    state: present
+    name: openjdk

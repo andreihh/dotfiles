@@ -1,0 +1,59 @@
+#!/bin/bash -e
+#
+# Updates the system by running the `playbook.bootstrap.yaml` Ansible playbook.
+#
+# Requires the dotfiles to have been installed.
+
+[[ $# -gt 0 ]] && echo "Usage $0" && exit 1
+
+function usage() {
+  cat << EOF
+Usage: $0 [-h] [-d DISTRIBUTION] [-t TAGS]
+
+Options:
+  -d  OS distribution. Will be forward to the Ansible playbook as a tag.
+        Default: inferred from '/etc/os-release' and '\${OSTYPE}'.
+  -t  List of comma-separated tags to forward to the Ansible playbook.
+        Tags: packages, ghostty, syshealth, python, nvm, rust, go, java
+  -h  Print this message and exit.
+EOF
+}
+
+while getopts 'd:t:h' option; do
+  case "${option}" in
+    d) distribution="${OPTARG}" ;;
+    t) tags="${OPTARG}" ;;
+    h) usage && exit 0 ;;
+    *) usage && exit 1 ;;
+  esac
+done
+
+if [[ -z "${distribution+set}" ]]; then
+  echo "Retrieving OS distribution..."
+  shopt -s nocasematch
+  case "${OSTYPE}" in
+    linux*)
+      . /etc/os-release
+      case "${ID}" in
+        debian | ubuntu | fedora) distribution="${ID}" ;;
+        *) echo "System '${ID}' not supported!" && exit 1 ;;
+      esac
+      ;;
+    darwin*) distribution='macos' ;;
+    *) echo "System '${OSTYPE}' not supported!" && exit 1 ;;
+  esac
+  shopt -u nocasematch
+fi
+
+# Prepend the OS distribution to the playbook tags.
+tags="${distribution}${tags:+,${tags}}"
+
+echo "Installing 'ansible'..."
+command -v apt-get && sudo apt-get install -y ansible
+command -v dnf && sudo dnf install ansible
+command -v brew && brew install ansible
+
+echo "Updating system with tags '${tags}'..."
+ansible-playbook --ask-become-pass --tags="${tags}" \
+  "${XDG_CONFIG_HOME:?}/dotfiles/ansible/playbook.bootstrap.yaml"
+echo "Packages installed and updated successfully!"

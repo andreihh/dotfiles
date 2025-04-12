@@ -1,0 +1,62 @@
+---
+# file: roles/packages/tasks/main.yaml
+
+- name: Update packages
+  tags: [debian, ubuntu]
+  become: true
+  ansible.builtin.apt:
+    update_cache: true
+    upgrade: safe
+
+- name: Update packages
+  tags: [fedora]
+  become: true
+  ansible.builtin.dnf:
+    state: latest
+    update_cache: true
+    update_only: true
+    name: "*"
+
+- name: Install common packages
+  tags: [debian, ubuntu, fedora]
+  become: true
+  ansible.builtin.package:
+    state: present
+    name: "{{ packages_list.common.core + packages_list.common.media }}"
+
+- name: Install specific packages
+  tags: [debian, ubuntu]
+  become: true
+  ansible.builtin.apt:
+    state: present
+    name: "{{ packages_list.apt }}"
+
+- name: Install specific packages
+  tags: [fedora]
+  become: true
+  ansible.builtin.dnf:
+    state: present
+    name: "{{ packages_list.dnf }}"
+
+- name: Install packages
+  tags: [macos]
+  become: false
+  block:
+    - name: Upgrade brew and brew formulae
+      community.general.homebrew:
+        update_homebrew: true
+        upgrade_all: true
+
+    - name: Upgrade brew casks
+      community.general.homebrew_cask:
+        upgrade_all: true
+
+    - name: Install brew formulae
+      community.general.homebrew:
+        state: present
+        name: "{{ packages_list.common.core + packages_list.brew.formulae }}"
+
+    - name: Install brew casks
+      community.general.homebrew_cask:
+        state: present
+        name: "{{ packages_list.common.media + packages_list.brew.casks }}"

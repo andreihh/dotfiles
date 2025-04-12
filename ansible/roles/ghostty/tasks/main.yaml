@@ -1,0 +1,37 @@
+---
+# file: roles/ghostty/tasks/main.yaml
+# https://ghostty.org/docs/install/binary
+
+# TODO: support Debian
+
+- name: Install package
+  tags: [ubuntu]
+  become: true
+  community.general.snap:
+    state: present
+    classic: true
+    name: ghostty
+
+- name: Install package
+  tags: [fedora]
+  block:
+    - name: Add COPR repository
+      become: true
+      community.general.copr:
+        state: enabled
+        name: pgdev/ghostty
+
+    - name: Install from COPR repository
+      become: true
+      ansible.builtin.dnf:
+        state: present
+        name: ghostty
+
+# TODO: update-alternatives with ansible.builtin.alternatives
+
+- name: Install package
+  tags: [macos]
+  become: false
+  community.general.homebrew_cask:
+    state: present
+    name: ghostty
