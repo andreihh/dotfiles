@@ -12,7 +12,8 @@ Usage: $0 [-h] [-v] [-t TAGS] [-d DISTRIBUTION]
 
 Options:
   -t  List of comma-separated tags to forward to the Ansible playbook:
-        settings, packages, ghostty, syshealth, python, nvm, rust, go, java
+        packages, settings, syshealth, ghostty, lazygit, latex, python, nvm,
+        rust, go, java
   -d  OS distribution. Will override the default inferred by Ansible.
   -v  Print verbose output.
   -h  Print this message and exit.
