@@ -1,7 +1,7 @@
 return {
   -- Default LSP configs.
-  --  See `:help vim.lsp.config()`
-  { "neovim/nvim-lspconfig", lazy = true },
+  --  See `:help lspconfig`
+  "neovim/nvim-lspconfig",
   -- Package manager for development tools (LSPs, formatters, linters, etc.).
   --  To check the current status of installed tools and/or manually install
   --  other tools run:
