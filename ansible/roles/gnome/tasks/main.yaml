@@ -72,63 +72,62 @@
 
     - name: Create custom shortcuts
       community.general.dconf:
-        key: "{{ gnome_media_keys }}/custom-keybindings"
+        key: "{{ gnome_custom_keybindings }}"
         value: >-
           [
-            '{{ gnome_media_keys_shell_keybinding }}/',
-            '{{ gnome_media_keys_tmx_keybinding }}/',
-            '{{ gnome_media_keys_cloud_tmx_keybinding }}/'
+            '{{ gnome_custom_keybindings_shell }}/',
+            '{{ gnome_custom_keybindings_tmx }}/',
+            '{{ gnome_custom_keybindings_cloud_tmx }}/'
           ]
 
     - name: Create shell terminal shortcut
       block:
         - name: Set shell terminal shortcut name
           community.general.dconf:
-            key: "{{ gnome_media_keys_shell_keybinding }}/name"
+            key: "{{ gnome_custom_keybindings_shell }}/name"
             value: "'Launch shell terminal'"
 
         - name: Set shell terminal shortcut command
           community.general.dconf:
-            key: "{{ gnome_media_keys_shell_keybinding }}/command"
+            key: "{{ gnome_custom_keybindings_shell }}/command"
             value: "'x-terminal-emulator'"
 
         - name: Set shell terminal shortcut to Ctrl-Alt-s
           community.general.dconf:
-            key: "{{ gnome_media_keys_shell_keybinding }}/binding"
+            key: "{{ gnome_custom_keybindings_shell }}/binding"
             value: "'<Primary><Alt>s'"
 
     - name: Create tmx terminal shortcut
       block:
         - name: Set tmx terminal shortcut name
           community.general.dconf:
-            key: "{{ gnome_media_keys_tmx_keybinding }}/name"
+            key: "{{ gnome_custom_keybindings_tmx }}/name"
             value: "'Launch tmx terminal'"
 
         - name: Set tmx terminal shortcut command
           community.general.dconf:
-            key: "{{ gnome_media_keys_tmx_keybinding }}/command"
+            key: "{{ gnome_custom_keybindings_tmx }}/command"
             value: "'x-terminal-emulator -e tmx'"
 
         - name: Set tmx terminal shortcut to Ctrl-Alt-x
           community.general.dconf:
-            key: "{{ gnome_media_keys_tmx_keybinding }}/binding"
+            key: "{{ gnome_custom_keybindings_tmx }}/binding"
             value: "'<Primary><Alt>x'"
 
     - name: Create cloud tmx terminal shortcut
       block:
         - name: Set cloud tmx terminal shortcut name
           community.general.dconf:
-            key: "{{ gnome_media_keys_cloud_tmx_keybinding }}/name"
+            key: "{{ gnome_custom_keybindings_cloud_tmx }}/name"
             value: "'Launch cloud tmx terminal'"
 
         - name: Set cloud tmx terminal shortcut command
           community.general.dconf:
-            key: "{{ gnome_media_keys_cloud_tmx_keybinding }}/command"
+            key: "{{ gnome_custom_keybindings_cloud_tmx }}/command"
             value: "'x-terminal-emulator -e sshc'"
 
         - name: Set cloud tmx terminal shortcut to Ctrl-Alt-c
           community.general.dconf:
-            key: "{{ gnome_media_keys_cloud_tmx_keybinding }}/binding"
+            key: "{{ gnome_custom_keybindings_cloud_tmx }}/binding"
             value: "'<Primary><Alt>c'"
-
-      # TODO: ansible.builtin.alternatives x-www-browser
+# TODO: ansible.builtin.alternatives x-www-browser

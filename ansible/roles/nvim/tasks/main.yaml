@@ -43,7 +43,7 @@
         chdir: "{{ nvim_src }}"
         target: install
 
-  # TODO: ansible.builtin.alternatives editor
+# TODO: ansible.builtin.alternatives editor
 
 - name: Install brew formula
   when: ansible_distribution in ["MacOSX"]

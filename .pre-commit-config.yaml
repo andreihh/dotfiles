@@ -13,15 +13,16 @@ repos:
       - id: check-toml
       - id: check-xml
       - id: check-yaml
-        args: ["--allow-multiple-documents"] # Allow for `clang-format` config
       - id: detect-private-key
       - id: end-of-file-fixer
       - id: fix-byte-order-marker
       - id: forbid-submodules
       - id: mixed-line-ending
-        exclude: .ignore # Don't fix `Icon` mixed line ending
+        # Don't fix `.ignore` `Icon` mixed line ending.
+        exclude: .ignore
       - id: trailing-whitespace
-        exclude: .ignore # Don't trim `Icon` trailing whitespace
+        # Don't trim `.ignore` `Icon` trailing whitespace
+        exclude: .ignore
   - repo: https://github.com/JohnnyMorganz/StyLua
     rev: v2.0.2
     hooks:

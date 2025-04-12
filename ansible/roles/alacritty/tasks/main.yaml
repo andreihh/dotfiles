@@ -10,10 +10,12 @@
         state: present
         name: [alacritty, fontconfig]
 
-    - name: Download JetBrainsMono Nerd Font
+    - name: Download Nerd Font
       become: false
+      vars:
+        nerd_fonts: https://github.com/ryanoasis/nerd-fonts/releases/latest
       ansible.builtin.unarchive:
-        src: https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
+        src: "{{ nerd_fonts }}/download/JetBrainsMono.zip"
         dest: "{{ ansible_env.XDG_DATA_HOME }}/fonts/"
         remote_src: true
 
@@ -22,7 +24,7 @@
       changed_when: true
       ansible.builtin.command: fc-cache -fv
 
-  # TODO: ansible.builtin.alternatives x-terminal-emulator
+# TODO: ansible.builtin.alternatives x-terminal-emulator
 
 - name: Install brew casks
   when: ansible_distribution in ["MacOSX"]
