@@ -37,6 +37,12 @@
   roles:
     - lazygit
 
+- name: Install latex
+  hosts: localhost
+  tags: [latex]
+  roles:
+    - latex
+
 - name: Install python
   hosts: localhost
   tags: [python]

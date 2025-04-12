@@ -8,7 +8,9 @@
       become: true
       ansible.builtin.package:
         state: present
-        name: [alacritty, fontconfig]
+        name:
+          - alacritty
+          - fontconfig
 
     - name: Download Nerd Font
       become: false
@@ -31,7 +33,9 @@
   become: false
   community.general.homebrew_cask:
     state: present
-    name: [alacritty, font-jetbrains-mono-nerd-font]
+    name:
+      - alacritty
+      - font-jetbrains-mono-nerd-font
 
 - name: Install themes
   become: false

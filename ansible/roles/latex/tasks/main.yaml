@@ -1,0 +1,33 @@
+---
+# file: roles/latex/tasks/main.yaml
+
+- name: Install apt packages
+  when: ansible_distribution in ["Debian", "Ubuntu"]
+  become: true
+  ansible.builtin.apt:
+    state: present
+    name: texlive-full
+
+- name: Install dnf packages
+  when: ansible_distribution in ["Fedora"]
+  become: true
+  ansible.builtin.dnf:
+    state: present
+    name:
+      - texlive-scheme-full
+      - latexmk
+      - biber
+
+- name: Install brew packages
+  when: ansible_distribution in ["MacOSX"]
+  become: false
+  block:
+    - name: Install brew cask
+      community.general.homebrew_cask:
+        state: present
+        name: mactex
+
+    - name: Install brew formula
+      community.general.homebrew:
+        state: present
+        name: biber
