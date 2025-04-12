@@ -7,6 +7,7 @@
   - Until PowerToys supports toggling the Keyboard Manager with a shortcut,
     follow the instructions provided at
     https://github.com/microsoft/PowerToys/issues/4879#issuecomment-1937913707:
+
     1. Install `BurntToast` by running PowerShell as an administrator:
 
        ```

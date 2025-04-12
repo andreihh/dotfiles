@@ -131,4 +131,4 @@
             key: "{{ gnome_media_keys_cloud_tmx_keybinding }}/binding"
             value: "'<Primary><Alt>c'"
 
-# TODO: ansible.builtin.alternatives x-www-browser
+      # TODO: ansible.builtin.alternatives x-www-browser

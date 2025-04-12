@@ -15,8 +15,9 @@ return { -- Formatting
     formatters_by_ft = {
       sh = { "shfmt" },
       lua = { "stylua" },
-      markdown = { "mdformat" },
-      yaml = { "yamlfmt" },
+      yaml = { "prettier" },
+      json = { "prettier" },
+      markdown = { "prettier" },
     },
   }, vim.g.format_opts or {}),
 }

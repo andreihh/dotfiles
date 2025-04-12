@@ -21,8 +21,7 @@ return {
         "ansible-lint", -- integrates with `ansible-language-server`
         "stylua",
         "shfmt",
-        "yamlfmt",
-        "mdformat",
+        "prettier",
       }, vim.g.ensure_installed or {}),
     },
   },
