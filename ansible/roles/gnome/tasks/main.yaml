@@ -77,7 +77,7 @@
           [
             '{{ gnome_media_keys_shell_keybinding }}/',
             '{{ gnome_media_keys_tmx_keybinding }}/',
-            '{{ cloud_tmx_key }}/'
+            '{{ gnome_media_keys_cloud_tmx_key }}/'
           ]
 
     - name: Create shell terminal shortcut
