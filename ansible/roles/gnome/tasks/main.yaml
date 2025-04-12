@@ -2,7 +2,7 @@
 # file: roles/gnome/tasks/main.yaml
 
 - name: Configure Gnome settings
-  tags: [debian, ubuntu, fedora]
+  when: ansible_distribution in ["Debian", "Ubuntu", "Fedora"]
   become: false
   block:
     - name: Set system theme to dark mode
@@ -130,3 +130,5 @@
           community.general.dconf:
             key: "{{ gnome_media_keys_cloud_tmx_keybinding }}/binding"
             value: "'<Primary><Alt>c'"
+
+# TODO: ansible.builtin.alternatives x-www-browser

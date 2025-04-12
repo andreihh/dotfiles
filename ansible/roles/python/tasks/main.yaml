@@ -1,15 +1,15 @@
 ---
 # file: roles/python/tasks/main.yaml
 
-- name: Install pipx
-  tags: [debian, ubuntu, fedora]
+- name: Install pipx package
+  when: ansible_distribution in ["Debian", "Ubuntu", "Fedora"]
   become: true
   ansible.builtin.package:
     state: present
     name: pipx
 
 - name: Install pyenv
-  tags: [debian, ubuntu, fedora]
+  when: ansible_distribution in ["Debian", "Ubuntu", "Fedora"]
   become: false
   block:
     - name: Download pyenv installer
@@ -27,8 +27,8 @@
         state: absent
         path: /tmp/pyenv.sh
 
-- name: Install toolchain
-  tags: [macos]
+- name: Install brew formulae
+  when: ansible_distribution in ["MacOSX"]
   become: false
   community.general.homebrew:
     state: present
@@ -38,7 +38,6 @@
       - pyenv-virtualenv
 
 - name: Enable pyenv Bash integration
-  tags: [debian, ubuntu, fedora, macos]
   become: false
   ansible.builtin.copy:
     src: pyenv_integration.sh

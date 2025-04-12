@@ -1,31 +1,31 @@
 ---
 # file: roles/ffmpeg/tasks/main.yaml
 
-- name: Install package
-  tags: [debian, ubuntu]
+- name: Install apt package
+  when: ansible_distribution in ["Debian", "Ubuntu"]
   become: true
   ansible.builtin.apt:
     state: present
     name: ffmpeg
 
 # https://rpmfusion.org/Howto/Multimedia
-- name: Install package
-  tags: [fedora]
+- name: Install dnf package
+  when: ansible_distribution in ["Fedora"]
   become: true
   block:
-    - name: Uninstall ffmpeg-free
+    - name: Uninstall dnf ffmpeg-free
       ansible.builtin.dnf:
         state: absent
         name: ffmpeg-free
 
-    - name: Install ffmpeg
+    - name: Install dnf ffmpeg
       ansible.builtin.dnf:
         state: present
         allowerasing: true
         name: ffmpeg
 
-- name: Install package
-  tags: [macos]
+- name: Install brew formula
+  when: ansible_distribution in ["MacOSX"]
   become: false
   community.general.homebrew:
     state: present

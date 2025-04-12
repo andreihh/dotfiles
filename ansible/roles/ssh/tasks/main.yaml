@@ -2,7 +2,7 @@
 # file: roles/ssh/tasks/main.yaml
 
 - name: Ensure agent forwarding is not disabled
-  tags: [debian, ubuntu, fedora]
+  when: ansible_distribution in ["Debian", "Ubuntu", "Fedora"]
   become: true
   ansible.builtin.lineinfile:
     state: absent
@@ -10,7 +10,6 @@
     regexp: "^\\s*AllowAgentForwarding\\s+no\\s*#?.*"
 
 - name: Configure SSH multiplexing
-  tags: [debian, ubuntu, fedora, macos]
   become: false
   when: lookup('ansible.builtin.env', 'CLOUD_HOST') | ansible.builtin.mandatory
   ansible.builtin.blockinfile:

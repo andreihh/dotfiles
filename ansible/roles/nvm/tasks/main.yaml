@@ -2,10 +2,9 @@
 # file: roles/nvm/tasks/main.yaml
 
 - name: Install toolchain
-  tags: [debian, ubuntu, fedora, macos]
   become: false
   block:
-    - name: Download latest installer
+    - name: Download installer
       ansible.builtin.get_url:
         url: https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh
         dest: /tmp/install_nvm.sh

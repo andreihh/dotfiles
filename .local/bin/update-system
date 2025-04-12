@@ -8,47 +8,29 @@
 
 function usage() {
   cat << EOF
-Usage: $0 [-h] [-d DISTRIBUTION] [-t TAGS]
+Usage: $0 [-h] [-v] [-t TAGS] [-d DISTRIBUTION]
 
 Options:
-  -d  OS distribution. Will be forward to the Ansible playbook as a tag.
-        Default: inferred from '/etc/os-release' and '\${OSTYPE}'.
-  -t  List of comma-separated tags to forward to the Ansible playbook.
-        Tags: packages, ghostty, syshealth, python, nvm, rust, go, java
+  -t  List of comma-separated tags to forward to the Ansible playbook:
+        settings, packages, ghostty, syshealth, python, nvm, rust, go, java
+  -d  OS distribution. Will override the default inferred by Ansible.
+  -v  Print verbose output.
   -h  Print this message and exit.
 EOF
 }
 
-while getopts 'd:t:h' option; do
+while getopts 't:d:vh' option; do
   case "${option}" in
-    d) distribution="${OPTARG}" ;;
     t) tags="${OPTARG}" ;;
+    d) distribution="${OPTARG}" ;;
+    v) verbose="-v" ;;
     h) usage && exit 0 ;;
     *) usage && exit 1 ;;
   esac
 done
 
-if [[ -z "${distribution+set}" ]]; then
-  echo "Retrieving OS distribution..."
-  shopt -s nocasematch
-  case "${OSTYPE}" in
-    linux*)
-      . /etc/os-release
-      case "${ID}" in
-        debian | ubuntu | fedora) distribution="${ID}" ;;
-        *) echo "System '${ID}' not supported!" && exit 1 ;;
-      esac
-      ;;
-    darwin*) distribution='macos' ;;
-    *) echo "System '${OSTYPE}' not supported!" && exit 1 ;;
-  esac
-  shopt -u nocasematch
-fi
-
-# Prepend the OS distribution to the playbook tags.
-tags="${distribution}${tags:+,${tags}}"
-
 echo "Updating system with tags '${tags}'..."
-ansible-playbook --ask-become-pass --tags="${tags}" \
+ansible-playbook ${verbose:+"-vvv"} --ask-become-pass --tags="${tags}" \
+  ${distribution:+-e ansible_distribution="${distribution}"} \
   "${XDG_CONFIG_HOME:?}/dotfiles/ansible/playbook.bootstrap.yaml"
 echo "Packages installed and updated successfully!"

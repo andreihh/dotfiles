@@ -2,7 +2,7 @@
 # file: roles/tlp/tasks/main.yaml
 
 - name: Bootstrap
-  tags: [debian, ubuntu, fedora]
+  when: ansible_distribution in ["Debian", "Ubuntu", "Fedora"]
   become: true
   block:
     - name: Install package

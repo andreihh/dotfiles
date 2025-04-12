@@ -1,15 +1,15 @@
 ---
 # file: roles/packages/tasks/main.yaml
 
-- name: Update packages
-  tags: [debian, ubuntu]
+- name: Update apt packages
+  when: ansible_distribution in ["Debian", "Ubuntu"]
   become: true
   ansible.builtin.apt:
     update_cache: true
     upgrade: safe
 
-- name: Update packages
-  tags: [fedora]
+- name: Update dnf packages
+  when: ansible_distribution in ["Fedora"]
   become: true
   ansible.builtin.dnf:
     state: latest
@@ -18,28 +18,28 @@
     name: "*"
 
 - name: Install common packages
-  tags: [debian, ubuntu, fedora]
+  when: ansible_distribution in ["Debian", "Ubuntu", "Fedora"]
   become: true
   ansible.builtin.package:
     state: present
     name: "{{ packages_list.common.core + packages_list.common.media }}"
 
-- name: Install specific packages
-  tags: [debian, ubuntu]
+- name: Install apt packages
+  when: ansible_distribution in ["Debian", "Ubuntu"]
   become: true
   ansible.builtin.apt:
     state: present
     name: "{{ packages_list.apt }}"
 
-- name: Install specific packages
-  tags: [fedora]
+- name: Install dnf packages
+  when: ansible_distribution in ["Fedora"]
   become: true
   ansible.builtin.dnf:
     state: present
     name: "{{ packages_list.dnf }}"
 
-- name: Install packages
-  tags: [macos]
+- name: Upgrade and install brew formulae and casks
+  when: ansible_distribution in ["MacOSX"]
   become: false
   block:
     - name: Upgrade brew and brew formulae

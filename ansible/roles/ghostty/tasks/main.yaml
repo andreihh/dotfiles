@@ -4,16 +4,16 @@
 
 # TODO: support Debian
 
-- name: Install package
-  tags: [ubuntu]
+- name: Install snap package
+  when: ansible_distribution in ["Ubuntu"]
   become: true
   community.general.snap:
     state: present
     classic: true
     name: ghostty
 
-- name: Install package
-  tags: [fedora]
+- name: Install COPR package
+  when: ansible_distribution in ["Fedora"]
   block:
     - name: Add COPR repository
       become: true
@@ -27,10 +27,10 @@
         state: present
         name: ghostty
 
-# TODO: update-alternatives with ansible.builtin.alternatives
+# TODO: ansible.builtin.alternatives x-terminal-emulator
 
-- name: Install package
-  tags: [macos]
+- name: Install brew cask
+  when: ansible_distribution in ["MacOSX"]
   become: false
   community.general.homebrew_cask:
     state: present

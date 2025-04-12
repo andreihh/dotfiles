@@ -2,7 +2,7 @@
 # file: roles/swappiness/tasks/main.yaml
 
 - name: Configure swappiness
-  tags: [debian, ubuntu, fedora]
+  when: ansible_distribution in ["Debian", "Ubuntu", "Fedora"]
   become: true
   block:
     - name: Update sysctl config

@@ -3,15 +3,15 @@
 # https://github.com/neovim/neovim/blob/master/BUILD.md
 
 # https://github.com/neovim/neovim/blob/master/BUILD.md#build-prerequisites
-- name: Install dependencies
-  tags: [debian, ubuntu]
+- name: Install apt dependencies
+  when: ansible_distribution in ["Debian", "Ubuntu"]
   become: true
-  ansible.builtin.package:
+  ansible.builtin.apt:
     state: present
     name: [ninja-build, gettext, cmake, curl, build-essential]
 
-- name: Install dependencies
-  tags: [fedora]
+- name: Install dnf dependencies
+  when: ansible_distribution in ["Fedora"]
   become: true
   ansible.builtin.dnf:
     state: present
@@ -19,7 +19,7 @@
 
 # https://github.com/neovim/neovim/blob/master/BUILD.md#quick-start
 - name: Compile from sources
-  tags: [debian, ubuntu, fedora]
+  when: ansible_distribution in ["Debian", "Ubuntu", "Fedora"]
   vars:
     nvim_src: "{{ ansible_env.HOME }}/.local/src/nvim"
   block:
@@ -43,10 +43,10 @@
         chdir: "{{ nvim_src }}"
         target: install
 
-    # TODO: update-alternatives with ansible.builtin.alternatives
+    # TODO: ansible.builtin.alternatives editor
 
-- name: Install package
-  tags: [macos]
+- name: Install brew formula
+  when: ansible_distribution in ["MacOSX"]
   become: false
   community.general.homebrew:
     state: present

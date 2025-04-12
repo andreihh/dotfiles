@@ -2,7 +2,6 @@
 # file: roles/rust/tasks/main.yaml
 
 - name: Install toolchain
-  tags: [debian, ubuntu, fedora, macos]
   become: false
   block:
     - name: Download installer

@@ -1,8 +1,8 @@
 ---
 # file: roles/alacritty/tasks/main.yaml
 
-- name: Bootstrap
-  tags: [debian, ubuntu, fedora]
+- name: Install toolchain
+  when: ansible_distribution in ["Debian", "Ubuntu", "Fedora"]
   block:
     - name: Install packages
       become: true
@@ -22,18 +22,16 @@
       changed_when: true
       ansible.builtin.command: fc-cache -fv
 
-    # TODO: update-alternatives with ansible.builtin.alternatives
+    # TODO: ansible.builtin.alternatives x-terminal-emulator
 
-
-- name: Install packages
-  tags: [macos]
+- name: Install brew casks
+  when: ansible_distribution in ["MacOSX"]
   become: false
   community.general.homebrew_cask:
     state: present
     name: [alacritty, font-jetbrains-mono-nerd-font]
 
 - name: Install themes
-  tags: [debian, ubuntu, fedora, macos]
   become: false
   ansible.builtin.git:
     repo: "https://github.com/alacritty/alacritty-theme.git"
