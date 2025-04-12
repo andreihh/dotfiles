@@ -2,7 +2,9 @@
 #
 # Updates the system by running the `playbook.bootstrap.yaml` Ansible playbook.
 #
-# Requires the dotfiles to have been installed.
+# Requirements:
+# - Debian, Ubuntu, Fedora, MacOS: `ansible`, installed dotfiles repository
+# - MacOS: Homebrew
 
 function usage() {
   cat << EOF
@@ -45,11 +47,6 @@ fi
 
 # Prepend the OS distribution to the playbook tags.
 tags="${distribution}${tags:+,${tags}}"
-
-echo "Installing 'ansible'..."
-command -v apt-get && sudo apt-get install -y ansible
-command -v dnf && sudo dnf install ansible
-command -v brew && brew install ansible
 
 echo "Updating system with tags '${tags}'..."
 ansible-playbook --ask-become-pass --tags="${tags}" \

@@ -1,11 +1,12 @@
 #!/bin/bash -e
 #
 # Dotfiles installation script:
+# - Installs required dependencies
 # - Clones the dotfiles repository
 # - Backs up existing dotfiles
 # - Installs dotfiles
 #
-# Supports Debian, Ubuntu, Fedora, and MacOSX.
+# Supports Debian, Ubuntu, Fedora, and MacOS.
 #
 # Requirements:
 # - MacOS: Homebrew
@@ -16,7 +17,7 @@ readonly BACKUP_DIR_DEFAULT="${DOTFILES_HOME}.bak"
 
 function usage() {
   cat << EOF
-Usage: $0 [-h] [-d] [-f] [-b BACKUP_DIR] [-r SCRIPTS]
+Usage: $0 [-h] [-d] [-f] [-b BACKUP_DIR]
 
 Options:
   -d  Debug / dry run mode (simulate all actions, but do not execute them).
@@ -43,9 +44,9 @@ echo "Installing dotfiles..."
 
 echo "Installing required dependencies..."
 if [[ -z "${debug}" ]]; then
-  command -v apt-get && sudo apt-get install -y git ansible
-  command -v dnf && sudo dnf install git ansible
-  command -v brew && brew install git ansible
+  command -v apt-get &> /dev/null && sudo apt-get install -y git ansible
+  command -v dnf &> /dev/null && sudo dnf install git ansible
+  command -v brew &> /dev/null && brew install git ansible
 fi
 
 if [[ -n "${force}" ]]; then

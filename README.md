@@ -8,9 +8,6 @@ alongside an installation script.
 To install the dotfiles:
 
 - Install required dependencies:
-
-  - Debian / Ubuntu: `sudo apt install -y curl`
-  - Fedora: `sudo dnf install curl`
   - MacOS:
 
 ```bash
@@ -21,10 +18,14 @@ export HOMEBREW_INSTALLER="https://raw.githubusercontent.com/Homebrew/install/HE
 # Follow displayed instructions to finish setting up Homebrew.
 ```
 
+```bash
+brew install wget
+```
+
 - Download and run the installer:
 
 ```bash
-curl -Lo - https://codeberg.org/andreihh/dotfiles/raw/branch/main/install.sh \
+wget -O - https://codeberg.org/andreihh/dotfiles/raw/branch/main/install.sh \
   | bash
 ```
 
