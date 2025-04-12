@@ -1,3 +1,4 @@
+---
 # Workflow that runs CI checks.
 name: CI
 

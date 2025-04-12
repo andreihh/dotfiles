@@ -1,3 +1,6 @@
+---
+# file: playbook.bootstrap.yaml
+
 - name: Install core packages
   hosts: localhost
   tags: [packages]

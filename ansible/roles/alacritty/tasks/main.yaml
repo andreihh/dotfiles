@@ -22,7 +22,7 @@
       changed_when: true
       ansible.builtin.command: fc-cache -fv
 
-    # TODO: ansible.builtin.alternatives x-terminal-emulator
+# TODO: ansible.builtin.alternatives x-terminal-emulator
 
 - name: Install brew casks
   when: ansible_distribution in ["MacOSX"]
