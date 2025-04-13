@@ -2,14 +2,14 @@
 # file: roles/lazygit/tasks/main.yaml
 
 - name: Add COPR repository
-  when: ansible_distribution in ["Fedora"]
+  when: ansible_distribution in ["Fedora", "RedHat"]
   become: true
   community.general.copr:
     state: enabled
     name: atim/lazygit
 
 - name: Install package
-  when: ansible_distribution in ["Debian", "Ubuntu", "Fedora"]
+  when: ansible_distribution in ["Debian", "Ubuntu", "Fedora", "RedHat"]
   become: true
   ansible.builtin.package:
     state: present

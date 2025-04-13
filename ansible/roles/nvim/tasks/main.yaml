@@ -11,7 +11,7 @@
     name: [ninja-build, gettext, cmake, curl, build-essential]
 
 - name: Install dnf dependencies
-  when: ansible_distribution in ["Fedora"]
+  when: ansible_distribution in ["Fedora", "RedHat"]
   become: true
   ansible.builtin.dnf:
     state: present
@@ -19,7 +19,7 @@
 
 # https://github.com/neovim/neovim/blob/master/BUILD.md#quick-start
 - name: Compile from sources
-  when: ansible_distribution in ["Debian", "Ubuntu", "Fedora"]
+  when: ansible_distribution in ["Debian", "Ubuntu", "Fedora", "RedHat"]
   vars:
     nvim_src: "{{ ansible_env.HOME }}/.local/src/nvim"
   block:

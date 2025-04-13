@@ -9,7 +9,7 @@
     name: texlive-full
 
 - name: Install dnf packages
-  when: ansible_distribution in ["Fedora"]
+  when: ansible_distribution in ["Fedora", "RedHat"]
   become: true
   ansible.builtin.dnf:
     state: present

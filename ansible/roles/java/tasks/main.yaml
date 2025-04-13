@@ -9,7 +9,7 @@
     name: openjdk-23-jdk
 
 - name: Install dnf package
-  when: ansible_distribution in ["Fedora"]
+  when: ansible_distribution in ["Fedora", "RedHat"]
   become: true
   ansible.builtin.dnf:
     state: present

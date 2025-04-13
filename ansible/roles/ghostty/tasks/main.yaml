@@ -13,7 +13,7 @@
     name: ghostty
 
 - name: Install COPR package
-  when: ansible_distribution in ["Fedora"]
+  when: ansible_distribution in ["Fedora", "RedHat"]
   become: true
   block:
     - name: Add COPR repository
@@ -27,7 +27,7 @@
         name: ghostty
 
 - name: Install and configure as default terminal
-  when: ansible_distribution in ["Debian", "Ubuntu", "Fedora"]
+  when: ansible_distribution in ["Debian", "Ubuntu", "Fedora", "RedHat"]
   block:
     - name: Fetch binary location
       become: false

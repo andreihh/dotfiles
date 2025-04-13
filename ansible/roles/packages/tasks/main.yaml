@@ -9,7 +9,7 @@
     upgrade: safe
 
 - name: Update dnf packages
-  when: ansible_distribution in ["Fedora"]
+  when: ansible_distribution in ["Fedora", "RedHat"]
   become: true
   ansible.builtin.dnf:
     state: latest
@@ -18,7 +18,7 @@
     name: "*"
 
 - name: Install common packages
-  when: ansible_distribution in ["Debian", "Ubuntu", "Fedora"]
+  when: ansible_distribution in ["Debian", "Ubuntu", "Fedora", "RedHat"]
   become: true
   ansible.builtin.package:
     state: present
@@ -32,7 +32,7 @@
     name: "{{ packages_list.apt }}"
 
 - name: Install dnf packages
-  when: ansible_distribution in ["Fedora"]
+  when: ansible_distribution in ["Fedora", "RedHat"]
   become: true
   ansible.builtin.dnf:
     state: present

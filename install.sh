@@ -6,10 +6,10 @@
 # - Backs up existing dotfiles
 # - Installs dotfiles
 #
-# Supports Debian, Ubuntu, Fedora, and MacOS.
+# Supports Debian, Ubuntu, Fedora, RHEL, and MacOS.
 #
 # Requirements:
-# - MacOS: Homebrew
+# - MacOS: `brew`
 
 readonly REPOSITORY_URL="git@codeberg.org:andreihh/dotfiles.git"
 readonly DOTFILES_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}/dotfiles"

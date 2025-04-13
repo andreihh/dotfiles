@@ -10,7 +10,7 @@
 
 # https://rpmfusion.org/Howto/Multimedia
 - name: Install dnf package
-  when: ansible_distribution in ["Fedora"]
+  when: ansible_distribution in ["Fedora", "RedHat"]
   become: true
   block:
     - name: Uninstall dnf ffmpeg-free

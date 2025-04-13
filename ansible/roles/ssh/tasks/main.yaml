@@ -2,7 +2,7 @@
 # file: roles/ssh/tasks/main.yaml
 
 - name: Ensure agent forwarding is not disabled
-  when: ansible_distribution in ["Debian", "Ubuntu", "Fedora"]
+  when: ansible_distribution in ["Debian", "Ubuntu", "Fedora", "RedHat"]
   become: true
   ansible.builtin.lineinfile:
     state: absent

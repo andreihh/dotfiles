@@ -1,10 +1,11 @@
 #!/bin/bash -e
 #
-# Updates the system by running the `playbook.bootstrap.yaml` Ansible playbook.
+# Updates the system by running the `playbook.bootstrap.yaml` Ansible playbook
+# from the dotfiles repository.
 #
 # Requirements:
-# - Debian, Ubuntu, Fedora, MacOS: `ansible`, installed dotfiles repository
-# - MacOS: Homebrew
+# - Debian, Ubuntu, Fedora, RHEL, MacOS: `ansible`
+# - MacOS: `brew`
 
 function usage() {
   cat << EOF

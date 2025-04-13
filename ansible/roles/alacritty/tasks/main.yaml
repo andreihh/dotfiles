@@ -2,7 +2,7 @@
 # file: roles/alacritty/tasks/main.yaml
 
 - name: Install toolchain
-  when: ansible_distribution in ["Debian", "Ubuntu", "Fedora"]
+  when: ansible_distribution in ["Debian", "Ubuntu", "Fedora", "RedHat"]
   block:
     - name: Install packages
       become: true

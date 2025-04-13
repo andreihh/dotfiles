@@ -2,14 +2,14 @@
 # file: roles/python/tasks/main.yaml
 
 - name: Install pipx package
-  when: ansible_distribution in ["Debian", "Ubuntu", "Fedora"]
+  when: ansible_distribution in ["Debian", "Ubuntu", "Fedora", "RedHat"]
   become: true
   ansible.builtin.package:
     state: present
     name: pipx
 
 - name: Install pyenv
-  when: ansible_distribution in ["Debian", "Ubuntu", "Fedora"]
+  when: ansible_distribution in ["Debian", "Ubuntu", "Fedora", "RedHat"]
   become: false
   block:
     - name: Download pyenv installer

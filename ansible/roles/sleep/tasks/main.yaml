@@ -2,7 +2,7 @@
 # file: roles/sleep/tasks/main.yaml
 
 - name: Configure device sleep modes
-  when: ansible_distribution in ["Debian", "Ubuntu", "Fedora"]
+  when: ansible_distribution in ["Debian", "Ubuntu", "Fedora", "RedHat"]
   become: true
   ansible.builtin.copy:
     src: sleep.conf

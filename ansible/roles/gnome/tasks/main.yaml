@@ -2,7 +2,7 @@
 # file: roles/gnome/tasks/main.yaml
 
 - name: Configure Gnome settings
-  when: ansible_distribution in ["Debian", "Ubuntu", "Fedora"]
+  when: ansible_distribution in ["Debian", "Ubuntu", "Fedora", "RedHat"]
   become: false
   block:
     - name: Set system theme to dark mode
