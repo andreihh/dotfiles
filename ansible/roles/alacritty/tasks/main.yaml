@@ -26,7 +26,12 @@
       changed_when: true
       ansible.builtin.command: fc-cache -fv
 
-# TODO: ansible.builtin.alternatives x-terminal-emulator
+    - name: Configure as default editor
+      become: true
+      community.general.alternatives:
+        name: x-terminal-emulator
+        path: /usr/bin/alacritty
+        link: /usr/bin/x-terminal-emulator
 
 - name: Install brew casks
   when: ansible_distribution in ["MacOSX"]

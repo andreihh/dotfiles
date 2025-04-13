@@ -12,5 +12,5 @@
         line: "vm.swappiness=1"
 
     - name: Reload sysctl config
-      ansible.builtin.command: sysctl -p
       changed_when: true
+      ansible.builtin.command: sysctl -p

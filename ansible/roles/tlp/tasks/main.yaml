@@ -22,5 +22,5 @@
         name: tlp.service
 
     - name: Start service
-      ansible.builtin.command: tlp start
       changed_when: true
+      ansible.builtin.command: tlp start
