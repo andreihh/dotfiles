@@ -135,4 +135,3 @@
           community.general.dconf:
             key: "{{ gnome_custom_keybindings_cloud_tmx }}/binding"
             value: "'<Primary><Alt>c'"
-# TODO: ansible.builtin.alternatives x-www-browser

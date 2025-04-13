@@ -43,7 +43,12 @@
         chdir: "{{ nvim_src }}"
         target: install
 
-# TODO: ansible.builtin.alternatives editor
+    - name: Configure as default editor
+      become: true
+      community.general.alternatives:
+        name: editor
+        path: /usr/local/bin/nvim
+        link: /usr/bin/editor
 
 - name: Install brew formula
   when: ansible_distribution in ["MacOSX"]
