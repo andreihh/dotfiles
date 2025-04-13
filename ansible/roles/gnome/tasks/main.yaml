@@ -10,6 +10,11 @@
         key: "{{ gnome_interface }}/color-scheme"
         value: "'prefer-dark'"
 
+    - name: Show battery percentage
+      community.general.dconf:
+        key: "{{ gnome_interface }}/show-battery-percentage"
+        value: "true"
+
     - name: Set keyboard layout to US
       community.general.dconf:
         key: "{{ gnome_input_sources }}/sources"
