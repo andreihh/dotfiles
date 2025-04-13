@@ -26,7 +26,21 @@
         state: present
         name: ghostty
 
-# TODO: ansible.builtin.alternatives x-terminal-emulator
+- name: Install and configure as default terminal
+  when: ansible_distribution in ["Debian", "Ubuntu", "Fedora"]
+  block:
+    - name: Fetch binary location
+      become: false
+      register: binary
+      changed_when: false
+      ansible.builtin.command: which ghostty
+
+    - name: Configure as default terminal
+      become: true
+      community.general.alternatives:
+        name: x-terminal-emulator
+        path: "{{ binary.stdout }}"
+        link: /usr/bin/x-terminal-emulator
 
 - name: Install brew cask
   when: ansible_distribution in ["MacOSX"]
