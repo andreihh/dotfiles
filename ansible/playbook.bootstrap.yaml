@@ -2,7 +2,7 @@
 # file: playbook.bootstrap.yaml
 
 - name: Install core packages
-  hosts: localhost
+  hosts: local
   tags: [packages]
   roles:
     - packages
@@ -18,7 +18,7 @@
     - ssh
 
 - name: Configure system health
-  hosts: localhost
+  hosts: local
   tags: [syshealth]
   roles:
     - swappiness
@@ -26,49 +26,49 @@
     - tlp
 
 - name: Install ghostty
-  hosts: localhost
+  hosts: local
   tags: [ghostty]
   roles:
     - ghostty
 
 - name: Install lazygit
-  hosts: localhost
+  hosts: local
   tags: [lazygit]
   roles:
     - lazygit
 
 - name: Install latex
-  hosts: localhost
+  hosts: local
   tags: [latex]
   roles:
     - latex
 
 - name: Install python
-  hosts: localhost
+  hosts: local
   tags: [python]
   roles:
     - python
 
 - name: Install nvm
-  hosts: localhost
+  hosts: local
   tags: [nvm]
   roles:
     - nvm
 
 - name: Install rust
-  hosts: localhost
+  hosts: local
   tags: [rust]
   roles:
     - rust
 
 - name: Install go
-  hosts: localhost
+  hosts: local
   tags: [go]
   roles:
     - go
 
 - name: Install java
-  hosts: localhost
+  hosts: local
   tags: [java]
   roles:
     - java

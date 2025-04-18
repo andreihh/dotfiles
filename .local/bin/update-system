@@ -31,6 +31,8 @@ while getopts 't:d:vh' option; do
   esac
 done
 
+export ANSIBLE_CONFIG="${XDG_CONFIG_HOME:?}/dotfiles/ansible/ansible.cfg"
+
 echo "Updating system with tags '${tags}'..."
 ansible-playbook ${verbose:+"-vvv"} --ask-become-pass --tags="${tags}" \
   ${distribution:+-e ansible_distribution="${distribution}"} \
