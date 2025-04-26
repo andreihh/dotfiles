@@ -1,6 +1,3 @@
-[core]
-	excludesFile = ~/.ignore
-
 [init]
 	defaultBranch = main
 

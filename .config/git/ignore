@@ -1,3 +1,6 @@
+# Required for Mercurial compatibility
+syntax: glob
+
 ### Linux ###
 *~
 
