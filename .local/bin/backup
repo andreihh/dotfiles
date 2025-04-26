@@ -1,52 +1,71 @@
 #!/bin/bash -e
 #
-# Manages backups for important files: dotfiles and all directories starting
-# with an uppercase letter from the home directory.
+# Manages backups for important files:
+# - dotfiles
+# - essential directories from a private drive
+# - all directories starting with an uppercase letter from the home directory
 #
 # Requirements: `tar`, `gzip`, `gnupg`
 
 function usage() {
   cat << EOF
-Usage: $0 [-h] [-l|-r|-o] -f FILE
+Usage: $0 [-h] [-d DIR|-a|-l|-r|-o] -f FILE
 
 Options:
-  -l List backup contents instead of backing up. Provided file must exist.
-  -r Restore backup instead of backing up. Provided file must exist.
+  -d Back up essential directories from provided private drive:
+       documents, p13n, music
+  -a Back up all directories from home starting with an uppercase letter.
+  -l List backup contents from provided file.
+  -r Restore backup from provided file.
   -o Same as '-r', but will overwrite all existing files.
   -f Backup file to process.
 EOF
 }
 
-while getopts 'lrof:h' option; do
+while getopts 'd:alrof:h' option; do
   case "${option}" in
-    l) list=true ;;
-    r) restore=true ;;
-    o) overwrite=true ;;
+    d)
+      operation='drive'
+      drive="$(readlink -f "${OPTARG}")"
+      file="${file:-${HOME}/${USER}-$(date -I)-drive.tgz.gpg}"
+      ;;
+    a)
+      operation='all'
+      file="${file:-${HOME}/${HOSTNAME}-${USER}-$(date -I)-all.tgz.gpg}"
+      ;;
+    l) operation='list' ;;
+    r) operation='restore' ;;
+    o) operation='overwrite' ;;
     f) file="$(readlink -f "${OPTARG}")" ;;
     h) usage && exit 0 ;;
     *) usage && exit 1 ;;
   esac
 done
 
-[[ $# -gt 3 ]] && usage && exit 1
+[[ -z "${file}" ]] && echo "Invalid backup file '${file}'!" && exit 1
 
-[[ -z "${list}${restore}${overwrite}${file}" ]] \
-  && file="${HOME}/${USER}-$(date -I).tgz.gpg"
-
-[[ -z "${file}" ]] && usage && exit 1
-
-cd "${HOME}"
-
-if [[ -n "${list}" ]]; then
-  echo "Listing backup contents from '${file}'..."
-  gpg -d "${file}" | tar -tzv
-elif [[ -n "${restore}" ]]; then
-  echo "Restoring backup from '${file}'..."
-  gpg -d "${file}" | tar -xzv --keep-newer-files
-elif [[ -n "${overwrite}" ]]; then
-  echo "Restoring backup from '${file}' (will overwrite all existing files)..."
-  gpg -d "${file}" | tar -xzv --overwrite
-else
-  echo "Backing up to '${file}'..."
-  tar -czv .config/dotfiles/ [A-Z]*/ | gpg -c -o "${file}"
-fi
+case "${operation}" in
+  drive)
+    [[ -z "${drive}" ]] && echo "Invalid private drive '${drive}'!" && exit 1
+    echo "Backing up private drive to '${file}'..."
+    tar -czv "${XDG_CONFIG_HOME:?}/dotfiles" "${drive}"/{documents,p13n,music} \
+      | gpg -c -o "${file}"
+    ;;
+  all)
+    echo "Backing up everything to '${file}'..."
+    tar -czv ~/.env "${XDG_CONFIG_HOME:?}" ~/[A-Z]*/ | gpg -c -o "${file}"
+    ;;
+  list)
+    echo "Listing backup contents from '${file}'..."
+    gpg -d "${file}" | tar -tzv
+    ;;
+  restore)
+    echo "Restoring backup from '${file}'..."
+    gpg -d "${file}" | tar -xzv --keep-newer-files
+    ;;
+  overwrite)
+    echo "Restoring backup from '${file}' (will overwrite existing files)..."
+    gpg -d "${file}" | tar -xzv --overwrite
+    ;;
+  *) echo "Invalid operation '${operation}'!" && exit 1 ;;
+esac
