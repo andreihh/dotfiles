@@ -1,7 +1,8 @@
 #!/bin/bash -e
 #
-# Updates the system by running the `playbook.bootstrap.yaml` Ansible playbook
-# from the dotfiles repository.
+# Updates the system by running all the `playbook.*.yaml` Ansible playbooks from
+# the `${ANSIBLE_HOME}/bootstrap` directory, using the `ansible.cfg` in that
+# directory.
 #
 # Requirements:
 # - Debian, Ubuntu, Fedora, RHEL, MacOS: `ansible`
@@ -31,10 +32,10 @@ while getopts 't:d:vh' option; do
   esac
 done
 
-export ANSIBLE_CONFIG="${XDG_CONFIG_HOME:?}/dotfiles/ansible/ansible.cfg"
+export ANSIBLE_CONFIG="${ANSIBLE_HOME:?}/bootstrap/ansible.cfg"
 
 echo "Updating system with tags '${tags}'..."
 ansible-playbook ${verbose:+"-vvv"} --ask-become-pass --tags="${tags}" \
   ${distribution:+-e ansible_distribution="${distribution}"} \
-  "${XDG_CONFIG_HOME:?}/dotfiles/ansible/playbook.bootstrap.yaml"
+  "${ANSIBLE_HOME:?}/bootstrap"/playbook.*.yaml
 echo "Packages installed and updated successfully!"
