@@ -1,2 +1,2 @@
-[tool.pyink]
+[tool.black]
 line-length = 80

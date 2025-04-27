@@ -21,6 +21,9 @@ indent_style = tab
 
 [*.{py,pyi}]
 indent_size = 4
+# Configure `isort`:
+profile = black
+skip_gitignore = true
 
 [*.{java,kt,kts}]
 max_line_length = 100

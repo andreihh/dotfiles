@@ -90,7 +90,7 @@ vim.lsp.enable({ "pyright", "clangd", "jdtls" })
 --  See `:help conform`
 vim.g.format_opts = {
   formatters_by_ft = {
-    python = { "isort", "pyink" },
+    python = { "isort", "black" },
     cpp = { "clang-format" },
     java = { "google-java-format" },
   },
@@ -109,13 +109,13 @@ vim.g.lint_opts = {
 -- Ensure development tools are installed by Mason.
 vim.g.ensure_installed = {
   "pyright",
-  "clangd",
-  "jdtls",
   "isort",
-  "pyink",
-  "clang-format",
-  "google-java-format",
+  "black",
   "pylint",
+  "clangd",
+  "clang-format",
+  "jdtls",
+  "google-java-format",
   "checkstyle",
 }
 ```
