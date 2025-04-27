@@ -31,17 +31,15 @@
         depth: 1
         dest: "{{ nvim_src }}"
 
-    - name: Clean previous build
-      become: false
-      community.general.make:
-        chdir: "{{ nvim_src }}"
-        params: "distclean"
-
     - name: Build binary
       become: false
       community.general.make:
         chdir: "{{ nvim_src }}"
-        params: "CMAKE_BUILD_TYPE=Release"
+        targets:
+          - distclean
+          - all
+        params:
+          CMAKE_BUILD_TYPE: Release
 
     - name: Install binary
       become: true
