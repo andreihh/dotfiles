@@ -8,34 +8,19 @@
 # - Debian, Ubuntu, Fedora, RHEL, MacOS: `ansible`
 # - MacOS: `brew`
 
-function usage() {
-  cat << EOF
-Usage: $0 [-h] [-v] [-t TAGS] [-d DISTRIBUTION]
+readonly BOOTSTRAP_HOME="${ANSIBLE_HOME:?}/bootstrap"
+export ANSIBLE_CONFIG="${BOOTSTRAP_HOME}/ansible.cfg"
 
-Options:
-  -t  List of comma-separated tags to forward to the Ansible playbook:
-        packages, settings, syshealth, ghostty, lazygit, latex, python, nvm,
-        rust, go, java
-  -d  OS distribution. Will override the default inferred by Ansible.
-  -v  Print verbose output.
-  -h  Print this message and exit.
-EOF
-}
-
-while getopts 't:d:vh' option; do
-  case "${option}" in
-    t) tags="${OPTARG}" ;;
-    d) distribution="${OPTARG}" ;;
-    v) verbose="-v" ;;
-    h) usage && exit 0 ;;
-    *) usage && exit 1 ;;
+for arg in "$@"; do
+  case "${arg}" in
+    --tags | --list-tags) has_tags=true ;;
+    *) ;;
   esac
 done
 
-export ANSIBLE_CONFIG="${ANSIBLE_HOME:?}/bootstrap/ansible.cfg"
+[[ -z "${has_tags}" ]] && cat << EOF && exit 1
+Must provide '--tags' option followed by comma-separated list of tags to run!
+Use '--list-tags' to show the list of available tags.
+EOF
 
-echo "Updating system with tags '${tags}'..."
-ansible-playbook ${verbose:+"-vvv"} --ask-become-pass --tags="${tags}" \
-  ${distribution:+-e ansible_distribution="${distribution}"} \
-  "${ANSIBLE_HOME:?}/bootstrap"/playbook.*.yaml
-echo "Packages installed and updated successfully!"
+ansible-playbook --ask-become-pass "$@" "${BOOTSTRAP_HOME}"/playbook.*.yaml
