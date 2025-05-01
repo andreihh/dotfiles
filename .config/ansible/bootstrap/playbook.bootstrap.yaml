@@ -16,6 +16,14 @@
   roles:
     - firefox
 
+- name: Install media packages
+  hosts: local
+  tags: [media]
+  roles:
+    - rpmfusion
+    - ffmpeg
+    - music
+
 - name: Configure system settings
   hosts: localhost
   tags: [settings]

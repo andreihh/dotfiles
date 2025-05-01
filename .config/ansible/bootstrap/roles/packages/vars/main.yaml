@@ -30,8 +30,6 @@ packages_list:
       - gcc
       - pre-commit
       - htop
-      - cmus
-      - cava
     # Also available as brew casks.
     media:
       - keepassxc
