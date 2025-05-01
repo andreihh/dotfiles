@@ -29,22 +29,24 @@ packages_list:
       - cmake
       - gcc
       - pre-commit
+      - htop
+      - cmus
+      - cava
     # Also available as brew casks.
     media:
-      - firefox
-      - thunderbird
       - keepassxc
-      - vlc
   apt:
     - gnome-shell-extension-appindicator
     - lm-sensors
     - build-essential
     - linux-tools-common
     - linux-tools-generic
+    - gtk2-engines-murrine
   dnf:
     - gnome-shell-extension-appindicator
     - lm_sensors
     - gcc-c++
+    - gtk-murrine-engine
   brew:
     formulae:
       - coreutils

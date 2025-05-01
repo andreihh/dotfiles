@@ -8,7 +8,7 @@
       ansible.builtin.get_url:
         url: https://sh.rustup.rs
         dest: /tmp/rustup.sh
-        mode: u+rwx
+        mode: u=rwx
 
     - name: Run installer
       changed_when: true

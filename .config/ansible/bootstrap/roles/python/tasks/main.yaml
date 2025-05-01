@@ -16,7 +16,7 @@
       ansible.builtin.get_url:
         url: https://pyenv.run
         dest: /tmp/pyenv.sh
-        mode: u+rwx
+        mode: u=rwx
 
     - name: Run pyenv installer
       changed_when: true

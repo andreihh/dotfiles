@@ -5,11 +5,6 @@
   when: ansible_distribution in ["Debian", "Ubuntu", "Fedora", "RedHat"]
   become: false
   block:
-    - name: Set system theme to dark mode
-      community.general.dconf:
-        key: "{{ gnome_interface }}/color-scheme"
-        value: "'prefer-dark'"
-
     - name: Show battery percentage
       community.general.dconf:
         key: "{{ gnome_interface }}/show-battery-percentage"

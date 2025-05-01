@@ -1,0 +1,16 @@
+---
+# file: roles/packages/vars/main.yaml
+
+- name: Install firefox package
+  when: ansible_distribution in ["Debian", "Ubuntu", "Fedora", "RedHat"]
+  become: true
+  ansible.builtin.package:
+    state: present
+    name: firefox
+
+- name: Install firefox cask
+  when: ansible_distribution in ["MacOSX"]
+  become: false
+  community.general.homebrew_cask:
+    state: present
+    name: firefox

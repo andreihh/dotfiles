@@ -8,7 +8,7 @@
       ansible.builtin.get_url:
         url: https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh
         dest: /tmp/install_nvm.sh
-        mode: u+rwx
+        mode: u=rwx
 
     - name: Run installer
       changed_when: true
