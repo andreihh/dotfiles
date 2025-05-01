@@ -63,7 +63,7 @@ Plug 'RyanMillerC/better-vim-tmux-resizer'  " Vim / `tmux` window resizing
 Plug 'junegunn/fzf'  " Core `fzf` integration
 Plug 'junegunn/fzf.vim'  " Better `fzf` searching
 " UI
-Plug 'sainnhe/sonokai'  " Color scheme
+Plug 'catppuccin/vim', { 'as': 'catppuccin' }  " Color scheme
 Plug 'machakann/vim-highlightedyank'  " Highlight yanked text
 Plug 'ryanoasis/vim-devicons'  " Nerd Font icons
 Plug 'itchyny/lightline.vim'  " Better status and tab lines
@@ -199,10 +199,9 @@ augroup config_cursor_line
   autocmd WinLeave,FocusLost * setlocal nocursorline
 augroup END
 
-augroup config_sonokai_highlights
+augroup config_theme_highlights
   autocmd!
-  " The matched pattern is `$COLORSCHEME` instead of `sonokai`.
-  autocmd ColorScheme * call s:ConfigSonokaiHighlights()
+  autocmd ColorScheme * call s:ConfigThemeHighlights()
 augroup END
 
 augroup config_netrw_keymaps
@@ -383,7 +382,7 @@ endfunction
 " - `nf-pl-left_soft_divider`
 " - `nf-pl-right_soft_divider`
 let g:lightline = {
-    \ 'colorscheme': $COLORSCHEME,
+    \ 'colorscheme': $VIM_THEME,
     \ 'active': {
     \   'left': [['mode', 'paste'], ['session', 'branch'], ['filename']],
     \   'right': [['lineinfo'], ['percentwin'], ['lsp_status', 'ft']],
@@ -404,32 +403,20 @@ let g:lightline = {
 
 " [[ Color scheme ]]
 
-function! s:ConfigSonokaiHighlights() abort
-  if g:colors_name != 'sonokai'
-    return
+function! s:ConfigThemeHighlights() abort
+  if g:colors_name == 'catppuccin_macchiato'
+    " Override window separator to match status line.
+    highlight! VertSplit guifg=#A5ADCB guibg=#1E2030
   endif
-
-  " Set the highlighted yank to match search.
-  highlight! link HighlightedyankRegion IncSearch
-
-  let l:palette = sonokai#get_palette('default', {})
-
-  " Override window separator to match tab and status lines.
-  call sonokai#highlight('VertSplit', l:palette.grey_dim, l:palette.bg1)
-
-  " Override `fzf-lua` highlights for better contrast.
-  let g:fzf_colors['info'] = ['fg', 'Comment']
-  let g:fzf_colors['spinner'] = ['fg', 'Comment']
-  let g:fzf_colors['bg+'] = ['bg', 'Pmenu']
 endfunction
 
 " If the terminal supports colors, try to set the configured color scheme.
 "
 " Must be set after the `background` and `syntax`. Must be set after the
-" `config_sonokai_highlights` `augroup` and the `s:ConfigSonokaiHighlights`
-" function definitions.
+" `config_theme_highlights` `augroup` and the `s:ConfigThemeHighlights` function
+" definitions.
 if &t_Co >= 256
-  colorscheme $COLORSCHEME
+  colorscheme $VIM_THEME
 endif
 
 " [[ Keymaps ]]
