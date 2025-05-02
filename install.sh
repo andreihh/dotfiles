@@ -44,9 +44,11 @@ echo "Installing dotfiles..."
 
 echo "Installing required dependencies..."
 if [[ -z "${debug}" ]]; then
-  command -v apt-get &> /dev/null && sudo apt-get install -y git ansible
-  command -v dnf &> /dev/null && sudo dnf install git ansible
-  command -v brew &> /dev/null && brew install git ansible
+  if ! command -v git &> /dev/null || ! command -v ansible &> /dev/null; then
+    command -v apt-get &> /dev/null && sudo apt-get install -y git ansible
+    command -v dnf &> /dev/null && sudo dnf install git ansible
+    command -v brew &> /dev/null && brew install git ansible
+  fi
 fi
 
 if [[ -n "${force}" ]]; then
