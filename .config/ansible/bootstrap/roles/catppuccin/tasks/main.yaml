@@ -1,0 +1,142 @@
+---
+# file: roles/catppuccin/tasks/main.yaml
+# TODO: configure cmus when supported.
+
+- name: Create theme directories
+  become: false
+  ansible.builtin.file:
+    state: directory
+    path: "{{ item }}"
+    mode: u=rwx
+  loop:
+    - "{{ catppuccin_assets }}"
+    - "{{ catppuccin_theme.fzf.dir }}"
+    - "{{ catppuccin_theme.bat.dir }}"
+    - "{{ catppuccin_theme.cava.dir }}"
+
+- name: Download wallpaper
+  become: false
+  ansible.builtin.get_url:
+    url: "{{ catppuccin_theme.wallpaper.url }}"
+    dest: "{{ catppuccin_theme.wallpaper.file }}"
+    mode: u=rw
+
+- name: Configure alacritty theme
+  become: false
+  ansible.builtin.template:
+    src: templates/alacritty_theme.toml.j2
+    dest: "{{ catppuccin_theme.alacritty }}"
+    mode: u=rw
+
+- name: Configure ghostty theme
+  become: false
+  ansible.builtin.template:
+    src: templates/ghostty_theme.j2
+    dest: "{{ catppuccin_theme.ghostty }}"
+    mode: u=rw
+
+# TODO: download from https://github.com/catppuccin/fzf when supported.
+- name: Install fzf themes
+  become: false
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "{{ catppuccin_theme.fzf.dir }}/{{ item | basename }}"
+    mode: u=rw
+  loop:
+    - fzf_catppuccin_latte.sh
+    - fzf_catppuccin_frappe.sh
+    - fzf_catppuccin_macchiato.sh
+    - fzf_catppuccin_mocha.sh
+
+- name: Install bat theme
+  become: false
+  block:
+    - name: Download bat theme
+      ansible.builtin.get_url:
+        url: "{{ catppuccin_theme.bat.git }}/Catppuccin%20{{ flavor | title }}.tmTheme"
+        dest: "{{ catppuccin_theme.bat.dir }}/catppuccin-{{ flavor }}.tmTheme"
+        mode: u=rw
+
+    - name: Rebuild bat cache
+      changed_when: true
+      ansible.builtin.command: bat cache --build
+
+- name: Configure cava theme
+  become: false
+  block:
+    - name: Download cava theme
+      ansible.builtin.get_url:
+        url: "{{ catppuccin_theme.cava.git }}/{{ flavor }}.cava"
+        dest: "{{ catppuccin_theme.cava.dir }}/catppuccin-{{ flavor }}.cava"
+        mode: u=rw
+
+    - name: Link cava config
+      ansible.builtin.file:
+        state: link
+        force: true
+        src: "{{ catppuccin_theme.cava.dir }}/catppuccin-{{ flavor }}.cava"
+        dest: "{{ catppuccin_theme.cava.config }}"
+
+- name: Configure shell theme
+  become: false
+  ansible.builtin.template:
+    src: templates/shell_theme.sh.j2
+    dest: "{{ catppuccin_theme.shell }}"
+    mode: u=rw
+
+- name: Configure GTK theme
+  become: false
+  block:
+    - name: Clone GTK theme repository
+      ansible.builtin.git:
+        repo: "{{ catppuccin_theme.gtk.git }}"
+        version: main
+        depth: 1
+        dest: "{{ catppuccin_theme.gtk.dir }}"
+
+    - name: Install GTK theme
+      changed_when: true
+      # TODO: `tweaks` only works for `frappe` and `macchiato`; if `mocha` or
+      # `latte`, should simply not provide `tweaks`.
+      ansible.builtin.command:
+        cmd:
+        argv:
+          - "{{ catppuccin_theme.gtk.dir }}/themes/install.sh"
+          - "--libadwaita"
+          - "--dest"
+          - "{{ catppuccin_theme.gtk.dest }}"
+          - "--tweaks"
+          - "{{ flavor }}"
+
+- name: Configure Gnome theme
+  become: false
+  block:
+    - name: Set Gnome theme mode based on flavor
+      community.general.dconf:
+        key: "{{ catppuccin_theme.gnome.interface }}/color-scheme"
+        value: "'prefer-{{ (flavor == 'latte') | ternary('light', 'dark') }}'"
+
+    - name: Set Gnome theme accent to blue
+      community.general.dconf:
+        key: "{{ catppuccin_theme.gnome.interface }}/accent-color"
+        value: "'blue'"
+
+    - name: Set Gnome icon theme to Adwaita
+      community.general.dconf:
+        key: "{{ catppuccin_theme.gnome.interface }}/icon-theme"
+        value: "'Adwaita'"
+
+    - name: Set Gnome GTK theme
+      community.general.dconf:
+        key: "{{ catppuccin_theme.gnome.interface }}/gtk-theme"
+        value: "'Catppuccin-Dark-{{ flavor | title }}'"
+
+    - name: Set Gnome light wallpaper
+      community.general.dconf:
+        key: "{{ catppuccin_theme.gnome.background }}/picture-uri"
+        value: "'file://{{ catppuccin_theme.wallpaper.file }}'"
+
+    - name: Set Gnome dark wallpaper
+      community.general.dconf:
+        key: "{{ catppuccin_theme.gnome.background }}/picture-uri-dark"
+        value: "'file://{{ catppuccin_theme.wallpaper.file }}'"

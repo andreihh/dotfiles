@@ -25,11 +25,20 @@
     - music
 
 - name: Configure system settings
-  hosts: localhost
+  hosts: local
   tags: [settings]
   roles:
     - gnome
     - ssh
+
+- name: Configure system theme
+  hosts: local
+  tags: [theme]
+  # TODO: support more flavors.
+  vars:
+    flavor: macchiato
+  roles:
+    - catppuccin
 
 - name: Configure system health
   hosts: local

@@ -1,0 +1,8 @@
+# theme.sh: configures shell theme.
+#
+# shellcheck shell=sh
+
+export NVIM_THEME="catppuccin-{{ flavor }}"
+export VIM_THEME="catppuccin_{{ flavor }}"
+export BAT_THEME="catppuccin-{{ flavor }}"
+. "${XDG_CONFIG_HOME}/fzf/themes/fzf_catppuccin_{{ flavor }}.sh"
