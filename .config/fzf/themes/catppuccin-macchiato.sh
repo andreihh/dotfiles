@@ -1,4 +1,4 @@
-# fzf_catppuccin_macchiato.sh: configures `fzf` theme.
+# catppuccin-macchiato.sh: configures `fzf` theme.
 #
 # shellcheck shell=bash
 

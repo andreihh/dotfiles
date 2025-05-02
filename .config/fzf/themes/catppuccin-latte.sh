@@ -1,4 +1,4 @@
-# fzf_catppuccin_latte.sh: configures `fzf` theme.
+# catppuccin-latte.sh: configures `fzf` theme.
 #
 # shellcheck shell=bash
 

@@ -1,4 +1,4 @@
-# fzf_catppuccin_mocha.sh: configures `fzf` theme.
+# catppuccin-mocha.sh: configures `fzf` theme.
 #
 # shellcheck shell=bash
 

@@ -1,0 +1,41 @@
+---
+# file: playbook.catppuccin_macchiato.yaml
+
+- name: Configure system theme
+  hosts: local
+  tags: [catppuccin-macchiato]
+  vars:
+    theme:
+      name: catppuccin-macchiato
+      mode: dark
+      accent: blue
+      icons: Adwaita
+      gtk: Catppuccin-Dark-Macchiato
+      vim: catppuccin_macchiato
+      files:
+        alacritty:
+          url: "\
+            https://github.com/alacritty/alacritty-theme/raw/master/themes/\
+            catppuccin_macchiato.toml"
+        # TODO: download from https://github.com/catppuccin/fzf when supported.
+        bat:
+          url: "\
+            https://github.com/catppuccin/bat/raw/main/themes/\
+            Catppuccin%20Macchiato.tmTheme"
+        # TODO: configure cmus when supported.
+        cava:
+          url: "\
+            https://github.com/catppuccin/cava/raw/main/themes/\
+            macchiato.cava"
+        wallpaper:
+          url: "\
+            https://github.com/orangci/walls-catppuccin-mocha/raw/master/\
+            flying-comets-clouds.jpg"
+      repos:
+        gtk:
+          url: https://github.com/Fausto-Korpsvart/Catppuccin-GTK-Theme
+      gtk_install_argv:
+        - "--tweaks"
+        - "macchiato"
+  roles:
+    - theme

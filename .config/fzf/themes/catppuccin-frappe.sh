@@ -1,4 +1,4 @@
-# fzf_catppuccin_frappe.sh: configures `fzf` theme.
+# catppuccin-frappe.sh: configures `fzf` theme.
 #
 # shellcheck shell=bash
 

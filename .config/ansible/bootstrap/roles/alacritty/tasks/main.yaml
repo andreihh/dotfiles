@@ -26,7 +26,7 @@
       changed_when: true
       ansible.builtin.command: fc-cache -fv
 
-    - name: Configure as default editor
+    - name: Configure as default terminal
       become: true
       community.general.alternatives:
         name: x-terminal-emulator
@@ -41,11 +41,3 @@
     name:
       - alacritty
       - font-jetbrains-mono-nerd-font
-
-- name: Install themes
-  become: false
-  ansible.builtin.git:
-    repo: "https://github.com/alacritty/alacritty-theme.git"
-    version: master
-    depth: 1
-    dest: "{{ ansible_env.XDG_CONFIG_HOME }}/alacritty/themes"
