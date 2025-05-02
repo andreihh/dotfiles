@@ -21,6 +21,7 @@
     dest: "{{ catppuccin_theme.wallpaper.file }}"
     mode: u=rw
 
+# Alacritty config cannot import dynamic files.
 - name: Configure alacritty theme
   become: false
   ansible.builtin.template:
@@ -28,6 +29,7 @@
     dest: "{{ catppuccin_theme.alacritty }}"
     mode: u=rw
 
+# Ghostty config cannot set dynamic themes.
 - name: Configure ghostty theme
   become: false
   ansible.builtin.template:

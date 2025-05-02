@@ -32,7 +32,6 @@ wget -O - https://codeberg.org/andreihh/dotfiles/raw/branch/main/install.sh \
 
 - Reboot your system to ensure the environment variables are loaded properly.
 - Run the `update-system` command to configure settings and install packages.
-- Run the `colorscheme` command to configure the color scheme for terminal apps.
 - Run `pre-commit install` inside the repository to configure pre-commit checks.
 
 To update the dotfiles, run `install.sh` from the repository in a clean state.
