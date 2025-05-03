@@ -64,6 +64,7 @@ Plug 'junegunn/fzf'  " Core `fzf` integration
 Plug 'junegunn/fzf.vim'  " Better `fzf` searching
 " UI
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }  " Color scheme
+Plug 'sainnhe/sonokai'  " Color scheme
 Plug 'machakann/vim-highlightedyank'  " Highlight yanked text
 Plug 'ryanoasis/vim-devicons'  " Nerd Font icons
 Plug 'itchyny/lightline.vim'  " Better status and tab lines
@@ -407,6 +408,15 @@ function! s:ConfigThemeHighlights() abort
   if g:colors_name == 'catppuccin_macchiato'
     " Override window separator to match status line.
     highlight! VertSplit guifg=#A5ADCB guibg=#1E2030
+  endif
+
+  if g:colors_name == 'sonokai'
+    " Set the highlighted yank to match search.
+    highlight! link HighlightedyankRegion IncSearch
+
+    " Override window separator to match tab and status lines.
+    let l:palette = sonokai#get_palette('default', {})
+    call sonokai#highlight('VertSplit', l:palette.grey_dim, l:palette.bg1)
   endif
 endfunction
 
