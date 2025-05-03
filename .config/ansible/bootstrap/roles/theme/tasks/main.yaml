@@ -76,17 +76,29 @@
     dest: "{{ ansible_env.XDG_CONFIG_HOME }}/profile.d/10-theme.sh"
     mode: u=rw
 
-- name: Install GTK theme
-  when: theme.repos.gtk.url is defined
-  changed_when: true
-  vars:
-    base_argv:
-      - "{{ theme.repos.gtk.dest }}/themes/install.sh"
-      - "--libadwaita"
-      - "--dest"
-      - "{{ ansible_env.XDG_DATA_HOME }}/themes"
-  ansible.builtin.command:
-    argv: "{{ base_argv + theme.gtk_install_argv | default([]) }}"
+- name: Configure GTK theme
+  become: false
+  block:
+    - name: Clear previous GTK theme
+      ansible.builtin.file:
+        state: absent
+        path: "{{ ansible_env.XDG_CONFIG_HOME }}/gtk-4.0/{{ item }}"
+      loop:
+        - assets
+        - gtk.css
+        - gtk-dark.css
+
+    - name: Install GTK theme
+      when: theme.repos.gtk.url is defined
+      changed_when: true
+      vars:
+        base_argv:
+          - "{{ theme.repos.gtk.dest }}/themes/install.sh"
+          - "--libadwaita"
+          - "--dest"
+          - "{{ ansible_env.XDG_DATA_HOME }}/themes"
+      ansible.builtin.command:
+        argv: "{{ base_argv + theme.gtk_install_argv | default([]) }}"
 
 - name: Configure Gnome theme
   become: false
@@ -107,9 +119,10 @@
         value: "'{{ theme.icons }}'"
 
     - name: Set Gnome GTK theme
+      when: theme.gtk is defined
       community.general.dconf:
         key: "/org/gnome/desktop/interface/gtk-theme"
-        value: "'{{ theme.gtk | default(theme.name) }}'"
+        value: "'{{ theme.gtk }}'"
 
     - name: Set Gnome light wallpaper
       community.general.dconf:

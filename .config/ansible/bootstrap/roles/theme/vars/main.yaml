@@ -1,9 +1,11 @@
+---
 # file: roles/theme/vars/main.yaml
 
 # External variables must be defined under `theme`.
 theme_base:
   # name, mode, accent, icons: external, required
-  # ghostty, tmux, nvim, vim, gtk: external, optional (default `name`)
+  # ghostty, tmux, nvim, vim: external, optional (default `name`)
+  # gtk: external, optional
   # gtk_install_argv: external, optional (default `[]`)
   files:
     alacritty:
@@ -32,6 +34,6 @@ theme_base:
         {{ (theme.files.wallpaper.url | ansible.builtin.splitext)[1] }}"
   repos:
     gtk:
-      # url: external
+      # url: external, optional
       # version: external, optional (default `main`)
       dest: "{{ ansible_env.XDG_DATA_HOME }}/{{ theme.name }}/gtk"
