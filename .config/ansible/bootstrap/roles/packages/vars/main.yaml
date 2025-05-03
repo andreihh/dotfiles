@@ -37,13 +37,9 @@ packages_list:
     - build-essential
     - linux-tools-common
     - linux-tools-generic
-    - gnome-shell-extension-appindicator
-    - gtk2-engines-murrine
   dnf:
     - lm_sensors
     - gcc-c++
-    - gnome-shell-extension-appindicator
-    - gtk-murrine-engine
   brew:
     formulae:
       - coreutils

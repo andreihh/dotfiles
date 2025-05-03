@@ -1,6 +1,27 @@
 ---
 # file: roles/gnome/tasks/main.yaml
 
+- name: Install Gnome common packages
+  when: ansible_distribution in ["Debian", "Ubuntu", "Fedora", "RedHat"]
+  become: true
+  ansible.builtin.package:
+    state: present
+    name: "{{ gnome_packages.common }}"
+
+- name: Install Gnome apt packages
+  when: ansible_distribution in ["Debian", "Ubuntu"]
+  become: true
+  ansible.builtin.apt:
+    state: present
+    name: "{{ gnome_packages.apt }}"
+
+- name: Install Gnome dnf packages
+  when: ansible_distribution in ["Fedora", "RedHat"]
+  become: true
+  ansible.builtin.dnf:
+    state: present
+    name: "{{ gnome_packages.dnf }}"
+
 - name: Configure Gnome settings
   when: ansible_distribution in ["Debian", "Ubuntu", "Fedora", "RedHat"]
   become: false
