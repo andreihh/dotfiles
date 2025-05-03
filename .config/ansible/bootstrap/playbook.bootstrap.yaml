@@ -1,6 +1,12 @@
 ---
 # file: playbook.bootstrap.yaml
 
+- name: Update packages
+  hosts: local
+  tags: [update]
+  roles:
+    - update
+
 - name: Install core packages
   hosts: local
   tags: [packages]

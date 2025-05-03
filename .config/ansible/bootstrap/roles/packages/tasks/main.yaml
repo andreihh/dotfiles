@@ -1,22 +1,6 @@
 ---
 # file: roles/packages/tasks/main.yaml
 
-- name: Update apt packages
-  when: ansible_distribution in ["Debian", "Ubuntu"]
-  become: true
-  ansible.builtin.apt:
-    update_cache: true
-    upgrade: safe
-
-- name: Update dnf packages
-  when: ansible_distribution in ["Fedora", "RedHat"]
-  become: true
-  ansible.builtin.dnf:
-    state: latest
-    update_cache: true
-    update_only: true
-    name: "*"
-
 - name: Install common packages
   when: ansible_distribution in ["Debian", "Ubuntu", "Fedora", "RedHat"]
   become: true
@@ -38,19 +22,10 @@
     state: present
     name: "{{ packages_list.dnf }}"
 
-- name: Upgrade and install brew formulae and casks
+- name: Install brew formulae and casks
   when: ansible_distribution in ["MacOSX"]
   become: false
   block:
-    - name: Upgrade brew and brew formulae
-      community.general.homebrew:
-        update_homebrew: true
-        upgrade_all: true
-
-    - name: Upgrade brew casks
-      community.general.homebrew_cask:
-        upgrade_all: true
-
     - name: Install brew formulae
       community.general.homebrew:
         state: present

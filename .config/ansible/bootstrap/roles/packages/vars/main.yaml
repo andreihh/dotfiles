@@ -29,21 +29,20 @@ packages_list:
       - cmake
       - gcc
       - pre-commit
-      - htop
     # Also available as brew casks.
     media:
       - keepassxc
   apt:
-    - gnome-shell-extension-appindicator
     - lm-sensors
     - build-essential
     - linux-tools-common
     - linux-tools-generic
+    - gnome-shell-extension-appindicator
     - gtk2-engines-murrine
   dnf:
-    - gnome-shell-extension-appindicator
     - lm_sensors
     - gcc-c++
+    - gnome-shell-extension-appindicator
     - gtk-murrine-engine
   brew:
     formulae:
