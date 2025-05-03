@@ -24,7 +24,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Setup `lazy.nvim`.
 require("lazy").setup("plugins", {
-  install = { colorscheme = { vim.env.COLORSCHEME } },
+  install = { colorscheme = { vim.env.NVIM_THEME } },
   -- Don't show config change notifications in command prompt.
   change_detection = { notify = false },
 })

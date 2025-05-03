@@ -20,12 +20,20 @@ vim.api.nvim_create_autocmd({ "WinLeave", "FocusLost" }, {
   end,
 })
 
--- Highlight when yanking (copying) text.
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking (copying) text",
   group = vim.api.nvim_create_augroup("highlight_yank", {}),
   callback = function()
     vim.hl.on_yank()
+  end,
+})
+
+vim.api.nvim_create_autocmd("User", {
+  desc = "Configure color scheme",
+  group = vim.api.nvim_create_augroup("configure_colorscheme", {}),
+  pattern = "LazyDone",
+  callback = function()
+    vim.cmd.colorscheme(vim.env.NVIM_THEME)
   end,
 })
 
