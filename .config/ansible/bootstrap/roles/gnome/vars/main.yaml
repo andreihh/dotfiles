@@ -1,13 +1,59 @@
 ---
 # file: roles/gnome/vars/main.yaml
 
-gnome_interface: "/org/gnome/desktop/interface"
-gnome_input_sources: "/org/gnome/desktop/input-sources"
-gnome_desktop_wm_keybindings: "/org/gnome/desktop/wm/keybindings"
-gnome_mutter_keybindings: "/org/gnome/mutter/keybindings"
-gnome_shell_keybindings: "/org/gnome/shell/keybindings"
-gnome_media_keys: "/org/gnome/settings-daemon/plugins/media-keys"
-gnome_custom_keybindings: "{{ gnome_media_keys }}/custom-keybindings"
-gnome_custom_keybindings_shell: "{{ gnome_custom_keybindings }}/custom0"
-gnome_custom_keybindings_tmx: "{{ gnome_custom_keybindings }}/custom1"
-gnome_custom_keybindings_cloud_tmx: "{{ gnome_custom_keybindings }}/custom2"
+gnome_packages:
+  common:
+    - gnome-shell-extension-appindicator
+  apt:
+    - gtk2-engines-murrine
+  dnf:
+    - gtk-murrine-engine
+
+gnome_settings:
+  /org/gnome/desktop/interface/show-battery-percentage: >-
+    true
+  /org/gnome/desktop/input-sources/sources: >-
+    [('xkb', 'us')]
+  /org/gnome/desktop/input-sources/xkb-options: >-
+    ['caps:swapescape', 'ctrl:swap_lalt_lctl_lwin']
+  /org/gnome/desktop/wm/keybindings/switch-windows: >-
+    ['<Primary>Tab']
+  /org/gnome/desktop/wm/keybindings/switch-windows-backward: >-
+    ['<Shift><Primary>Tab']
+  /org/gnome/desktop/wm/keybindings/toggle-fullscreen: >-
+    ['<Primary><Alt>f']
+  /org/gnome/desktop/wm/keybindings/toggle-maximized: >-
+    ['<Primary><Alt>m']
+  /org/gnome/mutter/keybindings/toggle-tiled-left: >-
+    ['<Primary><Alt>comma']
+  /org/gnome/mutter/keybindings/toggle-tiled-right: >-
+    ['<Primary><Alt>period']
+  /org/gnome/shell/keybindings/show-screenshot-ui: >-
+    ['<Primary><Alt>p']
+  /org/gnome/settings-daemon/plugins/media-keys/home: >-
+    ['<Primary><Alt>e']
+  /org/gnome/settings-daemon/plugins/media-keys/www: >-
+    ['<Primary><Alt>w']
+  /org/gnome/settings-daemon/plugins/media-keys/screensaver: >-
+    ['<Primary><Alt>l']
+
+gnome_custom_keybindings:
+  key: /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings
+  value: >-
+    [
+      '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/sh/',
+      '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/tmx/',
+      '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/sshc/'
+    ]
+  bindings:
+    sh/name: "'Launch shell terminal'"
+    sh/command: "'x-terminal-emulator'"
+    sh/binding: "'<Primary><Alt>s'"
+
+    tmx/name: "'Launch tmx terminal'"
+    tmx/command: "'x-terminal-emulator -e tmx'"
+    tmx/binding: "'<Primary><Alt>x'"
+
+    sshc/name: "'Launch sshc terminal'"
+    sshc/command: "'x-terminal-emulator -e sshc'"
+    sshc/binding: "'<Primary><Alt>c'"

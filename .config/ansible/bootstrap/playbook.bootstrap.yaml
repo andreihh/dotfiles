@@ -7,7 +7,7 @@
   roles:
     - update
 
-- name: Install core packages
+- name: Install and configure core packages
   hosts: local
   tags: [packages]
   roles:
@@ -15,6 +15,7 @@
     - ffmpeg
     - nvim
     - alacritty
+    - ssh
 
 - name: Install firefox
   hosts: local
@@ -30,12 +31,11 @@
     - ffmpeg
     - music
 
-- name: Configure system settings
+- name: Configure Gnome
   hosts: local
-  tags: [settings]
+  tags: [gnome]
   roles:
     - gnome
-    - ssh
 
 - name: Configure system health
   hosts: local
