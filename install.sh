@@ -42,9 +42,9 @@ done
 echo "Installing dotfiles..."
 [[ -n "${debug}" ]] && echo "Running in debug mode!"
 
-echo "Installing required dependencies..."
-if [[ -z "${debug}" ]]; then
-  if ! command -v git &> /dev/null || ! command -v ansible &> /dev/null; then
+if ! command -v git &> /dev/null || ! command -v ansible &> /dev/null; then
+  echo "Installing required dependencies..."
+  if [[ -z "${debug}" ]]; then
     command -v apt-get &> /dev/null && sudo apt-get install -y git ansible
     command -v dnf &> /dev/null && sudo dnf install git ansible
     command -v brew &> /dev/null && brew install git ansible
