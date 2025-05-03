@@ -1,6 +1,6 @@
 # catppuccin-frappe.sh: configures `fzf` theme.
 #
-# shellcheck shell=bash
+# shellcheck shell=sh
 
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#414559,bg:#303446,spinner:#f2d5cf,hl:#e78284 \

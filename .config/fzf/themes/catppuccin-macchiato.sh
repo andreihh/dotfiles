@@ -1,6 +1,6 @@
 # catppuccin-macchiato.sh: configures `fzf` theme.
 #
-# shellcheck shell=bash
+# shellcheck shell=sh
 
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796 \
