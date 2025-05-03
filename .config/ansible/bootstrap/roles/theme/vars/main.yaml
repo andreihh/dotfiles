@@ -6,7 +6,6 @@ theme_base:
   # name, mode, accent, icons: external, required
   # ghostty, tmux, nvim, vim: external, optional (default `name`)
   # gtk: external, optional
-  # gtk_install_argv: external, optional (default `[]`)
   files:
     alacritty:
       # url: external, optional
@@ -33,7 +32,12 @@ theme_base:
         {{ ansible_env.XDG_DATA_HOME }}/wallpaper/{{ theme.name }}\
         {{ (theme.files.wallpaper.url | ansible.builtin.splitext)[1] }}"
   repos:
+    cosmic:
+      # url: external, optional
+      # version: external, optional (default `main`)
+      dest: "{{ ansible_env.XDG_DATA_HOME }}/{{ theme.name }}/cosmic"
     gtk:
       # url: external, optional
       # version: external, optional (default `main`)
       dest: "{{ ansible_env.XDG_DATA_HOME }}/{{ theme.name }}/gtk"
+      # installer: external, optional

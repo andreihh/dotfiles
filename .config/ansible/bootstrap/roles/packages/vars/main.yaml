@@ -32,6 +32,7 @@ packages_list:
     # Also available as brew casks.
     media:
       - keepassxc
+      - vlc
   apt:
     - lm-sensors
     - build-essential

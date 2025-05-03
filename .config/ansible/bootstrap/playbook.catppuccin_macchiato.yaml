@@ -32,10 +32,16 @@
             https://github.com/orangci/walls-catppuccin-mocha/raw/master/\
             flying-comets-clouds.jpg"
       repos:
+        cosmic:
+          url: https://github.com/catppuccin/cosmic-desktop
         gtk:
           url: https://github.com/Fausto-Korpsvart/Catppuccin-GTK-Theme
-      gtk_install_argv:
-        - "--tweaks"
-        - "macchiato"
+          installer:
+            - "themes/install.sh"
+            - "--libadwaita"
+            - "--dest"
+            - "{{ ansible_env.XDG_DATA_HOME }}/themes"
+            - "--tweaks"
+            - "macchiato"
   roles:
     - theme

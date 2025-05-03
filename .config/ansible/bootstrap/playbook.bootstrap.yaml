@@ -9,15 +9,14 @@
 
 - name: Install and configure core packages
   hosts: local
-  tags: [packages]
+  tags: [core]
   roles:
     - packages
-    - ffmpeg
-    - nvim
     - alacritty
+    - nvim
     - ssh
 
-- name: Install firefox
+- name: Install and configure firefox
   hosts: local
   tags: [firefox]
   roles:
