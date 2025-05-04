@@ -20,6 +20,7 @@ return { -- Color schemes
       end,
       integrations = {
         mason = true,
+        signify = true,
         snacks = { enabled = true },
         which_key = true,
       },
