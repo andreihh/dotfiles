@@ -1,8 +1,5 @@
-# sonokai.tmux: Sonokai color scheme for `tmux`.
-#
-# See https://github.com/sainnhe/sonokai.
+# sonokai.tmux: configures `tmux` theme.
 
-# Configure color palette.
 set -g @fg '#e2e2e3'  # fg
 set -g @reverse_fg '#2c2e34'  # bg0
 set -g @highlight_bg '#414550'  # bg4

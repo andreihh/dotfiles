@@ -3,7 +3,7 @@
 # Run `ghostty +show-config --default --docs` to list all available options.
 
 # Import installed theme, if any.
-config-file = colorscheme
+config-file = theme
 
 # JetBrains Mono Nerd Font is built into Ghostty as the default font.
 font-family =
