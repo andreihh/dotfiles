@@ -175,8 +175,7 @@ map("n", "dvu", function()
 end, "[D]iff [U]nsaved changes")
 
 -- Completion:
---  - <C-space> = trigger completion
---  - <C-j/k> = select next / previus item
+--  - <C-j/k> = trigger completion / select next / previus item
 --  - <C-h/l> = jump to previous / next snippet placeholder
 --  - <C-u/d> = scroll documentation [u]p / [d]own
 --  - <tab> = accept selected item

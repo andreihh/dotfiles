@@ -7,9 +7,8 @@ return { -- Autocompletion
   opts = {
     keymap = {
       preset = "none",
-      ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
-      ["<C-j>"] = { "select_next" },
-      ["<C-k>"] = { "select_prev" },
+      ["<C-j>"] = { "select_next", "show" },
+      ["<C-k>"] = { "select_prev", "show" },
       ["<C-h>"] = { "snippet_backward" },
       ["<C-l>"] = { "snippet_forward" },
       ["<C-u>"] = { "scroll_documentation_up" },
