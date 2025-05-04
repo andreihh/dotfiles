@@ -19,6 +19,10 @@ cursor-style = block
 cursor-style-blink = true
 shell-integration-features = no-cursor
 
+# Always use default cursor colors.
+cursor-color =
+cursor-text =
+
 # Start maximized by default.
 window-width = 9999
 window-height = 9999

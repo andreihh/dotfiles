@@ -19,7 +19,6 @@ return { -- Color schemes
         }
       end,
       integrations = {
-        blink_cmp = true,
         mason = true,
         snacks = { enabled = true },
         which_key = true,

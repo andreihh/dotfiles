@@ -5,6 +5,7 @@
   hosts: local
   tags: [catppuccin-macchiato]
   vars:
+    git: https://github.com/catppuccin
     theme:
       name: catppuccin-macchiato
       mode: dark
@@ -14,26 +15,21 @@
       vim: catppuccin_macchiato
       files:
         alacritty:
-          url: "\
-            https://github.com/alacritty/alacritty-theme/raw/master/themes/\
-            catppuccin_macchiato.toml"
-        # TODO: download from https://github.com/catppuccin/fzf when supported.
+          url: "{{ git }}/alacritty/raw/main/catppuccin-macchiato.toml"
+        fzf:
+          url: "{{ git }}/fzf/raw/main/themes/catppuccin-fzf-macchiato.sh"
         bat:
-          url: "\
-            https://github.com/catppuccin/bat/raw/main/themes/\
-            Catppuccin%20Macchiato.tmTheme"
+          url: "{{ git }}/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme"
         # TODO: configure cmus when supported.
         cava:
-          url: "\
-            https://github.com/catppuccin/cava/raw/main/themes/\
-            macchiato.cava"
+          url: "{{ git }}/cava/raw/main/themes/macchiato.cava"
         wallpaper:
           url: "\
             https://github.com/orangci/walls-catppuccin-mocha/raw/master/\
             flying-comets-clouds.jpg"
       repos:
         cosmic:
-          url: https://github.com/catppuccin/cosmic-desktop
+          url: "{{ git }}/cosmic-desktop"
         gtk:
           url: https://github.com/Fausto-Korpsvart/Catppuccin-GTK-Theme
           installer:
