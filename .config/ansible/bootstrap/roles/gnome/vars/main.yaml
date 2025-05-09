@@ -20,22 +20,48 @@ gnome_settings:
     ['<Primary>Tab']
   /org/gnome/desktop/wm/keybindings/switch-windows-backward: >-
     ['<Shift><Primary>Tab']
+  /org/gnome/desktop/wm/keybindings/switch-to-workspace-1: >-
+    ['<Primary><Alt>1']
+  /org/gnome/desktop/wm/keybindings/switch-to-workspace-2: >-
+    ['<Primary><Alt>2']
+  /org/gnome/desktop/wm/keybindings/switch-to-workspace-3: >-
+    ['<Primary><Alt>3']
+  /org/gnome/desktop/wm/keybindings/switch-to-workspace-4: >-
+    ['<Primary><Alt>4']
+  /org/gnome/desktop/wm/keybindings/switch-to-workspace-left: >-
+    ['<Primary><Alt>comma']
+  /org/gnome/desktop/wm/keybindings/switch-to-workspace-right: >-
+    ['<Primary><Alt>period']
+  /org/gnome/desktop/wm/keybindings/move-to-workspace-1: >-
+    ['<Shift><Primary><Alt>1']
+  /org/gnome/desktop/wm/keybindings/move-to-workspace-2: >-
+    ['<Shift><Primary><Alt>2']
+  /org/gnome/desktop/wm/keybindings/move-to-workspace-3: >-
+    ['<Shift><Primary><Alt>3']
+  /org/gnome/desktop/wm/keybindings/move-to-workspace-4: >-
+    ['<Shift><Primary><Alt>4']
+  /org/gnome/desktop/wm/keybindings/move-to-workspace-left: >-
+    ['<Shift><Primary><Alt>comma']
+  /org/gnome/desktop/wm/keybindings/move-to-workspace-right: >-
+    ['<Shift><Primary><Alt>period']
   /org/gnome/desktop/wm/keybindings/toggle-fullscreen: >-
     ['<Primary><Alt>f']
   /org/gnome/desktop/wm/keybindings/toggle-maximized: >-
     ['<Primary><Alt>m']
   /org/gnome/mutter/keybindings/toggle-tiled-left: >-
-    ['<Primary><Alt>comma']
+    ['<Shift><Primary><Alt>h']
   /org/gnome/mutter/keybindings/toggle-tiled-right: >-
-    ['<Primary><Alt>period']
+    ['<Shift><Primary><Alt>l']
+  /org/gnome/shell/keybindings/focus-active-notification: >-
+    ['<Primary><Alt>n']
   /org/gnome/shell/keybindings/show-screenshot-ui: >-
     ['<Primary><Alt>p']
+  /org/gnome/settings-daemon/plugins/media-keys/screensaver: >-
+    ['<Primary><Alt>Escape']
   /org/gnome/settings-daemon/plugins/media-keys/home: >-
     ['<Primary><Alt>e']
   /org/gnome/settings-daemon/plugins/media-keys/www: >-
     ['<Primary><Alt>w']
-  /org/gnome/settings-daemon/plugins/media-keys/screensaver: >-
-    ['<Primary><Alt>l']
 
 gnome_custom_keybindings:
   key: /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings

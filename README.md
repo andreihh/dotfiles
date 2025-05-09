@@ -132,14 +132,17 @@ Common shortcuts (`C = Ctrl / Cmd`, `A = Alt / Opt`, `S = Shift`):
 - New tab: `C-t`
 - Close window / tab: `C-w`
 - Quit app: `C-q`
-- Cycle web browser tabs: `C-1` / `C-2`
-- Cycle windows: `C-[S]-tab`
 - Zoom in / out: `C-=` / `C--`
+- Cycle web browser tabs: `C-1` / `C-2`
+- Cycle windows: `C-[S]-Tab`
+- Switch to workspace: `C-A-#` / `C-A-,` / `C-A-.`
+- Move window to workspace: `C-A-S-#` / `C-A-S-,` / `C-A-S-.`
 - Toggle fullscreen: `C-A-f`
 - Toggle maximized: `C-A-m`
-- Toggle tiled left / right: `C-A-,` / `C-A-.`
+- Toggle tiled left / right: `C-A-S-h` / `C-A-S-l`
+- Focus notification: `C-A-n`
 - Print screen / cancel: `C-A-p` / `Esc`
-- Lock screen: `C-A-l`
+- Lock screen: `C-A-Esc`
 - Open file explorer: `C-A-e`
 - Open web browser: `C-A-w`
 - Open shell terminal: `C-A-s`
