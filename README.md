@@ -57,10 +57,9 @@ repository can be provided in:
 - `~/.config/profile.d/`
 - `~/.config/bash.d/`
 - `~/.local/bin/`
-- `~/.config/tmux/overrides.tmux`
 - `~/.config/nvim/lua/config/overrides.lua`
 - `~/.config/nvim/lua/plugins/`
-- `~/.config/nvim/lsp/`
+- `~/.config/nvim/[after/]lsp/`
 - `~/.config/vim/overrides.vim`
 - `~/.config/vim/overrides.plug.vim`
 
