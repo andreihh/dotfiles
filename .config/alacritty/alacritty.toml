@@ -10,16 +10,16 @@ size = 12
 [cursor.style]
 blinking = "Always"  # Force blinking cursor
 
-[window]
-decorations = "None"  # Disable superfluous window decorations
-startup_mode = "Maximized"  # Start maximized by default
-option_as_alt = "Both"  # Required for MacOS key bindings
+[mouse]
+hide_when_typing = true  # Hide mouse cursor while typing
 
 [selection]
 save_to_clipboard = true  # Copy selection to clipboard
 
-[mouse]
-hide_when_typing = true
+[window]
+decorations = "None"  # Disable superfluous window decorations
+startup_mode = "Maximized"  # Start maximized by default
+option_as_alt = "Both"  # Required for MacOS key bindings
 
 # Common shortcuts:
 # - Paste with C-S-v

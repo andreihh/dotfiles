@@ -19,22 +19,22 @@ cursor-style = block
 cursor-style-blink = true
 shell-integration-features = no-cursor
 
-# Always use default cursor colors.
-cursor-color =
-cursor-text =
+# Hide mouse cursor while typing.
+mouse-hide-while-typing = true
 
-# Start maximized by default.
-window-width = 9999
-window-height = 9999
-
-# Don't display window size after resizing.
-resize-overlay = never
+# Remove padding.
+window-padding-x = 0
+window-padding-y = 0
 
 # Disable superfluous window decorations.
 window-decoration = false
 
-# Hide mouse cursor while typing.
-mouse-hide-while-typing = true
+# Don't display window size after resizing.
+resize-overlay = never
+
+# Start maximized by default.
+window-width = 9999
+window-height = 9999
 
 # Close terminal without confirmation when last window is closed.
 quit-after-last-window-closed = true
