@@ -9,6 +9,7 @@
       name: sonokai
       mode: dark
       accent: blue
+      cursor: Adwaita
       icons: Adwaita
       gtk: Adwaita-dark
       files:

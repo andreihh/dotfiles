@@ -108,6 +108,8 @@
       value: "'prefer-{{ theme.mode }}'"
     - key: /org/gnome/desktop/interface/accent-color
       value: "'{{ theme.accent }}'"
+    - key: /org/gnome/desktop/interface/cursor-theme
+      value: "'{{ theme.cursor }}'"
     - key: /org/gnome/desktop/interface/icon-theme
       value: "'{{ theme.icons }}'"
     - key: /org/gnome/desktop/interface/gtk-theme

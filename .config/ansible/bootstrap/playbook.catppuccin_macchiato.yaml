@@ -10,6 +10,7 @@
       name: catppuccin-macchiato
       mode: dark
       accent: blue
+      cursor: Adwaita
       icons: Adwaita
       gtk: Catppuccin-Dark-Macchiato
       vim: catppuccin_macchiato

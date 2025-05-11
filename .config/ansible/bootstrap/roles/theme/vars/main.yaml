@@ -3,7 +3,7 @@
 
 # External variables must be defined under `theme`.
 theme_base:
-  # name, mode, accent, icons: external, required
+  # name, mode, accent, cursor, icons: external, required
   # ghostty, tmux, nvim, vim: external, optional (default `name`)
   # gtk: external, optional
   files:
