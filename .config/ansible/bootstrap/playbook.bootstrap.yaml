@@ -27,8 +27,7 @@
   tags: [media]
   roles:
     - rpmfusion
-    - ffmpeg
-    - music
+    - media
 
 - name: Configure Gnome
   hosts: local

@@ -1,6 +1,5 @@
 ---
 # file: roles/packages/tasks/main.yaml
-#
 # https://rpmfusion.org/Configuration/
 
 - name: Configure Fedora RPM Fusion repositories

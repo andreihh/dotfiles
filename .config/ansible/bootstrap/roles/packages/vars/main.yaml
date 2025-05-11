@@ -3,7 +3,7 @@
 
 packages_list:
   common:
-    # Also available as brew formulae.
+    # Also available as brew formulae:
     tui:
       - git
       - stow
@@ -29,10 +29,10 @@ packages_list:
       - cmake
       - gcc
       - pre-commit
-    # Also available as brew casks.
+      - fastfetch
+    # Also available as brew casks:
     gui:
       - keepassxc
-      - vlc
   apt:
     - lm-sensors
     - build-essential
