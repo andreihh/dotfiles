@@ -2,15 +2,20 @@
 # file: roles/ghostty/tasks/main.yaml
 # https://ghostty.org/docs/install/binary
 
-# TODO: support Debian
+- name: Install deb package
+  when: ansible_distribution in ["Debian", "Ubuntu"]
+  block:
+    - name: Download installer
+      become: false
+      ansible.builtin.get_url:
+        url: https://raw.githubusercontent.com/mkasberg/ghostty-ubuntu/HEAD/install.sh
+        dest: /tmp/ghostty.sh
+        mode: u=rwx
 
-- name: Install snap package
-  when: ansible_distribution in ["Ubuntu"]
-  become: true
-  community.general.snap:
-    state: present
-    classic: true
-    name: ghostty
+    - name: Run installer
+      become: true
+      changed_when: true
+      ansible.builtin.command: /tmp/ghostty.sh
 
 - name: Install COPR package
   when: ansible_distribution in ["Fedora", "RedHat"]
@@ -26,21 +31,13 @@
         state: present
         name: ghostty
 
-- name: Install and configure as default terminal
+- name: Configure as default terminal
   when: ansible_distribution in ["Debian", "Ubuntu", "Fedora", "RedHat"]
-  block:
-    - name: Fetch binary location
-      become: false
-      register: binary
-      changed_when: false
-      ansible.builtin.command: which ghostty
-
-    - name: Configure as default terminal
-      become: true
-      community.general.alternatives:
-        name: x-terminal-emulator
-        path: "{{ binary.stdout }}"
-        link: /usr/bin/x-terminal-emulator
+  become: true
+  community.general.alternatives:
+    name: x-terminal-emulator
+    path: "/usr/bin/ghostty"
+    link: /usr/bin/x-terminal-emulator
 
 - name: Install brew cask
   when: ansible_distribution in ["MacOSX"]
