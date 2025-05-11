@@ -16,6 +16,8 @@ return { -- Color schemes
           LazyNormal = { fg = colors.text, bg = colors.base },
           MasonNormal = { fg = colors.text, bg = colors.base },
           SnacksNormal = { fg = colors.text, bg = colors.base },
+          -- Override cursor to match terminal.
+          Cursor = { fg = colors.crust, bg = colors.rosewater },
         }
       end,
       integrations = {
