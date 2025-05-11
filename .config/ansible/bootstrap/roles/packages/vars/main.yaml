@@ -4,7 +4,7 @@
 packages_list:
   common:
     # Also available as brew formulae.
-    core:
+    tui:
       - git
       - stow
       - curl
@@ -30,7 +30,7 @@ packages_list:
       - gcc
       - pre-commit
     # Also available as brew casks.
-    media:
+    gui:
       - keepassxc
       - vlc
   apt:

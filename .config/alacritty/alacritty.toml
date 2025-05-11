@@ -18,6 +18,9 @@ option_as_alt = "Both"  # Required for MacOS key bindings
 [selection]
 save_to_clipboard = true  # Copy selection to clipboard
 
+[mouse]
+hide_when_typing = true
+
 # Common shortcuts:
 # - Paste with C-S-v
 # - Exit with C-q

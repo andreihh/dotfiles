@@ -6,7 +6,7 @@
   become: true
   ansible.builtin.package:
     state: present
-    name: "{{ packages_list.common.core + packages_list.common.media }}"
+    name: "{{ packages_list.common.tui + packages_list.common.gui }}"
 
 - name: Install apt packages
   when: ansible_distribution in ["Debian", "Ubuntu"]
@@ -29,9 +29,9 @@
     - name: Install brew formulae
       community.general.homebrew:
         state: present
-        name: "{{ packages_list.common.core + packages_list.brew.formulae }}"
+        name: "{{ packages_list.common.tui + packages_list.brew.formulae }}"
 
     - name: Install brew casks
       community.general.homebrew_cask:
         state: present
-        name: "{{ packages_list.common.media + packages_list.brew.casks }}"
+        name: "{{ packages_list.common.gui + packages_list.brew.casks }}"
