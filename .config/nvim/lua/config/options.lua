@@ -78,3 +78,9 @@ vim.o.sessionoptions =
   "blank,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 vim.g.is_posix = 1 -- Use POSIX shell syntax highlighting
+
+-- Enable view-only mode if started with flags: diff, read-only, non-modifiable.
+vim.g.viewonly = false
+for _, option in ipairs({ "-d", "-R", "-m", "-M" }) do
+  vim.g.viewonly = vim.g.viewonly or vim.list_contains(vim.v.argv, option)
+end

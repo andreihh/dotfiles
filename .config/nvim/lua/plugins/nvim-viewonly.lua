@@ -1,10 +1,5 @@
--- Disable plugins for view-only mode (diff, read-only, non-modifiable).
-local is_viewonly = false
-for _, option in ipairs({ "-d", "-R", "-m", "-M" }) do
-  is_viewonly = is_viewonly or vim.list_contains(vim.v.argv, option)
-end
-
-return is_viewonly
+-- Disable plugins for view-only mode.
+return vim.g.viewonly
     and { -- Keep sorted
       { "WhoIsSethDaniel/mason-tool-installer.nvim", cond = false },
       { "folke/flash.nvim", cond = false },
