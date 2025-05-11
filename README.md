@@ -43,10 +43,9 @@ The dotfiles follow the XDG specification where possible:
 - https://specifications.freedesktop.org/basedir-spec/latest/index.html
 - https://wiki.archlinux.org/title/XDG_Base_Directory
 
-The XDG environment variables are defined in
-`~/.config/profile.d/00-env_xdg.sh`, because some tools don't fall back on
-proper defaults and only work if they are explicitly defined. They can be
-overridden in `~/.env`.
+The XDG environment variables are defined in `~/.config/profile.d/00-env_xdg.sh`
+because some tools don't fall back on proper defaults and only work if they are
+explicitly defined. They can be overridden in `~/.env`.
 
 ## Private configs
 
