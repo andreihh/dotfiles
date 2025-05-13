@@ -7,6 +7,7 @@ return vim.g.viewonly
       { "folke/ts-comments.nvim", cond = false },
       { "kosayoda/nvim-lightbulb", cond = false },
       { "kylechui/nvim-surround", cond = false },
+      { "mason-org/mason.nvim", cond = false },
       { "mfussenegger/nvim-lint", cond = false },
       { "neovim/nvim-lspconfig", cond = false },
       { "rafamadriz/friendly-snippets", cond = false },
@@ -14,6 +15,5 @@ return vim.g.viewonly
       { "saghen/blink.cmp", cond = false },
       { "sindrets/diffview.nvim", cond = false },
       { "stevearc/conform.nvim", cond = false },
-      { "williamboman/mason.nvim", cond = false },
     }
   or {}
