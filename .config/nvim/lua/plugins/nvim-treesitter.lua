@@ -6,7 +6,7 @@ return {
     -- Add Treesitter text objects.
     dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
     opts = { -- See `:help nvim-treesitter`
-      ensure_installed = { -- Enable the following parsers
+      ensure_installed = { -- Parsers to enable automatically
         "lua",
         "luadoc",
         "vim",

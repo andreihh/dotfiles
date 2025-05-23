@@ -36,8 +36,3 @@ vim.api.nvim_create_autocmd("User", {
     vim.cmd.colorscheme(vim.env.NVIM_THEME)
   end,
 })
-
--- Start LSPs automatically.
---  Override configs with `vim.lsp.config()`.
---  See `:help vim.lsp.Config`
-vim.lsp.enable({ "lua_ls", "vimls", "bashls", "ansiblels" })

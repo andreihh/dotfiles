@@ -1,7 +1,6 @@
 -- Disable plugins for view-only mode.
 return vim.g.viewonly
     and { -- Keep sorted
-      { "WhoIsSethDaniel/mason-tool-installer.nvim", cond = false },
       { "folke/flash.nvim", cond = false },
       { "folke/lazydev.nvim", cond = false },
       { "folke/ts-comments.nvim", cond = false },

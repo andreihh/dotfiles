@@ -11,13 +11,5 @@ return { -- Formatting
       desc = "Format",
     },
   },
-  opts = vim.tbl_deep_extend("force", {
-    formatters_by_ft = {
-      lua = { "stylua" },
-      sh = { "shfmt" },
-      yaml = { "prettier" },
-      json = { "prettier" },
-      markdown = { "prettier" },
-    },
-  }, vim.g.format_opts or {}),
+  opts = vim.g.format_opts or {},
 }

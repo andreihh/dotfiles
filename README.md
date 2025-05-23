@@ -78,15 +78,58 @@ Example `~/.config/nvim/lua/config/overrides.lua`:
 ```lua
 -- [[ Config overrides ]]
 
+-- Ensure development tools are installed by Mason.
+vim.g.ensure_installed = {
+  -- General formatting
+  "prettier",
+  -- Lua
+  "lua-language-server",
+  "stylua",
+  -- Vimscript
+  "vim-language-server",
+  -- Bash
+  "bash-language-server",
+  "shfmt",
+  "shellcheck", -- integrates with `bash-language-server`
+  -- Ansible
+  "ansible-language-server",
+  "ansible-lint", -- integrates with `ansible-language-server`
+  -- Python
+  "pyright",
+  "isort",
+  "black",
+  "pylint",
+  -- C/C++
+  "clangd",
+  "clang-format",
+  -- Java
+  "jdtls",
+  "google-java-format",
+  "checkstyle",
+}
+
 -- Start LSPs automatically.
 --  Override configs with `vim.lsp.config()`.
 --  See `:help vim.lsp.Config`
-vim.lsp.enable({ "pyright", "clangd", "jdtls" })
+vim.lsp.enable({
+  "lua_ls",
+  "vimls",
+  "bashls",
+  "ansiblels",
+  "pyright",
+  "clangd",
+  "jdtls",
+})
 
 -- Configure formatters.
 --  See `:help conform`
 vim.g.format_opts = {
   formatters_by_ft = {
+    markdown = { "prettier" },
+    yaml = { "prettier" },
+    json = { "prettier" },
+    lua = { "stylua" },
+    sh = { "shfmt" },
     python = { "isort", "black" },
     cpp = { "clang-format" },
     java = { "google-java-format" },
@@ -101,19 +144,6 @@ vim.g.lint_opts = {
     -- `clangd` embeds `clang-tidy`
     java = { "checkstyle" },
   },
-}
-
--- Ensure development tools are installed by Mason.
-vim.g.ensure_installed = {
-  "pyright",
-  "isort",
-  "black",
-  "pylint",
-  "clangd",
-  "clang-format",
-  "jdtls",
-  "google-java-format",
-  "checkstyle",
 }
 ```
 
