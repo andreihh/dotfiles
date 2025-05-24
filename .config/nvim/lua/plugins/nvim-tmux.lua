@@ -24,5 +24,6 @@ return { -- `tmux` integration for window navigation and resizing
       resize_step_x = 5,
       resize_step_y = 5,
     },
+    swap = { enable_default_keybindings = false },
   },
 }
