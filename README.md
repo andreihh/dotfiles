@@ -160,29 +160,28 @@ Common shortcuts (`C = Ctrl / Cmd`, `A = Alt / Opt`, `S = Shift`):
 - New tab: `C-t`
 - Close window / tab: `C-w`
 - Quit app: `C-q`
-- Zoom in / out: `C-=` / `C--`
 - Cycle web browser tabs: `C-1` / `C-2`
 - Cycle windows: `C-[S]-Tab`
-- Switch to workspace: `C-A-#` / `C-A-,` / `C-A-.`
-- Move window to workspace: `C-A-S-#` / `C-A-S-,` / `C-A-S-.`
-- Toggle fullscreen: `C-A-f`
-- Toggle maximized: `C-A-m`
-- Toggle tiled left / right: `C-A-S-h` / `C-A-S-l`
-- Focus notification: `C-A-n`
-- Print screen / cancel: `C-A-p` / `Esc`
-- Lock screen: `C-A-Esc`
-- Open file explorer: `C-A-e`
-- Open web browser: `C-A-w`
-- Open shell terminal: `C-A-s`
-- Open `tmx` terminal: `C-A-x`
-- Open SSH terminal to cloud workstation: `C-A-c`
+- Switch to workspace: `A-{1-9}`
+- Move window to workspace: `A-S-{1-9}`
+- Toggle window maximized / fullscreen: `C-S-m` / `C-S-f`
+- Toggle window tiled left / right: `C-S-h` / `C-S-l`
+- Focus notification / dismiss: `A-n` / `Esc`
+- Print screen / cancel: `A-p` / `Esc`
+- Record screen / cancel: `A-r` / `Esc`
+- Lock screen: `A-Esc`
+- Open file explorer: `A-e`
+- Open web browser: `A-w`
+- Open shell terminal: `A-s`
+- Open `tmx` terminal: `A-x`
+- Open SSH terminal to cloud workstation: `A-c`
 
 Terminal:
 
 - Send `SIGINT`: `C-c`
 - Paste: `C-S-v`
 - Close terminal: `C-q`
-- Switch `tmux` tab: `C-#` (mapped to `M-#`)
+- Switch `tmux` tab: `C-{1-9}` (mapped to `M-{1-9}`)
 
 ## Licensing
 

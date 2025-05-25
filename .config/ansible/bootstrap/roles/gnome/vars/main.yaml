@@ -21,47 +21,43 @@ gnome_settings:
   /org/gnome/desktop/wm/keybindings/switch-windows-backward: >-
     ['<Shift><Primary>Tab']
   /org/gnome/desktop/wm/keybindings/switch-to-workspace-1: >-
-    ['<Primary><Alt>1']
+    ['<Alt>1']
   /org/gnome/desktop/wm/keybindings/switch-to-workspace-2: >-
-    ['<Primary><Alt>2']
+    ['<Alt>2']
   /org/gnome/desktop/wm/keybindings/switch-to-workspace-3: >-
-    ['<Primary><Alt>3']
+    ['<Alt>3']
   /org/gnome/desktop/wm/keybindings/switch-to-workspace-4: >-
-    ['<Primary><Alt>4']
-  /org/gnome/desktop/wm/keybindings/switch-to-workspace-left: >-
-    ['<Primary><Alt>comma']
-  /org/gnome/desktop/wm/keybindings/switch-to-workspace-right: >-
-    ['<Primary><Alt>period']
+    ['<Alt>4']
   /org/gnome/desktop/wm/keybindings/move-to-workspace-1: >-
-    ['<Shift><Primary><Alt>1']
+    ['<Shift><Alt>1']
   /org/gnome/desktop/wm/keybindings/move-to-workspace-2: >-
-    ['<Shift><Primary><Alt>2']
+    ['<Shift><Alt>2']
   /org/gnome/desktop/wm/keybindings/move-to-workspace-3: >-
-    ['<Shift><Primary><Alt>3']
+    ['<Shift><Alt>3']
   /org/gnome/desktop/wm/keybindings/move-to-workspace-4: >-
-    ['<Shift><Primary><Alt>4']
-  /org/gnome/desktop/wm/keybindings/move-to-workspace-left: >-
-    ['<Shift><Primary><Alt>comma']
-  /org/gnome/desktop/wm/keybindings/move-to-workspace-right: >-
-    ['<Shift><Primary><Alt>period']
+    ['<Shift><Alt>4']
   /org/gnome/desktop/wm/keybindings/toggle-fullscreen: >-
-    ['<Primary><Alt>f']
+    ['<Shift><Primary>f']
   /org/gnome/desktop/wm/keybindings/toggle-maximized: >-
-    ['<Primary><Alt>m']
+    ['<Shift><Primary>m']
   /org/gnome/mutter/keybindings/toggle-tiled-left: >-
-    ['<Shift><Primary><Alt>h']
+    ['<Shift><Primary>h']
   /org/gnome/mutter/keybindings/toggle-tiled-right: >-
-    ['<Shift><Primary><Alt>l']
+    ['<Shift><Primary>l']
   /org/gnome/shell/keybindings/focus-active-notification: >-
-    ['<Primary><Alt>n']
+    ['<Alt>n']
   /org/gnome/shell/keybindings/show-screenshot-ui: >-
-    ['<Primary><Alt>p']
+    ['<Alt>p']
+  /org/gnome/shell/keybindings/show-screen-recording-ui: >-
+    ['<Alt>r']
+  /org/gnome/shell/keybindings/toggle-overview: >-
+    ['<Alt>slash']
   /org/gnome/settings-daemon/plugins/media-keys/screensaver: >-
-    ['<Primary><Alt>Escape']
+    ['<Alt>Escape']
   /org/gnome/settings-daemon/plugins/media-keys/home: >-
-    ['<Primary><Alt>e']
+    ['<Alt>e']
   /org/gnome/settings-daemon/plugins/media-keys/www: >-
-    ['<Primary><Alt>w']
+    ['<Alt>w']
 
 gnome_custom_keybindings:
   key: /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings
@@ -74,12 +70,12 @@ gnome_custom_keybindings:
   bindings:
     sh/name: "'Launch shell terminal'"
     sh/command: "'x-terminal-emulator'"
-    sh/binding: "'<Primary><Alt>s'"
+    sh/binding: "'<Alt>s'"
 
     tmx/name: "'Launch tmx terminal'"
     tmx/command: "'x-terminal-emulator -e tmx'"
-    tmx/binding: "'<Primary><Alt>x'"
+    tmx/binding: "'<Alt>x'"
 
     sshc/name: "'Launch sshc terminal'"
     sshc/command: "'x-terminal-emulator -e sshc'"
-    sshc/binding: "'<Primary><Alt>c'"
+    sshc/binding: "'<Alt>c'"
