@@ -54,6 +54,6 @@ return { -- Color schemes
         end,
       })
     end,
-    config = true,
+    opts = {},
   },
 }

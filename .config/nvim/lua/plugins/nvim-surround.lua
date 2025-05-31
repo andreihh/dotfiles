@@ -13,5 +13,5 @@ return { -- Surround commands
     { "<C-g>s", mode = "i" },
     { "<C-g>S", mode = "i" },
   },
-  config = true,
+  opts = {},
 }
