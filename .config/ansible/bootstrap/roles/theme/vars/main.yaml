@@ -36,6 +36,12 @@ theme_base:
       # url: external, optional
       # version: external, optional (default `main`)
       dest: "{{ ansible_env.XDG_DATA_HOME }}/{{ theme.name }}/cosmic"
+      # installer: external, optional
+    kvantum:
+      # url: externa, optional
+      # version: external, optional (default `main`)
+      dest: "{{ ansible_env.XDG_DATA_HOME }}/{{ theme.name }}/kvantum"
+      # installer: external, optional
     gtk:
       # url: external, optional
       # version: external, optional (default `main`)

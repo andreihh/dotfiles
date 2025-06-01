@@ -7,3 +7,4 @@ export NVIM_THEME='{{ theme.nvim | default(theme.name) }}'
 export VIM_THEME='{{ theme.vim | default(theme.name) }}'
 export BAT_THEME='{{ theme.name }}'
 . "${XDG_CONFIG_HOME}/fzf/themes/{{ theme.name }}.sh"
+command -v kvantummanager > /dev/null 2>&1 && export QT_STYLE_OVERRIDE='kvantum'

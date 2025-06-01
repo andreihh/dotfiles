@@ -31,6 +31,8 @@
       repos:
         cosmic:
           url: "{{ git }}/cosmic-desktop"
+        kvantum:
+          url: "{{ git }}/kvantum"
         gtk:
           url: https://github.com/Fausto-Korpsvart/Catppuccin-GTK-Theme
           installer:
