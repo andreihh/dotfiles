@@ -623,8 +623,7 @@ cnoremap <C-k> <C-p>
 cnoremap <tab> <C-y>
 
 " Code:
-" - [m / ]m = jump to previous / next start of Java-style method or class
-" - [M / ]M = jump to previous / next end of Java-style method or class
+" - [m / ]m / [M / ]M = jump to previous / next start / end of [m]ethod
 " - <leader>= = format
 " - <leader>-- = toggle line comment
 " - <leader>- = toggle comment

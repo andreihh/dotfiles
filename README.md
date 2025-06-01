@@ -79,6 +79,9 @@ Example `~/.config/nvim/lua/config/overrides.lua`:
 -- [[ Config overrides ]]
 
 -- Ensure development tools are installed by Mason.
+--
+-- Installs `tree-sitter-cli` automatically. Run `:TSInstall stable unstable`
+-- afterwards to install Treesitter parsers.
 vim.g.ensure_installed = {
   -- General formatting
   "prettier",

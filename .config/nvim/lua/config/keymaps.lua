@@ -182,9 +182,8 @@ end, "[D]iff [U]nsaved changes")
 --  - <C-e> = [e]xit
 
 -- Treesitter:
---  - a/i + f/t/b = [a]round / [i]nside [f]unction / [t]ype / [b]lock
---  - [f / ]f / [t / ]t = jump to previous / next start of [f]unction / [t]ype
---  - [F / ]F / [T / ]T = jump to previous / next end of [f]unction / [t]ype
+--  - a/i + b/m = [a]round / [i]nside [b]lock / [m]ethod
+--  - [m / ]m / [M / ]M = jump to previous / next start / end of [m]ethod
 --  - <leader> + =/--/-/f/c = perform code action
 map("n", "<leader>--", "gcc", { desc = "Toggle line comment", remap = true })
 map({ "n", "x" }, "<leader>-", "gc", {
