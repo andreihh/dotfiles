@@ -40,5 +40,9 @@
             - "{{ ansible_env.XDG_DATA_HOME }}/themes"
             - "--tweaks"
             - "macchiato"
+            - "--tweaks"
+            - "outline"
+            - "--tweaks"
+            - "float"
   roles:
     - theme
