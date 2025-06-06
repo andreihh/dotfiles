@@ -1,0 +1,34 @@
+#!/bin/bash -e
+#
+# Installs the latest LTS version of `nvm`.
+#
+# See https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating.
+#
+# Supported systems: Debian, Ubuntu, Fedora, RHEL, MacOS.
+
+[[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
+
+echo "Downloading latest version of 'nvm' to '${XDG_CONFIG_HOME:?}'..."
+PROFILE=/dev/null bash << EOF
+curl -Lo - https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
+EOF
+
+echo "Loading 'nvm'..."
+# shellcheck source=/dev/null
+. "${XDG_CONFIG_HOME:?}/nvm/nvm.sh"
+
+echo "Installing latest LTS version of 'nvm'..."
+nvm install --lts
+
+echo "Configuring 'nvm' shell integration..."
+cat << 'EOF' > "${XDG_CONFIG_HOME:?}/bash.d/00-nvm_integration.sh"
+# nvm_integration.sh: loads `nvm` shell integration.
+#
+# shellcheck shell=bash
+# shellcheck source=/dev/null
+
+[[ -s "${NVM_DIR}/nvm.sh" ]] && . "${NVM_DIR}/nvm.sh"
+[[ -s "${NVM_DIR}/bash_completion" ]] && . "${NVM_DIR}/bash_completion"
+EOF
+
+echo "Installed 'nvm' successfully!"
