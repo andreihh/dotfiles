@@ -5,8 +5,9 @@
 # - Clones the dotfiles repository
 # - Backs up existing dotfiles
 # - Installs dotfiles
+# - Runs setup scripts
 #
-# Supports Debian, Ubuntu, Fedora, RHEL, and MacOS.
+# Supported systems: Debian, Ubuntu, Fedora, RHEL, and MacOS.
 #
 # Requirements:
 # - MacOS: `brew`
@@ -17,23 +18,25 @@ readonly BACKUP_DIR_DEFAULT="${DOTFILES_HOME}.bak"
 
 function usage() {
   cat << EOF
-Usage: $0 [-h] [-d] [-f] [-b BACKUP_DIR]
+Usage: $0 [-h] [-d] [-f] [-b BACKUP_DIR] [-r]
 
 Options:
   -d  Debug / dry run mode (simulate all actions, but do not execute them).
   -f  Force install by deleting prior backup and installation.
   -b  Directory where dotfiles should be backed up, or skip if empty string.
         Default: '${BACKUP_DIR_DEFAULT}'
+  -r  Run setup scripts.
   -h  Print this message and exit.
 EOF
 }
 
 backup_dir="${BACKUP_DIR_DEFAULT}"
-while getopts 'dfb:h' option; do
+while getopts 'dfb:rh' option; do
   case "${option}" in
     d) debug='-d' ;;
     f) force='-f' ;;
     b) backup_dir="${OPTARG}" ;;
+    r) run_scripts=true ;;
     h) usage && exit 0 ;;
     *) usage && exit 1 ;;
   esac
@@ -42,12 +45,12 @@ done
 echo "Installing dotfiles..."
 [[ -n "${debug}" ]] && echo "Running in debug mode!"
 
-if ! command -v git &> /dev/null || ! command -v ansible &> /dev/null; then
+if ! command -v git &> /dev/null || ! command -v stow &> /dev/null; then
   echo "Installing required dependencies..."
   if [[ -z "${debug}" ]]; then
-    command -v apt-get &> /dev/null && sudo apt-get install -y git ansible
-    command -v dnf &> /dev/null && sudo dnf install git ansible
-    command -v brew &> /dev/null && brew install git ansible
+    command -v apt-get &> /dev/null && sudo apt-get install -y git stow
+    command -v dnf &> /dev/null && sudo dnf install -y git stow
+    command -v brew &> /dev/null && brew install git stow
   fi
 fi
 
@@ -85,23 +88,17 @@ fi
 echo "Reverting changes from adopted files..."
 [[ -n "${debug}" ]] || git -C "${DOTFILES_HOME}" checkout .
 
-FDFIND="$(command -v fdfind)"
-readonly FDFIND
-if [[ -f "${FDFIND}" ]]; then
-  echo "Linking 'fd' to 'fdfind'..."
-  [[ -n "${debug}" ]] || ln -sfv "${FDFIND}" "${HOME}/.local/bin/fd"
-fi
-
-BATCAT="$(command -v batcat)"
-readonly BATCAT
-if [[ -f "${BATCAT}" ]]; then
-  echo "Linking 'bat' to 'batcat'..."
-  [[ -n "${debug}" ]] || ln -sfv "${BATCAT}" "${HOME}/.local/bin/bat"
-fi
-
 echo "Removing shell-specific profile config files..."
 for shell_profile_file in ~/.{bash_profile,zprofile}; do
   [[ -n "${debug}" ]] || rm -fv "${shell_profile_file}"
 done
+
+if [[ -n "${run_scripts}" ]]; then
+  echo "Running setup scripts..."
+  for script in "${DOTFILES_HOME}/run"/*.sh; do
+    echo "Running $(basename "${script}")..."
+    [[ -n "${debug}" ]] || "${script}"
+  done
+fi
 
 echo "Dotfiles installed successfully!"
