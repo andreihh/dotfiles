@@ -13,9 +13,6 @@ if [ -d "${HOME}/.local/bin" ]; then
   PATH="${HOME}/.local/bin${PATH:+:${PATH}}"
 fi
 
-# Load user environment if it exists.
-[ -f "${HOME}/.env" ] && . "${HOME}/.env"
-
 # Load user configs.
 for file in "${XDG_CONFIG_HOME:-${HOME}/.config}/profile.d"/*.sh; do
   [ -f "${file}" ] && . "${file}"

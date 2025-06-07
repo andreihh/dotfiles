@@ -45,14 +45,13 @@ The dotfiles follow the XDG specification where possible:
 
 The XDG environment variables are defined in `~/.config/profile.d/00-env_xdg.sh`
 because some tools don't fall back on proper defaults and only work if they are
-explicitly defined. They can be overridden in `~/.env`.
+explicitly defined.
 
 ## Private configs
 
 User or device specific configs and binaries that should not be included in the
 repository can be provided in:
 
-- `~/.env`
 - `~/.config/profile.d/`
 - `~/.config/bash.d/`
 - `~/.local/bin/`
