@@ -95,6 +95,9 @@ done
 
 if [[ -z "${skip_scripts}" ]]; then
   echo "Running setup scripts..."
+  # Name scripts with a number prefix (e.g., `10-script.sh`) to enforce a
+  # specific execution order. This is required to ensure script dependencies are
+  # installed before they are run.
   for script in "${DOTFILES_HOME}/run"/*.sh; do
     echo "Running $(basename "${script}")..."
     [[ -n "${debug}" ]] || "${script}"
