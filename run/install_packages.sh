@@ -12,7 +12,7 @@ echo "Installing core packages..."
 
 command -v apt-get &> /dev/null && sudo apt-get install -y \
   git stow wget curl zip gzip unzip tar gnupg \
-  alacritty tmux lm-sensors urlscan vim fzf fd-find ripgrep bat lazygit calc \
+  alacritty tmux lm-sensors urlscan vim fzf fd-find ripgrep bat calc \
   fastfetch btm keepassxc cava cmus vlc \
   make automake cmake build-essential pre-commit
 
@@ -24,7 +24,7 @@ command -v dnf &> /dev/null && sudo dnf install -y \
 
 command -v brew &> /dev/null && brew install \
   git stow wget curl zip gzip unzip tar gnupg \
-  alacritty tmux lm-sensors urlscan vim fzf fd-find ripgrep bat lazygit calc \
+  alacritty tmux lm-sensors urlscan vim fzf fd-find ripgrep bat calc \
   --cask font-jetbrains-mono-nerd-font \
   fastfetch bottom --cask keepassxc cava cmus --cask vlc \
   make automake cmake gcc pre-commit
