@@ -1,0 +1,138 @@
+#!/bin/bash -e
+#
+# Configures the system theme.
+#
+# Supported systems: Debian, Ubuntu, Fedora, RHEL
+
+function usage() {
+  cat << EOF
+Usage: $0 THEME
+
+Configures the system theme, which must be one of:
+  catppuccin-macchiato
+  catppuccin-frappe
+EOF
+}
+
+[[ $# -ne 1 ]] && usage && exit 1
+
+readonly CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
+readonly DATA_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}"
+
+echo "Retrieving OS distribution..."
+. /etc/os-release
+shopt -s nocasematch
+case "${OSTYPE}" in
+  linux*)
+    . /etc/os-release
+    case "${ID}" in
+      debian | ubuntu | fedora | rhel) OS="${ID}" ;;
+      *) "System '${ID}' not supported!" && exit 1 ;;
+    esac
+    ;;
+  darwin*) OS='macos' ;;
+  *) echo "System '${OSTYPE}' not supported!" && exit 1 ;;
+esac
+shopt -u nocasematch
+
+THEME="$1"
+case "${THEME}" in
+  catppuccin-macchiato)
+    VIM_THEME='catppuccin_macchiato'
+    FZF_THEME='catppuccin-fzf-macchiato'
+    BAT_THEME='Catppuccin Macchiato'
+
+    read -r -d '' GTK_THEME_INSTALLER << EOF
+'${DATA_HOME}/catppuccin/gtk/themes/install.sh' \
+  --dest '${DATA_HOME}/themes' \
+  --libadwaita --tweaks outline --tweaks macchiato
+EOF
+
+    read -r -d '' DCONF_SETTINGS << EOF
+[org/gnome/shell/extensions/user-theme]
+name='Catppuccin-Dark-Macchiato'
+
+[org/gnome/desktop/background]
+picture-uri='file://${DATA_HOME}/wallpapers/${OS}-catppuccin-latte.png'
+picture-uri-dark='file://${DATA_HOME}/wallpapers/${OS}-catppuccin-macchiato.png'
+
+[org/gnome/desktop/interface]
+accent-color='blue'
+color-scheme='prefer-dark'
+cursor-theme='catppuccin-macchiato-dark-cursors'
+gtk-theme='Catppuccin-Dark-Macchiato'
+icon-theme='Adwaita'
+EOF
+    ;;
+
+  catppuccin-frappe)
+    VIM_THEME='catppuccin_frappe'
+    FZF_THEME='catppuccin-fzf-frappe'
+    BAT_THEME='Catppuccin Frappe'
+
+    read -r -d '' GTK_THEME_INSTALLER << EOF
+'${DATA_HOME}/catppuccin/gtk/themes/install.sh' \
+  --dest '${DATA_HOME}/themes' \
+  --libadwaita --tweaks outline --tweaks frappe
+EOF
+
+    read -r -d '' DCONF_SETTINGS << EOF
+[org/gnome/shell/extensions/user-theme]
+name='Catppuccin-Dark-Frappe'
+
+[org/gnome/desktop/background]
+picture-uri='file://${DATA_HOME}/wallpapers/${ID}-catppuccin-latte.png'
+picture-uri-dark='file://${DATA_HOME}/wallpapers/${ID}-catppuccin-frappe.png'
+
+[org/gnome/desktop/interface]
+accent-color='blue'
+color-scheme='prefer-dark'
+cursor-theme='catppuccin-frappe-dark-cursors'
+gtk-theme='Catppuccin-Dark-Frappe'
+icon-theme='Adwaita'
+EOF
+    ;;
+
+  *) usage && exit 1 ;;
+esac
+
+echo "Configuring Alacritty theme..."
+cat << EOF > "${CONFIG_HOME}/alacritty/theme.toml"
+# theme: configures Alacritty theme.
+#
+# Alacritty config cannot import dynamic files.
+
+[general]
+import = ["themes/${ALACRITTY_THEME:-${THEME}}.toml"]
+EOF
+
+echo "Configuring Ghostty theme..."
+cat << EOF > "${CONFIG_HOME}/ghostty/theme"
+# theme: configures Ghostty theme.
+#
+# Ghostty config cannot set dynamic themes.
+
+theme = "${GHOSTTY_THEME:-${THEME}}"
+EOF
+
+echo "Configuring shell theme..."
+cat << EOF > "${CONFIG_HOME}/profile.d/10-theme.sh"
+# theme.sh: configures shell theme.
+#
+# shellcheck shell=sh
+
+export TMUX_THEME='${TMUX_THEME:-${THEME}}'
+export NVIM_THEME='${NVIM_THEME:-${THEME}}'
+export VIM_THEME='${VIM_THEME:-${THEME}}'
+. "${CONFIG_HOME}/fzf/themes/${FZF_THEME:-${THEME}}.sh"
+export BAT_THEME='${BAT_THEME:-${THEME}}'
+command -v kvantummanager > /dev/null 2>&1 && export QT_STYLE_OVERRIDE='kvantum'
+EOF
+
+[[ -n "${GTK_THEME_INSTALLER}" ]] \
+  && echo "Configuring GTK theme..." \
+  && bash -c "${GTK_THEME_INSTALLER}"
+
+command -v gnome-shell &> /dev/null \
+  && echo "Configuring GNOME theme..." \
+  && dconf load / <<< "${DCONF_SETTINGS}"

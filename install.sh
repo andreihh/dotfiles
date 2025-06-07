@@ -10,7 +10,7 @@
 # Supported systems: Debian, Ubuntu, Fedora, RHEL, and MacOS.
 #
 # Requirements:
-# - MacOS: `brew`
+# - MacOS: Homebrew
 
 readonly REPOSITORY_URL="git@codeberg.org:andreihh/dotfiles.git"
 readonly DOTFILES_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}/dotfiles"
