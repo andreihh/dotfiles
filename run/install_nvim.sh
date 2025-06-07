@@ -4,7 +4,9 @@
 #
 # See https://github.com/neovim/neovim/blob/master/BUILD.md.
 #
-# Supported systems: Debian, Ubuntu, Fedora, RHEL, MacOS.
+# Supported systems: Debian, Ubuntu, Fedora, RHEL, MacOS
+# Requirements:
+# - MacOS: Homebrew
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
@@ -12,7 +14,7 @@ echo "Installing Neovim..."
 
 if command -v brew &> /dev/null; then
   # Install Neovim with Homebrew on MacOS and exit early.
-  brew install -y nvim
+  brew install nvim
   echo "Installed Neovim successfully!"
   exit 0
 fi

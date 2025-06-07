@@ -4,7 +4,11 @@
 #
 # See https://ghostty.org/docs/install/binary.
 #
-# Supported systems: Debian, Ubuntu, Fedora, RHEL, MacOS.
+# Supported systems: Debian, Ubuntu, Fedora, RHEL, MacOS
+# Requirements:
+# - Debian, Ubuntu: `curl`
+# - Fedora, RHEL: COPR
+# - MacOS: Homebrew
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 

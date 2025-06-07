@@ -4,7 +4,9 @@
 #
 # See https://catppuccin.com.
 #
-# Supported systems: Debian, Ubuntu, Fedora, RHEL, MacOS.
+# Supported systems: Debian, Ubuntu, Fedora, RHEL, MacOS
+# Requirements:
+# - MacOS: Homebrew
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
@@ -14,6 +16,13 @@ readonly THEME_CURSORS_URL="${THEME_GIT_URL}/cursors/releases/latest/download"
 readonly THEME_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/catppuccin"
 
 echo "Installing Catppuccin..."
+
+if ! command -v git &> /dev/null || ! command -v wget &> /dev/null; then
+  echo "Installing Catppuccin dependencies..."
+  command -v apt-get &> /dev/null && sudo apt-get install -y git wget
+  command -v dnf &> /dev/null && sudo dnf install -y git wget
+  command -v brew &> /dev/null && brew install git wget
+fi
 
 echo "Cleaning up prior Catppuccin installation..."
 rm -rf "${THEME_HOME}"
@@ -36,19 +45,19 @@ done
 echo "Unpacking Catppuccin cursor themes..."
 sudo unzip "${THEME_HOME}/cursors"/*.zip -d /usr/share/icons/
 
-echo "Linking Alacritty themes..."
+echo "Linking Alacritty Catppuccin themes..."
 mkdir -p "${CONFIG_HOME}/alacritty/themes"
 ln -sfvt "${CONFIG_HOME}/alacritty/themes" "${THEME_HOME}/alacritty"/*.toml
 
-echo "Linking 'fzf' themes..."
+echo "Linking 'fzf' Catppuccin themes..."
 mkdir -p "${CONFIG_HOME}/fzf/themes"
 ln -sfvt "${CONFIG_HOME}/fzf/themes" "${THEME_HOME}/fzf/themes"/*.sh
 
-echo "Linking 'bat' themes..."
+echo "Linking 'bat' Catppuccin themes..."
 mkdir -p "${CONFIG_HOME}/bat/themes"
 ln -sfvt "${CONFIG_HOME}/bat/themes" "${THEME_HOME}/bat/themes"/*.tmTheme
 
-echo "Linking 'cava' themes..."
+echo "Linking 'cava' Catppuccin themes..."
 mkdir -p "${CONFIG_HOME}/cava/themes"
 ln -sfvt "${CONFIG_HOME}/cava/themes" "${THEME_HOME}/cava/themes"/*.cava
 

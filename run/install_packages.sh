@@ -2,7 +2,9 @@
 #
 # Installs core packages.
 #
-# Supported systems: Debian, Ubuntu, Fedora, RHEL, MacOS.
+# Supported systems: Debian, Ubuntu, Fedora, RHEL, MacOS
+# Requirements:
+# - MacOS: Homebrew
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 

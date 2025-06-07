@@ -2,7 +2,7 @@
 #
 # Configures GNOME settings and dependencies.
 #
-# Supported systems: Debian, Ubuntu, Fedora, RHEL.
+# Supported systems: Debian, Ubuntu, Fedora, RHEL
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
