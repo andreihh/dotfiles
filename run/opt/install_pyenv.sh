@@ -12,7 +12,6 @@
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
 echo "Installing 'pyenv' in root '${PYENV_ROOT:?}'..."
-
 if command -v brew &> /dev/null; then
   brew install pyenv pyenv-virtualenv
 else
