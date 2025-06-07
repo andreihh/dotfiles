@@ -9,9 +9,13 @@
 readonly SSH_CONFIG="${HOME}/.ssh/config"
 readonly SSHD_CONFIG="/etc/ssh/sshd_config"
 
-echo "Ensuring agent forwarding is not disabled..."
-sudo sed -i.bak '/^[ \t]*AllowAgentForwarding[ \t]\+no/d' "${SSHD_CONFIG}"
-sudo rm "${SSHD_CONFIG}.bak"
+echo "Configuring SSH..."
+
+if [[ -f "${SSHD_CONFIG}" ]]; then
+  echo "Ensuring agent forwarding is not disabled..."
+  sudo sed -i.bak '/^[ \t]*AllowAgentForwarding[ \t]\+no/d' "${SSHD_CONFIG}"
+  sudo rm "${SSHD_CONFIG}.bak"
+fi
 
 if [[ -n "${CLOUD_HOST}" ]]; then
   echo "Appending SSH multiplexing options to SSH config..."
@@ -24,6 +28,6 @@ Match host ${CLOUD_HOST}
   ControlPersist yes
   ForwardAgent yes  # Only for trusted hosts
 EOF
-
-  echo "Configured SSH successfully!"
 fi
+
+echo "Configured SSH successfully!"
