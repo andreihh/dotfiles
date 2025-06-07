@@ -7,29 +7,27 @@ alongside an installation script.
 
 To install the dotfiles:
 
-- Install required dependencies:
-
-  - MacOS:
+- Install Homebrew on MacOS (see https://brew.sh/):
 
 ```bash
-export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
-export HOMEBREW_SHELLENV="${XDG_CONFIG_HOME:?}/profile.d/00-brew.sh"
-export HOMEBREW_INSTALLER="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
+HOMEBREW_INSTALLER="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
 /bin/bash -c "$(curl -fsSL "${HOMEBREW_INSTALLER}")"
-
-# Follow displayed instructions to finish setting up Homebrew.
-
-brew install wget
+exec bash  # Reload shell environment to add Homebrew to `PATH`
 ```
 
-- Download and run the installer:
+- Download and run the installer using one of the following commands:
 
 ```bash
 wget -O - https://codeberg.org/andreihh/dotfiles/raw/branch/main/install.sh \
   | bash
 ```
 
-- Reboot your system to ensure the environment variables are loaded properly.
+```bash
+curl -Lo - https://codeberg.org/andreihh/dotfiles/raw/branch/main/install.sh \
+  | bash
+```
+
+- Reboot your system to ensure the environment is loaded properly.
 - Run the `theme` command to configure the system theme.
 - Run `pre-commit install` inside the repository to configure pre-commit checks.
 

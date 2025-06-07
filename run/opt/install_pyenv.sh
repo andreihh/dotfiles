@@ -20,7 +20,7 @@ else
 fi
 
 echo "Configuring 'pyenv' shell integration..."
-cat << 'EOF' > "${XDG_CONFIG_HOME:?}/bash.d/00-pyenv_integration.sh"
+cat << 'EOF' > "${XDG_CONFIG_HOME:?}/bash.d/10-pyenv_integration.sh"
 # pyenv_integration.sh: loads `pyenv` shell integration.
 #
 # shellcheck shell=bash

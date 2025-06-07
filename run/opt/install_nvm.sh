@@ -22,7 +22,7 @@ echo "Installing latest LTS version of 'nvm'..."
 nvm install --lts
 
 echo "Configuring 'nvm' shell integration..."
-cat << 'EOF' > "${XDG_CONFIG_HOME:?}/bash.d/00-nvm_integration.sh"
+cat << 'EOF' > "${XDG_CONFIG_HOME:?}/bash.d/10-nvm_integration.sh"
 # nvm_integration.sh: loads `nvm` shell integration.
 #
 # shellcheck shell=bash

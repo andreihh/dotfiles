@@ -2,7 +2,7 @@
 #
 # Installs core packages.
 #
-# Ensures all core dependencies (e.g., Neovim and Catppuccin) are installed.
+# Ensures all core dependencies (e.g., for building Neovim) are installed.
 #
 # Supported systems: Debian, Ubuntu, Fedora, RHEL, MacOS
 # Dependencies:
