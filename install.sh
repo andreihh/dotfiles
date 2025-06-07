@@ -17,10 +17,10 @@ readonly BACKUP_DIR_DEFAULT="${DOTFILES_HOME}.bak"
 
 function usage() {
   cat << EOF
-Usage: $0 [-h] [-d] [-f] [-b BACKUP_DIR] [-u]
+Usage: $0 [-h] [-n] [-f] [-b BACKUP_DIR] [-u]
 
 Options:
-  -d  Debug / dry run mode (simulate all actions, but do not execute them).
+  -n  Perform a dry run (simulate actions, but do not execute them).
   -f  Force install by deleting prior backup and installation.
   -b  Directory where dotfiles should be backed up, or skip if empty string.
         Default: '${BACKUP_DIR_DEFAULT}'
@@ -30,9 +30,9 @@ EOF
 }
 
 backup_dir="${BACKUP_DIR_DEFAULT}"
-while getopts 'dfb:uh' option; do
+while getopts 'nfb:uh' option; do
   case "${option}" in
-    d) debug=true ;;
+    n) debug=true ;;
     f) force=true ;;
     b) backup_dir="${OPTARG}" ;;
     u) skip_scripts=true ;;
@@ -42,7 +42,8 @@ while getopts 'dfb:uh' option; do
 done
 
 echo "Installing dotfiles..."
-[[ -n "${debug}" ]] && echo "Running in debug mode!"
+
+[[ -n "${debug}" ]] && echo "Performing a dry run!"
 
 echo "Ensuring dependencies are installed..."
 readonly DEPS=(git stow)
