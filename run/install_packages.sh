@@ -68,7 +68,4 @@ if command -v update-alternatives &> /dev/null; then
   sudo update-alternatives --set x-terminal-emulator "${ALACRITTY_BIN}"
 fi
 
-echo "Changing default shell to Bash..."
-chsh -s /bin/bash
-
 echo "Installed core packages successfully!"
