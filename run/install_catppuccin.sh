@@ -43,7 +43,7 @@ for flavor in 'mocha' 'macchiato' 'frappe' 'latte'; do
 done
 
 echo "Unpacking Catppuccin cursor themes..."
-sudo unzip "${THEME_HOME}/cursors"/*.zip -d /usr/share/icons/
+sudo unzip -od /usr/share/icons/ "${THEME_HOME}/cursors/*.zip"
 
 echo "Linking Alacritty Catppuccin themes..."
 mkdir -p "${CONFIG_HOME}/alacritty/themes"

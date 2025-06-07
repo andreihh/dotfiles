@@ -37,7 +37,7 @@ if ! command -v brew &> /dev/null; then
   echo "Installing JetBrains Mono Nerd Font..."
   cd "${XDG_DATA_HOME:-${HOME}/.local/share}/fonts"
   wget "${FONT_URL}"
-  unzip "${FONT_ZIP}"
+  unzip -o "${FONT_ZIP}"
   rm "${FONT_ZIP}"
   fc-cache -fv
 fi
