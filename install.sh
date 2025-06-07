@@ -18,25 +18,25 @@ readonly BACKUP_DIR_DEFAULT="${DOTFILES_HOME}.bak"
 
 function usage() {
   cat << EOF
-Usage: $0 [-h] [-d] [-f] [-b BACKUP_DIR] [-r]
+Usage: $0 [-h] [-d] [-f] [-b BACKUP_DIR] [-u]
 
 Options:
   -d  Debug / dry run mode (simulate all actions, but do not execute them).
   -f  Force install by deleting prior backup and installation.
   -b  Directory where dotfiles should be backed up, or skip if empty string.
         Default: '${BACKUP_DIR_DEFAULT}'
-  -r  Run setup scripts.
+  -u  Update dotfiles without running setup scripts.
   -h  Print this message and exit.
 EOF
 }
 
 backup_dir="${BACKUP_DIR_DEFAULT}"
-while getopts 'dfb:rh' option; do
+while getopts 'dfb:uh' option; do
   case "${option}" in
     d) debug='-d' ;;
     f) force='-f' ;;
     b) backup_dir="${OPTARG}" ;;
-    r) run_scripts=true ;;
+    u) skip_scripts=true ;;
     h) usage && exit 0 ;;
     *) usage && exit 1 ;;
   esac
@@ -93,7 +93,7 @@ for shell_profile_file in ~/.{bash_profile,zprofile}; do
   [[ -n "${debug}" ]] || rm -fv "${shell_profile_file}"
 done
 
-if [[ -n "${run_scripts}" ]]; then
+if [[ -z "${skip_scripts}" ]]; then
   echo "Running setup scripts..."
   for script in "${DOTFILES_HOME}/run"/*.sh; do
     echo "Running $(basename "${script}")..."
