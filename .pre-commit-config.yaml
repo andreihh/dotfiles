@@ -42,9 +42,3 @@ repos:
     hooks:
       - id: shellcheck
         args: ["--rcfile=.config/shellcheckrc"]
-  - repo: https://github.com/ansible/ansible-lint
-    rev: v25.2.1
-    hooks:
-      - id: ansible-lint
-        additional_dependencies: ["ansible"]
-        args: ["--exclude=.forgejo"]

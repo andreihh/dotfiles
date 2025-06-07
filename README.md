@@ -16,10 +16,9 @@ export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
 export HOMEBREW_SHELLENV="${XDG_CONFIG_HOME:?}/profile.d/00-brew.sh"
 export HOMEBREW_INSTALLER="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
 /bin/bash -c "$(curl -fsSL "${HOMEBREW_INSTALLER}")"
-# Follow displayed instructions to finish setting up Homebrew.
-```
 
-```bash
+# Follow displayed instructions to finish setting up Homebrew.
+
 brew install wget
 ```
 
@@ -31,10 +30,10 @@ wget -O - https://codeberg.org/andreihh/dotfiles/raw/branch/main/install.sh \
 ```
 
 - Reboot your system to ensure the environment variables are loaded properly.
-- Run the `update-system` command to configure settings and install packages.
 - Run `pre-commit install` inside the repository to configure pre-commit checks.
 
-To update the dotfiles, run `install.sh` from the repository in a clean state.
+To update the dotfiles, run `install.sh -u` from the repository in a clean
+state.
 
 ## XDG directories
 
@@ -93,9 +92,6 @@ vim.g.ensure_installed = {
   "bash-language-server",
   "shfmt",
   "shellcheck", -- integrates with `bash-language-server`
-  -- Ansible
-  "ansible-language-server",
-  "ansible-lint", -- integrates with `ansible-language-server`
   -- Python
   "pyright",
   "isort",
@@ -117,7 +113,6 @@ vim.lsp.enable({
   "lua_ls",
   "vimls",
   "bashls",
-  "ansiblels",
   "pyright",
   "clangd",
   "jdtls",
