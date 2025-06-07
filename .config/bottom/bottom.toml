@@ -1,0 +1,20 @@
+# bottom.toml: configures `bottom`.
+#
+# See https://clementtsang.github.io/bottom/nightly/configuration/config-file/.
+
+[flags]
+group_processes = true  # Group together processes with the same name
+
+# Include only essential widgets in the layout to fit in small windows.
+[[row]]
+  [[row.child]]
+    type = "processes"
+    ratio = 2
+  [[row.child]]
+    type = "temperature"
+[[row]]
+  [[row.child]]
+    type = "cpu"
+[[row]]
+  [[row.child]]
+    type = "memory"
