@@ -5,7 +5,10 @@
 # See https://github.com/neovim/neovim/blob/master/BUILD.md.
 #
 # Supported systems: Debian, Ubuntu, Fedora, RHEL, MacOS
-# Requirements:
+# Dependencies:
+# - Linux: `git`, `unzip`, `curl`, `make`, `cmake`, `ninja-build`, `gettext`
+# - Debian, Ubuntu: `build-essential`
+# - Fedora, RHEL: `gcc`, `glibc-gconv-extra`
 # - MacOS: Homebrew
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
@@ -18,14 +21,6 @@ if command -v brew &> /dev/null; then
   echo "Installed Neovim successfully!"
   exit 0
 fi
-
-echo "Installing Neovim build dependencies..."
-
-command -v apt-get &> /dev/null && sudo apt-get install -y \
-  git unzip curl make cmake ninja-build gettext build-essential
-
-command -v dnf &> /dev/null && sudo dnf install -y \
-  git unzip curl make cmake ninja-build gettext gcc glibc-gconv-extra
 
 echo "Creating temporary Neovim installation directory..."
 NVIM_TMP_DIR="$(mktemp -d "${TMPDIR:-/tmp}/neovim.XXXXXXXXX")"

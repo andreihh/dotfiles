@@ -2,32 +2,38 @@
 #
 # Installs core packages.
 #
+# Ensures all core dependencies (e.g., Neovim and Catppuccin) are installed.
+#
 # Supported systems: Debian, Ubuntu, Fedora, RHEL, MacOS
-# Requirements:
+# Dependencies:
 # - MacOS: Homebrew
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
 echo "Installing core packages..."
+readonly COMMON_PKGS=(
+  git stow wget curl zip gzip unzip tar gnupg  # Core tools
+  tmux urlscan vim fzf fd-find ripgrep bat calc fastfetch  # TUI tools
+  make automake cmake pre-commit  # Build tools
+)
 
 command -v apt-get &> /dev/null && sudo apt-get install -y \
-  git stow wget curl zip gzip unzip tar gnupg \
-  alacritty tmux lm-sensors urlscan vim fzf fd-find ripgrep bat calc \
-  fastfetch btm keepassxc cava cmus vlc \
-  make automake cmake build-essential pre-commit
+  "${COMMON_PKGS[@]}" \
+  alacritty lm-sensors btm \
+  build-essential ninja-build gettext \
+  keepassxc cava cmus vlc
 
 command -v dnf &> /dev/null && sudo dnf install -y \
-  git stow wget curl zip gzip unzip tar gnupg \
-  alacritty tmux lm_sensors urlscan vim fzf fd-find ripgrep bat calc \
-  fastfetch keepassxc cava vlc \
-  make automake cmake gcc gcc-c++ pre-commit
+  "${COMMON_PKGS[@]}" \
+  alacritty lm_sensors \
+  gcc gcc-c++ ninja-build gettext glibc-gconv-extra \
+  keepassxc cava vlc
 
 command -v brew &> /dev/null && brew install \
-  git stow wget curl zip gzip unzip tar gnupg \
-  alacritty tmux lm-sensors urlscan vim fzf fd-find ripgrep bat calc \
-  --cask font-jetbrains-mono-nerd-font \
-  fastfetch bottom --cask keepassxc cava cmus --cask vlc \
-  make automake cmake gcc pre-commit
+  "${COMMON_PKGS[@]}" \
+  --cask alacritty --cask font-jetbrains-mono-nerd-font lm-sensors bottom \
+  gcc \
+  --cask keepassxc cava cmus --cask vlc
 
 if ! command -v brew &> /dev/null; then
   readonly FONT_ZIP='JetBrainsMono.zip'

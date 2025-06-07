@@ -8,8 +8,7 @@
 # - Runs setup scripts
 #
 # Supported systems: Debian, Ubuntu, Fedora, RHEL, and MacOS.
-#
-# Requirements:
+# Dependencies:
 # - MacOS: Homebrew
 
 readonly REPOSITORY_URL="git@codeberg.org:andreihh/dotfiles.git"
@@ -45,14 +44,15 @@ done
 echo "Installing dotfiles..."
 [[ -n "${debug}" ]] && echo "Running in debug mode!"
 
-if ! command -v git &> /dev/null || ! command -v stow &> /dev/null; then
-  echo "Installing required dependencies..."
-  if [[ -z "${debug}" ]]; then
-    command -v apt-get &> /dev/null && sudo apt-get install -y git stow
-    command -v dnf &> /dev/null && sudo dnf install -y git stow
-    command -v brew &> /dev/null && brew install git stow
+echo "Ensuring dependencies are installed..."
+readonly DEPS=(git stow)
+for dep in "${DEPS[@]}"; do
+  if ! command -v "${dep}" &> /dev/null; then
+    command -v apt-get &> /dev/null && sudo apt-get install -y "${dep}"
+    command -v dnf &> /dev/null && sudo dnf install -y "${dep}"
+    command -v brew &> /dev/null && brew install "${dep}"
   fi
-fi
+done
 
 if [[ -n "${force}" ]]; then
   echo "Deleting prior backup and installation..."

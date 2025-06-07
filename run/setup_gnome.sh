@@ -12,16 +12,18 @@ if ! command -v gnome-shell &> /dev/null; then
 fi
 
 echo "Installing GNOME dependencies..."
+readonly COMMON_DEPS=(
+  sassc
+  gnome-themes-extra
+  gnome-shell-extension-user-theme
+  gnome-shell-extension-appindicator
+)
 
 command -v apt-get &> /dev/null && sudo apt-get install -y \
-  gnome-shell-extension-user-theme \
-  gnome-shell-extension-appindicator \
-  gtk2-engines-murrine
+  "${COMMON_DEPS[@]}" gtk2-engines-murrine
 
 command -v dnf &> /dev/null && sudo dnf install -y \
-  gnome-shell-extension-user-theme \
-  gnome-shell-extension-appindicator \
-  gtk-murrine-engine
+  "${COMMON_DEPS[@]}" gtk-murrine-engine
 
 echo "Configuring GNOME settings..."
 dconf load / << 'EOF'

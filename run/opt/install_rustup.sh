@@ -5,7 +5,7 @@
 # See https://www.rust-lang.org/tools/install.
 #
 # Supported systems: Debian, Ubuntu, Fedora, RHEL, MacOS
-# Requirements: `curl`
+# Dependencies: `curl`
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 

@@ -5,7 +5,7 @@
 # See https://ghostty.org/docs/install/binary.
 #
 # Supported systems: Debian, Ubuntu, Fedora, RHEL, MacOS
-# Requirements:
+# Dependencies:
 # - Debian, Ubuntu: `curl`
 # - Fedora, RHEL: COPR
 # - MacOS: Homebrew

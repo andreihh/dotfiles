@@ -5,8 +5,7 @@
 # See https://catppuccin.com.
 #
 # Supported systems: Debian, Ubuntu, Fedora, RHEL, MacOS
-# Requirements:
-# - MacOS: Homebrew
+# Dependencies: `git`, `wget`
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
@@ -16,13 +15,6 @@ readonly THEME_CURSORS_URL="${THEME_GIT_URL}/cursors/releases/latest/download"
 readonly THEME_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/catppuccin"
 
 echo "Installing Catppuccin..."
-
-if ! command -v git &> /dev/null || ! command -v wget &> /dev/null; then
-  echo "Installing Catppuccin dependencies..."
-  command -v apt-get &> /dev/null && sudo apt-get install -y git wget
-  command -v dnf &> /dev/null && sudo dnf install -y git wget
-  command -v brew &> /dev/null && brew install git wget
-fi
 
 echo "Cleaning up prior Catppuccin installation..."
 rm -rf "${THEME_HOME}"

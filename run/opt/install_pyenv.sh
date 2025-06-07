@@ -5,7 +5,7 @@
 # See https://github.com/pyenv/pyenv?tab=readme-ov-file#installation.
 #
 # Supported systems: Debian, Ubuntu, Fedora, RHEL, MacOS
-# Requirements:
+# Dependencies:
 # - Linux: `curl`
 # - MacOS: Homebrew
 

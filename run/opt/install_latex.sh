@@ -3,7 +3,7 @@
 # Installs LaTeX.
 #
 # Supported systems: Debian, Ubuntu, Fedora, RHEL, MacOS
-# Requirements:
+# Dependencies:
 # - MacOS: Homebrew
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1

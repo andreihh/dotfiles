@@ -5,7 +5,7 @@
 # See https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating.
 #
 # Supported systems: Debian, Ubuntu, Fedora, RHEL, MacOS
-# Requirements: `curl`
+# Dependencies: `curl`
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
