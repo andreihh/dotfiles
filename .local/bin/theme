@@ -41,14 +41,14 @@ case "${THEME}" in
     VIM_THEME='catppuccin_macchiato'
     FZF_THEME='catppuccin-fzf-macchiato'
     BAT_THEME='Catppuccin Macchiato'
+    GTK_THEME_INSTALLER=(
+      "${DATA_HOME}/catppuccin/gtk/themes/install.sh"
+      --dest "${DATA_HOME}/themes"
+      --libadwaita --tweaks outline --tweaks macchiato
+    )
 
-    read -r -d '' GTK_THEME_INSTALLER << EOF
-'${DATA_HOME}/catppuccin/gtk/themes/install.sh' \
-  --dest '${DATA_HOME}/themes' \
-  --libadwaita --tweaks outline --tweaks macchiato
-EOF
-
-    read -r -d '' DCONF_SETTINGS << EOF
+    DCONF_SETTINGS=$(
+      cat << EOF
 [org/gnome/shell/extensions/user-theme]
 name='Catppuccin-Dark-Macchiato'
 
@@ -63,20 +63,21 @@ cursor-theme='catppuccin-macchiato-dark-cursors'
 gtk-theme='Catppuccin-Dark-Macchiato'
 icon-theme='Adwaita'
 EOF
+    )
     ;;
 
   catppuccin-frappe)
     VIM_THEME='catppuccin_frappe'
     FZF_THEME='catppuccin-fzf-frappe'
     BAT_THEME='Catppuccin Frappe'
+    GTK_THEME_INSTALLER=(
+      "${DATA_HOME}/catppuccin/gtk/themes/install.sh"
+      --dest "${DATA_HOME}/themes"
+      --libadwaita --tweaks outline --tweaks frappe
+    )
 
-    read -r -d '' GTK_THEME_INSTALLER << EOF
-'${DATA_HOME}/catppuccin/gtk/themes/install.sh' \
-  --dest '${DATA_HOME}/themes' \
-  --libadwaita --tweaks outline --tweaks frappe
-EOF
-
-    read -r -d '' DCONF_SETTINGS << EOF
+    DCONF_SETTINGS=$(
+      cat << EOF
 [org/gnome/shell/extensions/user-theme]
 name='Catppuccin-Dark-Frappe'
 
@@ -91,6 +92,7 @@ cursor-theme='catppuccin-frappe-dark-cursors'
 gtk-theme='Catppuccin-Dark-Frappe'
 icon-theme='Adwaita'
 EOF
+    )
     ;;
 
   *) usage && exit 1 ;;
@@ -129,9 +131,8 @@ export BAT_THEME='${BAT_THEME:-${THEME}}'
 command -v kvantummanager > /dev/null 2>&1 && export QT_STYLE_OVERRIDE='kvantum'
 EOF
 
-[[ -n "${GTK_THEME_INSTALLER}" ]] \
-  && echo "Configuring GTK theme..." \
-  && bash -c "${GTK_THEME_INSTALLER}"
+echo "Configuring GTK theme..."
+"${GTK_THEME_INSTALLER[@]}"
 
 command -v gnome-shell &> /dev/null \
   && echo "Configuring GNOME theme..." \

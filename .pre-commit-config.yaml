@@ -41,4 +41,4 @@ repos:
     rev: v0.10.0.1
     hooks:
       - id: shellcheck
-        args: ["--rcfile=.config/shellcheckrc"]
+        args: ["--rcfile=config/shellcheckrc"]
