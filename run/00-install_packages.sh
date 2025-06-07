@@ -13,27 +13,22 @@
 echo "Installing core packages..."
 readonly COMMON_PKGS=(
   git stow wget curl zip gzip unzip tar gnupg  # Core tools
-  tmux urlscan vim fzf fd-find ripgrep bat calc fastfetch  # TUI tools
+  alacritty tmux urlscan vim fzf fd-find ripgrep bat calc fastfetch  # TUI tools
   make automake cmake pre-commit  # Build tools
+  keepassxc cava vlc  # General and media tools
 )
 
 command -v apt-get &> /dev/null && sudo apt-get install -y \
   "${COMMON_PKGS[@]}" \
-  alacritty lm-sensors btm \
-  build-essential ninja-build gettext \
-  keepassxc cava cmus vlc
+  lm-sensors btm build-essential ninja-build gettext cmus
 
 command -v dnf &> /dev/null && sudo dnf install -y \
   "${COMMON_PKGS[@]}" \
-  alacritty lm_sensors \
-  gcc gcc-c++ ninja-build gettext glibc-gconv-extra \
-  keepassxc cava vlc
+  lm_sensors gcc gcc-c++ ninja-build gettext glibc-gconv-extra
 
 command -v brew &> /dev/null && brew install \
   "${COMMON_PKGS[@]}" \
-  --cask alacritty --cask font-jetbrains-mono-nerd-font lm-sensors bottom \
-  gcc \
-  --cask keepassxc cava cmus --cask vlc
+  lm-sensors bottom gcc cmus font-jetbrains-mono-nerd-font
 
 if ! command -v brew &> /dev/null; then
   readonly FONT_ZIP='JetBrainsMono.zip'

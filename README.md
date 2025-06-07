@@ -30,6 +30,7 @@ wget -O - https://codeberg.org/andreihh/dotfiles/raw/branch/main/install.sh \
 ```
 
 - Reboot your system to ensure the environment variables are loaded properly.
+- Run the `theme` command to configure the system theme.
 - Run `pre-commit install` inside the repository to configure pre-commit checks.
 
 To update the dotfiles, run `install.sh -u` from the repository in a clean

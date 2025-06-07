@@ -15,6 +15,6 @@ command -v apt-get &> /dev/null && sudo apt-get install -y texlive-full
 command -v dnf &> /dev/null \
   && sudo dnf install -y texlive-scheme-full latexmk biber
 
-command -v brew &> /dev/null && brew install --cask mactex biber
+command -v brew &> /dev/null && brew install mactex biber
 
 echo "Installed LaTeX successfully!"

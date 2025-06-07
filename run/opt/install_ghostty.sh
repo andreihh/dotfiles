@@ -22,7 +22,7 @@ command -v apt-get &> /dev/null \
 command -v dnf &> /dev/null \
   && sudo dnf copr enable pgdev/ghostty && sudo dnf install -y ghostty
 
-command -v brew &> /dev/null && brew install --cask ghostty
+command -v brew &> /dev/null && brew install ghostty
 
 if command -v update-alternatives; then
   echo "Configuring Ghostty as the default terminal..."

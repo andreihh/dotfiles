@@ -6,11 +6,7 @@
 export LANG='en_US.UTF-8'
 export LC_ALL='en_US.UTF-8'
 
-# Make Bash the default shell.
-export SHELL="${SHELL-/bin/bash}"
-
-# Make Neovim the default editor.
-export EDITOR="${EDITOR-nvim}"
-
-# Make Firefox the default browser.
-export BROWSER="${BROWSER-firefox}"
+# Configure default programs.
+export SHELL='/bin/bash'
+export EDITOR='nvim'
+export BROWSER='firefox'
