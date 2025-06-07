@@ -32,8 +32,8 @@ EOF
 backup_dir="${BACKUP_DIR_DEFAULT}"
 while getopts 'dfb:uh' option; do
   case "${option}" in
-    d) debug='-d' ;;
-    f) force='-f' ;;
+    d) debug=true ;;
+    f) force=true ;;
     b) backup_dir="${OPTARG}" ;;
     u) skip_scripts=true ;;
     h) usage && exit 0 ;;
@@ -75,7 +75,15 @@ if [[ -n $(git -C "${DOTFILES_HOME}" status --porcelain 2> /dev/null) ]]; then
 fi
 
 echo "Stowing dotfiles, adopting conflicting files..."
-stow ${debug:+"-n"} -v --no-folding --adopt -t "${HOME}" -d "${DOTFILES_HOME}" .
+function stowdir() {
+  local src="$1"
+  local dst="$2"
+  stow ${debug:+'-n'} -v --no-folding --adopt -t "${dst}" -d "${src}" .
+}
+
+stowdir "${DOTFILES_HOME}" "${HOME}"
+stowdir "${DOTFILES_HOME}/config" "${XDG_CONFIG_HOME:-${HOME}/.config}"
+stowdir "${DOTFILES_HOME}/data" "${XDG_DATA_HOME:-${HOME}/.local/share}"
 
 if [[ -n "${backup_dir}" ]]; then
   echo "Setting up backup directory '${backup_dir}'..."
