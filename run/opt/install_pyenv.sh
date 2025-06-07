@@ -26,7 +26,7 @@ cat << 'EOF' > "${XDG_CONFIG_HOME:?}/bash.d/00-pyenv_integration.sh"
 # shellcheck shell=bash
 
 [[ -n "${PYENV_ROOT}" && -d "${PYENV_ROOT}/bin" ]] \
-  && export PATH="${PYENV_ROOT}/bin:${PATH}" \
+  && PATH="${PYENV_ROOT}/bin${PATH:+:${PATH}}" \
   && eval "$(pyenv init - bash)" \
   && eval "$(pyenv virtualenv-init -)"
 EOF

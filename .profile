@@ -9,9 +9,7 @@
 # shellcheck shell=sh
 
 # Set `PATH` so it includes user's private `bin` if it exists.
-if [ -d "${HOME}/.local/bin" ]; then
-  PATH="${HOME}/.local/bin${PATH:+:${PATH}}"
-fi
+[ -d "${HOME}"/.local/bin ] && PATH="${HOME}/.local/bin${PATH:+:${PATH}}"
 
 # Load user configs.
 for file in "${XDG_CONFIG_HOME:-${HOME}/.config}/profile.d"/*.sh; do
@@ -21,6 +19,4 @@ unset file
 
 # Include `.bashrc` if running bash and it exists, but only after loading all
 # shell-agnostic configs and environment.
-if [ -n "${BASH_VERSION}" ] && [ -f "${HOME}/.bashrc" ]; then
-  . "${HOME}/.bashrc"
-fi
+[ -n "${BASH_VERSION}" ] && [ -f "${HOME}/.bashrc" ] && . "${HOME}/.bashrc"
