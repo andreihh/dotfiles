@@ -4,8 +4,8 @@
 #
 # Supported systems: Debian, Ubuntu, Fedora, RHEL
 
-readonly CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
-readonly DATA_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}"
+readonly XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
+readonly XDG_DATA_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}"
 
 shopt -s nocasematch
 case "${OSTYPE}" in
@@ -41,8 +41,8 @@ case "${theme}" in
     fzf_theme='catppuccin-fzf-macchiato'
     bat_theme='Catppuccin Macchiato'
     gtk_theme_installer=(
-      "${DATA_HOME}/catppuccin/gtk/themes/install.sh"
-      --dest "${DATA_HOME}/themes"
+      "${XDG_DATA_HOME}/catppuccin/gtk/themes/install.sh"
+      --dest "${XDG_DATA_HOME}/themes"
       --libadwaita --tweaks outline --tweaks macchiato
     )
 
@@ -52,8 +52,8 @@ case "${theme}" in
 name='Catppuccin-Dark-Macchiato'
 
 [org/gnome/desktop/background]
-picture-uri='file://${DATA_HOME}/wallpapers/${OS}-catppuccin-latte.png'
-picture-uri-dark='file://${DATA_HOME}/wallpapers/${OS}-catppuccin-macchiato.png'
+picture-uri='file://${XDG_DATA_HOME}/wallpapers/${OS}-catppuccin-latte.png'
+picture-uri-dark='file://${XDG_DATA_HOME}/wallpapers/${OS}-catppuccin-macchiato.png'
 
 [org/gnome/desktop/interface]
 accent-color='blue'
@@ -70,8 +70,8 @@ EOF
     fzf_theme='catppuccin-fzf-frappe'
     bat_theme='Catppuccin Frappe'
     gtk_theme_installer=(
-      "${DATA_HOME}/catppuccin/gtk/themes/install.sh"
-      --dest "${DATA_HOME}/themes"
+      "${XDG_DATA_HOME}/catppuccin/gtk/themes/install.sh"
+      --dest "${XDG_DATA_HOME}/themes"
       --libadwaita --tweaks outline --tweaks frappe
     )
 
@@ -81,8 +81,8 @@ EOF
 name='Catppuccin-Dark-Frappe'
 
 [org/gnome/desktop/background]
-picture-uri='file://${DATA_HOME}/wallpapers/${ID}-catppuccin-latte.png'
-picture-uri-dark='file://${DATA_HOME}/wallpapers/${ID}-catppuccin-frappe.png'
+picture-uri='file://${XDG_DATA_HOME}/wallpapers/${ID}-catppuccin-latte.png'
+picture-uri-dark='file://${XDG_DATA_HOME}/wallpapers/${ID}-catppuccin-frappe.png'
 
 [org/gnome/desktop/interface]
 accent-color='blue'
@@ -98,7 +98,7 @@ EOF
 esac
 
 echo "Configuring Alacritty theme..."
-cat << EOF > "${CONFIG_HOME}/alacritty/theme.toml"
+cat << EOF > "${XDG_CONFIG_HOME}/alacritty/theme.toml"
 # theme: configures Alacritty theme.
 #
 # Alacritty config cannot import dynamic files.
@@ -108,7 +108,7 @@ import = ["themes/${alacritty_theme:-${theme}}.toml"]
 EOF
 
 echo "Configuring Ghostty theme..."
-cat << EOF > "${CONFIG_HOME}/ghostty/theme"
+cat << EOF > "${XDG_CONFIG_HOME}/ghostty/theme"
 # theme: configures Ghostty theme.
 #
 # Ghostty config cannot set dynamic themes.
@@ -117,7 +117,7 @@ theme = "${ghostty_theme:-${theme}}"
 EOF
 
 echo "Configuring shell theme..."
-cat << EOF > "${CONFIG_HOME}/profile.d/10-theme.sh"
+cat << EOF > "${XDG_CONFIG_HOME}/profile.d/10-theme.sh"
 # theme.sh: configures shell theme.
 #
 # shellcheck shell=sh
@@ -125,7 +125,7 @@ cat << EOF > "${CONFIG_HOME}/profile.d/10-theme.sh"
 export TMUX_THEME='${tmux_theme:-${theme}}'
 export NVIM_THEME='${nvim_theme:-${theme}}'
 export VIM_THEME='${vim_theme:-${theme}}'
-. "${CONFIG_HOME}/fzf/themes/${fzf_theme:-${theme}}.sh"
+. "\${XDG_CONFIG_HOME:-\${HOME}/.config}/fzf/themes/${fzf_theme:-${theme}}.sh"
 export BAT_THEME='${bat_theme:-${theme}}'
 command -v kvantummanager > /dev/null 2>&1 && export QT_STYLE_OVERRIDE='kvantum'
 EOF

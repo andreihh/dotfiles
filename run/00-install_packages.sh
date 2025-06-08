@@ -31,12 +31,13 @@ command -v brew &> /dev/null && brew install \
   lm-sensors bottom gcc cmus font-jetbrains-mono-nerd-font
 
 if ! command -v brew &> /dev/null; then
+  readonly XDG_DATA_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}"
   readonly FONT_ZIP='JetBrainsMono.zip'
   readonly FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/${FONT_ZIP}"
 
   # Alacritty requires a Nerd Font.
   echo "Installing JetBrains Mono Nerd Font..."
-  cd "${XDG_DATA_HOME:-${HOME}/.local/share}/fonts"
+  cd "${XDG_DATA_HOME}/fonts"
   wget "${FONT_URL}"
   unzip -o "${FONT_ZIP}"
   rm "${FONT_ZIP}"

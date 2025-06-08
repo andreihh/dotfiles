@@ -11,6 +11,8 @@
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
+readonly XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
+
 echo "Installing 'pyenv' in root '${PYENV_ROOT:?}'..."
 if command -v brew &> /dev/null; then
   brew install pyenv pyenv-virtualenv
@@ -19,7 +21,7 @@ else
 fi
 
 echo "Configuring 'pyenv' shell integration..."
-cat << 'EOF' > "${XDG_CONFIG_HOME:?}/bash.d/10-pyenv_integration.sh"
+cat << 'EOF' > "${XDG_CONFIG_HOME}/bash.d/10-pyenv_integration.sh"
 # pyenv_integration.sh: loads `pyenv` shell integration.
 #
 # shellcheck shell=bash

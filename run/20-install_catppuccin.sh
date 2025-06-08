@@ -9,10 +9,11 @@
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
-readonly CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
+readonly XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
+readonly XDG_DATA_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/catppuccin"
 readonly THEME_GIT_URL='https://github.com/catppuccin'
 readonly THEME_CURSORS_URL="${THEME_GIT_URL}/cursors/releases/latest/download"
-readonly THEME_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/catppuccin"
+readonly THEME_HOME="${XDG_DATA_HOME}/catppuccin"
 
 echo "Installing Catppuccin..."
 
@@ -38,20 +39,20 @@ echo "Unpacking Catppuccin cursor themes..."
 sudo unzip -od /usr/share/icons/ "${THEME_HOME}/cursors/*.zip"
 
 echo "Linking Alacritty Catppuccin themes..."
-mkdir -p "${CONFIG_HOME}/alacritty/themes"
-ln -sfvt "${CONFIG_HOME}/alacritty/themes" "${THEME_HOME}/alacritty"/*.toml
+mkdir -p "${XDG_CONFIG_HOME}/alacritty/themes"
+ln -sfvt "${XDG_CONFIG_HOME}/alacritty/themes" "${THEME_HOME}/alacritty"/*.toml
 
 echo "Linking 'fzf' Catppuccin themes..."
-mkdir -p "${CONFIG_HOME}/fzf/themes"
-ln -sfvt "${CONFIG_HOME}/fzf/themes" "${THEME_HOME}/fzf/themes"/*.sh
+mkdir -p "${XDG_CONFIG_HOME}/fzf/themes"
+ln -sfvt "${XDG_CONFIG_HOME}/fzf/themes" "${THEME_HOME}/fzf/themes"/*.sh
 
 echo "Linking 'bat' Catppuccin themes..."
-mkdir -p "${CONFIG_HOME}/bat/themes"
-ln -sfvt "${CONFIG_HOME}/bat/themes" "${THEME_HOME}/bat/themes"/*.tmTheme
+mkdir -p "${XDG_CONFIG_HOME}/bat/themes"
+ln -sfvt "${XDG_CONFIG_HOME}/bat/themes" "${THEME_HOME}/bat/themes"/*.tmTheme
 
 echo "Linking 'cava' Catppuccin themes..."
-mkdir -p "${CONFIG_HOME}/cava/themes"
-ln -sfvt "${CONFIG_HOME}/cava/themes" "${THEME_HOME}/cava/themes"/*.cava
+mkdir -p "${XDG_CONFIG_HOME}/cava/themes"
+ln -sfvt "${XDG_CONFIG_HOME}/cava/themes" "${THEME_HOME}/cava/themes"/*.cava
 
 if command -v batcat &> /dev/null; then
   echo "Updating 'batcat' cache..."

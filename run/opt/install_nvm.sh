@@ -9,19 +9,21 @@
 
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
-echo "Downloading latest version of 'nvm' to '${XDG_CONFIG_HOME:?}'..."
+readonly XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
+
+echo "Downloading latest version of 'nvm'..."
 PROFILE=/dev/null bash << EOF
 curl -Lo - https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
 EOF
 
 echo "Loading 'nvm'..."
-. "${XDG_CONFIG_HOME:?}/nvm/nvm.sh"
+. "${XDG_CONFIG_HOME}/nvm/nvm.sh"
 
 echo "Installing latest LTS version of 'nvm'..."
 nvm install --lts
 
 echo "Configuring 'nvm' shell integration..."
-cat << 'EOF' > "${XDG_CONFIG_HOME:?}/bash.d/10-nvm_integration.sh"
+cat << 'EOF' > "${XDG_CONFIG_HOME}/bash.d/10-nvm_integration.sh"
 # nvm_integration.sh: loads `nvm` shell integration.
 #
 # shellcheck shell=bash
