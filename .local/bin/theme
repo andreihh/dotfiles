@@ -136,3 +136,6 @@ echo "Configuring GTK theme..."
 command -v gnome-shell &> /dev/null \
   && echo "Configuring GNOME theme..." \
   && dconf load / <<< "${dconf_settings}"
+
+echo "Configured system theme successfully!"
+echo "Consider updating the browser theme and userstyles for consistency."

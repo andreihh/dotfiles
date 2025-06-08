@@ -114,4 +114,4 @@ if [[ -z "${skip_scripts}" ]]; then
   done
 fi
 
-echo "Dotfiles installed successfully!"
+echo "Installed dotfiles successfully!"
