@@ -26,12 +26,12 @@ command -v brew &> /dev/null && brew install ghostty
 
 if command -v update-alternatives; then
   echo "Configuring Ghostty as the default terminal..."
-  GHOSTTY_BIN="$(command -v ghostty)"
+  ghostty_bin="$(command -v ghostty)"
   sudo update-alternatives --install \
     /usr/bin/x-terminal-emulator \
     x-terminal-emulator \
-    "${GHOSTTY_BIN}" 100
-  sudo update-alternatives --set x-terminal-emulator "${GHOSTTY_BIN}"
+    "${ghostty_bin}" 100
+  sudo update-alternatives --set x-terminal-emulator "${ghostty_bin}"
 fi
 
 echo "Installed Ghostty successfully!"

@@ -4,23 +4,9 @@
 #
 # Supported systems: Debian, Ubuntu, Fedora, RHEL
 
-usage() {
-  cat << EOF
-Usage: $0 THEME
-
-Configures the system theme, which must be one of:
-  catppuccin-macchiato
-  catppuccin-frappe
-EOF
-}
-
-[[ $# -ne 1 ]] && usage && exit 1
-
 readonly CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
 readonly DATA_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}"
 
-echo "Retrieving OS distribution..."
-. /etc/os-release
 shopt -s nocasematch
 case "${OSTYPE}" in
   linux*)
@@ -34,20 +20,33 @@ case "${OSTYPE}" in
   *) echo "System '${OSTYPE}' not supported!" && exit 1 ;;
 esac
 shopt -u nocasematch
+readonly OS
 
-THEME="$1"
-case "${THEME}" in
+usage() {
+  cat << EOF
+Usage: $0 THEME
+
+Configures the system theme, which must be one of:
+  catppuccin-macchiato
+  catppuccin-frappe
+EOF
+}
+
+[[ $# -ne 1 ]] && usage && exit 1
+
+theme="$1"
+case "${theme}" in
   catppuccin-macchiatoc)
-    __VIM_THEME='catppuccin_macchiato'
-    __FZF_THEME='catppuccin-fzf-macchiato'
-    __BAT_THEME='Catppuccin Macchiato'
-    GTK_THEME_INSTALLER=(
+    vim_theme='catppuccin_macchiato'
+    fzf_theme='catppuccin-fzf-macchiato'
+    bat_theme='Catppuccin Macchiato'
+    gtk_theme_installer=(
       "${DATA_HOME}/catppuccin/gtk/themes/install.sh"
       --dest "${DATA_HOME}/themes"
       --libadwaita --tweaks outline --tweaks macchiato
     )
 
-    DCONF_SETTINGS=$(
+    dconf_settings="$(
       cat << EOF
 [org/gnome/shell/extensions/user-theme]
 name='Catppuccin-Dark-Macchiato'
@@ -63,20 +62,20 @@ cursor-theme='catppuccin-macchiato-dark-cursors'
 gtk-theme='Catppuccin-Dark-Macchiato'
 icon-theme='Adwaita'
 EOF
-    )
+    )"
     ;;
 
   catppuccin-frappe)
-    __VIM_THEME='catppuccin_frappe'
-    __FZF_THEME='catppuccin-fzf-frappe'
-    __BAT_THEME='Catppuccin Frappe'
-    GTK_THEME_INSTALLER=(
+    vim_theme='catppuccin_frappe'
+    fzf_theme='catppuccin-fzf-frappe'
+    bat_theme='Catppuccin Frappe'
+    gtk_theme_installer=(
       "${DATA_HOME}/catppuccin/gtk/themes/install.sh"
       --dest "${DATA_HOME}/themes"
       --libadwaita --tweaks outline --tweaks frappe
     )
 
-    DCONF_SETTINGS=$(
+    dconf_settings="$(
       cat << EOF
 [org/gnome/shell/extensions/user-theme]
 name='Catppuccin-Dark-Frappe'
@@ -92,7 +91,7 @@ cursor-theme='catppuccin-frappe-dark-cursors'
 gtk-theme='Catppuccin-Dark-Frappe'
 icon-theme='Adwaita'
 EOF
-    )
+    )"
     ;;
 
   *) usage && exit 1 ;;
@@ -105,7 +104,7 @@ cat << EOF > "${CONFIG_HOME}/alacritty/theme.toml"
 # Alacritty config cannot import dynamic files.
 
 [general]
-import = ["themes/${__ALACRITTY_THEME:-${THEME}}.toml"]
+import = ["themes/${alacritty_theme:-${theme}}.toml"]
 EOF
 
 echo "Configuring Ghostty theme..."
@@ -114,7 +113,7 @@ cat << EOF > "${CONFIG_HOME}/ghostty/theme"
 #
 # Ghostty config cannot set dynamic themes.
 
-theme = "${__GHOSTTY_THEME:-${THEME}}"
+theme = "${ghostty_theme:-${theme}}"
 EOF
 
 echo "Configuring shell theme..."
@@ -123,17 +122,17 @@ cat << EOF > "${CONFIG_HOME}/profile.d/10-theme.sh"
 #
 # shellcheck shell=sh
 
-export TMUX_THEME='${__TMUX_THEME:-${THEME}}'
-export NVIM_THEME='${__NVIM_THEME:-${THEME}}'
-export VIM_THEME='${__VIM_THEME:-${THEME}}'
-. "${CONFIG_HOME}/fzf/themes/${__FZF_THEME:-${THEME}}.sh"
-export BAT_THEME='${__BAT_THEME:-${THEME}}'
+export TMUX_THEME='${tmux_theme:-${theme}}'
+export NVIM_THEME='${nvim_theme:-${theme}}'
+export VIM_THEME='${vim_theme:-${theme}}'
+. "${CONFIG_HOME}/fzf/themes/${fzf_theme:-${theme}}.sh"
+export BAT_THEME='${bat_theme:-${theme}}'
 command -v kvantummanager > /dev/null 2>&1 && export QT_STYLE_OVERRIDE='kvantum'
 EOF
 
 echo "Configuring GTK theme..."
-"${GTK_THEME_INSTALLER[@]}"
+"${gtk_theme_installer[@]}"
 
 command -v gnome-shell &> /dev/null \
   && echo "Configuring GNOME theme..." \
-  && dconf load / <<< "${DCONF_SETTINGS}"
+  && dconf load / <<< "${dconf_settings}"

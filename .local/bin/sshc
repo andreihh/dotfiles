@@ -2,6 +2,8 @@
 #
 # Connects to `CLOUD_HOST` via SSH and starts `tmx` as a login shell.
 
+[[ $# -ne 1 ]] && echo "Usage: $0" && exit 1
+
 [[ -z "${CLOUD_HOST}" ]] \
   && echo "Cloud host environment variable 'CLOUD_HOST' not defined!" \
   && exit 1

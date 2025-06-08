@@ -19,26 +19,27 @@
 [[ $# -ne 1 ]] && echo "Usage: $0 FIREFOX_PROFILE_DIR" && exit 1
 
 readonly USER_OVERRIDES="${XDG_CONFIG_HOME:?}/firefox/user-overrides.js"
-readonly PROFILE_DIR="$1"
+
+echo "Configuring Arkenfox..."
+profile_dir="$1"
 
 echo "Creating temporary Arkenfox installation directory..."
-ARKENFOX_DIR="$(mktemp -d "${TMPDIR:-/tmp}/arkenfox.XXXXXXXXX")"
-readonly ARKENFOX_DIR
+arkenfox_dir="$(mktemp -d "${TMPDIR:-/tmp}/arkenfox.XXXXXXXXX")"
 
 echo "Cloning Arkenfox repository..."
-git clone --depth=1 https://github.com/arkenfox/user.js "${ARKENFOX_DIR}"
+git clone --depth=1 https://github.com/arkenfox/user.js "${arkenfox_dir}"
 
 echo "Copying relevant files to the provided Firefox profile..."
-cp -fv "${ARKENFOX_DIR}"/{prefsCleaner.sh,updater.sh,user.js} "${PROFILE_DIR}/"
+cp -fv "${arkenfox_dir}"/{prefsCleaner.sh,updater.sh,user.js} "${profile_dir}/"
 
 echo "Linking Arkenfox overrides..."
-ln -sfv "${USER_OVERRIDES}" "${PROFILE_DIR}/user-overrides.js"
+ln -sfv "${USER_OVERRIDES}" "${profile_dir}/user-overrides.js"
 
 echo "Cleaning up Arkenfox installation..."
-rm -rf "${ARKENFOX_DIR}"
+rm -rf "${arkenfox_dir}"
 
 echo "Updating Arkenfox..."
-cd "${PROFILE_DIR}"
+cd "${profile_dir}"
 ./updater.sh -u -s
 ./prefsCleaner.sh -s
 

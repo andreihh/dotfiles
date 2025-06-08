@@ -23,23 +23,22 @@ if command -v brew &> /dev/null; then
 fi
 
 echo "Creating temporary Neovim installation directory..."
-NVIM_DIR="$(mktemp -d "${TMPDIR:-/tmp}/neovim.XXXXXXXXX")"
-readonly NVIM_DIR
+nvim_dir="$(mktemp -d "${TMPDIR:-/tmp}/neovim.XXXXXXXXX")"
 
 echo "Downloading Neovim stable branch..."
-git clone -b stable --depth 1 https://github.com/neovim/neovim "${NVIM_DIR}"
+git clone -b stable --depth 1 https://github.com/neovim/neovim "${nvim_dir}"
 
 echo "Running Neovim installer..."
-cd "${NVIM_DIR}"
+cd "${nvim_dir}"
 make CMAKE_BUILD_TYPE=Release
 sudo make install
 
 echo "Cleaning up Neovim installation..."
-rm -rf "${NVIM_DIR}"
+rm -rf "${nvim_dir}"
 
 echo "Configuring Neovim as the default editor..."
-NVIM_BIN="$(command -v nvim)"
-sudo update-alternatives --install /usr/bin/editor editor "${NVIM_BIN}" 100
-sudo update-alternatives --set editor "${NVIM_BIN}"
+nvim_bin="$(command -v nvim)"
+sudo update-alternatives --install /usr/bin/editor editor "${nvim_bin}" 100
+sudo update-alternatives --set editor "${nvim_bin}"
 
 echo "Installed Neovim successfully!"

@@ -34,7 +34,7 @@ if ! command -v brew &> /dev/null; then
   readonly FONT_ZIP='JetBrainsMono.zip'
   readonly FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/${FONT_ZIP}"
 
-  # Nerd Font required for Alacritty.
+  # Alacritty requires a Nerd Font.
   echo "Installing JetBrains Mono Nerd Font..."
   cd "${XDG_DATA_HOME:-${HOME}/.local/share}/fonts"
   wget "${FONT_URL}"
@@ -61,12 +61,12 @@ fi
 
 if command -v update-alternatives &> /dev/null; then
   echo "Configuring Alacritty as the default terminal..."
-  ALACRITTY_BIN="$(command -v alacritty)"
+  alacritty_bin="$(command -v alacritty)"
   sudo update-alternatives --install \
     /usr/bin/x-terminal-emulator \
     x-terminal-emulator \
-    "${ALACRITTY_BIN}" 100
-  sudo update-alternatives --set x-terminal-emulator "${ALACRITTY_BIN}"
+    "${alacritty_bin}" 100
+  sudo update-alternatives --set x-terminal-emulator "${alacritty_bin}"
 fi
 
 echo "Installed core packages successfully!"

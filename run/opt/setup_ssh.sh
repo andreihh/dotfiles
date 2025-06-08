@@ -7,7 +7,7 @@
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
 readonly SSH_CONFIG="${HOME}/.ssh/config"
-readonly SSHD_CONFIG="/etc/ssh/sshd_config"
+readonly SSHD_CONFIG='/etc/ssh/sshd_config'
 
 echo "Configuring SSH..."
 
