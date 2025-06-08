@@ -15,7 +15,7 @@ readonly REPOSITORY_URL="git@codeberg.org:andreihh/dotfiles.git"
 readonly DOTFILES_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}/dotfiles"
 readonly BACKUP_DIR_DEFAULT="${DOTFILES_HOME}.bak"
 
-function usage() {
+usage() {
   cat << EOF
 Usage: $0 [-h] [-n] [-f] [-b BACKUP_DIR] [-u]
 
@@ -76,7 +76,7 @@ if [[ -n $(git -C "${DOTFILES_HOME}" status --porcelain 2> /dev/null) ]]; then
 fi
 
 echo "Stowing dotfiles, adopting conflicting files..."
-function stowdir() {
+stowdir() {
   local src="$1"
   local dst="$2"
   stow ${debug:+'-n'} -v --no-folding --adopt -t "${dst}" -d "${src}" .

@@ -4,7 +4,7 @@
 #
 # Supported systems: Debian, Ubuntu, Fedora, RHEL
 
-function usage() {
+usage() {
   cat << EOF
 Usage: $0 THEME
 

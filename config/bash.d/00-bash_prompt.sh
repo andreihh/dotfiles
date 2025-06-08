@@ -11,7 +11,7 @@
 export VCS_BRANCH_PROMPT_COMMAND='__vcs_branch'
 
 # Returns the current `git` branch and dirty status.
-function __git_branch() {
+__git_branch() {
   git rev-parse --is-inside-work-tree &> /dev/null || return 1
 
   local -r branch="$(git symbolic-ref --quiet --short HEAD 2> /dev/null \
@@ -30,7 +30,7 @@ function __git_branch() {
 # Returns the branch name and optionally dirty status of the current VCS branch.
 #
 # Supports `git`.
-function __vcs_branch() {
+__vcs_branch() {
   __git_branch
 }
 
@@ -38,7 +38,7 @@ function __vcs_branch() {
 #   `(chroot) user at host on branch in dir $`
 #
 # The `chroot`, host and branch are optional. Colors are used if supported.
-function __make_prompt() {
+__make_prompt() {
   # If colors are supported, define styles and colors:
   # - Text: bold
   # - Shell: green

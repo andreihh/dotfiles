@@ -7,7 +7,7 @@
 #
 # Requirements: `tar`, `gzip`, `gnupg`
 
-function usage() {
+usage() {
   cat << EOF
 Usage: $0 [-h] [-d DIR|-a|-l|-r|-o] -f FILE
 
