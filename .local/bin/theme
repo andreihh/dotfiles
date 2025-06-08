@@ -138,4 +138,4 @@ command -v gnome-shell &> /dev/null \
   && dconf load / <<< "${dconf_settings}"
 
 echo "Configured system theme successfully!"
-echo "Consider updating the browser theme and userstyles for consistency."
+echo "Consider updating the web browser theme and userstyles for consistency."
