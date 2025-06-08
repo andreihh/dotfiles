@@ -37,10 +37,10 @@ shopt -u nocasematch
 
 THEME="$1"
 case "${THEME}" in
-  catppuccin-macchiato)
-    VIM_THEME='catppuccin_macchiato'
-    FZF_THEME='catppuccin-fzf-macchiato'
-    BAT_THEME='Catppuccin Macchiato'
+  catppuccin-macchiatoc)
+    __VIM_THEME='catppuccin_macchiato'
+    __FZF_THEME='catppuccin-fzf-macchiato'
+    __BAT_THEME='Catppuccin Macchiato'
     GTK_THEME_INSTALLER=(
       "${DATA_HOME}/catppuccin/gtk/themes/install.sh"
       --dest "${DATA_HOME}/themes"
@@ -67,9 +67,9 @@ EOF
     ;;
 
   catppuccin-frappe)
-    VIM_THEME='catppuccin_frappe'
-    FZF_THEME='catppuccin-fzf-frappe'
-    BAT_THEME='Catppuccin Frappe'
+    __VIM_THEME='catppuccin_frappe'
+    __FZF_THEME='catppuccin-fzf-frappe'
+    __BAT_THEME='Catppuccin Frappe'
     GTK_THEME_INSTALLER=(
       "${DATA_HOME}/catppuccin/gtk/themes/install.sh"
       --dest "${DATA_HOME}/themes"
@@ -105,7 +105,7 @@ cat << EOF > "${CONFIG_HOME}/alacritty/theme.toml"
 # Alacritty config cannot import dynamic files.
 
 [general]
-import = ["themes/${ALACRITTY_THEME:-${THEME}}.toml"]
+import = ["themes/${__ALACRITTY_THEME:-${THEME}}.toml"]
 EOF
 
 echo "Configuring Ghostty theme..."
@@ -114,7 +114,7 @@ cat << EOF > "${CONFIG_HOME}/ghostty/theme"
 #
 # Ghostty config cannot set dynamic themes.
 
-theme = "${GHOSTTY_THEME:-${THEME}}"
+theme = "${__GHOSTTY_THEME:-${THEME}}"
 EOF
 
 echo "Configuring shell theme..."
@@ -123,11 +123,11 @@ cat << EOF > "${CONFIG_HOME}/profile.d/10-theme.sh"
 #
 # shellcheck shell=sh
 
-export TMUX_THEME='${TMUX_THEME:-${THEME}}'
-export NVIM_THEME='${NVIM_THEME:-${THEME}}'
-export VIM_THEME='${VIM_THEME:-${THEME}}'
-. "${CONFIG_HOME}/fzf/themes/${FZF_THEME:-${THEME}}.sh"
-export BAT_THEME='${BAT_THEME:-${THEME}}'
+export TMUX_THEME='${__TMUX_THEME:-${THEME}}'
+export NVIM_THEME='${__NVIM_THEME:-${THEME}}'
+export VIM_THEME='${__VIM_THEME:-${THEME}}'
+. "${CONFIG_HOME}/fzf/themes/${__FZF_THEME:-${THEME}}.sh"
+export BAT_THEME='${__BAT_THEME:-${THEME}}'
 command -v kvantummanager > /dev/null 2>&1 && export QT_STYLE_OVERRIDE='kvantum'
 EOF
 
