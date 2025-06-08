@@ -7,6 +7,8 @@
 #
 # Requirements: `tar`, `gzip`, `gnupg`
 
+readonly XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
+
 usage() {
   cat << EOF
 Usage: $0 [-h] [-d DIR|-a|-l|-r|-o] -f FILE
@@ -48,12 +50,12 @@ case "${operation}" in
   drive)
     [[ -z "${drive}" ]] && echo "Invalid private drive '${drive}'!" && exit 1
     echo "Backing up private drive to '${file}'..."
-    tar -czv "${XDG_CONFIG_HOME:?}/dotfiles" "${drive}"/{documents,p13n,music} \
+    tar -czv "${XDG_CONFIG_HOME}/dotfiles" "${drive}"/{documents,p13n,music} \
       | gpg -c -o "${file}"
     ;;
   all)
     echo "Backing up everything to '${file}'..."
-    tar -czv ~/.env "${XDG_CONFIG_HOME:?}" ~/[A-Z]*/ | gpg -c -o "${file}"
+    tar -czv ~/.env "${XDG_CONFIG_HOME}" ~/[A-Z]*/ | gpg -c -o "${file}"
     ;;
   list)
     echo "Listing backup contents from '${file}'..."

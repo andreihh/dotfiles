@@ -12,8 +12,10 @@
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
 readonly XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
+readonly XDG_DATA_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}"
+readonly PYENV_ROOT="${PYENV_ROOT:-${XDG_DATA_HOME}/pyenv}"
 
-echo "Installing 'pyenv' in root '${PYENV_ROOT:?}'..."
+echo "Installing 'pyenv' in '${PYENV_ROOT}'..."
 if command -v brew &> /dev/null; then
   brew install pyenv pyenv-virtualenv
 else
