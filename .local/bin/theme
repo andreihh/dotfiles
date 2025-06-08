@@ -2,25 +2,10 @@
 #
 # Configures the system theme.
 #
-# Supported systems: Debian, Ubuntu, Fedora, RHEL
+# Supported systems: Debian, Ubuntu, Fedora, RHEL, MacOS
 
 readonly XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
 readonly XDG_DATA_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}"
-
-shopt -s nocasematch
-case "${OSTYPE}" in
-  linux*)
-    . /etc/os-release
-    case "${ID}" in
-      debian | ubuntu | fedora | rhel) OS="${ID}" ;;
-      *) "System '${ID}' not supported!" && exit 1 ;;
-    esac
-    ;;
-  darwin*) OS='macos' ;;
-  *) echo "System '${OSTYPE}' not supported!" && exit 1 ;;
-esac
-shopt -u nocasematch
-readonly OS
 
 usage() {
   cat << EOF
@@ -52,13 +37,13 @@ case "${theme}" in
 name='Catppuccin-Dark-Macchiato'
 
 [org/gnome/desktop/background]
-picture-uri='file://${XDG_DATA_HOME}/wallpapers/${OS}-catppuccin-latte.png'
-picture-uri-dark='file://${XDG_DATA_HOME}/wallpapers/${OS}-catppuccin-macchiato.png'
+picture-uri='file://${XDG_DATA_HOME}/wallpapers/${theme}.png'
+picture-uri-dark='file://${XDG_DATA_HOME}/wallpapers/${theme}.png'
 
 [org/gnome/desktop/interface]
 accent-color='blue'
 color-scheme='prefer-dark'
-cursor-theme='catppuccin-macchiato-dark-cursors'
+cursor-theme='${theme}-dark-cursors'
 gtk-theme='Catppuccin-Dark-Macchiato'
 icon-theme='Adwaita'
 EOF
@@ -81,13 +66,13 @@ EOF
 name='Catppuccin-Dark-Frappe'
 
 [org/gnome/desktop/background]
-picture-uri='file://${XDG_DATA_HOME}/wallpapers/${ID}-catppuccin-latte.png'
-picture-uri-dark='file://${XDG_DATA_HOME}/wallpapers/${ID}-catppuccin-frappe.png'
+picture-uri='file://${XDG_DATA_HOME}/wallpapers/${theme}.png'
+picture-uri-dark='file://${XDG_DATA_HOME}/wallpapers/${theme}.png'
 
 [org/gnome/desktop/interface]
 accent-color='blue'
 color-scheme='prefer-dark'
-cursor-theme='catppuccin-frappe-dark-cursors'
+cursor-theme='${theme}-dark-cursors'
 gtk-theme='Catppuccin-Dark-Frappe'
 icon-theme='Adwaita'
 EOF
