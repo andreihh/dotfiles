@@ -36,7 +36,7 @@ EOF
 
 theme="$1"
 case "${theme}" in
-  catppuccin-macchiatoc)
+  catppuccin-macchiato)
     vim_theme='catppuccin_macchiato'
     fzf_theme='catppuccin-fzf-macchiato'
     bat_theme='Catppuccin Macchiato'
