@@ -46,8 +46,7 @@ echo "Installing dotfiles..."
 [[ -n "${debug}" ]] && echo "Performing a dry run!"
 
 echo "Ensuring dependencies are installed..."
-readonly DEPS=(git stow)
-for dep in "${DEPS[@]}"; do
+for dep in 'git' 'stow'; do
   if ! command -v "${dep}" &> /dev/null; then
     command -v apt-get &> /dev/null && sudo apt-get install -y "${dep}"
     command -v dnf &> /dev/null && sudo dnf install -y "${dep}"
@@ -70,7 +69,7 @@ else
 fi
 
 echo "Checking that the Git repository is clean..."
-if [[ -n $(git -C "${DOTFILES_HOME}" status --porcelain 2> /dev/null) ]]; then
+if [[ -n "$(git -C "${DOTFILES_HOME}" status --porcelain 2> /dev/null)" ]]; then
   echo "You must commit changes to the Git repository and get to a clean state!"
   [[ -n "${debug}" ]] || exit 1
 fi

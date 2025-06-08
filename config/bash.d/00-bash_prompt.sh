@@ -20,7 +20,7 @@ __git_branch() {
     || echo '(unknown)')"
 
   local dirty=''
-  if [[ -n $(git status --porcelain 2> /dev/null) ]]; then
+  if [[ -n "$(git status --porcelain 2> /dev/null)" ]]; then
     dirty='*'
   fi
 
@@ -60,7 +60,7 @@ __make_prompt() {
 
   # Set variable identifying the `chroot` you work in.
   if [[ -z "${debian_chroot:-}" ]] && [[ -r /etc/debian_chroot ]]; then
-    debian_chroot=$(cat /etc/debian_chroot)
+    debian_chroot="$(cat /etc/debian_chroot)"
   fi
 
   # Set the terminal prompt.
