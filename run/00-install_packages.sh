@@ -14,7 +14,7 @@ echo "Installing core packages..."
 readonly COMMON_PKGS=(
   git stow wget curl zip gzip unzip tar gnupg  # Core tools
   alacritty tmux urlscan vim fzf fd-find ripgrep bat calc fastfetch  # TUI tools
-  make automake cmake pre-commit  # Build tools
+  pre-commit reuse make automake cmake  # CI and build tools
   keepassxc cava vlc  # General and media tools
 )
 

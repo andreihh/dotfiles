@@ -1,5 +1,27 @@
-# Required for Mercurial compatibility
+# SPDX-License-Identifier: CC0-1.0
+
+# Created by https://www.gitignore.io/api/linux,macos,windows,git,mercurial,svn
+
+# Use `hgignore` shell-style glob syntax to ensure Mercurial compatibility:
 syntax: glob
+
+### Git ###
+# Required by `ripgrep`:
+.git/
+
+# Created by git for backups. To disable backups in Git:
+# $ git config --global mergetool.keepBackup false
+*.orig
+
+# Created by git when using merge tools for conflicts
+*.BACKUP.*
+*.BASE.*
+*.LOCAL.*
+*.REMOTE.*
+*_BACKUP_*.txt
+*_BASE_*.txt
+*_LOCAL_*.txt
+*_REMOTE_*.txt
 
 ### Linux ###
 *~
@@ -50,6 +72,17 @@ Temporary Items
 # iCloud generated files
 *.icloud
 
+### Mercurial ###
+.hg/
+# Do not ignore `.hgignore` to ensure Mercurial compatibility.
+.hgsigs
+.hgsub
+.hgsubstate
+.hgtags
+
+### SVN ###
+.svn/
+
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
@@ -75,30 +108,3 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-
-### Git ###
-.git/
-
-# Created by git for backups. To disable backups in Git:
-# $ git config --global mergetool.keepBackup false
-*.orig
-
-# Created by git when using merge tools for conflicts
-*.BACKUP.*
-*.BASE.*
-*.LOCAL.*
-*.REMOTE.*
-*_BACKUP_*.txt
-*_BASE_*.txt
-*_LOCAL_*.txt
-*_REMOTE_*.txt
-
-### Mercurial ###
-.hg/
-.hgsigs
-.hgsub
-.hgsubstate
-.hgtags
-
-### SVN ###
-.svn/
