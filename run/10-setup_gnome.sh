@@ -45,23 +45,40 @@ switch-to-workspace-3=['<Alt>3']
 switch-to-workspace-4=['<Alt>4']
 switch-windows=['<Primary>Tab']
 switch-windows-backward=['<Shift><Primary>Tab']
-toggle-fullscreen=['<Shift><Primary>z']
-toggle-maximized=['<Shift><Primary>m']
+toggle-fullscreen=['<Shift><Alt>z']
+toggle-maximized=['<Alt>z']
 
 [org/gnome/mutter/keybindings]
 toggle-tiled-left=['<Shift><Primary>h']
 toggle-tiled-right=['<Shift><Primary>l']
 
 [org/gnome/settings-daemon/plugins/media-keys]
-custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/sh/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/tmx/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/sshc/']
+control-center=['<Shift><Alt>s']
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/sh/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/tmx/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/sshc/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/brightdown/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/brightup/']
 home=['<Alt>e']
+logout=['<Shift><Alt>Escape']
+mic-mute=['<Shift><Alt>8']
 screensaver=['<Alt>Escape']
+shutdown=['<Alt>grave']
+volume-down=['<Alt>9']
+volume-mute=['<Alt>8']
+volume-up=['<Alt>0']
 www=['<Alt>w']
 
+[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/brightdown]
+binding='<Shift><Alt>b'
+command='brightnessctl set 5%-'
+name='Decrease brightness'
+
+[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/brightup]
+binding='<Alt>b'
+command='brightnessctl set 5%+'
+name='Increase brightness'
+
 [org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/sh]
-binding='<Alt>s'
+binding='<Alt>x'
 command='x-terminal-emulator'
-name='Launch shell terminal'
+name='Launch terminal'
 
 [org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/sshc]
 binding='<Alt>c'
@@ -69,7 +86,7 @@ command='x-terminal-emulator -e sshc'
 name='Launch sshc terminal'
 
 [org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/tmx]
-binding='<Alt>x'
+binding='<Shift><Alt>x'
 command='x-terminal-emulator -e tmx'
 name='Launch tmx terminal'
 
@@ -77,6 +94,7 @@ name='Launch tmx terminal'
 focus-active-notification=['<Alt>n']
 show-screen-recording-ui=['<Alt>r']
 show-screenshot-ui=['<Alt>p']
+toggle-message-tray=['<Shift><Alt>n']
 toggle-overview=['<Alt>a']
 EOF
 

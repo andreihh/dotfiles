@@ -18,3 +18,6 @@ group_processes = true  # Group together processes with the same name
 [[row]]
   [[row.child]]
     type = "memory"
+    ratio = 2
+  [[row.child]]
+    type = "disk"
