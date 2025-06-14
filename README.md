@@ -166,6 +166,9 @@ Common shortcuts (`C = Ctrl / Cmd`, `A = Alt / Opt`, `S = Shift`):
 - Print screen / cancel: `A-p` / `Esc`
 - Record screen / cancel: `A-r` / `Esc`
 - Lock screen: `A-Esc`
+- Log out: `A-S-Esc`
+- Volume mute / down / up: `A-8` / `A-9` / `A-0`
+- Microphone mute: `A-S-8`
 - Open app launcher: `A-a`
 - Open file explorer: `A-e`
 - Open web browser: `A-w`
