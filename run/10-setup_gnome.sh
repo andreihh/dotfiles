@@ -35,6 +35,7 @@ sources=[('xkb', 'us')]
 xkb-options=['caps:swapescape', 'ctrl:swap_lalt_lctl_lwin']
 
 [org/gnome/desktop/wm/keybindings]
+close=['<Primary>q']
 move-to-workspace-1=['<Primary><Alt>1']
 move-to-workspace-2=['<Primary><Alt>2']
 move-to-workspace-3=['<Primary><Alt>3']
