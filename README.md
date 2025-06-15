@@ -159,9 +159,9 @@ Common shortcuts (`C = Ctrl / Cmd`, `A = Alt / Opt`, `S = Shift`):
 - Cycle web browser tabs: `C-1` / `C-2`
 - Cycle windows: `C-[S]-Tab`
 - Switch to workspace: `A-{1-9}`
-- Move window to workspace: `A-S-{1-9}`
+- Move window to workspace: `C-A-{1-9}`
+- Toggle window tiled left / right: `C-A-h` / `C-A-l`
 - Toggle window maximized / fullscreen: `A-z` / `A-S-z`
-- Toggle window tiled left / right: `C-S-h` / `C-S-l`
 - Print screen / cancel: `A-p` / `Esc`
 - Record screen / cancel: `A-r` / `Esc`
 - Volume mute / down / up: `A-8` / `A-9` / `A-0`
@@ -185,6 +185,7 @@ Terminal:
 - Paste: `C-S-v`
 - Close terminal: `C-q`
 - Switch `tmux` tab: `C-{1-9}` (mapped to `M-{1-9}`)
+- Resize `tmux` / `nvim` / `vim` windows: `C-S-{hjkl=}`
 
 ## Licensing
 
