@@ -14,7 +14,7 @@
 [[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
 
 readonly XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
-readonly XDG_DATA_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/catppuccin"
+readonly XDG_DATA_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}"
 readonly THEME_GIT_URL='https://github.com/catppuccin'
 readonly THEME_CURSORS_URL="${THEME_GIT_URL}/cursors/releases/latest/download"
 readonly THEME_HOME="${XDG_DATA_HOME}/catppuccin"
