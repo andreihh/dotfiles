@@ -110,9 +110,17 @@ cat << EOF > "${XDG_CONFIG_HOME}/profile.d/10-theme.sh"
 export TMUX_THEME='${tmux_theme:-${theme}}'
 export NVIM_THEME='${nvim_theme:-${theme}}'
 export VIM_THEME='${vim_theme:-${theme}}'
-. "\${XDG_CONFIG_HOME:-\${HOME}/.config}/fzf/themes/${fzf_theme:-${theme}}.sh"
 export BAT_THEME='${bat_theme:-${theme}}'
-command -v kvantummanager > /dev/null 2>&1 && export QT_STYLE_OVERRIDE='kvantum'
+
+fzf_theme="\${XDG_CONFIG_HOME:-\${HOME}/.config}/fzf/themes/${fzf_theme:-${theme}}.sh"
+if [ -f "\${fzf_theme}" ]; then
+  . "\${fzf_theme}"
+fi
+unset fzf_theme
+
+if command -v kvantummanager > /dev/null 2>&1; then
+  export QT_STYLE_OVERRIDE='kvantum'
+fi
 EOF
 
 echo "Configuring GTK theme..."
