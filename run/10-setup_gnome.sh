@@ -90,4 +90,17 @@ toggle-message-tray=['<Shift><Alt>n']
 toggle-overview=['<Alt>a']
 EOF
 
+echo "Enabling GNOME extensions..."
+readonly EXTENSIONS=(
+  user-theme@gnome-shell-extensions.gcampax.github.com
+  ubuntu-appindicators@ubuntu.com
+)
+
+for extension in "${EXTENSIONS[@]}"; do
+  echo "Enabling '${extension}' GNOME extension..."
+  gnome-extensions enable "${extension}"
+done
+
 echo "Configured GNOME successfully!"
+
+echo "Run 'gnome-extensions list' and disable or uninstall unwanted extensions."

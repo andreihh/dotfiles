@@ -109,7 +109,7 @@ if [[ -z "${skip_scripts}" ]]; then
   # specific execution order. This is required to ensure script dependencies are
   # installed before they are run.
   for script in "${DOTFILES_HOME}/run"/*.sh; do
-    echo "Running $(basename "${script}")..."
+    echo "Running '$(basename "${script}")'..."
     [[ -n "${debug}" ]] || "${script}"
   done
 fi
