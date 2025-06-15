@@ -44,5 +44,5 @@ bindings = [
 { key = "j", mods = "Shift|Control", chars = "\u001bj" },
 { key = "k", mods = "Shift|Control", chars = "\u001bk" },
 { key = "l", mods = "Shift|Control", chars = "\u001bl" },
-{ key = "=", mods = "Shift|Control", chars = "\u001b=" },
+{ key = "+", mods = "Shift|Control", chars = "\u001b=" },
 ]
