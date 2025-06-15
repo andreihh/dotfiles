@@ -156,17 +156,17 @@ Common shortcuts (`C = Ctrl / Cmd`, `A = Alt / Opt`, `S = Shift`):
 - New tab: `C-t`
 - Close window / tab: `C-w`
 - Quit app: `C-q`
-- Cycle web browser tabs: `C-1` / `C-2`
+- Cycle web browser tabs: `C-{12}`
 - Cycle windows: `C-[S]-Tab`
 - Switch to workspace: `A-{1-9}`
 - Move window to workspace: `C-A-{1-9}`
-- Toggle window tiled left / right: `C-A-h` / `C-A-l`
-- Toggle window maximized / fullscreen: `A-z` / `A-S-z`
+- Toggle window tiled left / right: `C-A-{hl}`
+- Toggle window maximized / fullscreen: `A-[S]-z`
 - Print screen / cancel: `A-p` / `Esc`
 - Record screen / cancel: `A-r` / `Esc`
 - Toggle mute volume / microphone: `A-[S]-Backspace`
-- Adjust volume: `A--` / `A-=`
-- Adjust screen brightness: `A-[S]-b`
+- Adjust volume: `A-{-=}`
+- Adjust screen brightness: `A-S-{-=}`
 - Focus notification / dismiss: `A-n` / `Esc`
 - Open notification center: `A-S-n`
 - Open settings: `A-S-s`
@@ -184,8 +184,8 @@ Terminal:
 - Send `SIGINT`: `C-c`
 - Paste: `C-S-v`
 - Close terminal: `C-q`
-- Switch `tmux` tab: `C-{1-9}` (mapped to `M-{1-9}`)
-- Resize `tmux` / `nvim` / `vim` windows: `C-S-{hjkl=}`
+- Switch `tmux` tab: `C-{1-9}` (mapped to `A-{1-9}`)
+- Resize `tmux` / `nvim` / `vim` windows: `C-S-{hjkl=}` (mapped to `A-{hjkl=}`)
 
 ## Licensing
 

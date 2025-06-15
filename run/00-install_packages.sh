@@ -20,11 +20,11 @@ readonly COMMON_PKGS=(
 
 command -v apt-get &> /dev/null && sudo apt-get install -y \
   "${COMMON_PKGS[@]}" \
-  lm-sensors brightnessctl btm build-essential ninja-build gettext cmus
+  lm-sensors btm build-essential ninja-build gettext cmus
 
 command -v dnf &> /dev/null && sudo dnf install -y \
   "${COMMON_PKGS[@]}" \
-  lm_sensors brightnessctl gcc gcc-c++ ninja-build gettext glibc-gconv-extra
+  lm_sensors gcc gcc-c++ ninja-build gettext glibc-gconv-extra
 
 command -v brew &> /dev/null && brew install \
   "${COMMON_PKGS[@]}" \

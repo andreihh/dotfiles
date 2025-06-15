@@ -54,26 +54,18 @@ toggle-tiled-right=['<Primary><Alt>l']
 
 [org/gnome/settings-daemon/plugins/media-keys]
 control-center=['<Shift><Alt>s']
-custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/sh/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/tmx/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/sshc/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/brightdown/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/brightup/']
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/sh/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/tmx/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/sshc/']
 home=['<Alt>e']
 logout=['<Shift><Alt>Escape']
 mic-mute=['<Shift><Alt>BackSpace']
+screen-brightness-down=['<Shift><Alt>minus']
+screen-brightness-up=['<Shift><Alt>equal']
 screensaver=['<Alt>Escape']
 shutdown=['<Alt>grave']
 volume-down=['<Alt>minus']
 volume-mute=['<Alt>BackSpace']
 volume-up=['<Alt>equal']
 www=['<Alt>w']
-
-[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/brightdown]
-binding='<Shift><Alt>b'
-command='brightnessctl set 5%-'
-name='Decrease brightness'
-
-[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/brightup]
-binding='<Alt>b'
-command='brightnessctl set 5%+'
-name='Increase brightness'
 
 [org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/sh]
 binding='<Alt>x'
