@@ -5,7 +5,8 @@
 # See:
 # - https://catppuccin.com
 # - https://github.com/catppuccin/firefox
-# - https://github.com/catppuccin/userstyles/blob/main/docs/USAGE.md
+# - https://github.com/catppuccin/vimium
+# - https://github.com/catppuccin/userstyles
 # - https://catppuccin-userstyles-customizer.uncenter.dev/
 #
 # Supported systems: Debian, Ubuntu, Fedora, RHEL, MacOS

@@ -37,8 +37,8 @@ case "${theme}" in
 name='Catppuccin-Dark-Macchiato'
 
 [org/gnome/desktop/background]
-picture-uri='file://${XDG_DATA_HOME}/wallpapers/${theme}.png'
-picture-uri-dark='file://${XDG_DATA_HOME}/wallpapers/${theme}.png'
+picture-uri='file://${XDG_DATA_HOME}/wallpapers/catppuccin-debian.svg'
+picture-uri-dark='file://${XDG_DATA_HOME}/wallpapers/catppuccin-debian.svg'
 
 [org/gnome/desktop/interface]
 accent-color='blue'
@@ -66,8 +66,8 @@ EOF
 name='Catppuccin-Dark-Frappe'
 
 [org/gnome/desktop/background]
-picture-uri='file://${XDG_DATA_HOME}/wallpapers/${theme}.png'
-picture-uri-dark='file://${XDG_DATA_HOME}/wallpapers/${theme}.png'
+picture-uri='file://${XDG_DATA_HOME}/wallpapers/catppuccin-debian.svg'
+picture-uri-dark='file://${XDG_DATA_HOME}/wallpapers/catppuccin-debian.svg'
 
 [org/gnome/desktop/interface]
 accent-color='blue'
