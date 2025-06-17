@@ -42,12 +42,10 @@ confirm-close-surface = false
 
 # Common shortcuts:
 # - Paste with C-S-v
-# - Exit with C-q
 # - Emit A-{1-9} when pressing C-{1-9}
 # - Emit A-{hjkl=} when pressing C-S-{hjkl=}
 # - Open URI with C-click outside of `tmux`
 keybind = ctrl+shift+v=paste_from_clipboard
-keybind = ctrl+q=close_window
 keybind = ctrl+1=esc:1
 keybind = ctrl+2=esc:2
 keybind = ctrl+3=esc:3
@@ -64,7 +62,6 @@ keybind = ctrl+shift+l=esc:l
 keybind = ctrl+shift+l=esc:l
 keybind = ctrl+shift+equal=esc:equal
 keybind = cmd+shift+v=paste_from_clipboard
-keybind = cmd+q=quit
 keybind = cmd+1=esc:1
 keybind = cmd+2=esc:2
 keybind = cmd+3=esc:3
@@ -82,7 +79,7 @@ keybind = cmd+shift+equal=esc:equal
 
 # Required for key bindings in terminal apps on MacOS.
 #
-# Do not bind `cmd+q` because it's already used to exit.
+# Don't bind `cmd+q` because it's already used to exit.
 macos-option-as-alt = true
 keybind = cmd+@=text:\x00
 keybind = cmd+a=text:\x01
