@@ -31,6 +31,7 @@ dconf load / << 'EOF'
 clock-format='24h'
 clock-show-date=true
 clock-show-weekday=true
+enable-animations=false
 show-battery-percentage=true
 
 [org/gnome/desktop/input-sources]
