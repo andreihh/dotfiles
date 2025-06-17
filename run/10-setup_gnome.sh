@@ -53,6 +53,12 @@ switch-windows-backward=['<Shift><Primary>Tab']
 toggle-fullscreen=['<Shift><Alt>z']
 toggle-maximized=['<Alt>z']
 
+[org/gnome/desktop/wm/preferences]
+num-workspaces=4
+
+[org/gnome/mutter]
+dynamic-workspaces=false
+
 [org/gnome/mutter/keybindings]
 toggle-tiled-left=['<Primary><Alt>h']
 toggle-tiled-right=['<Primary><Alt>l']
