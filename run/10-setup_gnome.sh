@@ -28,6 +28,9 @@ command -v dnf &> /dev/null && sudo dnf install -y \
 echo "Configuring GNOME settings..."
 dconf load / << 'EOF'
 [org/gnome/desktop/interface]
+clock-format='24h'
+clock-show-date=true
+clock-show-weekday=true
 show-battery-percentage=true
 
 [org/gnome/desktop/input-sources]
