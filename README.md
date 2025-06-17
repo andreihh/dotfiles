@@ -1,8 +1,5 @@
 # Dotfiles
 
-This is my personal dotfiles repository. It contains the specific dotfiles,
-alongside an installation script.
-
 ## Installation
 
 To install the dotfiles:
@@ -183,10 +180,18 @@ Terminal:
 
 - Send `SIGINT`: `C-c`
 - Paste: `C-S-v`
-- Close terminal: `C-q`
 - Switch `tmux` tab: `C-{1-9}` (mapped to `A-{1-9}`)
 - Resize `tmux` / `nvim` / `vim` windows: `C-S-{hjkl=}` (mapped to `A-{hjkl=}`)
 
 ## Licensing
 
 The scripts and configurations are licensed under the MIT license.
+
+The `data/wallpapers/catppuccin.svg` and `data/wallpapers/catppuccin-debian.svg`
+files were derived from [Alex Makas's Debian Buster theme
+wallpaper](https://wiki.debian.org/DebianArt/Themes/futurePrototype) by using
+the [Catppuccin color palette](https://catppuccin.com/palette) and are licensed
+under GPL-2.0+.
+
+The `config/git/ignore` file was generated at
+[gitignore.io](https://www.gitignore.io) and is licensed under CC0-1.0.
