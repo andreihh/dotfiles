@@ -173,8 +173,8 @@ Common shortcuts (`C = Ctrl / Cmd`, `A = Alt / Opt`, `S = Shift`):
 - Open `tmx` terminal: `A-S-x`
 - Open SSH terminal to cloud workstation: `A-c`
 - Open app launcher: `A-a`
-- Lock screen: `A-Esc`
-- Log out: `A-S-Esc`
+- Lock screen / log out: `A-[S]-Esc`
+- Restart / shutdown: `` A-[S]-` ``
 
 Terminal:
 

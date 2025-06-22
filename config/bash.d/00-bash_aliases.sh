@@ -12,7 +12,7 @@ tmxp() {
   local project_root
   project_root="$(git rev-parse --show-toplevel)"
   [[ -z "${project_root}" ]] && project_root="${PWD}"
-  tmx "$(basename "${project_root}")"
+  tmx -s "$(basename "${project_root}")"
 }
 
 # Enable colors in `less`.

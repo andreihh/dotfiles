@@ -27,7 +27,7 @@ window-padding-x = 0
 window-padding-y = 0
 
 # Disable superfluous window decorations.
-window-decoration = false
+window-decoration = none
 
 # Don't display window size after resizing.
 resize-overlay = never
