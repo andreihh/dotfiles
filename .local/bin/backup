@@ -1,73 +1,85 @@
 #!/bin/bash -e
 #
-# Manages backups for important files:
+# Manages encrypted incremental backups for:
 # - dotfiles
-# - essential directories from a private drive
 # - all directories starting with an uppercase letter from the home directory
 #
-# Requirements: `tar`, `gzip`, `gnupg`
+# See:
+# - https://rclone.org/crypt/
+# - https://rclone.org/docs/#environment-variables
+#
+# Dependencies: `rclone`
 
-readonly XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
+readonly REMOTE='backup'
+export RCLONE_CONFIG='/dev/null'
+export RCLONE_CONFIG_BACKUP_TYPE='crypt'  # Name must match `REMOTE` value
 
 usage() {
   cat << EOF
-Usage: $0 [-h] [-d DIR|-a|-l|-r|-o] -f FILE
+Usage: $0 [-h] [-n] [-b|-r] -d DIR
 
 Options:
-  -d Back up essential directories from provided private drive:
-       documents, p13n, music
-  -a Back up all directories from home starting with an uppercase letter.
-  -l List backup contents from provided file.
-  -r Restore backup from provided file.
-  -o Same as '-r', but will overwrite all existing files.
-  -f Backup file to process.
+  -n  Perform a dry run (simulate actions, but do not execute them).
+  -b  Back up system to the specified directory (default operation).
+  -r  Restore system from the specified directory.
+  -d  Backup directory.
+  -h  Print this message and exit.
 EOF
 }
 
-while getopts 'd:alrof:h' option; do
+operation='backup'
+while getopts 'nbrd:h' option; do
   case "${option}" in
-    d)
-      operation='drive'
-      drive="$(readlink -f "${OPTARG}")"
-      file="${file:-${HOME}/${USER}-$(date -I)-drive.tgz.gpg}"
-      ;;
-    a)
-      operation='all'
-      file="${file:-${HOME}/${HOSTNAME}-${USER}-$(date -I)-all.tgz.gpg}"
-      ;;
-    l) operation='list' ;;
+    n) export RCLONE_DRY_RUN=true ;;
+    b) operation='backup' ;;
     r) operation='restore' ;;
-    o) operation='overwrite' ;;
-    f) file="$(readlink -f "${OPTARG}")" ;;
+    d) backup_dir="$(readlink -f "${OPTARG}")" ;;
     h) usage && exit 0 ;;
     *) usage && exit 1 ;;
   esac
 done
 
-[[ -z "${file}" ]] && echo "Invalid backup file '${file}'!" && exit 1
+[[ -z "${backup_dir}" ]] && echo "Invalid backup directory!" && exit 1
+export RCLONE_CONFIG_BACKUP_REMOTE="${backup_dir}"
+
+[[ -n "${RCLONE_DRY_RUN}" ]] && echo "Performing a dry run!"
+
+read -srp "Enter backup password: " backup_password
+echo  # Print an empty line after entering the password
+backup_password="$(rclone obscure "${backup_password}")"
+export RCLONE_CONFIG_BACKUP_PASSWORD="${backup_password}"
+
+dotfiles_relpath="${XDG_CONFIG_HOME:-${HOME}/.config}/dotfiles"
+dotfiles_relpath="${dotfiles_relpath/#${HOME}\//}"
 
 case "${operation}" in
-  drive)
-    [[ -z "${drive}" ]] && echo "Invalid private drive '${drive}'!" && exit 1
-    echo "Backing up private drive to '${file}'..."
-    tar -czv "${XDG_CONFIG_HOME}/dotfiles" "${drive}"/{documents,p13n,music} \
-      | gpg -c -o "${file}"
-    ;;
-  all)
-    echo "Backing up everything to '${file}'..."
-    tar -czv ~/.env "${XDG_CONFIG_HOME}" ~/[A-Z]*/ | gpg -c -o "${file}"
-    ;;
-  list)
-    echo "Listing backup contents from '${file}'..."
-    gpg -d "${file}" | tar -tzv
+  backup)
+    cmd='sync'
+    src="${HOME}"
+    dst="${REMOTE}:"
+    filter="/{[A-Z]*,${dotfiles_relpath}}/**"
+    echo "Backing up to '${backup_dir}' with filter '${filter}'..."
     ;;
   restore)
-    echo "Restoring backup from '${file}'..."
-    gpg -d "${file}" | tar -xzv --keep-newer-files
-    ;;
-  overwrite)
-    echo "Restoring backup from '${file}' (will overwrite existing files)..."
-    gpg -d "${file}" | tar -xzv --overwrite
+    cmd='copy'
+    src="${REMOTE}:"
+    dst="${HOME}"
+    filter='/**'
+    echo "Restoring from '${backup_dir}'..."
     ;;
   *) echo "Invalid operation '${operation}'!" && exit 1 ;;
 esac
+
+echo "Current backup includes:"
+rclone lsf "${REMOTE}:"
+
+echo "Proceed? [y/n]"
+read -r confirmation
+case "${confirmation}" in
+  y) echo "Proceeding..." ;;
+  *) echo "Aborted!" && exit 0 ;;
+esac
+
+rclone "${cmd}" "${src}" "${dst}" --include "${filter}" --progress
+
+echo "Done!"
