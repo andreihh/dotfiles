@@ -42,6 +42,8 @@ xkb-options=['caps:swapescape', 'ctrl:swap_lalt_lctl_lwin']
 close=['<Primary>q']
 cycle-windows=@as []
 cycle-windows-backward=@as []
+move-to-monitor-left=['<Primary><Alt>comma']
+move-to-monitor-right=['<Primary><Alt>period']
 move-to-workspace-1=['<Primary><Alt>1']
 move-to-workspace-2=['<Primary><Alt>2']
 move-to-workspace-3=['<Primary><Alt>3']
@@ -60,6 +62,7 @@ num-workspaces=4
 
 [org/gnome/mutter]
 dynamic-workspaces=false
+workspaces-only-on-primary=false
 
 [org/gnome/mutter/keybindings]
 toggle-tiled-left=['<Primary><Alt>h']

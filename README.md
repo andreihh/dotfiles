@@ -157,6 +157,7 @@ Common shortcuts (`C = Ctrl / Cmd`, `A = Alt / Opt`, `S = Shift`):
 - Cycle windows: `C-[S]-Tab`
 - Switch to workspace: `A-{1-9}`
 - Move window to workspace: `C-A-{1-9}`
+- Move window to left / right monitor: `C-A-{,.}`
 - Toggle window tiled left / right: `C-A-{hl}`
 - Toggle window maximized / fullscreen: `A-[S]-z`
 - Print screen / cancel: `A-p` / `Esc`
