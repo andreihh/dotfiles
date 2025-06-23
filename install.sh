@@ -34,7 +34,7 @@ EOF
 backup_dir="${BACKUP_DIR_DEFAULT}"
 while getopts 'nfb:uh' option; do
   case "${option}" in
-    n) debug=true ;;
+    n) dry_run=true ;;
     f) force=true ;;
     b) backup_dir="${OPTARG}" ;;
     u) skip_scripts=true ;;
@@ -45,7 +45,7 @@ done
 
 echo "Installing dotfiles..."
 
-[[ -n "${debug}" ]] && echo "Performing a dry run!"
+[[ -n "${dry_run}" ]] && echo "Performing a dry run!"
 
 echo "Ensuring dependencies are installed..."
 for dep in 'git' 'stow'; do
@@ -58,7 +58,7 @@ done
 
 if [[ -n "${force}" ]]; then
   echo "Deleting prior backup and installation..."
-  [[ -n "${debug}" ]] || rm -rf "${backup_dir}" "${DOTFILES_HOME}"
+  [[ -n "${dry_run}" ]] || rm -rf "${backup_dir}" "${DOTFILES_HOME}"
 else
   [[ -e "${backup_dir}" ]] && echo "Not overwriting existing backup!" && exit 1
 fi
@@ -73,14 +73,14 @@ fi
 echo "Checking that the Git repository is clean..."
 if [[ -n "$(git -C "${DOTFILES_HOME}" status --porcelain 2> /dev/null)" ]]; then
   echo "You must commit changes to the Git repository and get to a clean state!"
-  [[ -n "${debug}" ]] || exit 1
+  [[ -n "${dry_run}" ]] || exit 1
 fi
 
 echo "Stowing dotfiles, adopting conflicting files..."
 stowdir() {
   local src="$1"
   local dst="$2"
-  stow ${debug:+'-n'} -v --no-folding --adopt -t "${dst}" -d "${src}" .
+  stow ${dry_run:+'-n'} -v --no-folding --adopt -t "${dst}" -d "${src}" .
 }
 
 stowdir "${DOTFILES_HOME}" "${HOME}"
@@ -89,18 +89,18 @@ stowdir "${DOTFILES_HOME}/data" "${XDG_DATA_HOME}"
 
 if [[ -n "${backup_dir}" ]]; then
   echo "Setting up backup directory '${backup_dir}'..."
-  [[ -n "${debug}" ]] || mkdir -p "${backup_dir}"
+  [[ -n "${dry_run}" ]] || mkdir -p "${backup_dir}"
 
   echo "Backing up dotfiles..."
-  [[ -n "${debug}" ]] || cp -Pr "${DOTFILES_HOME}" "${backup_dir}"
+  [[ -n "${dry_run}" ]] || cp -Pr "${DOTFILES_HOME}" "${backup_dir}"
 fi
 
 echo "Reverting changes from adopted files..."
-[[ -n "${debug}" ]] || git -C "${DOTFILES_HOME}" checkout .
+[[ -n "${dry_run}" ]] || git -C "${DOTFILES_HOME}" checkout .
 
 echo "Removing shell-specific profile config files..."
 for shell_profile_file in ~/.{bash_profile,zprofile}; do
-  [[ -n "${debug}" ]] || rm -fv "${shell_profile_file}"
+  [[ -n "${dry_run}" ]] || rm -fv "${shell_profile_file}"
 done
 
 if [[ -z "${skip_scripts}" ]]; then
@@ -110,7 +110,7 @@ if [[ -z "${skip_scripts}" ]]; then
   # installed before they are run.
   for script in "${DOTFILES_HOME}/run"/*.sh; do
     echo "Running '$(basename "${script}")'..."
-    [[ -n "${debug}" ]] || "${script}"
+    [[ -n "${dry_run}" ]] || "${script}"
   done
 fi
 
