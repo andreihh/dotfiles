@@ -162,6 +162,7 @@ Common shortcuts (`C = Ctrl / Cmd`, `A = Alt / Opt`, `S = Shift`):
 - Toggle window maximized / fullscreen: `A-[S]-z`
 - Print screen / cancel: `A-p` / `Esc`
 - Record screen / cancel: `A-r` / `Esc`
+- Toggle play media: `A-Enter`
 - Toggle mute volume / microphone: `A-[S]-Backspace`
 - Adjust volume: `A-{-=}`
 - Adjust screen brightness: `A-S-{-=}`

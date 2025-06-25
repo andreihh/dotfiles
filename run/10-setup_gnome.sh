@@ -74,6 +74,7 @@ custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybin
 home=['<Alt>e']
 logout=['<Shift><Alt>Escape']
 mic-mute=['<Shift><Alt>BackSpace']
+play=['<Alt>Return']
 reboot=['<Alt>grave']
 screen-brightness-down=['<Shift><Alt>minus']
 screen-brightness-up=['<Shift><Alt>equal']
