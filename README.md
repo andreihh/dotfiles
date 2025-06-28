@@ -24,12 +24,20 @@ curl -Lo - https://codeberg.org/andreihh/dotfiles/raw/branch/main/install.sh \
   | bash
 ```
 
-- Run the `theme` command to configure the system theme.
 - Log out and back in to ensure the environment is loaded properly.
 - Run `pre-commit install` inside the repository to configure pre-commit checks.
 
 To update the dotfiles, run `install.sh -u` from the repository in a clean
 state.
+
+To override the default system theme, set the `THEME` variable before running
+the installer to one of:
+
+- `catppuccin-frappe` (default)
+- `catppuccin-macchiato`
+- `catppuccin-mocha`
+
+Setting `THEME` to any other non-empty value will skip the theme installation.
 
 ## XDG directories
 
