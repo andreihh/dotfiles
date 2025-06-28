@@ -60,7 +60,8 @@ keybind = ctrl+shift+j=esc:j
 keybind = ctrl+shift+k=esc:k
 keybind = ctrl+shift+l=esc:l
 keybind = ctrl+shift+l=esc:l
-keybind = ctrl+shift+equal=esc:equal
+keybind = ctrl+shift+equal=esc:=
+keybind = ctrl+shift+physical:equal=esc:=
 keybind = cmd+shift+v=paste_from_clipboard
 keybind = cmd+1=esc:1
 keybind = cmd+2=esc:2
@@ -75,7 +76,8 @@ keybind = cmd+shift+h=esc:h
 keybind = cmd+shift+j=esc:j
 keybind = cmd+shift+k=esc:k
 keybind = cmd+shift+l=esc:l
-keybind = cmd+shift+equal=esc:equal
+keybind = cmd+shift+equal=esc:=
+keybind = cmd+shift+physical:equal=esc:=
 
 # Required for key bindings in terminal apps on MacOS.
 #
