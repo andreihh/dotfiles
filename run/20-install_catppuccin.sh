@@ -37,7 +37,7 @@ case "${THEME:-"catppuccin-frappe"}" in
     flavor_camelcase='Mocha'
     gtk_installer_args=()
     ;;
-  *) echo "'THEME' is not a supported Catppuccin theme, skipping!" && exit 0 ;;
+  *) echo "Theme '${THEME}' not supported, installation skipped!" && exit 0 ;;
 esac
 
 echo "Installing Catppuccin ${flavor_camelcase} theme..."

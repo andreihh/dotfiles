@@ -50,6 +50,8 @@ move-to-workspace-1=['<Primary><Alt>1']
 move-to-workspace-2=['<Primary><Alt>2']
 move-to-workspace-3=['<Primary><Alt>3']
 move-to-workspace-4=['<Primary><Alt>4']
+switch-group=@as []
+switch-group-backward=@as []
 switch-to-workspace-1=['<Alt>1']
 switch-to-workspace-2=['<Alt>2']
 switch-to-workspace-3=['<Alt>3']
@@ -72,7 +74,7 @@ toggle-tiled-right=['<Primary><Alt>l']
 
 [org/gnome/settings-daemon/plugins/media-keys]
 control-center=['<Shift><Alt>s']
-custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/sh/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/tmx/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/sshc/']
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/sh/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/tmx/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/sshc/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/tmxc/']
 home=['<Alt>e']
 logout=['<Shift><Alt>Escape']
 mic-mute=['<Shift><Alt>BackSpace']
@@ -102,6 +104,11 @@ binding='<Shift><Alt>x'
 command='x-terminal-emulator -e tmx'
 name='Launch tmx terminal'
 
+[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/tmxc]
+binding='<Shift><Alt>c'
+command='x-terminal-emulator -e sshc -t'
+name='Launch tmxc terminal'
+
 [org/gnome/shell/extensions/system-monitor]
 show-cpu=true
 show-download=true
@@ -129,6 +136,8 @@ for extension in "${EXTENSIONS[@]}"; do
   gnome-extensions enable "${extension}"
 done
 
-echo "Configured GNOME successfully!"
+cat << EOF
+Configured GNOME successfully!
 
-echo "Run 'gnome-extensions list' and disable or uninstall unwanted extensions."
+Run 'gnome-extensions list' and disable or uninstall unwanted extensions.
+EOF

@@ -1,13 +1,18 @@
 #!/bin/bash -e
 #
-# Connects to `CLOUD_HOST` via SSH and starts `tmx` as a login shell.
-
-[[ $# -ne 1 ]] && echo "Usage: $0" && exit 1
+# Connects to `CLOUD_HOST` via SSH, optionally starting `tmx` as a login shell.
 
 [[ -z "${CLOUD_HOST}" ]] \
   && echo "Cloud host environment variable 'CLOUD_HOST' not defined!" \
   && exit 1
 
-# The defualt `ssh` `PATH` does not contain the user local bin, so `tmx` must be
-# qualified. The `HOME` expansion must happen on the remote host.
-ssh "${CLOUD_HOST}" "$@" -t '"${HOME}/.local/bin/tmx" -l'
+if [[ "$1" == '-t' ]]; then
+  shift
+
+  # The defualt `ssh` `PATH` does not contain the user local bin, so `tmx` must
+  # be qualified. The `HOME` expansion must happen on the remote host.
+  ssh "${CLOUD_HOST}" "$@" -t '"${HOME}/.local/bin/tmx" -l'
+else
+  # shellcheck disable=SC2029
+  ssh "${CLOUD_HOST}" "$@"
+fi
