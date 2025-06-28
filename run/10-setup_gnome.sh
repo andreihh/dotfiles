@@ -16,6 +16,7 @@ readonly COMMON_DEPS=(
   sassc
   gnome-themes-extra
   gnome-shell-extension-user-theme
+  gnome-shell-extension-system-monitor
   gnome-shell-extension-appindicator
 )
 
@@ -30,6 +31,7 @@ dconf load / << 'EOF'
 [org/gnome/desktop/interface]
 clock-format='24h'
 clock-show-date=true
+clock-show-seconds=true
 clock-show-weekday=true
 enable-animations=false
 show-battery-percentage=true
@@ -100,6 +102,13 @@ binding='<Shift><Alt>x'
 command='x-terminal-emulator -e tmx'
 name='Launch tmx terminal'
 
+[org/gnome/shell/extensions/system-monitor]
+show-cpu=true
+show-download=true
+show-memory=true
+show-swap=false
+show-upload=false
+
 [org/gnome/shell/keybindings]
 focus-active-notification=['<Alt>n']
 show-screen-recording-ui=['<Alt>r']
@@ -111,6 +120,7 @@ EOF
 echo "Enabling GNOME extensions..."
 readonly EXTENSIONS=(
   user-theme@gnome-shell-extensions.gcampax.github.com
+  system-monitor@gnome-shell-extensions.gcampax.github.com
   ubuntu-appindicators@ubuntu.com
 )
 
