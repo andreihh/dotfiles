@@ -42,5 +42,6 @@ return { -- Simple and easy statusline
       -- Refresh statusline more frequently for better LSP progress spinner.
       refresh = { statusline = 100 },
     },
+    extensions = { "avante" },
   },
 }

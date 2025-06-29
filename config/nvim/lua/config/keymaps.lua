@@ -219,3 +219,6 @@ map("n", "H", vim.lsp.buf.hover, "Show [H]elp")
 map("n", "L", vim.diagnostic.open_float, "Show [L]int diagnostic")
 map("n", "<leader>r", vim.lsp.buf.rename, "[R]ename")
 map("n", "<leader>A", vim.lsp.codelens.run, "Run code lens [A]ction")
+
+-- AI:
+-- - <leader><leader> + a/n/e/r/f/s/t/D/H/S/R/c/b/?/h = perform AI action
