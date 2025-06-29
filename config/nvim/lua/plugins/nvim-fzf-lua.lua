@@ -73,7 +73,11 @@ return { -- Fuzzy finder (files, lsp, etc.)
       desc = "[G]oto [I]mplementation",
     },
     { "gr", "<cmd>FzfLua lsp_references<CR>", desc = "[G]oto [R]eferences" },
-    { "<leader>a", "<cmd>FzfLua lsp_code_actions<CR>", desc = "Code [A]ction" },
+    {
+      "<leader>a",
+      "<cmd>FzfLua lsp_code_actions silent=true<CR>",
+      desc = "Code [A]ction",
+    },
   },
   opts = {
     keymap = { -- Disable default keymaps
