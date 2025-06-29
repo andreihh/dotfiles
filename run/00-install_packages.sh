@@ -72,6 +72,6 @@ if command -v update-alternatives &> /dev/null; then
 fi
 
 echo "Configuring Bash as the default shell..."
-chsh -s /bin/bash
+chsh -s /bin/bash || echo "Failed to change default shell, set it manually!"
 
 echo "Installed core packages successfully!"
