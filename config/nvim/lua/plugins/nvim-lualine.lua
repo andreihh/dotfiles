@@ -36,7 +36,11 @@ return { -- Simple and easy statusline
         },
       },
     },
-    -- Show the tabline only if there is more than one tab.
-    options = { always_show_tabline = false },
+    options = {
+      -- Show the tabline only if there is more than one tab.
+      always_show_tabline = false,
+      -- Refresh statusline more frequently for better LSP progress spinner.
+      refresh = { statusline = 100 },
+    },
   },
 }
