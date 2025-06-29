@@ -189,6 +189,7 @@ Common shortcuts (`C = Ctrl / Cmd`, `A = Alt / Opt`, `S = Shift`):
 
 Terminal:
 
+- Reload config: `C-S-r`
 - Send `SIGINT`: `C-c`
 - Paste: `C-S-v`
 - Switch `tmux` tab: `C-{1-9}` (mapped to `A-{1-9}`)

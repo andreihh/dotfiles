@@ -41,10 +41,12 @@ quit-after-last-window-closed = true
 confirm-close-surface = false
 
 # Common shortcuts:
+# - Reload config with C-S-r
 # - Paste with C-S-v
 # - Emit A-{1-9} when pressing C-{1-9}
 # - Emit A-{shjkl=} when pressing C-S-{shjkl=}
 # - Open URI with C-click outside of `tmux`
+keybind = ctrl+shift+r=reload_config
 keybind = ctrl+shift+v=paste_from_clipboard
 keybind = ctrl+1=esc:1
 keybind = ctrl+2=esc:2
@@ -63,6 +65,7 @@ keybind = ctrl+shift+l=esc:l
 keybind = ctrl+shift+l=esc:l
 keybind = ctrl+shift+equal=esc:=
 keybind = ctrl+shift+physical:equal=esc:=
+keybind = cmd+shift+r=reload_config
 keybind = cmd+shift+v=paste_from_clipboard
 keybind = cmd+1=esc:1
 keybind = cmd+2=esc:2
