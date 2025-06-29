@@ -107,7 +107,7 @@ map("t", "<C-e>", "<C-\\><C-n>", "[E]xit terminal mode")
 
 -- Session:
 --  - dS = [d]elete [s]ession
---  - <M-S> = [s]ave session
+--  - <M-s> = [s]ave session
 
 -- Search:
 --  - s + <leader>/p/s/h/m/k/'/b/+/f/.f/r/g/.g/c/j/l/q/d/w/"/:// = [s]earch

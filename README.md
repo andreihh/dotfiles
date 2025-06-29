@@ -193,6 +193,7 @@ Terminal:
 - Paste: `C-S-v`
 - Switch `tmux` tab: `C-{1-9}` (mapped to `A-{1-9}`)
 - Resize `tmux` / `nvim` / `vim` windows: `C-S-{hjkl=}` (mapped to `A-{hjkl=}`)
+- Save `nvim` / `vim` session: `C-S-s` (mapped to `A-s`)
 
 ## Licensing
 

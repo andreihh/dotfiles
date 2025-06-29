@@ -518,9 +518,9 @@ tnoremap <C-e> <C-\><C-n>
 
 " Session:
 " - dS = [d]elete [s]ession
-" - <M-S> = [s]ave session
+" - <M-s> = [s]ave session
 nnoremap <expr> dS ':SDelete! ' . fnamemodify(v:this_session, ':t') . '<CR>'
-nnoremap <expr> <M-S> ':SSave! ' . <SID>SessionFile() . '<CR>'
+nnoremap <expr> <M-s> ':SSave! ' . <SID>SessionFile() . '<CR>'
 
 " Search:
 " - s + h/k/'/b/f/.f/r/b/g/c/j/l/q/:// = [s]earch

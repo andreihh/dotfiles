@@ -43,7 +43,7 @@ confirm-close-surface = false
 # Common shortcuts:
 # - Paste with C-S-v
 # - Emit A-{1-9} when pressing C-{1-9}
-# - Emit A-{hjkl=} when pressing C-S-{hjkl=}
+# - Emit A-{shjkl=} when pressing C-S-{shjkl=}
 # - Open URI with C-click outside of `tmux`
 keybind = ctrl+shift+v=paste_from_clipboard
 keybind = ctrl+1=esc:1
@@ -55,6 +55,7 @@ keybind = ctrl+6=esc:6
 keybind = ctrl+7=esc:7
 keybind = ctrl+8=esc:8
 keybind = ctrl+9=esc:9
+keybind = ctrl+shift+s=esc:s
 keybind = ctrl+shift+h=esc:h
 keybind = ctrl+shift+j=esc:j
 keybind = ctrl+shift+k=esc:k
@@ -72,6 +73,7 @@ keybind = cmd+6=esc:6
 keybind = cmd+7=esc:7
 keybind = cmd+8=esc:8
 keybind = cmd+9=esc:9
+keybind = cmd+shift+s=esc:s
 keybind = cmd+shift+h=esc:h
 keybind = cmd+shift+j=esc:j
 keybind = cmd+shift+k=esc:k
