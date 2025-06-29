@@ -13,7 +13,7 @@
 
 readonly XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
 readonly XDG_DATA_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}"
-readonly REPOSITORY_URL="git@codeberg.org:andreihh/dotfiles.git"
+readonly REPOSITORY_URL="https://codeberg.org/andreihh/dotfiles.git"
 readonly DOTFILES_HOME="${XDG_CONFIG_HOME}/dotfiles"
 readonly BACKUP_DIR_DEFAULT="${DOTFILES_HOME}.bak"
 
