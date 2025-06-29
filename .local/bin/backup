@@ -46,6 +46,13 @@ export RCLONE_CONFIG_BACKUP_REMOTE="${backup_dir}"
 
 read -srp "Enter backup password: " backup_password
 echo  # Print an empty line after entering the password
+read -srp "Confirm backup password: " confirm_password
+echo  # Print an empty line after entering the password
+
+[[ "${backup_password}" != "${confirm_password}" ]] \
+  && echo "Passwords mismatch!" && exit 1
+
+unset confirm_password
 backup_password="$(rclone obscure "${backup_password}")"
 export RCLONE_CONFIG_BACKUP_PASSWORD="${backup_password}"
 
