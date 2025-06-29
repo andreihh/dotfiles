@@ -37,6 +37,7 @@ if ! command -v brew &> /dev/null; then
 
   # Alacritty requires a Nerd Font.
   echo "Installing JetBrains Mono Nerd Font..."
+  mkdir -p "${XDG_DATA_HOME}/fonts"
   cd "${XDG_DATA_HOME}/fonts"
   wget "${FONT_URL}"
   unzip -o "${FONT_ZIP}"
