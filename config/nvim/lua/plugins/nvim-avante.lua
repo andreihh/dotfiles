@@ -1,7 +1,7 @@
 return { -- AI agent, must extend `opts` with `provider` and `providers` config
   "yetone/avante.nvim",
   build = "make",
-  keys = { { "<leader><leader>", desc = "AI" } },
+  keys = { { "<leader><leader>", mode = { "n", "x" }, desc = "AI" } },
   dependencies = {
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
