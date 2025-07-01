@@ -13,6 +13,7 @@ return { -- Useful plugin to show pending keybinds
     triggers = {}, -- Trigger only on explicit command or keymap
     spec = {
       { "<leader>", group = "Code" },
+      { "<leader><leader>", group = "AI", mode = { "n", "x" } },
       { "g", group = "Goto …" },
       { "[", group = "Jump to previous …" },
       { "]", group = "Jump to next …" },
