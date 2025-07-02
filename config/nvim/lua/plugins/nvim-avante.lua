@@ -8,6 +8,11 @@ return { -- AI agent, must extend `opts` with `provider` and `providers` config
   },
   opts = {
     hints = { enabled = false }, -- Disable hints
+    windows = { -- Configure window sizes
+      width = 40,
+      input = { height = 15 },
+      edit = { height = 15 },
+    },
     mappings = {
       ask = "<leader><leader>a",
       new_ask = "<leader><leader>n",
