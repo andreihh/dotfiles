@@ -4,15 +4,9 @@
 # - dotfiles
 # - all directories starting with an uppercase letter from the home directory
 #
-# See:
-# - https://rclone.org/crypt/
-# - https://rclone.org/docs/#environment-variables
+# See: https://restic.readthedocs.io/en/latest/.
 #
-# Dependencies: `rclone`
-
-readonly REMOTE='backup'
-export RCLONE_CONFIG='/dev/null'
-export RCLONE_CONFIG_BACKUP_TYPE='crypt'  # Name must match `REMOTE` value
+# Dependencies: `restic`, `rclone`
 
 usage() {
   cat << EOF
@@ -20,17 +14,21 @@ Usage: $0 [-h] [-n] [-b|-r] -d DIR
 
 Options:
   -n  Perform a dry run (simulate actions, but do not execute them).
-  -b  Back up system to the specified directory (default operation).
+  -c  Check backup integrity from the specified directory (default operation).
+  -i  Initialize backup to the specified directory.
+  -b  Back up system to the specified directory.
   -r  Restore system from the specified directory.
-  -d  Backup directory.
+  -d  Backup directory. Use 'rclone:REMOTE:PATH' for cloud backup.
   -h  Print this message and exit.
 EOF
 }
 
-operation='backup'
-while getopts 'nbrd:h' option; do
+operation='check'
+while getopts 'ncibrd:h' option; do
   case "${option}" in
-    n) export RCLONE_DRY_RUN=true ;;
+    n) dry_run=true ;;
+    c) operation='check' ;;
+    i) operation='init' ;;
     b) operation='backup' ;;
     r) operation='restore' ;;
     d) backup_dir="$(readlink -f "${OPTARG}")" ;;
@@ -40,53 +38,35 @@ while getopts 'nbrd:h' option; do
 done
 
 [[ -z "${backup_dir}" ]] && echo "Invalid backup directory!" && exit 1
-export RCLONE_CONFIG_BACKUP_REMOTE="${backup_dir}"
+export RESTIC_REPOSITORY="${backup_dir}"
 
-[[ -n "${RCLONE_DRY_RUN}" ]] && echo "Performing a dry run!"
-
-read -srp "Enter backup password: " backup_password
-echo  # Print an empty line after entering the password
-read -srp "Confirm backup password: " confirm_password
-echo  # Print an empty line after entering the password
-
-[[ "${backup_password}" != "${confirm_password}" ]] \
-  && echo "Passwords mismatch!" && exit 1
-
-unset confirm_password
-backup_password="$(rclone obscure "${backup_password}")"
-export RCLONE_CONFIG_BACKUP_PASSWORD="${backup_password}"
+[[ -n "${dry_run}" ]] && echo "Performing a dry run!"
 
 dotfiles_relpath="${XDG_CONFIG_HOME:-${HOME}/.config}/dotfiles"
 dotfiles_relpath="${dotfiles_relpath/#${HOME}\//}"
 
 case "${operation}" in
+  check)
+    echo "Checking backup at '${RESTIC_REPOSITORY}'"
+    restic -v check
+    ;;
+  init)
+    echo "Initializing backup at '${RESTIC_REPOSITORY}'..."
+    [[ -n "${dry_run}" ]] || restic -v init
+    ;;
   backup)
-    cmd='sync'
-    src="${HOME}"
-    dst="${REMOTE}:"
-    filter="/{[A-Z]*,${dotfiles_relpath}}/**"
-    echo "Backing up to '${backup_dir}' with filter '${filter}'..."
+    echo "Backing up '${HOME}' to '${RESTIC_REPOSITORY}'..."
+    cd "${HOME}"
+    restic -v backup ${dry_run:+'-n'} {[A-Z]*,"${dotfiles_relpath}"}
+
+    echo "Pruning old snapshots from '${RESTIC_REPOSITORY}'..."
+    restic -v forget ${dry_run:+'-n'} --prune --keep-last 3
     ;;
   restore)
-    cmd='copy'
-    src="${REMOTE}:"
-    dst="${HOME}"
-    filter='/**'
-    echo "Restoring from '${backup_dir}'..."
+    echo "Restoring '${RESTIC_REPOSITORY}' to '${HOME}'..."
+    restic -v restore ${dry_run:+'--dry-run'} --target "${HOME}" latest
     ;;
   *) echo "Invalid operation '${operation}'!" && exit 1 ;;
 esac
-
-echo "Current backup includes:"
-rclone lsf "${REMOTE}:"
-
-echo "Proceed? [y/n]"
-read -r confirmation
-case "${confirmation}" in
-  y) echo "Proceeding..." ;;
-  *) echo "Aborted!" && exit 0 ;;
-esac
-
-rclone "${cmd}" "${src}" "${dst}" --include "${filter}" --progress
 
 echo "Done!"
