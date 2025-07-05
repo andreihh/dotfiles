@@ -23,26 +23,26 @@ return { -- Fuzzy finder (files, lsp, etc.)
     },
     { "sf", "<cmd>FzfLua files<CR>", desc = "[S]earch [F]iles" },
     {
-      "s.f",
+      "sF",
       function()
         require("fzf-lua").files({
           cwd = vim.bo.filetype == "oil" and require("oil").get_current_dir()
             or "%:h",
         })
       end,
-      desc = "[S]earch [.] current buffer's directory for [F]iles",
+      desc = "[S]earch current buffer's directory for [F]iles",
     },
     { "sr", "<cmd>FzfLua oldfiles<CR>", desc = "[S]earch [R]ecent files" },
     { "sg", "<cmd>FzfLua live_grep<CR>", desc = "[S]earch by [G]rep" },
     {
-      "s.g",
+      "sG",
       function()
         require("fzf-lua").live_grep({
           cwd = vim.bo.filetype == "oil" and require("oil").get_current_dir()
             or "%:h",
         })
       end,
-      desc = "[S]earch [.] current buffer's directory by [G]rep",
+      desc = "[S]earch current buffer's directory by [G]rep",
     },
     { "sc", "<cmd>FzfLua git_status<CR>", desc = "[S]earch Git [C]hanges" },
     { "sj", "<cmd>FzfLua jumps<CR>", desc = "[S]earch [J]umps" },
@@ -52,6 +52,11 @@ return { -- Fuzzy finder (files, lsp, etc.)
       "sd",
       "<cmd>FzfLua diagnostics_workspace<CR>",
       desc = "[S]earch [D]iagnostics",
+    },
+    {
+      "sD",
+      "<cmd>FzfLua diagnostics_document",
+      desc = "[S]earch current buffer's [D]iagnostics",
     },
     {
       "sw",

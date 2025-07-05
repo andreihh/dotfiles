@@ -110,7 +110,7 @@ map("t", "<C-e>", "<C-\\><C-n>", "[E]xit terminal mode")
 --  - <M-s> = [s]ave session
 
 -- Search:
---  - s + <leader>/p/s/h/m/k/'/b/+/f/.f/r/g/.g/c/j/l/q/d/w/"/:// = [s]earch
+--  - s + <leader>/p/s/h/m/k/'/b/+/f/F/r/g/G/c/j/l/q/d/D/w/"/:// = [s]earch
 --  - <C-j/k/f> = select next / previous / find item
 --  - <C-u/d> = scroll preview [u]p / [d]own
 --  - <C-l/p> = toggle [l]ine / [p]review wrapping for long lines
@@ -119,7 +119,7 @@ map("t", "<C-e>", "<C-\\><C-n>", "[E]xit terminal mode")
 --  - <C-o/s/v/t> = open selected item in window
 --  - <M-h/i/f> = toggle [h]idden / [i]gnored / [f]ollow flags
 --  - <C-x> = close buffer / delete mark / reset changes
---  - <esc> = exit
+--  - <C-c> / <esc> = [c]ancel
 --  - <C-\> = show keymap help
 map("n", "s", "<nop>", "Disable [S]ubstitute to allow search chaining")
 
@@ -135,9 +135,10 @@ map("n", "s", "<nop>", "Disable [S]ubstitute to allow search chaining")
 
 -- Input:
 --  - <tab> = accept input
---  - <C-j/k> = select previous / next item from input history
+--  - <C-n/p> = select [n]ext / [p]revious item from input history
 --  - <esc> = exit from insert / visual / normal mode
---  - <C-e> = [e]xit
+--  - <C-c> = [c]ancel from insert mode
+--  - q = [q]uit from normal mode
 
 -- VCS:
 --  - [c / ]c / [C / ]C = jump to previous / next / first / last [c]hanged hunk
@@ -178,16 +179,17 @@ end, "[D]iff [U]nsaved changes")
 --  - <C-j/k> = trigger completion / select next / previus item
 --  - <C-h/l> = jump to previous / next snippet placeholder
 --  - <C-u/d> = scroll documentation [u]p / [d]own
+--  - <C-n/p> = select [n]ext / [p]revious item from command history
 --  - <tab> = accept selected item
---  - <C-e> = [e]xit
+--  - <C-c> = [c]ancel
 
 -- Treesitter:
 --  - a/i + b/m = [a]round / [i]nside [b]lock / [m]ethod
 --  - [m / ]m / [M / ]M = jump to previous / next start / end of [m]ethod
---  - <leader> + =/--/-/f/c = perform code action
-map("n", "<leader>--", "gcc", { desc = "Toggle line comment", remap = true })
-map({ "n", "x" }, "<leader>-", "gc", {
-  desc = "Toggle comment",
+--  - <leader> + cc/c/f/- = perform code action
+map("n", "<leader>cc", "gcc", { desc = "Toggle line [C]omment", remap = true })
+map({ "n", "x" }, "<leader>c", "gc", {
+  desc = "Toggle [C]omment",
   remap = true,
   nowait = false,
 })
@@ -200,7 +202,7 @@ map("n", "<leader>f", "za", "Toggle [F]old under cursor")
 --  - H / <C-s> / L = show [h]elp / [s]ignature / [l]int
 --    - H / <C-s> / L = focus float
 --    - q = [q]uit float if focused
---  - <leader> + r/a/A/l/L/H/T/D = perform LSP action
+--  - <leader> + =/r/a/A/l/L/H/T/D/q = perform LSP action
 local WARN = vim.diagnostic.severity.WARN
 local ERROR = vim.diagnostic.severity.ERROR
 local diagnostic_jump_opts = {
@@ -219,6 +221,17 @@ map("n", "H", vim.lsp.buf.hover, "Show [H]elp")
 map("n", "L", vim.diagnostic.open_float, "Show [L]int diagnostic")
 map("n", "<leader>r", vim.lsp.buf.rename, "[R]ename")
 map("n", "<leader>A", vim.lsp.codelens.run, "Run code lens [A]ction")
+map(
+  "n",
+  "<leader>q",
+  "<cmd>cclose<CR><cmd>lclose<CR>",
+  "[Q]uit quickfix / location list"
+)
 
 -- AI:
 -- - <leader><leader> + a/n/e/r/f/s/t/D/H/S/R/c/b/?/h = perform AI action
+-- - <tab> = switch window focus
+-- - <C-n/p> = select [n]ext / [p]revious prompt
+-- - <C-s/c> = [s]bumit / [c]ancel from insert mode
+-- - <CR> = submit from normal mode
+-- - q = [q]uit from normal mode

@@ -530,7 +530,7 @@ nnoremap <expr> <M-s> ':SSave! ' . <SID>SessionFile() . '<CR>'
 " - <tab> = accept selected / toggled items
 " - <S-tab> = toggle selected item
 " - <C-o/s/v/t> = open selected item in window
-" - <esc> = exit
+" - <C-c> / <esc> = [c]ancel
 nnoremap s <nop>
 nnoremap sh :Helptags<CR>
 nnoremap sk :Maps<CR>
@@ -596,7 +596,7 @@ nnoremap dvb :DiffGitBlame<CR>
 " - <C-j/k> = select next / previous item
 " - <C-h/l> = jump to previous / next snippet placeholder
 " - <tab> = accept selected item
-" - <C-e> = [e]xit
+" - <C-c> = [c]ancel
 imap <C-@> <plug>(asyncomplete_force_refresh)
 imap <C-space> <plug>(asyncomplete_force_refresh)
 inoremap <C-j> <C-n>
@@ -606,26 +606,25 @@ smap <expr> <C-l> vsnip#available(1) ? '<plug>(vsnip-expand-or-jump)' : ''
 imap <expr> <C-h> vsnip#available(-1) ? '<plug>(vsnip-jump-prev)' : ''
 smap <expr> <C-h> vsnip#available(-1) ? '<plug>(vsnip-jump-prev)' : ''
 inoremap <expr> <tab> pumvisible() ? '<C-y>' : '<tab>'
+inoremap <C-c> <C-e>
 cnoremap <C-@> <C-z>
 cnoremap <C-space> <C-z>
 cnoremap <C-j> <C-n>
 cnoremap <C-k> <C-p>
 cnoremap <tab> <C-y>
+cnoremap <C-c> <C-e>
 
 " Code:
 " - [m / ]m / [M / ]M = jump to previous / next start / end of [m]ethod
-" - <leader>= = format
-" - <leader>-- = toggle line comment
-" - <leader>- = toggle comment
+" - <leader>cc = toggle line comment
+" - <leader>c = toggle comment
 " - <leader>f = toggle [f]old
-" - <leader>c = toggle current [c]ontext
-nnoremap <leader>= :FormatCode<CR>
-xnoremap <leader>= :FormatLines<CR>
-nmap <leader>-- gcc
-nmap <leader>- gc
-xmap <leader>- gc
+" - <leader>- = toggle navigation context
+nmap <leader>cc gcc
+nmap <leader>c gc
+xmap <leader>c gc
 nnoremap <leader>f za
-nnoremap <leader>c :echo expand('%')<CR>:ContextToggleWindow<CR>
+nnoremap <leader>- :echo expand('%')<CR>:ContextToggleWindow<CR>
 
 " LSP:
 " - L = install [L]SP server for current file
@@ -634,7 +633,7 @@ nnoremap <leader>c :echo expand('%')<CR>:ContextToggleWindow<CR>
 " - [d / ]d / [w / ]w / [e / ]e = jump to previous / next diagnostic
 " - H = show [h]elp
 "   - <C-u/d> = scroll help [u]p / [d]own
-"   - <esc> = [e]xit
+"   - <C-c> / <esc> = [c]lose
 " - <leader>H = toggle inlay [h]ints
 " - <leader>r = [r]ename symbol under cursor
 " - <leader> + a/A = code (lens) [a]ctions
@@ -642,6 +641,7 @@ nnoremap <leader>c :echo expand('%')<CR>:ContextToggleWindow<CR>
 "   - # = accept item #
 "   - <CR> = accept selected item
 "   - <esc> = [e]xit
+" - <leader>= = format
 nnoremap L :LspInstallServer<CR>
 nmap gd <plug>(lsp-definition)
 nmap gD <plug>(lsp-declaration)
@@ -660,14 +660,21 @@ nmap H <plug>(lsp-hover-float)
 nmap <leader>r <plug>(lsp-rename)
 nmap <leader>a <plug>(lsp-code-action-float)
 nmap <leader>A <plug>(lsp-code-lens)
+nnoremap <leader>= :FormatCode<CR>
+xnoremap <leader>= :FormatLines<CR>
+
+" Suppress automatic mapping of <C-c> by LSP.
+nmap <C-tab> <plug>(lsp-float-close)
 
 function! s:ConfigLspFloatKeymaps() abort
-  nmap <buffer> <esc> <C-c><plug>(lsp-preview-close)
+  nmap <buffer> <C-c> <plug>(lsp-float-close)
+  nmap <buffer> <esc> <plug>(lsp-float-close)
   nnoremap <buffer> <expr> <C-u> lsp#scroll(-5)
   nnoremap <buffer> <expr> <C-d> lsp#scroll(+5)
 endfunction
 
 function! s:RevertLspFloatKeymaps() abort
+  silent! nunmap <buffer> <C-c>
   silent! nunmap <buffer> <esc>
   silent! nunmap <buffer> <C-u>
   silent! nunmap <buffer> <C-d>

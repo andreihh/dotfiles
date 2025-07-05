@@ -62,10 +62,8 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
           -- Override default tab action.
           i_tab = { "<tab>", "confirm", mode = { "n", "i" } },
           -- Scroll through input history.
-          c_j = { "<C-j>", "hist_up", mode = { "n", "i" } },
-          c_k = { "<C-k>", "hist_down", mode = { "n", "i" } },
-          -- Exit from any mode.
-          c_e = { "<C-e>", "cancel", mode = { "n", "i", "x" } },
+          c_n = { "<C-n>", "hist_down", mode = { "n", "i" } },
+          c_p = { "<C-p>", "hist_up", mode = { "n", "i" } },
         },
       },
     },
@@ -104,7 +102,7 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
         Snacks.toggle.diagnostics():map("<leader>D")
         Snacks.toggle
           .new({
-            name = "Context",
+            name = "Navigation context",
             get = function()
               return vim.g.__context_enabled == true
             end,
@@ -131,7 +129,7 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
               end
             end,
           })
-          :map("<leader>c")
+          :map("<leader>-")
           :set(false) -- Disable context by default
       end,
     })

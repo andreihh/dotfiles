@@ -192,6 +192,9 @@ Terminal:
 - Reload config: `C-S-r`
 - Send `SIGINT`: `C-c`
 - Paste: `C-S-v`
+- Select next / previous command: `C-{np}`
+- Search command history: `C-r`
+- Trigger completion (path / process id / etc.): `**<tab>`
 - Switch `tmux` tab: `C-{1-9}` (mapped to `A-{1-9}`)
 - Resize `tmux` / `nvim` / `vim` windows: `C-S-{hjkl=}` (mapped to `A-{hjkl=}`)
 - Save `nvim` / `vim` session: `C-S-s` (mapped to `A-s`)
