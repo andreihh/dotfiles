@@ -83,7 +83,7 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
           { icon = "", key = "f", action = "sf", desc = "Find file" },
           { icon = "", key = "g", action = "sg", desc = "Grep text" },
           { icon = "", key = "r", action = "sr", desc = "Recent files" },
-          { icon = "", key = "s", action = "ss", desc = "Restore session" },
+          { icon = "", key = "l", action = "ss", desc = "Load session" },
           { icon = "", key = "m", action = "M", desc = "Manage plugins" },
           { icon = "", key = "q", action = "Q", desc = "Quit" },
         },
