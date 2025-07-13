@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/sh
 #
 # Installs Neovim.
 #
@@ -11,11 +11,14 @@
 # - Fedora, RHEL: `gcc`, `glibc-gconv-extra`
 # - MacOS: Homebrew
 
-[[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
+# Exit if any command fails.
+set -e
+
+[ $# -gt 0 ] && echo "Usage: $0" && exit 1
 
 echo "Installing Neovim..."
 
-if command -v brew &> /dev/null; then
+if command -v brew > /dev/null 2>&1; then
   # Install Neovim with Homebrew on MacOS and exit early.
   brew install nvim
   echo "Installed Neovim successfully!"
