@@ -1,30 +1,35 @@
-#!/bin/bash -e
+#!/bin/sh
 #
 # Configures GNOME settings and dependencies.
 #
 # Supported systems: Debian, Ubuntu, Fedora, RHEL
 
-[[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
+# Exit if any command fails.
+set -e
 
-if ! command -v gnome-shell &> /dev/null; then
+[ $# -gt 0 ] && echo "Usage: $0" && exit 1
+
+if ! command -v gnome-shell > /dev/null 2>&1; then
   echo "GNOME not installed, configuration skipped!"
   exit 0
 fi
 
+command -v apt-get > /dev/null 2>&1 \
+  && gtk_murrine_engine='gtk2-engines-murrine' \
+  && _install_pkg() { sudo apt-get install -y "$@"; }
+
+command -v dnf > /dev/null 2>&1 \
+  && gtk_murrine_engine='gtk-murrine-engine' \
+  && _install_pkg() { sudo dnf install -y "$@"; }
+
 echo "Installing GNOME dependencies..."
-readonly COMMON_DEPS=(
-  sassc
-  gnome-themes-extra
-  gnome-shell-extension-user-theme
-  gnome-shell-extension-system-monitor
-  gnome-shell-extension-appindicator
-)
-
-command -v apt-get &> /dev/null && sudo apt-get install -y \
-  "${COMMON_DEPS[@]}" gtk2-engines-murrine
-
-command -v dnf &> /dev/null && sudo dnf install -y \
-  "${COMMON_DEPS[@]}" gtk-murrine-engine
+_install_pkg \
+  sassc \
+  gnome-themes-extra \
+  gnome-shell-extension-user-theme \
+  gnome-shell-extension-system-monitor \
+  gnome-shell-extension-appindicator \
+  "${gtk_murrine_engine}"
 
 echo "Configuring GNOME settings..."
 dconf load / << 'EOF'
@@ -125,19 +130,9 @@ toggle-overview=['<Alt>a']
 EOF
 
 echo "Enabling GNOME extensions..."
-readonly EXTENSIONS=(
-  user-theme@gnome-shell-extensions.gcampax.github.com
-  system-monitor@gnome-shell-extensions.gcampax.github.com
-  ubuntu-appindicators@ubuntu.com
-)
+gnome-extensions enable user-theme@gnome-shell-extensions.gcampax.github.com
+gnome-extensions enable system-monitor@gnome-shell-extensions.gcampax.github.com
+gnome-extensions enable ubuntu-appindicators@ubuntu.com
 
-for extension in "${EXTENSIONS[@]}"; do
-  echo "Enabling '${extension}' GNOME extension..."
-  gnome-extensions enable "${extension}"
-done
-
-cat << EOF
-Configured GNOME successfully!
-
-Run 'gnome-extensions list' and disable or uninstall unwanted extensions.
-EOF
+echo "Configured GNOME successfully!"
+echo "Run 'gnome-extensions list' and disable or uninstall unwanted extensions."
