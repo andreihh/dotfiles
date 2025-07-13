@@ -1,12 +1,15 @@
-#!/bin/bash -e
+#!/bin/sh
 #
 # Connects to `CLOUD_HOST` via SSH, optionally starting `tmx` as a login shell.
 
-[[ -z "${CLOUD_HOST}" ]] \
+# Exit if any command fails.
+set -e
+
+[ -z "${CLOUD_HOST}" ] \
   && echo "Cloud host environment variable 'CLOUD_HOST' not defined!" \
   && exit 1
 
-if [[ "$1" == '-t' ]]; then
+if [ "$1" = '-t' ]; then
   shift
 
   # The defualt `ssh` `PATH` does not contain the user local bin, so `tmx` must
