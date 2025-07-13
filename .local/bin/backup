@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/sh
 #
 # Manages encrypted incremental backups for:
 # - dotfiles
@@ -7,6 +7,9 @@
 # See: https://restic.readthedocs.io/en/latest/.
 #
 # Dependencies: `restic`, `rclone`
+
+# Exit if any command fails.
+set -e
 
 usage() {
   cat << EOF
@@ -37,13 +40,13 @@ while getopts 'ncibrd:h' option; do
   esac
 done
 
-[[ -z "${backup_dir}" ]] && echo "Invalid backup directory!" && exit 1
+[ -z "${backup_dir}" ] && echo "Invalid backup directory!" && exit 1
 export RESTIC_REPOSITORY="${backup_dir}"
 
-[[ -n "${dry_run}" ]] && echo "Performing a dry run!"
+[ -n "${dry_run}" ] && echo "Performing a dry run!"
 
 dotfiles_relpath="${XDG_CONFIG_HOME:-${HOME}/.config}/dotfiles"
-dotfiles_relpath="${dotfiles_relpath/#${HOME}\//}"
+dotfiles_relpath="$(echo "${dotfiles_relpath}" | sed "s:^${HOME}/::")"
 
 case "${operation}" in
   check)
@@ -52,12 +55,12 @@ case "${operation}" in
     ;;
   init)
     echo "Initializing backup at '${RESTIC_REPOSITORY}'..."
-    [[ -n "${dry_run}" ]] || restic -v init
+    [ -n "${dry_run}" ] || restic -v init
     ;;
   backup)
     echo "Backing up '${HOME}' to '${RESTIC_REPOSITORY}'..."
     cd "${HOME}"
-    restic -v backup ${dry_run:+'-n'} {[A-Z]*,"${dotfiles_relpath}"}
+    restic -v backup ${dry_run:+'-n'} "${dotfiles_relpath}" [A-Z]*
 
     echo "Pruning old snapshots from '${RESTIC_REPOSITORY}'..."
     restic -v forget ${dry_run:+'-n'} --prune --keep-last 3
