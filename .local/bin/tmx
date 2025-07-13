@@ -1,7 +1,10 @@
-#!/bin/bash -e
+#!/bin/sh
 #
 # Creates and attaches to the specified `tmux` session, or to the last session
 # if none is specified, or to the `admin` session if no sessions exist.
+
+# Exit if any command fails.
+set -e
 
 usage() {
   cat << EOF
@@ -23,13 +26,13 @@ while getopts 'ls:h' option; do
   esac
 done
 
-[[ -n "${login}" ]] && . "${HOME}/.profile"
+[ -n "${login}" ] && . "${HOME}/.profile"
 
-if [[ -z "${TMUX}" ]]; then
+if [ -z "${TMUX}" ]; then
   # Try to attach to session, else create and attach to it (default `admin`).
-  tmux attach -t "${session}" &> /dev/null || tmux new -A -s "${session:-admin}"
-elif [[ -n "${session}" ]]; then
+  tmux attach -t "${session}" 2> /dev/null || tmux new -A -s "${session:-admin}"
+elif [ -n "${session}" ]; then
   # Create session if it doesn't exist, then switch to it.
-  tmux has -t "${session}" &> /dev/null || tmux new -d -s "${session}"
+  tmux has -t "${session}" 2> /dev/null || tmux new -d -s "${session}"
   tmux switch -t "${session}"
 fi
