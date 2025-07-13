@@ -33,9 +33,6 @@ cd "${nvim_dir}"
 make CMAKE_BUILD_TYPE=Release
 sudo make install
 
-echo "Cleaning up Neovim installation..."
-rm -rf "${nvim_dir}"
-
 echo "Configuring Neovim as the default editor..."
 nvim_bin="$(command -v nvim)"
 sudo update-alternatives --install /usr/bin/editor editor "${nvim_bin}" 100

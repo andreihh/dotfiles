@@ -23,7 +23,6 @@ Usage: $0 [-h] [-n] [-f] [-b BACKUP_DIR] [-u]
 
 Options:
   -n  Perform a dry run (simulate actions, but do not execute them).
-  -f  Force install by deleting prior backup and installation.
   -b  Directory where dotfiles should be backed up, or skip if empty string.
         Default: '${BACKUP_DIR_DEFAULT}'
   -u  Update dotfiles without running setup scripts.
@@ -32,10 +31,9 @@ EOF
 }
 
 backup_dir="${BACKUP_DIR_DEFAULT}"
-while getopts 'nfb:uh' option; do
+while getopts 'nb:uh' option; do
   case "${option}" in
     n) dry_run=true ;;
-    f) force=true ;;
     b) backup_dir="${OPTARG}" ;;
     u) skip_scripts=true ;;
     h) usage && exit 0 ;;
@@ -56,17 +54,14 @@ for dep in 'git' 'stow'; do
   fi
 done
 
-if [[ -n "${force}" ]]; then
-  echo "Deleting prior backup and installation..."
-  [[ -n "${dry_run}" ]] || rm -rf "${backup_dir}" "${DOTFILES_HOME}"
-else
-  [[ -e "${backup_dir}" ]] && echo "Not overwriting existing backup!" && exit 1
-fi
+[[ -e "${backup_dir}" ]] \
+  && echo "Not overwriting existing backup '${backup_dir}'!" \
+  && exit 1
 
 if [[ -e "${DOTFILES_HOME}" ]]; then
-  echo "Dotfiles repository already cloned!"
+  echo "Dotfiles repository already cloned at '${DOTFILES_HOME}'!"
 else
-  echo "Cloning dotfiles repository..."
+  echo "Cloning dotfiles repository to '${DOTFILES_HOME}'..."
   git clone "${REPOSITORY_URL}" "${DOTFILES_HOME}"
 fi
 
@@ -91,7 +86,7 @@ if [[ -n "${backup_dir}" ]]; then
   echo "Setting up backup directory '${backup_dir}'..."
   [[ -n "${dry_run}" ]] || mkdir -p "${backup_dir}"
 
-  echo "Backing up dotfiles..."
+  echo "Backing up dotfiles to '${backup_dir}'..."
   [[ -n "${dry_run}" ]] || cp -Pr "${DOTFILES_HOME}" "${backup_dir}"
 fi
 

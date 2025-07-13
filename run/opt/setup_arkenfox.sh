@@ -36,9 +36,6 @@ cp -fv "${arkenfox_dir}"/{prefsCleaner.sh,updater.sh,user.js} "${profile_dir}/"
 echo "Linking Arkenfox overrides..."
 ln -sfv "${USER_OVERRIDES}" "${profile_dir}/user-overrides.js"
 
-echo "Cleaning up Arkenfox installation..."
-rm -rf "${arkenfox_dir}"
-
 echo "Updating Arkenfox..."
 cd "${profile_dir}"
 ./updater.sh -u -s

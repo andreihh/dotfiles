@@ -182,9 +182,6 @@ if command -v kvantummanager > /dev/null 2>&1; then
 fi
 EOF
 
-echo "Cleaning up Catppuccin installation..."
-rm -rf "${tmp_dir}"
-
 cat << EOF
 Installed Catppuccin ${flavor_camelcase} successfully!
 
