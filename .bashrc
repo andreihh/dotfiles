@@ -45,3 +45,9 @@ for file in "${XDG_CONFIG_HOME:-${HOME}/.config}/bash.d"/*.sh; do
   [[ -f "${file}" ]] && . "${file}"
 done
 unset file
+
+# If this is an `xterm`, set the title to `user@host:dir`.
+case "${TERM}" in
+  xterm* | rxvt*) PS1="\[\e]0;\u@\h:\W\a\]${PS1}" ;;
+  *) ;;
+esac

@@ -94,14 +94,6 @@ _make_prompt() {
   # Set shell on new line and reset style.
   PS1="${PS1}$(printf '\n%s ' "${shell_style}\$${reset_style}")"
   PS2="${shell_style}> ${reset_style}"
-
-  # If this is an `xterm`, set the title to `user@host:dir`.
-  case "${TERM}" in
-    xterm* | rxvt*)
-      PS1="\[\e]0;${debian_chroot:+(${debian_chroot})}\u@\h:\W\a\]${PS1}"
-      ;;
-    *) ;;
-  esac
 }
 
 _make_prompt  # Configure custom prompt
