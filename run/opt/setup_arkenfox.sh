@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/sh
 #
 # Configures the latest version of Arkenfox for a given Firefox profile.
 #
@@ -16,7 +16,10 @@
 # Supported systems: Debian, Ubuntu, Fedora, RHEL, MacOS
 # Dependencies: `git`
 
-[[ $# -ne 1 ]] && echo "Usage: $0 FIREFOX_PROFILE_DIR" && exit 1
+# Exit if any command fails.
+set -e
+
+[ $# -ne 1 ] && echo "Usage: $0 FIREFOX_PROFILE_DIR" && exit 1
 
 readonly XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
 readonly USER_OVERRIDES="${XDG_CONFIG_HOME}/firefox/user-overrides.js"
@@ -31,7 +34,9 @@ echo "Cloning Arkenfox repository..."
 git clone --depth=1 https://github.com/arkenfox/user.js "${arkenfox_dir}"
 
 echo "Copying relevant files to the provided Firefox profile..."
-cp -fv "${arkenfox_dir}"/{prefsCleaner.sh,updater.sh,user.js} "${profile_dir}/"
+for file in 'prefsCleaner.sh' 'updater.sh' 'user.js'; do
+  cp -fv "${arkenfox_dir}/${file}" "${profile_dir}/"
+done
 
 echo "Linking Arkenfox overrides..."
 ln -sfv "${USER_OVERRIDES}" "${profile_dir}/user-overrides.js"

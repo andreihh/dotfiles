@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/sh
 #
 # Installs the latest LTS version of `nvm`.
 #
@@ -7,7 +7,10 @@
 # Supported systems: Debian, Ubuntu, Fedora, RHEL, MacOS
 # Dependencies: `curl`
 
-[[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
+# Exit if any command fails.
+set -e
+
+[ $# -gt 0 ] && echo "Usage: $0" && exit 1
 
 readonly XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
 readonly NVM_DIR="${NVM_DIR:-${XDG_CONFIG_HOME}/nvm}"
