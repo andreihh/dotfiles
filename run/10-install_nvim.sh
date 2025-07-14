@@ -20,9 +20,7 @@ echo "Installing Neovim..."
 
 if command -v brew > /dev/null 2>&1; then
   # Install Neovim with Homebrew on MacOS and exit early.
-  brew install nvim
-  echo "Installed Neovim successfully!"
-  exit 0
+  brew install nvim && echo "Installed Neovim successfully!" && exit 0
 fi
 
 echo "Creating temporary Neovim installation directory..."

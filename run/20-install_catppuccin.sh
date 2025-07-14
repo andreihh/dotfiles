@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/sh
 #
 # Installs Catppuccin themes.
 #
@@ -14,7 +14,10 @@
 # Supported systems: Debian, Ubuntu, Fedora, RHEL, MacOS
 # Dependencies: `git`, `wget`
 
-[[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
+# Exit if any command fails.
+set -e
+
+[ $# -gt 0 ] && echo "Usage: $0" && exit 1
 
 readonly XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
 readonly XDG_DATA_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}"
@@ -25,17 +28,16 @@ case "${THEME:-"catppuccin-frappe"}" in
   catppuccin-frappe)
     flavor='frappe'
     flavor_camelcase='Frappe'
-    gtk_installer_args=(--tweaks frappe)
+    gtk_tweaks_flavor='frappe'
     ;;
   catppuccin-macchiato)
     flavor='macchiato'
     flavor_camelcase='Macchiato'
-    gtk_installer_args=(--tweaks macchiato)
+    gtk_tweaks_flavor='macchiato'
     ;;
   catppuccin-mocha)
     flavor='mocha'
     flavor_camelcase='Mocha'
-    gtk_installer_args=()
     ;;
   *) echo "Theme '${THEME}' not supported, installation skipped!" && exit 0 ;;
 esac
@@ -81,10 +83,10 @@ echo "Downloading 'bat' theme..."
 wget -O "${XDG_CONFIG_HOME}/bat/themes/catppuccin-${flavor}.tmTheme" \
   "${THEME_GIT_URL}/bat/raw/main/themes/Catppuccin ${flavor_camelcase}.tmTheme"
 
-if command -v batcat &> /dev/null; then
+if command -v batcat > /dev/null 2>&1; then
   echo "Updating 'batcat' cache..."
   batcat cache --build
-elif command -v bat &> /dev/null; then
+elif command -v bat > /dev/null 2>&1; then
   echo "Updating 'bat' cache..."
   bat cache --build
 fi
@@ -138,10 +140,10 @@ git clone --depth 1 https://github.com/Fausto-Korpsvart/Catppuccin-GTK-Theme \
 
 echo "Installing GTK theme..."
 "${tmp_dir}/gtk/themes/install.sh" \
-  --dest "${XDG_DATA_HOME}/themes" \
-  --libadwaita --tweaks outline "${gtk_installer_args[@]}"
+  --dest "${XDG_DATA_HOME}/themes" --libadwaita --tweaks outline \
+  ${gtk_tweaks_flavor:+'--tweaks' "${gtk_tweaks_flavor}"}
 
-command -v gnome-shell &> /dev/null \
+command -v gnome-shell > /dev/null 2>&1 \
   && echo "Configuring GNOME theme..." \
   && dconf load / << EOF
 [org/gnome/shell/extensions/user-theme]
