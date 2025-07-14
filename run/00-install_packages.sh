@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/sh
 #
 # Installs core packages.
 #
@@ -8,29 +8,42 @@
 # Dependencies:
 # - MacOS: Homebrew
 
-[[ $# -gt 0 ]] && echo "Usage: $0" && exit 1
+# Exit if any command fails.
+set -e
+
+[ $# -gt 0 ] && echo "Usage: $0" && exit 1
 
 echo "Installing core packages..."
-readonly COMMON_PKGS=(
-  git stow wget curl zip gzip unzip tar gnupg restic rclone  # Core tools
-  alacritty tmux urlscan vim fzf fd-find ripgrep bat calc fastfetch  # TUI tools
-  pre-commit reuse make automake cmake  # CI and build tools
-  keepassxc cava vlc  # General and media tools
-)
+if command -v apt-get > /dev/null 2>&1; then
+  _install_pkg() { sudo apt-get install -y "$@"; }
+  # Install specific Debian / Ubuntu packages:
+  _install_pkg lm-sensors btm build-essential ninja-build gettext cmus
+fi
 
-command -v apt-get &> /dev/null && sudo apt-get install -y \
-  "${COMMON_PKGS[@]}" \
-  lm-sensors btm build-essential ninja-build gettext cmus
+if command -v dnf > /dev/null 2>&1; then
+  _install_pkg() { sudo dnf install -y "$@"; }
+  # Install specific Fedora / RHEL packages:
+  _install_pkg lm_sensors gcc gcc-c++ ninja-build gettext glibc-gconv-extra
+fi
 
-command -v dnf &> /dev/null && sudo dnf install -y \
-  "${COMMON_PKGS[@]}" \
-  lm_sensors gcc gcc-c++ ninja-build gettext glibc-gconv-extra
+if command -v brew > /dev/null 2>&1; then
+  _install_pkg() { brew install "$@"; }
+  # Install specific MacOS packages:
+  _install_pkg lm-sensors bottom gcc cmus font-jetbrains-mono-nerd-font
+fi
 
-command -v brew &> /dev/null && brew install \
-  "${COMMON_PKGS[@]}" \
-  lm-sensors bottom gcc cmus font-jetbrains-mono-nerd-font
+# Install common packages:
+# - Core tools
+# - TUI tools
+# - CI and build tools
+# - General and media tools
+_install_pkg \
+  firefox git stow wget curl zip gzip unzip tar gnupg restic rclone \
+  alacritty tmux urlscan vim fzf fd-find ripgrep bat calc fastfetch \
+  pre-commit reuse make automake cmake \
+  keepassxc cava vlc
 
-if ! command -v brew &> /dev/null; then
+if ! command -v brew > /dev/null 2>&1; then
   readonly XDG_DATA_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}"
   readonly FONT_ZIP='JetBrainsMono.zip'
   readonly FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/${FONT_ZIP}"
@@ -45,23 +58,23 @@ if ! command -v brew &> /dev/null; then
   fc-cache -fv
 fi
 
-if command -v fdfind &> /dev/null; then
+if command -v fdfind > /dev/null 2>&1; then
   echo "Linking 'fd' to 'fdfind'..."
   ln -sfv "$(command -v fdfind)" "${HOME}/.local/bin/fd"
 fi
 
-if command -v batcat &> /dev/null; then
+if command -v batcat > /dev/null 2>&1; then
   echo "Linking 'bat' to 'batcat'..."
   ln -sfv "$(command -v batcat)" "${HOME}/.local/bin/bat"
 
   echo "Updating 'batcat' cache..."
   batcat cache --build
-elif command -v bat &> /dev/null; then
+elif command -v bat > /dev/null 2>&1; then
   echo "Updating 'bat' cache..."
   bat cache --build
 fi
 
-if command -v update-alternatives &> /dev/null; then
+if command -v update-alternatives > /dev/null 2>&1; then
   echo "Configuring Alacritty as the default terminal..."
   alacritty_bin="$(command -v alacritty)"
   sudo update-alternatives --install \
