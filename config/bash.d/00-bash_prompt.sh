@@ -29,7 +29,7 @@ prompt_git_enabled() {
   git rev-parse --is-inside-work-tree > /dev/null 2>&1 || return 1
 }
 
-# Returns the current `git` branch and dirty status.
+# Returns the current `git` branch and dirty status (`nf-fa-code_branch`).
 prompt_git_branch() {
   prompt_git_enabled || return 1
 
@@ -43,7 +43,7 @@ prompt_git_branch() {
     _prompt_branch_dirty='*'
   fi
 
-  echo " ${_prompt_branch}${_prompt_branch_dirty}"  # `nf-fa-code_branch
+  echo " ${_prompt_branch}${_prompt_branch_dirty}"
 }
 
 # Makes a custom prompt in the following format:
@@ -99,4 +99,5 @@ _make_prompt() {
   PS2="${_shell_style}> ${_reset_style}"
 }
 
-_make_prompt  # Configure custom prompt
+# Configure custom shell prompt.
+_make_prompt
