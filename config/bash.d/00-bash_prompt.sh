@@ -4,15 +4,21 @@
 #
 # shellcheck shell=bash
 
-# Command used to detect the current VCS branch to be included in the prompt:
-# - Default is `__vcs_branch`
+# Commands used to detect the current VCS branch to be included in the prompt:
+# - Defaults are `_prompt_git_enabled` and `_prompt_git_branch`
 # - Unset to drop VCS info from the prompt
-# - Set to custom function to work with other systems
-export VCS_BRANCH_PROMPT_COMMAND='__vcs_branch'
+# - Override to support other systems besides `git`
+PROMPT_COMMAND_VCS_ENABLED='_prompt_git_enabled'
+PROMPT_COMMAND_VCS_BRANCH='_prompt_git_branch'
+
+# Returns if a `git` repository is detected.
+_prompt_git_enabled() {
+  git rev-parse --is-inside-work-tree &> /dev/null || return 1
+}
 
 # Returns the current `git` branch and dirty status.
-__git_branch() {
-  git rev-parse --is-inside-work-tree &> /dev/null || return 1
+_prompt_git_branch() {
+  _prompt_git_enabled || return 1
 
   local -r branch="$(git symbolic-ref --quiet --short HEAD 2> /dev/null \
     || git describe --all --exact-match HEAD 2> /dev/null \
@@ -27,18 +33,11 @@ __git_branch() {
   echo " ${branch}${dirty}"  # `nf-fa-code_branch
 }
 
-# Returns the branch name and optionally dirty status of the current VCS branch.
-#
-# Supports `git`.
-__vcs_branch() {
-  __git_branch
-}
-
-# Makes a custom, dynamic prompt in the following format:
+# Makes a custom prompt in the following format:
 #   `(chroot) user at host on branch in dir $`
 #
-# The `chroot`, host and branch are optional. Colors are used if supported.
-__make_prompt() {
+# The `chroot`, host, and branch are optional. Colors are used if supported.
+_make_prompt() {
   # If colors are supported, define styles and colors:
   # - Text: bold
   # - Shell: green
@@ -73,12 +72,8 @@ __make_prompt() {
   fi
 
   # Set current VCS branch if VCS info is enabled and repository is detected.
-  if [[ -n "${VCS_BRANCH_PROMPT_COMMAND}" ]]; then
-    local -r branch="$(${VCS_BRANCH_PROMPT_COMMAND})"
-    if [[ -n "${branch}" ]]; then
-      PS1+="${text_style} on ${vcs_style}${branch}"
-    fi
-  fi
+  PS1+="${text_style}\$(\${PROMPT_COMMAND_VCS_ENABLED} && echo ' on ')"
+  PS1+="${vcs_style}\$(\${PROMPT_COMMAND_VCS_BRANCH})"
 
   PS1+="${text_style} in ${cwd_style} \w"  # Set `cwd`, `nf-fa-folder`
   PS1+="\n${shell_style}\$ ${reset_style}"  # Set shell and reset style
@@ -88,10 +83,10 @@ __make_prompt() {
   # If this is an `xterm`, set the title to `user@host:dir`.
   case "${TERM}" in
     xterm* | rxvt*)
-      PS1="\[\e]0;${debian_chroot:+(${debian_chroot})}\u@\h: \W\a\]${PS1}"
+      PS1="\[\e]0;${debian_chroot:+(${debian_chroot})}\u@\h:\W\a\]${PS1}"
       ;;
     *) ;;
   esac
 }
 
-PROMPT_COMMAND='__make_prompt'  # Set dynamic prompt
+_make_prompt  # Configure custom prompt
