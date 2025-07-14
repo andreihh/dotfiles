@@ -1,4 +1,4 @@
-# bash_prompt.sh: configures the shell prompt.
+# sh_prompt.sh: configures the shell prompt.
 #
 # The prompt is POSIX compliant: supports `bash`, `dash`, `ksh, and `zsh`.
 #

@@ -1,0 +1,9 @@
+# shrc: loads POSIX shell configs.
+#
+# shellcheck shell=sh
+
+# Load user configs.
+for file in "${XDG_CONFIG_HOME:-${HOME}/.config}/sh.d"/*.sh; do
+  [ -f "${file}" ] && . "${file}"
+done
+unset file

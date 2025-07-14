@@ -40,14 +40,26 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# Load POSIX configs.
+[[ -f "${XDG_CONFIG_HOME:-${HOME}/.config}/shrc" ]] \
+  && . "${XDG_CONFIG_HOME:-${HOME}/.config}/shrc"
+
 # Load user configs.
 for file in "${XDG_CONFIG_HOME:-${HOME}/.config}/bash.d"/*.sh; do
   [[ -f "${file}" ]] && . "${file}"
 done
 unset file
 
-# If this is an `xterm`, set the title to `user@host:dir`. Configure last, after
-# any prompt customizations.
+# Shell keymaps for `fzf`:
+# - <C-r> = search command history
+# - **<tab> = complete path / process id / etc.
+#
+# Load after any `PATH` updates.
+command -v fzf &> /dev/null && eval "$(fzf --bash)"
+
+# If this is an `xterm`, set the title to `user@host:dir`.
+#
+# Configure after any prompt customizations.
 case "${TERM}" in
   xterm* | rxvt*) PS1="\[\e]0;\u@\h:\W\a\]${PS1}" ;;
   *) ;;

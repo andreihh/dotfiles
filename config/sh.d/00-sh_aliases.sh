@@ -1,4 +1,4 @@
-# bash_aliases.sh: contains various aliases for interactive shells.
+# sh_aliases.sh: contains various aliases for interactive shells.
 #
 # shellcheck shell=sh
 
