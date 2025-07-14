@@ -45,7 +45,7 @@ prompt_git_branch() {
 }
 
 # Makes a custom prompt in the following format:
-#   `(chroot) user at host on branch in dir $`
+#   `chroot user at host on branch in dir $`
 #
 # The `chroot`, host, and branch are optional. Colors are used if supported.
 _make_prompt() {
@@ -68,13 +68,9 @@ _make_prompt() {
     local -r cwd_style="\[$(tput sgr0 && tput bold && tput setaf 4)\]"
   fi
 
-  # Set variable identifying the `chroot` you work in.
-  if [[ -z "${debian_chroot:-}" ]] && [[ -r /etc/debian_chroot ]]; then
-    debian_chroot="$(cat /etc/debian_chroot)"
-  fi
-
-  # Set the `chroot`, if any.
-  PS1="${debian_chroot:+${chroot_style}(${debian_chroot}) }"
+  # Set the `chroot` you work in, if any (`nf-fa-folder_tree`).
+  [[ -r /etc/debian_chroot ]] && _debian_chroot="$(cat /etc/debian_chroot)"
+  PS1="${_debian_chroot:+${chroot_style} ${_debian_chroot} }"
 
   # Set current user (`nf-fa-user`).
   PS1="${PS1}${user_style} ${USER}"
