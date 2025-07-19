@@ -13,9 +13,9 @@ return { -- Fuzzy finder (files, lsp, etc.)
       "s+",
       function()
         require("fzf-lua").buffers({
-          buffers = vim.tbl_filter(function(buf)
+          filter = function(buf)
             return vim.api.nvim_get_option_value("modified", { buf = buf })
-          end, vim.api.nvim_list_bufs()),
+          end,
           fzf_opts = { ["--header-lines"] = false },
         })
       end,

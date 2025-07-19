@@ -19,14 +19,19 @@ EOF
 
 while getopts 'ls:h' option; do
   case "${option}" in
-    s) session="${OPTARG}" ;;
     l) login=true ;;
+    s) session="${OPTARG}" ;;
     h) usage && exit 0 ;;
     *) usage && exit 1 ;;
   esac
 done
 
-[ -n "${login}" ] && . "${HOME}/.profile"
+if [ -n "${login}" ]; then
+  # Execute this script with the user's default login shell to ensure the
+  # environment is initialized properly for the remote `tmux` config.
+  shell="$(getent passwd "${USER}" | cut -d : -f 7)"
+  exec "${shell}" -lc "'$0' ${session:+'-s' "'${session}'"}"
+fi
 
 if [ -z "${TMUX}" ]; then
   # Try to attach to session, else create and attach to it (default `admin`).
