@@ -47,8 +47,8 @@ The dotfiles follow the XDG specification where possible:
 - https://wiki.archlinux.org/title/XDG_Base_Directory
 
 If not already set, the XDG environment variables are exported with default
-values in `${HOME}/.config/profile.d/00-env_xdg.sh` because some tools don't
-fall back on proper defaults and only work if they are explicitly defined.
+values in `${HOME}/.config/env.d/00-env_xdg.sh` because some tools don't fall
+back on proper defaults and only work if they are explicitly defined.
 
 ## Private configs
 
@@ -56,21 +56,20 @@ User or device specific configs and binaries that should not be included in the
 repository can be provided in:
 
 - `${HOME}/.local/bin/`
-- `${XDG_CONFIG_HOME:-${HOME}/.config}/profile.d/`
-- `${XDG_CONFIG_HOME:-${HOME}/.config}/bash.d/`
+- `${XDG_CONFIG_HOME:-${HOME}/.config}/env.d/`
+- `${XDG_CONFIG_HOME:-${HOME}/.config}/sh.d/`
 - `${XDG_CONFIG_HOME:-${HOME}/.config}/nvim/lua/config/overrides.lua`
 - `${XDG_CONFIG_HOME:-${HOME}/.config}/nvim/lua/plugins/`
 - `${XDG_CONFIG_HOME:-${HOME}/.config}/nvim/[after/]lsp/`
 - `${XDG_CONFIG_HOME:-${HOME}/.config}/vim/overrides.vim`
-- `${XDG_CONFIG_HOME:-${HOME}/.config}/vim/overrides.plug.vim`
 
-Example `${XDG_CONFIG_HOME:-${HOME}/.config}/bash.d/10-extras.sh`:
+Example `${XDG_CONFIG_HOME:-${HOME}/.config}/sh.d/10-extras.sh`:
 
 ```bash
 # extras.sh: exports device-specific settings.
 
 # Export Git credentials.
-export GIT_AUTHOR_NAME="Andrei Heidelbacher"
+export GIT_AUTHOR_NAME='Andrei Heidelbacher'
 export GIT_COMMITTER_NAME="${GIT_AUTHOR_NAME}"
 ...
 ```

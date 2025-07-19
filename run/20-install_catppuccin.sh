@@ -109,7 +109,7 @@ cp -fv "${XDG_CONFIG_HOME}/cava/themes/catppuccin-${flavor}.cava" \
   "${XDG_CONFIG_HOME}/cava/config"
 
 echo "Configuring shell theme..."
-cat << EOF > "${XDG_CONFIG_HOME}/profile.d/10-theme.sh"
+cat << EOF > "${XDG_CONFIG_HOME}/env.d/10-theme.sh"
 # theme.sh: configures shell theme.
 #
 # shellcheck shell=sh
@@ -174,7 +174,7 @@ cat << EOF > "${XDG_CONFIG_HOME}/Kvantum/kvantum.kvconfig"
 theme=catppuccin-${flavor}-lavender
 EOF
 
-cat << EOF > "${XDG_CONFIG_HOME}/profile.d/10-kvantum.sh"
+cat << EOF > "${XDG_CONFIG_HOME}/env.d/10-kvantum.sh"
 # kvantum.sh: configures Qt theme to use Kvantum.
 #
 # shellcheck shell=sh

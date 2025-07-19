@@ -4,14 +4,9 @@
 #
 # shellcheck shell=sh
 
-# Set `PATH` so it includes user's private `bin` if it exists.
-[ -d "${HOME}"/.local/bin ] && PATH="${HOME}/.local/bin${PATH:+:${PATH}}"
-
-# Load user configs.
-for file in "${XDG_CONFIG_HOME:-${HOME}/.config}/profile.d"/*.sh; do
-  [ -f "${file}" ] && . "${file}"
-done
-unset file
+# Load user environment.
+[ -f "${XDG_CONFIG_HOME:-${HOME}/.config}/envrc" ] \
+  && . "${XDG_CONFIG_HOME:-${HOME}/.config}/envrc"
 
 # Include `.bashrc` if running `bash` and it exists, but only after loading all
 # shell-agnostic configs and environment.
