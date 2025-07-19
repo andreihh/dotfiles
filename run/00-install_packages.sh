@@ -38,7 +38,7 @@ fi
 # - CI and build tools
 # - General and media tools
 _install_pkg \
-  firefox git stow wget curl zip gzip unzip tar gnupg restic rclone \
+  git stow wget curl zip gzip unzip tar gnupg restic rclone \
   alacritty tmux urlscan vim fzf fd-find ripgrep bat calc fastfetch \
   pre-commit reuse make automake cmake \
   keepassxc cava vlc
