@@ -21,12 +21,12 @@ echo "Installing 'rustup' in '${RUSTUP_HOME}' and 'cargo' in '${CARGO_HOME}'..."
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 echo "Configuring 'cargo' shell integration..."
-cat << 'EOF' > "${XDG_CONFIG_HOME}/bash.d/20-cargo_integration.sh"
+cat << 'EOF' > "${XDG_CONFIG_HOME}/sh.d/20-cargo_integration.sh"
 # cargo_integration.sh: loads `cargo` shell integration.
 #
-# shellcheck shell=bash
+# shellcheck shell=sh
 
-[[ -s "${CARGO_HOME}/env" ]] && . "${CARGO_HOME}/env"
+[ -s "${CARGO_HOME}/env" ] && . "${CARGO_HOME}/env"
 EOF
 
 echo "Installed 'rustup' successfully!"
