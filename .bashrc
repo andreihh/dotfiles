@@ -50,13 +50,6 @@ for file in "${XDG_CONFIG_HOME:-${HOME}/.config}/bash.d"/*.sh; do
 done
 unset file
 
-# Shell keymaps for `fzf`:
-# - <C-r> = search command history
-# - **<tab> = complete path / process id / etc.
-#
-# Load after any `PATH` updates.
-command -v fzf &> /dev/null && eval "$(fzf --bash)"
-
 # If this is an `xterm`, set the title to `user@host:dir`.
 #
 # Configure after any prompt customizations.
