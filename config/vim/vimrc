@@ -71,24 +71,10 @@ Plug 'wellle/context.vim'  " Show current context
 " VCS
 Plug 'mhinz/vim-signify'  " VCS gutter signs for changed lines
 Plug 'tpope/vim-fugitive'  " Git integration
-" LSP
-Plug 'prabirshrestha/vim-lsp'  " LSP engine
-Plug 'mattn/vim-lsp-settings'  " LSP registry and installer
-" Completion
-Plug 'prabirshrestha/asyncomplete.vim'  " Async completion engine
-Plug 'prabirshrestha/asyncomplete-lsp.vim'  " LSP completion source
-Plug 'prabirshrestha/asyncomplete-buffer.vim'  " Buffer completion source
-Plug 'prabirshrestha/asyncomplete-file.vim'  " File path completion source
-" Snippets
-Plug 'hrsh7th/vim-vsnip'  " Snippet engine
-Plug 'hrsh7th/vim-vsnip-integ'  " Snippet expansion and completion source
-Plug 'rafamadriz/friendly-snippets'  " Snippet library
 " Formatting
 Plug 'google/vim-maktaba'  " Required dependency for `vim-codefmt`
 Plug 'google/vim-glaive'  " Flag configuration for `vim-codefmt`
 Plug 'google/vim-codefmt'  " Formatter registry and formatting commands
-" Plugin overrides
-runtime overrides.plug.vim
 call plug#end()
 call glaive#Install()
 
@@ -174,9 +160,9 @@ set undofile
 set nobackup
 set nowritebackup
 
-" Enable default completion.
+" Enable omni-completion.
 set omnifunc=syntaxcomplete#Complete
-set completeopt=menuone,noinsert,noselect
+set completeopt=menuone,noselect,popup,fuzzy
 
 " What to store in a session. Don't save:
 " - Unloaded and hidden buffers
@@ -207,21 +193,6 @@ augroup END
 augroup config_netrw_keymaps
   autocmd!
   autocmd filetype netrw call s:ConfigNetrwKeymaps()
-augroup END
-
-" Configure buffer and file path completion sources.
-augroup asyncomplete_install
-  autocmd!
-  autocmd User asyncomplete_setup call s:ConfigBufferCompletion()
-  autocmd User asyncomplete_setup call s:ConfigFilePathCompletion()
-augroup END
-
-" Configure LSP only for languages that have the server registered.
-augroup lsp_install
-  autocmd!
-  autocmd User lsp_buffer_enabled call s:OnLspBufferEnabled()
-  autocmd User lsp_float_opened call s:ConfigLspFloatKeymaps()
-  autocmd User lsp_float_closed call s:RevertLspFloatKeymaps()
 augroup END
 
 " [[ Commands ]]
@@ -304,50 +275,6 @@ let g:netrw_liststyle = 1
 let g:context_enabled = 0
 let g:context_add_mappings = 0
 
-" Show diagnostics inline and as float on cursor hover.
-let g:lsp_diagnostics_virtual_text_align = 'after'
-let g:lsp_diagnostics_virtual_text_padding_left = 2
-let g:lsp_diagnostics_virtual_text_wrap = 'truncate'
-let g:lsp_diagnostics_float_cursor = 1
-
-" Registers buffer completion source.
-function! s:ConfigBufferCompletion() abort
-  call asyncomplete#register_source(
-      \ asyncomplete#sources#buffer#get_source_options({
-          \ 'name': 'buffer',
-          \ 'allowlist': ['*'],
-          \ 'completor': function('asyncomplete#sources#buffer#completor'),
-          \ }))
-endfunction
-
-" Registers file path completion source.
-function! s:ConfigFilePathCompletion() abort
-  call asyncomplete#register_source(
-      \ asyncomplete#sources#file#get_source_options({
-          \ 'name': 'file',
-          \ 'allowlist': ['*'],
-          \ 'completor': function('asyncomplete#sources#file#completor'),
-          \ }))
-endfunction
-
-" Enables LSP completion and tags.
-function! s:OnLspBufferEnabled() abort
-  setlocal omnifunc=lsp#complete
-  if exists('+tagfunc')
-    setlocal tagfunc=lsp#tagfunc
-  endif
-endfunction
-
-" Diagnostic icons:
-" - Error: `nf-md-close_circle_outline`
-" - Warning: `nf-md-alert_outline`
-" - Info: `nf-md-information_outline`
-" - Hint: `nf-md-lightbulb_outline`
-let g:lsp_diagnostics_signs_error = {'text': '󰅚'}
-let g:lsp_diagnostics_signs_warning = {'text': '󰀪'}
-let g:lsp_diagnostics_signs_information = {'text': '󰋽'}
-let g:lsp_document_code_action_signs_hint = {'text': '󰌶'}
-
 " Returns the current session name and icon (`nf-fa-folder`).
 function! g:SessionName() abort
   if !filereadable(v:this_session)
@@ -370,12 +297,6 @@ function! g:FileType() abort
   return empty(&filetype) ? 'no ft' : l:icon . &filetype
 endfunction
 
-" Returns the active LSPs and icon (`nf-fa-cog`).
-function! g:LspStatus() abort
-  let l:lsps = lsp#get_allowed_servers()
-  return !empty(l:lsps) ? ' ' . join(l:lsps) : ''
-endfunction
-
 " Lightline separator icons:
 " - `nf-pl-left_hard_divider`
 " - `nf-pl-right_hard_divider`
@@ -385,7 +306,7 @@ let g:lightline = {
     \ 'colorscheme': $VIM_THEME,
     \ 'active': {
     \   'left': [['mode', 'paste'], ['session', 'branch'], ['filename']],
-    \   'right': [['lineinfo'], ['percentwin'], ['lsp_status', 'ft']],
+    \   'right': [['lineinfo'], ['percentwin']],
     \ },
     \ 'inactive': {
     \   'left': [['filename']],
@@ -396,7 +317,6 @@ let g:lightline = {
     \ 'component_function': {
     \   'session': 'g:SessionName',
     \   'branch': 'g:BranchName',
-    \   'lsp_status': 'g:LspStatus',
     \   'ft': 'g:FileType',
     \ },
     \ }
@@ -592,23 +512,14 @@ nnoremap dvH :DiffGitHistory<CR>
 nnoremap dvb :DiffGitBlame<CR>
 
 " Completion:
-" - <C-space> = trigger completion
-" - <C-j/k> = select next / previous item
-" - <C-h/l> = jump to previous / next snippet placeholder
+" - <C-j/k> = trigger completion / select next / previous item
+" - <C-z> (wildcharm) = trigger command completion
 " - <tab> = accept selected item
 " - <C-c> = [c]ancel
-imap <C-@> <plug>(asyncomplete_force_refresh)
-imap <C-space> <plug>(asyncomplete_force_refresh)
-inoremap <C-j> <C-n>
-inoremap <C-k> <C-p>
-imap <expr> <C-l> vsnip#available(1) ? '<plug>(vsnip-expand-or-jump)' : ''
-smap <expr> <C-l> vsnip#available(1) ? '<plug>(vsnip-expand-or-jump)' : ''
-imap <expr> <C-h> vsnip#available(-1) ? '<plug>(vsnip-jump-prev)' : ''
-smap <expr> <C-h> vsnip#available(-1) ? '<plug>(vsnip-jump-prev)' : ''
+inoremap <expr> <C-j> pumvisible() ? '<C-n>' : '<C-x><C-o>'
+inoremap <expr> <C-k> pumvisible() ? '<C-p>' : '<C-x><C-o>'
 inoremap <expr> <tab> pumvisible() ? '<C-y>' : '<tab>'
 inoremap <C-c> <C-e>
-cnoremap <C-@> <C-z>
-cnoremap <C-space> <C-z>
 cnoremap <C-j> <C-n>
 cnoremap <C-k> <C-p>
 cnoremap <tab> <C-y>
@@ -620,65 +531,16 @@ cnoremap <C-c> <C-e>
 " - <leader>c = toggle comment
 " - <leader>f = toggle [f]old
 " - <leader>- = toggle navigation context
+" - <leader>= = format
+" - H = show [h]elp
 nmap <leader>cc gcc
 nmap <leader>c gc
 xmap <leader>c gc
 nnoremap <leader>f za
 nnoremap <leader>- :echo expand('%')<CR>:ContextToggleWindow<CR>
-
-" LSP:
-" - L = install [L]SP server for current file
-" - g + d/D/i/r/t = perform code navigation
-" - [r / ]r = jump to previous / next [r]eference
-" - [d / ]d / [w / ]w / [e / ]e = jump to previous / next diagnostic
-" - H = show [h]elp
-"   - <C-u/d> = scroll help [u]p / [d]own
-"   - <C-c> / <esc> = [c]lose
-" - <leader>H = toggle inlay [h]ints
-" - <leader>r = [r]ename symbol under cursor
-" - <leader> + a/A = code (lens) [a]ctions
-"   - j/k = select next / previous item
-"   - # = accept item #
-"   - <CR> = accept selected item
-"   - <esc> = [e]xit
-" - <leader>= = format
-nnoremap L :LspInstallServer<CR>
-nmap gd <plug>(lsp-definition)
-nmap gD <plug>(lsp-declaration)
-nmap gi <plug>(lsp-implementation)
-nmap gr <plug>(lsp-references)
-nmap gt <plug>(lsp-type-hierarchy)
-nmap [r <plug>(lsp-previous-reference)
-nmap ]r <plug>(lsp-next-reference)
-nmap [d <plug>(lsp-previous-diagnostic)
-nmap ]d <plug>(lsp-next-diagnostic)
-nmap [w <plug>(lsp-previous-warning)
-nmap ]w <plug>(lsp-next-warning)
-nmap [e <plug>(lsp-previous-error)
-nmap ]e <plug>(lsp-next-error
-nmap H <plug>(lsp-hover-float)
-nmap <leader>r <plug>(lsp-rename)
-nmap <leader>a <plug>(lsp-code-action-float)
-nmap <leader>A <plug>(lsp-code-lens)
 nnoremap <leader>= :FormatCode<CR>
 xnoremap <leader>= :FormatLines<CR>
-
-" Suppress automatic mapping of <C-c> by LSP.
-nmap <C-tab> <plug>(lsp-float-close)
-
-function! s:ConfigLspFloatKeymaps() abort
-  nmap <buffer> <C-c> <plug>(lsp-float-close)
-  nmap <buffer> <esc> <plug>(lsp-float-close)
-  nnoremap <buffer> <expr> <C-u> lsp#scroll(-5)
-  nnoremap <buffer> <expr> <C-d> lsp#scroll(+5)
-endfunction
-
-function! s:RevertLspFloatKeymaps() abort
-  silent! nunmap <buffer> <C-c>
-  silent! nunmap <buffer> <esc>
-  silent! nunmap <buffer> <C-u>
-  silent! nunmap <buffer> <C-d>
-endfunction
+nnoremap H K
 
 " [[ Config overrides ]]
 
