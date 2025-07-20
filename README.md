@@ -47,8 +47,8 @@ The dotfiles follow the XDG specification where possible:
 - https://wiki.archlinux.org/title/XDG_Base_Directory
 
 If not already set, the XDG environment variables are exported with default
-values in `${HOME}/.config/env.d/00-env_xdg.sh` because some tools don't fall
-back on proper defaults and only work if they are explicitly defined.
+values in `${HOME}/.config/env.d/00-xdg.sh` because some tools don't fall back
+on proper defaults and only work if they are explicitly defined.
 
 ## Private configs
 

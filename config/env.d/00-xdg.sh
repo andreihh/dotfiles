@@ -1,4 +1,4 @@
-# env_xdg.sh: exports XDG environment variables.
+# xdg.sh: exports XDG environment variables.
 #
 # shellcheck shell=sh
 

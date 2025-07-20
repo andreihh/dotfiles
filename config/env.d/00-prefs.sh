@@ -1,4 +1,4 @@
-# env_prefs.sh: exports preferences as environment variables.
+# prefs.sh: exports preferences as environment variables.
 #
 # shellcheck shell=sh
 
