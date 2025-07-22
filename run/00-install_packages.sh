@@ -52,7 +52,7 @@ has-cmd fdfind && ln -sfv "$(command -v fdfind)" "${HOME}/.local/bin/fd"
 has-cmd batcat && ln -sfv "$(command -v batcat)" "${HOME}/.local/bin/bat"
 
 echo "Updating 'bat' cache..."
-batcat cache --build || bat cache --build
+"$(command -v bat)" cache --build
 
 if has-cmd update-alternatives; then
   echo "Configuring Alacritty as the default terminal..."

@@ -9,21 +9,17 @@ set -e
 
 [ $# -gt 0 ] && echo "Usage: $0" && exit 1
 
-if ! command -v gnome-shell > /dev/null 2>&1; then
+if ! has-cmd gnome-shell; then
   echo "GNOME not installed, configuration skipped!"
   exit 0
 fi
 
-command -v apt-get > /dev/null 2>&1 \
-  && gtk_murrine_engine='gtk2-engines-murrine' \
-  && _install_pkg() { sudo apt-get install -y "$@"; }
-
-command -v dnf > /dev/null 2>&1 \
-  && gtk_murrine_engine='gtk-murrine-engine' \
-  && _install_pkg() { sudo dnf install -y "$@"; }
+has-cmd apt-get && gtk_murrine_engine='gtk2-engines-murrine'
+has-cmd dnf && gtk_murrine_engine='gtk-murrine-engine'
+has-cmd rpm-ostree && gtk_murrine_engine='gtk-murrine-engine'
 
 echo "Installing GNOME dependencies..."
-_install_pkg \
+install-pkg \
   sassc \
   gnome-themes-extra \
   gnome-shell-extension-user-theme \

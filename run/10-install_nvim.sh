@@ -12,7 +12,7 @@ set -e
 [ $# -gt 0 ] && echo "Usage: $0" && exit 1
 
 if has-cmd brew; then
-  echo "Cannot install Neovim from sources on MacOS! Skipping..."
+  echo "MacOS not supported, Neovim installation from sources skipped!"
   exit 0
 fi
 
