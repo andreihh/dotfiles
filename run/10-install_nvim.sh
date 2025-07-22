@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Installs Neovim.
+# Installs Neovim from sources.
 #
 # See https://github.com/neovim/neovim/blob/master/BUILD.md.
 #
@@ -11,9 +11,10 @@ set -e
 
 [ $# -gt 0 ] && echo "Usage: $0" && exit 1
 
-has-cmd brew \
-  && echo "Cannot install Neovim from sources on MacOS! Skipping..." \
-  && exit 0
+if has-cmd brew; then
+  echo "Cannot install Neovim from sources on MacOS! Skipping..."
+  exit 0
+fi
 
 echo "Installing Neovim from sources..."
 
