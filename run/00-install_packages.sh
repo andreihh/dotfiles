@@ -20,7 +20,7 @@ echo "Installing core packages..."
 # - General and media tools
 install-pkg \
   git stow wget curl zip gzip unzip tar gnupg restic rclone \
-  alacritty tmux vim neovim fzf fd-find ripgrep bat urlscan calc fastfetch \
+  alacritty tmux vim neovim lsd fzf fd-find ripgrep bat urlscan calc fastfetch \
   pre-commit reuse make automake cmake \
   keepassxc vlc cava
 

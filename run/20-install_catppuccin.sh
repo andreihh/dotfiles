@@ -12,7 +12,7 @@
 # See https://catppuccin.com.
 #
 # Supported systems: Debian, Ubuntu, Fedora, RHEL, MacOS
-# Dependencies: `git`, `wget`
+# Dependencies: `git`, `wget`, `unzip`
 
 # Exit if any command fails.
 set -e
@@ -48,7 +48,7 @@ echo "Creating temporary Catppuccin installation directory..."
 tmp_dir="$(mktemp -d "${TMPDIR:-/tmp}/catppuccin.XXXXXXXXX")"
 
 echo "Creating application theme directories..."
-for app in 'alacritty' 'fzf' 'bat' 'cava'; do
+for app in 'alacritty' 'lsd' 'fzf' 'bat' 'cava'; do
   mkdir -p "${XDG_CONFIG_HOME}/${app}/themes"
 done
 
@@ -75,6 +75,10 @@ cat << EOF > "${XDG_CONFIG_HOME}/ghostty/theme"
 theme = "catppuccin-${flavor}"
 EOF
 
+echo "Downloading 'lsd' theme..."
+wget -O "${XDG_CONFIG_HOME}/lsd/themes/catppuccin-${flavor}.yaml" \
+  "${THEME_GIT_URL}/lsd/raw/main/themes/catppuccin-${flavor}/colors.yaml"
+
 echo "Downloading 'fzf' theme..."
 wget -O "${XDG_CONFIG_HOME}/fzf/themes/catppuccin-${flavor}.sh" \
   "${THEME_GIT_URL}/fzf/raw/main/themes/catppuccin-fzf-${flavor}.sh"
@@ -82,6 +86,10 @@ wget -O "${XDG_CONFIG_HOME}/fzf/themes/catppuccin-${flavor}.sh" \
 echo "Downloading 'bat' theme..."
 wget -O "${XDG_CONFIG_HOME}/bat/themes/catppuccin-${flavor}.tmTheme" \
   "${THEME_GIT_URL}/bat/raw/main/themes/Catppuccin ${flavor_camelcase}.tmTheme"
+
+echo "Linking 'lsd' colors..."
+ln -sfv "${XDG_CONFIG_HOME}/lsd/themes/catppuccin-${flavor}.yaml" \
+  "${XDG_CONFIG_HOME}/lsd/colors.yaml"
 
 echo "Updating 'bat' cache..."
 "$(command -v bat)" cache --build

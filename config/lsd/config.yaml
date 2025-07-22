@@ -1,0 +1,5 @@
+# config.yaml: configures `lsd`.
+
+# Use custom color theme from `colors.yaml` if available.
+color:
+  theme: custom

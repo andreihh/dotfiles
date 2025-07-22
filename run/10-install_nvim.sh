@@ -19,7 +19,7 @@ fi
 echo "Installing Neovim from sources..."
 
 echo "Installing Neovim build dependencies..."
-install-pkg git unzip curl make cmake ninja-build gettext
+install-pkg git curl make cmake ninja-build gettext
 has-cmd apt-get && install-pkg build-essential
 has-cmd dnf && install-pkg gcc glibc-gconv-extra
 
