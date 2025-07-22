@@ -83,13 +83,8 @@ echo "Downloading 'bat' theme..."
 wget -O "${XDG_CONFIG_HOME}/bat/themes/catppuccin-${flavor}.tmTheme" \
   "${THEME_GIT_URL}/bat/raw/main/themes/Catppuccin ${flavor_camelcase}.tmTheme"
 
-if command -v batcat > /dev/null 2>&1; then
-  echo "Updating 'batcat' cache..."
-  batcat cache --build
-elif command -v bat > /dev/null 2>&1; then
-  echo "Updating 'bat' cache..."
-  bat cache --build
-fi
+echo "Updating 'bat' cache..."
+"$(command -v bat)" cache --build
 
 echo "Downloading 'cava' theme..."
 wget -O "${XDG_CONFIG_HOME}/cava/themes/catppuccin-${flavor}.cava" \
@@ -143,7 +138,7 @@ echo "Installing GTK theme..."
   --dest "${XDG_DATA_HOME}/themes" --libadwaita --tweaks outline \
   ${gtk_tweaks_flavor:+'--tweaks' "${gtk_tweaks_flavor}"}
 
-command -v gnome-shell > /dev/null 2>&1 \
+has-cmd dconf \
   && echo "Configuring GNOME theme..." \
   && dconf load / << EOF
 [org/gnome/shell/extensions/user-theme]
