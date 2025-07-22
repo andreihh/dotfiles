@@ -18,16 +18,11 @@ set -e
 readonly DEB_INSTALLER='https://raw.githubusercontent.com/mkasberg/ghostty-ubuntu/HEAD/install.sh'
 
 echo "Installing Ghostty..."
+has-cmd apt-get && /bin/bash -c "$(curl -fsSL "${DEB_INSTALLER}")"
+has-cmd dnf && sudo dnf copr enable pgdev/ghostty && install-pkg ghostty
+has-cmd brew && install-pkg ghostty
 
-command -v apt-get > /dev/null 2>&1 \
-  && /bin/bash -c "$(curl -fsSL "${DEB_INSTALLER}")"
-
-command -v dnf > /dev/null 2>&1 \
-  && sudo dnf copr enable pgdev/ghostty && sudo dnf install -y ghostty
-
-command -v brew > /dev/null 2>&1 && brew install ghostty
-
-if command -v update-alternatives > /dev/null 2>&1; then
+if has-cmd update-alternatives; then
   echo "Configuring Ghostty as the default terminal..."
   ghostty_bin="$(command -v ghostty)"
   sudo update-alternatives --install \

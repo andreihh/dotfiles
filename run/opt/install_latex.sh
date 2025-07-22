@@ -12,12 +12,8 @@ set -e
 [ $# -gt 0 ] && echo "Usage: $0" && exit 1
 
 echo "Installing LaTeX..."
-
-command -v apt-get > /dev/null 2>&1 && sudo apt-get install -y texlive-full
-
-command -v dnf > /dev/null 2>&1 \
-  && sudo dnf install -y texlive-scheme-full latexmk biber
-
-command -v brew > /dev/null 2>&1 && brew install mactex biber
+has-cmd apt-get && install-pkg texlive-full
+has-cmd dnf && install-pkg texlive-scheme-full latexmk biber
+has-cmd brew && install-pkg mactex biber
 
 echo "Installed LaTeX successfully!"

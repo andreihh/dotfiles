@@ -14,4 +14,5 @@ set -e
 
 echo "Installing 'pip'..."
 curl -Lo - https://bootstrap.pypa.io/get-pip.py | python3
+
 echo "Installed 'pip' successfully!"

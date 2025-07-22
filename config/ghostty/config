@@ -33,8 +33,7 @@ window-decoration = none
 resize-overlay = never
 
 # Start maximized by default.
-window-width = 9999
-window-height = 9999
+maximize = true
 
 # Close terminal without confirmation when last window is closed.
 quit-after-last-window-closed = true

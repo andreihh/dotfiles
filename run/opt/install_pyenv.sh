@@ -19,7 +19,7 @@ readonly XDG_DATA_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}"
 readonly PYENV_ROOT="${PYENV_ROOT:-${XDG_DATA_HOME}/pyenv}"
 
 echo "Installing 'pyenv' in '${PYENV_ROOT}'..."
-if command -v brew > /dev/null 2>&1; then
+if has-cmd brew; then
   brew install pyenv pyenv-virtualenv
 else
   curl -fsSL https://pyenv.run | bash
