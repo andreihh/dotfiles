@@ -2,7 +2,7 @@
 #
 # Installs `pyenv`.
 #
-# See https://github.com/pyenv/pyenv?tab=readme-ov-file#installation.
+# See https://github.com/pyenv/pyenv#installation.
 #
 # Supported systems: Debian, Ubuntu, Fedora, RHEL, MacOS
 # Dependencies:

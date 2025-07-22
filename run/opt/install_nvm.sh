@@ -2,7 +2,7 @@
 #
 # Installs the latest LTS version of `nvm`.
 #
-# See https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating.
+# See https://github.com/nvm-sh/nvm#installing-and-updating.
 #
 # Supported systems: Debian, Ubuntu, Fedora, RHEL, MacOS
 # Dependencies: `curl`

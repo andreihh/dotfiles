@@ -1,4 +1,6 @@
 # config.yaml: configures `lsd`.
+#
+# See https://github.com/lsd-rs/lsd#configuration.
 
 # Use custom color theme from `colors.yaml` if available.
 color:

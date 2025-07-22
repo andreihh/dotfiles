@@ -1,3 +1,7 @@
+# shellcheckrc: configures `shellcheck`.
+#
+# See https://github.com/koalaman/shellcheck/wiki/Directive#shellcheckrc-file.
+
 # Follow constant external sources.
 external-sources=true
 

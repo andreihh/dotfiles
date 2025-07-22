@@ -1,3 +1,8 @@
+# ripgreprc: configures `ripgrep`.
+#
+# See
+# https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file.
+
 # Print line numbers for matches.
 --line-number
 
