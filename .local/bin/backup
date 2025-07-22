@@ -1,8 +1,8 @@
 #!/bin/sh
 #
 # Manages encrypted incremental backups for:
-# - dotfiles
-# - all directories starting with an uppercase letter from the home directory
+# - Dotfiles
+# - All directories starting with an uppercase letter from the home directory
 #
 # See https://restic.readthedocs.io/en/latest/.
 

@@ -96,12 +96,15 @@ fi
 echo "Reverting changes from adopted files..."
 [ -n "${dry_run}" ] || git -C "${DOTFILES_HOME}" checkout .
 
-echo "Removing shell-specific configs to ensure '~/.profile' is loaded..."
-for shell_config in '.bash_profile' '.bash_login'; do
+echo "Removing unused shell configs and ensuring '~/.profile' is loaded..."
+for shell_config in '.bash_profile' '.bash_login' '.bash_history'; do
   [ -n "${dry_run}" ] || rm -fv "${HOME}/${shell_config}"
 done
 
 if [ -z "${skip_scripts}" ]; then
+  echo "Ensuring 'PATH' contains '${HOME}/.local/bin'..."
+  export PATH="${HOME}/.local/bin${PATH:+:${PATH}}"
+
   echo "Running setup scripts..."
   # Name scripts with a number prefix (e.g., `10-script.sh`) to enforce a
   # specific execution order. This is required to ensure script dependencies are

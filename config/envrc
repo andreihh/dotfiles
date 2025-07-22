@@ -3,7 +3,7 @@
 # shellcheck shell=sh
 
 # Set `PATH` so it includes user's private `bin` if it exists.
-[ -d "${HOME}"/.local/bin ] && PATH="${HOME}/.local/bin${PATH:+:${PATH}}"
+[ -d "${HOME}/.local/bin" ] && PATH="${HOME}/.local/bin${PATH:+:${PATH}}"
 
 # Load user configs.
 for file in "${XDG_CONFIG_HOME:-${HOME}/.config}/env.d"/*.sh; do
