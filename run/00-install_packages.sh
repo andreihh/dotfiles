@@ -17,19 +17,19 @@ echo "Installing core packages..."
 if command -v apt-get > /dev/null 2>&1; then
   _install_pkg() { sudo apt-get install -y "$@"; }
   # Install specific Debian / Ubuntu packages:
-  _install_pkg lm-sensors btm build-essential ninja-build gettext cmus
+  _install_pkg btm build-essential ninja-build gettext cmus
 fi
 
 if command -v dnf > /dev/null 2>&1; then
   _install_pkg() { sudo dnf install -y "$@"; }
   # Install specific Fedora / RHEL packages:
-  _install_pkg lm_sensors gcc gcc-c++ ninja-build gettext glibc-gconv-extra
+  _install_pkg gcc gcc-c++ ninja-build gettext glibc-gconv-extra
 fi
 
 if command -v brew > /dev/null 2>&1; then
   _install_pkg() { brew install "$@"; }
   # Install specific MacOS packages:
-  _install_pkg lm-sensors bottom gcc cmus font-jetbrains-mono-nerd-font
+  _install_pkg bottom gcc cmus font-jetbrains-mono-nerd-font
 fi
 
 # Install common packages:
