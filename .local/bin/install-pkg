@@ -3,6 +3,8 @@
 # Installs packages using the system package manager.
 #
 # Supported systems: Debian, Ubuntu, Fedora, RHEL, MacOS
+# Dependencies:
+# - MacOS: Homebrew
 
 # Exit if any command fails.
 set -e
