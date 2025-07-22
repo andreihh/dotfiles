@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# Returns silently if the given command is found on the system.
+
+# Exit if any command fails.
+set -e
+
+[ $# -ne 1 ] && echo "Usage: $0 COMMAND" && exit 1
+
+command -v "$1" > /dev/null 2>&1

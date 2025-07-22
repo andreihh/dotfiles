@@ -1,0 +1,21 @@
+#!/bin/sh
+#
+# Installs packages using the system package manager.
+#
+# Supported systems: Debian, Ubuntu, Fedora, RHEL, MacOS
+
+# Exit if any command fails.
+set -e
+
+if has-cmd apt-get; then
+  sudo apt-get install -y "$@"
+elif has-cmd dnf; then
+  sudo dnf install -y "$@"
+elif has-cmd rpm-ostree; then
+  sudo rpm-ostree install -y "$@"
+elif has-cmd brew; then
+  brew install "$@"
+else
+  echo "No supported package manager found!"
+  exit 1
+fi
