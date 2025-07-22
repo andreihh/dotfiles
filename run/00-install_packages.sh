@@ -19,7 +19,7 @@ echo "Installing core packages..."
 # - CI and build tools
 # - General and media tools
 install-pkg \
-  git stow wget curl zip gzip unzip tar gnupg restic rclone \
+  git stow wget curl zip gzip unzip tar gnupg \
   alacritty tmux vim neovim lsd fzf fd-find ripgrep bat urlscan calc fastfetch \
   pre-commit reuse make automake cmake \
   keepassxc vlc cava

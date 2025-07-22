@@ -4,9 +4,7 @@
 # - dotfiles
 # - all directories starting with an uppercase letter from the home directory
 #
-# See: https://restic.readthedocs.io/en/latest/.
-#
-# Dependencies: `restic`, `rclone`
+# See https://restic.readthedocs.io/en/latest/.
 
 # Exit if any command fails.
 set -e
@@ -42,6 +40,11 @@ done
 
 [ -z "${backup_dir}" ] && echo "Invalid backup directory!" && exit 1
 export RESTIC_REPOSITORY="${backup_dir}"
+
+echo "Ensuring dependencies are installed..."
+for dep in 'restic' 'rclone'; do
+  ! has-cmd "${dep}" && install-pkg "${dep}"
+done
 
 [ -n "${dry_run}" ] && echo "Performing a dry run!"
 
