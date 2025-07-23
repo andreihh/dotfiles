@@ -107,7 +107,7 @@ name='Launch tmx terminal'
 
 [org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/tmxc]
 binding='<Shift><Alt>c'
-command='x-terminal-emulator -e sshc -t'
+command='x-terminal-emulator -e tmxc'
 name='Launch tmxc terminal'
 
 [org/gnome/shell/extensions/system-monitor]

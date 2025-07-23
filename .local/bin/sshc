@@ -1,21 +1,15 @@
 #!/bin/sh
 #
-# Connects to `CLOUD_HOST` via SSH, optionally starting `tmx` in a login shell.
+# Connects to `CLOUD_HOST` via SSH.
 
 # Exit if any command fails.
 set -e
 
-[ -z "${CLOUD_HOST}" ] \
-  && echo "Cloud host environment variable 'CLOUD_HOST' not defined!" \
-  && exit 1
-
-if [ "$1" = '-t' ]; then
-  shift
-
-  # The defualt `ssh` `PATH` does not contain the user local bin, so `tmx` must
-  # be qualified. The `HOME` expansion must happen on the remote host.
-  ssh "${CLOUD_HOST}" "$@" -t '"${HOME}/.local/bin/tmx" -l'
-else
-  # shellcheck disable=SC2029
-  ssh "${CLOUD_HOST}" "$@"
+if [ -z "${CLOUD_HOST}" ]; then
+  echo "Cloud host environment variable 'CLOUD_HOST' not defined!"
+  exit 1
 fi
+
+# Forward the arguments to SSH on the client.
+# shellcheck disable=SC2029
+ssh "${CLOUD_HOST}" "$@"

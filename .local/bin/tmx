@@ -8,30 +8,21 @@ set -e
 
 usage() {
   cat << EOF
-Usage: $0 [-h] [-l] [-s SESSION]
+Usage: $0 [-h] [-s SESSION]
 
 Options:
-  -l Start as a login shell.
   -s Session to attach to. Defaults to last session, or 'admin' if none exists.
   -h Print this message and exit.
 EOF
 }
 
-while getopts 'ls:h' option; do
+while getopts 's:h' option; do
   case "${option}" in
-    l) login=true ;;
     s) session="${OPTARG}" ;;
     h) usage && exit 0 ;;
     *) usage && exit 1 ;;
   esac
 done
-
-if [ -n "${login}" ]; then
-  # Execute this script with the user's default login shell to ensure the
-  # environment is initialized properly for the remote `tmux` config.
-  shell="$(getent passwd "${USER}" | cut -d : -f 7)"
-  exec "${shell}" -lc "'$0' ${session:+'-s' "'${session}'"}"
-fi
 
 if [ -z "${TMUX}" ]; then
   # Try to attach to session, else create and attach to it (default `admin`).
