@@ -5,13 +5,15 @@
 # - All directories starting with an uppercase letter from the home directory
 #
 # See https://restic.readthedocs.io/en/latest/.
+#
+# Dependencies: `restic`, `rclone` (optional)
 
 # Exit if any command fails.
 set -e
 
 usage() {
   cat << EOF
-Usage: $0 [-h] [-n] [-b|-r] -d DIR
+Usage: $0 [-h] [-n] [-c|-i|-b|-r] -d DIR
 
 Options:
   -n  Perform a dry run (simulate actions, but do not execute them).
@@ -40,11 +42,6 @@ done
 
 [ -z "${backup_dir}" ] && echo "Invalid backup directory!" && exit 1
 export RESTIC_REPOSITORY="${backup_dir}"
-
-echo "Ensuring dependencies are installed..."
-for dep in 'restic' 'rclone'; do
-  ! has-cmd "${dep}" && install-pkg "${dep}"
-done
 
 [ -n "${dry_run}" ] && echo "Performing a dry run!"
 

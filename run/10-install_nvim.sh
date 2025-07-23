@@ -11,10 +11,13 @@ set -e
 
 [ $# -gt 0 ] && echo "Usage: $0" && exit 1
 
-if has-cmd brew; then
-  echo "MacOS not supported, Neovim installation from sources skipped!"
-  exit 0
-fi
+case "$(uname -s)" in
+  Darwin)
+    echo "MacOS not supported, Neovim installation from sources skipped!"
+    exit 0
+    ;;
+  *) ;;
+esac
 
 echo "Installing Neovim from sources..."
 

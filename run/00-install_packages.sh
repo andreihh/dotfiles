@@ -17,18 +17,16 @@ echo "Installing core packages..."
 # - Core tools
 # - TUI tools
 # - CI and build tools
-# - General and media tools
 install-pkg \
-  git stow wget curl zip gzip unzip tar gnupg \
+  git stow wget curl zip gzip unzip tar restic gnupg keepassxc \
   alacritty tmux vim neovim lsd fzf fd-find ripgrep bat urlscan calc fastfetch \
-  pre-commit reuse make automake cmake \
-  keepassxc vlc cava
+  pre-commit reuse make automake cmake
 
 # Install specific Debian / Ubuntu packages:
-has-cmd apt-get && install-pkg btm cmus
+has-cmd apt-get && install-pkg btm
 
 # Install specific MacOS packages:
-has-cmd brew && install-pkg bottom cmus
+has-cmd brew && install-pkg bottom
 
 # Alacritty requires a Nerd Font.
 echo "Installing JetBrains Mono Nerd Font..."
