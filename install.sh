@@ -49,11 +49,16 @@ echo "Installing dotfiles..."
 [ -n "${dry_run}" ] && echo "Performing a dry run!"
 
 echo "Ensuring dependencies are installed..."
+has_cmd() {
+  command -v "$1" > /dev/null 2>&1
+}
+
 for dep in 'git' 'stow'; do
-  if ! command -v "${dep}" > /dev/null 2>&1; then
-    command -v apt-get > /dev/null 2>&1 && sudo apt-get install -y "${dep}"
-    command -v dnf > /dev/null 2>&1 && sudo dnf install -y "${dep}"
-    command -v brew > /dev/null 2>&1 && brew install "${dep}"
+  if ! has_cmd "${dep}"; then
+    has_cmd apt-get && sudo apt-get install -y "${dep}"
+    has_cmd dnf && sudo dnf install -y "${dep}"
+    has_cmd rpm-ostree && sudo rpm-ostree install -y "${dep}"
+    has_cmd brew && brew install "${dep}"
   fi
 done
 
