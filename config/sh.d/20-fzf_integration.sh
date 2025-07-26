@@ -12,8 +12,15 @@ if command -v fzf > /dev/null 2>&1; then
   [ -n "${BASH_VERSION}" ] && eval "$(fzf --bash)"
   [ -n "${ZSH_VERSION}" ] && eval "$(fzf --zsh)"
 
-  # `fzf` prompt should match the shell prompt when it replaces it.
+  # `fzf` prompt should match the shell prompt for completions.
   export FZF_CTRL_R_OPTS="${FZF_CTRL_R_OPTS} --color=prompt:green:bold"
   export FZF_CTRL_T_OPTS="${FZF_CTRL_T_OPTS} --color=prompt:green:bold"
   export FZF_ALT_C_OPTS="${FZF_ALT_C_OPTS} --color=prompt:green:bold"
+  export FZF_COMPLETION_OPTS="${FZF_COMPLETION_OPTS} --color=prompt:green:bold"
+
+  if [ -n "${TMUX}" ]; then
+    # Use `fzf-tmux` instead of `fzf` for completions inside `tmux`.
+    export FZF_TMUX=1
+    export FZF_TMUX_OPTS="${FZF_TMUX_OPTS} -d 80%"
+  fi
 fi

@@ -1,3 +1,7 @@
+# fzfrc: configures `fzf`.
+#
+# See https://github.com/junegunn/fzf.
+
 --bind=tab:accept
 --bind=shift-tab:toggle
 --bind=ctrl-f:jump
