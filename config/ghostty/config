@@ -43,7 +43,7 @@ confirm-close-surface = false
 # - Reload config with C-S-r
 # - Paste with C-S-v
 # - Emit A-{1-9} when pressing C-{1-9}
-# - Emit A-{shjkl=} when pressing C-S-{shjkl=}
+# - Emit A-{sxhjkl=} when pressing C-S-{sxhjkl=}
 # - Open URI with C-click outside of `tmux`
 keybind = ctrl+shift+r=reload_config
 keybind = ctrl+shift+v=paste_from_clipboard
@@ -57,6 +57,7 @@ keybind = ctrl+7=esc:7
 keybind = ctrl+8=esc:8
 keybind = ctrl+9=esc:9
 keybind = ctrl+shift+s=esc:s
+keybind = ctrl+shift+x=esc:x
 keybind = ctrl+shift+h=esc:h
 keybind = ctrl+shift+j=esc:j
 keybind = ctrl+shift+k=esc:k
@@ -76,6 +77,7 @@ keybind = cmd+7=esc:7
 keybind = cmd+8=esc:8
 keybind = cmd+9=esc:9
 keybind = cmd+shift+s=esc:s
+keybind = cmd+shift+x=esc:x
 keybind = cmd+shift+h=esc:h
 keybind = cmd+shift+j=esc:j
 keybind = cmd+shift+k=esc:k

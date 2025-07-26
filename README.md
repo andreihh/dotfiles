@@ -195,6 +195,7 @@ Terminal:
 - Search command history: `C-r`
 - Trigger completion (path / process id / etc.): `**<tab>`
 - Switch `tmux` tab: `C-{1-9}` (mapped to `A-{1-9}`)
+- Close `tmux` / `nvim` / `vim` tab: `C-S-x` (mapped to `A-x`)
 - Resize `tmux` / `nvim` / `vim` windows: `C-S-{hjkl=}` (mapped to `A-{hjkl=}`)
 - Save `nvim` / `vim` session: `C-S-s` (mapped to `A-s`)
 

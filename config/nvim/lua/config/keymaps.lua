@@ -91,14 +91,15 @@ map("n", "dm!", "<cmd>delmarks!<CR>", "[D]elete [!] buffer [M]arks")
 map("n", "dm*", "<cmd>delmarks a-zA-Z<CR>", "[D]elete [*] all [M]arks")
 
 -- Window:
---  - <C-s/v/t/z/x/w> = perform window action
+--  - <C-s/v/t/z/x> = perform window action
+--  - <M-x> = close tab
 --  - <C-h/j/k/l> = navigate panes across Vim and `tmux`
 --  - <M-h/j/k/l/=> = resize panes across Vim and `tmux`
 map("n", "<C-s>", "<cmd>split<CR>", "[S]plit window horizontally")
 map("n", "<C-v>", "<cmd>vsplit<CR>", "Split window [V]ertically")
 map("n", "<C-t>", "<cmd>tabedit %<CR>", "Open window in new [T]ab")
 map("n", "<C-x>", "<cmd>quit<CR>", "Close window")
-map("n", "<C-w>", "<cmd>tabclose<CR>", "Close tab")
+map("n", "<M-x>", "<cmd>tabclose<CR>", "Close tab")
 map("n", "<M-=>", "<C-w>=", "Resize all windows equally")
 
 -- Terminal:

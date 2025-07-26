@@ -26,7 +26,7 @@ option_as_alt = "Both"  # Required for MacOS key bindings
 # Common shortcuts:
 # - Paste with C-S-v
 # - Emit A-{1-9} when pressing C-{1-9}
-# - Emit A-{shjkl=} when pressing C-S-{shjkl=}
+# - Emit A-{sxhjkl=} when pressing C-S-{sxhjkl=}
 # - Open URI with C-click outside of `tmux`
 # - Select URI with double-click in `tmux`
 [keyboard]
@@ -41,6 +41,7 @@ bindings = [
 { key = "8", mods = "Control", chars = "\u001b8" },
 { key = "9", mods = "Control", chars = "\u001b9" },
 { key = "s", mods = "Shift|Control", chars = "\u001bs" },
+{ key = "x", mods = "Shift|Control", chars = "\u001bx" },
 { key = "h", mods = "Shift|Control", chars = "\u001bh" },
 { key = "j", mods = "Shift|Control", chars = "\u001bj" },
 { key = "k", mods = "Shift|Control", chars = "\u001bk" },

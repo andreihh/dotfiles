@@ -421,7 +421,8 @@ nnoremap dm! :delmarks!<CR>
 nnoremap dm* :delmarks a-zA-Z<CR>
 
 " Window:
-" - <C-s/v/t/z/x/w> = perform window action
+" - <C-s/v/t/z/x> = perform window action
+" - <M-x> = close tab
 " - <C-h/j/k/l> = navigate panes across Vim and `tmux`
 " - <M-h/j/k/l/=> = resize panes across Vim and `tmux`
 nnoremap <C-s> :split<CR>
@@ -429,7 +430,7 @@ nnoremap <C-v> :vsplit<CR>
 nnoremap <C-t> :tabedit %<CR>
 nnoremap <expr> <C-z> <SID>ToggleZenMode()
 nnoremap <C-x> :quit<CR>
-nnoremap <C-w> :tabclose<CR>
+nnoremap <M-x> :tabclose<CR>
 nnoremap <M-=> <C-w>=
 
 " Terminal:
