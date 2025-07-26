@@ -172,13 +172,13 @@ echo "Downloading Kvantum theme..."
 git clone --depth 1 "${THEME_GIT_URL}/Kvantum" "${tmp_dir}/Kvantum"
 
 echo "Installing Kvantum theme..."
-cp -rfv "${tmp_dir}/Kvantum/themes/catppuccin-${flavor}-lavender" \
+cp -rfv "${tmp_dir}/Kvantum/themes/catppuccin-${flavor}-blue" \
   "${XDG_CONFIG_HOME}/Kvantum"
 
 echo "Configuring Kvantum theme..."
 cat << EOF > "${XDG_CONFIG_HOME}/Kvantum/kvantum.kvconfig"
 [General]
-theme=catppuccin-${flavor}-lavender
+theme=catppuccin-${flavor}-blue
 EOF
 
 cat << EOF > "${XDG_CONFIG_HOME}/env.d/10-kvantum.sh"

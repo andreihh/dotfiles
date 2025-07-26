@@ -6,9 +6,9 @@ set -g @highlight_bg '#45475a'  # surface1
 set -g @search_bg '#3e5767'  # Neovim Search
 set -g @match_bg '#7ec9d8'  # Neovim IncSearch
 set -g @pane_fg '#6c7086'  # overlay0
-set -g @current_pane_fg '#b4befe'  # lavender
+set -g @current_pane_fg '#89b4fa'  # blue
 set -g @status_bg '#181825'  # mantle
-set -g @current_seg_bg '#b4befe'  # lavender
+set -g @current_seg_bg '#89b4fa'  # blue
 set -g @activity_seg_fg '#89b4fa'  # blue
 set -g @prefix_highlight_fg '#89b4fa'  # blue
 set -g @prefix_highlight_copy_fg '#cba6f7'  # mauve
