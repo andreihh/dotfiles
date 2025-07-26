@@ -3,7 +3,7 @@
 # Manages encrypted incremental backups for:
 # - Dotfiles
 # - All directories starting with an uppercase letter from the home directory
-# - Excludes directories containing transient data (e.g., `XDG_DOWNLOAD_DIR`)
+# - Excludes transient data (`XDG_DOWNLOAD_DIR`, screenshots, screencasts, etc.)
 #
 # See https://restic.readthedocs.io/en/latest/.
 #
@@ -49,9 +49,9 @@ export RESTIC_REPOSITORY="${backup_dir}"
 dotfiles_relpath="${XDG_CONFIG_HOME:-${HOME}/.config}/dotfiles"
 dotfiles_relpath="$(echo "${dotfiles_relpath}" | sed "s:^${HOME}/::")"
 
-has-cmd xdg-user-dir \
-  && downloads_relpath="$(xdg-user-dir DOWNLOAD | sed "s:^${HOME}/::")" \
-  || downloads_relpath="Downloads"
+has-cmd xdg-user-dir && downloads_relpath="$(xdg-user-dir DOWNLOAD)"
+downloads_relpath="$(echo "${downloads_relpath}" | sed "s:^${HOME}/::")"
+[ -z "${downloads_relpath}" ] && downloads_relpath="Downloads"
 
 case "${operation}" in
   check)
@@ -66,11 +66,11 @@ case "${operation}" in
     echo "Backing up '${HOME}' to '${RESTIC_REPOSITORY}'..."
     cd "${HOME}"
     restic -v backup ${dry_run:+'-n'} "${dotfiles_relpath}" [A-Z]* \
-      --exclude "${downloads_relpath}" \
-      --exclude '*/Camera' \
-      --exclude '*/Screenshots' \
-      --exclude '*/Screencasts' \
-      --exclude 'Snap'
+      --iexclude "${HOME}/${downloads_relpath}" \
+      --iexclude "${HOME}/*/screenshot*" \
+      --iexclude "${HOME}/*/screencast*" \
+      --iexclude "${HOME}/*/camera*" \
+      --iexclude "${HOME}/snap"
 
     echo "Pruning old snapshots from '${RESTIC_REPOSITORY}'..."
     restic -v forget ${dry_run:+'-n'} --prune --keep-last 3
