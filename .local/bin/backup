@@ -69,7 +69,8 @@ case "${operation}" in
       --exclude "${downloads_relpath}" \
       --exclude '*/Camera' \
       --exclude '*/Screenshots' \
-      --exclude '*/Screencasts'
+      --exclude '*/Screencasts' \
+      --exclude 'Snap'
 
     echo "Pruning old snapshots from '${RESTIC_REPOSITORY}'..."
     restic -v forget ${dry_run:+'-n'} --prune --keep-last 3

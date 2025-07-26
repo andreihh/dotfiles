@@ -31,5 +31,3 @@ alias rg='rg --color=always --hidden'
 
 # Enable colored `grep` output.
 alias grep='grep --color=always'
-alias fgrep='fgrep --color=always'
-alias egrep='egrep --color=always'

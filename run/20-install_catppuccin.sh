@@ -134,7 +134,11 @@ wget -P "${tmp_dir}/cursors" \
   "${THEME_CURSORS_URL}/catppuccin-${flavor}-dark-cursors.zip"
 
 echo "Unpacking cursor theme..."
-sudo unzip -od /usr/share/icons/ "${tmp_dir}/cursors/*.zip"
+unzip -od "${XDG_DATA_HOME}/icons/" "${tmp_dir}/cursors/*.zip"
+
+has-cmd snap \
+  && echo "Installing Snap cursor theme..." \
+  && sudo snap install cursor-theme-catppuccin
 
 echo "Downloading GTK theme..."
 # https://github.com/catppuccin/gtk was archived, so download an alternative.
