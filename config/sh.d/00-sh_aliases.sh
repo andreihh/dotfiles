@@ -23,10 +23,10 @@ alias la='lsd -A --color=always'
 alias ll='lsd -alF --color=always'
 alias lt='lsd --tree --color=always'
 
-# Enable colored `fd` output, and show hidden files.
+# Enable colored `fd` output and show hidden files.
 alias fd='fd --color=always --hidden'
 
-# Enable colored `rg` output, and show hidden files.
+# Enable colored `rg` output and show hidden files.
 alias rg='rg --color=always --hidden'
 
 # Enable colored `grep` output.

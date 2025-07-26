@@ -7,7 +7,7 @@
 
 # Returns if inside a VCS repository (supports `git`).
 _ps1_has_vcs() {
-  git rev-parse --is-inside-work-tree > /dev/null 2>&1 || return 1
+  git rev-parse --is-inside-work-tree > /dev/null 2>&1
 }
 
 # Returns the current VCS branch and dirty status (supports `git`).

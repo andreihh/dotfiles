@@ -12,4 +12,4 @@ export HOMEBREW_NO_ANALYTICS=1
 [ -d '/opt/homebrew/bin' ] && PATH="/opt/homebrew/bin${PATH:+:${PATH}}"
 
 # Load Homebrew shell environment.
-command -v brew && eval "$(brew shellenv)"
+command -v brew > /dev/null 2>&1 && eval "$(brew shellenv)"

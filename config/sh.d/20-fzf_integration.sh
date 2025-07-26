@@ -12,8 +12,7 @@ if command -v fzf > /dev/null 2>&1; then
   [ -n "${BASH_VERSION}" ] && eval "$(fzf --bash)"
   [ -n "${ZSH_VERSION}" ] && eval "$(fzf --zsh)"
 
-  # Shell prompt should match the `fzf` prompt.
-  alias fzf='fzf --color=prompt:green:bold'
+  # `fzf` prompt should match the shell prompt when it replaces it.
   export FZF_CTRL_R_OPTS="${FZF_CTRL_R_OPTS} --color=prompt:green:bold"
   export FZF_CTRL_T_OPTS="${FZF_CTRL_T_OPTS} --color=prompt:green:bold"
   export FZF_ALT_C_OPTS="${FZF_ALT_C_OPTS} --color=prompt:green:bold"
