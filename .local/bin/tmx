@@ -24,11 +24,12 @@ while getopts 's:h' option; do
   esac
 done
 
+# Create session if it doesn't exist (default `admin`).
+tmux has -t "${session}" 2> /dev/null || tmux new -d -s "${session:-admin}"
+
+# Attach or switch to session.
 if [ -z "${TMUX}" ]; then
-  # Try to attach to session, else create and attach to it (default `admin`).
-  tmux attach -t "${session}" 2> /dev/null || tmux new -A -s "${session:-admin}"
-elif [ -n "${session}" ]; then
-  # Create session if it doesn't exist, then switch to it.
-  tmux has -t "${session}" 2> /dev/null || tmux new -d -s "${session}"
+  tmux attach -t "${session}"
+else
   tmux switch -t "${session}"
 fi
