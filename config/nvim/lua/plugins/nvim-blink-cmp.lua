@@ -14,7 +14,7 @@ return { -- Autocompletion
       ["<C-u>"] = { "scroll_documentation_up" },
       ["<C-d>"] = { "scroll_documentation_down" },
       ["<tab>"] = { "select_and_accept", "fallback" },
-      ["<C-c>"] = { "cancel" },
+      ["<C-c>"] = { "cancel", "fallback" },
     },
     completion = {
       -- Don't automatically insert the selected item.
