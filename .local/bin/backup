@@ -49,7 +49,7 @@ export RESTIC_REPOSITORY="${backup_dir}"
 dotfiles_relpath="${XDG_CONFIG_HOME:-${HOME}/.config}/dotfiles"
 dotfiles_relpath="$(echo "${dotfiles_relpath}" | sed "s:^${HOME}/::")"
 
-has-cmd xdg-user-dir && downloads_relpath="$(xdg-user-dir DOWNLOAD)"
+downloads_relpath="$(xdg-user-dir DOWNLOAD 2> /dev/null || true)"
 downloads_relpath="$(echo "${downloads_relpath}" | sed "s:^${HOME}/::")"
 [ -z "${downloads_relpath}" ] && downloads_relpath="Downloads"
 
