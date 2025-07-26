@@ -101,7 +101,7 @@ ln -sfv "${XDG_CONFIG_HOME}/lsd/themes/catppuccin-${flavor}.yaml" \
   "${XDG_CONFIG_HOME}/lsd/colors.yaml"
 
 echo "Updating 'bat' cache..."
-"$(command -v bat)" cache --build
+bat cache --build
 
 echo "Downloading 'cava' theme..."
 wget -O "${XDG_CONFIG_HOME}/cava/themes/catppuccin-${flavor}.cava" \
