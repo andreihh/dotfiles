@@ -11,7 +11,7 @@
 #
 # See https://catppuccin.com.
 #
-# Supported systems: Debian, Ubuntu, Fedora, RHEL, MacOS
+# Supported systems: *nix
 # Dependencies: `git`, `wget`, `unzip`
 
 # Exit if any command fails.

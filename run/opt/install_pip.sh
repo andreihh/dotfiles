@@ -4,8 +4,8 @@
 #
 # See https://pip.pypa.io/en/stable/installation/.
 #
-# Supported systems: Debian, Ubuntu, Fedora, RHEL, MacOS
-# Dependencies: `curl`
+# Supported systems: *nix
+# Dependencies: `curl`, `python3`
 
 # Exit if any command fails.
 set -e

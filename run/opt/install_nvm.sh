@@ -4,8 +4,8 @@
 #
 # See https://github.com/nvm-sh/nvm#installing-and-updating.
 #
-# Supported systems: Debian, Ubuntu, Fedora, RHEL, MacOS
-# Dependencies: `curl`
+# Supported systems: *nix
+# Dependencies: `curl`, `bash`
 
 # Exit if any command fails.
 set -e

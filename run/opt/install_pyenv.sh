@@ -4,10 +4,10 @@
 #
 # See https://github.com/pyenv/pyenv#installation.
 #
-# Supported systems: Debian, Ubuntu, Fedora, RHEL, MacOS
+# Supported systems: *nix
 # Dependencies:
-# - Linux: `curl`
 # - MacOS: Homebrew
+# - Other: `curl`, `bash`
 
 # Exit if any command fails.
 set -e

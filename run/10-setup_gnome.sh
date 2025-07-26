@@ -14,18 +14,17 @@ if ! has-cmd gnome-shell; then
   exit 0
 fi
 
-has-cmd apt-get && gtk_murrine_engine='gtk2-engines-murrine'
-has-cmd dnf && gtk_murrine_engine='gtk-murrine-engine'
-has-cmd rpm-ostree && gtk_murrine_engine='gtk-murrine-engine'
-
 echo "Installing GNOME dependencies..."
 install-pkg \
   sassc \
   gnome-themes-extra \
   gnome-shell-extension-user-theme \
   gnome-shell-extension-system-monitor \
-  gnome-shell-extension-appindicator \
-  "${gtk_murrine_engine}"
+  gnome-shell-extension-appindicator
+
+has-cmd apt-get && install-pkg gtk2-engines-murrine
+has-cmd dnf && install-pkg gtk-murrine-engine
+has-cmd rpm-ostree && install-pkg gtk-murrine-engine
 
 echo "Configuring GNOME settings..."
 dconf load / << 'EOF'

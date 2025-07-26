@@ -25,6 +25,7 @@ echo "Installing Neovim build dependencies..."
 install-pkg git curl make cmake ninja-build gettext
 has-cmd apt-get && install-pkg build-essential
 has-cmd dnf && install-pkg gcc glibc-gconv-extra
+has-cmd rpm-ostree && install-pkg gcc glibc-gconv-extra
 
 echo "Creating temporary Neovim installation directory..."
 nvim_dir="$(mktemp -d "${TMPDIR:-/tmp}/neovim.XXXXXXXXX")"
