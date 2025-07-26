@@ -15,6 +15,9 @@ return { -- Catppuccin color scheme
         LazyNormal = { fg = colors.text, bg = colors.base },
         MasonNormal = { fg = colors.text, bg = colors.base },
         SnacksNormal = { fg = colors.text, bg = colors.base },
+        FzfLuaNormal = { fg = colors.text, bg = colors.base },
+        FzfLuaTitle = { fg = colors.blue, bg = colors.base },
+        FzfLuaBorder = { fg = colors.overlay0, bg = colors.base },
       }
     end,
     integrations = {
