@@ -32,14 +32,17 @@ curl -Lo - https://codeberg.org/andreihh/dotfiles/raw/branch/main/install.sh \
 To update the dotfiles, run `install.sh -u` from the repository in a clean
 state.
 
-To override the default system theme, set the `THEME` variable before running
+To override the default system theme, export the `THEME` variable before running
 the installer to one of:
 
 - `catppuccin-frappe` (default)
 - `catppuccin-macchiato`
 - `catppuccin-mocha`
 
-Setting `THEME` to any other non-empty value will skip the theme installation.
+Exporting `THEME` to any other non-empty value will skip the theme installation.
+
+Exporting `HEADLESS` to a non-empty value will skip installation for GUI
+packages and configs.
 
 ## XDG directories
 

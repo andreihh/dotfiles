@@ -11,7 +11,7 @@
 #
 # See https://catppuccin.com.
 #
-# Dependencies: `git`, `wget`, `unzip`, `bash` + `sassc` (required for GTK)
+# Dependencies: `git`, `wget`, `unzip`, `bash` + `sassc` (optional, for GTK)
 
 # Exit if any command fails.
 set -e
@@ -148,19 +148,22 @@ has-cmd snap \
   && echo "Installing Snap cursor theme..." \
   && sudo snap install cursor-theme-catppuccin
 
-echo "Downloading GTK theme..."
-# https://github.com/catppuccin/gtk was archived, so download an alternative.
-git clone --depth 1 https://github.com/Fausto-Korpsvart/Catppuccin-GTK-Theme \
-  "${tmp_dir}/gtk"
+if [ -n "${HEADLESS}" ]; then
+  echo "Headless installation, skipped GTK installation!"
+else
+  echo "Downloading GTK theme..."
+  # https://github.com/catppuccin/gtk was archived, so download an alternative.
+  git clone --depth 1 https://github.com/Fausto-Korpsvart/Catppuccin-GTK-Theme \
+    "${tmp_dir}/gtk"
 
-echo "Installing GTK theme..."
-"${tmp_dir}/gtk/themes/install.sh" \
-  --dest "${XDG_DATA_HOME}/themes" --libadwaita --tweaks outline \
-  ${gtk_tweaks_flavor:+'--tweaks' "${gtk_tweaks_flavor}"}
+  echo "Installing GTK theme..."
+  "${tmp_dir}/gtk/themes/install.sh" \
+    --dest "${XDG_DATA_HOME}/themes" --libadwaita --tweaks outline \
+    ${gtk_tweaks_flavor:+'--tweaks' "${gtk_tweaks_flavor}"}
 
-has-cmd dconf \
-  && echo "Configuring GNOME theme..." \
-  && dconf load / << EOF
+  has-cmd dconf \
+    && echo "Configuring GNOME theme..." \
+    && dconf load / << EOF
 [org/gnome/shell/extensions/user-theme]
 name='Catppuccin-Dark-${flavor_camelcase}'
 
@@ -175,6 +178,7 @@ cursor-theme='catppuccin-${flavor}-dark-cursors'
 gtk-theme='Catppuccin-Dark-${flavor_camelcase}'
 icon-theme='Adwaita'
 EOF
+fi
 
 echo "Downloading Kvantum theme..."
 git clone --depth 1 "${THEME_GIT_URL}/Kvantum" "${tmp_dir}/Kvantum"

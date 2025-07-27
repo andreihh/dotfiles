@@ -9,8 +9,13 @@ set -e
 
 [ $# -gt 0 ] && echo "Usage: $0" && exit 1
 
+if [ -n "${HEADLESS}" ]; then
+  echo "Headless installation, skipped GNOME configuration!"
+  exit 0
+fi
+
 if ! has-cmd gnome-shell; then
-  echo "GNOME not installed, configuration skipped!"
+  echo "GNOME not installed, skipped configuration!"
   exit 0
 fi
 
