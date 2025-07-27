@@ -1,8 +1,6 @@
 #!/bin/sh
 #
 # Configures SSH agent forwarding and multiplexing for `CLOUD_HOST`.
-#
-# Supported systems: *nix
 
 # Exit if any command fails.
 set -e

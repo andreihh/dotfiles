@@ -4,7 +4,6 @@
 #
 # See https://github.com/nvm-sh/nvm#installing-and-updating.
 #
-# Supported systems: *nix
 # Dependencies: `curl`, `bash`
 
 # Exit if any command fails.

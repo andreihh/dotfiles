@@ -4,7 +4,6 @@
 #
 # See https://www.rust-lang.org/tools/install.
 #
-# Supported systems: *nix
 # Dependencies: `curl`
 
 # Exit if any command fails.

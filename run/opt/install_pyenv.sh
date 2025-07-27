@@ -4,7 +4,6 @@
 #
 # See https://github.com/pyenv/pyenv#installation.
 #
-# Supported systems: *nix
 # Dependencies:
 # - MacOS: Homebrew
 # - Other: `curl`, `bash`

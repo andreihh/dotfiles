@@ -11,7 +11,6 @@
 #
 # See https://catppuccin.com.
 #
-# Supported systems: *nix
 # Dependencies: `git`, `wget`, `unzip`, `bash` + `sassc` (required for GTK)
 
 # Exit if any command fails.

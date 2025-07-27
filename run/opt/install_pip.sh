@@ -4,7 +4,6 @@
 #
 # See https://pip.pypa.io/en/stable/installation/.
 #
-# Supported systems: *nix
 # Dependencies: `curl`, `python3`
 
 # Exit if any command fails.

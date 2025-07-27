@@ -13,7 +13,6 @@
 # - Configure websites allowed to store cookies and site data under:
 #   `Settings > Privacy & Security > Cookies and Site Data > Manage Exceptions`
 #
-# Supported systems: *nix
 # Dependencies: `git`
 
 # Exit if any command fails.

@@ -1,5 +1,7 @@
 # Dotfiles
 
+Configurations, tools, and setup scripts for \*nix systems.
+
 ## Installation
 
 To install the dotfiles:
