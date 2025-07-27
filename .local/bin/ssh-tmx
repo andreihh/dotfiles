@@ -1,0 +1,16 @@
+#!/bin/sh
+#
+# Connects to the host selected with `fzf` via SSH and starts `tmx` in a login
+# shell.
+#
+# Dependencies:
+# - Client: `ssh`, `fzf-tmux` (requires `fzf` and `bash`)
+# - Host: `tmux`
+
+# Exit if any command fails.
+set -e
+
+# Fetch the user's default login shell on the host to ensure the environment is
+# loaded properly.
+# shellcheck disable=SC2016
+ssh "$(fzf-host)" "$@" -t '"$(getent passwd "${USER}" | cut -d : -f 7)" -lc tmx'

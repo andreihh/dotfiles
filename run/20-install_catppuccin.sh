@@ -23,7 +23,7 @@ readonly XDG_DATA_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}"
 readonly THEME_GIT_URL='https://github.com/catppuccin'
 readonly THEME_CURSORS_URL="${THEME_GIT_URL}/cursors/releases/latest/download"
 
-case "${THEME:-'catppuccin-frappe'}" in
+case "${THEME:-catppuccin-frappe}" in
   catppuccin-frappe)
     flavor='frappe'
     flavor_camelcase='Frappe'
