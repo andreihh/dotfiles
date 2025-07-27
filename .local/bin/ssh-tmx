@@ -10,7 +10,17 @@
 # Exit if any command fails.
 set -e
 
+hosts="$(cut < "${HOME}/.ssh/known_hosts" -d ' ' -f 1)"
+if [ -z "${hosts}" ]; then
+  echo "No known hosts found!" 2>&1
+  exit 1
+elif [ "$(echo "${hosts}" | wc -l)" = 1 ]; then
+  host="${hosts}"
+else
+  host="$(echo "${hosts}" | fzf-tmux)"
+fi
+
 # Fetch the user's default login shell on the host to ensure the environment is
 # loaded properly.
 # shellcheck disable=SC2016
-ssh "$(fzf-host)" "$@" -t '"$(getent passwd "${USER}" | cut -d : -f 7)" -lc tmx'
+ssh -t "$@" "${host}" '"$(getent passwd "${USER}" | cut -d : -f 7)" -lc tmx'

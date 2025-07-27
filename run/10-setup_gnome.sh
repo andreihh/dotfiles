@@ -79,7 +79,7 @@ toggle-tiled-right=['<Primary><Alt>l']
 
 [org/gnome/settings-daemon/plugins/media-keys]
 control-center=['<Shift><Alt>s']
-custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/sh/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/tmx/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/ssh/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/ssh-tmx/']
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/sh/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/tmx/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/ssh-tmx/']
 home=['<Alt>e']
 logout=['<Shift><Alt>Escape']
 mic-mute=['<Shift><Alt>BackSpace']
@@ -99,13 +99,8 @@ binding='<Alt>x'
 command='x-terminal-emulator'
 name='Launch terminal'
 
-[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/ssh]
-binding='<Alt>c'
-command='x-terminal-emulator -e ssh "$(fzf-host)"'
-name='Launch ssh terminal'
-
 [org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/ssh-tmx]
-binding='<Shift><Alt>c'
+binding='<Alt>c'
 command='x-terminal-emulator -e ssh-tmx'
 name='Launch ssh-tmx terminal'
 
