@@ -31,7 +31,7 @@ while getopts 'nh' option; do
 done
 
 echo "Installing media packages..."
-install-pkg xdg-user-dirs rclone vlc cava
+install-pkg xdg-user-dirs restic rclone keepassxc vlc cava
 has-cmd apt-get && install-pkg cmus
 has-cmd brew && install-pkg cmus
 

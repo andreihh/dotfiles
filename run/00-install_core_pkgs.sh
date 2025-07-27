@@ -18,8 +18,8 @@ echo "Installing core packages..."
 # - TUI tools
 # - CI and build tools
 install-pkg \
-  git stow wget curl zip gzip unzip tar restic gnupg keepassxc \
-  alacritty tmux vim neovim lsd fzf fd-find ripgrep bat urlscan calc fastfetch \
+  git stow wget curl zip gzip unzip tar gnupg fastfetch \
+  alacritty bash tmux vim neovim fzf bat lsd fd-find ripgrep calc \
   pre-commit reuse make automake cmake
 
 # Install specific Debian / Ubuntu packages:

@@ -2,9 +2,11 @@
 #
 # Installs packages using the system package manager.
 #
-# Supported systems: Debian, Ubuntu, Fedora, RHEL, MacOS
-# Dependencies:
-# - MacOS: Homebrew
+# Supported package managers:
+# - `apt-get` (Debian, Ubuntu)
+# - `dnf` (Fedora, RHEL)
+# - `rpm-ostree` (Fedora Atomic)
+# - `brew` (MacOS)
 
 # Exit if any command fails.
 set -e

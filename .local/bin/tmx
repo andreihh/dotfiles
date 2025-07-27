@@ -2,6 +2,8 @@
 #
 # Creates and attaches to the specified `tmux` session, or to the last session
 # if none is specified, or to the `admin` session if no sessions exist.
+#
+# Dependencies: `tmux`
 
 # Exit if any command fails.
 set -e

@@ -12,7 +12,7 @@
 # See https://catppuccin.com.
 #
 # Supported systems: *nix
-# Dependencies: `git`, `wget`, `unzip`
+# Dependencies: `git`, `wget`, `unzip`, `bash` + `sassc` (required for GTK)
 
 # Exit if any command fails.
 set -e
@@ -24,7 +24,7 @@ readonly XDG_DATA_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}"
 readonly THEME_GIT_URL='https://github.com/catppuccin'
 readonly THEME_CURSORS_URL="${THEME_GIT_URL}/cursors/releases/latest/download"
 
-case "${THEME:-"catppuccin-frappe"}" in
+case "${THEME:-'catppuccin-frappe'}" in
   catppuccin-frappe)
     flavor='frappe'
     flavor_camelcase='Frappe'
@@ -78,10 +78,6 @@ cat << EOF > "${XDG_CONFIG_HOME}/ghostty/theme"
 theme = "catppuccin-${flavor}"
 EOF
 
-echo "Downloading 'lsd' theme..."
-wget -O "${XDG_CONFIG_HOME}/lsd/themes/catppuccin-${flavor}.yaml" \
-  "${THEME_GIT_URL}/lsd/raw/main/themes/catppuccin-${flavor}/colors.yaml"
-
 echo "Downloading 'fzf' theme..."
 wget -O "${XDG_CONFIG_HOME}/fzf/themes/catppuccin-${flavor}.sh" \
   "${THEME_GIT_URL}/fzf/raw/main/themes/catppuccin-fzf-${flavor}.sh"
@@ -96,12 +92,16 @@ echo "Downloading 'bat' theme..."
 wget -O "${XDG_CONFIG_HOME}/bat/themes/catppuccin-${flavor}.tmTheme" \
   "${THEME_GIT_URL}/bat/raw/main/themes/Catppuccin ${flavor_camelcase}.tmTheme"
 
+echo "Updating 'bat' cache..."
+bat cache --build
+
+echo "Downloading 'lsd' theme..."
+wget -O "${XDG_CONFIG_HOME}/lsd/themes/catppuccin-${flavor}.yaml" \
+  "${THEME_GIT_URL}/lsd/raw/main/themes/catppuccin-${flavor}/colors.yaml"
+
 echo "Linking 'lsd' colors..."
 ln -sfv "${XDG_CONFIG_HOME}/lsd/themes/catppuccin-${flavor}.yaml" \
   "${XDG_CONFIG_HOME}/lsd/colors.yaml"
-
-echo "Updating 'bat' cache..."
-bat cache --build
 
 echo "Downloading 'cava' theme..."
 wget -O "${XDG_CONFIG_HOME}/cava/themes/catppuccin-${flavor}.cava" \
@@ -201,7 +201,7 @@ fi
 EOF
 
 cat << EOF
-Installed Catppuccin ${flavor_camelcase} successfully!
+Installed Catppuccin ${flavor_camelcase} with blue accent successfully!
 
 Consider updating the web browser theme and userstyles for consistency:
 - https://github.com/catppuccin/firefox
