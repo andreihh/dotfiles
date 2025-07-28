@@ -18,19 +18,18 @@ exec bash  # Reload shell environment to add Homebrew to `PATH`
 
 ```bash
 wget -O - https://codeberg.org/andreihh/dotfiles/raw/branch/main/install.sh \
-  | bash
+  | sh -s -- -s
 ```
 
 ```bash
 curl -Lo - https://codeberg.org/andreihh/dotfiles/raw/branch/main/install.sh \
-  | bash
+  | sh -s -- -s
 ```
 
 - Log out and back in to ensure the environment is loaded properly.
 - Run `pre-commit install` inside the repository to configure pre-commit checks.
 
-To update the dotfiles, run `install.sh -u` from the repository in a clean
-state.
+To update the dotfiles, run `install.sh` from the repository in a clean state.
 
 To override the default system theme, export the `THEME` variable before running
 the installer to one of:

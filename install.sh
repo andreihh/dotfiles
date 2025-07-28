@@ -22,23 +22,23 @@ readonly BACKUP_DIR_DEFAULT="${DOTFILES_HOME}.bak"
 
 usage() {
   cat << EOF
-Usage: $0 [-h] [-n] [-f] [-b BACKUP_DIR] [-u]
+Usage: $0 [-h] [-n] [-f] [-b BACKUP_DIR] [-s]
 
 Options:
   -n  Perform a dry run (simulate actions, but do not execute them).
   -b  Directory where dotfiles should be backed up, or skip if empty string.
         Default: '${BACKUP_DIR_DEFAULT}'
-  -u  Update dotfiles without running setup scripts.
+  -s  Run setup scripts.
   -h  Print this message and exit.
 EOF
 }
 
 backup_dir="${BACKUP_DIR_DEFAULT}"
-while getopts 'nb:uh' option; do
+while getopts 'nb:sh' option; do
   case "${option}" in
     n) dry_run=true ;;
     b) backup_dir="${OPTARG}" ;;
-    u) skip_scripts=true ;;
+    s) run_setup=true ;;
     h) usage && exit 0 ;;
     *) usage && exit 1 ;;
   esac
@@ -106,7 +106,7 @@ for shell_config in '.bash_profile' '.bash_login' '.bash_history'; do
   [ -n "${dry_run}" ] || rm -fv "${HOME}/${shell_config}"
 done
 
-if [ -z "${skip_scripts}" ]; then
+if [ -n "${run_setup}" ]; then
   echo "Ensuring 'PATH' contains '${HOME}/.local/bin'..."
   export PATH="${HOME}/.local/bin${PATH:+:${PATH}}"
 

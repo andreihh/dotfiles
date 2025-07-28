@@ -28,6 +28,13 @@ has-cmd apt-get && install-pkg btm
 # Install specific MacOS packages:
 has-cmd brew && install-pkg bottom
 
+echo "Ensuring 'fdfind' and 'batcat' can be invoked as 'fd' and 'bat'..."
+has-cmd fdfind && ln -sfv "$(command -v fdfind)" "${HOME}/.local/bin/fd"
+has-cmd batcat && ln -sfv "$(command -v batcat)" "${HOME}/.local/bin/bat"
+
+echo "Updating 'bat' cache..."
+bat cache --build
+
 # Alacritty requires a Nerd Font.
 echo "Installing JetBrains Mono Nerd Font..."
 if has-cmd brew; then
@@ -44,13 +51,6 @@ else
   rm "${FONT_ZIP}"
   fc-cache -fv
 fi
-
-echo "Ensuring 'fdfind' and 'batcat' can be invoked as 'fd' and 'bat'..."
-has-cmd fdfind && ln -sfv "$(command -v fdfind)" "${HOME}/.local/bin/fd"
-has-cmd batcat && ln -sfv "$(command -v batcat)" "${HOME}/.local/bin/bat"
-
-echo "Updating 'bat' cache..."
-bat cache --build
 
 if has-cmd update-alternatives; then
   echo "Configuring Alacritty as the default terminal..."
