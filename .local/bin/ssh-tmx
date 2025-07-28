@@ -17,7 +17,7 @@ if [ -z "${hosts}" ]; then
 elif [ "$(echo "${hosts}" | wc -l)" = 1 ]; then
   host="${hosts}"
 else
-  host="$(echo "${hosts}" | fzf-tmux)"
+  host="$(echo "${hosts}" | fzf-tmux --prompt='Hosts> ')"
 fi
 
 # Fetch the user's default login shell on the host to ensure the environment is
