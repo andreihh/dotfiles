@@ -1,27 +1,20 @@
 #!/bin/sh
 #
-# Connects to the host selected with `fzf` via SSH and starts `tmx` in a login
-# shell.
+# Connects to the selected host via SSH and starts `tmux` in a login shell.
 #
 # Dependencies:
-# - Client: `ssh`, `fzf-tmux` (requires `fzf` and `bash`)
-# - Host: `tmux`
+# - Client: `ssh`, `fzf`, `bash`
+# - Host: `tmux`, `fzf`, `bash`
 
 # Exit if any command fails.
 set -e
 
-hosts="$(cut < "${HOME}/.ssh/known_hosts" -d ' ' -f 1)"
-if [ -z "${hosts}" ]; then
-  echo "No known hosts found!" 2>&1
-  exit 1
-elif [ "$(echo "${hosts}" | wc -l)" = 1 ]; then
-  host="${hosts}"
-else
-  host="$(echo "${hosts}" | fzf-tmux --prompt='Hosts> ')"
-fi
+known_hosts="$(cut < "${HOME}/.ssh/known_hosts" -d ' ' -f 1)"
+[ -z "${known_hosts}" ] && echo "No known hosts found!" 2>&1 && exit 1
 
-# Fetch the user's default login shell on the host to ensure the environment is
-# loaded properly.
+host="$(echo "${known_hosts}" | fzf-tmux --select-1 --prompt='Hosts> ')"
+
+# Fetch the user's default login shell on the host to load environment properly.
 # shellcheck disable=SC2016
 cmd='"$(getent passwd "${USER}" | cut -d : -f 7)" -lc tmx'
 
