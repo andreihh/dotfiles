@@ -1,35 +1,45 @@
 #!/bin/sh
 #
-# Creates and attaches to the specified `tmux` session, or to the last session
-# if none is specified, or to the `admin` session if no sessions exist.
+# Starts the `tmux` server as a daemon and manages sessions.
 #
-# Dependencies: `tmux`
+# Special session names:
+# - `-` = previously attached session, or `admin` if no sessions exist
+# - `.` = basename of the current working directory
+#
+# Dependencies: `tmux`, `fzf`
 
 # Exit if any command fails.
 set -e
 
-usage() {
-  cat << EOF
-Usage: $0 [-h] [-s SESSION]
+[ $# -gt 1 ] && echo "Usage: $0 [- | . | <session>]" && exit 1
 
-Options:
-  -s Session to attach to. Defaults to last session, or 'admin' if none exists.
-  -h Print this message and exit.
-EOF
-}
+# Start the server as a daemon.
+tmux start \; set -g exit-empty off
 
-while getopts 's:h' option; do
-  case "${option}" in
-    s) session="${OPTARG}" ;;
-    h) usage && exit 0 ;;
-    *) usage && exit 1 ;;
-  esac
-done
+if [ $# -eq 0 ]; then
+  session="$(
+    tmux ls -F "#S" | fzf --tmux \
+      --prompt='Session> ' \
+      --header='<ctrl-n> to create | <ctrl-x> to delete' \
+      --bind='ctrl-n:print-query' \
+      --bind='ctrl-x:execute-silent(tmux kill-session -t {})' \
+      --bind='ctrl-x:+reload-sync(tmux ls -F "#S")'
+  )" || { [ $? = 130 ] && echo "Cancelled!" 1>&2 && exit 0; }
+else
+  session="$1"
+fi
 
-# Create session if it doesn't exist (default `admin`).
+case "${session}" in
+  '') echo "Session name must not be empty!" 1>&2 && exit 1 ;;
+  -) session='' ;;
+  .) session="$(basename "$(pwd)")" ;;
+  *) ;;
+esac
+
+# Create session if it doesn't exist. If empty and none exist, create `admin`.
 tmux has -t "${session}" 2> /dev/null || tmux new -d -s "${session:-admin}"
 
-# Attach or switch to session.
+# Attach or switch to selected session, or to previously attached one if empty.
 if [ -z "${TMUX}" ]; then
   tmux attach -t "${session}"
 else
