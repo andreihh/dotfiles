@@ -14,7 +14,7 @@ set -e
 
 usage() {
   cat << EOF
-Usage: $0 [-h] [-n] [-c|-i|-b|-r] -d DIR
+Usage: $0 [-h] [-n] [-c | -i | -b | -r] -d <dir>
 
 Options:
   -n  Perform a dry run (simulate actions, but do not execute them).

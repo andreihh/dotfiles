@@ -22,7 +22,7 @@ readonly BACKUP_DIR_DEFAULT="${DOTFILES_HOME}.bak"
 
 usage() {
   cat << EOF
-Usage: $0 [-h] [-n] [-f] [-b BACKUP_DIR] [-s]
+Usage: $0 [-h] [-n] [-f] [-b <dir>] [-s]
 
 Options:
   -n  Perform a dry run (simulate actions, but do not execute them).
@@ -81,9 +81,8 @@ fi
 
 echo "Stowing dotfiles, adopting conflicting files..."
 stowdir() {
-  _src="$1"
-  _dst="$2"
-  stow ${dry_run:+'-n'} -v --no-folding --adopt -t "${_dst}" -d "${_src}" .
+  [ $# -ne 2 ] && echo "Usage: $0 <src> <dst>" && return 1
+  stow ${dry_run:+'-n'} -v --no-folding --adopt -d "$1" -t "$2" .
 }
 
 stowdir "${DOTFILES_HOME}" "${HOME}"

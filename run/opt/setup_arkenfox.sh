@@ -18,7 +18,7 @@
 # Exit if any command fails.
 set -e
 
-[ $# -ne 1 ] && echo "Usage: $0 FIREFOX_PROFILE_DIR" && exit 1
+[ $# -ne 1 ] && echo "Usage: $0 <firefox-profile-dir>" && exit 1
 
 readonly XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
 readonly USER_OVERRIDES="${XDG_CONFIG_HOME}/firefox/user-overrides.js"
