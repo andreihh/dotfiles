@@ -7,7 +7,8 @@
 
 # Returns if inside a VCS repository (supports `git`).
 _ps1_has_vcs() {
-  git rev-parse --is-inside-work-tree > /dev/null 2>&1
+  command -v git > /dev/null 2>&1 \
+    && git rev-parse --is-inside-work-tree > /dev/null 2>&1
 }
 
 # Returns the current VCS branch and dirty status (supports `git`).
@@ -21,6 +22,12 @@ _ps1_vcs_branch() {
   [ -n "$(git status --porcelain 2> /dev/null)" ] && _ps1_branch_dirty='*'
 
   printf '%s%s' "${_ps1_branch}" "${_ps1_branch_dirty}"
+}
+
+# Returns if there are any active jobs.
+_ps1_has_jobs() {
+  command -v jobs > /dev/null 2>&1 \
+    && [ "$(jobs 2> /dev/null | wc -l 2> /dev/null)" -gt 0 ]
 }
 
 # Makes a custom prompt in the following format:
@@ -41,6 +48,7 @@ _make_prompt() {
   # - Host: green
   # - VCS: yellow
   # - Current working directory: blue
+  # - Active jobs: red
   if [ "$(tput colors)" -ge 8 ]; then
     _reset_style="${_esc1}$(tput sgr0)${_esc2}"
     _text_style="${_esc1}$(tput sgr0 && tput bold)${_esc2}"
@@ -50,6 +58,7 @@ _make_prompt() {
     _host_style="${_esc1}$(tput sgr0 && tput bold && tput setaf 2)${_esc2}"
     _vcs_style="${_esc1}$(tput sgr0 && tput bold && tput setaf 3)${_esc2}"
     _cwd_style="${_esc1}$(tput sgr0 && tput bold && tput setaf 4)${_esc2}"
+    _jobs_style="${_esc1}$(tput sgr0 && tput bold && tput setaf 1)${_esc2}"
   fi
 
   # Set `chroot` if detected (`nf-fa-folder_tree`).
@@ -70,6 +79,9 @@ _make_prompt() {
 
   # Set current working directory with `HOME` collapsed to `~` (`nf-fa-folder`).
   PS1="${PS1}${_text_style} in ${_cwd_style} \$(pwd | sed 's:^${HOME}:~:')"
+
+  # Set active jobs if any.
+  PS1="${PS1}${_jobs_style}\$(_ps1_has_jobs && printf ' [+]')"
 
   # Set shell on new line and reset style.
   PS1="${PS1}$(printf '\n%s ' "${_shell_style}\$${_reset_style}")"
