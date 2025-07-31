@@ -31,9 +31,7 @@ while getopts 'nh' option; do
 done
 
 echo "Installing media packages..."
-install-pkg xdg-user-dirs restic rclone keepassxc vlc cava
-has-cmd apt-get && install-pkg cmus
-has-cmd brew && install-pkg cmus
+install-pkg xdg-user-dirs restic rclone keepassxc vlc
 
 echo "Creating XDG media directory '${XDG_MEDIA_DIR}'..."
 [ -n "${dry_run}" ] || mkdir -p "${XDG_MEDIA_DIR}"

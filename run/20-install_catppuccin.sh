@@ -47,7 +47,7 @@ echo "Creating temporary Catppuccin installation directory..."
 tmp_dir="$(mktemp -d "${TMPDIR:-/tmp}/catppuccin.XXXXXXXXX")"
 
 echo "Creating application theme directories..."
-for app in 'alacritty' 'lsd' 'fzf' 'bat' 'cava'; do
+for app in 'alacritty' 'lsd' 'fzf' 'bat'; do
   mkdir -p "${XDG_CONFIG_HOME}/${app}/themes"
 done
 
@@ -92,23 +92,6 @@ wget -O "${XDG_CONFIG_HOME}/lsd/themes/catppuccin-${flavor}.yaml" \
 echo "Linking 'lsd' colors..."
 ln -sfv "${XDG_CONFIG_HOME}/lsd/themes/catppuccin-${flavor}.yaml" \
   "${XDG_CONFIG_HOME}/lsd/colors.yaml"
-
-echo "Downloading 'cava' theme..."
-wget -O "${XDG_CONFIG_HOME}/cava/themes/catppuccin-${flavor}.cava" \
-  "${THEME_GIT_URL}/cava/raw/main/themes/${flavor}.cava"
-
-echo "Configuring 'cava' theme..."
-cat << EOF > "${XDG_CONFIG_HOME}/cava/config"
-# config: configures cava theme.
-#
-# Cava config cannot set dynamic themes.
-[color]
-theme = 'catppuccin-${flavor}'
-EOF
-
-# TODO: remove workaround after 'cava' 0.10.5 is released.
-cp -fv "${XDG_CONFIG_HOME}/cava/themes/catppuccin-${flavor}.cava" \
-  "${XDG_CONFIG_HOME}/cava/config"
 
 echo "Configuring shell theme..."
 cat << EOF > "${XDG_CONFIG_HOME}/env.d/10-theme.sh"

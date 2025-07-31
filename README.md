@@ -183,8 +183,8 @@ Common shortcuts (`C = Ctrl / Cmd`, `A = Alt / Opt`, `S = Shift`):
 - Open file explorer: `A-e`
 - Open web browser: `A-w`
 - Open terminal: `A-x`
-- Open `tmx` terminal: `A-S-x`
-- Open `ssh-tmx` terminal to cloud workstation: `A-c`
+- Open `tmux` terminal: `A-S-x`
+- Open SSH `tmux` terminal to cloud workstation: `A-c`
 - Open app launcher: `A-a`
 - Lock screen / log out: `A-[S]-Esc`
 - Restart / shutdown: `` A-[S]-` ``
