@@ -28,18 +28,15 @@ case "${THEME:-catppuccin-frappe}" in
     flavor='frappe'
     flavor_camelcase='Frappe'
     gtk_tweaks_flavor='frappe'
-    fzf_border_color='--color=border:#737994'
     ;;
   catppuccin-macchiato)
     flavor='macchiato'
     flavor_camelcase='Macchiato'
     gtk_tweaks_flavor='macchiato'
-    fzf_border_color='--color=border:#6E738D'
     ;;
   catppuccin-mocha)
     flavor='mocha'
     flavor_camelcase='Mocha'
-    fzf_border_color='--color=border:#6C7086'
     ;;
   *) echo "Theme '${THEME}' not supported, installation skipped!" && exit 0 ;;
 esac
@@ -80,12 +77,6 @@ EOF
 echo "Downloading 'fzf' theme..."
 wget -O "${XDG_CONFIG_HOME}/fzf/themes/catppuccin-${flavor}.sh" \
   "${THEME_GIT_URL}/fzf/raw/main/themes/catppuccin-fzf-${flavor}.sh"
-
-# TODO: remove after https://github.com/catppuccin/fzf/pull/22 is merged.
-echo "Patching 'fzf' border color..."
-cat << EOF >> "${XDG_CONFIG_HOME}/fzf/themes/catppuccin-${flavor}.sh"
-export FZF_DEFAULT_OPTS="\${FZF_DEFAULT_OPTS} ${fzf_border_color}"
-EOF
 
 echo "Downloading 'bat' theme..."
 wget -O "${XDG_CONFIG_HOME}/bat/themes/catppuccin-${flavor}.tmTheme" \

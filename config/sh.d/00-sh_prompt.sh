@@ -27,7 +27,7 @@ _ps1_vcs_branch() {
 # Returns if there are any active jobs.
 _ps1_has_jobs() {
   command -v jobs > /dev/null 2>&1 \
-    && [ "$(jobs 2> /dev/null | wc -l 2> /dev/null)" -gt 0 ]
+    && [ "$(jobs -p 2> /dev/null | wc -l 2> /dev/null)" -gt 0 ]
 }
 
 # Makes a custom prompt in the following format:
