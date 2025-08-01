@@ -62,6 +62,7 @@ repository can be provided in:
 - `${HOME}/.local/bin/`
 - `${XDG_CONFIG_HOME:-${HOME}/.config}/env.d/`
 - `${XDG_CONFIG_HOME:-${HOME}/.config}/sh.d/`
+- `${XDG_CONFIG_HOME:-${HOME}/.config}/tmux/overrides.tmux`
 - `${XDG_CONFIG_HOME:-${HOME}/.config}/nvim/lua/config/overrides.lua`
 - `${XDG_CONFIG_HOME:-${HOME}/.config}/nvim/lua/plugins/`
 - `${XDG_CONFIG_HOME:-${HOME}/.config}/nvim/[after/]lsp/`
