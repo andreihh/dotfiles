@@ -102,12 +102,12 @@ name='Launch terminal'
 [org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/ssh-tmx]
 binding='<Alt>c'
 command='x-terminal-emulator -e ssh-tmx'
-name='Launch ssh-tmx terminal'
+name='Launch SSH tmux terminal'
 
 [org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/tmx]
 binding='<Shift><Alt>x'
 command='x-terminal-emulator -e tmx'
-name='Launch tmx terminal'
+name='Launch tmux terminal'
 
 [org/gnome/shell/extensions/system-monitor]
 show-cpu=true
