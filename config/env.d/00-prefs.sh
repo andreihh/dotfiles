@@ -2,9 +2,15 @@
 #
 # shellcheck shell=sh
 
-# Use US English and UTF-8.
+# Configure locale to:
+# - US English
+# - ISO 8601 date and time
+# - A4 paper size
+# - Metric system
 export LANG='en_US.UTF-8'
-export LC_ALL='en_US.UTF-8'
+export LC_TIME=en_DK.UTF-8
+export LC_PAPER='en_GB.UTF-8'
+export LC_MEASUREMENT='en_GB.UTF-8'
 
 # Configure default programs.
 export SHELL='/bin/bash'

@@ -181,8 +181,9 @@ Common shortcuts (`C = Ctrl / Cmd`, `A = Alt / Opt`, `S = Shift`):
 - Focus notification / dismiss: `A-n` / `Esc`
 - Open notification center: `A-S-n`
 - Open settings: `A-S-s`
-- Open file explorer: `A-e`
 - Open web browser: `A-w`
+- Open email client: `A-e`
+- Open file explorer: `A-f`
 - Open terminal: `A-x`
 - Open `tmux` terminal: `A-S-x`
 - Open SSH `tmux` terminal to cloud workstation: `A-c`

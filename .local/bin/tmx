@@ -16,7 +16,9 @@ set -e
 # Start the server as a daemon.
 tmux start \; set -g exit-empty off
 
-if [ $# -eq 0 ]; then
+if [ $# -eq 1 ]; then
+  session="$1"
+else
   session="$(
     tmux ls -F "#S" | fzf --tmux \
       --prompt='Session> ' \
@@ -25,8 +27,6 @@ if [ $# -eq 0 ]; then
       --bind='ctrl-x:execute-silent(tmux kill-session -t {})' \
       --bind='ctrl-x:+reload-sync(tmux ls -F "#S")'
   )" || { [ $? = 130 ] && echo "Cancelled!" 1>&2 && exit 0; }
-else
-  session="$1"
 fi
 
 case "${session}" in

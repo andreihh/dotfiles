@@ -6,7 +6,7 @@
 # shellcheck shell=sh
 
 if command -v fzf > /dev/null 2>&1; then
-  # Shell keymaps for `fzf`:
+  # Keymaps:
   # - <C-r> = search command history
   # - **<tab> = complete path / process id / etc.
   [ -n "${BASH_VERSION}" ] && eval "$(fzf --bash)"
