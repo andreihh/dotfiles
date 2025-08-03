@@ -47,7 +47,7 @@ echo "Creating temporary Catppuccin installation directory..."
 tmp_dir="$(mktemp -d "${TMPDIR:-/tmp}/catppuccin.XXXXXXXXX")"
 
 echo "Creating application theme directories..."
-for app in 'alacritty' 'lsd' 'fzf' 'bat'; do
+for app in 'alacritty' 'fzf' 'bat' 'lsd' 'thunderbird'; do
   mkdir -p "${XDG_CONFIG_HOME}/${app}/themes"
 done
 
@@ -92,6 +92,10 @@ wget -O "${XDG_CONFIG_HOME}/lsd/themes/catppuccin-${flavor}.yaml" \
 echo "Linking 'lsd' colors..."
 ln -sfv "${XDG_CONFIG_HOME}/lsd/themes/catppuccin-${flavor}.yaml" \
   "${XDG_CONFIG_HOME}/lsd/colors.yaml"
+
+echo "Downloading 'thunderbird' theme..."
+wget -O "${XDG_CONFIG_HOME}/thunderbird/themes/catppuccin-${flavor}.xpi" \
+  "${THEME_GIT_URL}/thunderbird/raw/main/themes/${flavor}/${flavor}-blue.xpi"
 
 echo "Configuring shell theme..."
 cat << EOF > "${XDG_CONFIG_HOME}/env.d/10-theme.sh"
@@ -183,6 +187,7 @@ Installed Catppuccin ${flavor_camelcase} with blue accent successfully!
 Consider updating the web browser theme and userstyles for consistency:
 - https://github.com/catppuccin/firefox
 - https://github.com/catppuccin/chrome
+- https://github.com/catppuccin/thunderbird
 - https://github.com/catppuccin/vimium
 - https://github.com/catppuccin/userstyles
 - https://catppuccin-userstyles-customizer.uncenter.dev/
