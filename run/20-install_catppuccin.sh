@@ -184,7 +184,7 @@ EOF
 cat << EOF
 Installed Catppuccin ${flavor_camelcase} with blue accent successfully!
 
-Consider updating the web browser theme and userstyles for consistency:
+Update the web browser and email client themes and userstyles for consistency:
 - https://github.com/catppuccin/firefox
 - https://github.com/catppuccin/chrome
 - https://github.com/catppuccin/thunderbird

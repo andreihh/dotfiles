@@ -44,11 +44,11 @@ cd "${profile_dir}"
 
 echo "Configured 'thunderbird-user.js' successfully!"
 cat << EOF
-Consider updating the following settings:
+Update the following settings:
 - Folder Modes > Favorite Folders, Unread Folders, All Folders
 - Show "Get Messages"
 - Show "New Message"
-- Settings > Add-ons and Themes > Install Add-on From File > ...
+- Settings > Add-ons and Themes > Cogwheel > Install Add-on From File > ...
 
 Ensure a profile exists in '~/.thunderbird/profiles.ini' with the following:
 Name=${USER}

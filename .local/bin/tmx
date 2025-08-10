@@ -14,7 +14,7 @@ set -e
 [ $# -gt 1 ] && echo "Usage: $0 [- | . | <session>]" && exit 1
 
 # Start the server as a daemon.
-tmux start \; set -g exit-empty off
+tmux start\; set -g exit-empty off
 
 if [ $# -eq 1 ]; then
   session="$1"
@@ -22,7 +22,7 @@ else
   session="$(
     tmux ls -F "#S" | fzf --tmux \
       --prompt='Session> ' \
-      --header='<ctrl-n> to create | <ctrl-x> to delete' \
+      --header=':: <ctrl-n> to create | <ctrl-x> to delete' \
       --bind='ctrl-n:print-query' \
       --bind='ctrl-x:execute-silent(tmux kill-session -t {})' \
       --bind='ctrl-x:+reload-sync(tmux ls -F "#S")'

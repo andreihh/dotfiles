@@ -8,6 +8,5 @@
 [ -f "${XDG_CONFIG_HOME:-${HOME}/.config}/envrc" ] \
   && . "${XDG_CONFIG_HOME:-${HOME}/.config}/envrc"
 
-# Include `.bashrc` if running `bash` and it exists, but only after loading all
-# shell-agnostic configs and environment.
+# Include `.bashrc` if running `bash`, but only after loading the environment.
 [ -n "${BASH_VERSION}" ] && [ -f "${HOME}/.bashrc" ] && . "${HOME}/.bashrc"

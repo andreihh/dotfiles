@@ -2,17 +2,20 @@
 #
 # shellcheck shell=sh
 
-# Open argument with the default program.
-alias o='open > /dev/null 2>&1'
+# Selects `tmux` session.
+alias t='tmx'
 
-# Enable colors in `less`.
-alias less='less -R'
+# Opens argument with the default program.
+alias o='open > /dev/null 2>&1'
 
 # Alias `ls` to `lsd` and enable icons and colored output.
 alias ls='lsd --color=always --icon=always'
 alias la='lsd -A --color=always --icon=always'
 alias ll='lsd -alF --color=always --icon=always'
 alias lt='lsd --tree --color=always --icon=always'
+
+# Enable colors in `less`.
+alias less='less -R'
 
 # Enable colored `fd` output and show hidden files.
 alias fd='fd --color=always --hidden'
