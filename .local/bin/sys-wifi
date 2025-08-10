@@ -1,0 +1,51 @@
+#!/bin/sh
+#
+# Connects to and configures Wi-Fi networks.
+#
+# Dependencies: `fzf`, `NetworkManager`
+
+# Exit if any command fails.
+set -e
+
+usage() {
+  echo "Usage: $0 [status | on | off | autoconnect | scan | <ssid>]"
+}
+
+get_active_ssid() {
+  nmcli -g active,ssid device wifi | grep 'yes' | cut -d ':' -f 2
+}
+
+[ $# -gt 1 ] && usage && exit 1
+if [ $# -eq 1 ]; then
+  case "$1" in
+    status)
+      active_ssid="$(get_active_ssid)"
+      status="$(nmcli radio wifi)"
+      echo "${active_ssid:-${status}}"
+      ;;
+    on) nmcli radio wifi on ;;
+    off) nmcli radio wifi off ;;
+    autoconnect)
+      nmcli connection modify "$(get_active_ssid)" connection.autoconnect yes
+      ;;
+    scan) nmcli device wifi list --rescan yes > /dev/null 2>&1 ;;
+    *) nmcli --ask device wifi connect "$1" ;;
+  esac
+  exit 0
+fi
+
+# Starts a one-off menu:
+# - `nf-fa-wifi`
+# - `nf-md-wifi_check`
+# - `nf-md-wifi_off`
+# - `nf-md-wifi_refresh`
+fzf-menu --header="  Wi-Fi: $("$0" status)" << EOF
+󱚽 Wi-Fi on	'$0' on
+󰖪 Wi-Fi off	'$0' off
+󱚾 Wi-Fi autoconnect	'$0' autoconnect
+󱛄 Wi-Fi scan	'$0' scan && '$0'
+$(nmcli --get-values ssid device wifi list \
+    | sort -u \
+    | sed '/^[[:space:]]*$/d' \
+    | while read -r ssid; do echo "Connect to '${ssid}'	'$0' '${ssid}'"; done)
+EOF

@@ -1,0 +1,43 @@
+#!/bin/sh
+#
+# Controls the system volume and microphone.
+#
+# Dependencies: `fzf`, `pipewire`, `wireplumber`
+
+# Exit if any command fails.
+set -e
+
+usage() {
+  echo "Usage: $0 [getv | getm | vup | vdown | vtoggle | mtoggle]"
+}
+
+[ $# -gt 1 ] && usage && exit 1
+if [ $# -eq 1 ]; then
+  case "$1" in
+    getv) wpctl get-volume @DEFAULT_AUDIO_SINK@ ;;
+    getm) wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | sed 's/Volume/Mic/g' ;;
+    vup) wpctl set-volume --limit=1 @DEFAULT_AUDIO_SINK@ 5%+ ;;
+    vdown) wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- ;;
+    vtoggle) wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle ;;
+    mtoggle) wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle ;;
+    *) usage && exit 1 ;;
+  esac
+  exit 0
+fi
+
+# Starts a looping menu:
+# - `nf-fa-volume_high`
+# - `nf-fa-microphone`
+# - `nf-md-volume_plus`
+# - `nf-md-volume_minus`
+# - `nf-md-volume_mute`
+# - `nf-md-microphone_off`
+header_cmd="printf '  %s |  %s' \"\$('$0' getv)\" \"\$('$0' getm)\""
+fzf-menu-loop \
+  --bind="start:transform-header(${header_cmd})" \
+  --bind="jump:+transform-header(${header_cmd})" << EOF
+󰝝 Volume up	'$0' vup
+󰝞 Volume down	'$0' vdown
+󰝟 Toggle sound	'$0' vtoggle
+󰍭 Toggle mic	'$0' mtoggle
+EOF

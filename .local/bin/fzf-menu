@@ -1,0 +1,20 @@
+#!/bin/sh
+#
+# Displays a menu with `fzf`.
+#
+# Every input line must be split in two, delimited by a tab `	`:
+# - The first part is the text displayed in the menu
+# - The second part is the command to be executed upon selection
+#
+# To configure a menu header, provide the `--header` option.
+#
+# Dependencies: `fzf`
+
+# Exit if any command fails.
+set -e
+
+fzf --tmux --color='fg+:-1,bg+:-1' --no-input --with-nth=1 --delimiter='	' \
+  --bind='load:jump' \
+  --bind='jump-cancel:abort' \
+  --bind='jump:become(sh -c {2})' \
+  "$@" || { [ $? = 130 ] && echo "Cancelled!" 1>&2 && exit 0; }

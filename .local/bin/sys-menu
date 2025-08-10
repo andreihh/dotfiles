@@ -1,0 +1,40 @@
+#!/bin/sh
+#
+# Launches the system menu.
+#
+# Dependencies: `fzf`
+
+# Exit if any command fails.
+set -e
+
+usage() {
+  echo "Usage: $0 [volume | brightness | bluetooth | wifi | poweroff]"
+}
+
+[ $# -gt 1 ] && usage && exit 1
+if [ $# -eq 1 ]; then
+  case "$1" in
+    volume) sys-volume ;;
+    brightness) sys-brightness ;;
+    bluetooth) sys-bluetooth ;;
+    wifi) sys-wifi ;;
+    poweroff) sys-poweroff ;;
+    *) usage && exit 1 ;;
+  esac
+  exit 0
+fi
+
+# Starts a one-off menu:
+# - `nf-fa-cog`
+# - `nf-md-volume_high`
+# - `nf-md-white_balance_sunny`
+# - `nf-md-bluetooth`
+# - `nf-md-wifi`
+# - `nf-md-power`
+fzf-menu --header=' System menu' << EOF
+󰕾 Volume	'$0' volume
+󰖨 Brightness	'$0' brightness
+󰂯 Bluetooth	'$0' bluetooth
+󰖩 Wi-Fi	'$0' wifi
+󰐥 Power off	'$0' poweroff
+EOF

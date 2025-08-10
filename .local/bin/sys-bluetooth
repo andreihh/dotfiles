@@ -1,0 +1,56 @@
+#!/bin/sh
+#
+# Manages bluetooth devices.
+#
+# Dependencies: `fzf`, `rfkill`, `bluez`
+
+# Exit if any command fails.
+set -e
+
+usage() {
+  echo "Usage: $0 [status | on | off | <dev>]"
+}
+
+[ $# -gt 1 ] && usage && exit 1
+if [ $# -eq 1 ]; then
+  case "$1" in
+    status)
+      case "$(rfkill list bluetooth)" in
+        'blocked: yes') echo 'off' ;;
+        *) echo 'on' ;;
+      esac
+      ;;
+    on) rfkill unblock bluetooth ;;
+    off) rfkill block bluetooth ;;
+    *)
+      dev="$1"
+      case "$(bluetoothctl info "${dev}")" in
+        *'Paired: no'*)
+          bluetoothctl pair "${dev}"
+          bluetoothctl connect "${dev}"
+          ;;
+        *'Connected: no'*) bluetoothctl connect "${dev}" ;;
+        *) bluetoothctl disconnect "${dev}" ;;
+      esac
+      ;;
+  esac
+  exit 0
+fi
+
+# Starts a one-off menu:
+# - `nf-fa-bluetooth_b`
+# - `nf-md-bluetooth`
+# - `nf-md-bluetooth_off`
+fzf-menu --header=" Bluetooth: $("$0" status)" << EOF
+󰂯 Bluetooth on
+󰂲 Bluetooth off
+$(bluetoothctl devices | while read -r devinfo; do
+  dev="$(echo "${devinfo}" | cut -d ' ' -f 2)"
+  alias="$(echo "${devinfo}" | cut -d ' ' -f 3-)"
+  case "$(bluetoothctl info "${dev}")" in
+    *'Connected: yes'*) action='Disconnect' ;;
+    *) action='Connect' ;;
+  esac
+  echo "${action} '${alias}'	'$0' '${dev}'"
+done)
+EOF

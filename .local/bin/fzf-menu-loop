@@ -1,0 +1,16 @@
+#!/bin/sh
+#
+# Displays a looping menu with `fzf`.
+#
+# To configure a menu header, provide the following bindings:
+# - `--bind="start:transform-header(...)"`
+# - `--bind="jump:+transform-header(...)"`
+#
+# See `fzf-menu` for more details.
+#
+# Dependencies: `fzf`
+
+# Exit if any command fails.
+set -e
+
+fzf-menu --bind='jump:execute-silent(sh -c {2})+first+jump' "$@"

@@ -1,0 +1,31 @@
+#!/bin/sh
+#
+# Powers off or reboots the machine.
+#
+# Dependencies: `fzf`
+
+# Exit if any command fails.
+set -e
+
+usage() {
+  echo "Usage: $0 [reboot | poweroff]"
+}
+
+[ $# -gt 1 ] && usage && exit 1
+if [ $# -eq 1 ]; then
+  case "$1" in
+    reboot) shutdown -r now ;;
+    poweroff) shutdown -h now ;;
+    *) usage && exit 1 ;;
+  esac
+  exit 0
+fi
+
+# Starts a one-off menu:
+# - `nf-fa-power_off`
+# - `nf-md-restart`
+# - `nf-md-power`
+fzf-menu --header=' Power off' << EOF
+󰜉 Reboot	$0 reboot
+󰐥 Power off	$0 poweroff
+EOF
