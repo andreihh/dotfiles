@@ -33,7 +33,6 @@ end
 --  - <esc> = clear search highlights
 --  - u = [u]ndo
 --  - <C-r> = [r]edo
---  - <C-a> = select [a]ll
 --  - <C-c> = [c]opy to system clipboard using OSC52
 --  - <C-b> = send to [b]ackground
 --  - s + s/u/r = [s]ort [s]imple / [u]nique / [r]everse
@@ -54,7 +53,6 @@ map("n", "q", function()
 end, "[Q]uit special window / tab or record macro")
 map("n", "<esc>", "<cmd>nohlsearch<CR>", "Clear search highlights")
 map({ "n", "x" }, "<C-c>", '"+y', "[C]opy to system clipboard using OSC52")
-map("n", "<C-a>", "ggVG", "Select [A]ll")
 map("n", "<C-c><C-c>", '"+y_', "[C]opy line to system clipboard using OSC52")
 map("n", "<C-b>", "<cmd>stop<CR>", "Send to [B]ackground")
 map("x", "ss", ":sort<CR>", "[S]ort [S]imple")

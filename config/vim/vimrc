@@ -374,7 +374,6 @@ nnoremap <expr> q index(['help', 'quickfix'], &buftype) >= 0
     \ ? ':quit<CR>'
     \ : (exists('t:is_diff_tab') ? ':tabclose<CR>' : 'q')
 nnoremap <esc> <C-c>:nohlsearch<CR>
-nnoremap <C-a> ggVG
 nnoremap <C-c> :OSCYankRegister<CR>
 nnoremap <C-b> :stop<CR>
 xnoremap ss :sort<CR>
