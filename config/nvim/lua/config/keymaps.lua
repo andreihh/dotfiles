@@ -113,10 +113,10 @@ map("t", "<C-e>", "<C-\\><C-n>", "[E]xit terminal mode")
 --  - <M-s> = [s]ave session
 
 -- Search:
---  - s + <leader>/p/s/h/m/k/'/b/+/f/F/r/g/G/c/j/l/q/d/D/w/"/:// = [s]earch
+--  - s + <leader>/?/h/'/b/+/f/F/g/G/c/j/l/q/d/D/w/"/:// = [s]earch
 --  - <C-j/k/f> = select next / previous / find item
 --  - <C-u/d> = scroll preview [u]p / [d]own
---  - <C-l/p> = toggle [l]ine / [p]review wrapping for long lines
+--  - <C-l/p> = toggle [l]ist / [p]review wrapping for long lines
 --  - <tab> = accept selected / toggled items
 --  - <S-tab> = toggle selected item
 --  - <C-o/s/v/t> = open selected item in window

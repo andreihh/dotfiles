@@ -3,10 +3,8 @@ return { -- Fuzzy finder (files, lsp, etc.)
   cmd = "FzfLua",
   keys = {
     { "s<leader>", "<cmd>FzfLua resume<CR>", desc = "[S]earch resume" },
-    { "sp", "<cmd>FzfLua builtin<CR>", desc = "[S]earch [P]icker" },
+    { "s?", "<cmd>FzfLua builtin<CR>", desc = "[S]earch [?] picker" },
     { "sh", "<cmd>FzfLua helptags<CR>", desc = "[S]earch [H]elp tags" },
-    { "sm", "<cmd>FzfLua manpages<CR>", desc = "[S]earch [M]an pages" },
-    { "sk", "<cmd>FzfLua keymaps<CR>", desc = "[S]earch [K]eymaps" },
     { "s'", "<cmd>FzfLua marks marks=%a<CR>", desc = "[S]earch ['] marks" },
     { "sb", "<cmd>FzfLua buffers<CR>", desc = "[S]earch [B]uffers" },
     {
@@ -32,7 +30,6 @@ return { -- Fuzzy finder (files, lsp, etc.)
       end,
       desc = "[S]earch current buffer's directory for [F]iles",
     },
-    { "sr", "<cmd>FzfLua oldfiles<CR>", desc = "[S]earch [R]ecent files" },
     { "sg", "<cmd>FzfLua live_grep<CR>", desc = "[S]earch by [G]rep" },
     {
       "sG",
