@@ -366,6 +366,7 @@ endfor
 " - s + s/u/r = [s]ort [s]imple / [u]nique / [r]everse
 " - v + <C-V> = [v]isual block mode
 " - K = show [k]eyword help
+" - <leader>ts = [t]oggle [s]pelling
 map Y y$
 nnoremap M :PlugStatus<CR>
 nnoremap S :w<CR>
@@ -379,6 +380,7 @@ nnoremap <C-b> :stop<CR>
 xnoremap ss :sort<CR>
 xnoremap su :sort u<CR>
 xnoremap sr :sort!<CR>
+nnoremap <leader>ts :setlocal spell! spelllang=en_us<CR>
 
 " Navigation:
 " - gj / gk = [g]o to previous / next location

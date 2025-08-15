@@ -97,9 +97,10 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
       group = vim.api.nvim_create_augroup("configure_snacks_toggles", {}),
       pattern = "VeryLazy",
       callback = function()
-        Snacks.toggle.inlay_hints():map("<leader>H")
-        Snacks.toggle.treesitter():map("<leader>T")
-        Snacks.toggle.diagnostics():map("<leader>D")
+        Snacks.toggle.inlay_hints():map("<leader>th")
+        Snacks.toggle.treesitter():map("<leader>tt")
+        Snacks.toggle.diagnostics():map("<leader>td")
+        Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>ts")
         Snacks.toggle
           .new({
             name = "Navigation context",

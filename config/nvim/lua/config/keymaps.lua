@@ -38,6 +38,7 @@ end
 --  - s + s/u/r = [s]ort [s]imple / [u]nique / [r]everse
 --  - v + <C-V> = [v]isual block mode
 --  - K = show [k]eyword help
+--  - <leader>t + h/t/d/s = [t]oggle option
 --  - <C-\> = show keymap help
 map("n", "M", "<cmd>Lazy<CR>", "[M]anage plugins")
 map("n", "S", "<cmd>write<CR>", "[S]ave buffer")
@@ -203,7 +204,7 @@ map("n", "<leader>f", "za", "Toggle [F]old under cursor")
 --  - H / <C-s> / L = show [h]elp / [s]ignature / [l]int
 --    - H / <C-s> / L = focus float
 --    - q = [q]uit float if focused
---  - <leader> + =/r/a/A/H/T/D/q = perform LSP action
+--  - <leader> + =/r/a/A/q = perform LSP action
 local WARN = vim.diagnostic.severity.WARN
 local ERROR = vim.diagnostic.severity.ERROR
 local diagnostic_jump_opts = {
