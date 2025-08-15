@@ -205,7 +205,7 @@ map("n", "<leader>f", "za", "Toggle [F]old under cursor")
 --  - H / <C-s> / L = show [h]elp / [s]ignature / [l]int
 --    - H / <C-s> / L = focus float
 --    - q = [q]uit float if focused
---  - <leader> + =/r/a/A/l/L/H/T/D/q = perform LSP action
+--  - <leader> + =/r/a/A/H/T/D/q = perform LSP action
 local WARN = vim.diagnostic.severity.WARN
 local ERROR = vim.diagnostic.severity.ERROR
 local diagnostic_jump_opts = {

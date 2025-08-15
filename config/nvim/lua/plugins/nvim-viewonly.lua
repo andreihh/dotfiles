@@ -8,7 +8,6 @@ return vim.g.viewonly
       { "kosayoda/nvim-lightbulb", cond = false },
       { "kylechui/nvim-surround", cond = false },
       { "mason-org/mason.nvim", cond = false },
-      { "mfussenegger/nvim-lint", cond = false },
       { "neovim/nvim-lspconfig", cond = false },
       { "nvim-lua/plenary.nvim", cond = false },
       { "rafamadriz/friendly-snippets", cond = false },
