@@ -39,6 +39,9 @@ end
 --  - K = show [k]eyword help
 --  - <leader>t + h/t/d/s = [t]oggle option
 --  - <leader>P = [p]lugin manager
+--  - <leader>S = [s]ession manager
+--  - <M-s> = [s]ave session
+--  - dS = [d]elete [s]ession
 --  - <C-\> = show keymap help
 map("n", "S", "<cmd>write<CR>", "[S]ave buffer")
 map("n", "Q", "<cmd>quitall<CR>", "[Q]uit all")
@@ -109,10 +112,6 @@ map("n", "<M-=>", "<C-w>=", "Resize all windows equally")
 --  - <C-e> = [e]xit terminal mode
 map("n", "X", "<cmd>terminal<CR>", "Open terminal")
 map("t", "<C-e>", "<C-\\><C-n>", "[E]xit terminal mode")
-
--- Session:
---  - dS = [d]elete [s]ession
---  - <M-s> = [s]ave session
 
 -- Search:
 --  - s + <leader>/?/h/'/b/+/f/F/g/G/c/j/l/q/d/D/w/"/:// = [s]earch

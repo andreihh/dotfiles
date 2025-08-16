@@ -366,7 +366,9 @@ endfor
 " - v + <C-V> = [v]isual block mode
 " - K = show [k]eyword help
 " - <leader>ts = [t]oggle [s]pelling
-" - <leader>P = manage [p]lugins
+" - <leader>P = [p]lugin manager
+" - <M-s> = [s]ave session
+" - dS = [d]elete [s]ession
 map Y y$
 nnoremap S :w<CR>
 nnoremap Q :quitall<CR>
@@ -381,6 +383,8 @@ xnoremap su :sort u<CR>
 xnoremap sr :sort!<CR>
 nnoremap <leader>ts :setlocal spell! spelllang=en_us<CR>
 nnoremap <leader>P :PlugStatus<CR>
+nnoremap <expr> <M-s> ':SSave! ' . <SID>SessionFile() . '<CR>'
+nnoremap <expr> dS ':SDelete! ' . fnamemodify(v:this_session, ':t') . '<CR>'
 
 " Navigation:
 " - j/k = move down / up by display line
@@ -444,12 +448,6 @@ nnoremap <M-=> <C-w>=
 " - <C-e> = [e]xit terminal mode
 nnoremap X :terminal<CR>
 tnoremap <C-e> <C-\><C-n>
-
-" Session:
-" - dS = [d]elete [s]ession
-" - <M-s> = [s]ave session
-nnoremap <expr> dS ':SDelete! ' . fnamemodify(v:this_session, ':t') . '<CR>'
-nnoremap <expr> <M-s> ':SSave! ' . <SID>SessionFile() . '<CR>'
 
 " Search:
 " - s + h/'/b/f/F/g/c/j/l/q/:// = [s]earch
