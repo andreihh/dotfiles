@@ -61,6 +61,7 @@ map("x", "su", ":sort u<CR>", "[S]ort [U]nique")
 map("x", "sr", ":sort!<CR>", "[S]ort [R]everse")
 
 -- Navigation:
+--  - j/k = move down / up by display line
 --  - gj / gk = [g]o to previous / next location
 --  - gf = [g]o to [f]ile under cursor / selected [f]ile
 --  - gx = [g]o to URI with e[x]ternal system handler
@@ -71,6 +72,8 @@ map("x", "sr", ":sort!<CR>", "[S]ort [R]everse")
 --  - <C-f> = multi-window [f]ind
 --  - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
 --  - [l / ]l / [L / ]L = jump to previous / next / first / last [l]ocation
+map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
+map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 map("n", "gj", "<C-o>", "[G]oto previous location")
 map("n", "gk", "<C-i>", "[G]oto next location")
 for i = 1, 9 do

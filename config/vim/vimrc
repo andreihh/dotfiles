@@ -383,6 +383,7 @@ xnoremap sr :sort!<CR>
 nnoremap <leader>ts :setlocal spell! spelllang=en_us<CR>
 
 " Navigation:
+" - j/k = move down / up by display line
 " - gj / gk = [g]o to previous / next location
 " - gf = [g]o to [f]ile under cursor / selected [f]ile
 " - gx = [g]o to URI with e[x]ternal system handler
@@ -393,6 +394,10 @@ nnoremap <leader>ts :setlocal spell! spelllang=en_us<CR>
 " - <C-f> = multi-window [f]ind
 " - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
 " - [l / ]l / [L / ]L = jump to previous / next / first / last [l]ocation
+nnoremap <expr> j v:count == 0 ? 'gj' : 'j'
+xnoremap <expr> j v:count == 0 ? 'gj' : 'j'
+nnoremap <expr> k v:count == 0 ? 'gk' : 'k'
+xnoremap <expr> k v:count == 0 ? 'gk' : 'k'
 nnoremap gj <C-o>
 nnoremap gk <C-i>
 for i in '123456789'
