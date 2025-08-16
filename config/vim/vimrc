@@ -354,7 +354,6 @@ for key in 'hjkl=VS'
 endfor
 
 " General:
-" - M = [m]anage plugins
 " - S = [s]ave buffer
 " - Q = [q]uit all
 " - q = [q]uit special window / tab or record macro
@@ -367,8 +366,8 @@ endfor
 " - v + <C-V> = [v]isual block mode
 " - K = show [k]eyword help
 " - <leader>ts = [t]oggle [s]pelling
+" - <leader>P = manage [p]lugins
 map Y y$
-nnoremap M :PlugStatus<CR>
 nnoremap S :w<CR>
 nnoremap Q :quitall<CR>
 nnoremap <expr> q index(['help', 'quickfix'], &buftype) >= 0
@@ -381,6 +380,7 @@ xnoremap ss :sort<CR>
 xnoremap su :sort u<CR>
 xnoremap sr :sort!<CR>
 nnoremap <leader>ts :setlocal spell! spelllang=en_us<CR>
+nnoremap <leader>P :PlugStatus<CR>
 
 " Navigation:
 " - j/k = move down / up by display line

@@ -26,7 +26,6 @@ local function map(mode, lhs, rhs, desc_or_opts)
 end
 
 -- General:
---  - M = [m]anage plugins
 --  - S = [s]ave buffer
 --  - Q = [q]uit all
 --  - q = [q]uit special window / tab or record macro
@@ -39,8 +38,8 @@ end
 --  - v + <C-V> = [v]isual block mode
 --  - K = show [k]eyword help
 --  - <leader>t + h/t/d/s = [t]oggle option
+--  - <leader>P = [p]lugin manager
 --  - <C-\> = show keymap help
-map("n", "M", "<cmd>Lazy<CR>", "[M]anage plugins")
 map("n", "S", "<cmd>write<CR>", "[S]ave buffer")
 map("n", "Q", "<cmd>quitall<CR>", "[Q]uit all")
 map("n", "q", function()
@@ -59,6 +58,7 @@ map("n", "<C-b>", "<cmd>stop<CR>", "Send to [B]ackground")
 map("x", "ss", ":sort<CR>", "[S]ort [S]imple")
 map("x", "su", ":sort u<CR>", "[S]ort [U]nique")
 map("x", "sr", ":sort!<CR>", "[S]ort [R]everse")
+map("n", "<leader>P", "<cmd>Lazy<CR>", "[P]lugin manager")
 
 -- Navigation:
 --  - j/k = move down / up by display line
