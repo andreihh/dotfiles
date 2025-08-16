@@ -41,7 +41,6 @@ end
 --  - <leader>P = [p]lugin manager
 --  - <leader>S = [s]ession manager
 --  - <M-s> = [s]ave session
---  - dS = [d]elete [s]ession
 --  - <M-/> = show keymap help
 map("n", "S", "<cmd>write<CR>", "[S]ave buffer")
 map("n", "Q", "<cmd>quitall<CR>", "[Q]uit all")
