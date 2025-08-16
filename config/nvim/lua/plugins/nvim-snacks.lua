@@ -79,10 +79,9 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
     dashboard = {
       preset = {
         keys = {
-          { icon = "", key = "e", action = "g-", desc = "Open explorer" },
-          { icon = "", key = "f", action = "sf", desc = "Find file" },
-          { icon = "", key = "g", action = "sg", desc = "Grep text" },
-          { icon = "", key = "r", action = "sr", desc = "Recent files" },
+          { icon = "", key = "e", action = "g-", desc = "Explorer" },
+          { icon = "", key = "f", action = "sf", desc = "Find" },
+          { icon = "", key = "g", action = "sg", desc = "Grep" },
           { icon = "", key = "s", action = "<leader>S", desc = "Sessions" },
           { icon = "", key = "p", action = "<leader>P", desc = "Plugins" },
           { icon = "", key = "q", action = "Q", desc = "Quit" },

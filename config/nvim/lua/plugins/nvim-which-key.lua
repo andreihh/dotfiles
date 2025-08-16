@@ -29,6 +29,7 @@ return { -- Useful plugin to show pending keybinds
       { "q", icon = "" }, -- `nf-fa-sign_out`
       { "<C-f>", icon = "" }, -- `nf-fa-flash`
       { "dS", icon = "󱙄" }, -- `nf-md-content_save_off_outline`
+      { "g-", icon = "" }, -- `nf-fa-folder`
       { "gd", icon = "" }, -- `nf-fa-code`
       { "gD", icon = "" }, -- `nf-fa-code`
       { "gi", icon = "" }, -- `nf-fa-code`

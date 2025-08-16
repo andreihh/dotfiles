@@ -1,9 +1,7 @@
 return { -- File explorer
   "stevearc/oil.nvim",
   cmd = "Oil",
-  keys = {
-    { "g-", "<cmd>Oil<CR>", desc = "[G]oto [-] parent directory" },
-  },
+  keys = { { "g-", "<cmd>Oil<CR>", desc = "[G]oto [-] parent directory" } },
   opts = {
     use_default_keymaps = false,
     view_options = { show_hidden = true },

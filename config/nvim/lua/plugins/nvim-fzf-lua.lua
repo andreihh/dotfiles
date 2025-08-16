@@ -2,9 +2,10 @@ return { -- Fuzzy finder (files, lsp, etc.)
   "ibhagwan/fzf-lua",
   cmd = "FzfLua",
   keys = {
-    { "s<leader>", "<cmd>FzfLua resume<CR>", desc = "[S]earch resume" },
     { "s?", "<cmd>FzfLua builtin<CR>", desc = "[S]earch [?] picker" },
+    { "sr", "<cmd>FzfLua resume<CR>", desc = "[S]earch [R]esume" },
     { "sh", "<cmd>FzfLua helptags<CR>", desc = "[S]earch [H]elp tags" },
+    { "sm", "<cmd>FzfLua manpages<CR>", desc = "[S]earch [M]an pages" },
     { "s'", "<cmd>FzfLua marks marks=%a<CR>", desc = "[S]earch ['] marks" },
     { "sb", "<cmd>FzfLua buffers<CR>", desc = "[S]earch [B]uffers" },
     {
@@ -52,13 +53,18 @@ return { -- Fuzzy finder (files, lsp, etc.)
     },
     {
       "sD",
-      "<cmd>FzfLua diagnostics_document",
+      "<cmd>FzfLua diagnostics_document<CR>",
       desc = "[S]earch current buffer's [D]iagnostics",
     },
     {
-      "sw",
+      "ss",
+      "<cmd>FzfLua lsp_document_symbols<CR>",
+      desc = "[S]earch document [S]ymbols",
+    },
+    {
+      "sS",
       "<cmd>FzfLua lsp_workspace_symbols<CR>",
-      desc = "[S]earch [W]orkspace symbols",
+      desc = "[S]earch workspace [S]ymbols",
     },
     { 's"', "<cmd>FzfLua registers<CR>", desc = '[S]earch ["] registers' },
     {

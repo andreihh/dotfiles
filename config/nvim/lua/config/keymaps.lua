@@ -114,7 +114,7 @@ map("n", "X", "<cmd>terminal<CR>", "Open terminal")
 map("t", "<C-e>", "<C-\\><C-n>", "[E]xit terminal mode")
 
 -- Search:
---  - s + <leader>/?/h/'/b/+/f/F/g/G/c/j/l/q/d/D/w/"/:// = [s]earch
+--  - s + ?/r/h/m/'/b/+/f/F/g/G/c/j/l/q/d/D/s/S/"/:// = [s]earch
 --  - <C-j/k/f> = select next / previous / find item
 --  - <C-u/d> = scroll preview [u]p / [d]own
 --  - <C-l/p> = toggle [l]ist / [p]review line wrap
