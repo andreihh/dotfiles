@@ -92,7 +92,7 @@ return { -- Fuzzy finder (files, lsp, etc.)
       fzf = {},
     },
     fzf_colors = true, -- Match `fzf` colors with color scheme
-    defaults = { formatter = "path.dirname_first" },
+    defaults = { formatter = "path.filename_first" }, -- Show filenames first
     file_icon_padding = " ", -- Required for double-width icon rendering
     -- Make files prompt consistent with other pickers.
     files = { cwd_prompt = false },
