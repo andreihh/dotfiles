@@ -1,5 +1,6 @@
 return { -- File explorer
   "stevearc/oil.nvim",
+  lazy = false, -- Ensure auto-loading
   cmd = "Oil",
   keys = { { "g-", "<cmd>Oil<CR>", desc = "[G]oto [-] parent directory" } },
   opts = {
