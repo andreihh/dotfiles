@@ -12,16 +12,18 @@ return { -- Useful plugin to show pending keybinds
   opts = {
     triggers = {}, -- Trigger only on explicit command or keymap
     spec = {
-      { "<leader>", group = "Code" },
       { "<leader><leader>", group = "AI", mode = { "n", "x" } },
       { "g", group = "Goto …" },
       { "[", group = "Jump to previous …" },
       { "]", group = "Jump to next …" },
-      { "s", group = "Sort", icon = "", mode = "x" }, -- `nf-fa-sort_alpha_asc`
       { "s", group = "Search" },
+      { "s", group = "Sort", icon = "", mode = "x" }, -- `nf-fa-sort_alpha_asc`
       { "dm", group = "Delete marks", icon = "󰸕" }, -- `nf-md-bookmark_multiple`
-      { "dv", group = "Diff view", icon = "" }, -- `nf-cod-diff`
-      { "M", icon = "" }, -- `nf-fa-plug`
+      { "<leader>t", group = "Toggle options" },
+      { "<leader>v", group = "VCS", icon = "" }, -- `nf-fa-code_branch`
+      { "<leader>V", icon = "" }, -- `nf-fa-code_branch`
+      { "<leader>P", icon = "" }, -- `nf-fa-plug`
+      { "<leader>S", icon = "" }, -- `nf-fa-save`
       { "S", icon = "" }, -- `nf-fa-save`
       { "Q", icon = "" }, -- `nf-fa-sign_out`
       { "q", icon = "" }, -- `nf-fa-sign_out`
@@ -35,6 +37,10 @@ return { -- Useful plugin to show pending keybinds
       { "]r", icon = "" }, -- `nf-cod-references`
       { "H", icon = "" }, -- `nf-fa-question`
       { "<C-s>", icon = "", mode = "i" }, -- `nf-fa-question`
+      { "<leader>cc", icon = "" }, -- `nf-fa-code`
+      { "<leader>c", icon = "", mode = { "n", "x" } }, -- `nf-fa-code`
+      { "<leader>f", icon = "" }, -- `nf-fa-code`
+      { "<leader>r", icon = "" }, -- `nf-fa-code`
     },
   },
 }
