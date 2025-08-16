@@ -42,7 +42,7 @@ end
 --  - <leader>S = [s]ession manager
 --  - <M-s> = [s]ave session
 --  - dS = [d]elete [s]ession
---  - <C-\> = show keymap help
+--  - <M-/> = show keymap help
 map("n", "S", "<cmd>write<CR>", "[S]ave buffer")
 map("n", "Q", "<cmd>quitall<CR>", "[Q]uit all")
 map("n", "q", function()
@@ -124,7 +124,7 @@ map("t", "<C-e>", "<C-\\><C-n>", "[E]xit terminal mode")
 --  - <M-h/i/f> = toggle [h]idden / [i]gnored / [f]ollow flags
 --  - <C-x> = close buffer / delete mark / reset changes
 --  - <C-c> / <esc> = [c]ancel
---  - <C-\> = show keymap help
+--  - <M-/> = show keymap help
 map("n", "s", "<nop>", "Disable [S]ubstitute to allow search chaining")
 
 -- Explorer:

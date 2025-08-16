@@ -3,7 +3,7 @@ return { -- Useful plugin to show pending keybinds
   cmd = "WhichKey",
   keys = {
     {
-      "<C-\\>",
+      "<M-/>",
       "<cmd>WhichKey<CR>",
       mode = { "n", "i", "x", "s", "o", "t", "c" },
       desc = "Show keymaps (which-key)",

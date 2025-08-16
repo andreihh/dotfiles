@@ -87,7 +87,7 @@ return { -- Fuzzy finder (files, lsp, etc.)
         ["<C-d>"] = "preview-half-page-down",
         ["<C-u>"] = "preview-half-page-up",
         ["<C-p>"] = "toggle-preview-wrap",
-        ["<C-\\>"] = "toggle-help",
+        ["<M-/>"] = "toggle-help",
       },
       fzf = {},
     },
