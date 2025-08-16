@@ -2,15 +2,13 @@ return { -- Better diff views
   "sindrets/diffview.nvim",
   cmd = { "DiffviewOpen", "DiffviewFileHistory" },
   keys = {
-    { "dvo", "<cmd>DiffviewOpen<CR>", desc = "[D]iff [V]iew [O]pen" },
-    { "dvO", ":DiffviewOpen ", desc = "[D]iff [V]iew [O]pen" },
+    { "<leader>vd", "<cmd>DiffviewOpen<CR>", desc = "[V]CS [D]iff" },
     {
-      "dvh",
+      "<leader>vh",
       "<cmd>DiffviewFileHistory %<CR>",
-      desc = "[D]iff [V]iew file [H]istory",
+      desc = "[V]CS file [H]istory",
     },
-    { "dvH", "<cmd>DiffviewFileHistory<CR>", desc = "[D]iff [V]iew [H]istory" },
-    { "dvb", "<cmd>.DiffviewFileHistory<CR>", desc = "[D]iff [V]iew [B]lame" },
+    { "<leader>vH", "<cmd>DiffviewFileHistory<CR>", desc = "[V]CS [H]istory" },
   },
   opts = function()
     local actions = require("diffview.actions")

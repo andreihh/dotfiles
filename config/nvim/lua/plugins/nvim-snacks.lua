@@ -25,11 +25,11 @@ return { -- Highlight and jump to references, Lazygit, handle big files, etc.
       desc = "Jump to the next [R]eference",
     },
     {
-      "<leader>g",
+      "<leader>V",
       function()
         Snacks.lazygit()
       end,
-      desc = "Open Lazy[G]it",
+      desc = "[V]CS manager",
     },
   },
   opts = {

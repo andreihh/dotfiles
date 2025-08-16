@@ -117,7 +117,7 @@ map("t", "<C-e>", "<C-\\><C-n>", "[E]xit terminal mode")
 --  - s + <leader>/?/h/'/b/+/f/F/g/G/c/j/l/q/d/D/w/"/:// = [s]earch
 --  - <C-j/k/f> = select next / previous / find item
 --  - <C-u/d> = scroll preview [u]p / [d]own
---  - <C-l/p> = toggle [l]ist / [p]review wrapping for long lines
+--  - <C-l/p> = toggle [l]ist / [p]review line wrap
 --  - <tab> = accept selected / toggled items
 --  - <S-tab> = toggle selected item
 --  - <C-o/s/v/t> = open selected item in window
@@ -146,8 +146,8 @@ map("n", "s", "<nop>", "Disable [S]ubstitute to allow search chaining")
 
 -- VCS:
 --  - [c / ]c / [C / ]C = jump to previous / next / first / last [c]hanged hunk
---  - dvu = [d]iff [v]iew [u]nsaved buffer changes
---  - dv + o/O/h/H/b = [d]iff [v]iew [o]pen / (file) [h]istory / [b]lame
+--  - <leader>vu = [v]iew [u]nsaved buffer changes
+--  - <leader>v + d/h/H = [V]CS [d]iff / (file) [h]istory
 --    - <tab> / <S-tab> = diff next / previous file
 --    - gf = [g]o to edit [f]ile
 --    - j/k = select next / previous entry
@@ -165,10 +165,10 @@ map("n", "s", "<nop>", "Disable [S]ubstitute to allow search chaining")
 --        [B]ASE / [O]URS / [T]HEIRS / [a]ll
 --    - q = [q]uit diff tab
 --    - g? = show help
---  - <leader>g = open Lazy[G]it
+--  - <leader>V = [V]CS manager
 --    - q = [q]uit
 --    - ? = show help
-map("n", "dvu", function()
+map("n", "<leader>vu", function()
   vim.cmd([[
     let filetype=&ft
     tab split
@@ -177,7 +177,7 @@ map("n", "dvu", function()
     execute "setlocal bt=nofile bh=wipe nobl noswf ro noma ft=" . filetype
     windo :diffthis
   ]])
-end, "[D]iff [U]nsaved changes")
+end, "[V]iew [U]nsaved buffer changes")
 
 -- Completion:
 --  - <C-j/k> = trigger completion / select next / previus item
@@ -224,7 +224,7 @@ end
 map("n", "H", vim.lsp.buf.hover, "Show [H]elp")
 map("n", "L", vim.diagnostic.open_float, "Show [L]int diagnostic")
 map("n", "<leader>r", vim.lsp.buf.rename, "[R]ename")
-map("n", "<leader>A", vim.lsp.codelens.run, "Run code lens [A]ction")
+map("n", "<leader>A", vim.lsp.codelens.run, "Code lens [A]ction")
 map(
   "n",
   "<leader>q",
