@@ -4,7 +4,7 @@
 #
 # See https://github.com/neovim/neovim/blob/master/BUILD.md.
 #
-# Supported systems: Debian, Ubuntu, Fedora, RHEL
+# Supported systems: Debian*, Fedora*
 
 # Exit if any command fails.
 set -e

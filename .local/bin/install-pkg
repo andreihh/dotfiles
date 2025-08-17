@@ -3,9 +3,9 @@
 # Installs packages using the system package manager.
 #
 # Supported package managers:
-# - `apt-get` (Debian, Ubuntu)
-# - `dnf` (Fedora, RHEL)
-# - `rpm-ostree` (Fedora Atomic)
+# - `apt-get` (Debian*)
+# - `dnf` (Fedora*)
+# - `rpm-ostree` (Fedora Atomic*)
 # - `brew` (MacOS)
 
 # Exit if any command fails.

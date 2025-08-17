@@ -3,7 +3,7 @@
 # Installs media packages, sets `XDG_PICTURES_DIR` and `XDG_VIDEOS_DIR` to
 # `XDG_MEDIA_DIR` (defaults to `~/Media`), and moves their contents there.
 #
-# Supported systems: Debian, Ubuntu, Fedora, RHEL, MacOS
+# Supported systems: Debian*, Fedora*, MacOS
 # Dependencies:
 # - MacOS: Homebrew
 

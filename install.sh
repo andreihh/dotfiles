@@ -7,7 +7,7 @@
 # - Installs dotfiles
 # - Runs setup scripts
 #
-# Supported systems: Debian, Ubuntu, Fedora, RHEL, MacOS
+# Supported systems: Debian*, Fedora*, MacOS
 # Dependencies:
 # - MacOS: Homebrew
 

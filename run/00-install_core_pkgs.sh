@@ -2,7 +2,7 @@
 #
 # Installs core packages.
 #
-# Supported systems: Debian, Ubuntu, Fedora, RHEL, MacOS
+# Supported systems: Debian*, Fedora*, MacOS
 # Dependencies:
 # - MacOS: Homebrew
 
@@ -22,7 +22,7 @@ install-pkg \
   alacritty bash tmux vim neovim fzf bat lsd fd-find ripgrep calc \
   pre-commit reuse make automake cmake
 
-# Install specific Debian / Ubuntu packages:
+# Install specific Debian* packages:
 has-cmd apt-get && install-pkg btm
 
 # Install specific MacOS packages:

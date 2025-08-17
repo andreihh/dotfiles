@@ -2,7 +2,7 @@
 #
 # Configures GNOME settings and dependencies.
 #
-# Supported systems: Debian, Ubuntu, Fedora, RHEL
+# Supported systems: Debian*, Fedora*
 
 # Exit if any command fails.
 set -e
