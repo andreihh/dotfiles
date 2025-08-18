@@ -97,17 +97,17 @@ www=['<Alt>w']
 
 [org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/sh]
 binding='<Alt>x'
-command='x-terminal-emulator'
+command='xdg-terminal-exec'
 name='Launch terminal'
 
 [org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/ssh-tmx]
 binding='<Alt>c'
-command='x-terminal-emulator -e ssh-tmx'
+command='xdg-terminal-exec -- ssh-tmx'
 name='Launch SSH tmux terminal'
 
 [org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/tmx]
 binding='<Shift><Alt>x'
-command='x-terminal-emulator -e tmx -'
+command='xdg-terminal-exec -- tmx -'
 name='Launch tmux terminal'
 
 [org/gnome/shell/extensions/system-monitor]

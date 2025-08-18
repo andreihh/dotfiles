@@ -15,6 +15,7 @@ set -e
 
 [ $# -gt 0 ] && echo "Usage: $0" && exit 1
 
+readonly XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
 readonly DEB_INSTALLER='https://raw.githubusercontent.com/mkasberg/ghostty-ubuntu/HEAD/install.sh'
 
 echo "Installing Ghostty..."
@@ -22,14 +23,8 @@ has-cmd apt-get && /bin/bash -c "$(curl -fsSL "${DEB_INSTALLER}")"
 has-cmd dnf && sudo dnf copr enable pgdev/ghostty && install-pkg ghostty
 has-cmd brew && install-pkg ghostty
 
-if has-cmd update-alternatives; then
-  echo "Configuring Ghostty as the default terminal..."
-  ghostty_bin="$(command -v ghostty)"
-  sudo update-alternatives --install \
-    /usr/bin/x-terminal-emulator \
-    x-terminal-emulator \
-    "${ghostty_bin}" 100
-  sudo update-alternatives --set x-terminal-emulator "${ghostty_bin}"
-fi
+echo "Configuring Ghostty as the default XDG terminal..."
+rm "${XDG_CONFIG_HOME}"/*-xdg-terminals.list
+echo 'com.mitchellh.ghostty.desktop' > "${XDG_CONFIG_HOME}/xdg-terminals.list"
 
 echo "Installed Ghostty successfully!"
