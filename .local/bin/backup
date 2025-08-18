@@ -1,13 +1,12 @@
 #!/bin/sh
 #
 # Manages encrypted incremental backups for:
-# - Dotfiles
-# - All directories starting with an uppercase letter from the home directory
+# - All files and directories starting with a letter from the home directory
 # - Excludes transient data (`XDG_DOWNLOAD_DIR`, screenshots, screencasts, etc.)
 #
 # See https://restic.readthedocs.io/en/latest/.
 #
-# Dependencies: `restic`, `rclone` (optional)
+# Dependencies: `restic`, `rclone` (optional), `xdg-user-dirs` (optional)
 
 # Exit if any command fails.
 set -e
@@ -43,10 +42,9 @@ done
 
 [ -z "${backup_dir}" ] && echo "Invalid backup directory!" && exit 1
 export RESTIC_REPOSITORY="${backup_dir}"
+DOWNLOAD_DIR="$(xdg-user-dir DOWNLOAD 2> /dev/null || echo "${HOME}/Downloads")"
 
 [ -n "${dry_run}" ] && echo "Performing a dry run!"
-
-. "${XDG_CONFIG_HOME:-${HOME}/.config}/user-dirs.dirs" || true
 
 case "${operation}" in
   check)
@@ -60,13 +58,15 @@ case "${operation}" in
   backup)
     echo "Backing up '${HOME}' to '${RESTIC_REPOSITORY}'..."
     cd "${HOME}"
-    restic -v backup ${dry_run:+'-n'} [A-Z]* \
-      --iexclude "${XDG_DOWNLOAD_DIR:-${HOME}/Downloads}" \
+    restic -v backup ${dry_run:+'-n'} [a-zA-Z]* \
+      --iexclude "${DOWNLOAD_DIR}" \
+      --iexclude "${HOME}/Snap" \
+      --iexclude "${HOME}/Applications" \
+      --iexclude "${HOME}/Library" \
       --iexclude "${HOME}/*/screenshot*" \
       --iexclude "${HOME}/*/screencast*" \
       --iexclude "${HOME}/*/camera*" \
-      --iexclude "${HOME}/*/tmp*" \
-      --iexclude "${HOME}/snap"
+      --iexclude "${HOME}/*/tmp*"
 
     echo "Pruning old snapshots from '${RESTIC_REPOSITORY}'..."
     restic -v forget ${dry_run:+'-n'} --prune --keep-last 3

@@ -16,6 +16,6 @@ host="$(echo "${known_hosts}" | fzf-tmux --select-1 --prompt='Hosts> ')"
 
 # Fetch the user's default login shell on the host to load environment properly.
 # shellcheck disable=SC2016
-cmd='"$(getent passwd "${USER}" | cut -d : -f 7)" -lc tmx -'
+cmd='"$(getent passwd "${USER}" | cut -d : -f 7)" -lc "tmx -"'
 
 ssh -t "$@" "${host}" "${cmd}"
