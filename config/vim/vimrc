@@ -63,11 +63,11 @@ Plug 'RyanMillerC/better-vim-tmux-resizer'  " Vim / `tmux` window resizing
 Plug 'junegunn/fzf'  " Core `fzf` integration
 Plug 'junegunn/fzf.vim'  " Better `fzf` searching
 " UI
-Plug 'catppuccin/vim', { 'as': 'catppuccin' }  " Color scheme
 Plug 'machakann/vim-highlightedyank'  " Highlight yanked text
 Plug 'ryanoasis/vim-devicons'  " Nerd Font icons
 Plug 'itchyny/lightline.vim'  " Better status and tab lines
 Plug 'wellle/context.vim'  " Show current context
+Plug 'catppuccin/vim', { 'as': 'catppuccin' }  " Color scheme
 " VCS
 Plug 'mhinz/vim-signify'  " VCS gutter signs for changed lines
 Plug 'tpope/vim-fugitive'  " Git integration
@@ -396,8 +396,6 @@ nnoremap <expr> dS ':SDelete! ' . fnamemodify(v:this_session, ':t') . '<CR>'
 " - { / } = jump to previous / next blank line
 " - f/F/t/T/;/, = find character in line motions
 " - <C-f> = multi-window [f]ind
-" - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
-" - [l / ]l / [L / ]L = jump to previous / next / first / last [l]ocation
 nnoremap <expr> j v:count == 0 ? 'gj' : 'j'
 xnoremap <expr> j v:count == 0 ? 'gj' : 'j'
 nnoremap <expr> k v:count == 0 ? 'gk' : 'k'
@@ -409,14 +407,6 @@ for i in '123456789'
 endfor
 nmap <C-f> <plug>(easymotion-overwin-f)
 xmap <C-f> <plug>(easymotion-s)
-nnoremap [q :cprev<CR>
-nnoremap ]q :cnext<CR>
-nnoremap [Q :cfirst<CR>
-nnoremap ]Q :clast<CR>
-nnoremap [l :lprev<CR>
-nnoremap ]l :lnext<CR>
-nnoremap [L :lfirst<CR>
-nnoremap ]L :llast<CR>
 
 " Marks:
 " - m + {a-zA-Z} = set [m]ark
@@ -529,14 +519,30 @@ cnoremap <C-k> <C-p>
 cnoremap <tab> <C-y>
 cnoremap <C-c> <C-e>
 
+" Quickfix:
+" - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
+" - [l / ]l / [L / ]L = jump to previous / next / first / last [l]ocation
+" - <leader> + q/l = toggle [q]uickfix / [l]ocation list
+nnoremap [q :cprev<CR>
+nnoremap ]q :cnext<CR>
+nnoremap [Q :cfirst<CR>
+nnoremap ]Q :clast<CR>
+nnoremap [l :lprev<CR>
+nnoremap ]l :lnext<CR>
+nnoremap [L :lfirst<CR>
+nnoremap ]L :llast<CR>
+nnoremap <expr> <leader>q
+    \ empty(filter(getwininfo(), 'v:val.quickfix'))
+    \ ? ':botright copen<CR>' : ':cclose<CR>'
+nnoremap <expr> <leader>l
+    \ empty(filter(getwininfo(), 'v:val.loclist'))
+    \ ? ':lopen<CR>' : ':lclose<CR>'
+
 " Code:
 " - [m / ]m / [M / ]M = jump to previous / next start / end of [m]ethod
-" - <leader>cc = toggle line comment
-" - <leader>c = toggle comment
-" - <leader>f = toggle [f]old
-" - <leader>- = toggle navigation context
-" - <leader>= = format
 " - H = show [h]elp
+" - <leader> + cc/c/f/-/= = perform code action
+nnoremap H K
 nmap <leader>cc gcc
 nmap <leader>c gc
 xmap <leader>c gc
@@ -544,7 +550,6 @@ nnoremap <leader>f za
 nnoremap <leader>- :echo expand('%')<CR>:ContextToggleWindow<CR>
 nnoremap <leader>= :FormatCode<CR>
 xnoremap <leader>= :FormatLines<CR>
-nnoremap H K
 
 " [[ Config overrides ]]
 

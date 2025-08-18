@@ -50,7 +50,7 @@ Update the following settings:
 - Show "New Message"
 - Settings > Add-ons and Themes > Cogwheel > Install Add-on From File > ...
 
-Ensure a profile exists in '~/.thunderbird/profiles.ini' with the following:
+Ensure the following profile exists in '~/.thunderbird/profiles.ini':
 Name=${USER}
 IsRelative=0
 Path=${profile_dir}

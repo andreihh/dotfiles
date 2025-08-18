@@ -2,7 +2,7 @@
 #
 # shellcheck shell=sh
 
-# Configure XDG directories:
+# Configure XDG base directories:
 # - https://specifications.freedesktop.org/basedir-spec/latest/index.html
 # - https://wiki.archlinux.org/title/XDG\_Base\_Directory
 export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"

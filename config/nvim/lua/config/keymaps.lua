@@ -72,8 +72,6 @@ map("n", "<leader>P", "<cmd>Lazy<CR>", "[P]lugin manager")
 --  - { / } = jump to previous / next blank line
 --  - f/F/t/T/;/, = enhanced find motions
 --  - <C-f> = multi-window [f]ind
---  - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
---  - [l / ]l / [L / ]L = jump to previous / next / first / last [l]ocation
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 map("n", "gj", "<C-o>", "[G]oto previous location")
@@ -186,6 +184,19 @@ end, "[V]iew [U]nsaved buffer changes")
 --  - <tab> = accept selected item
 --  - <C-c> = [c]ancel
 
+-- Quickfix:
+--  - [q / ]q / [Q / ]Q = jump to previous / next / first / last [q]uickfix
+--  - [l / ]l / [L / ]L = jump to previous / next / first / last [l]ocation
+--  - <leader> + q/l = toggle [q]uickfix / [l]ocation list
+map("n", "<leader>q", function()
+  local qflist_winid = vim.fn.getqflist({ winid = true }).winid
+  vim.cmd("botright " .. (qflist_winid > 0 and "cclose" or "copen"))
+end, "Toggle [Q]uickfix list")
+map("n", "<leader>l", function()
+  local loclist_winid = vim.fn.getloclist(0, { winid = true }).winid
+  vim.cmd(loclist_winid > 0 and "lclose" or "lopen")
+end, "Toggle [L]ocation list")
+
 -- Treesitter:
 --  - a/i + b/m = [a]round / [i]nside [b]lock / [m]ethod
 --  - [m / ]m / [M / ]M = jump to previous / next start / end of [m]ethod
@@ -205,7 +216,7 @@ map("n", "<leader>f", "za", "Toggle [F]old under cursor")
 --  - H / <C-s> / L = show [h]elp / [s]ignature / [l]int
 --    - H / <C-s> / L = focus float
 --    - q = [q]uit float if focused
---  - <leader> + =/r/a/A/q = perform LSP action
+--  - <leader> + =/r/a/A = perform LSP action
 local WARN = vim.diagnostic.severity.WARN
 local ERROR = vim.diagnostic.severity.ERROR
 local diagnostic_jump_opts = {
@@ -224,12 +235,6 @@ map("n", "H", vim.lsp.buf.hover, "Show [H]elp")
 map("n", "L", vim.diagnostic.open_float, "Show [L]int diagnostic")
 map("n", "<leader>r", vim.lsp.buf.rename, "[R]ename")
 map("n", "<leader>A", vim.lsp.codelens.run, "Code lens [A]ction")
-map(
-  "n",
-  "<leader>q",
-  "<cmd>cclose<CR><cmd>lclose<CR>",
-  "[Q]uit quickfix / location list"
-)
 
 -- AI:
 -- - <leader><leader> + a/n/e/r/f/s/t/D/H/S/R/c/b/?/h = perform AI action
