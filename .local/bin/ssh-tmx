@@ -12,7 +12,12 @@ set -e
 known_hosts="$(cut < "${HOME}/.ssh/known_hosts" -d ' ' -f 1)"
 [ -z "${known_hosts}" ] && echo "No known hosts found!" 1>&2 && exit 1
 
-host="$(echo "${known_hosts}" | fzf-tmux --select-1 --prompt='Hosts> ')"
+host="$(
+  echo "${known_hosts}" | fzf-tmux \
+    --prompt='Hosts> ' \
+    --select-1 \
+    --bind='jump:accept'
+)" || { [ $? = 130 ] && echo "Cancelled!" 1>&2 && exit 0; }
 
 # Fetch the user's default login shell on the host to load environment properly.
 # shellcheck disable=SC2016

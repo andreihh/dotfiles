@@ -66,7 +66,7 @@ return {
             "textobjects"
           )
         end,
-        desc = "Go to next [M]ethod start",
+        desc = "Jump to next [M]ethod start",
         mode = { "n", "x", "o" },
       },
       {
@@ -77,7 +77,7 @@ return {
             "textobjects"
           )
         end,
-        desc = "Go to next [M]ethod end",
+        desc = "Jump to next [M]ethod end",
         mode = { "n", "x", "o" },
       },
       {
@@ -88,7 +88,7 @@ return {
             "textobjects"
           )
         end,
-        desc = "Go to previous [M]ethod start",
+        desc = "Jump to previous [M]ethod start",
         mode = { "n", "x", "o" },
       },
       {
@@ -99,7 +99,7 @@ return {
             "textobjects"
           )
         end,
-        desc = "Go to previous [M]ethod end",
+        desc = "Jump to previous [M]ethod end",
         mode = { "n", "x", "o" },
       },
     },

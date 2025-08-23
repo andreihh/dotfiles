@@ -23,6 +23,7 @@ else
     tmux ls -F "#S" | fzf --tmux \
       --prompt='Session> ' \
       --header=':: <ctrl-n> to create | <ctrl-x> to delete' \
+      --bind='jump:accept' \
       --bind='ctrl-n:print-query' \
       --bind='ctrl-x:execute-silent(tmux kill-session -t {})' \
       --bind='ctrl-x:+reload-sync(tmux ls -F "#S")'
