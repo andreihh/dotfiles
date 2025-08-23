@@ -12,7 +12,7 @@ usage() {
 }
 
 get_active_ssid() {
-  nmcli -g active,ssid device wifi | grep 'yes' | cut -d ':' -f 2
+  nmcli -g active,ssid device wifi | grep 'yes' | cut -d : -f 2
 }
 
 [ $# -gt 1 ] && usage && exit 1

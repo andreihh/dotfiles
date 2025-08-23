@@ -8,11 +8,18 @@ alias t='tmx'
 # Opens argument with the default program.
 alias o='open > /dev/null 2>&1'
 
-# Alias `ls` to `lsd` and enable icons and colored output.
-alias ls='lsd --color=always --icon=always'
-alias la='lsd -A --color=always --icon=always'
-alias ll='lsd -alF --color=always --icon=always'
-alias lt='lsd --tree --color=always --icon=always'
+if command -v lsd > /dev/null 2>&1; then
+  # Alias `ls` to `lsd` and enable icons and colored output.
+  alias ls='lsd --color=always --icon=always'
+
+  # Lists directory contents recursively as a tree.
+  alias lt='ls --tree'
+fi
+
+# Setup common `ls` aliases.
+alias l='ls -F'
+alias la='ls -AF'
+alias ll='ls -alF'
 
 # Enable colors in `less`.
 alias less='less -R'
@@ -22,9 +29,6 @@ alias fd='fd --color=always --hidden'
 
 # Enable colored `rg` output and show hidden files.
 alias rg='rg --color=always --hidden'
-
-# Enable colored `grep` output.
-alias grep='grep --color=always'
 
 # Enable colored `bat` output.
 alias bat='bat --color=always'
