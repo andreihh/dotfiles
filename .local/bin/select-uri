@@ -19,5 +19,5 @@ ${SELECT_URI_PATTERN:+"(${SELECT_URI_PATTERN})|"}\
 
 grep -oE "${SELECT_URI_PATTERN}" - \
   | awk '!unique_uris[$0]++' \
-  | fzf-tmux --prompt='URIs> ' --bind='jump:accept' "$@" \
+  | fzf-tmux -d 25% --prompt='URIs> ' --bind='jump:accept' "$@" \
   || { [ $? = 130 ] && echo "Cancelled!" 1>&2 && exit 0; }

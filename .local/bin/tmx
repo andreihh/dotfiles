@@ -32,8 +32,8 @@ fi
 
 case "${session}" in
   '') echo "Session name must not be empty!" 1>&2 && exit 1 ;;
-  -) session='' ;;
-  .) session="$(basename "$(pwd)")" ;;
+  '-') session='' ;;
+  '.') session="$(basename "$(pwd)")" ;;
   *) ;;
 esac
 
