@@ -1,0 +1,23 @@
+#!/bin/sh
+#
+# Selects from unique URIs found in the standard input.
+#
+# The URI pattern can be extended with `SELECT_URI_PATTERN`.
+#
+# Dependencies: `fzf`, `bash`
+
+# Exit if any command fails.
+set -e
+
+readonly URI_PATTERN='(https?|ftp|file|ssh):///?[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-A-Za-z0-9+&@#/%=~_|]'
+readonly WWW_PATTERN='(http?s://)?www\.[a-zA-Z](-?[a-zA-Z0-9])+\.[a-zA-Z]{2,}(/(\S+[-A-Za-z0-9+&@#/%=~_|])?)?'
+
+readonly SELECT_URI_PATTERN="\
+${SELECT_URI_PATTERN:+"(${SELECT_URI_PATTERN})|"}\
+(${URI_PATTERN})|\
+(${WWW_PATTERN})"
+
+grep -oE "${SELECT_URI_PATTERN}" - \
+  | awk '!unique_uris[$0]++' \
+  | fzf-tmux --prompt='URIs> ' --bind='jump:accept' "$@" \
+  || { [ $? = 130 ] && echo "Cancelled!" 1>&2 && exit 0; }
