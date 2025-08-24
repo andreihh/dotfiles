@@ -6,7 +6,7 @@ return { -- Useful plugin to show pending keybinds
       "<M-/>",
       "<cmd>WhichKey<CR>",
       mode = { "n", "i", "x", "s", "o", "t", "c" },
-      desc = "Show keymaps (which-key)",
+      desc = "Show keymap help",
     },
   },
   opts = {

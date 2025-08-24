@@ -2,6 +2,8 @@
 #
 # Selects from unique URIs found in the standard input.
 #
+# Forwards all arguments to `fzf-tmux`.
+#
 # The URI pattern can be extended with `SELECT_URI_PATTERN`.
 #
 # Dependencies: `fzf`, `bash`

@@ -2,6 +2,8 @@
 #
 # Displays a looping menu with `fzf`.
 #
+# Forwards all arguments to `fzf-menu`.
+#
 # To configure a menu header, provide the following bindings:
 # - `--bind="start:transform-header(...)"`
 # - `--bind="jump:+transform-header(...)"`

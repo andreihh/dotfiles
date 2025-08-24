@@ -2,6 +2,8 @@
 #
 # Connects to the selected host via SSH and starts `tmux` in a login shell.
 #
+# Forwards all arguments to `ssh`.
+#
 # Dependencies:
 # - Client: `ssh`, `fzf`, `bash`
 # - Host: `tmux`
