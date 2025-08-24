@@ -28,7 +28,6 @@ option_as_alt = "Both"  # Required for MacOS key bindings
 # - Emit A-{1-9} when pressing C-{1-9}
 # - Emit A-{sxhjkl=/} when pressing C-S-{sxhjkl=/}
 # - Open URI with C-click outside of `tmux`
-# - Select URI with double-click in `tmux`
 [keyboard]
 bindings = [
 { key = "1", mods = "Control", chars = "\u001b1" },
