@@ -1,10 +1,6 @@
 #!/bin/sh
 #
-# Starts the `tmux` server as a daemon and manages sessions.
-#
-# Special session names:
-# - `-` = previously attached session, or `admin` if no sessions exist
-# - `.` = basename of the current working directory
+# Manages `tmux` sessions.
 #
 # Dependencies: `tmux`, `fzf`
 
@@ -13,36 +9,37 @@ set -e
 
 [ $# -gt 1 ] && echo "Usage: $0 [- | . | <session>]" && exit 1
 
-# Start the server as a daemon.
+# Start the `tmux` server as a daemon.
 tmux start\; set -g exit-empty off
 
-if [ $# -eq 1 ]; then
-  session="$1"
-else
+# Handle special session names:
+# - `-` = try to attach to the last session if not already inside `tmux`
+# - `.` = use the basename of the current working directory as the session name
+case "$1" in
+  '-') [ -z "${TMUX}" ] && tmux attach 2> /dev/null && exit ;;
+  '.') session="$(basename "$(pwd)")" ;;
+  *) session="$1" ;;
+esac
+
+# Start session manager if no session was provided or last session wasn't found.
+if [ -z "${session}" ]; then
   session="$(
     tmux ls -F "#S" | fzf --tmux \
       --prompt='Session> ' \
       --header=':: <ctrl-n> to create | <ctrl-x> to delete' \
       --bind='jump:accept' \
       --bind='ctrl-n:print-query' \
-      --bind='ctrl-x:execute-silent(tmux kill-session -t {})' \
+      --bind='ctrl-x:execute-silent(tmux kill-session -t ={})' \
       --bind='ctrl-x:+reload-sync(tmux ls -F "#S")'
   )" || { [ $? = 130 ] && echo "Cancelled!" 1>&2 && exit 0; }
 fi
 
-case "${session}" in
-  '') echo "Session name must not be empty!" 1>&2 && exit 1 ;;
-  '-') session='' ;;
-  '.') session="$(basename "$(pwd)")" ;;
-  *) ;;
-esac
+[ -z "${session}" ] && echo "Session name must not be empty!" 1>&2 && exit 1
 
-# Create session if it doesn't exist. If empty and none exist, create `admin`.
-tmux has -t "${session}" 2> /dev/null || tmux new -d -s "${session:-admin}"
-
-# Attach or switch to selected session, or to previously attached one if empty.
+# Ensure the selected session exists and attach / switch to it.
+tmux new -d -s "${session}" 2> /dev/null
 if [ -z "${TMUX}" ]; then
-  tmux attach -t "${session}"
+  tmux attach -t ="${session}"
 else
-  tmux switch -t "${session}"
+  tmux switch -t ="${session}"
 fi
