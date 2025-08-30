@@ -6,14 +6,7 @@ Configurations, tools, and setup scripts for \*nix systems.
 
 To install the dotfiles:
 
-- Install Homebrew on MacOS (see https://brew.sh/):
-
-```bash
-HOMEBREW_INSTALLER="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
-/bin/bash -c "$(curl -fsSL "${HOMEBREW_INSTALLER}")"
-exec bash  # Reload shell environment to add Homebrew to `PATH`
-```
-
+- Install Homebrew on MacOS: https://brew.sh/.
 - Download and run the installer using one of the following commands:
 
 ```bash
@@ -31,17 +24,8 @@ curl -Lo - https://codeberg.org/andreihh/dotfiles/raw/branch/main/install.sh \
 
 To update the dotfiles, run `install.sh` from the repository in a clean state.
 
-To override the default system theme, export the `THEME` variable before running
-the installer to one of:
-
-- `catppuccin-frappe` (default)
-- `catppuccin-macchiato`
-- `catppuccin-mocha`
-
-Exporting `THEME` to any other non-empty value will skip the theme installation.
-
-Exporting `HEADLESS` to a non-empty value will skip installation for GUI
-packages and configs.
+Exporting `HEADLESS` to a non-empty value will skip installation of GUI packages
+and configs.
 
 ## XDG directories
 

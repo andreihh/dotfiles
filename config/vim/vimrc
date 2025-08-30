@@ -324,9 +324,9 @@ let g:lightline = {
 " [[ Color scheme ]]
 
 function! s:ConfigThemeHighlights() abort
-  if g:colors_name == 'catppuccin_macchiato'
+  if g:colors_name == 'catppuccin_frappe'
     " Override window separator to match status line.
-    highlight! VertSplit guifg=#A5ADCB guibg=#1E2030
+    highlight! VertSplit guifg=#737994 guibg=#292C3C
   endif
 endfunction
 
