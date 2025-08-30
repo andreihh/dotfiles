@@ -97,11 +97,6 @@ fi
 echo "Reverting changes from adopted files..."
 [ -n "${dry_run}" ] || git -C "${DOTFILES_HOME}" checkout .
 
-echo "Removing unused shell configs and ensuring '~/.profile' is loaded..."
-for shell_config in '.bash_profile' '.bash_login' '.bash_history'; do
-  [ -n "${dry_run}" ] || rm -fv "${HOME}/${shell_config}"
-done
-
 if [ -n "${run_setup}" ]; then
   echo "Ensuring 'PATH' contains '${HOME}/.local/bin'..."
   export PATH="${HOME}/.local/bin${PATH:+:${PATH}}"
@@ -115,6 +110,16 @@ if [ -n "${run_setup}" ]; then
     [ -n "${dry_run}" ] || "${script}"
   done
 fi
+
+echo "Removing unused shell configs and ensuring '~/.profile' is loaded..."
+for shell_config in '.bash_profile' '.bash_login'; do
+  [ -n "${dry_run}" ] || rm -fv "${HOME}/${shell_config}"
+done
+
+echo "Cleaning up XDG-noncompliant history files..."
+for history in '.sh_history' '.bash_history' '.zsh_history' '.wget-hsts'; do
+  [ -n "${dry_run}" ] || rm -fv "${HOME}/${history}"
+done
 
 echo "Linking 'open', 'fd', and 'bat' to 'xdg-open', 'fdfind', and 'batcat'..."
 has_cmd xdg-open && ln -sfv "$(command -v xdg-open)" "${HOME}/.local/bin/open"
