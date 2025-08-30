@@ -33,11 +33,6 @@ has-cmd apt-get && install-pkg btm
 # Install specific MacOS packages:
 has-cmd brew && install-pkg bottom
 
-echo "Linking 'open', 'fd', and 'bat' to 'xdg-open', 'fdfind', and 'batcat'..."
-has-cmd xdg-open && ln -sfv "$(command -v xdg-open)" "${HOME}/.local/bin/open"
-has-cmd fdfind && ln -sfv "$(command -v fdfind)" "${HOME}/.local/bin/fd"
-has-cmd batcat && ln -sfv "$(command -v batcat)" "${HOME}/.local/bin/bat"
-
 echo "Updating 'bat' cache..."
 bat cache --build
 

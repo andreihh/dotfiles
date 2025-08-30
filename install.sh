@@ -33,6 +33,10 @@ Options:
 EOF
 }
 
+has_cmd() {
+  command -v "$1" > /dev/null 2>&1
+}
+
 backup_dir="${BACKUP_DIR_DEFAULT}"
 while getopts 'nb:sh' option; do
   case "${option}" in
@@ -49,10 +53,6 @@ echo "Installing dotfiles..."
 [ -n "${dry_run}" ] && echo "Performing a dry run!"
 
 echo "Ensuring dependencies are installed..."
-has_cmd() {
-  command -v "$1" > /dev/null 2>&1
-}
-
 for dep in 'git' 'stow'; do
   if ! has_cmd "${dep}"; then
     has_cmd apt-get && sudo apt-get install -y "${dep}"
@@ -118,5 +118,10 @@ if [ -n "${run_setup}" ]; then
     [ -n "${dry_run}" ] || "${script}"
   done
 fi
+
+echo "Linking 'open', 'fd', and 'bat' to 'xdg-open', 'fdfind', and 'batcat'..."
+has_cmd xdg-open && ln -sfv "$(command -v xdg-open)" "${HOME}/.local/bin/open"
+has_cmd fdfind && ln -sfv "$(command -v fdfind)" "${HOME}/.local/bin/fd"
+has_cmd batcat && ln -sfv "$(command -v batcat)" "${HOME}/.local/bin/bat"
 
 echo "Installed dotfiles successfully!"
