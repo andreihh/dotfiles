@@ -58,7 +58,11 @@ wget -O "${XDG_CONFIG_HOME}/bat/themes/catppuccin-frappe.tmTheme" \
   "${THEME_GIT_URL}/bat/raw/main/themes/Catppuccin Frappe.tmTheme"
 
 echo "Updating 'bat' cache..."
-bat cache --build
+if has-cmd batcat; then
+  batcat cache --build
+elif has-cmd bat; then
+  bat cache --build
+fi
 
 echo "Downloading 'lsd' theme..."
 wget -O "${XDG_CONFIG_HOME}/lsd/themes/catppuccin-frappe.yaml" \

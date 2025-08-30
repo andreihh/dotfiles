@@ -33,9 +33,6 @@ has-cmd apt-get && install-pkg btm
 # Install specific MacOS packages:
 has-cmd brew && install-pkg bottom
 
-echo "Updating 'bat' cache..."
-bat cache --build
-
 # Alacritty requires a Nerd Font.
 echo "Installing JetBrains Mono Nerd Font..."
 if has-cmd brew; then
