@@ -76,6 +76,9 @@ if [ -n "$(git -C "${DOTFILES_HOME}" status --porcelain 2> /dev/null)" ]; then
   [ -n "${dry_run}" ] || exit 1
 fi
 
+echo "Ensuring required XDG base directories exist..."
+mkdir -p "${XDG_CONFIG_HOME}" "${XDG_DATA_HOME}"
+
 echo "Stowing dotfiles, adopting conflicting files..."
 stowdir() {
   [ $# -ne 2 ] && echo "Usage: $0 <src> <dst>" && return 1
