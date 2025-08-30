@@ -18,7 +18,6 @@ readonly XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
 readonly XDG_DATA_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}"
 readonly REPOSITORY_URL='https://codeberg.org/andreihh/dotfiles.git'
 readonly DOTFILES_HOME="${XDG_CONFIG_HOME}/dotfiles"
-readonly BACKUP_DIR_DEFAULT="${DOTFILES_HOME}.bak"
 
 usage() {
   cat << EOF
@@ -26,8 +25,7 @@ Usage: $0 [-h] [-n] [-f] [-b <dir>] [-s]
 
 Options:
   -n  Perform a dry run (simulate actions, but do not execute them).
-  -b  Directory where dotfiles should be backed up, or skip if empty string.
-        Default: '${BACKUP_DIR_DEFAULT}'
+  -b  Directory where dotfiles should be backed up.
   -s  Run setup scripts.
   -h  Print this message and exit.
 EOF
@@ -37,7 +35,6 @@ has_cmd() {
   command -v "$1" > /dev/null 2>&1
 }
 
-backup_dir="${BACKUP_DIR_DEFAULT}"
 while getopts 'nb:sh' option; do
   case "${option}" in
     n) dry_run=true ;;
