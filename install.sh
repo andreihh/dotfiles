@@ -21,7 +21,7 @@ readonly DOTFILES_HOME="${XDG_CONFIG_HOME}/dotfiles"
 
 usage() {
   cat << EOF
-Usage: $0 [-h] [-n] [-f] [-b <dir>] [-s]
+Usage: $0 [-h] [-n] [-b <dir>] [-s]
 
 Options:
   -n  Perform a dry run (simulate actions, but do not execute them).
@@ -122,8 +122,10 @@ for history in '.sh_history' '.bash_history' '.zsh_history' '.wget-hsts'; do
 done
 
 echo "Linking 'open', 'fd', and 'bat' to 'xdg-open', 'fdfind', and 'batcat'..."
-has_cmd xdg-open && ln -sfv "$(command -v xdg-open)" "${HOME}/.local/bin/open"
-has_cmd fdfind && ln -sfv "$(command -v fdfind)" "${HOME}/.local/bin/fd"
-has_cmd batcat && ln -sfv "$(command -v batcat)" "${HOME}/.local/bin/bat"
+if [ -z "${dry_run}" ]; then
+  has_cmd xdg-open && ln -sfv "$(command -v xdg-open)" "${HOME}/.local/bin/open"
+  has_cmd fdfind && ln -sfv "$(command -v fdfind)" "${HOME}/.local/bin/fd"
+  has_cmd batcat && ln -sfv "$(command -v batcat)" "${HOME}/.local/bin/bat"
+fi
 
 echo "Installed dotfiles successfully!"
