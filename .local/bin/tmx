@@ -16,7 +16,7 @@ tmux start\; set -g exit-empty off
 # - `-` = try to attach to the last session if not already inside `tmux`
 # - `.` = use the basename of the current working directory as the session name
 case "$1" in
-  '-') [ -z "${TMUX}" ] && tmux attach 2> /dev/null && exit ;;
+  '-') [ -z "${TMUX}" ] && tmux attach 2> /dev/null && exit 0 ;;
   '.') session="$(basename "$(pwd)")" ;;
   *) session="$1" ;;
 esac
@@ -37,7 +37,7 @@ fi
 [ -z "${session}" ] && echo "Session name must not be empty!" 1>&2 && exit 1
 
 # Ensure the selected session exists and attach / switch to it.
-tmux new -d -s "${session}" 2> /dev/null
+! tmux has -t ="${session}" 2> /dev/null && tmux new -d -s "${session}"
 if [ -z "${TMUX}" ]; then
   tmux attach -t ="${session}"
 else
