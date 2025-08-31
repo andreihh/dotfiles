@@ -5,6 +5,9 @@
 # Selects `tmux` session.
 alias t='tmx'
 
+# Opens arguments with the default text editor.
+alias e='"${EDITOR:?}"'
+
 # Opens argument with the default program.
 alias o='open > /dev/null 2>&1'
 
