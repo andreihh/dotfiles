@@ -8,6 +8,8 @@ return { -- Catppuccin color scheme
     styles = { conditionals = {} }, -- Don't use italic for conditionals
     custom_highlights = function(colors)
       return {
+        -- TODO: revert after https://github.com/catppuccin/nvim/pull/905/.
+        ["@property"] = { fg = colors.lavender },
         -- Override window separator to match status line.
         WinSeparator = { fg = colors.overlay0, bg = colors.mantle },
         -- Override float border to match general borders.
