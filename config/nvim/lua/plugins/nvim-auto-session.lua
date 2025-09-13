@@ -1,9 +1,10 @@
 return { -- Session management
   "rmagatti/auto-session",
   lazy = false, -- Ensure auto-loading
+  cmd = "AutoSession",
   keys = {
-    { "<leader>S", "<cmd>Autosession search<CR>", desc = "[S]ession manager" },
-    { "<M-s>", "<cmd>SessionSave<CR>", desc = "[S]ave session" },
+    { "<leader>S", "<cmd>AutoSession search<CR>", desc = "[S]ession manager" },
+    { "<M-s>", "<cmd>AutoSession save<CR>", desc = "[S]ave session" },
   },
   opts = {
     session_lens = {
