@@ -7,7 +7,7 @@ return { -- AI agent, must extend `opts` with `provider` and `providers` config
     "MunifTanjim/nui.nvim",
   },
   opts = {
-    hints = { enabled = false }, -- Disable hints
+    selection = { hint_display = "none" }, -- Disable hints
     windows = { -- Configure window sizes
       width = 40,
       input = { height = 15 },
